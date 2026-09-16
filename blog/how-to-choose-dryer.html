@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Choose the Right Air Dryer | Sizing Guide</title>
+    <meta name="description"
+        content="Don't just match CFM! Learn how to correctly size an air dryer using temperature and pressure correction factors for Tamil Nadu conditions.">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+    <script src="../navbar.js"></script>
+
+    <header class="blog-hero">
+        <div class="container">
+            <div class="blog-meta-header">
+                <span><i class="far fa-calendar"></i> Dec 16, 2025</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+                <span><i class="fas fa-tag"></i> Technical Guide</span>
+            </div>
+            <h1>How to Choose the Right Refrigeration Air Dryer for Your Factory</h1>
+            <img src="../images/blog/how-to-choose-dryer.png" alt="Selection Guide" class="blog-banner-img">
+            <p>A step-by-step guide to sizing and selecting the perfect dryer for your compressor.</p>
+        </div>
+    </header>
+
+    <div class="blog-layout">
+        <main class="blog-main">
+            <article class="blog-content">
+                <p class="lead">A common mistake is buying a 50 CFM dryer for a 50 CFM compressor. In reality, that
+                    dryer might be undersized by 30-40% depending on your operating conditions. Here is how to size it
+                    correctly.</p>
+
+                <h2>The Standard Rating vs. Reality</h2>
+                <p>Manufacturers rate air dryers based on <strong>ISO 7183 Standard Conditions</strong>:</p>
+                <ul>
+                    <li>Inlet Pressure: 7 bar</li>
+                    <li>Inlet Temperature: 35°C (or 45°C for some models)</li>
+                    <li>Ambient Temperature: 25°C</li>
+                </ul>
+                <p><strong>The Reality in India:</strong> In summer, your ambient temperature might be 40°C. Your
+                    compressor discharge (Inlet to dryer) might be 55°C. If you use a standard dryer, it will fail to
+                    remove moisture.</p>
+
+                <h2>The Sizing Formula</h2>
+                <p>To find the correct dryer capacity, you must apply Correction Factors:</p>
+                <div
+                    style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; font-family: monospace; font-size: 1.1em; margin-bottom: 30px;">
+                    Corrected Capacity = Actual Air Flow / (F1 × F2 × F3)
+                </div>
+                <p>Where:</p>
+                <ul>
+                    <li><strong>F1 = Inlet Pressure Factor:</strong> Higher pressure is easier to dry (Factor > 1).
+                        Lower pressure is harder (Factor 0.7 - 0.9).</li>
+                    <li><strong>F2 = Inlet Temperature Factor:</strong> Hot air carries more water. If inlet temp is
+                        55°C, your factor might be 0.65.</li>
+                    <li><strong>F3 = Ambient Temperature Factor:</strong> High ambient heat reduces condenser
+                        efficiency. At 40°C, factor is typically 0.85.</li>
+                </ul>
+
+                <h3>Calculation Example</h3>
+                <p>Let's say you have a <strong>100 CFM</strong> compressor.</p>
+                <ul>
+                    <li>Pressure: 7 bar (F1 = 1.0)</li>
+                    <li>Inlet Temp: 50°C (F2 = 0.70)</li>
+                    <li>Ambient Temp: 35°C (F3 = 0.90)</li>
+                </ul>
+                <p><strong>Required Capacity = 100 / (1.0 × 0.70 × 0.90) = 100 / 0.63 = 158 CFM</strong></p>
+                <div class="alert">
+                    <strong>Result:</strong> You need a dryer rated for at least <strong>158 CFM</strong>. A standard
+                    100 CFM dryer would be drastically undersized. You should likely choose a 160 or 200 CFM model.
+                </div>
+
+                <h2>Other Selection Criteria</h2>
+                <h3>1. Pressure Drop</h3>
+                <p>Always ask for the pressure drop curve. A dryer that saves ₹10,000 upfront but causes a 0.5 bar
+                    pressure drop will cost you ₹50,000 a year in extra compressor electricity.</p>
+
+                <h3>2. Condenser Type</h3>
+                <p>For dusty environments (textile mills, cement plants), ensure the condenser has wide fin spacing to
+                    prevent clogging. Win Equipments uses oversized condensers specifically for this reason.</p>
+
+            </article>
+
+            <div style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;">
+                <a href="../blog.html" style="font-weight: 600; color: var(--text-light);"><i
+                        class="fas fa-arrow-left"></i> Back to Blog Index</a>
+            </div>
+        </main>
+
+        <aside class="blog-sidebar">
+            <div class="sidebar-widget">
+                <h4>Products</h4>
+                <ul class="sidebar-links">
+                    <li><a href="../products/refrigerated_air_dryers.html">Refrigerated Dryer Models</a></li>
+                    <li><a href="../products/desiccant_air_dryer.html">Desiccant Dryer Models</a></li>
+                    <li><a href="../products/automatic_drain_valve.html">Automatic Drain Valves</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h4>Need Sizing Help?</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 20px;">Use our reference table or call us for a free
+                    calculation.</p>
+                <a href="../products/refrigerated_air_dryers.html#specs" class="btn btn-primary"
+                    style="width: 100%; text-align: center;">View Specs Table</a>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand"><img src="../images/logo.png" alt="Win Equipments Logo"></div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Win Equipments.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

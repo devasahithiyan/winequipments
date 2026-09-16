@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Win Equipments</title>
+
+    <!-- Meta Tags -->
+    <meta name="description"
+        content="Learn about Win Equipments, a leading manufacturer of Industrial Chillers and Cooling Towers in Coimbatore. Meet our team and discover our commitment to quality.">
+    <meta name="keywords"
+        content="About Win Equipments, Win Equipments Team, Industrial Cooling Manufacturers, Coimbatore Company">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/logo.png" type="image/png">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About Hero Section */
+        .about-hero {
+            position: relative;
+            padding: 180px 0 100px;
+            /* Fallback background */
+            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(44, 83, 100, 0.8)), url('images/banner_opt.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #a8c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-lead {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .story-content h2 {
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-img-wrapper {
+            width: 100%;
+            height: 300px;
+            /* Uniform height */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-info h3 {
+            color: var(--text-dark);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .team-info p {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader-content">
+            <img src="images/logo.png" alt="Win Equipments" class="loader-logo">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+    <script src="navbar.js"></script>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h4 class="section-subtitle" data-aos="fade-down" style="color: var(--secondary);">Our Journey</h4>
+            <h1 data-aos="fade-up">Driving Industrial Excellence</h1>
+            <p class="about-lead" data-aos="fade-up" data-aos-delay="100">
+                From a visionary startup in 2008 to a trusted leader in industrial cooling solutions, Win Equipments has
+                been built on a foundation of integrity, innovation, and unwavering quality.
+            </p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content" data-aos="fade-right">
+                    <h2>Our Story</h2>
+                    <p>
+                        Established in 2008 in the industrial hub of Arasur, Coimbatore, Win Equipments began with a
+                        singular mission: to provide Indian industries with cooling solutions that could withstand the
+                        rigors of tropical climates and continuous operation.
+                    </p>
+                    <p>
+                        Under the leadership of our proprietor, <strong>Mr. Ramasamy Ananthakumar</strong>, we have
+                        grown from a small manufacturing unit into a comprehensive solution provider. We understand that
+                        in sectors like textiles and food processing, downtime is costly. That's why every chiller and
+                        cooling tower we build is engineered for maximum reliability.
+                    </p>
+                    <p>
+                        Today, we are proud to be an ISO 9001:2015 certified company, exporting our "Made in India"
+                        excellence to global markets including Kuwait, Oman, and Jordan.
+                    </p>
+
+                    <div style="margin-top: 30px;">
+                        <div class="feature-item"
+                            style="display:inline-flex; align-items:center; gap:10px; margin-right: 20px;">
+                            <i class="fas fa-file-invoice" style="color:var(--secondary);"></i>
+                            <span style="font-weight:600;">GST Registered</span>
+                        </div>
+                        <div class="feature-item" style="display:inline-flex; align-items:center; gap:10px;">
+                            <i class="fas fa-globe-asia" style="color:var(--secondary);"></i>
+                            <span style="font-weight:600;">Global Exports</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-content" data-aos="fade-left">
+                    <!-- Placeholder for a facility image or the team group shot if preferred -->
+                    <img src="images/about_us.jpg" alt="Win Equipments Facility"
+                        style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h4 class="section-subtitle">The People Behind The Brand</h4>
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="title-bar"></div>
+                <p style="max-width: 700px; margin: 0 auto; color: var(--text-light);">
+                    Our strength lies in our people. A dedicated team of engineers, technicians, and support staff
+                    working together to deliver the best for our clients.
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card" data-aos="fade-up">
+                    <div class="team-img-wrapper">
+                        <img src="images/about_us.jpg" alt="Win Equipments Management Team">
+                    </div>
+                    <div class="team-info">
+                        <h3>Leadership Team</h3>
+                        <p>Driving Vision & Strategy</p>
+                        <div style="font-size: 0.9rem; color: #666;">
+                            Spearheading innovation and ensuring our core values are reflected in every project we
+                            undertake.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-img-wrapper">
+                        <!-- Using the second requested image -->
+                        <img src="images/about_us_2.jpg" alt="Win Equipments Engineering Team">
+                    </div>
+                    <div class="team-info">
+                        <h3>Operations & Engineering</h3>
+                        <p>The Core Force</p>
+                        <div style="font-size: 0.9rem; color: #666;">
+                            Our skilled technicians and engineers who ensure precision manufacturing and seamless
+                            installations.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="Win Equipments" class="footer-logo">
+                    <p>Leading the way in industrial cooling solutions. Committed to quality, innovation, and
+                        sustainability.</p>
+
+                    <div class="footer-gst">
+                        <i class="fas fa-file-invoice" title="GST Registered"></i>
+                        <span>GST: 33AJWPA2797B1Z7</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/winequipment/" target="_blank" rel="noopener noreferrer"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/winequipments/" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/explore/locations/128985550516824/win-equipments/"
+                            target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#products">Products</a></li>
+                        <li><a href="certifications.html">Certifications</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-products">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products/refrigerated_air_dryers.html">Air Dryers</a></li>
+                        <li><a href="products/cooling_towers.html">Cooling Towers</a></li>
+                        <li><a href="products/chiller.html">Chillers</a></li>
+                        <li><a href="products/air_receiver.html">Air Receivers</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Win Equipments. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/message/NS75YDDMI5MEP1" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Page specific loader optimization
+        $(window).on('load', function () {
+            $('#loadingScreen').fadeOut(300);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certifications - Win Equipments</title>
+
+  <!-- Meta Tags -->
+  <meta name="description"
+    content="Win Equipments Certifications: ISO 9001, IAF, and DAC Certified. Committed to quality and excellence.">
+  <meta name="keywords" content="Win Equipments, Certifications, ISO 9001, IAF, DAC, Quality">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/logo.png" type="image/png">
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Libraries -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hero Section */
+    .cert-hero {
+      position: relative;
+      padding: 180px 0 100px;
+      background: linear-gradient(rgba(15, 32, 39, 0.6), rgba(44, 83, 100, 0.6)), url('images/cert_banner_opt.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cert-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
+    }
+
+    .cert-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cert-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #fff, #a8c0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cert-hero p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Certification Cards */
+    .cert-section {
+      padding: 80px 0;
+      background: #f8f9fa;
+      position: relative;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: -150px;
+      /* Overlap with hero */
+      position: relative;
+      z-index: 10;
+    }
+
+    .cert-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border-top: 5px solid var(--primary);
+    }
+
+    .cert-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, transparent 50%, rgba(0, 86, 179, 0.05) 50%);
+      border-radius: 0 0 0 100%;
+    }
+
+    .cert-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #28a745;
+      font-size: 1.5rem;
+      background: rgba(40, 167, 69, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-img-wrapper {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cert-img-wrapper img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .cert-card:hover .cert-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .cert-card h3 {
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .cert-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .cert-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Quality Policy Section */
+    .quality-section {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .quality-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+
+    .quality-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+
+    .quality-list li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .quality-list i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-right: 15px;
+      margin-top: 5px;
+      background: rgba(0, 86, 179, 0.1);
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .quality-list h4 {
+      margin-bottom: 5px;
+      color: var(--text-dark);
+    }
+
+    .quality-list p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .quality-visual {
+      position: relative;
+    }
+
+    .quality-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quality-card::after {
+      content: '\f0a3';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      font-size: 150px;
+      opacity: 0.1;
+      color: white;
+    }
+
+    /* Why It Matters */
+    .benefits-section {
+      padding: 80px 0;
+      background: #f8f9fa;
+      text-align: center;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .benefit-item {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .cert-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .quality-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-grid {
+        margin-top: -50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loader-content">
+      <img src="images/logo.png" alt="Win Equipments" class="loader-logo">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <!-- Navigation -->
+  <div id="navbar-placeholder"></div>
+  <script src="navbar.js"></script>
+
+  <!-- Hero Section -->
+  <section class="cert-hero">
+    <div class="container cert-hero-content">
+      <h4 class="section-subtitle" data-aos="fade-down" style="color: var(--secondary);">Excellence Verified</h4>
+      <h1 data-aos="fade-up">Our Standards of Quality</h1>
+      <p data-aos="fade-up" data-aos-delay="100">
+        At Win Equipments, quality isn't just a goal—it's our foundation. We are proud to be recognized by leading
+        international bodies for our commitment to excellence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Certifications Grid -->
+  <section class="cert-section">
+    <div class="container">
+      <div class="cert-grid">
+        <!-- ISO Certification -->
+        <div class="cert-card" data-aos="fade-up">
+          <div class="cert-badge"><i class="fas fa-check"></i></div>
+          <div class="cert-img-wrapper">
+            <img src="images/iso.png" alt="ISO 9001 Certified">
+          </div>
+          <h3>ISO 9001:2015</h3>
+          <p>The world's most recognized Quality Management System (QMS) standard. It ensures our products consistently
+            meet customer and regulatory requirements.</p>
+          <div class="cert-meta">
+            <span><i class="fas fa-globe"></i> Global Standard</span>
+            <span><i class="fas fa-shield-alt"></i> Quality Assured</span>
+          </div>
+        </div>
+
+        <!-- IAF Certification -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="cert-badge"><i class="fas fa-check"></i></div>
+          <div class="cert-img-wrapper">
+            <img src="images/iaf.png" alt="IAF Accredited">
+          </div>
+          <h3>IAF Accredited</h3>
+          <p>Accreditation by the International Accreditation Forum ensures that our certifications are recognized and
+            respected worldwide, facilitating international trade.</p>
+          <div class="cert-meta">
+            <span><i class="fas fa-handshake"></i> Mutual Recognition</span>
+            <span><i class="fas fa-star"></i> Top Tier</span>
+          </div>
+        </div>
+
+        <!-- DAC Certification -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="cert-badge"><i class="fas fa-check"></i></div>
+          <div class="cert-img-wrapper">
+            <img src="images/dac.png" alt="DAC Certified">
+          </div>
+          <h3>DAC Certified</h3>
+          <p>Certification from the Dubai Accreditation Center, validating our technical competence and adherence to
+            specific regional quality standards.</p>
+          <div class="cert-meta">
+            <span><i class="fas fa-map-marker-alt"></i> Regional Excellence</span>
+            <span><i class="fas fa-award"></i> Certified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality Policy Section -->
+  <section class="quality-section">
+    <div class="container">
+      <div class="quality-grid">
+        <div class="quality-content" data-aos="fade-right">
+          <h2>Our Quality Policy</h2>
+          <p class="lead">We are dedicated to delivering superior industrial cooling solutions that exceed customer
+            expectations.</p>
+          <ul class="quality-list">
+            <li>
+              <i class="fas fa-cogs"></i>
+              <div>
+                <h4>Continuous Improvement</h4>
+                <p>We constantly refine our manufacturing processes to enhance efficiency and product durability.</p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-user-shield"></i>
+              <div>
+                <h4>Customer Safety</h4>
+                <p>Every product undergoes rigorous testing to ensure it meets the highest safety standards.</p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-leaf"></i>
+              <div>
+                <h4>Environmental Responsibility</h4>
+                <p>We strive to minimize our environmental footprint through sustainable practices and energy-efficient
+                  designs.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="quality-visual" data-aos="fade-left">
+          <div class="quality-card">
+            <h3><i class="fas fa-quote-left"></i> CEO's Message</h3>
+            <p style="font-size: 1.1rem; margin-top: 20px; font-style: italic;">
+              "Quality is not an act, it is a habit. Our certifications are a testament to the hard work and dedication
+              of our entire team to provide the best for our clients."
+            </p>
+            <div style="margin-top: 30px; display: flex; align-items: center; gap: 15px;">
+              <div
+                style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-signature" style="font-size: 1.5rem;"></i>
+              </div>
+              <div>
+                <strong>Management Team</strong><br>
+                <span style="font-size: 0.9rem; opacity: 0.8;">Win Equipments</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Why Certification Matters</h2>
+      <div class="title-bar" data-aos="fade-up"></div>
+      <div class="benefits-grid">
+        <div class="benefit-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+          <h4>Consistency</h4>
+          <p>Guarantees that every product you receive meets the same high standards.</p>
+        </div>
+        <div class="benefit-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+          <h4>Efficiency</h4>
+          <p>Streamlined processes mean better turnaround times and cost-effectiveness.</p>
+        </div>
+        <div class="benefit-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="benefit-icon"><i class="fas fa-globe-americas"></i></div>
+          <h4>Global Trust</h4>
+          <p>International recognition allows us to serve clients across borders with confidence.</p>
+        </div>
+        <div class="benefit-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="benefit-icon"><i class="fas fa-thumbs-up"></i></div>
+          <h4>Customer Satisfaction</h4>
+          <p>Our primary focus is ensuring you are happy with our products and services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Win Equipments" class="footer-logo">
+          <p>Leading the way in industrial cooling solutions. Committed to quality, innovation, and sustainability.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/winequipment/" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/winequipments/" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/explore/locations/128985550516824/win-equipments/" target="_blank"
+              rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#products">Products</a></li>
+            <li><a href="certifications.html">Certifications</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-products">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products/refrigerated_air_dryers.html">Air Dryers</a></li>
+            <li><a href="products/cooling_towers.html">Cooling Towers</a></li>
+            <li><a href="products/chiller.html">Chillers</a></li>
+            <li><a href="products/air_receiver.html">Air Receivers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Win Equipments. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/message/NS75YDDMI5MEP1" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Force remove loader on this page specifically to improve perceived performance
+    $(window).on('load', function() {
+        $('#loadingScreen').fadeOut(300);
+    });
+    setTimeout(function() {
+        $('#loadingScreen').fadeOut(300);
+    }, 1500); // Aggressive 1.5s fallback for this page
+  </script>
+</body>
+
+</html>

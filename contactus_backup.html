@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Win Equipments</title>
+
+  <!-- Description & Keywords (Adjust as needed) -->
+  <meta name="description" content="Contact Win Equipments for Compressed Air & Water Cooling Systems enquiries.">
+  <meta name="keywords" content="Win Equipments, Compressed Air, Water Cooling, Contact, Air Dryers, Cooling Towers">
+
+  <!-- Favicon (Optional) -->
+  <link rel="icon" href="images/logo.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" 
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome (for icons) -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-p8fOQ6WQOZbGeEeO6HT8ZnK4M+1jQpe8SU0QzL4UaQIXsohwRhc8kZ1B6Qdo7sUlQlxQeDZJRQNPjPZN/lR8AA==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- AOS Library for Animations -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+  />
+
+  <!-- Inline CSS (Combines Nav Bar + Contact Page Styles) -->
+  <style>
+    /*****************************************************
+     * 1. RESET & BASE STYLES
+     *****************************************************/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+
+      /* Padding to avoid content hiding behind fixed header */
+      padding-top: 80px; 
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /*****************************************************
+     * 2. HEADER STYLES (from original code)
+     *****************************************************/
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0; 
+      width: 100%;
+      height: 80px; 
+      z-index: 1000;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 0 20px;
+    }
+    .logo-and-certificates {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 50px;
+      margin-right: 20px; 
+    }
+    .certificates {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Consistent spacing */
+    }
+    .certificate {
+      height: 30px; 
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .certificate:hover {
+      transform: scale(1.1);
+    }
+
+    /* Navigation Styles */
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap; /* Prevent wrapping */
+    }
+    nav ul li {
+      position: relative; /* For dropdown positioning */
+      margin-left: 25px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #09a43f;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem; 
+    }
+    nav ul li a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background-color: #09a43f;
+      transition: width .3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+    nav ul li a:hover {
+      color: #005d25;
+      transform: translateY(-2px); 
+    }
+    /* Active Link Styling */
+    nav ul li a.active {
+      color: #007f2c;
+    }
+    nav ul li a.active::after {
+      background-color: #007f2c;
+    }
+
+    /* Dropdown Menu Styles */
+    nav ul li.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+      min-width: 250px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1000;
+      padding: 10px 0;
+      transition: opacity 0.3s ease;
+    }
+    .dropdown-menu li {
+      width: 100%;
+    }
+    .dropdown-menu li a {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .dropdown-menu li a:hover {
+      background-color: #f1f1f1;
+      color: #09a43f;
+    }
+    .dropdown-menu li a img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    /* Mobile Navigation */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .menu-toggle .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px 0;
+      background: #09a43f;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.3s ease;
+        z-index: 9999;
+      }
+      nav ul.active {
+        left: 0;
+      }
+      nav ul li {
+        margin: 20px 0;
+      }
+      .menu-toggle {
+        display: block;
+        z-index: 10000;
+      }
+      /* Dropdown Menu for Mobile */
+      nav ul li.dropdown .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0;
+        display: none;
+      }
+      nav ul li.dropdown.active > .dropdown-menu {
+        display: block;
+      }
+      nav ul li.dropdown .dropdown-menu li a {
+        padding: 10px 40px;
+      }
+    }
+    @media (max-width: 480px) {
+      nav ul li a {
+        font-size: 0.9rem;
+      }
+      .logo img {
+        height: 45px;
+      }
+      .certificates {
+        gap: 8px; 
+      }
+      nav ul li {
+        margin: 15px 0;
+      }
+    }
+
+    /* Header Background on Scroll */
+    .header-scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    /*****************************************************
+     * 3. CONTACT PAGE HERO / BANNER
+     *****************************************************/
+    .contact-hero {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(to right, #09a43f 40%, #007f2c 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .contact-hero h1 {
+      font-size: 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      margin: 0 20px;
+    }
+    /* Decorative wave shape at the bottom of hero (optional) */
+    .contact-hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: url('https://svgshare.com/i/usG.svg') no-repeat center;
+      background-size: cover;
+    }
+
+    /*****************************************************
+     * 4. CONTACT SECTION
+     *****************************************************/
+    .contact-section {
+      margin-top: -70px; /* overlap wave shape */
+      padding: 80px 0;
+      background-color: #f4f4f4;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2rem;
+      color: #09a43f;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .section-subtitle {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #555;
+      font-size: 1rem;
+      max-width: 650px;
+      margin: 0 auto 40px;
+    }
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    /*****************************************************
+     * 5. CONTACT FORM
+     *****************************************************/
+    .contact-form-container {
+      flex: 1 1 400px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .contact-form-container h2 {
+      font-size: 1.5rem;
+      color: #09a43f;
+      margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #09a43f;
+    }
+    .form-btn {
+      display: inline-block;
+      background-color: #09a43f;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .form-btn:hover {
+      background-color: #007f2c;
+      transform: translateY(-2px);
+    }
+    /* Thank You Message */
+    .thank-you-message {
+      display: none; 
+      background-color: #e6ffe6; 
+      border: 1px solid #09a43f; 
+      padding: 30px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .thank-you-message.show {
+      display: block;
+      opacity: 1;
+    }
+    .thank-you-message h3 {
+      color: #09a43f;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .thank-you-message p {
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /*****************************************************
+     * 6. CONTACT INFO & MAP
+     *****************************************************/
+    .contact-info-container {
+      flex: 1 1 300px;
+      background-color: #fff;
+      padding: 45px 30px 30px; /* Increased top padding */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: visible;
+    }
+    .contact-info-container h2 {
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #09a43f;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      position: absolute;
+      top: -20px;
+      left: 30px;
+      padding: 10px 25px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(9, 164, 63, 0.4);
+      letter-spacing: 0.5px;
+    }
+    .contact-details {
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+    .contact-details p {
+      margin: 15px 0;
+      font-size: 1rem;
+      color: #555;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    .contact-details i {
+      color: #09a43f;
+      font-size: 1.2rem;
+      margin-top: 4px; /* Align icon with first line of text */
+      min-width: 20px; /* Ensure icon column width */
+    }
+    /* Social icons */
+    .contact-social-links {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .contact-social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #f4f4f4;
+      color: #09a43f;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .contact-social-links a:hover {
+      background-color: #09a43f;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+    .map-container {
+      margin-top: auto; /* Push map to bottom if container stretches */
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+      display: block;
+    }
+    /*****************************************************
+     * 7. FOOTER (SIMPLE)
+     *****************************************************/
+    footer {
+      background-color: #333; 
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 1rem;
+      font-family: 'Open Sans', sans-serif;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #09a43f; 
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #e64a19;
+    }
+    /*****************************************************
+     * 8. RESPONSIVE
+     *****************************************************/
+    @media (max-width: 768px) {
+      .contact-hero h1 {
+        font-size: 2rem;
+      }
+      .contact-section {
+        margin-top: 0;
+      }
+      .contact-wrapper {
+        flex-direction: column;
+      }
+    }
+    @media (max-width: 480px) {
+      .contact-hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (Copied from your original code) -->
+  <header>
+    <div class="container header-container">
+      <div class="logo-and-certificates">
+        <div class="logo">
+          <!-- Link back to home page -->
+          <a href="index.html#home">
+            <img src="images/logo.png" alt="Win Equipments Logo">
+          </a>
+        </div>
+        <div class="certificates">
+          <img src="images/iso.png" alt="ISO 9001 Certified" class="certificate" loading="lazy">
+          <img src="images/iaf.png" alt="IAF Accredited" class="certificate" loading="lazy">
+          <img src="images/dac.png" alt="DAC Certified" class="certificate" loading="lazy">
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav>
+        <ul>
+          <!-- Update these links so they point to your correct pages -->
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li class="dropdown">
+            <a href="index.html#products" aria-haspopup="true" aria-expanded="false">
+              Products <i class="fas fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-label="Products Dropdown">
+              <li>
+                <a href="products/refrigerated_air_dryers.html">
+                  <img src="images/Products/Refrigiratedairdryer1.png" alt="Refrigeration Air Dryers">
+                  Refrigeration Air Dryers
+                </a>
+              </li>
+              <li>
+                <a href="products/cooling_towers.html">
+                  <img src="images/Products/coolingtower.png" alt="Cooling Towers">
+                  Cooling Towers
+                </a>
+              </li>
+              <li>
+                <a href="products/rounded_cooling_towers.html">
+                  <img src="images/Products/rounded_coolingtower.png" alt="Rounded Cooling Towers">
+                  Rounded Cooling Towers
+                </a>
+              </li>
+              <li>
+                <a href="products/aftercooler.html">
+                  <img src="images/Products/aftercooler.png" alt="Aftercooler">
+                  Aftercooler
+                </a>
+              </li>
+              <li>
+                <a href="products/air_receiver.html">
+                  <img src="images/Products/Airreciever.png" alt="Air Receiver">
+                  Air Receiver
+                </a>
+              </li>
+              <li>
+                <a href="products/coil_cooling.html">
+                  <img src="images/Products/coilcooling.png" alt="Coil Cooling">
+                  Coil Cooling
+                </a>
+              </li>
+              <li>
+                <a href="products/compressed_air_filter.html">
+                  <img src="images/Products/compressedairfilters.png" alt="Compressed Air Filter">
+                  Compressed Air Filter
+                </a>
+              </li>
+              <li>
+                <a href="products/desiccant_air_dryer.html">
+                  <img src="images/Products/dessicantdryer.png" alt="Desiccant Air Dryer">
+                  Desiccant Air Dryer
+                </a>
+              </li>
+              <li>
+                <a href="products/chiller.html">
+                  <img src="images/Products/Sodachiller.png" alt="Soda Chiller">
+                  Soda Chiller
+                </a>
+              </li>
+              <li>
+                <a href="products/automatic_drain_valve.html">
+                  <img src="images/Products/compressedairfilters.png" alt="Automatic Drain Valve">
+                  Automatic Drain Valve
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="certifications.html">Certifications</a></li>
+          <li><a href="contactus.html" class="active">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- END HEADER -->
+
+  <!-- CONTACT HERO / BANNER -->
+  <section class="contact-hero" data-aos="fade-down">
+    <h1>Contact Win Equipments</h1>
+  </section>
+
+  <!-- MAIN CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">We'd Love to Hear From You</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Whether you have questions about our Compressed Air & Water Cooling Systems, need a project consultancy,
+        or simply want more information, our team is ready to answer all your questions.
+      </p>
+
+      <div class="contact-wrapper">
+        <!-- CONTACT FORM -->
+        <div 
+          class="contact-form-container" 
+          data-aos="fade-right" 
+          data-aos-delay="200"
+        >
+          <h2>Send Us a Message</h2>
+          
+          <form id="contactForm">
+            <!-- Hidden fields for formsubmit.co -->
+            <input type="hidden" name="_captcha" value="false"/>
+            <input type="hidden" name="_subject" value="New Enquiry from Win Equipments - Contact Page"/>
+            <input type="text" name="_honey" style="display:none"/>
+
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name"
+                placeholder="Enter your name" 
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                placeholder="Enter your email" 
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                pattern="[0-9]{10,15}"
+                placeholder="Enter your phone number" 
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                placeholder="Subject of your enquiry" 
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                placeholder="Type your message here..." 
+                rows="5" 
+                required
+              ></textarea>
+            </div>
+
+            <button type="button" class="form-btn" onclick="handleFormSubmit()">Submit</button>
+          </form>
+
+          <!-- THANK YOU MESSAGE -->
+          <div class="thank-you-message" id="thankYouMessage">
+            <h3>Thank You!</h3>
+            <p>Your message has been sent. We will get back to you shortly.</p>
+          </div>
+        </div>
+        <!-- END CONTACT FORM -->
+
+        <!-- CONTACT INFO CONTAINER -->
+        <div 
+          class="contact-info-container" 
+          data-aos="fade-left" 
+          data-aos-delay="300"
+        >
+          <h2>Contact Details</h2>
+          
+          <div class="contact-details">
+            <p>
+              <i class="fas fa-map-marker-alt"></i>
+              SF No: 4, 195 B, Post, Kallangadu, Arasur, Tamil Nadu 641407
+            </p>
+            <p>
+              <i class="fas fa-phone-alt"></i>
+              +91 9597228969
+            </p>
+            <p>
+              <i class="fas fa-envelope"></i>
+              info@winequipments.com
+            </p>
+          </div>
+
+          <p style="margin-bottom: 10px;"><strong>Follow Us</strong></p>
+          <div class="contact-social-links">
+            <!-- Replace with your actual social links, if any -->
+            <a href="https://www.facebook.com/winequipment/" aria-label="Facebook" target="_blank" rel="noopener">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/winequipments/" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/explore/locations/128985550516824/win-equipments/" aria-label="Instagram" target="_blank" rel="noopener">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          
+          <!-- MAP EMBED -->
+          <div class="map-container" data-aos="zoom-in" data-aos-delay="400">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d485.2727234629655!2d77.10805696602704!3d11.092619712873276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f7bdf79af231%3A0x54720dceab708a1!2sWin%20Equipments!5e0!3m2!1sen!2sin!4v1734591436180!5m2!1sen!2sin"
+              allowfullscreen=""
+              loading="lazy"
+              title="Win Equipments Location"
+            ></iframe>
+          </div>
+        </div>
+        <!-- END CONTACT INFO CONTAINER -->
+      </div>
+    </div>
+  </section>
+  <!-- END CONTACT SECTION -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Win Equipments. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+  <!-- jQuery (if you need it; otherwise you can remove) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- AOS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+  <!-- Menu Toggle & Form Submission JS -->
+  <script>
+    // Form submission handler - called by button click
+    function handleFormSubmit() {
+      console.log("Form submission started");
+
+      const contactForm = document.getElementById('contactForm');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+      
+      if (!contactForm || !thankYouMessage) {
+        console.error("Form elements not found!");
+        return;
+      }
+      
+      // Check form validity
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      const submitBtn = contactForm.querySelector('.form-btn') || contactForm.querySelector('button');
+      let originalBtnText = 'Submit';
+      
+      // Loading State
+      if (submitBtn) {
+        originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        submitBtn.style.cursor = 'not-allowed';
+      }
+
+      const formData = new FormData(contactForm);
+
+      // Send to FormSubmit.co
+      fetch('https://formsubmit.co/ajax/devasahithiyan@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          contactForm.reset();
+          // Hide form and show thank you message
+          contactForm.style.display = 'none';
+          thankYouMessage.classList.add('show');
+        } else {
+          return response.json().then(data => {
+            if (data.errors) {
+              alert(data.errors.map(error => error.message).join(", "));
+            } else {
+              alert("Oops! There was a problem submitting your form");
+            }
+          })
+        }
+      })
+      .catch(error => {
+        console.error("Form submission error:", error);
+        alert("Oops! There was a problem submitting your form. Please check your internet connection.");
+      })
+      .finally(() => {
+        // Reset button state (only if form is still visible)
+        if (contactForm.style.display !== 'none' && submitBtn) {
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      /* Mobile Menu Toggle */
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navUl = document.querySelector('nav ul');
+
+      if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+          navUl.classList.toggle('active');
+          menuToggle.classList.toggle('active');
+        });
+      }
+      
+      // Note: Form submission is now handled by inline onsubmit="handleFormSubmit(event)"
+    });
+
+    /* Optional: Make the header "shrink" or "header-scrolled" on scroll */
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
