@@ -1,192 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Main Pages -->
   <url>
-    <loc>https://www.winequipments.com/</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/banner_opt.jpg</image:loc>
+      <image:title>Win Equipments Industrial Cooling and Air Treatment Facility</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.winequipments.com/about.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/about.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.winequipments.com/contactus.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/contactus.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.winequipments.com/certifications.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/certifications.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.winequipments.com/installation.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/installation.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.winequipments.com/blog.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/case-studies.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
 
-  <!-- Products -->
+  <!-- Core Product Pillars -->
   <url>
-    <loc>https://www.winequipments.com/products/refrigerated_air_dryers.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/products/refrigerated-air-dryers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/Refrigiratedairdryer1.png</image:loc>
+      <image:title>Refrigerated Air Dryer Manufacturer Coimbatore</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/desiccant-air-dryers.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/dessicantdryer.png</image:loc>
+      <image:title>Heatless Desiccant Air Dryer Manufacturer India</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.winequipments.com/products/cooling_towers.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/products/industrial-process-chillers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/Sodachiller.png</image:loc>
+      <image:title>Industrial Process Water Chiller Manufacturer</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/round-cooling-towers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/coolingtower.png</image:loc>
+      <image:title>Round Bottle FRP Cooling Tower Manufacturer Coimbatore</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/square-cooling-towers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/Squarecoolingtower1.png</image:loc>
+      <image:title>Square Modular Cooling Tower Manufacturer</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/closed-circuit-cooling-towers.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/coilcooling.png</image:loc>
+      <image:title>Closed Circuit Coil Cooling Tower</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.winequipments.com/products/chiller.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/products/air-receiver-tanks.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/Airreciever.png</image:loc>
+      <image:title>Air Receiver Tank Manufacturer Coimbatore</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.winequipments.com/products/air_receiver.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/products/compressed-air-filters.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/compressedairfilters.png</image:loc>
+      <image:title>Compressed Air Line Filters 0.01 Micron</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/automatic-drain-valves.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/drainvalve.png</image:loc>
+      <image:title>Automatic Zero Air Loss Drain Valve</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/industrial-aftercoolers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/aftercooler.png</image:loc>
+      <image:title>Compressed Air Aftercoolers</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/spare-parts-consumables.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/products/desiccant_air_dryer.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/products/compressed_air_filter.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/products/automatic_drain_valve.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/products/aftercooler.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/products/rounded_cooling_towers.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/products/coil_cooling.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  
-  <!-- Blogs -->
-  <url>
-    <loc>https://www.winequipments.com/blog/what-is-refrigerated-air-dryer.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/refrigerated-vs-desiccant.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/how-to-choose-dryer.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/maintenance-tips-hot-climates.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/troubleshooting-common-problems.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/pricing-in-coimbatore.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/save-energy-reduce-costs.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/applications-textile-food.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/installing-servicing-tamil-nadu.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://www.winequipments.com/blog/key-benefits-refrigerated-air-dryers.html</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/drainvalve.png</image:loc>
+      <image:title>OEM Industrial Spare Parts and Consumables Hub</image:title>
+    </image:image>
   </url>
 
-  <!-- Location Pages -->
+  <!-- Interactive Engineering Sizing Tools -->
   <url>
-    <loc>https://www.winequipments.com/locations/hosur-industrial-chillers.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/engineering-tools/air-dryer-sizing.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://www.winequipments.com/locations/tirupur-textile-air-dryers.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/engineering-tools/cooling-tower-calculator.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://www.winequipments.com/locations/erode-cooling-towers.html</loc>
-    <lastmod>2025-12-19</lastmod>
+    <loc>https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html</loc>
+    <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/engineering-tools/compressed-air-energy-calculator.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
 
-  <!-- Regional Pages -->
+  <!-- Industry Solution Hubs -->
   <url>
-    <loc>https://www.winequipments.com/ta/</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://winequipments.com/industries/laser-cutting.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/industries/plastic-molding.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Regional Corridors -->
+  <url>
+    <loc>https://winequipments.com/locations/hosur-cnc-air-dryers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/locations/tirupur-textile-air-dryers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/locations/erode-cooling-towers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/locations/chennai-industrial-chillers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/locations/bangalore-compressed-air-dryers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Regional Tamil Landing -->
+  <url>
+    <loc>https://winequipments.com/ta/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Technical Blog & Engineering Knowledge Hub -->
+  <url>
+    <loc>https://winequipments.com/blog/iso-8573-1-compressed-air-purity-classes.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/applications-textile-food.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/how-to-choose-dryer.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/installing-servicing-tamil-nadu.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/key-benefits-refrigerated-air-dryers.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/maintenance-tips-hot-climates.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/pricing-in-coimbatore.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/refrigerated-vs-desiccant.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/save-energy-reduce-costs.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/troubleshooting-common-problems.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://winequipments.com/blog/what-is-refrigerated-air-dryer.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>

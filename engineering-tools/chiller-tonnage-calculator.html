@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industrial Chiller Tonnage & Heat Load Calculator | Win Equipments</title>
+
+  <!-- Meta Tags -->
+  <meta name="description"
+    content="Free online Industrial Process Chiller Tonnage Calculator. Calculate required chiller capacity (TR and kW) from water flow rate (LPM) and Delta T (°C). By Win Equipments Coimbatore.">
+  <meta name="keywords"
+    content="Chiller Tonnage Calculator, Process Chiller Heat Load Formula, Water Chiller Sizing, kW to TR Calculator, Win Equipments">
+  <meta name="author" content="Win Equipments" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html" />
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Win Equipments">
+  <meta property="og:url" content="https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html">
+  <meta property="og:title" content="Industrial Chiller Tonnage & Heat Load Calculator | Win Equipments">
+  <meta property="og:description" content="Free online Industrial Process Chiller Tonnage Calculator. Calculate required chiller capacity (TR and kW) from water flow rate (LPM) and Delta T (°C). By Win Equipments Coimbatore.">
+  <meta property="og:image" content="https://winequipments.com/images/banner_opt.jpg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html">
+  <meta name="twitter:title" content="Industrial Chiller Tonnage & Heat Load Calculator | Win Equipments">
+  <meta name="twitter:description" content="Free online Industrial Process Chiller Tonnage Calculator. Calculate required chiller capacity (TR and kW) from water flow rate (LPM) and Delta T (°C). By Win Equipments Coimbatore.">
+  <meta name="twitter:image" content="https://winequipments.com/images/banner_opt.jpg">
+
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#0052CC">
+
+  <!-- Fonts & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Industrial Chiller Tonnage Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "url": "https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html",
+        "author": {
+          "@type": "Organization",
+          "name": "Win Equipments"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Calculate Industrial Chiller Tonnage from Water Flow and Temperature Difference",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Measure Water Flow Rate",
+            "text": "Determine the process fluid flow rate in Liters Per Minute (LPM)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Calculate Temperature Difference (Delta T)",
+            "text": "Subtract required cold outlet temperature from incoming hot water temperature: Delta T = Tin - Tout (°C)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Apply Thermodynamic Tonnage Formula",
+            "text": "Calculate TR = (Flow in LPM × Delta T × 4.186 kJ/kg°C) / 211 kJ/min per TR."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Add Summer Safety Margin",
+            "text": "Multiply by 1.15 (15% safety factor) to compensate for piping heat gain and high ambient conditions."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://winequipments.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Engineering Tools",
+        "item": "https://winequipments.com/index.html#calculators"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Industrial Chiller Tonnage & Heat Load Calculator",
+        "item": "https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- TOP UTILITY BAR -->
+  <div class="top-utility-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+919597228969">+91 95972 28969</a>
+        </div>
+      </div>
+      <div class="top-bar-actions">
+        <a href="../catlogue/chiller.pdf" class="top-bar-link" target="_blank"><i class="fas fa-file-pdf"></i> Chiller Brochure</a>
+        <a href="../ta/" class="lang-switch">தமிழ்</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo-group">
+        <img src="../images/logo.png" alt="Win Equipments Logo" class="brand-logo-img" width="48" height="48">
+        <div class="brand-title-wrap">
+          <span class="brand-name">WIN EQUIPMENTS</span>
+          <span class="brand-tagline">Save Water and Power</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-desktop">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../index.html#products" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="chiller-tonnage-calculator.html" class="nav-link" style="color: var(--color-brand-accent);">Chiller Calculator</a></li>
+          <li class="nav-item"><a href="cooling-tower-calculator.html" class="nav-link">Tower Calculator</a></li>
+          <li class="nav-item"><a href="air-dryer-sizing.html" class="nav-link">CFM Calculator</a></li>
+          <li class="nav-item"><a href="../contactus.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="#quote-section" class="btn btn-cta btn-sm">Request Chiller Proposal</a>
+        <button class="mobile-toggle-btn" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars" style="font-size: 1.4rem;"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-py" style="padding-top: 2rem;">
+    <div class="container">
+      <nav style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 1.5rem;">
+        <a href="../index.html">Home</a> &gt; <span>Engineering Tools</span> &gt; <span style="color: var(--color-brand-primary); font-weight: 600;">Chiller Tonnage Calculator</span>
+      </nav>
+
+      <div class="section-header-center">
+        <span class="badge badge-eco">Thermodynamic Sizing Tool</span>
+        <h1>Industrial Chiller Tonnage & Heat Load Calculator</h1>
+        <p class="section-lead">Accurately determine the exact chiller capacity (TR & kW) needed for your plastic injection molds, fiber laser cutting heads, or CNC machine tool spindles.</p>
+      </div>
+
+      <!-- DIRECT ANSWER BOX -->
+      <div class="snippet-direct-answer">
+        <p>
+          <strong>How do you calculate industrial chiller tonnage?</strong> Industrial chiller tonnage is calculated using the thermodynamic heat transfer equation:  
+          $$\text{TR} = \frac{\text{Flow (LPM)} \times \Delta T (^\circ\text{C}) \times 4.186}{211}$$  
+          Where $\text{Flow}$ is in liters per minute, $\Delta T$ is $(T_{\text{inlet}} - T_{\text{outlet}})$, $4.186 \text{ kJ/kg}^\circ\text{C}$ is the specific heat of water, and $211 \text{ kJ/min}$ equals 1 Ton of Refrigeration (TR). A 15% safety factor is standardly added for high Indian ambient conditions.
+        </p>
+      </div>
+
+      <!-- CALCULATOR WIDGET -->
+      <div class="calc-widget-card" style="margin: 3rem 0;">
+        <div class="calc-grid">
+          <div>
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-sliders-h" style="color: var(--color-brand-accent);"></i> Input Process Parameters</h3>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Process Water Flow Rate (LPM)</span>
+                <span class="mono" id="tool-val-chillerflow">60 LPM</span>
+              </div>
+              <input type="range" min="5" max="600" step="5" value="60" class="calc-input" id="calc-chiller-flow" oninput="document.getElementById('tool-val-chillerflow').textContent = this.value + ' LPM'">
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Process Water Inlet Temp (°C)</span>
+                <span class="mono" id="tool-val-chillerinlet">20°C</span>
+              </div>
+              <input type="range" min="10" max="45" step="0.5" value="20" class="calc-input" id="calc-chiller-inlet" oninput="document.getElementById('tool-val-chillerinlet').textContent = this.value + '°C'">
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Required Chilled Water Temp (°C)</span>
+                <span class="mono" id="tool-val-chilleroutlet">12°C</span>
+              </div>
+              <input type="range" min="5" max="30" step="0.5" value="12" class="calc-input" id="calc-chiller-outlet" oninput="document.getElementById('tool-val-chilleroutlet').textContent = this.value + '°C'">
+              <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem;">Standard chilled water range is 10°C to 15°C.</div>
+            </div>
+          </div>
+
+          <!-- Output Panel -->
+          <div class="calc-result-panel">
+            <div>
+              <span class="badge badge-iso">Recommended Capacity</span>
+              <div class="calc-result-val" id="res-chiller-tr">11.0 TR</div>
+              
+              <div style="background: rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0; font-size: var(--text-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span>Cooling Capacity:</span>
+                  <strong class="mono" id="res-chiller-kw" style="color: #38BDF8;">38.7 kW</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span>Temperature Drop (ΔT):</span>
+                  <strong class="mono" id="res-chiller-delta" style="color: #FFFFFF;">8.0 °C</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Standard Tank:</span>
+                  <strong style="color: #FFFFFF;">SS304 Insulated</strong>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="btn-print-chiller-proposal" class="btn btn-cta btn-lg" style="width: 100%; margin-bottom: 0.75rem;">
+              <i class="fas fa-file-pdf"></i> Download Sizing Proposal (PDF)
+            </button>
+            <a href="#quote-section" class="btn btn-outline btn-block" style="border-color: rgba(255,255,255,0.4); color: #fff;">
+              <i class="fas fa-envelope"></i> Email Submittal to Procurement
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIZING SUBMITTAL FORM -->
+      <div id="quote-section" style="max-width: 780px; margin: 4rem auto; background: var(--color-surface-card); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--color-border-light); box-shadow: var(--shadow-lg);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="badge badge-iso">Engineering Submittal</span>
+          <h3>Request Formal Chiller Selection Sheet & Pump Curves</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Receive our verified engineering submittal package including compressor electrical load and piping specs.</p>
+        </div>
+
+        <form class="rfq-form">
+          <input type="text" name="website_url_hp" style="display: none;">
+          <input type="hidden" name="equipment_type" value="Process Chiller Sizing Calculation">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="calc-label">Engineer Name *</label>
+              <input type="text" name="contact_name" required placeholder="Your Name" class="calc-input">
+            </div>
+            <div>
+              <label class="calc-label">Company Name *</label>
+              <input type="text" name="company_name" required placeholder="Factory Name" class="calc-input">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="calc-label">Mobile / WhatsApp *</label>
+              <input type="tel" name="contact_phone" pattern="[0-9]{10,15}" required placeholder="10-digit mobile" class="calc-input">
+            </div>
+            <div>
+              <label class="calc-label">Official Email ID *</label>
+              <input type="email" name="contact_email" required placeholder="purchase@company.com" class="calc-input">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-cta btn-lg" style="width: 100%;">
+            <i class="fas fa-download"></i> Send Certified Chiller Sizing Proposal
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>© 2008–2026 Win Equipments. Arasur Works, Coimbatore – 641407.</div>
+      <div><a href="../products/industrial-process-chillers.html">View Process Chillers</a></div>
+    </div>
+  </footer>
+
+  <script src="../js/calculators.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

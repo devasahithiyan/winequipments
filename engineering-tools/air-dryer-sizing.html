@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Air Dryer CFM Sizing Calculator & Correction Factors | Win Equipments</title>
+
+  <!-- Meta Tags -->
+  <meta name="description"
+    content="Free online Compressed Air Dryer CFM Sizing Calculator. Calculate required dryer capacity based on operating pressure (bar), inlet air temperature, and tropical ambient derating factors. By Win Equipments Coimbatore.">
+  <meta name="keywords"
+    content="Air Dryer CFM Calculator, Compressed Air Dryer Sizing, Air Dryer Correction Factor, CFM Derating Formula, Win Equipments">
+  <meta name="author" content="Win Equipments" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://winequipments.com/engineering-tools/air-dryer-sizing.html" />
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Win Equipments">
+  <meta property="og:url" content="https://winequipments.com/engineering-tools/air-dryer-sizing.html">
+  <meta property="og:title" content="Air Dryer CFM Sizing Calculator & Correction Factors | Win Equipments">
+  <meta property="og:description" content="Free online Compressed Air Dryer CFM Sizing Calculator. Calculate required dryer capacity based on operating pressure (bar), inlet air temperature, and tropical ambient derating factors. By Win Equipments Coimbatore.">
+  <meta property="og:image" content="https://winequipments.com/images/banner_opt.jpg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://winequipments.com/engineering-tools/air-dryer-sizing.html">
+  <meta name="twitter:title" content="Air Dryer CFM Sizing Calculator & Correction Factors | Win Equipments">
+  <meta name="twitter:description" content="Free online Compressed Air Dryer CFM Sizing Calculator. Calculate required dryer capacity based on operating pressure (bar), inlet air temperature, and tropical ambient derating factors. By Win Equipments Coimbatore.">
+  <meta name="twitter:image" content="https://winequipments.com/images/banner_opt.jpg">
+
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#0052CC">
+
+  <!-- Fonts & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <!-- Schema Markup (HowTo & SoftwareApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Compressed Air Dryer Sizing Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "url": "https://winequipments.com/engineering-tools/air-dryer-sizing.html",
+        "author": {
+          "@type": "Organization",
+          "name": "Win Equipments"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Size a Compressed Air Dryer for Tropical Factory Conditions",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Identify Compressor FAD Capacity",
+            "text": "Determine the Free Air Delivery (FAD) of your air compressor in CFM or m³/hr."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Apply Pressure Correction Factor (Cp)",
+            "text": "Identify the operating pressure (e.g., 7 bar g = 1.00; lower pressure requires larger dryer volume)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Apply Inlet Temperature Factor (Ct)",
+            "text": "Measure compressed air entering the dryer (e.g., 45°C = 0.85; warm air holds more vapor)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Apply Ambient Temperature Factor (Ca)",
+            "text": "Account for maximum summer factory room temperature (e.g., 35°C to 40°C)."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Compute Total Corrected CFM",
+            "text": "Divide nominal compressor CFM by the product of (Cp × Ct × Ca) and select the next standard Win Equipments WRD model."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://winequipments.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Engineering Tools",
+        "item": "https://winequipments.com/index.html#calculators"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Air Dryer CFM Sizing Calculator & Correction Factors",
+        "item": "https://winequipments.com/engineering-tools/air-dryer-sizing.html"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-utility-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+919597228969">+91 95972 28969</a>
+        </div>
+      </div>
+      <div class="top-bar-actions">
+        <a href="../catlogue/E_Catalogue.pdf" class="top-bar-link" target="_blank"><i class="fas fa-file-pdf"></i> E-Catalogue</a>
+        <a href="../ta/" class="lang-switch">தமிழ்</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo-group">
+        <img src="../images/logo.png" alt="Win Equipments Logo" class="brand-logo-img" width="48" height="48">
+        <div class="brand-title-wrap">
+          <span class="brand-name">WIN EQUIPMENTS</span>
+          <span class="brand-tagline">Save Water and Power</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-desktop">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../index.html#products" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="air-dryer-sizing.html" class="nav-link" style="color: var(--color-brand-accent);">CFM Calculator</a></li>
+          <li class="nav-item"><a href="cooling-tower-calculator.html" class="nav-link">Tower Calculator</a></li>
+          <li class="nav-item"><a href="chiller-tonnage-calculator.html" class="nav-link">Chiller Calculator</a></li>
+          <li class="nav-item"><a href="../contactus.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="#quote-section" class="btn btn-cta btn-sm">Request Sizing Submittal</a>
+        <button class="mobile-toggle-btn" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars" style="font-size: 1.4rem;"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-py" style="padding-top: 2rem;">
+    <div class="container">
+      <nav style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 1.5rem;">
+        <a href="../index.html">Home</a> &gt; <span>Engineering Tools</span> &gt; <span style="color: var(--color-brand-primary); font-weight: 600;">Air Dryer Sizing Calculator</span>
+      </nav>
+
+      <div class="section-header-center">
+        <span class="badge badge-eco">Thermodynamic Sizing Tool</span>
+        <h1>Compressed Air Dryer CFM Sizing Calculator</h1>
+        <p class="section-lead">Accurately determine the exact refrigerated or desiccant dryer capacity required for your compressor with ISO 8573 pressure and temperature derating factors.</p>
+      </div>
+
+      <!-- DIRECT ANSWER BOX -->
+      <div class="snippet-direct-answer">
+        <p>
+          <strong>How do you size a compressed air dryer?</strong> To size a compressed air dryer, divide your compressor's Free Air Delivery (CFM) by three correction factors: <em>Pressure Factor (Cp)</em>, <em>Inlet Temperature Factor (Ct)</em>, and <em>Ambient Temperature Factor (Ca)</em>:  
+          $$\text{Required Dryer CFM} = \frac{\text{Compressor Nominal CFM}}{C_p \times C_t \times C_a}$$  
+          In tropical climates like South India, high ambient and inlet temperatures derate dryer capacity significantly, requiring a 20% to 40% larger dryer model to maintain a +3°C pressure dew point.
+        </p>
+      </div>
+
+      <!-- CALCULATOR WIDGET -->
+      <div class="calc-widget-card" style="margin: 3rem 0;">
+        <div class="calc-grid">
+          <div>
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-sliders-h" style="color: var(--color-brand-accent);"></i> Input Operating Conditions</h3>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Compressor Air Flow (CFM)</span>
+                <span class="mono" id="tool-val-nominal">100 CFM</span>
+              </div>
+              <input type="range" min="20" max="2000" step="10" value="100" class="calc-input" id="calc-dryer-nominal" oninput="document.getElementById('tool-val-nominal').textContent = this.value + ' CFM'">
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Working Pressure (bar g)</span>
+                <span class="mono" id="tool-val-pressure">7.0 bar</span>
+              </div>
+              <input type="range" min="4" max="16" step="0.5" value="7" class="calc-input" id="calc-dryer-pressure" oninput="document.getElementById('tool-val-pressure').textContent = this.value + ' bar'">
+              <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem;">Standard rating is 7 bar g. Lower pressure increases required dryer CFM.</div>
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Inlet Compressed Air Temperature (°C)</span>
+                <span class="mono" id="tool-val-inlet">45°C</span>
+              </div>
+              <input type="range" min="30" max="60" step="1" value="45" class="calc-input" id="calc-dryer-inlet" oninput="document.getElementById('tool-val-inlet').textContent = this.value + '°C'">
+              <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem;">Air exiting compressor aftercooler is typically 40°C to 50°C.</div>
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Compressor Room Ambient Temperature (°C)</span>
+                <span class="mono" id="tool-val-ambient">35°C</span>
+              </div>
+              <input type="range" min="25" max="48" step="1" value="35" class="calc-input" id="calc-dryer-ambient" oninput="document.getElementById('tool-val-ambient').textContent = this.value + '°C'">
+            </div>
+          </div>
+
+          <!-- Output Panel -->
+          <div class="calc-result-panel">
+            <div>
+              <span class="badge badge-iso">Certified Model Recommendation</span>
+              <div class="calc-result-val" id="res-dryer-model">WED-150</div>
+              <div style="font-size: var(--text-base); color: #E2E8F0; margin-bottom: 1.5rem;">
+                Actual Corrected Requirement: <strong id="res-dryer-cfm" style="color: #38BDF8;">131 CFM</strong>
+              </div>
+
+              <div style="background: rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; font-size: var(--text-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span>Combined Derating Factor:</span>
+                  <strong class="mono" id="res-dryer-factor" style="color: #FFFFFF;">0.76</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span>Guaranteed Dew Point:</span>
+                  <strong style="color: #FFFFFF;">+3°C (Class 4)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Standard Drain:</span>
+                  <strong style="color: #FFFFFF;">Zero Air Loss Auto Drain</strong>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="btn-print-dryer-proposal" class="btn btn-cta btn-lg" style="width: 100%; margin-bottom: 0.75rem;">
+              <i class="fas fa-file-pdf"></i> Download Sizing Proposal (PDF)
+            </button>
+            <a href="#quote-section" class="btn btn-outline btn-block" style="border-color: rgba(255,255,255,0.4); color: #fff;">
+              <i class="fas fa-envelope"></i> Email Submittal to Procurement
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIZING SUBMITTAL FORM -->
+      <div id="quote-section" style="max-width: 780px; margin: 4rem auto; background: var(--color-surface-card); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--color-border-light); box-shadow: var(--shadow-lg);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="badge badge-iso">Engineering Submittal</span>
+          <h3>Receive Official Sizing Calculation Sheet (PDF)</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Enter your email and phone to receive the verified calculation sheet, GA dimensional drawing, and pricing.</p>
+        </div>
+
+        <form class="rfq-form">
+          <input type="text" name="website_url_hp" style="display: none;">
+          <input type="hidden" name="equipment_type" value="Air Dryer Sizing Calculation">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="calc-label">Engineer / Contact Name *</label>
+              <input type="text" name="contact_name" required placeholder="Your Name" class="calc-input">
+            </div>
+            <div>
+              <label class="calc-label">Company Name *</label>
+              <input type="text" name="company_name" required placeholder="Factory Name" class="calc-input">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="calc-label">Mobile / WhatsApp Number *</label>
+              <input type="tel" name="contact_phone" pattern="[0-9]{10,15}" required placeholder="10-digit mobile" class="calc-input">
+            </div>
+            <div>
+              <label class="calc-label">Official Email ID *</label>
+              <input type="email" name="contact_email" required placeholder="purchase@company.com" class="calc-input">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-cta btn-lg" style="width: 100%;">
+            <i class="fas fa-download"></i> Send Certified Sizing Calculation & Quote
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>© 2008–2026 Win Equipments. Arasur Works, Coimbatore – 641407.</div>
+      <div><a href="../products/refrigerated-air-dryers.html">View Refrigerated Air Dryers</a></div>
+    </div>
+  </footer>
+
+  <script src="../js/calculators.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

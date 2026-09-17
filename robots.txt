@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /contactus_backup.html
-Disallow: /minimal_test.html
-Disallow: /private/
-Disallow: /tmp/
+
 Sitemap: https://winequipments.com/sitemap.xml

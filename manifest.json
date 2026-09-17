@@ -1,0 +1,17 @@
+{
+  "name": "Win Equipments - Industrial Engineering Suite",
+  "short_name": "Win Equipments",
+  "description": "Industrial process chillers, cooling towers, and compressed air treatment systems sizing suite by Win Equipments.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0B1528",
+  "theme_color": "#0052CC",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "94x53 192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

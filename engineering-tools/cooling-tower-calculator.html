@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cooling Tower Sizing & Approach Calculator | Win Equipments</title>
+
+  <!-- Meta Tags -->
+  <meta name="description"
+    content="Free online Cooling Tower Sizing Calculator. Calculate Range, Approach, Heat Load (kcal/hr), Tonnage (TR), and Evaporation Loss (m³/hr) based on circulating flow and ambient wet bulb temperature. By Win Equipments Coimbatore.">
+  <meta name="keywords"
+    content="Cooling Tower Calculator, Cooling Tower Approach Formula, Cooling Tower TR Calculation, Evaporation Loss Formula, Win Equipments">
+  <meta name="author" content="Win Equipments" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://winequipments.com/engineering-tools/cooling-tower-calculator.html" />
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Win Equipments">
+  <meta property="og:url" content="https://winequipments.com/engineering-tools/cooling-tower-calculator.html">
+  <meta property="og:title" content="Cooling Tower Sizing & Approach Calculator | Win Equipments">
+  <meta property="og:description" content="Free online Cooling Tower Sizing Calculator. Calculate Range, Approach, Heat Load (kcal/hr), Tonnage (TR), and Evaporation Loss (m³/hr) based on circulating flow and ambient wet bulb temperature. By Win Equipments Coimbatore.">
+  <meta property="og:image" content="https://winequipments.com/images/banner_opt.jpg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://winequipments.com/engineering-tools/cooling-tower-calculator.html">
+  <meta name="twitter:title" content="Cooling Tower Sizing & Approach Calculator | Win Equipments">
+  <meta name="twitter:description" content="Free online Cooling Tower Sizing Calculator. Calculate Range, Approach, Heat Load (kcal/hr), Tonnage (TR), and Evaporation Loss (m³/hr) based on circulating flow and ambient wet bulb temperature. By Win Equipments Coimbatore.">
+  <meta name="twitter:image" content="https://winequipments.com/images/banner_opt.jpg">
+
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#0052CC">
+
+  <!-- Fonts & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Industrial Cooling Tower Sizing Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "url": "https://winequipments.com/engineering-tools/cooling-tower-calculator.html",
+        "author": {
+          "@type": "Organization",
+          "name": "Win Equipments"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Calculate Cooling Tower Range, Approach and Tonnage",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Determine Cooling Range",
+            "text": "Subtract Cold Water Temperature from Hot Water Temperature: Range = Thot - Tcold."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Determine Cooling Tower Approach",
+            "text": "Subtract Design Ambient Wet-Bulb Temperature from Cold Water Temperature: Approach = Tcold - Twetbulb."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Calculate Heat Rejection Load",
+            "text": "Multiply water flow (m³/hr) by 1000 kg/m³ and Range (°C) to get heat load in kcal/hr."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Compute Tonnage of Refrigeration (TR)",
+            "text": "Divide heat rejection in kcal/hr by 3,900 kcal/hr (nominal standard commercial cooling tower ton)."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://winequipments.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Engineering Tools",
+        "item": "https://winequipments.com/index.html#calculators"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Cooling Tower Sizing & Approach Calculator",
+        "item": "https://winequipments.com/engineering-tools/cooling-tower-calculator.html"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- TOP UTILITY BAR -->
+  <div class="top-utility-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+919597228969">+91 95972 28969</a>
+        </div>
+      </div>
+      <div class="top-bar-actions">
+        <a href="../catlogue/cooling tower.pdf" class="top-bar-link" target="_blank"><i class="fas fa-file-pdf"></i> Tower Catalogue</a>
+        <a href="../ta/" class="lang-switch">தமிழ்</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo-group">
+        <img src="../images/logo.png" alt="Win Equipments Logo" class="brand-logo-img" width="48" height="48">
+        <div class="brand-title-wrap">
+          <span class="brand-name">WIN EQUIPMENTS</span>
+          <span class="brand-tagline">Save Water and Power</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-desktop">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../index.html#products" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="cooling-tower-calculator.html" class="nav-link" style="color: var(--color-brand-accent);">Tower Calculator</a></li>
+          <li class="nav-item"><a href="air-dryer-sizing.html" class="nav-link">CFM Calculator</a></li>
+          <li class="nav-item"><a href="chiller-tonnage-calculator.html" class="nav-link">Chiller Calculator</a></li>
+          <li class="nav-item"><a href="../contactus.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="#quote-section" class="btn btn-cta btn-sm">Request Tower Submittal</a>
+        <button class="mobile-toggle-btn" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars" style="font-size: 1.4rem;"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-py" style="padding-top: 2rem;">
+    <div class="container">
+      <nav style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 1.5rem;" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a> &gt; <span>Engineering Tools</span> &gt; <span style="color: var(--color-brand-primary); font-weight: 600;">Cooling Tower Calculator</span>
+      </nav>
+
+      <div class="section-header-center">
+        <span class="badge badge-eco">Thermodynamic Sizing Tool</span>
+        <h1>Cooling Tower Sizing & Approach Calculator</h1>
+        <p class="section-lead">Calculate exact cooling tower tonnage (TR), approach temperature, range, and evaporation water consumption in seconds.</p>
+      </div>
+
+      <!-- DIRECT ANSWER BOX -->
+      <div class="snippet-direct-answer">
+        <p>
+          <strong>How do you calculate cooling tower approach and range?</strong> The <em>Cooling Range</em> is the temperature difference between hot water entering the tower and cold water leaving: $\text{Range} = T_{\text{hot}} - T_{\text{cold}}$. The <em>Approach</em> is the temperature difference between cold water leaving the tower and the ambient wet-bulb temperature: $\text{Approach} = T_{\text{cold}} - T_{\text{wb}}$. An approach between 3°C and 5°C is standard for high-efficiency industrial FRP cooling towers in Indian industrial conditions.
+        </p>
+      </div>
+
+      <!-- CALCULATOR WIDGET -->
+      <div class="calc-widget-card" style="margin: 3rem 0;">
+        <div class="calc-grid">
+          <div>
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-sliders-h" style="color: var(--color-brand-accent);"></i> Input Thermal Conditions</h3>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Circulating Water Flow (m³/hr)</span>
+                <span class="mono" id="tool-val-towerflow">50 m³/hr</span>
+              </div>
+              <input type="range" min="5" max="500" step="5" value="50" class="calc-input" id="calc-tower-flow" oninput="document.getElementById('tool-val-towerflow').textContent = this.value + ' m³/hr'">
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Hot Water Inlet Temperature (°C)</span>
+                <span class="mono" id="tool-val-towerhot">37°C</span>
+              </div>
+              <input type="range" min="30" max="65" step="0.5" value="37" class="calc-input" id="calc-tower-hot" oninput="document.getElementById('tool-val-towerhot').textContent = this.value + '°C'">
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Cold Water Outlet Temperature (°C)</span>
+                <span class="mono" id="tool-val-towercold">32°C</span>
+              </div>
+              <input type="range" min="20" max="45" step="0.5" value="32" class="calc-input" id="calc-tower-cold" oninput="document.getElementById('tool-val-towercold').textContent = this.value + '°C'">
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Ambient Wet Bulb Temperature (°C)</span>
+                <span class="mono" id="tool-val-towerwb">28°C</span>
+              </div>
+              <input type="range" min="20" max="32" step="0.5" value="28" class="calc-input" id="calc-tower-wb" oninput="document.getElementById('tool-val-towerwb').textContent = this.value + '°C'">
+              <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem;">Coimbatore design wet bulb: 26°C – 27°C. Coastal Chennai: 28°C – 29°C.</div>
+            </div>
+          </div>
+
+          <!-- Output Panel -->
+          <div class="calc-result-panel">
+            <div>
+              <span class="badge badge-iso">Estimated Capacity</span>
+              <div class="calc-result-val" id="res-tower-tr">64 TR</div>
+              
+              <div style="background: rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0; font-size: var(--text-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span>Cooling Range (ΔT):</span>
+                  <strong class="mono" id="res-tower-range" style="color: #FFFFFF;">5.0 °C</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span>Approach to Wet-Bulb:</span>
+                  <strong class="mono" id="res-tower-approach" style="color: #38BDF8;">4.0 °C</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span>Est. Evaporation Loss:</span>
+                  <strong class="mono" id="res-tower-evap" style="color: #FFFFFF;">0.38 m³/hr</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Drift Loss with Eliminators:</span>
+                  <strong class="mono" style="color: #FFFFFF;">&lt; 0.005%</strong>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="btn-print-tower-proposal" class="btn btn-cta btn-lg" style="width: 100%; margin-bottom: 0.75rem;">
+              <i class="fas fa-file-pdf"></i> Download Sizing Proposal (PDF)
+            </button>
+            <a href="#quote-section" class="btn btn-outline btn-block" style="border-color: rgba(255,255,255,0.4); color: #fff;">
+              <i class="fas fa-envelope"></i> Email Submittal to Procurement
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIZING SUBMITTAL FORM -->
+      <div id="quote-section" style="max-width: 780px; margin: 4rem auto; background: var(--color-surface-card); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--color-border-light); box-shadow: var(--shadow-lg);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="badge badge-iso">Engineering Submittal</span>
+          <h3>Request Formal Tower Selection Sheet & GA Drawing</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Receive our verified engineering submittal package including fan motor kW and piping layout.</p>
+        </div>
+
+        <form class="rfq-form">
+          <input type="text" name="website_url_hp" style="display: none;">
+          <input type="hidden" name="equipment_type" value="Cooling Tower Sizing Calculation">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="calc-label">Engineer Name *</label>
+              <input type="text" name="contact_name" required placeholder="Your Name" class="calc-input">
+            </div>
+            <div>
+              <label class="calc-label">Company Name *</label>
+              <input type="text" name="company_name" required placeholder="Factory Name" class="calc-input">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="calc-label">Mobile / WhatsApp *</label>
+              <input type="tel" name="contact_phone" pattern="[0-9]{10,15}" required placeholder="10-digit mobile" class="calc-input">
+            </div>
+            <div>
+              <label class="calc-label">Official Email ID *</label>
+              <input type="email" name="contact_email" required placeholder="purchase@company.com" class="calc-input">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-cta btn-lg" style="width: 100%;">
+            <i class="fas fa-download"></i> Send Certified Tower Sizing Proposal
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>© 2008–2026 Win Equipments. Arasur Works, Coimbatore – 641407.</div>
+      <div><a href="../products/round-cooling-towers.html">View Round Towers</a> | <a href="../products/square-cooling-towers.html">View Square Towers</a></div>
+    </div>
+  </footer>
+
+  <script src="../js/calculators.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
