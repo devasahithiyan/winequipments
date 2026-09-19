@@ -302,14 +302,14 @@
       <div class="hero-content">
         <div class="hero-badge-row">
           <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified</span>
-          <span class="badge badge-eco"><i class="fas fa-leaf"></i> Save Water & Power</span>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3);"><span class="live-pulse-dot"></span> Arasur Works: Active 24–48h Dispatch</span>
           <span class="badge badge-neutral"><i class="fas fa-industry"></i> Arasur Works, Coimbatore</span>
         </div>
 
         <h1>Precision Industrial Cooling & Compressed Air Treatment Systems</h1>
         
         <p class="hero-subtitle">
-          Direct manufacturer of high-efficiency <strong>FRP Cooling Towers (10–1500 TR)</strong>, <strong>Process Chillers (1–100 TR)</strong>, and <strong>Refrigerated Air Dryers (20–2000 CFM)</strong>. Engineered in Coimbatore to withstand 45°C ambient temperatures with minimum power consumption.
+          Direct manufacturer of high-efficiency <strong>FRP Cooling Towers (10–1500 TR)</strong>, <strong>Process Chillers (1–150 TR)</strong>, and <strong>Refrigerated Air Dryers (20–2000 CFM)</strong>. Engineered in Coimbatore to withstand 45°C ambient temperatures with minimum power consumption.
         </p>
 
         <div class="hero-actions">
@@ -341,6 +341,49 @@
             <i class="fas fa-download"></i> Full Specs (PDF)
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE EQUIPMENT & APPLICATION MATCHER -->
+  <section style="position: relative; z-index: 20;">
+    <div class="container">
+      <div class="equipment-finder-bar">
+        <div class="finder-title">
+          <i class="fas fa-crosshairs" style="color: var(--color-brand-accent);"></i>
+          <span>Instant Industrial Equipment Matcher</span>
+        </div>
+        <form class="finder-grid" id="equipment-finder-form" onsubmit="return false;">
+          <div class="finder-field">
+            <label for="finder-app-select"><i class="fas fa-industry"></i> Plant Process / Sector</label>
+            <select id="finder-app-select" class="calc-input">
+              <option value="" disabled selected>Select your plant process...</option>
+              <option value="plastics">Plastic Injection Molding / Extrusion</option>
+              <option value="lasers">CNC Machining / Spindle / Fiber Laser</option>
+              <option value="textiles">Textile Spinning, Weaving & Loom Air</option>
+              <option value="foundry">Foundry, Die-Casting & Induction Furnace</option>
+              <option value="food_pharma">Food, Pharma & Beverage Packaging</option>
+              <option value="automotive">Automotive Paint Booth & Pneumatic Tools</option>
+            </select>
+          </div>
+          <div class="finder-field">
+            <label for="finder-media-select"><i class="fas fa-sliders-h"></i> Utility & Media Requirement</label>
+            <select id="finder-media-select" class="calc-input">
+              <option value="" disabled selected>Select utility requirement...</option>
+              <option value="dry_air">Dry Compressed Air (+3°C / -40°C PDP)</option>
+              <option value="chilled_water">Closed-Loop Chilled Water (5°C to 20°C)</option>
+              <option value="cooling_water">Condenser Water Heat Rejection (32°C Water)</option>
+              <option value="air_storage">High-Capacity Air Receiver Buffer (7–16 bar)</option>
+              <option value="condensate_drain">Zero Air Loss Condensate Discharge</option>
+            </select>
+          </div>
+          <div class="finder-btn">
+            <button type="button" class="btn btn-cta btn-block" id="finder-match-btn">
+              <i class="fas fa-bolt"></i> Match System & View Specs
+            </button>
+          </div>
+        </form>
+        <div id="finder-recommendation" class="finder-result" style="display: none;"></div>
       </div>
     </div>
   </section>
@@ -384,101 +427,422 @@
     </div>
   </section>
 
-  <!-- CORE MANUFACTURING PILLARS (PRODUCT SELECTION MATRIX) -->
+  <!-- CLIENT & SECTOR TRUST LOGO SHOWCASE -->
+  <section style="background: #FFFFFF; padding: 2.5rem 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <span style="font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted);">Trusted by 3,500+ Industrial Plants & Tier-1 OEMs Across South India</span>
+      </div>
+      <div class="client-logo-grid">
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/2.jpg" alt="Win Equipments Client Partner 1" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/3.jpg" alt="Win Equipments Client Partner 2" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/4.jpg" alt="Win Equipments Client Partner 3" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/5.jpg" alt="Win Equipments Client Partner 4" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/6.jpg" alt="Win Equipments Client Partner 5" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/7.jpg" alt="Win Equipments Client Partner 6" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/8.jpg" alt="Win Equipments Client Partner 7" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/9.jpg" alt="Win Equipments Client Partner 8" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/10.jpg" alt="Win Equipments Client Partner 9" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/11.jpg" alt="Win Equipments Client Partner 10" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/12.jpg" alt="Win Equipments Client Partner 11" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/13.jpg" alt="Win Equipments Client Partner 12" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/14.jpg" alt="Win Equipments Client Partner 13" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/15.jpg" alt="Win Equipments Client Partner 14" loading="lazy" decoding="async"></div>
+        <div class="client-logo-card" title="Industrial Client Partner"><img src="images/clients/16.jpg" alt="Win Equipments Client Partner 15" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGMENTED PRODUCT SELECTION MATRIX -->
   <section class="section-py" id="products">
     <div class="container">
       <div class="section-header-center">
-        <span class="badge badge-iso" style="margin-bottom: 0.5rem;">Engineered for Heavy Duty</span>
+        <span class="badge badge-iso" style="margin-bottom: 0.5rem;">Heavy-Duty Manufacturing Portfolio</span>
         <h2>Complete Thermal & Compressed Air Utility Matrix</h2>
-        <p class="section-lead">Win Equipments manufactures the complete process utility loop: from sub-micron air filtration and drying to heavy evaporative cooling and precision process chilling.</p>
+        <p class="section-lead">Win Equipments manufactures the complete process utility loop: from sub-micron air filtration and moisture removal to heavy evaporative heat rejection and precision process chilling.</p>
       </div>
 
+      <!-- Segmented Navigation Controller -->
+      <div class="segmented-nav-container">
+        <div class="segmented-nav-tabs" role="tablist" aria-label="Product Category Filter">
+          <button type="button" class="segment-btn is-active" data-filter="all" role="tab" aria-selected="true"><i class="fas fa-th-large"></i> All Equipment</button>
+          <button type="button" class="segment-btn" data-filter="dryers" role="tab" aria-selected="false"><i class="fas fa-wind"></i> Air Dryers (Refrig & Desiccant)</button>
+          <button type="button" class="segment-btn" data-filter="chillers" role="tab" aria-selected="false"><i class="fas fa-snowflake"></i> Industrial Process Chillers</button>
+          <button type="button" class="segment-btn" data-filter="towers" role="tab" aria-selected="false"><i class="fas fa-water"></i> FRP Cooling Towers</button>
+          <button type="button" class="segment-btn" data-filter="tanks" role="tab" aria-selected="false"><i class="fas fa-database"></i> Receiver Tanks & Filters</button>
+          <button type="button" class="segment-btn" data-filter="spares" role="tab" aria-selected="false"><i class="fas fa-tools"></i> Drains & OEM Spares</button>
+        </div>
+      </div>
+
+      <!-- Product Spec Card Grid -->
       <div class="product-matrix-grid">
         
-        <!-- Pillar 1: Refrigerated Air Dryers -->
-        <article class="product-card">
-          <div class="product-card-img-wrap">
-            <img src="images/Products/Refrigiratedairdryer1.png" alt="Refrigerated Air Dryer 20 to 2000 CFM" loading="lazy" width="240" height="180" decoding="async">
+        <!-- 1. Refrigerated Air Dryers -->
+        <article class="product-spec-card-v2" id="card-dryer" data-category="dryers">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> In Stock: 20–2000 CFM</span>
+            <img src="images/Products/Refrigiratedairdryer1.png" alt="Refrigerated Compressed Air Dryer 20 to 2000 CFM" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
           </div>
-          <div class="product-card-body">
-            <span class="badge badge-eco product-card-badge">Moisture Removal (+3°C PDP)</span>
-            <h3 class="product-card-title">Refrigerated Air Dryers</h3>
-            <p class="product-card-desc">Non-cycling refrigerated dryers rated for 50°C inlet temperatures. Copper tube-in-tube heat exchangers eliminate air tool rusting and solenoid valve failure.</p>
-            <div class="product-spec-pills">
-              <span class="spec-pill">20–2000 CFM</span>
-              <span class="spec-pill">+3°C PDP</span>
-              <span class="spec-pill">R134a / R407c</span>
-              <span class="spec-pill">SS Heat Exchanger</span>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Compressed Air Treatment</div>
+            <h3 class="card-title-v2">Direct Expansion Refrigerated Air Dryers</h3>
+            <p class="card-desc-v2">Non-cycling heavy-duty compressed air dryer engineered for 50°C tropical inlet air. Eliminates pipeline condensation and pneumatic valve seizing.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Capacity Range</span>
+                <span class="spec-cell-val">20 – 2000 CFM</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Pressure Dew Point</span>
+                <span class="spec-cell-val">+3°C (ISO Class 4)</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Heat Exchanger</span>
+                <span class="spec-cell-val">Copper / SS Tube-in-Tube</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Refrigerant Gas</span>
+                <span class="spec-cell-val">R-134a / R-407C Eco</span>
+              </div>
             </div>
-            <div class="product-card-actions">
-              <a href="products/refrigerated-air-dryers.html" class="btn btn-primary btn-sm" style="flex: 1;">Technical Specs</a>
-              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Refrigerated%20Air%20Dryers" class="btn btn-accent btn-sm" target="_blank" title="WhatsApp Enquiry"><i class="fab fa-whatsapp"></i></a>
+
+            <div class="card-actions-v2">
+              <a href="products/refrigerated-air-dryers.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Refrigerated%20Air%20Dryers" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
             </div>
           </div>
         </article>
 
-        <!-- Pillar 2: Industrial Process Chillers -->
-        <article class="product-card">
-          <div class="product-card-img-wrap">
-            <img src="images/Products/Sodachiller.png" alt="Industrial Process Water Chiller 1 to 100 TR" loading="lazy" width="240" height="180" decoding="async">
+        <!-- 2. Desiccant Air Dryers -->
+        <article class="product-spec-card-v2" id="card-desiccant" data-category="dryers">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Ultra-Dry: -40°C PDP</span>
+            <img src="images/Products/dessicantdryer.png" alt="Heatless Twin-Tower Desiccant Air Dryer -40C Dew Point" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
           </div>
-          <div class="product-card-body">
-            <span class="badge badge-iso product-card-badge">Precision Cooling (±0.5°C)</span>
-            <h3 class="product-card-title">Industrial Process Chillers</h3>
-            <p class="product-card-desc">Air-cooled and water-cooled scroll/screw package chillers. Designed for CNC spindles, fiber lasers, plastic injection molds, and electroplating baths.</p>
-            <div class="product-spec-pills">
-              <span class="spec-pill">1 TR to 100 TR</span>
-              <span class="spec-pill">Copeland / Danfoss</span>
-              <span class="spec-pill">SS304 Insulated Tank</span>
-              <span class="spec-pill">Microprocessor PID</span>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Zero-Moisture Air</div>
+            <h3 class="card-title-v2">Heatless Twin-Tower Desiccant Dryers</h3>
+            <p class="card-desc-v2">Twin-tower pressure swing adsorption (PSA) dryers for pharmaceutical cleanrooms, laser optics, powder coating, and electronics packaging.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Pressure Dew Point</span>
+                <span class="spec-cell-val">-40°C to -70°C</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Desiccant Media</span>
+                <span class="spec-cell-val">Activated Alumina</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Purge Loss</span>
+                <span class="spec-cell-val">&lt; 14% Optimized</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Sequencer</span>
+                <span class="spec-cell-val">PLC Diagnostic Cycle</span>
+              </div>
             </div>
-            <div class="product-card-actions">
-              <a href="products/industrial-process-chillers.html" class="btn btn-primary btn-sm" style="flex: 1;">Technical Specs</a>
-              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Industrial%20Process%20Chillers" class="btn btn-accent btn-sm" target="_blank" title="WhatsApp Enquiry"><i class="fab fa-whatsapp"></i></a>
+
+            <div class="card-actions-v2">
+              <a href="products/desiccant-air-dryers.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Desiccant%20Air%20Dryers" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
             </div>
           </div>
         </article>
 
-        <!-- Pillar 3: FRP Cooling Towers -->
-        <article class="product-card">
-          <div class="product-card-img-wrap">
-            <img src="images/Products/coolingtower.png" alt="Round Bottle FRP Cooling Tower 10 to 1500 TR" loading="lazy" width="240" height="180" decoding="async">
+        <!-- 3. Industrial Process Chillers -->
+        <article class="product-spec-card-v2" id="card-chiller" data-category="chillers">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Precision: ±0.5°C</span>
+            <img src="images/Products/chiller.png" alt="Air and Water Cooled Industrial Process Water Chiller" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
           </div>
-          <div class="product-card-body">
-            <span class="badge badge-eco product-card-badge">Evaporative Heat Rejection</span>
-            <h3 class="product-card-title">FRP Cooling Towers</h3>
-            <p class="product-card-desc">Bottle-shape counterflow and square modular crossflow cooling towers. Heavy-gauge FRP casing with honeycomb PVC fills and low-drift rotary distribution.</p>
-            <div class="product-spec-pills">
-              <span class="spec-pill">10 TR to 1500 TR</span>
-              <span class="spec-pill">UV-Stabilized FRP</span>
-              <span class="spec-pill">PVC Honeycomb Fills</span>
-              <span class="spec-pill">IP55 Aluminum Motor</span>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Process Thermal Management</div>
+            <h3 class="card-title-v2">Air & Water-Cooled Process Chillers</h3>
+            <p class="card-desc-v2">Packaged closed-circuit chillers with integrated SS304 reservoir and stainless recirculation pump. Precision cooling for plastic molds, CNCs, and lasers.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Cooling Tonnage</span>
+                <span class="spec-cell-val">1 TR to 150 TR</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Compressor Brand</span>
+                <span class="spec-cell-val">Danfoss / Copeland</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Reservoir Tank</span>
+                <span class="spec-cell-val">SS304 Insulated</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Set Temperature</span>
+                <span class="spec-cell-val">+5°C to +25°C Output</span>
+              </div>
             </div>
-            <div class="product-card-actions">
-              <a href="products/round-cooling-towers.html" class="btn btn-primary btn-sm" style="flex: 1;">Technical Specs</a>
-              <a href="https://wa.me/919597228969?text=Inquiry%20for%20FRP%20Cooling%20Towers" class="btn btn-accent btn-sm" target="_blank" title="WhatsApp Enquiry"><i class="fab fa-whatsapp"></i></a>
+
+            <div class="card-actions-v2">
+              <a href="products/industrial-process-chillers.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Process%20Chillers" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
             </div>
           </div>
         </article>
 
-        <!-- Pillar 4: Desiccant Air Dryers -->
-        <article class="product-card">
-          <div class="product-card-img-wrap">
-            <img src="images/Products/dessicantdryer.png" alt="Heatless Desiccant Air Dryer -40C Dew Point" loading="lazy" width="240" height="180" decoding="async">
+        <!-- 4. Round Bottle FRP Cooling Towers -->
+        <article class="product-spec-card-v2" id="card-cooling-tower" data-category="towers">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Certified: CTI Standard</span>
+            <img src="images/Products/coolingtower.png" alt="Round Bottle FRP Cooling Tower 10 to 1500 TR" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
           </div>
-          <div class="product-card-body">
-            <span class="badge badge-iso product-card-badge">Ultra-Dry Air (-40°C PDP)</span>
-            <h3 class="product-card-title">Desiccant Air Dryers</h3>
-            <p class="product-card-desc">Heatless twin-tower desiccant dryers for critical cleanroom, pharmaceutical, powder coating, and instrumentation air where zero moisture is permissible.</p>
-            <div class="product-spec-pills">
-              <span class="spec-pill">-40°C to -70°C PDP</span>
-              <span class="spec-pill">Activated Alumina</span>
-              <span class="spec-pill">Purge Loss &lt;14%</span>
-              <span class="spec-pill">PLC Sequencing</span>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Evaporative Heat Rejection</div>
+            <h3 class="card-title-v2">Round Bottle Counterflow FRP Towers</h3>
+            <p class="card-desc-v2">Aerodynamic bottle-shape counterflow evaporative towers with self-rotating alloy rotary sprinkler head and virgin honeycomb PVC fill pack.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Capacity Range</span>
+                <span class="spec-cell-val">10 TR to 1500 TR</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Casing Material</span>
+                <span class="spec-cell-val">UV-Resistant FRP</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Fill Matrix</span>
+                <span class="spec-cell-val">Virgin PVC Honeycomb</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Fan Motor</span>
+                <span class="spec-cell-val">IP55 Cast Aluminum</span>
+              </div>
             </div>
-            <div class="product-card-actions">
-              <a href="products/desiccant-air-dryers.html" class="btn btn-primary btn-sm" style="flex: 1;">Technical Specs</a>
-              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Desiccant%20Air%20Dryers" class="btn btn-accent btn-sm" target="_blank" title="WhatsApp Enquiry"><i class="fab fa-whatsapp"></i></a>
+
+            <div class="card-actions-v2">
+              <a href="products/round-cooling-towers.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Round%20Cooling%20Towers" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Square Modular Crossflow Towers -->
+        <article class="product-spec-card-v2" id="card-square-tower" data-category="towers">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Modular Multi-Cell</span>
+            <img src="images/Products/Squarecoolingtower1.png" alt="Square Modular Crossflow FRP Cooling Tower" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
+          </div>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Heavy Industrial Heat Rejection</div>
+            <h3 class="card-title-v2">Square Modular Crossflow Cooling Towers</h3>
+            <p class="card-desc-v2">Multi-cell modular crossflow towers with open gravity hot water basins and low-noise axial fans. Easy walk-in maintenance with zero nozzle clogging.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Capacity Range</span>
+                <span class="spec-cell-val">50 TR to 2000 TR</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Configuration</span>
+                <span class="spec-cell-val">Modular Multi-Cell</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Distribution</span>
+                <span class="spec-cell-val">Gravity Water Basin</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Fan Blades</span>
+                <span class="spec-cell-val">Adjustable Aerofoil FRP</span>
+              </div>
+            </div>
+
+            <div class="card-actions-v2">
+              <a href="products/square-cooling-towers.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Square%20Cooling%20Towers" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Closed Circuit Evaporative Towers -->
+        <article class="product-spec-card-v2" id="card-closed-tower" data-category="towers">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Zero Contamination</span>
+            <img src="images/Products/coilcooling.png" alt="Closed Circuit Coil Cooling Tower" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
+          </div>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Critical Closed Loop</div>
+            <h3 class="card-title-v2">Closed Circuit Coil Cooling Towers</h3>
+            <p class="card-desc-v2">Indirect evaporative cooling with internal HDG/SS304 heat exchanger coils. Protects induction furnaces and vacuum furnaces from scaling and fouling.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Heat Exchanger</span>
+                <span class="spec-cell-val">HDG Steel / SS304 Coil</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Process Circuit</span>
+                <span class="spec-cell-val">100% Closed Clean Loop</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Scaling Risk</span>
+                <span class="spec-cell-val">Zero (No Atmospheric Exposure)</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Drift Loss</span>
+                <span class="spec-cell-val">&lt; 0.005% Certified</span>
+              </div>
+            </div>
+
+            <div class="card-actions-v2">
+              <a href="products/closed-circuit-cooling-towers.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Closed%20Circuit%20Cooling%20Towers" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Air Receiver Tanks -->
+        <article class="product-spec-card-v2" id="card-receiver-tank" data-category="tanks">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Hydro-Tested 1.5x</span>
+            <img src="images/Products/Airreciever.png" alt="Air Receiver Tank IS 2825 ASME Certified" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
+          </div>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Pneumatic Energy Storage</div>
+            <h3 class="card-title-v2">Industrial Air Receiver Buffer Tanks</h3>
+            <p class="card-desc-v2">Vertical and horizontal compressed air storage vessels fabricated to IS 2825 / ASME standards. Dampens compressor pulsation and stabilizes plant pressure.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Storage Volume</span>
+                <span class="spec-cell-val">250 L to 10,000 Liters</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Working Pressure</span>
+                <span class="spec-cell-val">7, 10, 16, 40 kg/cm²</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Code Compliance</span>
+                <span class="spec-cell-val">IS 2825 / ASME Sec VIII</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Safety Kit</span>
+                <span class="spec-cell-val">Safety Valve, Pressure Gauge</span>
+              </div>
+            </div>
+
+            <div class="card-actions-v2">
+              <a href="products/air-receiver-tanks.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Air%20Receiver%20Tanks" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Sub-Micron Air Filters -->
+        <article class="product-spec-card-v2" id="card-filters" data-category="tanks">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> 0.01μ Filtration</span>
+            <img src="images/Products/compressedairfilters.png" alt="Sub-Micron Coalescing In-Line Compressed Air Filters" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
+          </div>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Pipeline Purity</div>
+            <h3 class="card-title-v2">Sub-Micron Coalescing In-Line Filters</h3>
+            <p class="card-desc-v2">Multi-stage coalescing filters removing oil aerosols, pipe scale, and moisture droplets down to 0.01 mg/m³ for ISO 8573-1 Class 1 air quality.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Filtration Grades</span>
+                <span class="spec-cell-val">3μ, 1μ, 0.01μ & Carbon</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Residual Oil</span>
+                <span class="spec-cell-val">&lt; 0.003 ppm w/w</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Housing Body</span>
+                <span class="spec-cell-val">Die-Cast Aluminum</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Indicator</span>
+                <span class="spec-cell-val">Differential Pressure DP</span>
+              </div>
+            </div>
+
+            <div class="card-actions-v2">
+              <a href="products/compressed-air-filters.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Compressed%20Air%20Filters" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. Zero Air Loss Drains -->
+        <article class="product-spec-card-v2" id="card-drain" data-category="spares">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Zero Air Wastage</span>
+            <img src="images/Products/drainvalve.png" alt="Capacitive Electronic Zero Air Loss Condensate Drain Valve" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
+          </div>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Energy Conservation</div>
+            <h3 class="card-title-v2">Zero Air Loss Capacitive Drain Valves</h3>
+            <p class="card-desc-v2">Capacitive level-sensing condensate drain valves. Discharges condensate without venting compressed air, saving ₹38,000/year/compressor in energy.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Sensing Mechanism</span>
+                <span class="spec-cell-val">Contactless Capacitive</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Pressure Range</span>
+                <span class="spec-cell-val">0.8 bar to 16 bar</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Discharge Type</span>
+                <span class="spec-cell-val">Direct-Acting Anti-Clog</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Power Supply</span>
+                <span class="spec-cell-val">230V AC / 24V DC</span>
+              </div>
+            </div>
+
+            <div class="card-actions-v2">
+              <a href="products/automatic-drain-valves.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20Zero%20Air%20Loss%20Drains" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10. OEM Spares & Consumables -->
+        <article class="product-spec-card-v2" id="card-spares" data-category="spares">
+          <div class="card-viewport">
+            <span class="card-status-badge"><span class="live-pulse-dot"></span> Fast Dispatch 24h</span>
+            <img src="images/Products/coolingtower2.png" alt="Cooling Tower and Chiller Replacement Spares" class="card-zoom-img" loading="lazy" width="260" height="190" decoding="async">
+          </div>
+          <div class="card-content-wrap">
+            <div class="card-category-tag">Plant Maintenance Hub</div>
+            <h3 class="card-title-v2">Cooling Tower & Chiller OEM Spares</h3>
+            <p class="card-desc-v2">Original manufacturer replacement components including aluminum rotary sprinkler heads, PVC honeycomb fills, axial fan blades, and expansion valves.</p>
+            
+            <div class="card-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Sprinklers</span>
+                <span class="spec-cell-val">Alloy / Brass 2" to 8"</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Fill Packing</span>
+                <span class="spec-cell-val">Thermoformed Virgin PVC</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Fan Assemblies</span>
+                <span class="spec-cell-val">Cast Alum / FRP Aerofoil</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-cell-lbl">Fasteners</span>
+                <span class="spec-cell-val">SS304 / HDG Hardware</span>
+              </div>
+            </div>
+
+            <div class="card-actions-v2">
+              <a href="products/spare-parts-consumables.html" class="btn btn-primary btn-sm">Full Technical Specs</a>
+              <a href="https://wa.me/919597228969?text=Inquiry%20for%20OEM%20Spares" class="btn btn-accent btn-sm" target="_blank" rel="noopener" title="Instant WhatsApp RFQ"><i class="fab fa-whatsapp"></i> RFQ</a>
             </div>
           </div>
         </article>
@@ -487,7 +851,102 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE SIZING ENGINES (ENGINEERING MAGNET) -->
+  <!-- INTERACTIVE MACHINE ANATOMY & ENGINEERING HOTSPOTS -->
+  <section class="section-py" style="background: #06111E; padding-top: 4rem; padding-bottom: 4rem;">
+    <div class="container">
+      <div class="anatomy-section bg-blueprint-grid">
+        <div class="section-header-center" style="margin-bottom: 2.5rem;">
+          <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); margin-bottom: 0.5rem;">Heavy-Duty Industrial Architecture</span>
+          <h2 style="color: #FFFFFF;">Inside The Machine: Engineered for 45°C Ambients</h2>
+          <p class="section-lead" style="color: #94A3B8;">Click or hover over components to explore the engineering that gives Win Equipments systems a 15+ year operational lifespan under continuous 24/7 industrial duty.</p>
+        </div>
+
+        <div class="anatomy-grid">
+          <!-- Visual Hotspot Stage -->
+          <div class="anatomy-hotspot-stage">
+            <div class="anatomy-hotspot-image-wrap">
+              <img src="images/Products/Refrigiratedairdryer1.png" alt="Win Equipments Internal Anatomy Explorer" width="420" height="340" loading="lazy" decoding="async">
+
+              <!-- Pin 1: Scroll Compressor -->
+              <div class="hotspot-pin is-active" style="top: 28%; left: 32%;" data-hotspot="comp" title="Danfoss / Copeland Compressor">
+                <div class="hotspot-pin-btn">1</div>
+              </div>
+
+              <!-- Pin 2: Evaporator Heat Exchanger -->
+              <div class="hotspot-pin" style="top: 48%; left: 62%;" data-hotspot="hx" title="Dual-Pass Heat Exchanger">
+                <div class="hotspot-pin-btn">2</div>
+              </div>
+
+              <!-- Pin 3: Capacitive Drain -->
+              <div class="hotspot-pin" style="top: 80%; left: 52%;" data-hotspot="drain" title="Zero Air Loss Drain Valve">
+                <div class="hotspot-pin-btn">3</div>
+              </div>
+
+              <!-- Pin 4: Microprocessor Controller -->
+              <div class="hotspot-pin" style="top: 22%; left: 74%;" data-hotspot="ctrl" title="Digital Diagnostic Controller">
+                <div class="hotspot-pin-btn">4</div>
+              </div>
+
+              <!-- Pin 5: Coalescing Filter Stage -->
+              <div class="hotspot-pin" style="top: 66%; left: 24%;" data-hotspot="filter" title="Sub-Micron Coalescer">
+                <div class="hotspot-pin-btn">5</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Features List Synchronized with Hotspots -->
+          <div class="anatomy-features-list">
+            <!-- Item 1 -->
+            <div class="anatomy-feature-item is-active" data-hotspot="comp">
+              <div class="feature-header">
+                <span class="feature-number">1</span>
+                <span class="feature-title">Danfoss & Copeland Hermetic Scroll Compressors</span>
+              </div>
+              <p class="feature-desc">Engineered for high condensing temperatures up to 50°C. Delivers 20% lower specific energy consumption compared to reciprocating compressors, with zero valve flutter.</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="anatomy-feature-item" data-hotspot="hx">
+              <div class="feature-header">
+                <span class="feature-number">2</span>
+                <span class="feature-title">Dual-Pass Stainless Steel / Copper Heat Exchanger</span>
+              </div>
+              <p class="feature-desc">Counter-current thermodynamic design maximizes heat transfer surface area with less than 0.2 bar total differential pressure drop across full CFM airflow.</p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="anatomy-feature-item" data-hotspot="drain">
+              <div class="feature-header">
+                <span class="feature-number">3</span>
+                <span class="feature-title">Capacitive Zero Air Loss Condensate Discharge</span>
+              </div>
+              <p class="feature-desc">Solid-state capacitive level sensor evacuates condensate without venting compressed air, eliminating power waste and saving ₹38,000+ per year per machine.</p>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="anatomy-feature-item" data-hotspot="ctrl">
+              <div class="feature-header">
+                <span class="feature-number">4</span>
+                <span class="feature-title">Microprocessor Diagnostic Controller & Dew Point Monitor</span>
+              </div>
+              <p class="feature-desc">Continuous digital dew point readouts, safety trips (high/low pressure, anti-freeze), and automated fan cycling to prevent evaporator freeze-up at partial load.</p>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="anatomy-feature-item" data-hotspot="filter">
+              <div class="feature-header">
+                <span class="feature-number">5</span>
+                <span class="feature-title">Integrated 0.01μ Borosilicate Coalescing Stage</span>
+              </div>
+              <p class="feature-desc">Multi-layer borosilicate media traps liquid water, sub-micron oil aerosols, and pipe rust before compressed air reaches pneumatic tools and robotic valves.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE THERMODYNAMIC SIZING SUITE -->
   <section class="section-py" id="sizing-tools" style="background-color: var(--color-surface-alt);">
     <div class="container">
       <div class="section-header-center">
@@ -496,11 +955,42 @@
         <p class="section-lead">Use our certified engineering calculators to determine exact equipment sizing with ambient temperature and pressure derating factors.</p>
       </div>
 
-      <!-- Dryer Sizing Widget -->
-      <div class="calc-widget-card">
+      <!-- Quick Sizing Mini-Widget -->
+      <div class="quick-calc-widget">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border-light); padding-bottom: 1rem;">
+          <div>
+            <div style="font-weight: 800; font-size: 1.15rem; color: var(--color-brand-primary);"><i class="fas fa-bolt" style="color: var(--color-brand-accent); margin-right: 0.5rem;"></i> Instant Compressor HP to Dryer CFM Derater</div>
+            <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Quickly size your refrigerated dryer for South Indian ambient temperatures (35°C–45°C).</div>
+          </div>
+          <a href="engineering-tools/air-dryer-sizing.html" class="btn btn-outline btn-sm">Full 4-Step Sizing Tool <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="quick-calc-grid">
+          <div>
+            <label class="calc-label" for="quick-comp-hp">Screw Compressor Motor (HP):</label>
+            <input type="number" id="quick-comp-hp" value="20" min="5" max="300" step="5" class="calc-input">
+            <span style="font-size: 0.72rem; color: var(--color-text-muted);">Typical delivery: ~4.2 CFM per HP at 7 bar</span>
+          </div>
+
+          <div>
+            <label class="calc-label" for="quick-ambient-temp">Plant Ambient Temp (°C):</label>
+            <input type="number" id="quick-ambient-temp" value="40" min="25" max="50" step="1" class="calc-input">
+            <span style="font-size: 0.72rem; color: var(--color-text-muted);">Summer ambient derates capacity by ~2.2%/°C above 35°C</span>
+          </div>
+
+          <div class="quick-calc-result">
+            <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.05em;">Recommended Dryer Size</div>
+            <div id="quick-calc-result-val" style="font-size: 1.5rem; font-weight: 900; color: var(--color-brand-primary); margin: 0.25rem 0;">95 CFM</div>
+            <div id="quick-calc-model-val" style="font-size: var(--text-xs); font-weight: 700; color: var(--color-brand-accent);">WAD-100 (100 CFM)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Dryer Sizing Widget -->
+      <div class="calc-widget-card" style="margin-top: 2rem;">
         <div class="calc-grid">
           <div>
-            <h3 style="margin-bottom: 0.5rem;"><i class="fas fa-wind" style="color: var(--color-brand-accent);"></i> Air Dryer CFM Correction Calculator</h3>
+            <h3 style="margin-bottom: 0.5rem;"><i class="fas fa-wind" style="color: var(--color-brand-accent);"></i> Air Dryer CFM Multi-Factor Correction Calculator</h3>
             <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: 1.5rem;">Calculates required dryer capacity based on operating pressure and tropical inlet temperatures.</p>
 
             <div class="calc-input-group">
@@ -558,6 +1048,26 @@
             </a>
           </div>
         </div>
+      </div>
+
+      <!-- Sizing Navigation Tiles -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+        <a href="engineering-tools/air-dryer-sizing.html" class="card" style="padding: 1.25rem; text-decoration: none; border-left: 4px solid var(--color-brand-primary);">
+          <div style="font-weight: 700; color: var(--color-brand-primary); margin-bottom: 0.25rem;"><i class="fas fa-wind"></i> Air Dryer Sizing</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Inlet temperature & pressure derating factors</div>
+        </a>
+        <a href="engineering-tools/cooling-tower-calculator.html" class="card" style="padding: 1.25rem; text-decoration: none; border-left: 4px solid var(--color-brand-accent);">
+          <div style="font-weight: 700; color: var(--color-brand-primary); margin-bottom: 0.25rem;"><i class="fas fa-water"></i> Cooling Tower TR</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Range, wet-bulb approach & circulation rate</div>
+        </a>
+        <a href="engineering-tools/chiller-tonnage-calculator.html" class="card" style="padding: 1.25rem; text-decoration: none; border-left: 4px solid #10B981;">
+          <div style="font-weight: 700; color: var(--color-brand-primary); margin-bottom: 0.25rem;"><i class="fas fa-snowflake"></i> Chiller Tonnage</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">LPM flow, delta-T & specific heat load</div>
+        </a>
+        <a href="engineering-tools/compressed-air-energy-calculator.html" class="card" style="padding: 1.25rem; text-decoration: none; border-left: 4px solid #F59E0B;">
+          <div style="font-weight: 700; color: var(--color-brand-primary); margin-bottom: 0.25rem;"><i class="fas fa-bolt"></i> Drain Energy Loss</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Timer drain air wastage vs zero-loss savings</div>
+        </a>
       </div>
     </div>
   </section>

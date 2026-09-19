@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initLeadForms();
   initWhatsAppTracking();
   initServiceWorker();
+  initEquipmentFinder();
+  initProductCategoryFilter();
+  initMachineHotspots();
+  initHomepageMiniCalculator();
 });
 
 /* 1. Subtle Page Transitions */
@@ -624,3 +628,226 @@ function initServiceWorker() {
     });
   }
 }
+
+/* 6. Interactive Equipment Finder (Application Matcher) */
+function initEquipmentFinder() {
+  const finderForm = document.getElementById('equipment-finder-form');
+  const matchBtn = document.getElementById('finder-match-btn');
+  const appSelect = document.getElementById('finder-app-select');
+  const mediaSelect = document.getElementById('finder-media-select');
+  const resultDiv = document.getElementById('finder-recommendation');
+
+  if (!finderForm && !matchBtn) return;
+
+  function executeMatch() {
+    const app = appSelect?.value || '';
+    const media = mediaSelect?.value || '';
+
+    if (!app && !media) {
+      if (resultDiv) {
+        resultDiv.style.display = 'flex';
+        resultDiv.innerHTML = `<span><i class="fas fa-info-circle"></i> Please select either your <strong>Plant Process</strong> or <strong>Utility Requirement</strong> to match equipment.</span>`;
+      }
+      return;
+    }
+
+    let targetCardId = 'card-dryer';
+    let targetCategory = 'dryers';
+    let matchName = 'Direct Expansion Refrigerated Compressed Air Dryers (+3°C PDP)';
+
+    if (app === 'plastics' || media === 'chilled_water') {
+      targetCardId = 'card-chiller';
+      targetCategory = 'chillers';
+      matchName = 'Air & Water-Cooled Industrial Process Chillers (1–150 TR)';
+    } else if (app === 'foundry' || media === 'cooling_water') {
+      targetCardId = 'card-cooling-tower';
+      targetCategory = 'towers';
+      matchName = 'FRP Round & Square Industrial Cooling Towers (10–1500 TR)';
+    } else if (app === 'food_pharma' || (app === 'lasers' && media === 'dry_air')) {
+      targetCardId = 'card-desiccant';
+      targetCategory = 'dryers';
+      matchName = 'Heatless Twin-Tower Desiccant Air Dryers (-40°C PDP)';
+    } else if (media === 'air_storage') {
+      targetCardId = 'card-receiver-tank';
+      targetCategory = 'tanks';
+      matchName = 'Industrial Air Receiver Buffer Tanks (IS 2825 / ASME)';
+    } else if (media === 'condensate_drain') {
+      targetCardId = 'card-drain';
+      targetCategory = 'spares';
+      matchName = 'Zero Air Loss Capacitive Electronic Drain Valves';
+    } else if (app === 'textiles' || app === 'automotive' || media === 'dry_air') {
+      targetCardId = 'card-dryer';
+      targetCategory = 'dryers';
+      matchName = 'Direct Expansion Refrigerated Compressed Air Dryers (20–2000 CFM)';
+    }
+
+    // Display confirmation feedback
+    if (resultDiv) {
+      resultDiv.style.display = 'flex';
+      resultDiv.innerHTML = `
+        <div>
+          <i class="fas fa-check-circle" style="color: #16A34A; margin-right: 0.4rem;"></i>
+          <strong>Recommended System:</strong> ${matchName}
+        </div>
+        <a href="#${targetCardId}" class="btn btn-cta btn-sm" style="padding: 0.35rem 0.85rem; font-size: 0.78rem;">
+          View Specifications <i class="fas fa-arrow-down"></i>
+        </a>
+      `;
+    }
+
+    // Switch active segmented tab to show target category
+    const categoryBtn = document.querySelector(`.segment-btn[data-filter="${targetCategory}"]`);
+    if (categoryBtn) {
+      categoryBtn.click();
+    } else {
+      const allBtn = document.querySelector('.segment-btn[data-filter="all"]');
+      if (allBtn) allBtn.click();
+    }
+
+    // Scroll smoothly to target card and pulse highlight
+    setTimeout(() => {
+      const card = document.getElementById(targetCardId);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('highlight-match');
+        setTimeout(() => {
+          card.classList.remove('highlight-match');
+        }, 2500);
+      }
+    }, 150);
+  }
+
+  if (matchBtn) matchBtn.addEventListener('click', executeMatch);
+  if (finderForm) {
+    finderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      executeMatch();
+    });
+  }
+}
+
+/* 7. Segmented Category Filter Controller */
+function initProductCategoryFilter() {
+  const filterBtns = document.querySelectorAll('.segment-btn');
+  const cards = document.querySelectorAll('.product-spec-card-v2');
+  if (!filterBtns.length || !cards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(b => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      this.classList.add('is-active');
+      this.setAttribute('aria-selected', 'true');
+
+      const filter = this.getAttribute('data-filter');
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(8px)';
+        }
+      });
+    });
+  });
+}
+
+/* 8. Interactive Machine Anatomy Hotspots */
+function initMachineHotspots() {
+  const pins = document.querySelectorAll('.hotspot-pin');
+  const featureItems = document.querySelectorAll('.anatomy-feature-item');
+  if (!pins.length || !featureItems.length) return;
+
+  function setActiveHotspot(targetId, shouldScroll = false) {
+    pins.forEach(pin => {
+      if (pin.getAttribute('data-hotspot') === targetId) {
+        pin.classList.add('is-active');
+      } else {
+        pin.classList.remove('is-active');
+      }
+    });
+
+    featureItems.forEach(item => {
+      if (item.getAttribute('data-hotspot') === targetId) {
+        item.classList.add('is-active');
+        if (shouldScroll && window.innerWidth < 992) {
+          item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } else {
+        item.classList.remove('is-active');
+      }
+    });
+  }
+
+  pins.forEach(pin => {
+    pin.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setActiveHotspot(this.getAttribute('data-hotspot'), true);
+    });
+    pin.addEventListener('mouseenter', function() {
+      setActiveHotspot(this.getAttribute('data-hotspot'), false);
+    });
+  });
+
+  featureItems.forEach(item => {
+    item.addEventListener('click', function() {
+      setActiveHotspot(this.getAttribute('data-hotspot'), false);
+    });
+    item.addEventListener('mouseenter', function() {
+      setActiveHotspot(this.getAttribute('data-hotspot'), false);
+    });
+  });
+}
+
+/* 9. Homepage Mini Sizing Calculator Preview */
+function initHomepageMiniCalculator() {
+  const compHpInput = document.getElementById('quick-comp-hp');
+  const ambientTempInput = document.getElementById('quick-ambient-temp');
+  const resultDisplay = document.getElementById('quick-calc-result-val');
+  const modelDisplay = document.getElementById('quick-calc-model-val');
+
+  if (!compHpInput || !ambientTempInput || !resultDisplay) return;
+
+  function recalculate() {
+    const hp = parseFloat(compHpInput.value) || 20;
+    const ambient = parseFloat(ambientTempInput.value) || 40;
+
+    const baseCfm = Math.round(hp * 4.2);
+
+    let derateFactor = 1.0;
+    if (ambient > 35) {
+      derateFactor = 1.0 - ((ambient - 35) * 0.022);
+    }
+    const requiredDryerCfm = Math.round(baseCfm / derateFactor);
+
+    resultDisplay.innerHTML = `<strong>${requiredDryerCfm} CFM</strong> <span style="font-size: 0.75rem; color: var(--color-text-muted);">(Base: ${baseCfm} CFM)</span>`;
+
+    let model = 'WAD-40';
+    if (requiredDryerCfm <= 40) model = 'WAD-40 (40 CFM)';
+    else if (requiredDryerCfm <= 60) model = 'WAD-60 (60 CFM)';
+    else if (requiredDryerCfm <= 100) model = 'WAD-100 (100 CFM)';
+    else if (requiredDryerCfm <= 150) model = 'WAD-150 (150 CFM)';
+    else if (requiredDryerCfm <= 250) model = 'WAD-250 (250 CFM)';
+    else if (requiredDryerCfm <= 350) model = 'WAD-350 (350 CFM)';
+    else if (requiredDryerCfm <= 500) model = 'WAD-500 (500 CFM)';
+    else if (requiredDryerCfm <= 750) model = 'WAD-750 (750 CFM)';
+    else if (requiredDryerCfm <= 1000) model = 'WAD-1000 (1000 CFM)';
+    else model = 'WAD-1500 / WAD-2000 Central';
+
+    if (modelDisplay) {
+      modelDisplay.textContent = model;
+    }
+  }
+
+  compHpInput.addEventListener('input', recalculate);
+  ambientTempInput.addEventListener('input', recalculate);
+  recalculate();
+}
+
