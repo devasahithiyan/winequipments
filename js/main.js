@@ -655,7 +655,23 @@ function initEquipmentFinder() {
     let targetCategory = 'dryers';
     let matchName = 'Direct Expansion Refrigerated Compressed Air Dryers (+3°C PDP)';
 
-    if (app === 'plastics' || media === 'chilled_water') {
+    if (app === 'anodizing' || media === 'titanium_acid') {
+      targetCardId = 'card-anodizing';
+      targetCategory = 'chillers';
+      matchName = 'Titanium Anodizing Process Chillers (2–100+ TR, Type II & Hard Coat)';
+    } else if (app === 'medical' || media === 'medical_redundant') {
+      targetCardId = 'card-medical';
+      targetCategory = 'chillers';
+      matchName = 'Medical Scan Chillers for MRI, CT & LINAC (N+1 Dual Redundant)';
+    } else if (app === 'acid_cooling') {
+      targetCardId = 'card-acid';
+      targetCategory = 'chillers';
+      matchName = 'Corrosion-Proof Acid Cooling Chillers (Titanium / Hastelloy / PTFE)';
+    } else if (app === 'flake_ice' || media === 'subzero_ice') {
+      targetCardId = 'card-flake-ice';
+      targetCategory = 'chillers';
+      matchName = 'Industrial Ice Flake Machines (1–30 Tons/Day, -5°C to -8°C)';
+    } else if (app === 'plastics' || media === 'chilled_water') {
       targetCardId = 'card-chiller';
       targetCategory = 'chillers';
       matchName = 'Air & Water-Cooled Industrial Process Chillers (1–150 TR)';

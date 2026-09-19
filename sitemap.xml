@@ -81,6 +81,46 @@
     </image:image>
   </url>
   <url>
+    <loc>https://winequipments.com/products/ice-flake-machines.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/ice-flake-machine.jpg</image:loc>
+      <image:title>Industrial Ice Flake Machine Manufacturer Coimbatore</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/anodizing-chillers.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/electroplatingchiller.png</image:loc>
+      <image:title>Industrial Anodizing Chiller Manufacturer Coimbatore</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/medical-scan-chillers.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/medicalchiller.png</image:loc>
+      <image:title>Medical Scan Chiller for MRI and CT Diagnostics</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://winequipments.com/products/acid-cooling-chillers.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://winequipments.com/images/Products/electroplatingchiller.png</image:loc>
+      <image:title>Industrial Acid Cooling Chiller Manufacturer Coimbatore</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://winequipments.com/products/round-cooling-towers.html</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -233,13 +273,6 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- Regional Tamil Landing -->
-  <url>
-    <loc>https://winequipments.com/ta/</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
 
   <!-- Technical Blog & Engineering Knowledge Hub -->
   <url>
