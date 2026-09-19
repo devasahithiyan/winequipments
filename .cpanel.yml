@@ -1,0 +1,39 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/winequipments/public_html/
+    # Folders
+    - /bin/cp -R blog $DEPLOYPATH
+    - /bin/cp -R catlogue $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R engineering-tools $DEPLOYPATH
+    - /bin/cp -R images $DEPLOYPATH
+    - /bin/cp -R industries $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    - /bin/cp -R locations $DEPLOYPATH
+    - /bin/cp -R products $DEPLOYPATH
+    - /bin/cp -R ta $DEPLOYPATH
+    # Root Pages & Assets
+    - /bin/cp 404.html $DEPLOYPATH
+    - /bin/cp about.html $DEPLOYPATH
+    - /bin/cp blog.html $DEPLOYPATH
+    - /bin/cp case-studies.html $DEPLOYPATH
+    - /bin/cp certifications.html $DEPLOYPATH
+    - /bin/cp contactus.html $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp installation.html $DEPLOYPATH
+    - /bin/cp installation.css $DEPLOYPATH
+    - /bin/cp product.css $DEPLOYPATH
+    - /bin/cp styles.css $DEPLOYPATH
+    - /bin/cp installation.js $DEPLOYPATH
+    - /bin/cp navbar.js $DEPLOYPATH
+    - /bin/cp product.js $DEPLOYPATH
+    - /bin/cp script.js $DEPLOYPATH
+    - /bin/cp sw.js $DEPLOYPATH
+    - /bin/cp manifest.json $DEPLOYPATH
+    - /bin/cp robots.txt $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH
+    - /bin/cp favicon.ico $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp E_Catalogue.pdf $DEPLOYPATH
+    - /bin/cp Industrial_Equipment_Video_Generation.mp4 $DEPLOYPATH
