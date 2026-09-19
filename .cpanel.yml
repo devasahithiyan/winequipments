@@ -2,7 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/winequipments/public_html/
-    # Folders
     - /bin/cp -R blog $DEPLOYPATH
     - /bin/cp -R catlogue $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
@@ -13,7 +12,6 @@ deployment:
     - /bin/cp -R locations $DEPLOYPATH
     - /bin/cp -R products $DEPLOYPATH
     - /bin/cp -R ta $DEPLOYPATH
-    # Root Pages & Assets
     - /bin/cp 404.html $DEPLOYPATH
     - /bin/cp about.html $DEPLOYPATH
     - /bin/cp blog.html $DEPLOYPATH
