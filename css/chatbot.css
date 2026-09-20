@@ -321,17 +321,33 @@
 /* Responsive adjustment for Mobile */
 @media (max-width: 768px) {
   .win-ai-chat-launcher {
-    bottom: 135px;
-    right: 16px;
-    padding: 0.55rem 0.95rem;
-    font-size: 0.8rem;
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 12px);
+    right: 14px;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(14, 116, 144, 0.45);
+    z-index: 1000;
+  }
+  .win-ai-chat-launcher span {
+    display: none;
+  }
+  .win-ai-chat-launcher i {
+    font-size: 1.3rem;
+    margin: 0;
   }
   .win-ai-chat-window {
-    bottom: 75px;
-    right: 12px;
-    left: 12px;
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 8px);
+    right: 8px;
+    left: 8px;
     width: auto;
     max-width: none;
-    height: 460px;
+    height: min(500px, 75vh);
+    border-radius: 14px;
+    z-index: 1001;
   }
 }

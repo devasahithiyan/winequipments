@@ -1446,25 +1446,11 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
 @media (max-width: 768px) {
   .top-utility-bar { display: none !important; }
   .mobile-conversion-dock { display: block !important; }
-  body { padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px)); } /* Space for fixed mobile dock */
-  .floating-whatsapp-btn {
-    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 12px);
-    right: 16px;
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .proof-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; }
-  .btn-lg { width: 100%; }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --header-height: 64px;
-  }
+  body { padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px)) !important; } /* Space for fixed mobile dock */
+  
+  /* Mobile Header - clean and single row */
   .header-inner {
-    height: 64px;
+    height: 62px;
     gap: 0.75rem;
   }
   .header-inner .btn-sm,
@@ -1473,13 +1459,99 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
     display: none !important;
   }
   .brand-name {
+    font-size: 1.15rem !important;
+  }
+  .brand-tagline {
+    font-size: 0.6rem !important;
+  }
+  .brand-logo-img {
+    height: 38px !important;
+  }
+
+  /* Duplicate WhatsApp floating button hidden on mobile since dock already has WhatsApp */
+  .floating-whatsapp-btn {
+    display: none !important;
+  }
+
+  /* Prevent iOS zoom on inputs */
+  input, select, textarea, .calc-input, .form-input, .form-select, .form-textarea {
+    font-size: 16px !important;
+  }
+
+  /* Forms & Cards Compact Padding */
+  #rfq-section,
+  .rfq-card,
+  .builder-rfq-box,
+  .calc-widget-card,
+  .train-card-main,
+  .hero-visual-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  /* Spec Table Mobile Swipe & Freeze Pane */
+  .spec-table-container {
+    margin: 1.25rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    max-width: 100vw;
+  }
+  .spec-table-container::before {
+    content: '👈 Swipe table horizontally to see all models 👉';
+    display: block;
+    background: #F1F5F9;
+    color: #64748B;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.4rem 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid #E2E8F0;
+    letter-spacing: 0.02em;
+  }
+  .spec-table th, .spec-table td {
+    padding: 0.65rem 0.85rem !important;
+    font-size: 0.78rem !important;
+  }
+  .spec-table th:first-child,
+  .spec-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: #FFFFFF !important;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
+  }
+  .spec-table th:first-child {
+    background-color: #F8FAFC !important;
+  }
+
+  /* Client Logo Marquee */
+  .product-trust-clients {
+    padding: 1.25rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn-lg { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 60px;
+  }
+  .header-inner {
+    height: 60px;
+  }
+  .brand-name {
     font-size: 1.05rem !important;
   }
   .brand-tagline {
-    font-size: 0.58rem !important;
+    font-size: 0.55rem !important;
   }
   .brand-logo-img {
-    height: 36px !important;
+    height: 34px !important;
   }
   .card-actions-v2 {
     grid-template-columns: 1fr !important;

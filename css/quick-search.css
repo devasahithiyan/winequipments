@@ -209,10 +209,22 @@
 }
 
 @media (max-width: 768px) {
+  .win-search-modal {
+    max-width: calc(100vw - 24px) !important;
+    margin: 12px !important;
+    max-height: 85vh !important;
+    border-radius: 12px !important;
+  }
+  .win-search-input {
+    font-size: 16px !important; /* Prevents iOS zoom */
+  }
   .win-search-nav-btn span {
     display: none;
   }
   .win-search-nav-btn kbd {
     display: none;
+  }
+  .win-search-footer {
+    display: none !important;
   }
 }
