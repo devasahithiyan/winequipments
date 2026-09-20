@@ -33,4 +33,5 @@ deployment:
     - /bin/cp favicon.ico $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp E_Catalogue.pdf $DEPLOYPATH
+    - /bin/cp send_rfq.php $DEPLOYPATH
     - /bin/cp Industrial_Equipment_Video_Generation.mp4 $DEPLOYPATH

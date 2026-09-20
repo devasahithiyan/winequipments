@@ -571,33 +571,45 @@ function initLeadForms() {
       const originalText = submitBtn ? submitBtn.innerHTML : 'Submit';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Processing RFQ...</span>';
+        submitBtn.innerHTML = '<span>Submitting RFQ...</span>';
       }
 
       const formData = new FormData(form);
       const leadPayload = Object.fromEntries(formData.entries());
 
-      // Send via FormSubmit AJAX or fallback securely
-      fetch('https://formsubmit.co/ajax/info@winequipments.com', {
+      // Determine correct path to PHP handler (standard absolute URL on web, relative for file://)
+      const isFileProto = window.location.protocol === 'file:';
+      const pathDepth = window.location.pathname.split('/').filter(Boolean).length;
+      const handlerPath = isFileProto
+        ? (pathDepth >= 2 ? '../send_rfq.php' : 'send_rfq.php')
+        : '/send_rfq.php';
+
+      fetch(handlerPath, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          _subject: `Technical RFQ: ${leadPayload.equipment_type || 'Industrial Equipment'} - ${leadPayload.company_name || 'Client'}`,
-          ...leadPayload
-        })
+        body: JSON.stringify(leadPayload)
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok && response.status !== 200) {
+          return response.json().catch(() => ({ success: false }));
+        }
+        return response.json();
+      })
       .then(data => {
-        showConfirmationModal(leadPayload);
-        form.reset();
+        if (data && data.success === false) {
+          showErrorBanner(form, data.message || 'Submission failed. Please call +91 95972 28969.');
+        } else {
+          const assignedRef = (data && data.ref_id) ? data.ref_id : ('WE-' + Date.now().toString().slice(-6));
+          showConfirmationModal(leadPayload, assignedRef);
+          form.reset();
+        }
       })
       .catch(error => {
-        console.log('Submission forwarded, showing confirmation', error);
-        showConfirmationModal(leadPayload);
-        form.reset();
+        console.error('RFQ fetch error:', error);
+        showErrorBanner(form, 'Could not reach server. Please call us directly: <a href="tel:+919597228969">+91 95972 28969</a>');
       })
       .finally(() => {
         if (submitBtn) {
@@ -609,8 +621,22 @@ function initLeadForms() {
   });
 }
 
-function showConfirmationModal(lead) {
+function showErrorBanner(form, message) {
+  let banner = form.querySelector('.rfq-error-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.className = 'rfq-error-banner';
+    banner.style.cssText = 'background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;padding:0.85rem 1rem;border-radius:8px;font-size:0.875rem;margin-top:0.75rem;';
+    form.appendChild(banner);
+  }
+  banner.innerHTML = '<i class="fas fa-exclamation-circle" style="margin-right:0.4rem;"></i>' + message;
+  banner.style.display = 'block';
+  setTimeout(() => { if (banner) banner.style.display = 'none'; }, 8000);
+}
+
+function showConfirmationModal(lead, refId) {
   let modal = document.getElementById('rfq-confirmation-modal');
+  const safeRef = refId || ('WE-' + Date.now().toString().slice(-6));
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'rfq-confirmation-modal';
@@ -619,11 +645,11 @@ function showConfirmationModal(lead) {
       <div class="rfq-modal-content">
         <div class="rfq-modal-icon">\u2713</div>
         <h3>Technical RFQ Received</h3>
-        <p>Thank you. Your engineering inquiry has been assigned Reference <strong>#WE-${Date.now().toString().slice(-5)}</strong>.</p>
+        <p>Thank you. Your engineering inquiry has been assigned Reference <strong id="rfq-modal-ref-id">#${safeRef}</strong>.</p>
         <p class="rfq-modal-sub">An application engineer from our Arasur plant will review your operating parameters and dispatch a formal technical proposal within 24 hours.</p>
         <div class="rfq-modal-actions">
-          <a href="https://wa.me/919597228969?text=Hi%2C%20I%20just%20submitted%20RFQ%20for%20${encodeURIComponent(lead.equipment_type || 'Industrial Equipment')}" class="btn btn-accent btn-sm" target="_blank">
-            Chat on WhatsApp (+91 95972 28969)
+          <a id="rfq-modal-wa-link" href="https://wa.me/919597228969?text=Hi%2C%20I%20just%20submitted%20RFQ%20for%20${encodeURIComponent(lead.equipment_type || 'Industrial Equipment')}%20(Ref:%20${safeRef})" class="btn btn-accent btn-sm" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp (+91 95972 28969)
           </a>
           <button class="btn btn-outline btn-sm close-modal-btn">Close</button>
         </div>
@@ -632,10 +658,21 @@ function showConfirmationModal(lead) {
     document.body.appendChild(modal);
 
     modal.querySelector('.close-modal-btn').addEventListener('click', () => {
-      modal.classList.remove('is-active');
+      modal.classList.remove('active');
     });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  } else {
+    const refElem = modal.querySelector('#rfq-modal-ref-id');
+    if (refElem) refElem.textContent = '#' + safeRef;
+    const waLink = modal.querySelector('#rfq-modal-wa-link');
+    if (waLink) {
+      waLink.href = `https://wa.me/919597228969?text=Hi%2C%20I%20just%20submitted%20RFQ%20for%20${encodeURIComponent(lead.equipment_type || 'Industrial Equipment')}%20(Ref:%20${safeRef})`;
+    }
   }
-  modal.classList.add('is-active');
+
+  modal.classList.add('active');
 }
 
 /* 4. WhatsApp Deep-Link Builder */

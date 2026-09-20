@@ -232,7 +232,7 @@
           </p>
 
           <div class="hero-actions" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <a href="#rfq-section" class="btn btn-cta btn-lg">Request Factory Quote <i class="fas fa-arrow-right"></i></a>
+            <a href="#rfq-section" class="btn btn-cta btn-lg">Avoid Plant Downtime — Get Factory Pricing <i class="fas fa-arrow-right"></i></a>
             <a href="../catlogue/E_Catalogue.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener">
               <i class="fas fa-file-pdf"></i> Technical Specs
             </a>
@@ -524,10 +524,9 @@
             </p>
           </div>
 
-          <form action="https://formsubmit.co/info@winequipments.com" method="POST" class="rfq-form rfq-form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
-            <input type="hidden" name="_subject" value="Spare Parts RFQ - Win Equipments Website">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
+          <form action="../send_rfq.php" method="POST" class="rfq-form rfq-form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+            <input type="hidden" name="website_url_hp" style="display:none;">
+            <input type="hidden" name="form_source" value="Spare Parts & Consumables Page">
 
             <div>
               <label style="display: block; font-size: var(--text-xs); font-weight: 600; color: var(--color-text-heading); margin-bottom: 0.5rem;">
