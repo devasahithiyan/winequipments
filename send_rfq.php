@@ -137,7 +137,7 @@ if ($fp) {
 }
 
 /* ── compose email notification ───────────────────────────────────── */
-$cadRequested = !empty($data['cad_drawings_requested']);
+$cadRequested = !empty($data['cad_drawings_requested']) || !empty($data['req_cad_drawings']);
 
 $subject = "Technical RFQ [{$refId}]: {$equipType} – {$name} / {$company}";
 if ($cadRequested) {
