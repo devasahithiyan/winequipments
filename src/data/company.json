@@ -1,0 +1,42 @@
+{
+  "name": "Win Equipments",
+  "legal_name": "Win Equipments",
+  "tagline": "Save Water and Power",
+  "founded_year": "2008",
+  "founder": "Mr. Ramasamy Ananthakumar",
+  "address": "SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407, Tamil Nadu, India",
+  "short_address": "SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407",
+  "city": "Coimbatore",
+  "pincode": "641407",
+  "state": "Tamil Nadu",
+  "country": "India",
+  "phone1": "+91 95972 28969",
+  "phone2": "+91 95972 28975",
+  "phone_display": "+91 95972 28969 / +91 95972 28975",
+  "email": "info@winequipments.com",
+  "website": "winequipments.com",
+  "website_url": "https://winequipments.com",
+  "certification": "ISO 9001:2015 (IAF & DAC Accredited)",
+  "certifications_list": [
+    "ISO 9001:2015 Quality Management System",
+    "IAF (International Accreditation Forum) Accredited",
+    "DAC (Dubai Accreditation Center) Recognized"
+  ],
+  "stats": [
+    {"value": "1,200+", "label": "Industrial Installations"},
+    {"value": "18+", "label": "Years Engineering Excellence"},
+    {"value": "10", "label": "Core Product Lines"},
+    {"value": "100%", "label": "FAT Proof Tested"}
+  ],
+  "badges": {
+    "logo": "images/logo.png",
+    "iso": "images/iso.png",
+    "iaf": "images/iaf.png",
+    "dac": "images/dac.png"
+  },
+  "facility_images": {
+    "factory": "images/about_us.jpg",
+    "assembly": "images/about_us_2.jpg",
+    "banner": "images/banner_opt.jpg"
+  }
+}

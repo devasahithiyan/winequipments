@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Print</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 210mm;
+      height: 297mm;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #F4F6F9;
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      box-sizing: border-box;
+      padding: 15mm;
+      position: relative;
+    }
+    .header {
+      background-color: #0E2540;
+      color: #FFFFFF;
+      padding: 10mm;
+      border-radius: 4px;
+    }
+    h1 {
+      margin: 0 0 5mm 0;
+      font-size: 24pt;
+      color: #FFFFFF;
+    }
+    p {
+      color: #333333;
+      font-size: 10pt;
+      line-height: 1.5;
+    }
+    .accent {
+      color: #0284C7;
+      font-weight: bold;
+    }
+    .footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 15mm;
+      right: 15mm;
+      border-top: 1px solid #CCCCCC;
+      padding-top: 3mm;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1>Win Equipments Test Print</h1>
+      <p style="color: #0284C7; margin: 0; font-size: 12pt;">Save Water and Power</p>
+    </div>
+    <div style="margin-top: 10mm;">
+      <p>This is a test of <span class="accent">Chrome Headless PDF generation</span> for A4 industrial brochure production.</p>
+      <p>Testing colors: Navy #0E2540, Sky Blue #0284C7, Background #F4F6F9.</p>
+      <p>Contact: +91 95972 28969 / +91 95972 28975</p>
+    </div>
+    <div class="footer">
+      <span>Win Equipments &bull; Test Brochure</span>
+      <span>Page 1 of 1</span>
+    </div>
+  </div>
+</body>
+</html>

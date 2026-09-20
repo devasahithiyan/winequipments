@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Refrigerated Air Dryers - Win Equipments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1E293B;
+      background: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+    .sheet {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      background: #FFFFFF;
+      box-sizing: border-box;
+    }
+    .sheet:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    /* Common Header for Inner Pages */
+    .inner-header {
+      height: 24mm;
+      background: #0E2540;
+      color: #FFFFFF;
+      padding: 0 15mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3mm solid #0284C7;
+    }
+    .inner-header .brand {
+      font-size: 13pt;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .inner-header .tagline {
+      font-size: 8pt;
+      color: #94A3B8;
+      font-weight: 400;
+    }
+    .inner-header .doc-title {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #38BDF8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Common Footer for Inner Pages */
+    .inner-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 210mm;
+      height: 14mm;
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 0 15mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #64748B;
+    }
+    .inner-footer .page-num {
+      font-weight: 700;
+      color: #0E2540;
+    }
+
+    /* Inner Page Content Container */
+    .inner-content {
+      padding: 10mm 15mm;
+      height: 259mm;
+      box-sizing: border-box;
+    }
+
+    /* PAGE 1: COVER */
+    .cover-sheet {
+      background: #0E2540;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15mm;
+    }
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #1E3A5F;
+      padding-bottom: 8mm;
+    }
+    .company-badge h1 {
+      margin: 0;
+      font-size: 22pt;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+    }
+    .company-badge p {
+      margin: 2mm 0 0 0;
+      font-size: 9pt;
+      color: #38BDF8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .iso-badge {
+      border: 1px solid #38BDF8;
+      padding: 2mm 4mm;
+      border-radius: 4px;
+      text-align: right;
+    }
+    .iso-badge span {
+      display: block;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+    .iso-badge small {
+      font-size: 6pt;
+      color: #94A3B8;
+    }
+
+    .cover-hero-titles {
+      margin-top: 6mm;
+    }
+    .category-label {
+      display: inline-block;
+      background: #0284C7;
+      color: #FFFFFF;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 2mm 5mm;
+      border-radius: 2px;
+    }
+    .product-title {
+      font-size: 32pt;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 4mm 0 2mm 0;
+      color: #FFFFFF;
+    }
+    .product-subtitle {
+      font-size: 12pt;
+      color: #94A3B8;
+      font-weight: 400;
+      max-width: 140mm;
+      margin: 0;
+    }
+
+    /* Cover image must occupy >= 40% of page area */
+    .cover-image-container {
+      height: 125mm; /* 125mm / 297mm = 42.1% of page vertical height */
+      background: radial-gradient(circle at center, #1E3A5F 0%, #0E2540 70%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5mm;
+      margin: 6mm 0;
+      border: 1px solid #1E3A5F;
+    }
+    .cover-image-container img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+    }
+
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid #1E3A5F;
+      padding-top: 6mm;
+    }
+    .cover-specs-highlights {
+      display: flex;
+      gap: 8mm;
+    }
+    .highlight-item {
+      border-left: 2px solid #0284C7;
+      padding-left: 3mm;
+    }
+    .highlight-item .val {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #38BDF8;
+      display: block;
+    }
+    .highlight-item .lbl {
+      font-size: 7pt;
+      color: #94A3B8;
+      text-transform: uppercase;
+    }
+
+    /* Headings */
+    h2.section-heading {
+      font-size: 16pt;
+      font-weight: 800;
+      color: #0E2540;
+      margin: 0 0 2mm 0;
+      position: relative;
+      padding-bottom: 2mm;
+    }
+    h2.section-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 25mm;
+      height: 2px;
+      background: #0284C7;
+    }
+    p.lead-text {
+      font-size: 9.5pt;
+      color: #475569;
+      line-height: 1.5;
+      margin: 3mm 0 6mm 0;
+    }
+
+    /* Grid for engineering benefits */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+      margin-bottom: 6mm;
+    }
+    .feature-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 4mm;
+      background: #F8FAFC;
+    }
+    .feature-card h3 {
+      margin: 0 0 1.5mm 0;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #0E2540;
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+    }
+    .feature-card h3 .icon {
+      width: 5mm;
+      height: 5mm;
+      background: #0284C7;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 6pt;
+    }
+    .feature-card p {
+      margin: 0;
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    /* Working Principle Box */
+    .principle-box {
+      border: 1px solid #BAE6FD;
+      background: #F0F9FF;
+      border-radius: 6px;
+      padding: 5mm;
+      margin-top: 4mm;
+    }
+    .principle-box h3 {
+      margin: 0 0 2mm 0;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #0369A1;
+    }
+    .principle-box p {
+      margin: 0;
+      font-size: 8.5pt;
+      color: #0C4A6E;
+      line-height: 1.45;
+    }
+
+    /* Table Styles */
+    table.spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4mm;
+      font-size: 8pt;
+    }
+    table.spec-table th {
+      background: #0284C7;
+      color: #FFFFFF;
+      font-weight: 700;
+      text-align: left;
+      padding: 2.5mm 3mm;
+      border: 1px solid #0284C7;
+      text-transform: uppercase;
+      font-size: 7pt;
+      letter-spacing: 0.5px;
+    }
+    table.spec-table td {
+      padding: 2.2mm 3mm;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+    }
+    table.spec-table tr:nth-child(even) td {
+      background: #F8FAFC;
+    }
+    table.spec-table tr:hover td {
+      background: #F1F5F9;
+    }
+
+    /* Applications page */
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4mm;
+      margin-top: 4mm;
+    }
+    .app-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      padding: 3.5mm;
+      background: #FFFFFF;
+    }
+    .app-card h4 {
+      margin: 0 0 1.5mm 0;
+      font-size: 9pt;
+      font-weight: 700;
+      color: #0E2540;
+    }
+    .app-card p {
+      margin: 0;
+      font-size: 7.5pt;
+      color: #64748B;
+      line-height: 1.35;
+    }
+
+    /* Contact box & QR */
+    .contact-container {
+      margin-top: 8mm;
+      border: 1px solid #0284C7;
+      border-radius: 8px;
+      padding: 6mm;
+      background: #F0F9FF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .contact-details {
+      max-width: 110mm;
+    }
+    .contact-details h3 {
+      margin: 0 0 2mm 0;
+      font-size: 11pt;
+      font-weight: 800;
+      color: #0E2540;
+    }
+    .contact-details p {
+      margin: 1.5mm 0;
+      font-size: 8pt;
+      color: #334155;
+    }
+    .contact-details strong {
+      color: #0E2540;
+    }
+    .qr-box {
+      text-align: center;
+      background: #FFFFFF;
+      padding: 3mm;
+      border-radius: 6px;
+      border: 1px solid #BAE6FD;
+    }
+    .qr-box img {
+      width: 25mm;
+      height: 25mm;
+      display: block;
+    }
+    .qr-box span {
+      display: block;
+      margin-top: 1.5mm;
+      font-size: 6.5pt;
+      font-weight: 700;
+      color: #0369A1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: COVER -->
+  <div class="sheet cover-sheet">
+    <div class="cover-top">
+      <div class="company-badge">
+        <h1>WIN EQUIPMENTS</h1>
+        <p>Save Water and Power</p>
+      </div>
+      <div class="iso-badge">
+        <span>ISO 9001:2015</span>
+        <small>IAF & DAC ACCREDITED</small>
+      </div>
+    </div>
+
+    <div class="cover-hero-titles">
+      <span class="category-label">Compressed Air Treatment</span>
+      <h2 class="product-title">Refrigerated Air Dryers</h2>
+      <p class="product-subtitle">High-efficiency direct expansion compressed air dryers engineered for maximum moisture separation and continuous industrial duty.</p>
+    </div>
+
+    <div class="cover-image-container">
+      <img src="../../images/Products/Refrigiratedairdryer1.png" alt="Refrigerated Air Dryer">
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-specs-highlights">
+        <div class="highlight-item">
+          <span class="val">20 – 2000 CFM</span>
+          <span class="lbl">Capacity Range</span>
+        </div>
+        <div class="highlight-item">
+          <span class="val">+3°C</span>
+          <span class="lbl">Pressure Dew Point</span>
+        </div>
+        <div class="highlight-item">
+          <span class="val">R-134a / R-407C</span>
+          <span class="lbl">Eco Refrigerant</span>
+        </div>
+        <div class="highlight-item">
+          <span class="val">16 Bar</span>
+          <span class="lbl">Max Working Pressure</span>
+        </div>
+      </div>
+      <div style="text-align: right; color: #94A3B8; font-size: 7.5pt;">
+        Industrial Catalog Series<br>
+        <span style="color: #38BDF8; font-weight: 600;">Edition 2026-27</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: OVERVIEW & BENEFITS -->
+  <div class="sheet">
+    <div class="inner-header">
+      <div>
+        <div class="brand">WIN EQUIPMENTS</div>
+        <div class="tagline">Save Water and Power</div>
+      </div>
+      <div class="doc-title">Product Overview</div>
+    </div>
+
+    <div class="inner-content">
+      <h2 class="section-heading">Engineering Excellence in Air Treatment</h2>
+      <p class="lead-text">
+        Win Equipments Refrigerated Air Dryers deliver reliable moisture extraction to safeguard downstream pneumatic machinery, instrumentation, and finished goods. Utilizing advanced 3-in-1 aluminium plate heat exchangers, our systems achieve optimal heat transfer with minimal pressure drop.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3><span class="icon">&#10003;</span> 3-in-1 Compact Heat Exchanger</h3>
+          <p>Combines air-to-air heat exchanger, evaporator, and moisture separator into a single brazed aluminium block, drastically cutting energy consumption.</p>
+        </div>
+        <div class="feature-card">
+          <h3><span class="icon">&#10003;</span> Stable +3°C Dew Point</h3>
+          <p>Precision hot gas bypass valve maintains constant dew point control across fluctuating plant loads, preventing moisture condensation in air lines.</p>
+        </div>
+        <div class="feature-card">
+          <h3><span class="icon">&#10003;</span> Eco-Friendly Refrigerants</h3>
+          <p>Charged with non-ozone depleting R-134a and R-407C refrigerants conforming to international environmental safety standards.</p>
+        </div>
+        <div class="feature-card">
+          <h3><span class="icon">&#10003;</span> Zero-Loss Electronic Drain</h3>
+          <p>Microprocessor-controlled automatic condensate drain ensures condensate discharge without compressed air wastage.</p>
+        </div>
+      </div>
+
+      <div class="principle-box">
+        <h3>Thermodynamic Working Principle</h3>
+        <p>
+          Warm, moisture-laden compressed air enters the air-to-air precooler where it is precooled by outbound chilled air. It then passes into the refrigerant evaporator where cooling to +3°C causes moisture vapour to condense into liquid droplets. The high-efficiency integrated demister separates condensed water and oil, discharging them via the automatic drain valve. The dry air is reheated before exit, ensuring zero pipe sweating.
+        </p>
+      </div>
+
+      <div style="margin-top: 8mm; display: flex; gap: 6mm; align-items: center;">
+        <img src="../../images/Products/refrigiratedairdryer2.png" style="width: 55mm; height: 45mm; object-fit: contain; border: 1px solid #E2E8F0; border-radius: 4px; padding: 2mm;">
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 2mm 0; font-size: 10pt; color: #0E2540;">Built for Rigorous Industrial Environments</h4>
+          <p style="margin: 0; font-size: 8pt; color: #475569; line-height: 1.45;">
+            Heavy-duty epoxy powder-coated steel casing resists corrosion in humid factory environments. Designed for ambient operating temperatures up to 50°C and inlet air temperatures up to 60°C.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-footer">
+      <span>Win Equipments &bull; Refrigerated Air Dryers</span>
+      <span class="page-num">Page 2</span>
+    </div>
+  </div>
+
+  <!-- PAGE 3: TECHNICAL SPECIFICATIONS -->
+  <div class="sheet">
+    <div class="inner-header">
+      <div>
+        <div class="brand">WIN EQUIPMENTS</div>
+        <div class="tagline">Save Water and Power</div>
+      </div>
+      <div class="doc-title">Specifications</div>
+    </div>
+
+    <div class="inner-content">
+      <h2 class="section-heading">Technical Specifications & Performance Data</h2>
+      <p class="lead-text" style="margin-bottom: 3mm;">
+        Standard operating conditions: Inlet air temperature 38°C, Ambient temperature 35°C, Working pressure 7.0 bar(g). Maximum working pressure: 16 bar(g).
+      </p>
+
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Model Code</th>
+            <th>Capacity (CFM)</th>
+            <th>Capacity (m³/min)</th>
+            <th>Power (kW)</th>
+            <th>Refrigerant</th>
+            <th>Air Conn. (BSP)</th>
+            <th>Dimensions (L×W×H mm)</th>
+            <th>Weight (kg)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>WRD-20</strong></td>
+            <td>20</td>
+            <td>0.57</td>
+            <td>0.35</td>
+            <td>R-134a</td>
+            <td>1/2"</td>
+            <td>480 × 360 × 520</td>
+            <td>32</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-40</strong></td>
+            <td>40</td>
+            <td>1.13</td>
+            <td>0.52</td>
+            <td>R-134a</td>
+            <td>3/4"</td>
+            <td>520 × 400 × 580</td>
+            <td>41</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-60</strong></td>
+            <td>60</td>
+            <td>1.70</td>
+            <td>0.68</td>
+            <td>R-134a</td>
+            <td>3/4"</td>
+            <td>560 × 440 × 640</td>
+            <td>52</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-100</strong></td>
+            <td>100</td>
+            <td>2.83</td>
+            <td>0.95</td>
+            <td>R-134a</td>
+            <td>1"</td>
+            <td>620 × 490 × 710</td>
+            <td>68</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-150</strong></td>
+            <td>150</td>
+            <td>4.25</td>
+            <td>1.30</td>
+            <td>R-407C</td>
+            <td>1-1/2"</td>
+            <td>710 × 560 × 820</td>
+            <td>85</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-200</strong></td>
+            <td>200</td>
+            <td>5.66</td>
+            <td>1.75</td>
+            <td>R-407C</td>
+            <td>1-1/2"</td>
+            <td>780 × 610 × 890</td>
+            <td>105</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-300</strong></td>
+            <td>300</td>
+            <td>8.50</td>
+            <td>2.40</td>
+            <td>R-407C</td>
+            <td>2"</td>
+            <td>860 × 680 × 980</td>
+            <td>135</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-500</strong></td>
+            <td>500</td>
+            <td>14.16</td>
+            <td>3.80</td>
+            <td>R-407C</td>
+            <td>2" Flanged</td>
+            <td>1020 × 780 × 1140</td>
+            <td>190</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-750</strong></td>
+            <td>750</td>
+            <td>21.24</td>
+            <td>5.50</td>
+            <td>R-407C</td>
+            <td>2-1/2" Flanged</td>
+            <td>1180 × 890 × 1280</td>
+            <td>260</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-1000</strong></td>
+            <td>1000</td>
+            <td>28.32</td>
+            <td>7.20</td>
+            <td>R-407C</td>
+            <td>3" Flanged</td>
+            <td>1350 × 980 × 1420</td>
+            <td>340</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-1500</strong></td>
+            <td>1500</td>
+            <td>42.48</td>
+            <td>10.50</td>
+            <td>R-407C</td>
+            <td>4" Flanged</td>
+            <td>1580 × 1120 × 1600</td>
+            <td>480</td>
+          </tr>
+          <tr>
+            <td><strong>WRD-2000</strong></td>
+            <td>2000</td>
+            <td>56.63</td>
+            <td>14.00</td>
+            <td>R-407C</td>
+            <td>5" Flanged</td>
+            <td>1780 × 1250 × 1750</td>
+            <td>620</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 6mm; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 3mm 4mm; border-radius: 4px; font-size: 7pt; color: #64748B;">
+        <strong>Note:</strong> Higher capacity models up to 5,000 CFM and water-cooled condenser configurations are available upon request. Win Equipments reserves the right to modify technical data without prior notice in pursuit of continuous technological innovation.
+      </div>
+    </div>
+
+    <div class="inner-footer">
+      <span>Win Equipments &bull; Refrigerated Air Dryers</span>
+      <span class="page-num">Page 3</span>
+    </div>
+  </div>
+
+  <!-- PAGE 4: APPLICATIONS & CONTACT -->
+  <div class="sheet">
+    <div class="inner-header">
+      <div>
+        <div class="brand">WIN EQUIPMENTS</div>
+        <div class="tagline">Save Water and Power</div>
+      </div>
+      <div class="doc-title">Applications & Contact</div>
+    </div>
+
+    <div class="inner-content">
+      <h2 class="section-heading">Key Industries & Applications</h2>
+      <p class="lead-text" style="margin-bottom: 3mm;">
+        Trusted by leading manufacturing units across India for process air reliability and ISO 8573-1 air purity compliance.
+      </p>
+
+      <div class="app-grid">
+        <div class="app-card">
+          <h4>Automotive & Spray Painting</h4>
+          <p>Prevents surface blemishes, cratering, and paint blistering by removing all condensable moisture.</p>
+        </div>
+        <div class="app-card">
+          <h4>Pharmaceutical & Cleanrooms</h4>
+          <p>Ensures dry carrier air for packaging lines, tablet coating, and pneumatic tablet transfer.</p>
+        </div>
+        <div class="app-card">
+          <h4>Food & Beverage Packaging</h4>
+          <p>Prevents biological growth and contamination in PET bottle blowing and canning systems.</p>
+        </div>
+        <div class="app-card">
+          <h4>Textile & Spinning Mills</h4>
+          <p>Protects high-speed spinning rotors, auto-coners, and loom nozzles from water droplets.</p>
+        </div>
+        <div class="app-card">
+          <h4>Laser Cutting & CNC Machinery</h4>
+          <p>Guarantees clean assist air for precision optical cutting heads and tool changers.</p>
+        </div>
+        <div class="app-card">
+          <h4>Electronics & Semiconductor</h4>
+          <p>Prevents micro-corrosion and static issues in automated pick-and-place robotics.</p>
+        </div>
+      </div>
+
+      <!-- Contact & QR Section -->
+      <div class="contact-container">
+        <div class="contact-details">
+          <h3>WIN EQUIPMENTS</h3>
+          <p><strong>Head Office & Manufacturing Works:</strong><br>
+          SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407, Tamil Nadu, India</p>
+          <p><strong>Sales & Technical Support:</strong><br>
+          +91 95972 28969 / +91 95972 28975</p>
+          <p><strong>Email:</strong> info@winequipments.com &nbsp;|&nbsp; <strong>Web:</strong> winequipments.com</p>
+          <p><strong>Quality Management:</strong> ISO 9001:2015 Certified (IAF & DAC Accredited)</p>
+        </div>
+        <div class="qr-box">
+          <img src="sample_qr.svg" alt="Scan QR Code">
+          <span>SCAN TO VIEW PRODUCT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-footer">
+      <span>Win Equipments &bull; Refrigerated Air Dryers</span>
+      <span class="page-num">Page 4</span>
+    </div>
+  </div>
+
+</body>
+</html>

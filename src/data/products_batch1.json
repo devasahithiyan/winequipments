@@ -1,0 +1,591 @@
+{
+  "products": [
+    {
+      "id": "refrigerated_air_dryers",
+      "slug": "refrigeration-air-dryer",
+      "pdf_filename": "refrigeration air dryer.pdf",
+      "name": "Refrigerated Compressed Air Dryers",
+      "short_name": "Refrigerated Air Dryers",
+      "series": "WRD Series (20 to 2,000 CFM)",
+      "category": "Compressed Air Treatment Systems",
+      "title": "High-Efficiency Refrigerated Air Dryers",
+      "subtitle": "Non-Cycling Direct-Expansion Technology Delivering Constant +3°C Pressure Dew Point Under Extreme Tropical Ambient Conditions",
+      "hero_image": "images/Products/Refrigiratedairdryer1.png",
+      "secondary_images": [
+        "images/Products/refrigiratedairdryer2.png",
+        "images/Products/refrigiratedairdryer3.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/refrigerated-air-dryers.html",
+      "qr_code_file": "src/assets/qr/qr_refrigerated_air_dryers.svg",
+      "badges": [
+        {"title": "+3°C PDP", "desc": "ISO 8573-1 Class 4 Moisture Purity"},
+        {"title": "20–2,000 CFM", "desc": "Comprehensive Standard Range"},
+        {"title": "50°C MAX INLET", "desc": "Tropical Condenser Rating"},
+        {"title": "ZERO AIR LOSS", "desc": "Capacitive Condensate Drain"}
+      ],
+      "overview": {
+        "description": "Win Equipments WRD Series refrigerated compressed air dryers remove moisture vapor from compressed air networks through precision thermodynamic chilling. Engineered specifically for Indian and GCC tropical environments with ambient temperatures reaching 45°C and air inlet temperatures up to 50°C, WRD dryers protect sensitive pneumatic machinery, CNC spindles, and automated paint lines from liquid water, emulsion sludge, and corrosion.",
+        "working_principle": "Saturated compressed air enters the high-efficiency 3-in-1 modular aluminum heat exchanger. In the air-to-air regenerator stage, incoming warm wet air is precooled by outgoing cold dry air, reducing refrigeration compressor power demand by up to 40%. Precooled air then passes into the direct-expansion evaporator where it is chilled to +3°C by eco-friendly R134a/R407C refrigerant. Moisture condenses into droplets and is separated by a multi-stage centrifugal demister before automated discharge through a zero-air-loss drain.",
+        "pid_flow": "Air Compressor → Aftercooler (<45°C) → Wet Receiver Tank → Pre-Filter (3.0μ) → WRD Refrigerated Dryer (+3°C PDP) → Coalescing Filter (0.01μ) → Dry Receiver → Distribution Ring Main"
+      },
+      "key_benefits": [
+        {
+          "icon": "⚡",
+          "title": "3-in-1 Monoblock Aluminum Heat Exchanger",
+          "narrative": "Combines air-to-air precooler/reheater, direct-expansion evaporator, and high-velocity centrifugal water separator in a single corrosion-resistant brazed aluminum block. Eliminates interconnecting pipe friction to deliver ultra-low pressure drop under 0.2 bar."
+        },
+        {
+          "icon": "❄️",
+          "title": "Mechanical Hot Gas Bypass Modulation",
+          "narrative": "Features pressure-balanced hot gas bypass injection that automatically modulates refrigerant flow from 0% to 100% pneumatic demand. Guarantees constant +3°C dew point without evaporator freezing, even during extended zero-demand standby."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Copeland / Danfoss Heavy-Duty Compressors",
+          "narrative": "Hermetic scroll and reciprocating refrigeration compressors engineered for continuous 24/7 industrial duty. Equipped with internal thermal motor protection, high/low pressure safety cutouts, and anti-vibration rubber isolation mounts."
+        },
+        {
+          "icon": "💧",
+          "title": "Zero Air Loss Electronic Capacitive Drain",
+          "narrative": "Intelligent non-contact capacitive level sensor detects accumulated condensate and vents 100% liquid without escaping compressed air. Saves over ₹42,000 annually per 500 CFM installation compared to lossy timed solenoid drains."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Nominal Working Pressure: 7.0 bar g (Max 16.0 bar g) | Max Inlet Temp: 50°C | Ambient Temp: 35°C | Pressure Dew Point: +3°C | Refrigerant: R134a / R407C",
+        "columns": [
+          "Model Code", "Nominal CFM", "Flow m³/hr", "Power kW", "Supply Voltage", "In/Out Conn", "Dimensions (L×W×H mm)", "Weight kg"
+        ],
+        "rows": [
+          ["WRD 20 S", "20 CFM", "34", "0.45 kW", "230V / 1Ph / 50Hz", "1/2\" BSP", "450 × 450 × 550", "38 kg"],
+          ["WRD 30 S", "30 CFM", "51", "0.45 kW", "230V / 1Ph / 50Hz", "1/2\" BSP", "450 × 450 × 550", "40 kg"],
+          ["WRD 40 S", "40 CFM", "68", "0.45 kW", "230V / 1Ph / 50Hz", "1/2\" BSP", "450 × 450 × 550", "42 kg"],
+          ["WRD 60 S", "60 CFM", "102", "0.65 kW", "230V / 1Ph / 50Hz", "1\" BSP", "500 × 550 × 750", "55 kg"],
+          ["WRD 80 S", "80 CFM", "136", "0.65 kW", "230V / 1Ph / 50Hz", "1\" BSP", "500 × 550 × 750", "58 kg"],
+          ["WRD 100 S", "100 CFM", "170", "0.85 kW", "230V / 1Ph / 50Hz", "1\" BSP", "500 × 550 × 750", "60 kg"],
+          ["WRD 125 S", "125 CFM", "212", "0.85 kW", "230V / 1Ph / 50Hz", "1.5\" BSP", "500 × 550 × 750", "65 kg"],
+          ["WRD 150 S", "150 CFM", "255", "1.10 kW", "230V / 1Ph / 50Hz", "1.5\" BSP", "600 × 650 × 900", "90 kg"],
+          ["WRD 200 S", "200 CFM", "340", "1.25 kW", "230V / 1Ph / 50Hz", "1.5\" BSP", "600 × 650 × 900", "95 kg"],
+          ["WRD 250 S", "250 CFM", "425", "1.65 kW", "230V / 1Ph / 50Hz", "2\" BSP", "600 × 650 × 900", "105 kg"],
+          ["WRD 300 S", "300 CFM", "510", "1.65 kW", "230V / 1Ph / 50Hz", "2\" BSP", "600 × 650 × 900", "110 kg"],
+          ["WRD 400 S", "400 CFM", "680", "2.20 kW", "230V / 1Ph / 50Hz", "2.5\" BSP", "800 × 800 × 1100", "180 kg"],
+          ["WRD 500 S", "500 CFM", "850", "2.20 kW", "230V / 1Ph / 50Hz", "2.5\" BSP", "800 × 800 × 1100", "190 kg"],
+          ["WRD 600 S", "600 CFM", "1,020", "3.50 kW", "415V / 3Ph / 50Hz", "3\" Flange", "1200 × 850 × 1350", "280 kg"],
+          ["WRD 750 S", "750 CFM", "1,275", "3.50 kW", "415V / 3Ph / 50Hz", "3\" Flange", "1200 × 850 × 1350", "300 kg"],
+          ["WRD 1000 S", "1,000 CFM", "1,700", "5.50 kW", "415V / 3Ph / 50Hz", "4\" Flange", "1500 × 1000 × 1500", "450 kg"],
+          ["WRD 1250 T", "1,250 CFM", "2,125", "6.50 kW", "415V / 3Ph / 50Hz", "4\" Flange", "1500 × 1000 × 1500", "500 kg"],
+          ["WRD 1600 T", "1,600 CFM", "2,720", "8.50 kW", "415V / 3Ph / 50Hz", "6\" Flange", "1800 × 1200 × 1600", "650 kg"],
+          ["WRD 2000 T", "2,000 CFM", "3,400", "10.50 kW", "415V / 3Ph / 50Hz", "6\" Flange", "1800 × 1200 × 1600", "750 kg"]
+        ],
+        "notes": [
+          "Correction Formula: Actual Capacity = Nominal CFM × Cp × Ct × Ca",
+          "Operating pressure range: 4.0 to 16.0 bar g (High pressure models up to 40 bar available on request)",
+          "Refrigerant R134a used for WRD 20–300; R407C used for WRD 400–2000."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Textile Spinning & Weaving",
+            "impact": "Protects electronic yarn clearers, autoconers, and air-jet loom nozzles from moisture spots, rust jamming, and yarn contamination."
+          },
+          {
+            "sector": "CNC Machine Tooling & Automotive",
+            "impact": "Eliminates moisture-induced solenoid sticking, spindle taper oxidation, and pneumatically clamped pallet positioning drift."
+          },
+          {
+            "sector": "Automated Spray Painting",
+            "impact": "Prevents micro-blistering, cratering, and paint fish-eye defects in robotic automotive clear-coat booths."
+          },
+          {
+            "sector": "Fiber Laser Cutting Systems",
+            "impact": "Supplies pure dry assist gas, shielding expensive collimator and focus optics from mist condensation and beam scattering."
+          },
+          {
+            "sector": "PET Container Blow Molding",
+            "impact": "Pre-treats booster compressor air, eliminating condensate puddling inside blow molds and ensuring optical bottle clarity."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Benchmark: Win Equipments WRD vs. European Imports",
+          "points": [
+            {"param": "Ambient Rating", "win": "Continuous 45°C (Peak 50°C) with oversized condenser", "competitor": "Derated above 35°C (Frequent trip-outs)"},
+            {"param": "Heat Exchanger", "win": "Corrosion-resistant 3-in-1 brazed aluminum monoblock", "competitor": "Multi-joint copper tube-in-shell (High leak risk)"},
+            {"param": "Condensate Drain", "win": "Integrated Zero-Air-Loss capacitive sensor (Standard)", "competitor": "Lossy mechanical float or optional timed solenoid"},
+            {"param": "Service & Spares", "win": "Immediate stock at Coimbatore works; 24h regional dispatch", "competitor": "6–8 weeks lead time for imported spare parts"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "100% Helium mass-spectrometer refrigeration circuit leak detection (<0.1 g/year)",
+          "Hydrostatic pressure proof test at 1.5× maximum allowable working pressure (24 bar)",
+          "Continuous 8-hour calorimeter test verifying +3°C PDP at full rated CFM load",
+          "Dielectric high-voltage insulation and ground bond safety testing"
+        ],
+        "warranty": "24 Months comprehensive manufacturer warranty on heat exchanger; 12 months on compressor package.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized"]
+      }
+    },
+    {
+      "id": "desiccant_air_dryers",
+      "slug": "desiccant-air-dryer",
+      "pdf_filename": "Desiccant air dryer.pdf",
+      "name": "Heatless Desiccant Air Dryers",
+      "short_name": "Desiccant Air Dryers",
+      "series": "WHD Series (300 to 2,000 CFM)",
+      "category": "Critical Clean Air Treatment Systems",
+      "title": "Heatless Twin-Tower Desiccant Air Dryers",
+      "subtitle": "Pressure Swing Adsorption (PSA) Technology Delivering Guaranteed -40°C to -70°C Pressure Dew Point for Ultra-Critical Industrial Applications",
+      "hero_image": "images/Products/dessicantdryer.png",
+      "secondary_images": [],
+      "canonical_url": "https://winequipments.com/products/desiccant-air-dryers.html",
+      "qr_code_file": "src/assets/qr/qr_desiccant_air_dryers.svg",
+      "badges": [
+        {"title": "-40°C PDP", "desc": "ISO 8573-1 Class 2 Moisture Purity"},
+        {"title": "PSA CYCLE", "desc": "Automated 8-Minute Cycle Control"},
+        {"title": "ACTIVATED ALUMINA", "desc": "High Crush-Strength Spherical Media"},
+        {"title": "<75 dBA", "desc": "Dual Acoustic Depressurization Mufflers"}
+      ],
+      "overview": {
+        "description": "Win Equipments WHD Series twin-tower desiccant air dryers eliminate atmospheric moisture vapor to sub-zero dew points. Designed for critical manufacturing where any trace of moisture causes irreversible process failures—such as pharmaceutical formulation, semiconductor fabrication, and sub-zero pneumatic instrumentation—WHD dryers utilize Pressure Swing Adsorption (PSA) to guarantee -40°C pressure dew point standard (with -70°C optional using 13X molecular sieve).",
+        "working_principle": "Compressed air enters through dual angle-seat non-lubricated switching valves and flows upward through the online adsorbing desiccant bed. Microscopic pores in the spherical activated alumina adsorb moisture molecules via physical attraction, reducing water content to less than 0.11 g/m³. Simultaneously, 12–15% of dried effluent air is depressurized to atmospheric pressure and routed downward through the offline tower, regenerating the desiccant bed and venting vapor via heavy-duty exhaust silencers. Every 4 minutes, the solid-state controller rotates the adsorption and regeneration roles.",
+        "pid_flow": "Air Compressor → Wet Receiver → Pre-Filter Grade X (1μ) → Coalescing Filter Grade Y (0.01μ) → WHD Desiccant Dryer (-40°C PDP) → Particulate Dust Filter Grade P (1μ) → Dry Buffer Vessel → Ultra-Clean Process Header"
+      },
+      "key_benefits": [
+        {
+          "icon": "💎",
+          "title": "High Crush-Strength Spherical Activated Alumina",
+          "narrative": "Premium 4–8mm spherical desiccant with exceptional surface area (>340 m²/g) and high mechanical attrition resistance. Prevents desiccant dusting and bed compaction even under violent pneumatic load pulsations."
+        },
+        {
+          "icon": "🔄",
+          "title": "High-Cycle Angle-Seat Pneumatic Valves",
+          "narrative": "Piston-actuated stainless steel angle seat switching valves tested to over 1,000,000 continuous switching cycles. Zero diaphragm failure risk ensures dependable 24/7 tower changeovers."
+        },
+        {
+          "icon": "📉",
+          "title": "Dew Point Dependent Switching (DDS) System",
+          "narrative": "Optional ceramic hygrometer monitors real-time dew point. During low inlet moisture loads, tower regeneration is automatically extended, reducing purge air consumption from 15% down to under 5%."
+        },
+        {
+          "icon": "🔇",
+          "title": "Heavy-Duty Dual Expansion Silencers",
+          "narrative": "Multi-chamber acoustic exhaust silencers with internal sound baffles dampen rapid tower depressurization noise to under 75 dBA, creating a safe, quiet shop-floor environment."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Operating Pressure: 7.0 to 16.0 bar g | Inlet Air Temp: 35°C to 45°C | Pressure Dew Point: -40°C Standard (-70°C Optional) | Cycle Time: 8 min (4 min Adsorption / 4 min Regeneration) | Vessel Code: IS 2825 / ASME Sec VIII Div 1",
+        "columns": [
+          "Model Code", "Nominal CFM", "Flow m³/hr", "Rated Pressure", "Flange Conn", "Control Supply", "Dimensions (L×W×H mm)", "Weight kg"
+        ],
+        "rows": [
+          ["WHD - 030", "300 CFM", "510", "7–16 bar g", "1.5\" NB Flange", "220V / 1Ph / 50Hz", "1450 × 1100 × 2500", "450 kg"],
+          ["WHD - 040", "400 CFM", "680", "7–16 bar g", "2\" NB Flange", "220V / 1Ph / 50Hz", "1450 × 1200 × 2500", "630 kg"],
+          ["WHD - 050", "500 CFM", "850", "7–16 bar g", "3\" NB Flange", "220V / 1Ph / 50Hz", "1650 × 1250 × 2300", "720 kg"],
+          ["WHD - 060", "600 CFM", "1,020", "7–16 bar g", "3\" NB Flange", "220V / 1Ph / 50Hz", "1650 × 1250 × 2500", "910 kg"],
+          ["WHD - 075", "750 CFM", "1,275", "7–16 bar g", "3\" NB Flange", "220V / 1Ph / 50Hz", "1800 × 1300 × 2600", "1,120 kg"],
+          ["WHD - 100", "1,000 CFM", "1,700", "7–16 bar g", "4\" NB Flange", "220V / 1Ph / 50Hz", "2000 × 1400 × 2700", "1,450 kg"],
+          ["WHD - 150", "1,500 CFM", "2,550", "7–16 bar g", "5\" NB Flange", "220V / 1Ph / 50Hz", "2300 × 1600 × 2900", "2,100 kg"],
+          ["WHD - 200", "2,000 CFM", "3,400", "7–16 bar g", "6\" NB Flange", "220V / 1Ph / 50Hz", "2600 × 1800 × 3100", "2,850 kg"]
+        ],
+        "notes": [
+          "Mandatory Pre-Filtration: Grade Y coalescing filter (0.01μm, residual oil <0.01 mg/m³) must be installed upstream to prevent desiccant oil poisoning.",
+          "Mandatory After-Filtration: Grade P particulate filter (1μm) installed downstream to capture trace desiccant fines.",
+          "Custom higher-pressure models up to 40 bar g available for PET bottle blow-molding installations."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Pharmaceutical & Bulk API Manufacturing",
+            "impact": "Guarantees moisture-free sterile air for pill coating, fluidized bed drying, powder conveying, and cleanroom air handling."
+          },
+          {
+            "sector": "Automotive Robotics & High-Gloss Finish",
+            "impact": "Delivers bone-dry propellant air for automated electrostatic bells, preventing water-spotting and adhesion failure in OEM paint shops."
+          },
+          {
+            "sector": "Sub-Zero Outdoor Air Distribution",
+            "impact": "Eliminates catastrophic pipe freeze-up in exposed industrial pipelines during winter and cold-storage operations."
+          },
+          {
+            "sector": "Electronics & Semiconductor Fabrication",
+            "impact": "Prevents wafer oxidation, micro-corrosion, and static discharge defects during robotic chip placement and lead-frame assembly."
+          },
+          {
+            "sector": "Nitrogen / Oxygen Gas Generation",
+            "impact": "Protects carbon molecular sieve (CMS) beds in PSA gas plants from catastrophic water fouling and capacity decay."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win WHD vs. Conventional Heatless Dryers",
+          "points": [
+            {"param": "Pressure Vessels", "win": "SA 516 Gr. 70 boiler plate, ASME / IS 2825 Class II certified", "competitor": "Lightweight commercial pipe with minimal corrosion allowance"},
+            {"param": "Switching Valves", "win": "Stainless steel pneumatic angle-seat valves (>1M cycle life)", "competitor": "Plastic diaphragm solenoid valves prone to tearing"},
+            {"param": "Purge Control", "win": "Optional Dew Point Dependent Switching (DDS) cuts purge <5%", "competitor": "Fixed 15% timer purge wasting continuous compressor power"},
+            {"param": "Acoustic Silencer", "win": "Heavy dual acoustic expansion mufflers (<75 dBA)", "competitor": "Small open felt mufflers (>85 dBA sound blast)"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "100% Radiographic / Ultrasonic non-destructive weld testing on pressure vessels",
+          "1.5× Hydrostatic pressure hold test witnessed by third-party inspection agencies",
+          "Continuous 24-hour hygrometer dew point verification test prior to packaging",
+          "PLC automated timing sequence and fail-safe valve closure validation"
+        ],
+        "warranty": "36 Months structural warranty on pressure vessels; 12 months comprehensive on valves and electronics.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized", "IS 2825 Class II"]
+      }
+    },
+    {
+      "id": "industrial_process_chillers",
+      "slug": "industrial-process-chillers",
+      "pdf_filename": "chiller.pdf",
+      "name": "Industrial Process Water Chillers",
+      "short_name": "Process Chillers",
+      "series": "WCP Series (0.5 to 50 TR)",
+      "category": "Process Thermal Management Systems",
+      "title": "High-Precision Industrial Process Chillers",
+      "subtitle": "Packaged Closed-Loop Air & Water-Cooled Chillers with Integrated SS304 Buffer Reservoir & Stainless Centrifugal Circulation Pumps",
+      "hero_image": "images/Products/chiller.png",
+      "secondary_images": [
+        "images/Products/Sodachiller.png",
+        "images/Products/sodachiller2.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/industrial-process-chillers.html",
+      "qr_code_file": "src/assets/qr/qr_industrial_process_chillers.svg",
+      "badges": [
+        {"title": "±0.5°C STABILITY", "desc": "Digital Microprocessor PID Temperature Control"},
+        {"title": "SS304 BUFFER TANK", "desc": "15L to 700L Heavy Reservoir Dampens Spikes"},
+        {"title": "SCROLL COMPRESSORS", "desc": "Copeland & Danfoss High-COP Technology"},
+        {"title": "NON-FERROUS LOOP", "desc": "100% Stainless Wetted Fluid Path Prevents Rust"}
+      ],
+      "overview": {
+        "description": "Win Equipments WCP Series industrial process chillers provide closed-loop liquid thermal management for factory automation, plastic molding, laser cutting, and chemical processing. Built to withstand continuous 24/7 industrial duty in high-ambient environments up to 45°C, WCP chillers integrate high-efficiency scroll compressors, a heavy-gauge insulated SS304 buffer reservoir, and an all-stainless centrifugal circulating pump within a compact powder-coated steel monoblock skid.",
+        "working_principle": "Process fluid absorbs heat from industrial machinery and returns to the internal SS304 insulated buffer tank. A stainless centrifugal pump draws fluid from the tank and circulates it through a 316 stainless steel brazed plate heat exchanger (or shell-and-tube evaporator) where heat is transferred to eco-friendly R410A/R407C refrigerant. The cooled fluid is delivered back to process equipment at user setpoints from +5°C to +25°C with ±0.5°C PID stability. The large thermal mass of the buffer tank dampens sudden thermal shocks caused by cyclic machine operations.",
+        "pid_flow": "Machinery Thermal Load → Return Header → SS304 Buffer Tank → SS Centrifugal Pump → SS316 Evaporator Plate → Modulated Refrigeration Loop → Precision Chilled Supply Header → Machine Tools"
+      },
+      "key_benefits": [
+        {
+          "icon": "🛡️",
+          "title": "All-Stainless SS304 Non-Ferrous Wetted Loop",
+          "narrative": "Internal buffer tank, pump impellers, and brazed plate heat exchanger are manufactured from stainless steel. Prevents galvanic corrosion, rust slurry, and clogged cooling channels in expensive molds and laser optics."
+        },
+        {
+          "icon": "⚡",
+          "title": "High-Efficiency Copeland / Danfoss Scroll Compressors",
+          "narrative": "Utilizes hermetic scroll compressors with 70% fewer moving parts than reciprocating machines. Delivers industry-leading COP exceeding 4.2, quiet operation, and exceptional tolerance against liquid refrigerant slugging."
+        },
+        {
+          "icon": "🎛️",
+          "title": "Modulating Hot Gas Bypass Valve",
+          "narrative": "Mechanical hot gas bypass system modulates refrigeration capacity down to 10% thermal load. Maintains tight ±0.5°C temperature stability without compressor cycling during machine idling or mold changeovers."
+        },
+        {
+          "icon": "📊",
+          "title": "Intelligent Microprocessor & Safety Interlocks",
+          "narrative": "Central control panel provides digital setpoint programming, RS-485 Modbus telemetry, low fluid level protection, anti-freeze thermostat, and reverse-phase compressor protection."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Leaving Water Temp: +12°C (Range +5°C to +25°C) | Water Delta T: 5°C | Ambient Temp: 35°C (Rated up to 45°C) | Refrigerant: R410A / R407C Eco-friendly | Buffer Tank: SS304 Insulated",
+        "columns": [
+          "Model Code", "Nominal TR", "Cooling kW", "Comp Power kW", "Supply Voltage", "Water Flow LPM", "Pump HP", "Tank Liters", "Connection Size"
+        ],
+        "rows": [
+          ["WCP 005", "0.5 TR", "1.7 kW", "0.9 kW", "230V / 1Ph / 50Hz", "6 LPM", "0.5 HP", "15 L", "3/4\" BSP"],
+          ["WCP 010", "1.0 TR", "3.5 kW", "1.5 kW", "230V / 1Ph / 50Hz", "10 LPM", "0.5 HP", "25 L", "3/4\" BSP"],
+          ["WCP 020", "2.0 TR", "7.0 kW", "2.5 kW", "230V / 1Ph / 50Hz", "21 LPM", "0.75 HP", "40 L", "1\" BSP"],
+          ["WCP 030", "3.0 TR", "10.5 kW", "3.4 kW", "415V / 3Ph / 50Hz", "32 LPM", "1.0 HP", "60 L", "1\" BSP"],
+          ["WCP 050", "5.0 TR", "17.5 kW", "6.0 kW", "415V / 3Ph / 50Hz", "52 LPM", "1.5 HP", "80 L", "1.25\" BSP"],
+          ["WCP 075", "7.5 TR", "26.3 kW", "8.5 kW", "415V / 3Ph / 50Hz", "78 LPM", "2.0 HP", "120 L", "1.5\" BSP"],
+          ["WCP 100", "10.0 TR", "35.1 kW", "11.2 kW", "415V / 3Ph / 50Hz", "105 LPM", "3.0 HP", "160 L", "2\" BSP"],
+          ["WCP 150", "15.0 TR", "52.7 kW", "16.5 kW", "415V / 3Ph / 50Hz", "158 LPM", "3.0 HP", "250 L", "2\" BSP"],
+          ["WCP 200", "20.0 TR", "70.3 kW", "22.0 kW", "415V / 3Ph / 50Hz", "210 LPM", "5.0 HP", "350 L", "2.5\" BSP"],
+          ["WCP 300", "30.0 TR", "105.5 kW", "33.0 kW", "415V / 3Ph / 50Hz", "315 LPM", "7.5 HP", "450 L", "3\" Flange"],
+          ["WCP 500", "50.0 TR", "175.8 kW", "54.0 kW", "415V / 3Ph / 50Hz", "525 LPM", "10.0 HP", "700 L", "4\" Flange"]
+        ],
+        "notes": [
+          "Dual refrigeration circuits provided standard on models WCP 150 and above for N+1 reliability.",
+          "Sub-zero glycol chilling configurations (-15°C) available with 30–40% food-grade propylene or ethylene glycol brine.",
+          "Custom water-cooled configurations available with shell-and-tube condensers for tower water integration."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Plastic Injection Molding & Blow Extrusion",
+            "impact": "Cuts mold cycle times by up to 28% through rapid heat extraction and prevents part warping across multi-cavity tools."
+          },
+          {
+            "sector": "Fiber Laser Cutting & Welding",
+            "impact": "Maintains resonator and cutting head optics at exact temperatures, preventing thermal blooming and beam focal drift."
+          },
+          {
+            "sector": "CNC Electro-Spindles & Wire EDM",
+            "impact": "Extracts motorized spindle stator heat and stabilizes dielectric deionized water baths for sub-micron machining tolerances."
+          },
+          {
+            "sector": "Chemical Reactors & Batch Jacketing",
+            "impact": "Controls aggressive exothermic reaction temperatures, preventing runaway chemical kinetics and product degradation."
+          },
+          {
+            "sector": "Food, Beverage & Brewery Pasteurization",
+            "impact": "Cools wort fermentation tanks, jacketed dairy vessels, and soda carbonation carbonators to exact food safety specs."
+          }
+        ],
+        "benchmark": {
+          "title": "Industrial Advantage: Win WCP vs. Commercial Comfort Air Chillers",
+          "points": [
+            {"param": "Hydronic Loop", "win": "Integrated SS304 buffer tank + SS pump in compact footprint", "competitor": "Requires external reservoir, external pumps, extra field piping"},
+            {"param": "Thermal Shock", "win": "Oversized reservoir dampens instant 100% mold dump load", "competitor": "Microchannel freezing and frequent low-pressure trips"},
+            {"param": "Ambient Rating", "win": "Heavy tropical coils rated for continuous 45°C ambient", "competitor": "Trips on high discharge pressure at 38°C ambient"},
+            {"param": "Service Footprint", "win": "Direct factory field engineering team across South India", "competitor": "Third-party residential HVAC contractors with slow response"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "Calorimeter load cell testing across 10% to 110% simulated thermal capacity",
+          "Helium mass-spectrometer refrigeration circuit leak detection (<0.1 g/year)",
+          "1.5× Hydrostatic pressure test on hydronic buffer tank and wetted piping",
+          "Full 24-hour continuous burn-in test verifying PID temperature stability ±0.5°C"
+        ],
+        "warranty": "12 Months comprehensive manufacturer warranty on complete chiller skid and compressor.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized"]
+      }
+    },
+    {
+      "id": "specialized_chillers",
+      "slug": "specialized-chillers",
+      "pdf_filename": "specialized chillers.pdf",
+      "name": "Specialized Application Process Chillers",
+      "short_name": "Specialized Chillers",
+      "series": "WAN, WMS & WAC Series (2 to 100+ TR)",
+      "category": "Severe Chemical & Healthcare Thermal Engineering",
+      "title": "Specialized Application Process Chillers",
+      "subtitle": "Custom Titanium Anodizing Chillers, N+1 Redundant Medical Scan Chillers & Severe Chemical Acid Cooling Systems",
+      "hero_image": "images/Products/electroplatingchiller.png",
+      "secondary_images": [
+        "images/Products/medicalchiller.png",
+        "images/Products/spotchilling.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/anodizing-chillers.html",
+      "qr_code_file": "src/assets/qr/qr_specialized_chillers.svg",
+      "badges": [
+        {"title": "WAN SERIES", "desc": "Pure Titanium Gr. 2 Anodizing Chillers (2–100+ TR)"},
+        {"title": "WMS SERIES", "desc": "N+1 Redundant MRI/CT Chillers with City Auto-Bypass"},
+        {"title": "WAC SERIES", "desc": "Hastelloy / PTFE Severe Acid Process Chillers"},
+        {"title": "ZERO DOWNTIME", "desc": "Fail-Safe Engineering for Critical Life & Asset Care"}
+      ],
+      "overview": {
+        "description": "Standard commercial chillers fail rapidly when exposed to aggressive acid electrolytes or when supporting zero-downtime medical imaging magnets. Win Equipments specializes in custom-engineered thermal management packages: WAN Series Titanium Anodizing Chillers resisting 20% sulfuric acid baths; WMS Series Medical Scan Chillers providing dual-redundant cooling for clinical MRI/CT magnets; and WAC Series Acid Process Chillers featuring Hastelloy C-276 metallurgy and sealless magnetic drive pumps.",
+        "working_principle": "WAN Anodizing Chillers utilize Grade 2 pure Titanium seamless immersion coils or external Titanium plate heat exchangers to absorb intense exothermic rectifier heat, holding bath temperature at +18°C to +21°C for Type II anodizing or -2°C to +4°C for Type III hardcoat anodizing. WMS Medical Chillers feature dual independent refrigeration circuits (2 × 100% capacity) and dual SS316 pumps with auto-failover and an emergency motorized city water bypass that engages automatically upon electrical power failure to prevent catastrophic liquid helium boil-off in superconducting MRI magnets.",
+        "pid_flow": "Severe Chemical Bath / MRI Cold Head → Acid-Resistant Pumping Circuit → Grade 2 Titanium / Hastelloy Exchanger → Redundant Modulated Chillers → Closed Return"
+      },
+      "key_benefits": [
+        {
+          "icon": "🔬",
+          "title": "Grade 2 Pure Titanium Acid Immersion Metallurgy",
+          "narrative": "Features seamless Grade 2 Titanium heat exchanger coils fabricated with inert gas TIG welding. Completely impervious to 20% sulfuric, chromic, and oxalic acid anodizing solutions, eliminating catastrophic acid leaks into refrigeration circuits."
+        },
+        {
+          "icon": "🏥",
+          "title": "Dual Redundant (N+1) Circuits & Auto City Bypass",
+          "narrative": "WMS Series incorporates two completely separate refrigeration compressors, independent condensers, and dual SS316 pumps. Upon facility power interruption, a spring-return motorized valve opens municipal water to cold heads, preventing ₹30L helium boil-off."
+        },
+        {
+          "icon": "⚗️",
+          "title": "Hastelloy C-276 & PTFE Fluoropolymer Options",
+          "narrative": "For highly aggressive pickling acids (hydrochloric, nitric, hydrofluoric), WAC chillers deploy exotic Hastelloy C-276 or solid PTFE tube bundles coupled with sealless PVDF magnetic drive pumps with zero dynamic mechanical seals."
+        },
+        {
+          "icon": "🔇",
+          "title": "Ultra-Quiet Hospital & Lab Acoustics",
+          "narrative": "WMS medical chillers utilize acoustically insulated compressor enclosures and low-RPM sickle-blade condenser fans, reducing ambient noise to under 65 dBA for hospital courtyard and rooftop installation."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "WAN Anodizing: Bath +18°C to +21°C (Hardcoat -2°C to +4°C) | WMS Medical: Supply +8°C to +15°C (±0.2°C) | WAC Acid: Acid bath -5°C to +15°C | Exchanger: Titanium Gr. 2 / Hastelloy / PTFE",
+        "columns": [
+          "Model Code", "Series / App", "Capacity TR", "Cooling kW", "Rectifier / Duty", "Wetted Metallurgy", "Compressor Setup", "Flow LPM"
+        ],
+        "rows": [
+          ["WAN 020", "WAN Anodizing", "2.0 TR", "7.0 kW", "Up to 350 A", "Pure Titanium Gr. 2", "Copeland Scroll", "25 LPM"],
+          ["WAN 050", "WAN Anodizing", "5.0 TR", "17.5 kW", "Up to 1,000 A", "Pure Titanium Gr. 2", "Copeland Scroll", "55 LPM"],
+          ["WAN 100", "WAN Anodizing", "10.0 TR", "35.1 kW", "Up to 2,000 A", "Pure Titanium Gr. 2", "Copeland / Danfoss", "110 LPM"],
+          ["WAN 200", "WAN Anodizing", "20.0 TR", "70.3 kW", "Up to 4,000 A", "Pure Titanium Gr. 2", "Dual Scroll Circuits", "215 LPM"],
+          ["WAN 500", "WAN Anodizing", "50.0 TR", "175.8 kW", "Up to 10,000 A", "Pure Titanium Shell & Tube", "Bitzer Semi-Hermetic", "530 LPM"],
+          ["WAN 1000", "WAN Anodizing", "100.0 TR", "351.6 kW", "Up to 20,000 A", "Pure Titanium Shell & Tube", "Twin Semi-Herm / Screw", "1,050 LPM"],
+          ["WMS 030", "WMS Medical", "3.0 TR", "10.5 kW", "Clinical MRI / CT", "SS316L / Copper", "Dual 2×1.5 TR Redundant", "32 LPM"],
+          ["WMS 050", "WMS Medical", "5.0 TR", "17.5 kW", "1.5T / 3.0T MRI", "SS316L / Copper", "Dual 2×2.5 TR Redundant", "52 LPM"],
+          ["WMS 100", "WMS Medical", "10.0 TR", "35.1 kW", "High-Field Scanner", "SS316L / Copper", "Dual 2×5.0 TR Redundant", "105 LPM"],
+          ["WMS 200", "WMS Medical", "20.0 TR", "70.3 kW", "Dual Scanner Suite", "SS316L / Copper", "Dual 2×10.0 TR Redundant", "210 LPM"],
+          ["WAC 050", "WAC Acid Chiller", "5.0 TR", "17.5 kW", "Pickling / Battery", "Hastelloy / PTFE", "Copeland Scroll", "50 LPM"],
+          ["WAC 150", "WAC Acid Chiller", "15.0 TR", "52.7 kW", "Exothermic Reactor", "Hastelloy / PTFE", "Bitzer Semi-Hermetic", "150 LPM"]
+        ],
+        "notes": [
+          "Rectifier Sizing Formula for Anodizing: Required TR = (Volts × Amps × 3.412) ÷ 12,000 × 1.15 safety factor.",
+          "Emergency City Water Auto-Bypass valve included as standard on all WMS Medical Scan units.",
+          "Positive-pressure nitrogen purged NEMA 4X electrical enclosures available for severe acid pickling plant environments."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Architectural & Aerospace Anodizing",
+            "impact": "Maintains bath temperatures within ±0.5°C during high-amperage cycles, ensuring uniform oxide thickness and vibrant dye uptake."
+          },
+          {
+            "sector": "Hospital Diagnostic Imaging (MRI / CT / PET)",
+            "impact": "Protects superconducting magnets from cryogenic helium boil-off with dual 100% redundant refrigeration and emergency water failover."
+          },
+          {
+            "sector": "Lead-Acid & Lithium Battery Formation",
+            "impact": "Dissipates intense exothermic heat generated during high-rate battery charging, preventing plate bucking and thermal runaway."
+          },
+          {
+            "sector": "Chemical Steel Pickling & Passivation",
+            "impact": "Cools aggressive hydrochloric and nitric acid baths without corrosion, extending acid bath life and ensuring uniform etching."
+          },
+          {
+            "sector": "Spot Chilling & Precision Optical Grinding",
+            "impact": "Delivers pinpoint micro-fluid chilling directly to cutting tools and optical glass polishing chucks to eliminate thermal drift."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win Specialized vs. Generic Package Chillers",
+          "points": [
+            {"param": "Wetted Metallurgy", "win": "Pure Titanium Grade 2 / Hastelloy C-276 / Solid PTFE", "competitor": "Copper or standard SS304 (Rapid acid pinhole failure)"},
+            {"param": "Redundancy", "win": "True N+1 dual independent circuits + auto city water bypass", "competitor": "Single circuit; entire hospital imaging stops on trip"},
+            {"param": "Pumping System", "win": "Dual SS316 or Sealless PVDF Magnetic Drive Pumps", "competitor": "Standard mechanical seal pumps prone to chemical leakage"},
+            {"param": "Custom Sizing", "win": "Direct calculation based on rectifier wattage & bath kinetics", "competitor": "Generic rule-of-thumb resulting in severe undersizing"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "100% Dye-penetrant and pneumatic leak testing on Titanium TIG weld joints",
+          "Automated simulated failover test: Circuit 1 compressor trip → Circuit 2 engagement in <1 sec",
+          "Emergency city water bypass motorized valve actuation and spring return verification",
+          "Continuous 12-hour full-load thermal calorimeter test with simulated bath heat"
+        ],
+        "warranty": "24 Months warranty on Titanium heat exchangers; 12 months comprehensive on system components.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized"]
+      }
+    },
+    {
+      "id": "ice_flake_machines",
+      "slug": "ice-flake-machine",
+      "pdf_filename": "ice flake machine.pdf",
+      "name": "Industrial Ice Flake Machines",
+      "short_name": "Ice Flake Machines",
+      "series": "WFI Series (1 to 30 Tons/Day)",
+      "category": "Commercial & Industrial Ice Plants",
+      "title": "Heavy-Duty Industrial Ice Flake Machines",
+      "subtitle": "Continuous Production of Sub-Cooled Dry Ice Flakes (-5°C to -8°C) with Stationary Vertical SUS304 Evaporator Drums & Bitzer Compressors",
+      "hero_image": "images/Products/ice-flake-machine.jpg",
+      "secondary_images": [],
+      "canonical_url": "https://winequipments.com/products/ice-flake-machines.html",
+      "qr_code_file": "src/assets/qr/qr_ice_flake_machines.svg",
+      "badges": [
+        {"title": "1–30 TPD", "desc": "Daily Ice Production Capacity (1,000 to 30,000 kg)"},
+        {"title": "-5°C TO -8°C", "desc": "Subcooled, Dry, Non-Clumping Flakes (1.5–2.2 mm)"},
+        {"title": "STATIONARY DRUM", "desc": "Zero Dynamic Seals Prevents Refrigerant Leaks"},
+        {"title": "SUS304 DRUM", "desc": "Food-Grade Stainless Steel Wetted Evaporator Wall"}
+      ],
+      "overview": {
+        "description": "Win Equipments WFI Series industrial ice flake machines produce continuous, sub-cooled dry ice flakes engineered for commercial fisheries, poultry processing, concrete dam pouring, and chemical synthesis. Unlike conventional rotating-drum ice machines that suffer from refrigerant seal leaks, the WFI Series employs a stationary vertical SUS304 evaporator drum with an internal rotating spiral ice blade, delivering zero refrigerant leakage, ultra-low maintenance, and maximum thermodynamic efficiency.",
+        "working_principle": "Fresh or seawater is pumped from a lower stainless steel basin into an overhead rotary water distributing pan that coats the inner vertical wall of the stationary evaporator drum with an even, continuous film. Low-temperature eco-friendly refrigerant boiling within the drum jacket freezes the water instantly on the SUS304 inner surface. A high-strength stainless steel helical scraper rotates slowly, peeling sub-cooled dry ice flakes (-5°C to -8°C, 1.5 to 2.2 mm thick) from the wall. The dry flakes drop freely by gravity through the open drum bottom into storage bins or pneumatic conveying systems with zero clumping.",
+        "pid_flow": "Feed Water → Stainless Basin → Vertical Distribution Pan → Stationary SUS304 Drum Wall (-22°C Evaporation) → Internal Spiral Scraper → Free Fall Dry Flakes (-7°C) → Insulated Storage Vault"
+      },
+      "key_benefits": [
+        {
+          "icon": "❄️",
+          "title": "Stationary Vertical SUS304 Evaporator Drum",
+          "narrative": "The evaporator drum remains completely stationary while only the internal scraper blade rotates. Eliminates high-pressure rotary mechanical refrigerant seals—the #1 cause of catastrophic refrigerant leaks in rotating-drum machines."
+        },
+        {
+          "icon": "🐟",
+          "title": "Sub-Cooled, Flat & Edueless Flake Geometry",
+          "narrative": "Produces thin (1.5–2.2 mm) sub-cooled dry flakes with zero free water. Their smooth, rounded edges provide massive surface contact area for rapid thermal exchange without scratching or bruising delicate fish skin or poultry meat."
+        },
+        {
+          "icon": "⚙️",
+          "title": "Heavy-Duty Bitzer / Danfoss Refrigeration Package",
+          "narrative": "Driven by world-renowned Bitzer semi-hermetic reciprocating or screw compressors equipped with liquid injection cooling, oil separators, suction accumulators, and high-efficiency water-cooled shell-and-tube condensers."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Food-Grade Hygienic Sanitary Construction",
+          "narrative": "All surfaces contacting water and ice—evaporator wall, water distribution pan, ice blade, and collection basin—are fabricated from SUS304 food-grade stainless steel compliant with HACCP and USFDA food safety standards."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Ice Production Basis: Water Inlet +16°C | Ambient Temp +25°C | Evaporation Temp -22°C | Condensing Temp +40°C | Flake Temp: -5°C to -8°C | Flake Thickness: 1.5 to 2.2 mm | Drum: Food Grade SUS304",
+        "columns": [
+          "Model Code", "Daily Output TPD", "Daily Output kg/24h", "Power kW", "Compressor Make & HP", "Condenser Type", "Skid Dimensions (L×W×H mm)", "Oper Weight kg"
+        ],
+        "rows": [
+          ["WFI 010", "1 TPD", "1,000 kg", "4.8 kW", "Danfoss / Bitzer (5 HP)", "Air / Water Cooled", "1350 × 1050 × 980", "580 kg"],
+          ["WFI 020", "2 TPD", "2,000 kg", "8.5 kW", "Bitzer Semi-Herm (8.5 HP)", "Water Cooled Shell & Tube", "1550 × 1200 × 1150", "850 kg"],
+          ["WFI 030", "3 TPD", "3,000 kg", "12.5 kW", "Bitzer Semi-Herm (12 HP)", "Water Cooled Shell & Tube", "1800 × 1350 × 1300", "1,150 kg"],
+          ["WFI 050", "5 TPD", "5,000 kg", "19.5 kW", "Bitzer Semi-Herm (20 HP)", "Water Cooled Shell & Tube", "2100 × 1500 × 1550", "1,850 kg"],
+          ["WFI 100", "10 TPD", "10,000 kg", "38.0 kW", "Bitzer Semi-Herm (40 HP)", "Water Cooled Shell & Tube", "2600 × 1800 × 1850", "3,200 kg"],
+          ["WFI 150", "15 TPD", "15,000 kg", "56.0 kW", "Bitzer Screw (60 HP)", "Water Cooled Shell & Tube", "3100 × 2000 × 2100", "4,600 kg"],
+          ["WFI 200", "20 TPD", "20,000 kg", "74.0 kW", "Bitzer Screw / Twin Recip", "Water Cooled Shell & Tube", "3600 × 2200 × 2300", "5,800 kg"],
+          ["WFI 300", "30 TPD", "30,000 kg", "110.0 kW", "Bitzer / Hanbell Screw", "Water Cooled Shell & Tube", "4200 × 2400 × 2600", "7,500 kg"]
+        ],
+        "notes": [
+          "Seawater on-board marine models manufactured with SUS316L stainless steel drum and marine-grade bronze condensers available on request.",
+          "Complete turnkey ice storage rooms with automatic screw discharge and pneumatic ice rakes custom engineered from 5 to 100 tons storage capacity.",
+          "Refrigerants: R404A / R507A standard; R717 (Ammonia) systems custom engineered for large commercial installations."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Commercial Fisheries & Deep-Sea Trawlers",
+            "impact": "Cools freshly caught seafood instantly without bruising fish flesh, preserving freshness, texture, and export value for ocean transit."
+          },
+          {
+            "sector": "Poultry Processing & Meat Abattoirs",
+            "impact": "Maintains eviscerated carcasses at safe bacteriological temperatures (<4°C) during spin chilling and cutting stages."
+          },
+          {
+            "sector": "Mass Concrete Cooling for Dams & Highways",
+            "impact": "Replaces mixing water with dry ice flakes to dissipate the intense heat of hydration, preventing thermal cracking in mass civil structures."
+          },
+          {
+            "sector": "Chemical & Synthetic Dye Manufacturing",
+            "impact": "Provides instant thermodynamic heat absorption during violent exothermic diazotization and sulfonation batch reactions."
+          },
+          {
+            "sector": "Perishable Produce & Supermarket Display",
+            "impact": "Keeps vegetables, fruits, and fresh catch crisply chilled in retail display cases without dehydration or surface discoloration."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win WFI vs. Conventional Rotating-Drum Machines",
+          "points": [
+            {"param": "Refrigerant Seals", "win": "Stationary drum with hard-piped copper/steel joints (0% leak rate)", "competitor": "Dynamic rotating carbon/ceramic seals (Frequent costly leaks)"},
+            {"param": "Drum Metallurgy", "win": "Food-grade SUS304 stainless inner wall with polyurethane insulation", "competitor": "Hard-chrome plated carbon steel prone to flaking & rusting"},
+            {"param": "Flake Quality", "win": "Dry, sub-cooled (-7°C), flat flakes with zero liquid water", "competitor": "Wet, mushy ice (>10% free water) that clumps in storage"},
+            {"param": "Compressor Quality", "win": "Heavy-duty Bitzer / Danfoss compressors with water-cooled condensers", "competitor": "Low-cost semi-hermetic copies with marginal cooling margins"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "Continuous 48-hour ice production rate and flake thickness FAT verification run",
+          "Helium leak testing of complete evaporator drum jacket and refrigeration piping",
+          "Food contact hygiene swab and surface finish roughness certification (Ra <0.8 μm)",
+          "Overload cut-off and water starvation automatic safety shutdown interlock testing"
+        ],
+        "warranty": "24 Months warranty on stationary evaporator drum; 12 months comprehensive on refrigeration unit.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized", "HACCP Food Hygiene"]
+      }
+    }
+  ]
+}

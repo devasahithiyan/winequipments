@@ -200,11 +200,11 @@
 
 /* Wide / Mega Grid Variants */
 .nav-dropdown-mega {
-  width: 640px;
-  max-width: 90vw;
+  width: 960px;
+  max-width: 95vw;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
 .mega-dropdown {
@@ -999,13 +999,46 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   color: #FFFFFF;
   text-align: center;
   line-height: 1.1;
-  min-height: 44px;
+  min-height: 48px;
   touch-action: manipulation;
 }
 
 .dock-call { background-color: #1E293B; }
 .dock-whatsapp { background-color: #128C7E; }
 .dock-rfq { background-color: var(--color-brand-cta); }
+
+/* ==========================================================================
+   9b. UNIVERSAL FLOATING WHATSAPP BUTTON
+   ========================================================================== */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: #25D366;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 50px;
+  padding: 12px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.floating-whatsapp-btn:hover,
+.floating-whatsapp-btn:focus {
+  background: #20BA5C;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.floating-whatsapp-btn i {
+  font-size: 1.25rem;
+}
 
 /* ==========================================================================
    10. SITE FOOTER
@@ -1392,6 +1425,12 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   .top-utility-bar { display: none !important; }
   .mobile-conversion-dock { display: block !important; }
   body { padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px)); } /* Space for fixed mobile dock */
+  .floating-whatsapp-btn {
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 12px);
+    right: 16px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .proof-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; }

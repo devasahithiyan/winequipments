@@ -1,0 +1,346 @@
+{% extends "base_page.html" %}
+
+{% block content %}
+<!-- =======================================================================
+     PAGE 1: COVER
+     ======================================================================= -->
+<div class="sheet cover">
+  <!-- Cover Header -->
+  <div class="cover-header">
+    <div class="cover-brand">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Equipments Logo" class="cover-logo-img">
+      <div class="cover-brand-text">
+        <span class="cover-company-name">{{ company.name }}</span>
+        <span class="cover-tagline">{{ company.tagline }}</span>
+      </div>
+    </div>
+    <div class="cover-badges">
+      <img src="{{ image_root }}/{{ company.badges.iso }}" alt="ISO 9001:2015" class="cover-badge-img">
+      <img src="{{ image_root }}/{{ company.badges.iaf }}" alt="IAF Accredited" class="cover-badge-img">
+      <img src="{{ image_root }}/{{ company.badges.dac }}" alt="DAC Recognized" class="cover-badge-img">
+    </div>
+  </div>
+
+  <!-- Cover Title Block -->
+  <div class="cover-title-block">
+    <div class="cover-series-pill">{{ product.series }}</div>
+    <h1 class="cover-product-name">{{ product.title }}</h1>
+    <p class="cover-product-subtitle">{{ product.subtitle }}</p>
+  </div>
+
+  <!-- Hero Image Container (>= 40% of Page Area) -->
+  <div class="cover-hero-container">
+    <img src="{{ image_root }}/images/banner_opt.jpg" alt="Industrial Manufacturing Infrastructure" class="cover-hero-backdrop">
+    <img src="{{ image_root }}/{{ product.hero_image }}" alt="{{ product.name }}" class="cover-hero-img">
+  </div>
+
+  <!-- 4 Key Performance Badges -->
+  <div class="cover-kpi-grid">
+    {% for badge in product.badges %}
+    <div class="cover-kpi-card">
+      <div class="cover-kpi-title">{{ badge.title }}</div>
+      <div class="cover-kpi-desc">{{ badge.desc }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Cover Footer -->
+  <div class="cover-footer">
+    <div><strong>{{ company.name }}</strong> &bull; {{ company.short_address }} &bull; {{ company.city }}</div>
+    <div>{{ company.certification }} &bull; <strong>Page 1 of 5</strong></div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 2: OVERVIEW & THERMODYNAMIC ADVANTAGES
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">{{ product.name }}</div>
+      <div class="inner-header-series">{{ product.series }}</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Thermodynamic Architecture &amp; Engineering</div>
+      <h2 class="section-title">Operational Overview &amp; Engineering Advantages</h2>
+      <div class="section-subtitle">Continuous industrial duty engineered for 45&deg;C tropical ambient conditions</div>
+    </div>
+
+    <div class="overview-narrative-card">
+      <p class="overview-text">{{ product.overview.description }}</p>
+      <p class="overview-text"><strong>Working Principle:</strong> {{ product.overview.working_principle }}</p>
+    </div>
+
+    {% if product.overview.pid_flow %}
+    <div class="pid-flow-box">
+      <div class="pid-flow-title">System Integration &amp; P&amp;ID Flow Architecture</div>
+      <div class="pid-flow-steps">{{ product.overview.pid_flow }}</div>
+    </div>
+    {% endif %}
+
+    <div class="benefits-grid">
+      {% for benefit in product.key_benefits %}
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">{{ benefit.icon }}</span>
+          <span class="benefit-title">{{ benefit.title }}</span>
+        </div>
+        <p class="benefit-narrative">{{ benefit.narrative }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if product.secondary_images %}
+    <div class="product-visual-strip">
+      {% for img in product.secondary_images %}
+      <div class="product-sub-img-wrap">
+        <img src="{{ image_root }}/{{ img }}" alt="Product View" class="product-sub-img">
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; {{ company.city }} &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">{{ product.name }} &bull; Technical Overview</div>
+    <div class="inner-footer-right">Page 2 of 5</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 3: ENGINEERING SPECIFICATIONS MATRIX
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">{{ product.name }}</div>
+      <div class="inner-header-series">{{ product.series }}</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Certified Engineering Ratings</div>
+      <h2 class="section-title">Technical Specifications Matrix</h2>
+      <div class="section-subtitle">Full standard model range &amp; operational parameters</div>
+    </div>
+
+    <div class="specs-conditions-banner">
+      <strong>Standard Design Conditions:</strong> {{ product.specifications.design_conditions }}
+    </div>
+
+    <div class="specs-table-container">
+      <table class="specs-table">
+        <thead>
+          <tr>
+            {% for col in product.specifications.columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in product.specifications.rows %}
+          <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if product.specifications.notes %}
+    <div class="specs-notes-card">
+      <div class="specs-notes-title">Engineering Selection &amp; Operational Notes</div>
+      <ul class="specs-notes-list">
+        {% for note in product.specifications.notes %}
+        <li>{{ note }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; {{ company.city }} &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">{{ product.name }} &bull; Specifications Matrix</div>
+    <div class="inner-footer-right">Page 3 of 5</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 4: APPLICATIONS & INDUSTRY BENCHMARKS
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">{{ product.name }}</div>
+      <div class="inner-header-series">{{ product.series }}</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Field Deployment &amp; Competitive Analysis</div>
+      <h2 class="section-title">Applications &amp; Industrial Benchmarks</h2>
+      <div class="section-subtitle">Demonstrated operational benefits across high-reliability manufacturing sectors</div>
+    </div>
+
+    <div class="applications-list">
+      {% for app in product.applications.industries %}
+      <div class="application-item">
+        <div class="app-sector">{{ app.sector }}</div>
+        <div class="app-impact">{{ app.impact }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if product.applications.benchmark %}
+    <div class="benchmark-card">
+      <div class="benchmark-header">
+        <span>{{ product.applications.benchmark.title }}</span>
+        <span>Standard ISO 9001:2015 Quality</span>
+      </div>
+      <table class="benchmark-table">
+        <thead>
+          <tr>
+            <th>Engineering Parameter</th>
+            <th>Win Equipments Engineered Solution</th>
+            <th>Standard / Imported Benchmark</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for point in product.applications.benchmark.points %}
+          <tr>
+            <td class="benchmark-param">{{ point.param }}</td>
+            <td class="benchmark-win">{{ point.win }}</td>
+            <td class="benchmark-competitor">{{ point.competitor }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; {{ company.city }} &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">{{ product.name }} &bull; Applications &amp; Benchmarks</div>
+    <div class="inner-footer-right">Page 4 of 5</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 5: TECHNICAL FEATURES, QA & CONTACT BLOCK
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">{{ product.name }}</div>
+      <div class="inner-header-series">{{ product.series }}</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Manufacturing Standards &amp; Factory Verification</div>
+      <h2 class="section-title">Factory Quality Assurance &amp; Consultation</h2>
+      <div class="section-subtitle">Calibrated testing regimes, global certifications, and direct engineering contact</div>
+    </div>
+
+    <div class="qa-grid">
+      <div class="qa-card">
+        <div class="qa-card-title">&#10003; Factory Acceptance Testing (FAT)</div>
+        <ul class="qa-list">
+          {% for test in product.qa_features.testing %}
+          <li>{{ test }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="qa-card">
+        <div class="qa-card-title">&#9733; Certified Standards &amp; Accreditations</div>
+        <ul class="qa-list">
+          {% for cert in company.certifications_list %}
+          <li>{{ cert }}</li>
+          {% endfor %}
+          <li>Pre-dispatch run-testing under tropical temperature simulation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warranty-box">
+      <div class="warranty-icon">&#128737;</div>
+      <div class="warranty-text">
+        <strong>Manufacturer Warranty Assurance:</strong> {{ product.qa_features.warranty }} Direct field service engineering and genuine replacement spare parts stocked at Arasur Works, Coimbatore.
+      </div>
+    </div>
+
+    <!-- Full Contact & QR Code Block -->
+    <div class="contact-qr-block">
+      <div class="contact-info-col">
+        <div class="contact-brand-name">{{ company.legal_name }}</div>
+        <div class="contact-tagline-text">{{ company.tagline }} &bull; {{ company.certification }}</div>
+        <div class="contact-detail-row">
+          <span class="contact-icon">&#128205;</span>
+          <span class="contact-address">{{ company.address }}</span>
+        </div>
+        <div class="contact-detail-row">
+          <span class="contact-icon">&#128222;</span>
+          <span class="contact-phone-highlight">{{ company.phone1 }} / {{ company.phone2 }}</span>
+        </div>
+        <div class="contact-detail-row">
+          <span class="contact-icon">&#9993;</span>
+          <a href="mailto:{{ company.email }}" class="contact-email-link">{{ company.email }}</a>
+          <span style="color: #64748B;">&bull;</span>
+          <span style="color: #38BDF8; font-weight: 600;">{{ company.website }}</span>
+        </div>
+      </div>
+      <div class="contact-qr-col">
+        <div class="qr-code-box">
+          {{ qr_svg | safe }}
+        </div>
+        <div class="qr-caption">Scan for Web Specs</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; {{ company.city }} &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">{{ product.name }} &bull; Quality &amp; Contact</div>
+    <div class="inner-footer-right">Page 5 of 5</div>
+  </div>
+</div>
+{% endblock %}

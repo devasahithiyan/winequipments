@@ -1,0 +1,88 @@
+=== PAGE 1 ===
+WIN EQUIPMENTS
+SAVE WATER AND POWER
+ISO 9001:2015 CERTIFIED
+PROCESS THERMAL MANAGEMENT SYSTEMS • WCP SERIES
+Air & Water-Cooled Industrial Process Chillers
+High-Precision Closed-Loop Water Chillers with Integrated SS304 Buffer Reservoir & Centrifugal Pumps
+Precision ±0.5°C Temperature Regulation (+5°C to +25°C): Designed for continuous
+24/7 duty without compressor hunting. The oversized SS304 internal reservoir
+dampens sudden thermal spikes from molding cycles, laser piercing, or spindle speed
+changes.
+Win Equipments WCP Series chillers integrate Copeland and Danfoss hermetic scroll
+compressors, non-ferrous SS304 wetted plumbing, high-efficiency plate heat
+exchangers, and digital PID controllers. Available in stand-alone air-cooled and cooling-
+tower coupled water-cooled configurations.
+SCROLL COMPRESSOR ±0.5°C PRECISION SS304 BUFFER TANK ECO R410A / R407C
+0.5–150 TR
+COOLING RANGE
+±0.5°C
+CONTROL STABILITY
+15–700 L
+SS304 TANK VOLUME
+4.5+ COP
+THERMODYNAMIC COP
+CORE ENGINEERING ADVANTAGES
+Copeland / Danfoss Scroll
+High-efficiency scroll compression elements
+offer 70% fewer moving parts, high volumetric
+efficiency, and quiet operation below 68 dBA.
+SS304 Non-Ferrous Loop
+Evaporator coils, buffer reservoir, and
+centrifugal pump impellers are non-ferrous
+stainless steel, preventing galvanic rust and
+debris clogging.
+Hot Gas Bypass Circuit
+Modulating hot gas bypass valve balances
+system capacity down to 10% load, maintaining
+setpoint stability without damaging compressor
+short-cycling.
+TARGET INDUSTRIAL APPLICATIONS
+Plastic Injection Molding & Extrusion Fiber Laser Resonators & Cutting Optics High-Speed CNC Electro-Spindles Chemical Reaction Vessel Jacketing
+Beverage, Brewery & Dairy Processing Pharmaceutical Formulations
+Plant & Registered Works:
+SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407,
+Tamil Nadu, India
+Direct Plant Telephones:
++91 95972 28969 / +91 95972 28975
+Technical Inquiries:
+info@winequipments.com |
+www.winequipments.com
+Page 1 of 2
+
+=== PAGE 2 ===
+WIN EQUIPMENTS
+SAVE WATER AND POWER
+ISO 9001:2015 CERTIFIED
+ENGINEERING SPECIFICATIONS MATRIX
+WCP Series Technical Data (0.5 to 50 TR)
+Standard Ratings: 12°C leaving water temperature, 7°C delta T, 35°C ambient air temperature
+MODEL NO. CAPACITY COOLING COMP. POWER ELECTRICAL SUPPLY WATER FLOW PUMP TANK CONNECTION
+Model Code TR kW kW V / Ph / Hz LPM HP Liters BSP / Flange
+WCP 005 0.5 TR 1.7 kW 0.9 kW 230V / 1Ph / 50Hz 6 LPM 0.5 HP 15 L 3/4" BSP
+WCP 010 1.0 TR 3.5 kW 1.5 kW 230V / 1Ph / 50Hz 10 LPM 0.5 HP 25 L 3/4" BSP
+WCP 020 2.0 TR 7.0 kW 2.5 kW 230V / 1Ph / 50Hz 21 LPM 0.75 HP 40 L 1" BSP
+WCP 030 3.0 TR 10.5 kW 3.4 kW 415V / 3Ph / 50Hz 32 LPM 1.0 HP 60 L 1" BSP
+WCP 050 5.0 TR 17.5 kW 6.0 kW 415V / 3Ph / 50Hz 52 LPM 1.5 HP 80 L 1.25" BSP
+WCP 075 7.5 TR 26.3 kW 8.5 kW 415V / 3Ph / 50Hz 78 LPM 2.0 HP 120 L 1.5" BSP
+WCP 100 10.0 TR 35.1 kW 11.2 kW 415V / 3Ph / 50Hz 105 LPM 3.0 HP 160 L 2" BSP
+WCP 150 15.0 TR 52.7 kW 16.5 kW 415V / 3Ph / 50Hz 158 LPM 3.0 HP 250 L 2" BSP
+WCP 200 20.0 TR 70.3 kW 22.0 kW 415V / 3Ph / 50Hz 210 LPM 5.0 HP 350 L 2.5" BSP
+WCP 300 30.0 TR 105.5 kW 33.0 kW 415V / 3Ph / 50Hz 315 LPM 7.5 HP 450 L 3" Flange
+WCP 500 50.0 TR 175.8 kW 54.0 kW 415V / 3Ph / 50Hz 525 LPM 10.0 HP 700 L 4" Flange
+Hydraulic Integration Note: Dual independent refrigeration circuits are standard on models 15 TR and above for N+1 operational redundancy. Water-
+cooled shell & tube condenser models connect directly to Win FRP cooling towers.
+Request Technical Submittal & Commercial Quotation
+Direct factory engineering consultation for custom capacity sizing, P&ID schematics & dimensional drawings.
++91 95972 28969
+info@winequipments.com
+Plant & Registered Works:
+SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407,
+Tamil Nadu, India
+Direct Plant Telephones:
++91 95972 28969 / +91 95972 28975
+Technical Inquiries:
+info@winequipments.com |
+www.winequipments.com
+Page 2 of 2
+

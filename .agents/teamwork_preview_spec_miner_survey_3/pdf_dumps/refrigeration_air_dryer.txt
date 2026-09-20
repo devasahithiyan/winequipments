@@ -1,0 +1,210 @@
+=== PAGE 1 ===
+WIN EQUIPMENTS
+SAVE WATER AND POWER
+ISO 9001:2015 CERTIFIED
+COMPRESSED AIR TREATMENT SYSTEMS • WRD SERIES
+Refrigerated Compressed Air Dryers
+High-Efficiency Non-Cycling Direct-Expansion Dryers Engineered for Extreme Tropical Ambient Climates
+Engineered for Constant +3°C Pressure Dew Point (ISO 8573-1 Class 4): Protects
+downstream pneumatic machinery, automated assembly cylinders, textile autoconers,
+and laser cutting heads from liquid moisture, rust fouling, and line freeze-ups.
+Win Equipments WRD Series utilizes an advanced 3-in-1 modular heat exchanger
+combining an air-to-air regenerator, direct-expansion evaporator, and moisture demister
+in a single compact housing. Pre-cooling incoming air with outgoing cold dry air lowers
+compressor power consumption by up to 40% while preventing distribution pipe
+sweating.
+NON-CYCLING DIRECT-X SAVE WATER & POWER 50°C MAX INLET AIR
+ECO R134A / R407C
+20–2000
+CAPACITY (CFM)
++3°C
+PRESSURE DEW POINT
+16 bar g
+PEAK RATED PRESSURE
+< 0.2 bar
+PRESSURE DROP
+CORE ENGINEERING ADVANTAGES
+3-in-1 Aluminum Exchanger
+Integrated air-to-air regenerator, evaporator,
+and mechanical demister reduces piping
+connections by 70% and minimizes line
+pressure loss below 0.2 bar.
+Zero Air Loss Drainage
+Electronic capacitive condensate drain valve
+exhausts accumulated water automatically
+without venting costly compressed air, saving
+₹ 42,000+ annually.
+Hot Gas Bypass Modulation
+Automatic pressure-balanced hot gas injection
+maintains stable evaporator temperature across
+0% to 100% load variations, preventing coil
+freeze-up without compressor cycling.
+TARGET INDUSTRIAL APPLICATIONS
+Textile Spinning & Weaving Looms CNC Machining & Robotic Clamping PET Blow Molding Lines Automotive Clear-Coat Paint Booths
+Food & Beverage Packaging Pharmaceutical Cleanrooms
+Plant & Registered Works:
+SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407,
+Tamil Nadu, India
+Direct Plant Telephones:
++91 95972 28969 / +91 95972 28975
+Technical Inquiries:
+info@winequipments.com |
+www.winequipments.com
+Page 1 of 4
+
+=== PAGE 2 ===
+WIN EQUIPMENTS
+SAVE WATER AND POWER
+ISO 9001:2015 CERTIFIED
+THERMODYNAMIC ARCHITECTURE & SYSTEM INTEGRATION
+Thermodynamic Process Flow & Piping Layout
+Optimized Compressor Room P&ID Layout with Integrated Pre-Separation and Dual In-Line Filtration
+The Win Equipments WRD series implements a four-stage refrigeration cycle engineered for heavy tropical operating loads. Saturated air enters at
+temperatures up to 50°C and is progressively cooled to condense water vapor into large droplets, followed by mechanical cyclone separation and zero-
+loss discharge.
+BYPASS
+Air
+Compressor
+Screw / Piston
+Discharge
+Aftercooler
+< 45°C Air Out
+Wet Buffer
+Air Receiver
+Auto Drain
+Pre
+Filter
+3 Micron
+WIN DRYER
++3°C PDP
+Non-Cycling
+Zero Loss Drain
+Micro
+Filter
+0.01 Micron
+Dry Clean
+Buffer Tank
+IS 2825 / ASME
+Factory Air
+Ring Main
+CNC / Textile / Laser
+Figure 1: Standardized Win Equipments Compressor Room P&ID Flow Architecture
+SUB-ASSEMBLY ENGINEERING & COMPONENT RIGOR
+Copeland / Danfoss Compressors
+Industrial-grade hermetic reciprocating and
+scroll compressors charged with eco-friendly
+R134a or R407C refrigerant. Fitted with internal
+thermal motor protection and vibration isolators.
+Digital PID Temperature Panel
+Front-panel digital controller provides real-time
+dew point readout, compressor operation status,
+auto-drain test switch, and alarm telemetry for
+refrigeration LP/HP cutouts.
+Stainless Steel Demister
+High-velocity centrifugal moisture separator
+with multi-vane stainless steel demister pad
+removes 99%+ of water aerosols, directing
+condensate directly into the drainage chamber.
+Win Equipments 5-Stage Factory Acceptance Testing (FAT): Every WRD unit undergoes 1.5× hydrostatic vessel pressure testing, 24-hour dry nitrogen
+pressure holding test at 350 PSI, full-load electrical Megger testing, and dynamic dew point stability verification in our Arasur plant before final
+packaging and dispatch.
+Plant & Registered Works:
+SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407,
+Tamil Nadu, India
+Direct Plant Telephones:
++91 95972 28969 / +91 95972 28975
+Technical Inquiries:
+info@winequipments.com |
+www.winequipments.com
+Page 2 of 4
+
+=== PAGE 3 ===
+WIN EQUIPMENTS
+SAVE WATER AND POWER
+ISO 9001:2015 CERTIFIED
+ENGINEERING SPECIFICATIONS MATRIX
+WRD Series Technical Data (20 to 2,000 CFM)
+Standard Ratings: 7.0 kg/cm²(g) operating pressure, 45°C inlet air temperature, 35°C ambient temperature, +3°C PDP
+MODEL NO. NOMINAL CFM AIR FLOW POWER SUPPLY VOLTAGE CONNECTION DIMENSIONS (L×W×H) WEIGHT
+Model Code CFM m³/hr kW V / Ph / Hz Inlet / Outlet mm kg
+WRD 20 S 20 34 0.45 230V / 1Ph / 50Hz 1/2" BSP 450 × 450 × 550 38
+WRD 30 S 30 51 0.45 230V / 1Ph / 50Hz 1/2" BSP 450 × 450 × 550 40
+WRD 40 S 40 68 0.45 230V / 1Ph / 50Hz 1/2" BSP 450 × 450 × 550 42
+WRD 60 S 60 102 0.65 230V / 1Ph / 50Hz 1" BSP 500 × 550 × 750 55
+WRD 80 S 80 136 0.65 230V / 1Ph / 50Hz 1" BSP 500 × 550 × 750 58
+WRD 100 S 100 170 0.85 230V / 1Ph / 50Hz 1" BSP 500 × 550 × 750 60
+WRD 125 S 125 212 0.85 230V / 1Ph / 50Hz 1.5" BSP 500 × 550 × 750 65
+WRD 150 S 150 255 1.10 230V / 1Ph / 50Hz 1.5" BSP 600 × 650 × 900 90
+WRD 200 S 200 340 1.25 230V / 1Ph / 50Hz 1.5" BSP 600 × 650 × 900 95
+WRD 250 S 250 425 1.65 230V / 1Ph / 50Hz 2" BSP 600 × 650 × 900 105
+WRD 300 S 300 510 1.65 230V / 1Ph / 50Hz 2" BSP 600 × 650 × 900 110
+WRD 400 S 400 680 2.20 230V / 1Ph / 50Hz 2.5" BSP 800 × 800 × 1100 180
+WRD 500 S 500 850 2.20 230V / 1Ph / 50Hz 2.5" BSP 800 × 800 × 1100 190
+WRD 600 S 600 1020 3.50 415V / 3Ph / 50Hz 3" Flange 1200 × 850 × 1350 280
+WRD 750 S 750 1275 3.50 415V / 3Ph / 50Hz 3" Flange 1200 × 850 × 1350 300
+WRD 1000 S 1000 1700 5.50 415V / 3Ph / 50Hz 4" Flange 1500 × 1000 × 1500 450
+WRD 1250 T 1250 2125 6.50 415V / 3Ph / 50Hz 4" Flange 1500 × 1000 × 1500 500
+WRD 1600 T 1600 2720 8.50 415V / 3Ph / 50Hz 6" Flange 1800 × 1200 × 1600 650
+WRD 2000 T 2000 3400 10.50 415V / 3Ph / 50Hz 6" Flange 1800 × 1200 × 1600 750
+* Note: Model suffix 'S' indicates Single-Phase 230V or Single-Circuit architecture; suffix 'T' indicates Three-Phase 415V Dual-Circuit architecture. Custom models rated
+up to 40 bar g for PET blow molding available upon request.
+Plant & Registered Works:
+SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407,
+Tamil Nadu, India
+Direct Plant Telephones:
++91 95972 28969 / +91 95972 28975
+Technical Inquiries:
+info@winequipments.com |
+www.winequipments.com
+Page 3 of 4
+
+=== PAGE 4 ===
+WIN EQUIPMENTS
+SAVE WATER AND POWER
+ISO 9001:2015 CERTIFIED
+ENGINEERING SELECTION & PLANT PROFILE
+Thermodynamic Sizing & Factory Capabilities
+Selection Formula, Operating Correction Multipliers & Arasur Plant Infrastructure
+Air Dryer Sizing Formula (ISO 8573 Reference): Required Dryer CFM = Compressor CFM ÷ (Cp × Ct × Ca)
+Pressure Factor (Cp)
+PRESSURE CP
+4.0 bar 0.77
+5.0 bar 0.86
+6.0 bar 0.93
+7.0 bar 1.00
+10.0 bar 1.15
+Inlet Air Temp (Ct)
+INLET TEMP CT
+30°C 1.20
+35°C 1.10
+40°C 1.00
+45°C 0.85
+50°C 0.72
+Ambient Temp (Ca)
+AMBIENT CA
+25°C 1.12
+30°C 1.06
+35°C 1.00
+40°C 0.90
+45°C 0.80
+MANUFACTURING INFRASTRUCTURE & TRACK RECORD
+Founded in 2008 by Mr. Ramasamy Ananthakumar, Win Equipments operates from its
+state-of-the-art registered manufacturing works in Arasur Post, Coimbatore on NH544.
+With 17+ years of engineering excellence, over 1,200+ industrial installations
+commissioned across India, and direct capital exports to Kuwait, Oman, and Jordan.
+1,200+ COMMISSIONED PLANTS GCC EXPORT CERTIFIED ISO 9001:2015 QMS
+DAC 50°C DESERT CERTIFIED
+Request Technical Submittal & Commercial Quotation
+Direct factory engineering consultation for custom capacity sizing, P&ID schematics & dimensional drawings.
++91 95972 28969
+info@winequipments.com
+Plant & Registered Works:
+SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407,
+Tamil Nadu, India
+Direct Plant Telephones:
++91 95972 28969 / +91 95972 28975
+Technical Inquiries:
+info@winequipments.com |
+www.winequipments.com
+Page 4 of 4
+

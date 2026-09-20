@@ -1,0 +1,581 @@
+{
+  "products": [
+    {
+      "id": "cooling_towers",
+      "slug": "cooling-towers",
+      "pdf_filename": "Cooling-towers.pdf",
+      "name": "Round & Square FRP Cooling Towers",
+      "short_name": "Cooling Towers",
+      "series": "WCT Series (10 to 1,500 TR)",
+      "category": "Evaporative Heat Rejection Systems",
+      "title": "Industrial FRP Round & Square Cooling Towers",
+      "subtitle": "Aerodynamic Induced-Draft Counterflow & Crossflow Towers Engineered with Heavy-Duty Isophthalic FRP & High-Efficiency PVC Fills",
+      "hero_image": "images/Products/coolingtower.png",
+      "secondary_images": [
+        "images/Products/Squarecoolingtower1.png",
+        "images/Products/coolingtower2.png",
+        "images/Products/coolingtower3.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/round-cooling-towers.html",
+      "qr_code_file": "src/assets/qr/qr_cooling_towers.svg",
+      "badges": [
+        {"title": "10–1,500 TR", "desc": "Round Bottle & Square Modular Range"},
+        {"title": "ISOPHTHALIC FRP", "desc": "Corrosion & UV-Resistant Reinforced Casing"},
+        {"title": "ROTARY SPRINKLER", "desc": "Self-Propelled Low-Pressure Distribution"},
+        {"title": "4°C APPROACH", "desc": "Tight Approach to Design Wet Bulb Temp"}
+      ],
+      "overview": {
+        "description": "Win Equipments WCT Series cooling towers provide evaporative heat rejection for industrial water chillers, plastic injection machines, diesel generator jackets, induction furnaces, and chemical plants. Available in two distinct architectural configurations—WCT-RL aerodynamic round bottle towers and WCT-SL modular square crossflow towers—each unit is constructed with premium isophthalic polyester resin reinforced with chopped strand fiberglass mats, ensuring complete resistance against corrosion, algae, and UV radiation.",
+        "working_principle": "Warm process water enters the tower and is distributed over high-efficiency virgin PVC honeycomb fills. In WCT-RL round towers, water is discharged through a calibrated multi-arm rotary alloy sprinkler head that rotates smoothly via jet reaction force at low water pressure (0.3 to 0.7 bar). In WCT-SL square towers, gravity distribution basins meter water through clog-free target nozzles. An induced-draft axial fan pulls dry ambient air upward through the falling water film, driving rapid evaporative cooling down to a tight 4°C approach to wet-bulb temperature.",
+        "pid_flow": "Warm Condenser Water (37°C) → Inlet Riser → Self-Rotating Sprinkler / Gravity Basin → PVC Honeycomb Fill Media (Counterflow Air) → Cold Sump Basin (32°C) → Recirculation Pump → Chiller Condenser"
+      },
+      "key_benefits": [
+        {
+          "icon": "🛡️",
+          "title": "Heavy-Duty Isophthalic FRP Casing",
+          "narrative": "Precision molded with continuous chopped strand fiberglass and UV-inhibited isophthalic gelcoat. Impervious to acidic industrial atmospheres, coastal saline fog, chemical fumes, and biological growth with zero painting maintenance."
+        },
+        {
+          "icon": "🔄",
+          "title": "Self-Rotating Alloy Sprinkler System",
+          "narrative": "Precision machined rotary sprinkler head rotates automatically on sealed stainless steel ball bearings via the dynamic reaction of water jets. Provides 360° uniform water distribution without requiring external motorized drives."
+        },
+        {
+          "icon": "🌿",
+          "title": "100% Virgin PVC Honeycomb Fills",
+          "narrative": "Cross-fluted honeycomb PVC fills with integral drift eliminators and louver faces. Withstands continuous water temperatures up to 55°C (polypropylene option up to 80°C) with minimal airflow resistance and drift loss <0.005%."
+        },
+        {
+          "icon": "⚡",
+          "title": "Direct-Driven Low-RPM Aero-Foil Fans",
+          "narrative": "Balanced cast aluminum or FRP aerofoil blade fans driven directly by weather-proof IP55 flange-mounted electric motors, eliminating maintenance-heavy belts, pulleys, and gearboxes."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Nominal Flow: 0.6 m³/hr per TR (3.0 GPM/TR) | Hot Water In: 37°C | Cold Water Out: 32°C | Wet Bulb Temp: 28°C (Approach 4°C) | Casing: UV-Resistant FRP | Fill: PVC Cross-Flute",
+        "columns": [
+          "Model Code", "Nominal TR", "Water Flow m³/hr", "Motor HP", "Fan RPM", "Round Dia × H (mm)", "Square L×W×H (mm)", "Oper Wt kg"
+        ],
+        "rows": [
+          ["WCT 010", "10 TR", "6 m³/hr", "0.5 HP", "1440 RPM", "Ø 930 × 1690", "930 × 930 × 1690", "280 kg"],
+          ["WCT 015", "15 TR", "9 m³/hr", "0.5 HP", "1440 RPM", "Ø 1050 × 1700", "1050 × 1050 × 1700", "340 kg"],
+          ["WCT 020", "20 TR", "12 m³/hr", "0.75 HP", "1440 RPM", "Ø 1150 × 1750", "1150 × 1150 × 1750", "390 kg"],
+          ["WCT 025", "25 TR", "15 m³/hr", "0.75 HP", "1440 RPM", "Ø 1250 × 1750", "1250 × 1250 × 1750", "450 kg"],
+          ["WCT 030", "30 TR", "18 m³/hr", "1.0 HP", "960 RPM", "Ø 1350 × 1850", "1350 × 1350 × 1850", "550 kg"],
+          ["WCT 040", "40 TR", "24 m³/hr", "1.0 HP", "960 RPM", "Ø 1500 × 1950", "1500 × 1500 × 1950", "680 kg"],
+          ["WCT 050", "50 TR", "30 m³/hr", "1.5 HP", "960 RPM", "Ø 1650 × 2150", "1650 × 1650 × 2150", "850 kg"],
+          ["WCT 060", "60 TR", "36 m³/hr", "2.0 HP", "960 RPM", "Ø 1800 × 2250", "1800 × 1800 × 2250", "1,050 kg"],
+          ["WCT 075", "75 TR", "45 m³/hr", "2.0 HP", "960 RPM", "Ø 2000 × 2350", "2000 × 2000 × 2350", "1,250 kg"],
+          ["WCT 100", "100 TR", "60 m³/hr", "3.0 HP", "960 RPM", "Ø 2250 × 2500", "2250 × 2250 × 2500", "1,650 kg"],
+          ["WCT 125", "125 TR", "75 m³/hr", "5.0 HP", "960 RPM", "Ø 2500 × 2650", "2500 × 2500 × 2650", "2,100 kg"],
+          ["WCT 150", "150 TR", "90 m³/hr", "5.0 HP", "960 RPM", "Ø 2750 × 2800", "2750 × 2750 × 2800", "2,450 kg"],
+          ["WCT 200", "200 TR", "120 m³/hr", "7.5 HP", "720 RPM", "Ø 3150 × 3100", "3150 × 3150 × 3100", "3,200 kg"],
+          ["WCT 300", "300 TR", "180 m³/hr", "10.0 HP", "720 RPM", "Ø 3800 × 3500", "3800 × 3800 × 3500", "4,800 kg"],
+          ["WCT 500", "500 TR", "300 m³/hr", "15.0 HP", "720 RPM", "Ø 4800 × 4100", "4800 × 4800 × 4100", "7,800 kg"]
+        ],
+        "notes": [
+          "Square modular towers (WCT-SL) can be banked in multi-cell configurations for capacities up to 1,500 TR.",
+          "High-temperature PP fills available for process water applications entering up to 80°C (e.g. steel furnaces, quenching tanks).",
+          "All structural hardware fabricated from Hot-Dip Galvanized (HDG) steel or SUS304 stainless steel."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Plastic Processing & Blow Molding",
+            "impact": "Cools hydraulic oil exchangers, barrel throat jackets, and chiller condensers for reliable 24/7 continuous production."
+          },
+          {
+            "sector": "Steel Rolling & Induction Melting",
+            "impact": "Protects water-cooled power cables, crucible induction coils, and SCR thyristor panels from destructive overheating."
+          },
+          {
+            "sector": "HVAC Central Water-Cooled Chillers",
+            "impact": "Rejects building heat from centrifugal and screw chiller condensers at lowest electrical kW/TR consumption."
+          },
+          {
+            "sector": "Diesel Generator & Air Compressor Jacketing",
+            "impact": "Maintains engine and compressor aftercoolers at optimal thermal operating conditions, extending cylinder liner life."
+          },
+          {
+            "sector": "Chemical & Distillation Condensers",
+            "impact": "Dissipates high condensing heat loads across distillation columns, solvent recovery stills, and batch autoclaves."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win WCT vs. Standard Commercial Cooling Towers",
+          "points": [
+            {"param": "FRP Structure", "win": "High-density isophthalic resin with embedded UV stabilizers", "competitor": "General-purpose orthophthalic resin prone to chalking & pinholes"},
+            {"param": "Water Sprinkler", "win": "Machined aluminum/brass rotary sprinkler on sealed bearings", "competitor": "Plastic sprinkler head that seizes within months"},
+            {"param": "Drift Loss", "win": "Integral cellular drift eliminators restrict loss <0.005%", "competitor": "Open spray pattern causing >0.05% water carryover"},
+            {"param": "Structural Framing", "win": "Heavy HDG steel structural chassis with SS304 fasteners", "competitor": "Lightweight painted angle iron that rusts in industrial air"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "Dynamic balancing of fan assembly to ISO 1940 Grade G2.5 for vibration-free running",
+          "Sprinkler head flow calibration and rotation velocity test at minimum 0.3 bar pressure",
+          "Hydrostatic leak test on FRP cold water basin prior to factory dispatch",
+          "Full load motor running current and insulation Megger verification"
+        ],
+        "warranty": "12 Months comprehensive warranty on structure, motor, and internal components.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized"]
+      }
+    },
+    {
+      "id": "coil_cooling_towers",
+      "slug": "coil-cooling-tower",
+      "pdf_filename": "Coil cooling tower.pdf",
+      "name": "Closed Circuit Evaporative Coil Cooling Towers",
+      "short_name": "Coil Cooling Towers",
+      "series": "WCC Series (40 to 150 TR)",
+      "category": "Critical Closed Loop Heat Rejection",
+      "title": "Closed Circuit Evaporative Coil Cooling Towers",
+      "subtitle": "Indirect Evaporative Cooling Isolating Process Fluid Inside Sealed Serpentine Heat Exchange Coils for 100% Contamination-Free Cooling",
+      "hero_image": "images/Products/coilcooling.png",
+      "secondary_images": [
+        "images/Products/coilcooling2.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/closed-circuit-cooling-towers.html",
+      "qr_code_file": "src/assets/qr/qr_coil_cooling_towers.svg",
+      "badges": [
+        {"title": "100% SEALED LOOP", "desc": "Process Fluid Never Contacts Air or Dust"},
+        {"title": "40–150 TR", "desc": "Packaged Heavy-Duty Industrial Range"},
+        {"title": "HDG / SS304 COIL", "desc": "Heavy-Wall Continuous Serpentine Tubing"},
+        {"title": "ZERO SCALING", "desc": "Protects Expensive High-Precision Heat Exchangers"}
+      ],
+      "overview": {
+        "description": "Win Equipments WCC Series closed circuit cooling towers provide indirect evaporative cooling for critical applications where process fluid cannot tolerate atmospheric air contamination, dust fouling, biological growth, or mineral scaling. By circulating the process fluid inside a completely sealed, continuous serpentine tube coil while an external deluge water spray and fan provide evaporative cooling, WCC towers safeguard expensive induction furnaces, laser resonators, and vacuum furnaces from catastrophic scale fouling.",
+        "working_principle": "Process fluid (clean water, deionized water, or glycol) circulates entirely inside a continuous multi-circuit serpentine coil bundle. Simultaneously, a secondary recirculating pump sprays deluge cooling water over the exterior surface of the coil while top-mounted axial fans draw fresh air upward over the falling water film. A fraction of the spray water evaporates into the air stream, absorbing latent heat and cooling the internal process fluid. The un-evaporated spray water collects in the lower basin and is recirculated. Process fluid remains 100% sealed, pure, and pressurized.",
+        "pid_flow": "Hot Process Fluid (45°C) → Sealed Serpentine Coil Inlet → Indirect Evaporative Cooling via Deluge Spray + Induced Draft Air → Cooled Process Fluid (32°C) → Clean Factory Return Loop"
+      },
+      "key_benefits": [
+        {
+          "icon": "🔒",
+          "title": "Completely Sealed Contamination-Free Loop",
+          "narrative": "Eliminates scaling, airborne dust accumulation, bacterial slime, and oxygen ingestion inside client equipment. Eliminates routine chemical descaling of furnace coils, mold channels, and compressor heat exchangers."
+        },
+        {
+          "icon": "🌀",
+          "title": "Continuous Serpentine Tube Bundle Architecture",
+          "narrative": "Coils are manufactured from continuous smooth-bend heavy-gauge steel tubing, hot-dip galvanized after fabrication in molten zinc (ASTM A123), or 100% SUS304/SUS316L stainless steel for deionized water loops."
+        },
+        {
+          "icon": "💧",
+          "title": "Low Water Consumption & Minimal Drift",
+          "narrative": "Recirculates spray water locally, consuming only the water required for evaporation (approx. 1.8 L/hr per kW rejected). High-efficiency drift eliminators limit water carryover to less than 0.005%."
+        },
+        {
+          "icon": "⚡",
+          "title": "Dual Low-Noise Fans & Non-Clog Deluge Spray",
+          "narrative": "Features dual independent aero-foil fans driven by weather-proof IP55 motors for operational redundancy, coupled with large-orifice clog-free spray nozzles providing uniform coil surface wetting."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Process Fluid In: 37°C | Process Fluid Out: 32°C | Wet Bulb Temp: 28°C | Coil Test Pressure: 25 bar g (Air under water) | Casing: Heavy FRP / HDG Panels | Spray Circuit: Low-Head Centrifugal Pump",
+        "columns": [
+          "Model Code", "Capacity TR", "Fan Motors", "Fan RPM", "In/Out Conn", "Coil Vol Liters", "Dimensions (L×W×H mm)", "Weight kg"
+        ],
+        "rows": [
+          ["WCC 40", "40 TR", "3.0 HP × 2", "960 RPM", "3\" / 3\"", "72 L", "3300 × 1500 × 1400", "1,850 kg"],
+          ["WCC 50", "50 TR", "3.0 HP × 2", "960 RPM", "3\" / 3\"", "90 L", "3300 × 1700 × 1400", "2,150 kg"],
+          ["WCC 75", "75 TR", "3.0 HP × 2", "960 RPM", "4\" / 4\"", "135 L", "3300 × 2000 × 1400", "2,850 kg"],
+          ["WCC 100", "100 TR", "5.0 HP × 2", "960 RPM", "4\" / 4\"", "180 L", "3600 × 2400 × 1600", "3,750 kg"],
+          ["WCC 150", "150 TR", "7.5 HP × 2", "720 RPM", "6\" / 6\"", "270 L", "4200 × 2800 × 1800", "5,200 kg"]
+        ],
+        "notes": [
+          "SUS304 or SUS316L stainless steel coil options strictly recommended for deionized water laser loops to prevent zinc leaching.",
+          "Dual fan motors allow 50% power reduction during low-ambient nighttime operation via 2-stage thermostatic switching.",
+          "Integrated winter bypass / dry-cooling operation possible when ambient wet-bulb temperature drops below 10°C."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Induction Melting & Billet Heating Furnaces",
+            "impact": "Protects copper power coils and IGBT power supplies from mineral scale calcification and explosive coil rupture."
+          },
+          {
+            "sector": "Continuous Casting & Vacuum Furnaces",
+            "impact": "Delivers scale-free cooling water to vacuum chamber double-walls and turbomolecular pump bearing jackets."
+          },
+          {
+            "sector": "Industrial Air Compressor Jackets",
+            "impact": "Replaces open tower cooling on oil-free screw compressor jackets, eliminating cylinder scale and head gasket blowouts."
+          },
+          {
+            "sector": "Fiber Laser Resonators & Optics",
+            "impact": "Circulates clean demineralized water in a closed loop, maintaining laser beam alignment without optic fouling."
+          },
+          {
+            "sector": "Automotive Engine Test Dyno Beds",
+            "impact": "Absorbs dynamometer engine jacket and exhaust brake heat loads while maintaining closed loop fluid integrity."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win WCC vs. Open Cooling Tower + Plate Heat Exchanger",
+          "points": [
+            {"param": "System Footprint", "win": "Single monoblock skid integrating coil, spray, basin, and fans", "competitor": "Requires open tower + separate PHE + 2 pump sets + buffer tank"},
+            {"param": "Maintenance", "win": "Smooth coil exterior resists scaling; zero internal fouling", "competitor": "Plate heat exchanger clogs with algae every 2–4 months"},
+            {"param": "Pumping Power", "win": "Only process pump + small low-head spray pump needed", "competitor": "Dual high-head pump systems consume 35% more electricity"},
+            {"param": "Corrosion Protection", "win": "Heavy HDG after coil bending (ASTM A123) or SUS304", "competitor": "Exchanger plates vulnerable to pitting and gasket blowout"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "Continuous pneumatic pressure hold test at 25 bar g submerged in water inspection tank",
+          "Full zinc coating thickness verification (>85 microns) compliant with ASTM A123",
+          "Uniform deluge spray coverage validation across 100% of exterior coil tube surface",
+          "Fan dynamic balance testing and motor electrical insulation breakdown test"
+        ],
+        "warranty": "24 Months warranty on serpentine tube coil bundle; 12 months comprehensive on unit.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized", "ASTM A123"]
+      }
+    },
+    {
+      "id": "air_receivers",
+      "slug": "air-receiver",
+      "pdf_filename": "Air-Receiver.pdf",
+      "name": "Industrial Compressed Air Receiver Tanks",
+      "short_name": "Air Receivers",
+      "series": "WRV Series (250 to 10,000 Liters)",
+      "category": "Pressure Vessel & Pneumatic Storage Systems",
+      "title": "Industrial Compressed Air Receiver Tanks",
+      "subtitle": "Heavy-Duty Carbon & Stainless Steel Pressure Vessels Fabricated to IS 2825 & ASME Section VIII Standards for Pulsation Dampening & Bulk Moisture Separation",
+      "hero_image": "images/Products/Airreciever.png",
+      "secondary_images": [
+        "images/Products/airreciever2.png",
+        "images/Products/airreciever3.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/air-receiver-tanks.html",
+      "qr_code_file": "src/assets/qr/qr_air_receivers.svg",
+      "badges": [
+        {"title": "250L–10,000L", "desc": "Vertical & Horizontal Standard Range"},
+        {"title": "7 TO 40 BAR", "desc": "Standard 10/16 Bar & PET 40 Bar Vessels"},
+        {"title": "IS 2825 / ASME", "desc": "Boiler Quality SA 516 Gr. 70 Fabrication"},
+        {"title": "SAFETY KIT INCLUDED", "desc": "Certified Relief Valve, Gauge & Drain Cock"}
+      ],
+      "overview": {
+        "description": "Win Equipments WRV Series industrial air receiver tanks act as the vital pneumatic energy reservoir and primary moisture knockout vessel in compressed air installations. Fabricated in vertical and horizontal configurations from boiler-grade SA 516 Gr. 70 carbon steel (or SUS304 stainless steel), WRV vessels dampen pressure pulsations from reciprocating and screw compressors, satisfy sudden high-volume intermittent demand peaks, and eliminate compressor rapid cycling to save significant electrical power.",
+        "working_principle": "High-velocity discharge air from air compressors enters the bottom nozzle of the vertical receiver tank. The sudden drop in air velocity upon entering the large vessel volume causes heavy water droplets and oil aerosols to separate mechanically by gravity, collecting in the deep dished end for automatic removal via a zero-air-loss drain valve. The stored buffer of compressed air absorbs downstream demand spikes, stabilizing system ring-main pressure and preventing compressor motor overheating caused by frequent loading and unloading cycles.",
+        "pid_flow": "Compressor Discharge (Pulsating) → Receiver Tank Inward Tangential Nozzle → Gravitational Water Knockout → Stable High-Volume Buffer (7–16 bar) → System Discharge Header"
+      },
+      "key_benefits": [
+        {
+          "icon": "🏭",
+          "title": "Boiler Quality SA 516 Grade 70 Fabrication",
+          "narrative": "Constructed from high-tensile boiler-quality carbon steel plates (SA 516 Gr. 70) with dished ends formed by hot spinning. Welded via automated Submerged Arc Welding (SAW) for flawless, uniform weld root penetration."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Full Code Compliance (IS 2825 / ASME Sec VIII)",
+          "narrative": "Engineered and manufactured strictly in accordance with Indian Boiler Regulations (IS 2825 Class II/III) or ASME Section VIII Division 1, accompanied by comprehensive third-party inspection certificates."
+        },
+        {
+          "icon": "⚙️",
+          "title": "Complete Factory Safety Package Included",
+          "narrative": "Each vessel is shipped complete with a factory-calibrated spring-loaded safety relief valve, large dial glycerin-filled pressure gauge, manual drain cock, and inspection handhole / manhole."
+        },
+        {
+          "icon": "🎨",
+          "title": "Multi-Layer Anti-Corrosion Surface Treatment",
+          "narrative": "Vessels undergo commercial abrasive grit blasting to SA 2.5 standard, followed by high-build epoxy primer internally/externally and durable polyurethane (PU) finish coat resistant to harsh industrial environments."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Design Codes: IS 2825 Class II / ASME Sec VIII Div 1 | Working Pressures: 7.0, 10.0, 16.0, and 40.0 bar g | Hydrostatic Test Pressure: 1.5× Design Pressure | Material: SA 516 Gr. 70 Boiler Plate | Finish: SA 2.5 Grit Blast + Epoxy + PU",
+        "columns": [
+          "Model Code", "Capacity Liters", "Orientation", "Working Bar", "Shell Dia mm", "Overall H/L mm", "In/Out Flange", "Net Wt kg"
+        ],
+        "rows": [
+          ["WRV 025", "250 L", "Vertical", "10 bar g", "Ø 500 mm", "1,550 mm", "1\" BSP", "120 kg"],
+          ["WRV 050", "500 L", "Vertical", "10 bar g", "Ø 650 mm", "1,850 mm", "1.5\" BSP", "190 kg"],
+          ["WRV 100", "1,000 L", "Vertical", "10 bar g", "Ø 800 mm", "2,250 mm", "2\" BSP / Flange", "340 kg"],
+          ["WRV 150", "1,500 L", "Vertical", "10 bar g", "Ø 950 mm", "2,450 mm", "2\" Flange", "480 kg"],
+          ["WRV 200", "2,000 L", "Vertical", "10 bar g", "Ø 1,050 mm", "2,650 mm", "3\" Flange", "620 kg"],
+          ["WRV 300", "3,000 L", "Vertical", "10 bar g", "Ø 1,250 mm", "2,950 mm", "3\" Flange", "890 kg"],
+          ["WRV 500", "5,000 L", "Vertical", "10 bar g", "Ø 1,500 mm", "3,450 mm", "4\" Flange", "1,450 kg"],
+          ["WRV 1000", "10,000 L", "Vertical", "10 bar g", "Ø 1,800 mm", "4,450 mm", "6\" Flange", "2,950 kg"],
+          ["WRV 050-HP", "500 L", "Vertical", "40 bar g (PET)", "Ø 600 mm", "2,050 mm", "1\" High Press", "380 kg"],
+          ["WRV 100-HP", "1,000 L", "Vertical", "40 bar g (PET)", "Ø 750 mm", "2,550 mm", "1.5\" High Press", "690 kg"]
+        ],
+        "notes": [
+          "Horizontal configurations (WRV-H) with compressor mounting top platforms manufactured to custom dimensions.",
+          "High pressure 40 bar g models engineered specifically for PET bottle stretch blow-molding installations.",
+          "SUS304 / SUS316L stainless steel vessels available for pharmaceutical, food processing, and semiconductor cleanrooms."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Manufacturing Plant Central Ring Mains",
+            "impact": "Eliminates network pressure drop and provides instantaneous compressed air storage during shift startup surges."
+          },
+          {
+            "sector": "PET Stretch Blow Molding (40 bar)",
+            "impact": "Buffers high-pressure air demand during rapid mold bottle blowing, preventing compressor pressure collapse."
+          },
+          {
+            "sector": "Pneumatic Sandblasting & Shot Peening",
+            "impact": "Maintains constant high-velocity nozzle pressure required for uniform surface cleaning without compressor stalling."
+          },
+          {
+            "sector": "Pneumatic Bulk Material Conveying",
+            "impact": "Powers high-velocity dense-phase air pulses to propel powders and cement grains through long transport pipes."
+          },
+          {
+            "sector": "Emergency Standby Air Storage",
+            "impact": "Provides critical reserve air volume to complete emergency machinery cycle shutdown during sudden electrical blackouts."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win WRV vs. Uncertified Commercial Air Tanks",
+          "points": [
+            {"param": "Plate Material", "win": "SA 516 Gr. 70 boiler-quality plate with mill test certificates", "competitor": "Commercial MS sheet with variable tensile strength"},
+            {"param": "Welding Quality", "win": "Automated submerged arc welding (SAW) + 100% NDT inspection", "competitor": "Manual MMA stick welding prone to slag inclusions & porosity"},
+            {"param": "Hydrostatic Proof", "win": "Tested to 1.5× working pressure witnessed with stamp certificate", "competitor": "Minimal air pneumatic bubble test (Extremely hazardous)"},
+            {"param": "Safety Fittings", "win": "IBR-approved bronze/SS safety valve + glycerin gauge included", "competitor": "Shipped as bare shell; user must source unmatched fittings"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "100% Radiographic / Ultrasonic NDT weld examination on longitudinal and circumferential seams",
+          "1.5× Hydrostatic proof test held for minimum 30 minutes under third-party inspection",
+          "Dry film paint thickness (DFT) gauge verification (>120 microns total paint system)",
+          "Safety valve popping pressure calibration and certified test bench stamp"
+        ],
+        "warranty": "60 Months structural integrity warranty on pressure vessel shell and dished ends.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized", "IS 2825 Class II", "ASME Sec VIII"]
+      }
+    },
+    {
+      "id": "compressed_air_filters",
+      "slug": "compressed-air-filters",
+      "pdf_filename": "Filters.pdf",
+      "name": "Industrial Compressed Air Filters",
+      "short_name": "Compressed Air Filters",
+      "series": "WMF Series (20 to 2,000 CFM)",
+      "category": "Precision In-Line Contaminant Separation",
+      "title": "High-Efficiency In-Line Compressed Air Filters",
+      "subtitle": "Four-Stage Progressive Coalescing & Particulate Filtration Delivering ISO 8573-1 Class 1 Air Purity Down to 0.01 Micron & 0.003 ppm Oil Content",
+      "hero_image": "images/Products/compressedairfilters.png",
+      "secondary_images": [
+        "images/Products/compressedairfilters2.png",
+        "images/Products/compressedairfilters3.png"
+      ],
+      "canonical_url": "https://winequipments.com/products/compressed-air-filters.html",
+      "qr_code_file": "src/assets/qr/qr_compressed_air_filters.svg",
+      "badges": [
+        {"title": "0.01 MICRON", "desc": "Grade Y Coalescing Micro-Filtration"},
+        {"title": "0.003 PPM", "desc": "Grade A Activated Carbon Vapor Removal"},
+        {"title": "ISO 8573-1", "desc": "Compliant with International Air Purity Standards"},
+        {"title": "16 BAR RATED", "desc": "Corrosion-Proof Die-Cast Aluminum Housings"}
+      ],
+      "overview": {
+        "description": "Win Equipments WMF Series in-line compressed air filters remove solid particulates, liquid water aerosols, and oil mist from industrial air networks. Available in four progressive filtration grades—Grade P (pre-filter), Grade X (general purpose), Grade Y (micro-coalescer), and Grade A (activated carbon vapor absorber)—WMF filters ensure compliance with ISO 8573-1 air purity standards, protecting expensive automated machinery, instrumentation, and food packaging from contamination.",
+        "working_principle": "Compressed air enters the die-cast aluminum housing where internal aerodynamic flow channels guide air through multi-layered borosilicate microfiber filtration sleeves. Large particulates are captured via direct interception; sub-micron oil droplets collide via Brownian motion and coalesce into heavy liquid drops that drain into the quiet bottom sump zone for automatic expulsion. In Grade A filters, an activated carbon deep-bed adsorbs hydrocarbon odors and vapors, delivering clinically pure, breathable air.",
+        "pid_flow": "Raw Air → Grade P (3μ Pre-filter) → Air Dryer → Grade X (1μ Particulate) → Grade Y (0.01μ Coalescer) → Grade A (0.003 ppm Vapor) → Ultra-Clean Sterile Process Air"
+      },
+      "key_benefits": [
+        {
+          "icon": "🔬",
+          "title": "Four-Stage Progressive Filtration Architecture",
+          "narrative": "Matches filtration precision exactly to process requirements: Grade P (3μm / 5 ppm oil), Grade X (1μm / 0.5 ppm), Grade Y (0.01μm / 0.01 ppm), and Grade A (0.003 ppm oil vapor & odor)."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Alocrom Passivated Die-Cast Aluminum Housings",
+          "narrative": "Housings are pressure die-cast from high-grade aluminum, treated with Alocrom anti-corrosion chemical passivation, and electrostatically powder coated. Guaranteed 10-year housing life against pinhole leaks."
+        },
+        {
+          "icon": "📊",
+          "title": "Integrated Pop-Up Differential Pressure Indicator",
+          "narrative": "Equipped with a top-mounted differential pressure gauge or visual pop-up indicator that signals when the element is saturated (>0.35 bar ΔP), preventing unnecessary energy waste."
+        },
+        {
+          "icon": "💧",
+          "title": "Automatic Condensate Evacuation Standard",
+          "narrative": "Every housing includes an internal float-type automatic drain or external zero-air-loss electronic drain that continuously vents coalesced liquid oil and water without human intervention."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Max Working Pressure: 16.0 bar g | Max Working Temp: 65°C (Grade A: 30°C) | Housing Material: Alocrom Treated Die-Cast Aluminum | Element Media: Hydrophobic Borosilicate Microfiber",
+        "columns": [
+          "Model Code", "Nominal CFM", "Flow m³/hr", "Pipe Conn", "Grade Options", "Dimensions (L×W×H mm)", "Weight kg"
+        ],
+        "rows": [
+          ["WMF 004", "20 CFM", "34", "1/2\" BSP", "P, X, Y, A", "90 × 90 × 220", "1.1 kg"],
+          ["WMF 008", "45 CFM", "76", "1/2\" BSP", "P, X, Y, A", "90 × 90 × 260", "1.3 kg"],
+          ["WMF 015", "85 CFM", "144", "3/4\" BSP", "P, X, Y, A", "110 × 110 × 300", "1.8 kg"],
+          ["WMF 025", "140 CFM", "238", "1\" BSP", "P, X, Y, A", "110 × 110 × 380", "2.2 kg"],
+          ["WMF 035", "200 CFM", "340", "1.25\" BSP", "P, X, Y, A", "140 × 140 × 440", "3.6 kg"],
+          ["WMF 060", "350 CFM", "595", "1.5\" BSP", "P, X, Y, A", "140 × 140 × 520", "4.2 kg"],
+          ["WMF 100", "600 CFM", "1,020", "2\" BSP", "P, X, Y, A", "170 × 170 × 630", "6.8 kg"],
+          ["WMF 150", "850 CFM", "1,445", "2.5\" BSP", "P, X, Y, A", "170 × 170 × 750", "8.5 kg"],
+          ["WMF 250", "1,400 CFM", "2,380", "3\" Flange", "P, X, Y, A", "250 × 250 × 850", "18.0 kg"],
+          ["WMF 350", "2,000 CFM", "3,400", "3\" Flange", "P, X, Y, A", "250 × 250 × 980", "24.0 kg"]
+        ],
+        "notes": [
+          "Grade P: Pre-filtration (3 micron, removes dust and liquid water drops).",
+          "Grade X: General purpose particulate removal (1 micron, oil aerosol <0.5 mg/m³).",
+          "Grade Y: High efficiency coalescing (0.01 micron, oil aerosol <0.01 mg/m³).",
+          "Grade A: Activated carbon vapor adsorption (oil vapor & hydrocarbon odor <0.003 mg/m³)."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Pharmaceutical Cleanrooms & Pill Packaging",
+            "impact": "Guarantees zero oil contamination in sterile air lines compliant with FDA Class 1 compressed air standards."
+          },
+          {
+            "sector": "Food, Beverage & Dairy Processing",
+            "impact": "Eliminates foul hydrocarbon odors and oil taste from compressed air contacting food containers and dairy bottles."
+          },
+          {
+            "sector": "Automated Spray Painting & Powder Coating",
+            "impact": "Stops micro-droplets of oil from creating craters, blisters, and surface blemishes on vehicle bodies."
+          },
+          {
+            "sector": "Laser Cutting Assist Gas Pre-Treatment",
+            "impact": "Prevents optical mirror fogging and cutting lens burn-through caused by hydrocarbon vapor contamination."
+          },
+          {
+            "sector": "Precision Coordinate Measuring Machines (CMM)",
+            "impact": "Protects frictionless air bearing pads from microscopic dust particle scoring and premature mechanical wear."
+          }
+        ],
+        "benchmark": {
+          "title": "Engineering Comparison: Win WMF vs. Conventional Pipeline Strainers",
+          "points": [
+            {"param": "Filter Media", "win": "Hydrophobic borosilicate glass microfiber with 96% void volume", "competitor": "Cellulose paper that collapses when wet with oil/water"},
+            {"param": "Housing Coating", "win": "Alocrom anti-corrosion passivation + electrostatic epoxy powder", "competitor": "Uncoated cast aluminum prone to internal oxidation"},
+            {"param": "Pressure Drop", "win": "Initial dry ΔP <0.07 bar; aerodynamic smooth internal air channels", "competitor": "Rough internal cast edges causing high friction and >0.2 bar ΔP"},
+            {"param": "Element Sealing", "win": "Dual O-ring push-fit seal prevents any bypass leakage", "competitor": "Single flat gasket prone to bypass under vibration"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "100% Hydrostatic pressure test of cast housings at 24 bar g (1.5× working pressure)",
+          "ISO 12500-1 certified aerosol challenge oil penetration testing on filter elements",
+          "Pressure drop differential verification on calibrated air flow test bench",
+          "Differential pressure indicator calibration and pop-up trip point test"
+        ],
+        "warranty": "10 Years warranty on aluminum filter housings; 12 months on differential indicator.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized", "ISO 8573-1", "ISO 12500-1"]
+      }
+    },
+    {
+      "id": "automatic_drain_valves",
+      "slug": "automatic-drain-valves",
+      "pdf_filename": "Automatic-Drain-Valve.pdf",
+      "name": "Automatic Condensate Drain Valves",
+      "short_name": "Automatic Drain Valves",
+      "series": "WADV Series (Timer, Zero Loss & High Pressure)",
+      "category": "Condensate Management & Energy Conservation",
+      "title": "Industrial Automatic Condensate Drain Valves",
+      "subtitle": "Electronic Timer Drains, Capacitive Zero-Air-Loss Drains & 40-Bar High Pressure Drain Systems for Guaranteed Condensate Evacuation Without Energy Waste",
+      "hero_image": "images/Products/drainvalve.png",
+      "secondary_images": [],
+      "canonical_url": "https://winequipments.com/products/automatic-drain-valves.html",
+      "qr_code_file": "src/assets/qr/qr_automatic_drain_valves.svg",
+      "badges": [
+        {"title": "ZERO AIR LOSS", "desc": "Capacitive Sensor Discharges Water Only"},
+        {"title": "UP TO 40 BAR", "desc": "Standard 16 Bar & High Pressure PET Models"},
+        {"title": "INTEGRATED MESH", "desc": "Stainless Strainer Prevents Orifice Clogging"},
+        {"title": "TEST BUTTON", "desc": "Instant Manual Override & Diagnostic Cycle"}
+      ],
+      "overview": {
+        "description": "Win Equipments WADV Series automatic condensate drain valves eliminate moisture and oil slurry accumulated in compressor aftercoolers, air receivers, refrigerated dryers, and drop legs. Condensate buildup damages pneumatic cylinders and contaminates finished goods, while manual draining is frequently neglected. WADV valves provide fully automated, trouble-free drainage across three core technologies: electronic analog timer valves, intelligent capacitive zero-air-loss drains, and 40-bar high-pressure drain systems.",
+        "working_principle": "In WADV-T16 timer valves, a solid-state microcontroller energizes a direct-acting brass solenoid valve at preset intervals (0.5 to 10 seconds ON time; 0.5 to 45 minutes OFF time), discharging accumulated slurry through an integrated stainless steel mesh filter. In WADV-Z16 zero-air-loss valves, a contactless capacitive sensor monitors liquid level inside an aluminum collection chamber; as condensate reaches peak level, the pilot valve opens to exhaust 100% water before snapping shut before any compressed air escapes, saving thousands of rupees in compressed air energy annually.",
+        "pid_flow": "Condensate Influx → Upstream Ball-Valve Strainer → Capacitive Sensing Chamber → Pilot Actuation Orifice → 100% Liquid Discharge (0 CFM Air Lost) → Oily Water Separator"
+      },
+      "key_benefits": [
+        {
+          "icon": "⚡",
+          "title": "Capacitive Zero Air Loss Technology (WADV-Z16)",
+          "narrative": "Non-contact electronic capacitive sensor senses liquid level through the chamber wall with zero moving floats. Exhausts 100% liquid and closes before air can escape, saving up to ₹38,000 annually per valve."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Built-In Stainless Steel Mesh Strainer",
+          "narrative": "WADV-T16 features a forged brass ball-valve strainer integrated directly into the valve body. Captures pipe scale, rust flakes, and heavy slurry before the solenoid orifice, eliminating stuck-open valve failures."
+        },
+        {
+          "icon": "🔥",
+          "title": "High-Pressure 40-Bar Heavy Duty Model (WADV-HP40)",
+          "narrative": "Specially engineered with heavy-duty stainless steel valve seats and high-temperature coils rated for 40 bar g operating pressure, purpose-built for PET stretch blow molding booster compressors."
+        },
+        {
+          "icon": "🔘",
+          "title": "Manual Test Override & LED Status Indicators",
+          "narrative": "Features dual bright LED indicators for power and valve-open status, alongside a tactile push-to-test button allowing maintenance operators to test drain functionality instantly during audits."
+        }
+      ],
+      "specifications": {
+        "design_conditions": "Supply Voltage: 220V AC / 50Hz (Optional 24V DC / 110V AC) | Working Pressure: 0 to 16 bar g (HP model up to 40 bar g) | Ambient Temp: 1°C to 60°C | Enclosure: IP65 Heavy Duty | Body: Forged Brass / Stainless Steel",
+        "columns": [
+          "Model Code", "Drain Technology", "Operating Pressure", "In/Out Conn", "Discharge Cycle", "Body Metallurgy", "Power Supply"
+        ],
+        "rows": [
+          ["WADV-T16", "Electronic Timer Drain", "0–16 bar g", "1/2\" BSP In / Out", "0.5–10s ON / 0.5–45m OFF", "Forged Brass + SS Mesh", "220V / 1Ph / 50Hz"],
+          ["WADV-Z16", "Capacitive Zero-Air-Loss", "0.8–16 bar g", "1/2\" BSP In / 1/4\" Out", "Demand-based (0 CFM Loss)", "Die-Cast Aluminum", "220V / 1Ph / 50Hz"],
+          ["WADV-HP40", "High Pressure Timer", "0–40 bar g", "1/2\" BSP High-Press", "0.5–10s ON / 0.5–45m OFF", "Heavy Stainless Steel", "220V / 1Ph / 50Hz"],
+          ["WADV-Z40", "Zero-Loss High-Pressure", "1.2–40 bar g", "1/2\" BSP High-Press", "Demand-based (0 CFM Loss)", "Stainless Steel Body", "220V / 1Ph / 50Hz"]
+        ],
+        "notes": [
+          "Zero-air-loss models feature a potential-free alarm contact for integration into central SCADA / PLC control rooms.",
+          "Timer drains include a built-in isolation ball valve for easy inline strainer cleaning without depressurizing the main air header.",
+          "Explosion-proof ATEX certified coils available on request for hazardous chemical atmospheres."
+        ]
+      },
+      "applications": {
+        "industries": [
+          {
+            "sector": "Air Compressor Aftercooler Moisture Draining",
+            "impact": "Instantly purges heavy condensate slugs discharged from compressor aftercoolers before reaching receiver vessels."
+          },
+          {
+            "sector": "Air Receiver Bottom Sump Drainage",
+            "impact": "Eliminates corrosive water pooling in receiver vessel dished bottoms, preventing internal shell pitting and wall thinning."
+          },
+          {
+            "sector": "Refrigerated & Desiccant Dryer Separators",
+            "impact": "Discharges condensed water from 3-in-1 heat exchangers without wasting precious compressed air volume."
+          },
+          {
+            "sector": "Factory Distribution Pipe Drop Legs",
+            "impact": "Automatically drains condensate accumulated at line low-points throughout extensive factory ring-main networks."
+          },
+          {
+            "sector": "PET Bottle Blow Molding Air Booster Systems",
+            "impact": "Withstands severe 40-bar shock pulsations and ensures zero moisture enters high-pressure stretch blow molds."
+          }
+        ],
+        "benchmark": {
+          "title": "Energy Economics: Zero-Air-Loss WADV-Z16 vs. Timed Solenoid Drains",
+          "points": [
+            {"param": "Air Loss", "win": "0 CFM compressed air lost during discharge", "competitor": "Wastes 3–5 CFM air on every timer blast"},
+            {"param": "Annual Power Cost", "win": "₹0 wasted air power cost per year", "competitor": "Wastes ₹38,000 to ₹55,000 in electrical power per valve"},
+            {"param": "Slog Resistance", "win": "Generous pilot orifice handles heavy oil-water emulsions", "competitor": "Tiny solenoid orifice clogs frequently with rust slurry"},
+            {"param": "Reliability", "win": "Contactless capacitive sensing with no mechanical float arms", "competitor": "Mechanical float drains jam open or fail to seal"}
+          ]
+        }
+      },
+      "qa_features": {
+        "testing": [
+          "100% Factory pressure hold test at 1.5× rated pressure (24 bar for standard; 60 bar for HP)",
+          "Over 10,000 cycle rapid firing endurance test under full operating pneumatic pressure",
+          "IP65 waterproof enclosure spray test and electrical insulation dielectric testing",
+          "Capacitive water level detection sensitivity calibration test across varying emulsion mixtures"
+        ],
+        "warranty": "24 Months replacement warranty on zero-air-loss drains; 12 months on timer drain valves.",
+        "certifications": ["ISO 9001:2015", "IAF Accredited", "DAC Recognized", "CE Mark", "IP65 Rated"]
+      }
+    }
+  ]
+}

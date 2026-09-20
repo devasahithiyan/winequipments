@@ -1,0 +1,900 @@
+/* ==========================================================================
+   WIN EQUIPMENTS — PRINT-FIRST CSS ARCHITECTURE
+   Document Standard: ISO 216 A4 (210mm x 297mm)
+   Strict Typography Rule: All font sizes in pt (NO px font sizes)
+   Requirement R3: Body font >= 9pt, Headings >= 18pt
+   Brand Palette:
+     - Navy Primary:   #0E2540
+     - Navy Dark:      #071526
+     - Sky Blue:       #0284C7
+     - Sky Blue Light: #E0F2FE
+     - Surface Slate:  #F8FAFC
+     - Neutral Grey:   #F4F6F9
+     - Body Text:      #1E293B
+     - Muted Text:     #64748B
+     - Pure White:     #FFFFFF
+   ========================================================================== */
+
+/* 1. Page Rules & Printing Reset */
+@page {
+  size: 210mm 297mm;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 210mm;
+  background-color: #FFFFFF;
+  color: #1E293B;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 2. Exact Physical Sheet Container */
+.sheet {
+  width: 210mm;
+  height: 297mm;
+  max-height: 297mm;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.sheet:last-of-type {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* ==========================================================================
+   COVER PAGE LAYOUT (PAGE 1)
+   ========================================================================== */
+.sheet.cover {
+  background: linear-gradient(165deg, #071526 0%, #0E2540 55%, #13335A 100%);
+  color: #FFFFFF;
+  padding: 10mm 15mm 12mm 15mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Cover Header */
+.cover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5pt solid rgba(2, 132, 199, 0.4);
+  padding-bottom: 4mm;
+}
+
+.cover-brand {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+}
+
+.cover-logo-img {
+  height: 12mm;
+  width: auto;
+  object-fit: contain;
+}
+
+.cover-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-company-name {
+  font-size: 16pt;
+  font-weight: 800;
+  letter-spacing: 0.5pt;
+  color: #FFFFFF;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.cover-tagline {
+  font-size: 9pt;
+  font-weight: 600;
+  color: #38BDF8;
+  letter-spacing: 1.2pt;
+  text-transform: uppercase;
+  margin-top: 1mm;
+}
+
+.cover-badges {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+
+.cover-badge-img {
+  height: 11mm;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Cover Title Block */
+.cover-title-block {
+  margin-top: 3mm;
+}
+
+.cover-series-pill {
+  display: inline-block;
+  background: rgba(2, 132, 199, 0.25);
+  border: 1pt solid #0284C7;
+  color: #38BDF8;
+  font-size: 9.5pt;
+  font-weight: 700;
+  letter-spacing: 0.8pt;
+  text-transform: uppercase;
+  padding: 2.5pt 8pt;
+  border-radius: 3pt;
+  margin-bottom: 2mm;
+}
+
+.cover-product-name {
+  font-size: 24pt;
+  font-weight: 900;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 2mm 0;
+  letter-spacing: -0.3pt;
+}
+
+.cover-product-subtitle {
+  font-size: 10.5pt;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #CBD5E1;
+  max-width: 175mm;
+  margin: 0;
+}
+
+/* Cover Hero Photo Area (>= 40% of Page Area)
+   A4 area = 500,908 pt^2. 40% = 200,363 pt^2.
+   Container 180mm x 128mm with backdrop and product photo provides > 50% image coverage. */
+.cover-hero-container {
+  height: 128mm;
+  width: 180mm;
+  margin: 2.5mm auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6pt;
+  overflow: hidden;
+  border: 1pt solid rgba(2, 132, 199, 0.45);
+}
+
+.cover-hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.cover-hero-img {
+  max-height: 120mm;
+  max-width: 174mm;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4mm 6mm rgba(0, 0, 0, 0.65));
+}
+
+/* Cover 4 Performance Badges */
+.cover-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5mm;
+  margin-top: 1mm;
+}
+
+.cover-kpi-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1pt solid rgba(2, 132, 199, 0.35);
+  border-top: 2pt solid #0284C7;
+  padding: 2.5mm 2mm;
+  border-radius: 3pt;
+  text-align: center;
+}
+
+.cover-kpi-title {
+  font-size: 10pt;
+  font-weight: 800;
+  color: #38BDF8;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.cover-kpi-desc {
+  font-size: 9pt;
+  color: #CBD5E1;
+  line-height: 1.25;
+  margin-top: 1.5mm;
+}
+
+/* Cover Footer Bar */
+.cover-footer {
+  border-top: 1pt solid rgba(2, 132, 199, 0.3);
+  padding-top: 2.5mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9pt;
+  color: #CBD5E1;
+}
+
+.cover-footer strong {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   INNER PAGES FRAME (PAGES 2, 3, 4, 5)
+   ========================================================================== */
+.inner-header {
+  height: 22mm;
+  background: #0E2540;
+  color: #FFFFFF;
+  padding: 0 15mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2mm solid #0284C7;
+  position: relative;
+}
+
+.inner-header-left {
+  display: flex;
+  align-items: center;
+  gap: 3.5mm;
+}
+
+.inner-header-logo {
+  height: 9.5mm;
+  width: auto;
+  object-fit: contain;
+}
+
+.inner-header-company {
+  font-size: 11pt;
+  font-weight: 800;
+  letter-spacing: 0.5pt;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.inner-header-sub {
+  font-size: 9pt;
+  color: #38BDF8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+.inner-header-right {
+  text-align: right;
+}
+
+.inner-header-product {
+  font-size: 11pt;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.inner-header-series {
+  font-size: 9pt;
+  color: #38BDF8;
+  font-weight: 600;
+}
+
+/* Inner Page Content Container */
+.inner-content {
+  height: 261mm;
+  padding: 6mm 15mm 16mm 15mm;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inner Running Footer */
+.inner-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 210mm;
+  height: 14mm;
+  background: #F8FAFC;
+  border-top: 1pt solid #E2E8F0;
+  padding: 0 15mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9pt;
+  color: #64748B;
+  box-sizing: border-box;
+}
+
+.inner-footer-left {
+  font-weight: 600;
+  color: #0E2540;
+}
+
+.inner-footer-center {
+  color: #64748B;
+}
+
+.inner-footer-right {
+  font-weight: 700;
+  color: #0284C7;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & HEADINGS
+   ========================================================================== */
+.section-header {
+  margin-bottom: 3.5mm;
+  border-left: 3pt solid #0284C7;
+  padding-left: 3.5mm;
+}
+
+.section-category {
+  font-size: 9pt;
+  font-weight: 700;
+  color: #0284C7;
+  text-transform: uppercase;
+  letter-spacing: 0.8pt;
+  margin: 0 0 1mm 0;
+}
+
+.section-title {
+  font-size: 18pt;
+  font-weight: 800;
+  color: #0E2540;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: 9.5pt;
+  font-weight: 500;
+  color: #64748B;
+  margin: 1.5mm 0 0 0;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   PAGE 2: OVERVIEW & ENGINEERING BENEFITS
+   ========================================================================== */
+.overview-narrative-card {
+  background: #F8FAFC;
+  border: 1pt solid #E2E8F0;
+  border-left: 3pt solid #0E2540;
+  padding: 3mm 3.5mm;
+  border-radius: 3pt;
+  margin-bottom: 3mm;
+}
+
+.overview-text {
+  font-size: 9.5pt;
+  color: #1E293B;
+  line-height: 1.4;
+  margin: 0 0 1.5mm 0;
+}
+
+.overview-text:last-child {
+  margin-bottom: 0;
+}
+
+.pid-flow-box {
+  background: #E0F2FE;
+  border: 1pt dashed #0284C7;
+  padding: 2.5mm 3.5mm;
+  border-radius: 3pt;
+  margin-bottom: 3.5mm;
+}
+
+.pid-flow-title {
+  font-size: 9pt;
+  font-weight: 700;
+  color: #0284C7;
+  text-transform: uppercase;
+  letter-spacing: 0.6pt;
+  margin-bottom: 1mm;
+}
+
+.pid-flow-steps {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: #0E2540;
+  line-height: 1.3;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm;
+  margin-top: 1mm;
+}
+
+.benefit-card {
+  background: #FFFFFF;
+  border: 1pt solid #E2E8F0;
+  border-top: 2.5pt solid #0284C7;
+  padding: 3mm;
+  border-radius: 3pt;
+  box-shadow: 0 1pt 2pt rgba(0,0,0,0.03);
+}
+
+.benefit-title-row {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  margin-bottom: 1.5mm;
+}
+
+.benefit-icon {
+  font-size: 13pt;
+  line-height: 1;
+}
+
+.benefit-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #0E2540;
+  line-height: 1.2;
+}
+
+.benefit-narrative {
+  font-size: 9pt;
+  color: #334155;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Secondary Photo / Schematic Row */
+.product-visual-strip {
+  display: flex;
+  gap: 3mm;
+  margin-top: 3mm;
+  align-items: center;
+}
+
+.product-sub-img-wrap {
+  flex: 1;
+  height: 36mm;
+  background: #F8FAFC;
+  border: 1pt solid #E2E8F0;
+  border-radius: 3pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2mm;
+}
+
+.product-sub-img {
+  max-height: 32mm;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   PAGE 3: SPECIFICATIONS MATRIX
+   ========================================================================== */
+.specs-conditions-banner {
+  background: #0E2540;
+  color: #FFFFFF;
+  padding: 2mm 3.5mm;
+  border-radius: 3pt;
+  font-size: 9pt;
+  line-height: 1.3;
+  margin-bottom: 3mm;
+  border-left: 3pt solid #38BDF8;
+}
+
+.specs-conditions-banner strong {
+  color: #38BDF8;
+}
+
+.specs-table-container {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2.5mm;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5pt;
+  table-layout: auto;
+}
+
+.specs-table th {
+  background-color: #0284C7;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 9.5pt;
+  text-align: center;
+  padding: 3.5pt 4pt;
+  border: 0.75pt solid #0284C7;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.specs-table th:first-child {
+  text-align: left;
+  padding-left: 5pt;
+}
+
+.specs-table td {
+  padding: 3pt 4pt;
+  border: 0.75pt solid #E2E8F0;
+  color: #1E293B;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 9.5pt;
+}
+
+.specs-table td:first-child {
+  text-align: left;
+  padding-left: 5pt;
+  font-weight: 700;
+  color: #0E2540;
+  white-space: nowrap;
+}
+
+.specs-table tr:nth-child(even) td {
+  background-color: #F8FAFC;
+}
+
+.specs-table tr:hover td {
+  background-color: #F1F5F9;
+}
+
+.specs-notes-card {
+  background: #F8FAFC;
+  border: 1pt solid #E2E8F0;
+  border-radius: 3pt;
+  padding: 2.5mm 3.5mm;
+  margin-top: auto;
+}
+
+.specs-notes-title {
+  font-size: 9pt;
+  font-weight: 700;
+  color: #0284C7;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+
+.specs-notes-list {
+  margin: 0;
+  padding-left: 4mm;
+  font-size: 9pt;
+  color: #64748B;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   PAGE 4: APPLICATIONS & COMPETITOR BENCHMARK
+   ========================================================================== */
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5mm;
+  margin-bottom: 3.5mm;
+}
+
+.application-item {
+  background: #F8FAFC;
+  border: 1pt solid #E2E8F0;
+  border-left: 2.5pt solid #0284C7;
+  padding: 2.5mm 3.5mm;
+  border-radius: 3pt;
+  display: flex;
+  gap: 3mm;
+}
+
+.app-sector {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #0E2540;
+  min-width: 50mm;
+  line-height: 1.3;
+}
+
+.app-impact {
+  font-size: 9.5pt;
+  color: #334155;
+  line-height: 1.35;
+  flex: 1;
+}
+
+/* Competitor Benchmark Box */
+.benchmark-card {
+  background: #FFFFFF;
+  border: 1.5pt solid #0E2540;
+  border-radius: 3pt;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.benchmark-header {
+  background: #0E2540;
+  color: #FFFFFF;
+  padding: 2.5mm 4mm;
+  font-size: 10pt;
+  font-weight: 800;
+  letter-spacing: 0.3pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+
+.benchmark-table th {
+  background: #F1F5F9;
+  color: #0E2540;
+  font-weight: 700;
+  padding: 3pt 4pt;
+  text-align: left;
+  border: 0.75pt solid #CBD5E1;
+}
+
+.benchmark-table td {
+  padding: 3.5pt 4pt;
+  border: 0.75pt solid #CBD5E1;
+  line-height: 1.25;
+  vertical-align: top;
+}
+
+.benchmark-param {
+  font-weight: 700;
+  color: #0E2540;
+  width: 28%;
+}
+
+.benchmark-win {
+  color: #008253;
+  font-weight: 600;
+  width: 38%;
+  background: rgba(0, 130, 83, 0.05);
+}
+
+.benchmark-competitor {
+  color: #64748B;
+  width: 34%;
+}
+
+/* ==========================================================================
+   PAGE 5: TECHNICAL FEATURES, QUALITY ASSURANCE & CONTACT BLOCK
+   ========================================================================== */
+.qa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm;
+  margin-bottom: 3.5mm;
+}
+
+.qa-card {
+  background: #F8FAFC;
+  border: 1pt solid #E2E8F0;
+  border-top: 2pt solid #0E2540;
+  padding: 3mm;
+  border-radius: 3pt;
+}
+
+.qa-card-title {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #0E2540;
+  margin-bottom: 2mm;
+  display: flex;
+  align-items: center;
+  gap: 1.5mm;
+}
+
+.qa-list {
+  margin: 0;
+  padding-left: 4mm;
+  font-size: 9pt;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.warranty-box {
+  background: #E0F2FE;
+  border: 1pt solid #0284C7;
+  padding: 2.5mm 3.5mm;
+  border-radius: 3pt;
+  margin-bottom: 3.5mm;
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+
+.warranty-icon {
+  font-size: 16pt;
+}
+
+.warranty-text {
+  font-size: 9pt;
+  color: #0E2540;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Full Contact & QR Block */
+.contact-qr-block {
+  background: linear-gradient(135deg, #071526 0%, #0E2540 100%);
+  color: #FFFFFF;
+  border-radius: 4pt;
+  padding: 4mm 5mm;
+  display: flex;
+  gap: 5mm;
+  align-items: center;
+  margin-top: auto;
+  border: 1pt solid rgba(2, 132, 199, 0.4);
+}
+
+.contact-info-col {
+  flex: 1;
+}
+
+.contact-brand-name {
+  font-size: 13pt;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.5pt;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+
+.contact-tagline-text {
+  font-size: 9pt;
+  font-weight: 600;
+  color: #38BDF8;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin-bottom: 2mm;
+}
+
+.contact-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2mm;
+  margin-bottom: 1.5mm;
+  font-size: 9pt;
+  line-height: 1.3;
+}
+
+.contact-icon {
+  color: #38BDF8;
+  font-weight: 700;
+}
+
+.contact-address {
+  color: #E2E8F0;
+}
+
+.contact-phone-highlight {
+  color: #38BDF8;
+  font-weight: 700;
+}
+
+.contact-email-link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.contact-qr-col {
+  width: 32mm;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-code-box {
+  background: #FFFFFF;
+  padding: 1.5mm;
+  border-radius: 3pt;
+  display: inline-block;
+  box-shadow: 0 2pt 4pt rgba(0,0,0,0.3);
+}
+
+.qr-code-svg {
+  width: 25mm;
+  height: 25mm;
+  display: block;
+}
+
+.qr-caption {
+  font-size: 7.5pt;
+  color: #CBD5E1;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+  margin-top: 1.5mm;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   MASTER CATALOGUE EXTENSIONS (16-PAGE SPREADS)
+   ========================================================================== */
+.master-cover {
+  background: linear-gradient(150deg, #071526 0%, #0E2540 60%, #0284C7 100%);
+}
+
+.master-product-spread {
+  height: 261mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.master-product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1.5pt solid #0284C7;
+  padding-bottom: 2mm;
+  margin-bottom: 3mm;
+}
+
+.master-product-split {
+  display: flex;
+  gap: 4mm;
+  height: 52mm;
+  margin-bottom: 3mm;
+}
+
+.master-product-img-box {
+  width: 58mm;
+  height: 52mm;
+  background: #F8FAFC;
+  border: 1pt solid #E2E8F0;
+  border-radius: 3pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2mm;
+}
+
+.master-product-img {
+  max-height: 48mm;
+  max-width: 54mm;
+  object-fit: contain;
+}
+
+.master-product-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

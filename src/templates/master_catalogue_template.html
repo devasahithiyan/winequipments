@@ -1,0 +1,571 @@
+{% extends "base_page.html" %}
+
+{% block content %}
+<!-- =======================================================================
+     PAGE 1: MASTER CORPORATE COVER
+     ======================================================================= -->
+<div class="sheet cover master-cover">
+  <div class="cover-header">
+    <div class="cover-brand">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Equipments" class="cover-logo-img">
+      <div class="cover-brand-text">
+        <span class="cover-company-name">{{ company.name }}</span>
+        <span class="cover-tagline">{{ company.tagline }}</span>
+      </div>
+    </div>
+    <div class="cover-badges">
+      <img src="{{ image_root }}/{{ company.badges.iso }}" alt="ISO 9001:2015" class="cover-badge-img">
+      <img src="{{ image_root }}/{{ company.badges.iaf }}" alt="IAF Accredited" class="cover-badge-img">
+      <img src="{{ image_root }}/{{ company.badges.dac }}" alt="DAC Recognized" class="cover-badge-img">
+    </div>
+  </div>
+
+  <div class="cover-title-block">
+    <div class="cover-series-pill">Comprehensive Product Range &bull; Master E-Catalogue</div>
+    <h1 class="cover-product-name" style="font-size: 26pt;">Industrial Compressed Air &amp; Process Thermal Engineering</h1>
+    <p class="cover-product-subtitle">High-Efficiency Refrigerated &amp; Desiccant Air Dryers, Industrial Process Chillers, Specialized Anodizing/Medical Chillers, FRP Cooling Towers, Pressure Vessels &amp; Filtration Systems</p>
+  </div>
+
+  <div class="cover-hero-container" style="background: radial-gradient(circle, rgba(2, 132, 199, 0.2) 0%, rgba(14, 37, 64, 0.4) 70%, transparent 80%);">
+    <img src="{{ image_root }}/images/banner_opt.jpg" alt="Win Equipments Industrial Plant" class="cover-hero-backdrop" style="opacity: 0.35;">
+    <div style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 6mm; width: 100%; height: 100%;">
+      <img src="{{ image_root }}/images/Products/chiller.png" alt="Chiller" style="max-height: 105mm; max-width: 55mm; object-fit: contain;">
+      <img src="{{ image_root }}/images/Products/Refrigiratedairdryer1.png" alt="Dryer" style="max-height: 110mm; max-width: 55mm; object-fit: contain;">
+      <img src="{{ image_root }}/images/Products/coolingtower.png" alt="Cooling Tower" style="max-height: 105mm; max-width: 55mm; object-fit: contain;">
+    </div>
+  </div>
+
+  <div class="cover-kpi-grid">
+    {% for stat in company.stats %}
+    <div class="cover-kpi-card">
+      <div class="cover-kpi-title">{{ stat.value }}</div>
+      <div class="cover-kpi-desc">{{ stat.label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="cover-footer">
+    <div><strong>{{ company.legal_name }}</strong> &bull; Arasur Works, Coimbatore &bull; Tamil Nadu, India</div>
+    <div>{{ company.certification }} &bull; <strong>Page 1 of 16</strong></div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 2: ABOUT WIN EQUIPMENTS — COMPANY PROFILE
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">Master E-Catalogue</div>
+      <div class="inner-header-series">Corporate Profile &bull; Arasur Works</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Engineering Leadership Since 2008</div>
+      <h2 class="section-title">About Win Equipments</h2>
+      <div class="section-subtitle">Pioneering precision compressed air treatment &amp; process thermal systems in Coimbatore, India</div>
+    </div>
+
+    <div style="display: flex; gap: 4mm; margin-bottom: 4mm;">
+      <div style="flex: 1.2;">
+        <div class="overview-narrative-card" style="height: 100%;">
+          <p class="overview-text">Founded in 2008 by industrial engineering veteran <strong>{{ company.founder }}</strong>, Win Equipments has grown from an innovative design workshop into one of South India's foremost manufacturers of high-efficiency industrial compressed air dryers, process chillers, cooling towers, and heavy pressure vessels.</p>
+          <p class="overview-text">Operating from its integrated manufacturing plant at <strong>SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore</strong>, the company upholds a foundational commitment encapsulated in its guiding motto: <em>"Save Water and Power"</em>. Every machine is engineered specifically to withstand severe Indian tropical and Middle-Eastern ambient conditions (up to 45&deg;C continuous and 50&deg;C peak), delivering unyielding reliability where generic machinery fails.</p>
+        </div>
+      </div>
+      <div style="flex: 0.8; display: flex; flex-direction: column; gap: 3mm;">
+        <div style="border: 1pt solid #E2E8F0; border-radius: 3pt; overflow: hidden; height: 42mm;">
+          <img src="{{ image_root }}/{{ company.facility_images.factory }}" alt="Arasur Works" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="font-size: 8.5pt; color: #64748B; text-align: center; font-style: italic;">Win Equipments Manufacturing Plant, Arasur Works, Coimbatore</div>
+      </div>
+    </div>
+
+    <div class="benefits-grid" style="margin-bottom: 3.5mm;">
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#128300;</span>
+          <span class="benefit-title">Integrated Design &amp; Fabrication</span>
+        </div>
+        <p class="benefit-narrative">In-house CNC machining, automated submerged-arc welding (SAW), high-precision sheet metal shearing, and electrostatic powder coating bays ensure total quality control from raw steel plates to final crated skids.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#127777;</span>
+          <span class="benefit-title">Extreme Tropical Ambient Duty</span>
+        </div>
+        <p class="benefit-narrative">Unlike European and imported machinery that trips on high head pressure during Indian summer heat peaks, Win Equipments oversized condenser coils and generous heat exchanger areas deliver full rated capacity at 45&deg;C ambient.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#9889;</span>
+          <span class="benefit-title">Thermodynamic Energy Conservation</span>
+        </div>
+        <p class="benefit-narrative">From zero-air-loss capacitive drains saving ₹42,000/yr per compressor, to 3-in-1 modular regenerator heat exchangers reducing refrigeration kW by 40%, our systems are engineered to minimize client utility bills.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#128736;</span>
+          <span class="benefit-title">Direct Factory Engineering Support</span>
+        </div>
+        <p class="benefit-narrative">Over 1,200 active installations across India backed by direct Coimbatore factory field engineers, fully stocked OEM spare parts warehousing, and comprehensive Annual Maintenance Contracts (AMC).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; Arasur Works &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">Master E-Catalogue &bull; Corporate Overview</div>
+    <div class="inner-footer-right">Page 2 of 16</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 3: MANUFACTURING INFRASTRUCTURE & QUALITY CERTIFICATIONS
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">Master E-Catalogue</div>
+      <div class="inner-header-series">Plant Capabilities &amp; Quality</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Infrastructure &amp; Certified Quality</div>
+      <h2 class="section-title">Manufacturing Infrastructure &amp; Rigorous Quality Testing</h2>
+      <div class="section-subtitle">Accredited quality management systems conforming to ISO 9001:2015, IAF &amp; DAC standards</div>
+    </div>
+
+    <div style="display: flex; gap: 4mm; margin-bottom: 4mm;">
+      <div style="flex: 1; border: 1pt solid #E2E8F0; border-radius: 3pt; overflow: hidden; height: 50mm;">
+        <img src="{{ image_root }}/{{ company.facility_images.assembly }}" alt="Assembly Floor" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div style="flex: 1; border: 1pt solid #E2E8F0; border-radius: 3pt; overflow: hidden; height: 50mm;">
+        <img src="{{ image_root }}/{{ company.facility_images.banner }}" alt="Plant Panorama" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </div>
+
+    <div class="qa-grid" style="margin-bottom: 3.5mm;">
+      <div class="qa-card">
+        <div class="qa-card-title">&#10003; 4-Stage Factory Acceptance Testing (FAT)</div>
+        <ul class="qa-list">
+          <li><strong>Hydrostatic Proof Testing:</strong> 1.5&times; design pressure hold test on all pressure vessels, coils, and buffer tanks.</li>
+          <li><strong>Helium Leak Detection:</strong> Mass spectrometer vacuum testing of refrigeration circuits (&lt;0.1 g/year loss).</li>
+          <li><strong>Thermal Calorimeter Testing:</strong> 8-hour continuous full-load simulation verifying kW heat removal and dew point.</li>
+          <li><strong>Electrical Safety &amp; Megger Testing:</strong> High-potential dielectric breakdown and earthing bonding audit.</li>
+        </ul>
+      </div>
+      <div class="qa-card">
+        <div class="qa-card-title">&#9733; Global Accreditation Badges</div>
+        <ul class="qa-list">
+          <li><strong>ISO 9001:2015:</strong> Certified Quality Management System covering design, manufacturing, testing, and servicing.</li>
+          <li><strong>IAF (International Accreditation Forum):</strong> Globally recognized conformity assessment and trade compliance.</li>
+          <li><strong>DAC (Dubai Accreditation Center):</strong> Certified for extreme desert high-ambient installations across GCC regions.</li>
+          <li><strong>Boiler Regulations:</strong> Fabrication compliance with IS 2825 Class II and ASME Section VIII Division 1.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="overview-narrative-card">
+      <div style="font-size: 9.5pt; font-weight: 700; color: #0E2540; margin-bottom: 1mm;">Zero-Defect Quality Policy</div>
+      <p class="overview-text" style="font-size: 9pt; line-height: 1.38;">Every system manufactured at Arasur Works undergoes individualized FAT protocol testing. Test data, refrigerant charge records, electrical logs, and welder qualification credentials are permanently archived and supplied with each machine's documentation package.</p>
+    </div>
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; Arasur Works &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">Master E-Catalogue &bull; Quality &amp; Infrastructure</div>
+    <div class="inner-footer-right">Page 3 of 16</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGES 4 TO 13: 10 PRODUCT SPREADS (CONDENSED 1-PAGE PER PRODUCT LINE)
+     ======================================================================= -->
+{% for p in all_products %}
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">{{ p.name }}</div>
+      <div class="inner-header-series">{{ p.series }}</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">{{ p.category }}</div>
+      <h2 class="section-title">{{ p.title }}</h2>
+      <div class="section-subtitle">{{ p.subtitle }}</div>
+    </div>
+
+    <!-- Product Split: Photo + Condensed Overview -->
+    <div class="master-product-split">
+      <div class="master-product-img-box">
+        <img src="{{ image_root }}/{{ p.hero_image }}" alt="{{ p.name }}" class="master-product-img">
+      </div>
+      <div class="master-product-desc-box">
+        <div class="overview-narrative-card" style="margin-bottom: 0; padding: 2.5mm 3.5mm; flex: 1;">
+          <p class="overview-text" style="font-size: 9pt; line-height: 1.35;">{{ p.overview.description }}</p>
+          <div style="font-size: 9pt; color: #0284C7; font-weight: 700; margin-top: 1mm;">
+            <strong>Working Principle:</strong> {{ p.overview.working_principle[:180] }}...
+          </div>
+        </div>
+        <div style="display: flex; gap: 2mm; margin-top: 2mm;">
+          {% for b in p.badges[:3] %}
+          <div style="flex: 1; background: #E0F2FE; border: 0.75pt solid #0284C7; padding: 1.5mm; border-radius: 2pt; text-align: center;">
+            <div style="font-size: 9pt; font-weight: 800; color: #0E2540;">{{ b.title }}</div>
+            <div style="font-size: 8.5pt; color: #0284C7;">{{ b.desc }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Condensed Technical Matrix -->
+    <div class="specs-conditions-banner" style="margin-bottom: 2mm; padding: 2mm 3.5mm; font-size: 9pt;">
+      <strong>Design Ratings:</strong> {{ p.specifications.design_conditions }}
+    </div>
+
+    <div class="specs-table-container" style="margin-bottom: 2.5mm;">
+      <table class="specs-table" style="font-size: 9pt;">
+        <thead>
+          <tr>
+            {% for col in p.specifications.columns[:7] %}
+            <th style="padding: 3pt 3.5pt;">{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in p.specifications.rows[:6] %}
+          <tr>
+            {% for cell in row[:7] %}
+            <td style="padding: 3pt 3.5pt;">{{ cell }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key Engineering Highlights & Industry Fit -->
+    <div style="display: flex; gap: 3mm; margin-top: auto;">
+      <div style="flex: 1; background: #F8FAFC; border: 1pt solid #E2E8F0; padding: 2.5mm; border-radius: 3pt;">
+        <div style="font-size: 9pt; font-weight: 700; color: #0E2540; margin-bottom: 1mm;">Key Engineering Advantages</div>
+        <ul style="margin: 0; padding-left: 3.5mm; font-size: 9pt; color: #334155; line-height: 1.35;">
+          {% for b in p.key_benefits[:2] %}
+          <li><strong>{{ b.title }}:</strong> {{ b.narrative[:100] }}...</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div style="flex: 1; background: #F8FAFC; border: 1pt solid #E2E8F0; padding: 2.5mm; border-radius: 3pt;">
+        <div style="font-size: 9pt; font-weight: 700; color: #0E2540; margin-bottom: 1mm;">Primary Applications</div>
+        <ul style="margin: 0; padding-left: 3.5mm; font-size: 9pt; color: #334155; line-height: 1.35;">
+          {% for app in p.applications.industries[:3] %}
+          <li><strong>{{ app.sector }}:</strong> {{ app.impact[:85] }}...</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; Coimbatore &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">Master E-Catalogue &bull; {{ p.short_name }}</div>
+    <div class="inner-footer-right">Page {{ loop.index + 3 }} of 16</div>
+  </div>
+</div>
+{% endfor %}
+
+<!-- =======================================================================
+     PAGE 14: INDUSTRY APPLICATION MATRIX & TURNKEY ENGINEERING
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">Master E-Catalogue</div>
+      <div class="inner-header-series">Solutions Matrix &bull; Cross-Reference</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Cross-Industry Engineering Solutions</div>
+      <h2 class="section-title">Industry Application Matrix &amp; System Integration</h2>
+      <div class="section-subtitle">Recommended equipment combinations across key industrial manufacturing sectors</div>
+    </div>
+
+    <div class="specs-table-container">
+      <table class="specs-table" style="font-size: 9pt;">
+        <thead>
+          <tr>
+            <th style="text-align: left;">Industry Sector</th>
+            <th>Recommended Air Dryers</th>
+            <th>Process Chillers</th>
+            <th>Cooling Towers</th>
+            <th>Pneumatic Auxiliaries</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Textile Spinning &amp; Weaving</td>
+            <td>WRD Series (200–2,000 CFM)</td>
+            <td>WCP Series (Central Chilled)</td>
+            <td>WCT-RL (100–500 TR)</td>
+            <td>WRV 1,000–5,000L + WADV-Z16</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Plastic Injection &amp; Extrusion</td>
+            <td>WRD Series (60–500 CFM)</td>
+            <td>WCP Series (5–50 TR, ±0.5&deg;C)</td>
+            <td>WCT-RL (20–200 TR)</td>
+            <td>WADV-Z16 Capacitive Drains</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Automotive Clear-Coat Paint</td>
+            <td>WHD Desiccant (-40&deg;C PDP)</td>
+            <td>WCP / WCC Series</td>
+            <td>WCC Closed-Loop Towers</td>
+            <td>WMF Grade Y+A Microfilters</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Pharmaceutical Formulation</td>
+            <td>WHD Series (-40&deg;C / -70&deg;C)</td>
+            <td>WCP / WAC Acid Units</td>
+            <td>WCT-SL Modular Towers</td>
+            <td>SUS304 Vessels + Grade A</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Steel &amp; Induction Furnaces</td>
+            <td>WRD Series</td>
+            <td>WCP Heavy Process</td>
+            <td>WCC Closed Serpentine</td>
+            <td>WRV Heavy Storage Vessels</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Commercial Fisheries &amp; Marine</td>
+            <td>WRD Series</td>
+            <td>WCP Chilled Brine Units</td>
+            <td>WCT Condenser Towers</td>
+            <td>WFI Flake Ice (1–30 TPD)</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Hospital Diagnostic Imaging</td>
+            <td>—</td>
+            <td>WMS Series (N+1 Dual)</td>
+            <td>WCT Closed Circuit</td>
+            <td>City Water Auto-Bypass Skid</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #0E2540;">Fiber Laser Cutting &amp; Optics</td>
+            <td>WRD / WHD Assist Gas</td>
+            <td>WCP Dual Circuit (+22&deg;C/28&deg;C)</td>
+            <td>—</td>
+            <td>WMF 0.01μ Filters + 40-Bar WRV</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pid-flow-box" style="margin-top: 3.5mm;">
+      <div class="pid-flow-title">Turnkey Compressor Room &amp; Utility Piping Engineering</div>
+      <div class="pid-flow-steps">
+        Win Equipments provides turnkey design, supply, and erection of compressed air ring-mains, stainless process water loops, and cooling tower circulating circuits. Sized to maintain flow velocities &lt;6 m/s, eliminating line friction and pressure drops across extensive manufacturing halls.
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; Coimbatore &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">Master E-Catalogue &bull; Industry Application Matrix</div>
+    <div class="inner-footer-right">Page 14 of 16</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 15: NATIONWIDE SERVICE NETWORK & WAREHOUSING DEPOT
+     ======================================================================= -->
+<div class="sheet">
+  <div class="inner-header">
+    <div class="inner-header-left">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
+      <div>
+        <div class="inner-header-company">{{ company.name }}</div>
+        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+      </div>
+    </div>
+    <div class="inner-header-right">
+      <div class="inner-header-product">Master E-Catalogue</div>
+      <div class="inner-header-series">Service Network &bull; Pan-India Support</div>
+    </div>
+  </div>
+
+  <div class="inner-content">
+    <div class="section-header">
+      <div class="section-category">Direct Factory Field Engineering</div>
+      <h2 class="section-title">Pan-India Service Network &amp; Spares Depot</h2>
+      <div class="section-subtitle">24/7 technical assistance, scheduled lifecycle AMCs, and immediate OEM spare parts availability</div>
+    </div>
+
+    <div class="benefits-grid" style="margin-bottom: 3.5mm;">
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#127960;</span>
+          <span class="benefit-title">Coimbatore Works HQ &amp; Central Depot</span>
+        </div>
+        <p class="benefit-narrative">Central spare parts hub at Arasur with over ₹50 Lakhs in ready stock: Danfoss expansion valves, Copeland scroll compressors, activated alumina, and filter cartridges for immediate 24h dispatch.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#128663;</span>
+          <span class="benefit-title">Chennai &amp; Sriperumbudur Automotive Hub</span>
+        </div>
+        <p class="benefit-narrative">Dedicated technical service engineers stationed in Chennai supporting tier-1 automotive suppliers, robotic assembly lines, electronics factories, and seaport logistics complexes.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#128205;</span>
+          <span class="benefit-title">Bangalore &amp; Hosur Precision Tooling Corridor</span>
+        </div>
+        <p class="benefit-narrative">Rapid-response teams supporting precision CNC aerospace machine shops, medical device manufacturers, and high-power fiber laser fabrication facilities across Karnataka.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-title-row">
+          <span class="benefit-icon">&#128658;</span>
+          <span class="benefit-title">Tirupur &amp; Erode Textile Industrial Belt</span>
+        </div>
+        <p class="benefit-narrative">Same-day breakdown attendance and scheduled preventive maintenance for spinning mills, garment dyeing plants, and knitwear processing houses throughout Western Tamil Nadu.</p>
+      </div>
+    </div>
+
+    <div class="qa-grid">
+      <div class="qa-card">
+        <div class="qa-card-title">&#128203; Comprehensive AMC Contracts</div>
+        <ul class="qa-list">
+          <li>Quarterly thermodynamic health and refrigerant charge audits</li>
+          <li>Ultrasonic compressed air leak surveys to identify energy loss</li>
+          <li>Desiccant bed moisture testing and dew point logging</li>
+          <li>Priority 4-hour breakdown response guarantee</li>
+        </ul>
+      </div>
+      <div class="qa-card">
+        <div class="qa-card-title">&#9881; Genuine OEM Consumables Hub</div>
+        <ul class="qa-list">
+          <li>Spherical Activated Alumina (3–5mm &amp; 4–8mm) in 25/50 kg bags</li>
+          <li>Molecular Sieve 13X / 4A for deep -70&deg;C dew point drying</li>
+          <li>Replacement filter cartridges compatible with all major housings</li>
+          <li>Synthetic compressor and chiller refrigeration oils</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-footer">
+    <div class="inner-footer-left">{{ company.name }} &bull; Coimbatore &bull; {{ company.certification }}</div>
+    <div class="inner-footer-center">Master E-Catalogue &bull; Nationwide Support</div>
+    <div class="inner-footer-right">Page 15 of 16</div>
+  </div>
+</div>
+
+<!-- =======================================================================
+     PAGE 16: CORPORATE BACK COVER & TECHNICAL RFQ PORTAL
+     ======================================================================= -->
+<div class="sheet cover master-cover">
+  <div class="cover-header">
+    <div class="cover-brand">
+      <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Equipments Logo" class="cover-logo-img">
+      <div class="cover-brand-text">
+        <span class="cover-company-name">{{ company.legal_name }}</span>
+        <span class="cover-tagline">{{ company.tagline }}</span>
+      </div>
+    </div>
+    <div class="cover-badges">
+      <img src="{{ image_root }}/{{ company.badges.iso }}" alt="ISO 9001:2015" class="cover-badge-img">
+      <img src="{{ image_root }}/{{ company.badges.iaf }}" alt="IAF Accredited" class="cover-badge-img">
+      <img src="{{ image_root }}/{{ company.badges.dac }}" alt="DAC Recognized" class="cover-badge-img">
+    </div>
+  </div>
+
+  <div class="cover-title-block" style="text-align: center; margin: 4mm auto 3mm auto;">
+    <div class="cover-series-pill">Global Engineering Inquiries &bull; Direct Factory Connect</div>
+    <h2 style="font-size: 20pt; font-weight: 800; color: #FFFFFF; margin: 2mm 0;">Request an Engineering Consultation &amp; Custom Sizing</h2>
+    <p style="font-size: 10pt; color: #CBD5E1; max-width: 160mm; margin: 0 auto;">Our thermodynamic application specialists analyze your flow rates, ambient conditions, and temperature requirements to engineer the most cost-effective and energy-efficient solution.</p>
+  </div>
+
+  <!-- Central Contact & Large QR Box -->
+  <div style="background: rgba(15, 23, 42, 0.75); border: 1.5pt solid #0284C7; border-radius: 6pt; padding: 5mm 7mm; display: flex; align-items: center; justify-content: space-between; margin: auto; width: 180mm;">
+    <div style="flex: 1;">
+      <div style="font-size: 14pt; font-weight: 900; color: #FFFFFF; text-transform: uppercase; margin-bottom: 1.5mm;">{{ company.legal_name }}</div>
+      <div style="font-size: 9pt; font-weight: 600; color: #38BDF8; text-transform: uppercase; letter-spacing: 1pt; margin-bottom: 3mm;">Save Water and Power &bull; {{ company.certification }}</div>
+      
+      <div class="contact-detail-row">
+        <span class="contact-icon">&#128205;</span>
+        <span style="font-size: 9pt; color: #E2E8F0;">{{ company.address }}</span>
+      </div>
+      <div class="contact-detail-row">
+        <span class="contact-icon">&#128222;</span>
+        <span style="font-size: 10pt; color: #38BDF8; font-weight: 800;">{{ company.phone1 }} &bull; {{ company.phone2 }}</span>
+      </div>
+      <div class="contact-detail-row">
+        <span class="contact-icon">&#9993;</span>
+        <span style="font-size: 9.5pt; color: #FFFFFF;">{{ company.email }}</span>
+        <span style="color: #64748B;">&bull;</span>
+        <span style="font-size: 9.5pt; color: #38BDF8; font-weight: 700;">{{ company.website }}</span>
+      </div>
+      <div style="font-size: 8.5pt; color: #94A3B8; margin-top: 2.5mm;">
+        GPS Plant Coordinates: Latitude 11.0507&deg; N, Longitude 77.1084&deg; E (NH544 Corridor)
+      </div>
+    </div>
+    
+    <div style="width: 42mm; text-align: center; margin-left: 6mm;">
+      <div style="background: #FFFFFF; padding: 2mm; border-radius: 4pt; display: inline-block; box-shadow: 0 4pt 8pt rgba(0,0,0,0.4);">
+        <div style="width: 30mm; height: 30mm;">
+          {{ qr_svg | safe }}
+        </div>
+      </div>
+      <div style="font-size: 8pt; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.8pt; margin-top: 2mm; font-weight: 700;">Scan for Web Portal</div>
+    </div>
+  </div>
+
+  <div style="font-size: 8pt; color: #64748B; text-align: center; margin-top: 3mm; line-height: 1.3;">
+    &copy; 2026 Win Equipments. All rights reserved. Continuous engineering research may result in specification updates without prior notice.<br>
+    All systems manufactured under ISO 9001:2015 quality management procedures at Arasur Works, Coimbatore, India.
+  </div>
+
+  <div class="cover-footer">
+    <div><strong>{{ company.name }}</strong> &bull; Registered Plant &amp; Works &bull; Coimbatore &ndash; 641407</div>
+    <div>{{ company.certification }} &bull; <strong>Page 16 of 16</strong></div>
+  </div>
+</div>
+{% endblock %}
