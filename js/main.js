@@ -973,3 +973,29 @@ function initHomepageMiniCalculator() {
   recalculate();
 }
 
+/* 10. AI Technical Sales & Sizing Assistant Widget Loader */
+(function initAiChatbotLoader() {
+  const isFileProto = window.location.protocol === 'file:';
+  const pathDepth = window.location.pathname.split('/').filter(Boolean).length;
+  const prefix = (isFileProto && pathDepth >= 2) ? '../' : '';
+  const cssHref = isFileProto ? (prefix + 'css/chatbot.css') : '/css/chatbot.css';
+  const jsSrc = isFileProto ? (prefix + 'js/chatbot.js') : '/js/chatbot.js';
+
+  if (!document.getElementById('win-chatbot-css')) {
+    const link = document.createElement('link');
+    link.id = 'win-chatbot-css';
+    link.rel = 'stylesheet';
+    link.href = cssHref;
+    document.head.appendChild(link);
+  }
+
+  if (!document.getElementById('win-chatbot-js')) {
+    const script = document.createElement('script');
+    script.id = 'win-chatbot-js';
+    script.src = jsSrc;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+})();
+
+
