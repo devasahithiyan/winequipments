@@ -120,6 +120,11 @@ function injectMobileDrawer() {
 
   const drawer = document.createElement('div');
   drawer.className = 'mobile-nav-drawer';
+  drawer.id = 'mobile-nav-drawer';
+  drawer.setAttribute('role', 'dialog');
+  drawer.setAttribute('aria-modal', 'true');
+  drawer.setAttribute('aria-label', 'Mobile Navigation Menu');
+  drawer.setAttribute('aria-hidden', 'true');
   drawer.innerHTML = `
     <div class="mobile-nav-header">
       <a href="${p}index.html" class="brand-logo-group" style="text-decoration: none;">
@@ -151,6 +156,10 @@ function injectMobileDrawer() {
         <span class="mobile-nav-subhead">Process Cooling & Towers</span>
         <ul class="mobile-nav-nested">
           <li><a href="${p}products/industrial-process-chillers.html">Industrial Process Chillers (1–150 TR)</a></li>
+          <li><a href="${p}products/acid-cooling-chillers.html">Acid Cooling Chillers (Titanium/SS316)</a></li>
+          <li><a href="${p}products/anodizing-chillers.html">Hard Anodizing Chillers (-5°C to +10°C)</a></li>
+          <li><a href="${p}products/medical-scan-chillers.html">Medical Scan Chillers (MRI/CT Dual-Circuit)</a></li>
+          <li><a href="${p}products/ice-flake-machines.html">Industrial Ice Flake Machines (0.5–50 TPD)</a></li>
           <li><a href="${p}products/round-cooling-towers.html">Round Bottle FRP Towers (10–1500 TR)</a></li>
           <li><a href="${p}products/square-cooling-towers.html">Square Crossflow Cooling Towers</a></li>
           <li><a href="${p}products/closed-circuit-cooling-towers.html">Closed Circuit Coil Towers</a></li>
@@ -199,24 +208,55 @@ function initMobileNav() {
   const overlay = document.querySelector('.mobile-nav-overlay');
   const closeBtn = drawer ? drawer.querySelector('.mobile-nav-close') : null;
 
-  const openDrawer = () => {
-    if (drawer) drawer.classList.add('is-open');
-    if (overlay) overlay.classList.add('is-open');
+  toggleBtns.forEach(btn => {
+    btn.setAttribute('aria-controls', 'mobile-nav-drawer');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-haspopup', 'dialog');
+  });
+
+  let lastFocusedElement = null;
+
+  const openDrawer = (triggerBtn) => {
+    lastFocusedElement = triggerBtn || document.activeElement;
+    if (drawer) {
+      drawer.classList.add('is-open', 'active');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+    if (overlay) {
+      overlay.classList.add('is-open', 'active');
+    }
+    toggleBtns.forEach(btn => btn.setAttribute('aria-expanded', 'true'));
     document.body.style.overflow = 'hidden';
+    if (closeBtn) {
+      closeBtn.focus();
+    }
   };
 
   const closeDrawer = () => {
-    if (drawer) drawer.classList.remove('is-open');
-    if (overlay) overlay.classList.remove('is-open');
+    if (drawer) {
+      drawer.classList.remove('is-open', 'active');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+    if (overlay) {
+      overlay.classList.remove('is-open', 'active');
+    }
+    toggleBtns.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
     document.body.style.overflow = '';
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      lastFocusedElement.focus();
+    }
   };
 
-  toggleBtns.forEach(btn => btn.addEventListener('click', openDrawer));
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => openDrawer(e.currentTarget));
+  });
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (overlay) overlay.addEventListener('click', closeDrawer);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeDrawer();
+    if (e.key === 'Escape' && drawer && (drawer.classList.contains('is-open') || drawer.classList.contains('active'))) {
+      closeDrawer();
+    }
   });
 
   if (drawer) {
