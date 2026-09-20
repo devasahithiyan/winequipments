@@ -1311,7 +1311,7 @@
       </div>
 
       <div style="max-width: 820px; margin: 0 auto; background: #FFFFFF; border-radius: var(--radius-xl); padding: 2.5rem; color: var(--color-text-main); box-shadow: var(--shadow-xl);">
-        <form class="rfq-form" id="masterHomeRfq">
+        <form class="rfq-form" id="masterHomeRfq" action="/send_rfq.php" method="POST" enctype="multipart/form-data">
           <!-- Honeypot anti-spam -->
           <input type="text" name="website_url_hp" style="display: none;" tabindex="-1" autocomplete="off">
 
@@ -1358,9 +1358,25 @@
             </div>
           </div>
 
-          <div style="margin-bottom: 1.5rem;">
+          <div style="margin-bottom: 1.25rem;">
             <label class="calc-label">Operating Parameters & Requirements</label>
             <textarea name="operating_parameters" rows="3" placeholder="Please specify flow rate (CFM / LPM / TR), inlet temperature, pressure (bar), or specific application (e.g., fiber laser, injection mold)..." class="calc-input"></textarea>
+          </div>
+
+          <!-- Drawing / Specification Upload Dropzone -->
+          <div style="margin-bottom: 1.5rem;">
+            <label class="calc-label">
+              <span>Attach Technical Specification or Layout Drawing (Optional)</span>
+              <span style="font-weight: normal; font-size: var(--text-xs); color: var(--color-text-muted);">PDF, DWG, DXF, STEP, PNG, ZIP (Max 10MB)</span>
+            </label>
+            <div class="rfq-file-dropzone" id="home-rfq-dropzone">
+              <input type="file" name="drawing_file" accept=".pdf,.dwg,.dxf,.step,.stp,.png,.jpg,.jpeg,.doc,.docx,.zip" style="display: none;">
+              <div class="dropzone-prompt">
+                <i class="fas fa-cloud-upload-alt dropzone-icon"></i>
+                <span class="dropzone-text">Click to upload or drag & drop GA drawing / spec sheet</span>
+                <span class="dropzone-subtext">Supports PDF, CAD (DWG, DXF, STEP), image, or archive</span>
+              </div>
+            </div>
           </div>
 
           <button type="submit" class="btn btn-cta btn-lg" style="width: 100%;">

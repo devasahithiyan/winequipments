@@ -2,6 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/winequipments/public_html/
+    - /bin/mkdir -p $DEPLOYPATH/uploads
     - /bin/cp -R blog $DEPLOYPATH
     - /bin/cp -R catlogue $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH

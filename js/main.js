@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMachineHotspots();
   initHomepageMiniCalculator();
   initSpecTableQuoting();
+  initDrawingDropzones();
 });
 
 /* 1. Subtle Page Transitions */
@@ -608,6 +609,97 @@ function initSpecTableQuoting() {
   });
 }
 
+/* 2.9 RFQ File & Drawing Upload Dropzones */
+function initDrawingDropzones() {
+  const dropzones = document.querySelectorAll('.rfq-file-dropzone');
+  dropzones.forEach(dropzone => {
+    const fileInput = dropzone.querySelector('input[type="file"]');
+    const promptEl = dropzone.querySelector('.dropzone-prompt');
+    if (!fileInput) return;
+
+    // Click anywhere on dropzone triggers file input
+    dropzone.addEventListener('click', (e) => {
+      if (e.target.closest('.dropzone-clear-btn')) return;
+      fileInput.click();
+    });
+
+    // Keyboard accessibility
+    dropzone.setAttribute('tabindex', '0');
+    dropzone.setAttribute('role', 'button');
+    dropzone.setAttribute('aria-label', 'Upload CAD drawing or technical specification');
+    dropzone.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        fileInput.click();
+      }
+    });
+
+    // Drag and Drop
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('is-dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('is-dragover');
+      });
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+        fileInput.files = e.dataTransfer.files;
+        handleFileSelection(fileInput, dropzone, promptEl);
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      handleFileSelection(fileInput, dropzone, promptEl);
+    });
+  });
+}
+
+function handleFileSelection(fileInput, dropzone, promptEl) {
+  let selectedDisplay = dropzone.querySelector('.dropzone-file-selected');
+  if (fileInput.files && fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const sizeKb = (file.size / 1024).toFixed(1);
+    const sizeMb = (file.size / (1024 * 1024)).toFixed(2);
+    const sizeStr = file.size > 1048576 ? `${sizeMb} MB` : `${sizeKb} KB`;
+
+    if (promptEl) promptEl.style.display = 'none';
+    if (!selectedDisplay) {
+      selectedDisplay = document.createElement('div');
+      selectedDisplay.className = 'dropzone-file-selected';
+      dropzone.appendChild(selectedDisplay);
+    }
+    selectedDisplay.style.display = 'flex';
+    selectedDisplay.innerHTML = `
+      <i class="fas fa-file-check" style="font-size:1.1rem; color:#10B981;"></i>
+      <span><strong>${file.name}</strong> (${sizeStr})</span>
+      <button type="button" class="dropzone-clear-btn" title="Remove file" aria-label="Remove uploaded file">&times;</button>
+    `;
+
+    const clearBtn = selectedDisplay.querySelector('.dropzone-clear-btn');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.value = '';
+        selectedDisplay.style.display = 'none';
+        if (promptEl) promptEl.style.display = 'flex';
+      });
+    }
+  } else {
+    if (selectedDisplay) selectedDisplay.style.display = 'none';
+    if (promptEl) promptEl.style.display = 'flex';
+  }
+}
+
 /* 3. Unified Lead Form Dispatch Engine */
 function initLeadForms() {
   const forms = document.querySelectorAll('form.rfq-form, form.lead-capture-form');
@@ -640,14 +732,28 @@ function initLeadForms() {
         ? (pathDepth >= 2 ? '../send_rfq.php' : 'send_rfq.php')
         : '/send_rfq.php';
 
-      fetch(handlerPath, {
+      // Check if there is an uploaded file
+      const fileInput = form.querySelector('input[type="file"]');
+      const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+
+      const fetchOptions = hasFile ? {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+      } : {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
         },
         body: JSON.stringify(leadPayload)
-      })
+      };
+
+      fetch(handlerPath, fetchOptions)
       .then(response => {
         if (!response.ok && response.status !== 200) {
           return response.json().catch(() => ({ success: false }));
@@ -662,6 +768,8 @@ function initLeadForms() {
           showConfirmationModal(leadPayload, assignedRef);
           showSuccessInline(form, assignedRef);
           form.reset();
+          form.querySelectorAll('.dropzone-file-selected').forEach(el => el.style.display = 'none');
+          form.querySelectorAll('.dropzone-prompt').forEach(el => el.style.display = 'flex');
         }
       })
       .catch(error => {

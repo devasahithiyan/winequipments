@@ -45,9 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Determine request type
+// Determine request type
 $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
-$isAjax      = (strpos($contentType, 'application/json') !== false)
-             || (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest');
+$isJson      = (strpos($contentType, 'application/json') !== false);
+$isAjax      = $isJson 
+             || (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest')
+             || (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false);
 
 // CORS: allow same-origin + winequipments.com
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
@@ -55,7 +58,7 @@ if ($origin && (strpos($origin, 'winequipments.com') !== false || strpos($origin
     header('Access-Control-Allow-Origin: ' . $origin);
 }
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Accept');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { 
     http_response_code(204); 
@@ -63,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 /* ── parse payload ────────────────────────────────────────────────── */
-if ($isAjax) {
+if ($isJson) {
     $raw  = file_get_contents('php://input');
     $data = json_decode($raw, true);
     if (!is_array($data)) {
@@ -109,6 +112,34 @@ $equipType  = clean($data['equipment_type']       ?? $data['AuditFocus']    ?? $
 $parameters = clean($data['operating_parameters'] ?? $data['Symptoms']      ?? $data['Requirements']   ?? $data['Notes'] ?? $data['MachineDetails'] ?? '');
 $formSource = clean($data['form_source']          ?? $data['_page']         ?? 'Website');
 
+/* ── handle drawing / document upload ────────────────────────────── */
+$uploadedFileInfo = '';
+$uploadedFilePath = '';
+if (!empty($_FILES['drawing_file']['name']) && $_FILES['drawing_file']['error'] === UPLOAD_ERR_OK) {
+    $fileTmpPath   = $_FILES['drawing_file']['tmp_name'];
+    $fileName      = $_FILES['drawing_file']['name'];
+    $fileSize      = $_FILES['drawing_file']['size'];
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+    $allowedExtensions = ['pdf', 'dwg', 'dxf', 'step', 'stp', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'zip'];
+    $maxFileSize       = 10 * 1024 * 1024; // 10 MB
+
+    if (in_array($fileExtension, $allowedExtensions, true) && $fileSize <= $maxFileSize) {
+        $uploadDir = __DIR__ . '/uploads/';
+        if (!is_dir($uploadDir)) {
+            @mkdir($uploadDir, 0755, true);
+        }
+        $safeFileName = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $fileName);
+        $destPath     = $uploadDir . $safeFileName;
+
+        if (move_uploaded_file($fileTmpPath, $destPath)) {
+            $uploadedFilePath = $destPath;
+            $fileUrl = SITE_URL . '/uploads/' . $safeFileName;
+            $uploadedFileInfo = "Attached Document : {$fileName} (" . round($fileSize / 1024) . " KB)\nDownload Link      : {$fileUrl}\n";
+        }
+    }
+}
+
 /* ── reference ID ─────────────────────────────────────────────────── */
 $refId = 'WE-' . strtoupper(substr(md5(uniqid('', true)), 0, 6));
 
@@ -151,6 +182,9 @@ $body .= "Source Page   : {$formSource}\n";
 $body .= "Received At   : " . date('d M Y, H:i:s T') . "\n";
 if ($cadRequested) {
     $body .= "CAD Drawings  : YES - 2D GA & Foundation Drawings Requested\n";
+}
+if (!empty($uploadedFileInfo)) {
+    $body .= $uploadedFileInfo;
 }
 $body .= "\n";
 $body .= "── Customer Contact Details ──\n";
