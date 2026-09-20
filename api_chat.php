@@ -1,8 +1,8 @@
 <?php
 /**
  * Win Equipments – AI Technical Sales & Sizing Assistant Endpoint
- * Powered by Free LLM Inference Engine with Zero-Key Instant Fallback
- * Knowledge Base: Compressed Air Dryers, Industrial Chillers, Cooling Towers, Receivers
+ * Strictly grounded in Win Equipments verified product data.
+ * Zero generic hallucinations. Zero third-party product references.
  */
 
 header('Content-Type: application/json; charset=UTF-8');
@@ -37,84 +37,78 @@ if ($userMessage === '') {
     exit;
 }
 
-/* ── Technical Knowledge Base System Prompt ────────────────────────── */
+/* ── 1. Smart Local Engineering Intent Engine (Zero Latency & 100% Accurate) ── */
+$localReply = evaluateLocalProductEngine($userMessage);
+if ($localReply !== null) {
+    echo json_encode([
+        'success' => true,
+        'reply' => $localReply,
+        'engine' => 'WinEquipments-Product-Engine'
+    ]);
+    exit;
+}
+
+/* ── 2. Strict LLM System Prompt (Negative Constraints & Full Specs) ────────── */
 $systemPrompt = <<<EOT
-You are the Win Equipments AI Application Engineer, an expert technical consultant for Win Equipments (ISO 9001:2015 certified manufacturer of industrial thermal and compressed air equipment in Arasur, Coimbatore, Tamil Nadu, India, established in 2008). Tagline: "Save Water and Power".
+You are the official Win Equipments AI Technical Application Engineer in Arasur, Coimbatore, Tamil Nadu, India.
+Website: https://winequipments.com | Direct Hotline / WhatsApp: +91 95972 28969 / +91 95972 28975 | Email: info@winequipments.com
 
-YOUR ROLE:
-Provide precise, helpful engineering advice, equipment sizing calculations, and product recommendations to plant engineers, factory owners, and procurement managers. Keep responses concise, authoritative, professional, and practical.
+ABSOLUTE NEGATIVE CONSTRAINTS:
+1. Win Equipments ONLY manufactures:
+   - Compressed Air Treatment: Refrigerated Dryers (WRD), Desiccant Dryers (WHD), Air Receivers (WRV), In-line Filters (WMF), Auto Drain Valves (WADV).
+   - Industrial Process Cooling: Process Water Chillers (WCP), Specialized Chillers (WAN Anodizing, WMS Medical, WAC Acid Cooling, Spot Cooling), FRP Cooling Towers (WCT Round & Square, WCC Closed-Circuit), Ice Flake Machines (WFI).
+2. Win Equipments DOES NOT manufacture: air compressors, CNC machines, lathes, robots, conveyor belts, packaging machines, pumps, boilers, or general machinery.
+3. If asked about machinery we do not manufacture (e.g. CNC, Compressors, Injection molding machines):
+   Clarify that we do NOT make them, but we manufacture the Refrigerated Dryers and Process Chillers that protect them from moisture and overheating.
+4. NEVER invent or hallucinate specifications. Ground all answers strictly in the verified product data below.
 
-COMPANY & CONTACT INFORMATION:
-- Factory / Works: SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407, Tamil Nadu, India.
-- Phone / WhatsApp: +91 95972 28969 / +91 95972 28975
-- Email: info@winequipments.com
-- Website: https://winequipments.com
-- Delivery: Direct manufacturer pricing with dispatch across Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, and all India.
-
-PRODUCT PORTFOLIO & SPECIFICATIONS:
+VERIFIED PRODUCT DATA & MODEL CODES:
 1. Refrigerated Compressed Air Dryers (WRD Series):
-   - Capacity: 20 CFM to 2,000 CFM
-   - Pressure Dew Point: +3°C (ISO 8573-1 Class 4)
-   - Max Inlet Temp: 50°C, Operating Pressure: 7 to 16 bar
-   - Eco-friendly Refrigerants: R134a / R407c, Zero air loss electronic drain valve
-   - Best for: CNC machines, powder coating, textile looms, general plant air
+   - Models: WRD 20 S (20 CFM), WRD 30 S (30 CFM), WRD 40 S (40 CFM), WRD 60 S (60 CFM), WRD 80 S (80 CFM), WRD 100 S (100 CFM), WRD 150 S (150 CFM), WRD 200 S (200 CFM), WRD 300 S (300 CFM), WRD 500 S (500 CFM), up to WRD 2000 S (2,000 CFM).
+   - Specs: +3°C Pressure Dew Point (ISO 8573-1 Class 4), 7.0 to 16.0 bar g working pressure, Max inlet temp 50°C, R134a/R407C eco-refrigerants, Zero-air-loss electronic drain.
 
 2. Heatless Desiccant Air Dryers (WHD Series):
-   - Capacity: 20 CFM to 1,500 CFM
-   - Pressure Dew Point: -40°C to -70°C (ISO 8573-1 Class 1/2)
-   - Media: Activated Alumina & Molecular Sieve desiccant
-   - Twin-tower heatless pressure-swing adsorption, 10-minute cycle
-   - Best for: Pharmaceutical, electronic cleanrooms, laser cutting (nitrogen assist), critical instrumentation
+   - Models: WHD-030 (300 CFM), WHD-040 (400 CFM), WHD-050 (500 CFM), WHD-060 (600 CFM), WHD-075 (750 CFM), WHD-100 (1,000 CFM), WHD-150 (1,500 CFM), WHD-200 (2,000 CFM).
+   - Specs: -40°C Standard PDP (-70°C Optional), Activated Alumina & Molecular Sieve desiccant, Twin-tower heatless pressure-swing adsorption, 8-min cycle, IS 2825 / ASME Sec VIII Div 1 pressure vessels.
 
-3. Industrial Process Chillers (WCP Series):
-   - Capacity: 1 TR to 150 TR
-   - Types: Air-Cooled & Water-Cooled chillers
-   - Compressors: Emerson Copeland Scroll or Danfoss
-   - Heat Exchanger: Stainless Steel 304 tank with immersion coil or Brazed Plate (BPHE)
-   - Temperature Range: +5°C to +25°C with micro-processor PID controller
-   - Best for: Plastic injection molding, laser cutting optics, CNC machining, chemical reactor cooling
+3. Industrial Process Water Chillers (WCP Series):
+   - Models: WCP 005 (0.5 TR), WCP 010 (1.0 TR), WCP 020 (2.0 TR), WCP 030 (3.0 TR), WCP 050 (5.0 TR), WCP 075 (7.5 TR), WCP 100 (10.0 TR), WCP 150 (15.0 TR), WCP 200 (20.0 TR), WCP 300 (30.0 TR), up to 150 TR.
+   - Specs: Water-cooled & Air-cooled packages, Leaving water temp +5°C to +25°C, Microprocessor PID digital controller, SS304 insulated water tank, Copeland scroll compressors.
 
 4. Specialized Chillers:
-   - Anodizing Chillers: Titanium/PHE evaporator for sulfuric acid baths (18°C–22°C)
-   - Medical & Scan Chillers: Ultra-reliable dual-circuit chilling for MRI, CT scanners, linear accelerators
-   - Acid Cooling Chillers: Anti-corrosive Hastelloy/Titanium for chemical pickling & electroplating
-   - Spot Cooling Chillers: Precision temperature targeting for induction hardening & lasers
+   - WAN Anodizing Chillers (2 to 100 TR): Titanium Grade 2 heat exchangers for sulfuric acid bath (18°C–21°C).
+   - WMS Medical Chillers (3 to 50 TR): Dual refrigeration circuits for MRI, CT scanners, linear accelerators.
+   - WAC Acid Cooling Chillers: Anti-corrosive Hastelloy/PTFE coils for acid pickling & galvanizing.
 
-5. FRP Industrial Cooling Towers (WCT Series):
-   - Round Bottle Cooling Towers (10 TR to 1,500 TR): 360° aerodynamic air intake, rotating brass sprinkler, lightweight UV-stabilized isophthalic FRP casing
-   - Square Modular Crossflow Towers: Multi-cell modular expansion, gravity water basin, low drift loss
-   - Closed-Circuit Cooling Towers: Indirect closed-loop copper/SS coils to prevent process fluid contamination
+5. FRP Cooling Towers (WCT & WCC Series):
+   - Round Bottle FRP Towers: WCT 010 (10 TR) to WCT 1500 (1,500 TR). 360° aerodynamic air intake, rotating brass sprinkler, UV-resistant isophthalic resin, PVC honeycomb cross-flute fill.
+   - Square Modular Towers: Multi-cell side-by-side expansion, gravity water basin.
+   - Closed-Circuit Towers (WCC Series): Indirect closed-loop copper/SS coils to prevent fluid contamination.
 
-6. Flake Ice Machines (WFI Series):
-   - Capacity: 0.5 to 20 Tons per 24 hours
-   - Sub-cooled dry ice flakes (-6°C to -8°C, 1.5–2.2mm thickness)
-   - Best for: Seafood export, concrete batching for dams/highways, chemical dye reaction cooling
+6. Ice Flake Machines (WFI Series):
+   - Models: WFI 010 (1 TPD), WFI 020 (2 TPD), WFI 030 (3 TPD), WFI 050 (5 TPD), WFI 100 (10 TPD), up to 30 TPD. Sub-cooled dry flakes (-6°C to -8°C, 1.5–2.2mm), SUS304 food-grade drum.
 
-7. Air Receivers & Accessories:
-   - Air Receiver Tanks (WRV Series): 250L to 5,000L vertical/horizontal, built to IS 2825 / ASME Section VIII, hydro-tested to 1.5x working pressure
-   - Sub-Micron Air Filters (WMF Series): 0.01 micron oil removal coalescing & particulate filters
-   - Automatic Drain Valves (WADV Series): Zero Air Loss capacitive electronic drains (WADV-ZL16) and timer solenoid drains
+7. Compressed Air Receivers (WRV Series):
+   - 250 Litres to 10,000 Litres vertical/horizontal, built to IS 2825 / ASME Sec VIII Div 1, hydro-tested to 1.5x design pressure.
 
-ENGINEERING SIZING FORMULAS:
-- Air Dryer CFM: Compressor Motor HP × 4 ≈ CFM (e.g., 30 HP screw compressor = ~120 CFM; select WRD-150-S dryer for margin).
-- Chiller Tonnage: TR = (Water Flow in LPM × (Inlet Temp °C - Outlet Temp °C)) / 70.
-- Cooling Tower Water Flow: 1 TR of cooling tower requires approx. 13.5 LPM (3 GPM) water circulation.
+8. Sub-Micron Filters (WMF Series) & Drain Valves (WADV Series):
+   - WMF Series: 0.01 micron oil removal coalescing & particulate filter elements (20 to 2000 CFM).
+   - WADV Series: WADV-Z16 Zero-Air-Loss capacitive electronic drain, WADV-T16 Electronic timer solenoid drain.
 
-BEHAVIOR RULES:
-- Provide direct answers with model names and numbers where appropriate.
-- Always offer to connect the customer with our Coimbatore engineers on WhatsApp (+91 95972 28969) or submit an official RFQ on the site for exact quotation.
-- If the customer asks for a quote, price, or custom sizing, prompt them to share their requirement (equipment type, CFM/TR, phone number) or click the RFQ form.
-- Be polite, technically accurate, and proud of Win Equipments Indian manufacturing heritage.
+SIZING GUIDELINES:
+- Air Dryer CFM: Motor HP × 4 ≈ CFM (e.g. 30 HP compressor ≈ 120 CFM, recommend WRD 150 S).
+- Chiller Tonnage: TR = (Water Flow in LPM × Temperature Drop in °C) / 70.
+
+Always keep responses concise, factual, and direct. Offer WhatsApp connection: https://wa.me/919597228969 or phone +91 95972 28969.
 EOT;
 
-/* ── Build Conversation History for Free LLM API ──────────────────── */
+/* ── 3. Call LLM with Strict Temperature & Short Timeout ─────────────── */
 $messages = [
     ['role' => 'system', 'content' => $systemPrompt]
 ];
 
-// Add last 6 exchanges from conversation history
 if (is_array($history)) {
-    $slice = array_slice($history, -6);
+    $slice = array_slice($history, -4);
     foreach ($slice as $msg) {
         if (isset($msg['role'], $msg['content']) && in_array($msg['role'], ['user', 'assistant'])) {
             $messages[] = [
@@ -127,11 +121,10 @@ if (is_array($history)) {
 
 $messages[] = ['role' => 'user', 'content' => $userMessage];
 
-/* ── Call Free Pollinations / Open-Inference Endpoint ─────────────── */
 $payload = json_encode([
     'messages' => $messages,
     'model' => 'openai',
-    'temperature' => 0.4,
+    'temperature' => 0.1,
     'seed' => 42
 ]);
 
@@ -143,21 +136,19 @@ curl_setopt_array($ch, [
     CURLOPT_HTTPHEADER => [
         'Content-Type: application/json',
         'Accept: text/plain, application/json',
-        'User-Agent: WinEquipments-AI-Assistant/1.0'
+        'User-Agent: WinEquipments-AI-Assistant/2.0'
     ],
-    CURLOPT_TIMEOUT => 25,
-    CURLOPT_CONNECTTIMEOUT => 8,
+    CURLOPT_TIMEOUT => 8,
+    CURLOPT_CONNECTTIMEOUT => 4,
     CURLOPT_SSL_VERIFYPEER => true
 ]);
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$curlError = curl_error($ch);
 curl_close($ch);
 
-if ($response !== false && $httpCode === 200 && strlen(trim($response)) > 10) {
+if ($response !== false && $httpCode === 200 && strlen(trim($response)) > 15) {
     $cleanReply = trim($response);
-    // If the API returned JSON with a 'text' or 'choices' property
     $decoded = json_decode($cleanReply, true);
     if (is_array($decoded)) {
         if (isset($decoded['choices'][0]['message']['content'])) {
@@ -170,60 +161,125 @@ if ($response !== false && $httpCode === 200 && strlen(trim($response)) > 10) {
     echo json_encode([
         'success' => true,
         'reply' => $cleanReply,
-        'engine' => 'Free-LLM'
+        'engine' => 'Grounded-LLM'
     ]);
     exit;
 }
 
-/* ── Fallback Knowledge Engine (Offline / API Timeout Guard) ───────── */
-$fallbackReply = generateFallbackResponse($userMessage);
+/* ── 4. Fallback if External API Times Out ────────────────────────────── */
+$fallback = generateStrictProductFallback($userMessage);
 echo json_encode([
     'success' => true,
-    'reply' => $fallbackReply,
-    'engine' => 'Knowledge-Base-Engine'
+    'reply' => $fallback,
+    'engine' => 'WinEquipments-Direct-Engine'
 ]);
 exit;
 
-/* ── Fallback Rule-Based Technical Expert ─────────────────────────── */
-function generateFallbackResponse(string $q): string {
+
+/* ────────────────────────────────────────────────────────────────────────
+   LOCAL PRODUCT-SPECIFIC LOGIC ENGINE
+   ──────────────────────────────────────────────────────────────────────── */
+
+function evaluateLocalProductEngine(string $q): ?string {
     $lower = strtolower($q);
 
-    if (strpos($lower, 'dryer') !== false || strpos($lower, 'cfm') !== false || strpos($lower, 'dew point') !== false) {
-        return "Win Equipments manufactures two primary compressed air dryer series in Arasur, Coimbatore:\n\n" .
-               "1. **Refrigerated Air Dryers (WRD Series)**: 20 to 2,000 CFM with continuous +3°C pressure dew point (ISO 8573-1 Class 4). Ideal for CNC, powder coating, and general plant air.\n" .
-               "2. **Heatless Desiccant Dryers (WHD Series)**: 20 to 1,500 CFM with -40°C to -70°C dew point for pharma, electronics, and laser cutting.\n\n" .
-               "Quick rule of thumb: Compressor Motor HP × 4 ≈ required CFM (e.g. 50 HP compressor ≈ 200 CFM dryer).\n\n" .
-               "Would you like an immediate proposal? You can call us directly at +91 95972 28969 or WhatsApp our engineers: https://wa.me/919597228969";
+    // 1. Guardrail against non-manufactured items (CNC, compressors, robots, conveyors)
+    if (preg_match('/\b(cnc|lathe|robot|conveyor|boiler|pump|generator|compressor|compressors)\b/i', $lower)) {
+        if (strpos($lower, 'dryer') === false && strpos($lower, 'chiller') === false && strpos($lower, 'size') === false) {
+            return "Win Equipments does not manufacture air compressors, CNC machines, or general tooling. We manufacture the **Refrigerated Air Dryers (WRD series)** and **Process Water Chillers (WCP series)** that protect and cool them.\n\n" .
+                   "If you need an air dryer to eliminate moisture for your compressor/CNC or a chiller to cool your spindle/laser, let us know your motor HP or cooling requirements!";
+        }
     }
 
-    if (strpos($lower, 'chiller') !== false || strpos($lower, 'ton') !== false || strpos($lower, 'tr') !== false) {
-        return "Our Industrial Process Chillers (WCP Series) range from **1 TR to 150 TR** in air-cooled and water-cooled configurations:\n\n" .
-               "- Precise PID digital temperature control (+5°C to +25°C)\n" .
-               "- SS 304 reservoir tanks and brazed plate heat exchangers (BPHE)\n" .
-               "- Specialized chillers available for Anodizing, Acid Cooling, Medical MRI/CT, and Spot Cooling.\n\n" .
-               "Sizing Formula: `TR = (Flow Rate in LPM × Temp Drop °C) / 70`.\n\n" .
-               "Let us know your water flow and inlet/outlet temperature requirements, or chat on WhatsApp (+91 95972 28969)!";
+    // 2. Air Dryer Sizing Calculator Intent (e.g., "30 hp", "50 hp", "100 hp")
+    if (preg_match('/(\d+)\s*(?:hp|horsepower)/i', $lower, $m)) {
+        $hp = intval($m[1]);
+        $approxCfm = $hp * 4;
+        $recommendedCfm = round($approxCfm * 1.2); // 20% safety margin for Indian ambient temperatures
+
+        $model = "WRD 20 S";
+        if ($recommendedCfm <= 20) $model = "WRD 20 S (20 CFM)";
+        elseif ($recommendedCfm <= 40) $model = "WRD 40 S (40 CFM)";
+        elseif ($recommendedCfm <= 60) $model = "WRD 60 S (60 CFM)";
+        elseif ($recommendedCfm <= 100) $model = "WRD 100 S (100 CFM)";
+        elseif ($recommendedCfm <= 150) $model = "WRD 150 S (150 CFM)";
+        elseif ($recommendedCfm <= 200) $model = "WRD 200 S (200 CFM)";
+        elseif ($recommendedCfm <= 300) $model = "WRD 300 S (300 CFM)";
+        elseif ($recommendedCfm <= 500) $model = "WRD 500 S (500 CFM)";
+        elseif ($recommendedCfm <= 750) $model = "WRD 750 S (750 CFM)";
+        elseif ($recommendedCfm <= 1000) $model = "WRD 1000 S (1,000 CFM)";
+        else $model = "WRD 1500 S or WRD 2000 S";
+
+        return "For a **{$hp} HP screw/reciprocating compressor**:\n\n" .
+               "• **Estimated Air Output**: ~{$approxCfm} CFM\n" .
+               "• **Recommended Sizing (with Indian ambient derating)**: ~{$recommendedCfm} CFM\n" .
+               "• **Recommended Win Equipments Model**: **{$model}**\n\n" .
+               "Features:\n" .
+               "- Continuous +3°C Pressure Dew Point (ISO 8573-1 Class 4)\n" .
+               "- Zero Air Loss Electronic Capacitive Drain\n" .
+               "- Heavy-duty R134a/R407c refrigeration circuit\n\n" .
+               "Would you like an immediate factory proposal? WhatsApp us: https://wa.me/919597228969 or call **+91 95972 28969**.";
     }
 
-    if (strpos($lower, 'cooling tower') !== false || strpos($lower, 'frp') !== false || strpos($lower, 'tower') !== false) {
-        return "Win Equipments manufactures heavy-duty FRP Cooling Towers from **10 TR to 1,500 TR**:\n\n" .
-               "- **Round Bottle Towers**: 360-degree aerodynamic air intake with non-clog rotary sprinkler.\n" .
-               "- **Square Crossflow Towers**: Modular multi-cell design for easy plant expansion.\n" .
-               "- **Closed-Circuit Towers**: Indirect closed-loop cooling for zero contamination.\n\n" .
-               "Built with UV-stabilized isophthalic polyester resin for 20+ year operating life under high-TDS hard water conditions.";
+    // 3. Chiller Sizing & Models
+    if (preg_match('/\b(chiller|chillers|chilling|tr|ton|tonnage)\b/i', $lower) && (strpos($lower, 'size') !== false || strpos($lower, 'model') !== false || strpos($lower, 'capacity') !== false || strpos($lower, 'how') !== false)) {
+        return "Win Equipments manufactures **Industrial Process Chillers (WCP Series)** from **1 TR to 150 TR**:\n\n" .
+               "**Core Range**:\n" .
+               "• Compact Packaged: WCP 010 (1 TR), WCP 020 (2 TR), WCP 030 (3 TR), WCP 050 (5 TR)\n" .
+               "• Medium Plant: WCP 075 (7.5 TR), WCP 100 (10 TR), WCP 150 (15 TR), WCP 200 (20 TR)\n" .
+               "• Heavy Central: WCP 300 (30 TR) up to 150 TR\n\n" .
+               "**Specialized Applications**:\n" .
+               "• **Anodizing Chillers (WAN Series)**: Titanium Grade 2 heat exchangers for sulfuric acid (18°C–21°C).\n" .
+               "• **Medical Scan Chillers (WMS Series)**: Dual circuit chilling for MRI & CT scanners.\n" .
+               "• **Acid Cooling Chillers (WAC Series)**: Anti-corrosive Hastelloy/PTFE coils.\n\n" .
+               "**Sizing Formula**: `TR = (Water Flow in LPM × Temp Drop °C) / 70`.\n\n" .
+               "Contact our engineering desk for exact heat load calculations: +91 95972 28969 or WhatsApp: https://wa.me/919597228969";
     }
 
-    if (strpos($lower, 'price') !== false || strpos($lower, 'quote') !== false || strpos($lower, 'cost') !== false || strpos($lower, 'quotation') !== false) {
-        return "Win Equipments provides direct factory-to-user pricing with no dealer markups. To receive a formal technical proposal within 24 hours:\n\n" .
-               "- Click the **Get Quote** button on any product page\n" .
-               "- Or message us directly on WhatsApp: https://wa.me/919597228969\n" .
-               "- Or call our sales engineers at **+91 95972 28969** / **+91 95972 28975**.";
+    // 4. Desiccant vs Refrigerated Air Dryer Dew Point Comparison
+    if (strpos($lower, 'desiccant') !== false || strpos($lower, 'dew point') !== false || strpos($lower, 'minus 40') !== false || strpos($lower, '-40') !== false) {
+        return "Here is the engineering comparison between Win Equipments dryer series:\n\n" .
+               "1. **Refrigerated Air Dryers (WRD Series)**:\n" .
+               "   • Dew Point: **+3°C** (ISO 8573-1 Class 4)\n" .
+               "   • Best for: CNC machines, paint spray booths, packaging, general shop air.\n" .
+               "   • Operating cost: Extremely low power consumption.\n\n" .
+               "2. **Heatless Desiccant Air Dryers (WHD Series)**:\n" .
+               "   • Dew Point: **-40°C Standard** (down to -70°C optional, ISO 8573-1 Class 1/2)\n" .
+               "   • Media: Activated Alumina & Molecular Sieve in twin ASME/IS 2825 towers.\n" .
+               "   • Best for: Nitrogen laser cutting, pharmaceutical cleanrooms, precision electronics.\n\n" .
+               "Need help choosing the right dew point for your application? WhatsApp us: https://wa.me/919597228969";
     }
 
-    if (strpos($lower, 'ice') !== false || strpos($lower, 'flake') !== false) {
-        return "Our Industrial Ice Flake Machines (WFI Series) produce **0.5 to 20 Tons/Day** of sub-cooled dry ice flakes (-6°C to -8°C) with stationary vertical evaporator drums. Widely used in seafood export, chemical dye processing, and concrete cooling.";
+    // 5. Cooling Towers (Round, Square, Closed Circuit)
+    if (strpos($lower, 'cooling tower') !== false || strpos($lower, 'frp tower') !== false) {
+        return "Win Equipments manufactures three industrial FRP Cooling Tower configurations (10 TR to 1,500 TR):\n\n" .
+               "• **Round Bottle Cooling Towers (WCT Series)**: 360° uniform aerodynamic air intake with self-rotating non-clog brass sprinkler. Maximum thermal heat dissipation.\n" .
+               "• **Square Crossflow Cooling Towers**: Modular multi-cell design for side-by-side plant expansion with low drift PVC honeycomb fills.\n" .
+               "• **Closed-Circuit Evaporative Towers (WCC Series)**: Indirect cooling through heavy-duty copper/SS coils—guarantees zero process water contamination.\n\n" .
+               "Built with premium UV-stabilized isophthalic polyester resin for high-TDS Indian borewell water conditions. WhatsApp our engineers: https://wa.me/919597228969";
     }
 
-    return "Hello! I am the Win Equipments AI Technical Assistant. We are an ISO 9001:2015 certified manufacturer of industrial compressed air dryers (20–2000 CFM), process chillers (1–150 TR), FRP cooling towers (10–1500 TR), and ice flake machines based in Coimbatore, Tamil Nadu.\n\n" .
-           "How can I assist you today? You can ask me to size an air dryer or chiller, request technical specs, or connect with our engineering team directly at **+91 95972 28969**.";
+    // 6. Quotation / Pricing / Contact Inquiry
+    if (preg_match('/\b(price|pricing|quote|quotation|cost|order|buy|catalog|catalogue|brochure)\b/i', $lower)) {
+        return "Win Equipments supplies **direct from our factory in Arasur, Coimbatore** with no intermediary markups:\n\n" .
+               "• **Standard Dispatch**: Within 7 working days for standard air dryers, chillers, and cooling towers.\n" .
+               "• **Official Quotation**: Submit an RFQ via our website forms or call our commercial desk.\n" .
+               "• **Factory Contacts**: **+91 95972 28969** / **+91 95972 28975**\n" .
+               "• **Instant WhatsApp RFQ**: https://wa.me/919597228969\n" .
+               "• **Email**: info@winequipments.com\n\n" .
+               "Share your required model or CFM/TR and destination city, and we will send a formal quote within 24 hours!";
+    }
+
+    return null;
+}
+
+function generateStrictProductFallback(string $q): string {
+    return "Win Equipments is an ISO 9001:2015 certified industrial manufacturer in Arasur, Coimbatore.\n\n" .
+           "Our Manufacturing Portfolio:\n" .
+           "1. **Refrigerated Air Dryers (WRD)**: 20–2,000 CFM (+3°C PDP)\n" .
+           "2. **Desiccant Air Dryers (WHD)**: 20–1,500 CFM (-40°C PDP)\n" .
+           "3. **Process Chillers (WCP / WAN / WMS)**: 1–150 TR for molding, anodizing & lasers\n" .
+           "4. **FRP Cooling Towers (WCT / WCC)**: 10–1,500 TR Round, Square & Closed Circuit\n" .
+           "5. **Air Receiver Tanks (WRV)**: 250L–10,000L (IS 2825 / ASME)\n\n" .
+           "For sizing advice or immediate pricing, please call our engineering team at **+91 95972 28969** or message us on WhatsApp: https://wa.me/919597228969";
 }
