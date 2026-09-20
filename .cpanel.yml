@@ -11,7 +11,6 @@ deployment:
     - /bin/cp -R js $DEPLOYPATH
     - /bin/cp -R locations $DEPLOYPATH
     - /bin/cp -R products $DEPLOYPATH
-    - /bin/cp -R ta $DEPLOYPATH
     - /bin/cp 404.html $DEPLOYPATH
     - /bin/cp about.html $DEPLOYPATH
     - /bin/cp blog.html $DEPLOYPATH
