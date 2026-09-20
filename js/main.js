@@ -139,54 +139,126 @@ function injectMobileDrawer() {
       <button class="mobile-nav-close" aria-label="Close Navigation Menu">&times;</button>
     </div>
 
-    <ul class="mobile-nav-links">
-      <li><a href="${p}index.html"><i class="fas fa-home" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> Home</a></li>
-      
-      <li>
-        <span class="mobile-nav-subhead">Compressed Air Treatment</span>
-        <ul class="mobile-nav-nested">
-          <li><a href="${p}products/refrigerated-air-dryers.html">Refrigerated Air Dryers (+3°C PDP)</a></li>
-          <li><a href="${p}products/desiccant-air-dryers.html">Desiccant Air Dryers (-40°C PDP)</a></li>
-          <li><a href="${p}products/compressed-air-filters.html">Sub-Micron Coalescing Filters</a></li>
-          <li><a href="${p}products/automatic-drain-valves.html">Zero Air Loss Drain Valves</a></li>
-          <li><a href="${p}products/air-receiver-tanks.html">Air Receiver Tanks (IS 2825)</a></li>
-          <li><a href="${p}products/industrial-aftercoolers.html">Compressor Discharge Aftercoolers</a></li>
-        </ul>
-      </li>
+    <div class="mobile-nav-search-wrap">
+      <button type="button" class="mobile-nav-search-trigger" aria-label="Search models and specs">
+        <i class="fas fa-search" style="color: var(--color-brand-accent);"></i>
+        <span>Search 15+ models, specs...</span>
+        <span class="search-kbd">Ctrl+K</span>
+      </button>
+    </div>
 
-      <li>
-        <span class="mobile-nav-subhead">Process Cooling & Towers</span>
-        <ul class="mobile-nav-nested">
-          <li><a href="${p}products/industrial-process-chillers.html">Industrial Process Chillers (1–150 TR)</a></li>
-          <li><a href="${p}products/acid-cooling-chillers.html">Acid Cooling Chillers (Titanium/SS316)</a></li>
-          <li><a href="${p}products/anodizing-chillers.html">Hard Anodizing Chillers (-5°C to +10°C)</a></li>
-          <li><a href="${p}products/medical-scan-chillers.html">Medical Scan Chillers (MRI/CT Dual-Circuit)</a></li>
-          <li><a href="${p}products/ice-flake-machines.html">Industrial Ice Flake Machines (0.5–50 TPD)</a></li>
-          <li><a href="${p}products/round-cooling-towers.html">Round Bottle FRP Towers (10–1500 TR)</a></li>
-          <li><a href="${p}products/square-cooling-towers.html">Square Crossflow Cooling Towers</a></li>
-          <li><a href="${p}products/closed-circuit-cooling-towers.html">Closed Circuit Coil Towers</a></li>
-          <li><a href="${p}products/spare-parts-consumables.html">Spares & Consumables Hub</a></li>
-        </ul>
-      </li>
+    <div class="mobile-nav-scroll-area">
+      <ul class="mobile-nav-links">
+        <li><a href="${p}index.html" class="mobile-nav-direct"><i class="fas fa-home" style="margin-right: 0.6rem; color: var(--color-brand-accent);"></i> Home</a></li>
+        
+        <!-- Category Accordion 1: Process Cooling & Towers -->
+        <li class="mobile-accordion-item">
+          <button type="button" class="mobile-accordion-toggle" aria-expanded="true">
+            <span class="accordion-title-wrap">
+              <i class="fas fa-snowflake accordion-icon" style="color: #0284C7;"></i>
+              <span>Process Cooling & Towers</span>
+              <span class="accordion-count">9</span>
+            </span>
+            <i class="fas fa-chevron-down accordion-arrow" style="transform: rotate(180deg);"></i>
+          </button>
+          <div class="mobile-accordion-content" style="display: block;">
+            <ul class="mobile-nav-nested">
+              <li><a href="${p}products/industrial-process-chillers.html">Industrial Process Chillers (1–150 TR)</a></li>
+              <li><a href="${p}products/round-cooling-towers.html">Round Bottle FRP Towers (10–1500 TR)</a></li>
+              <li><a href="${p}products/square-cooling-towers.html">Square Crossflow Cooling Towers</a></li>
+              <li><a href="${p}products/closed-circuit-cooling-towers.html">Closed Circuit Coil Towers</a></li>
+              <li><a href="${p}products/anodizing-chillers.html">Hard Anodizing Chillers (-5°C to +10°C)</a></li>
+              <li><a href="${p}products/acid-cooling-chillers.html">Acid Cooling Chillers (Titanium/SS316)</a></li>
+              <li><a href="${p}products/medical-scan-chillers.html">Medical Scan Chillers (MRI/CT Dual)</a></li>
+              <li><a href="${p}products/ice-flake-machines.html">Industrial Ice Flake Machines (0.5–50 TPD)</a></li>
+              <li><a href="${p}products/spare-parts-consumables.html">Spares & Consumables Hub</a></li>
+            </ul>
+          </div>
+        </li>
 
-      <li>
-        <span class="mobile-nav-subhead">Engineering Tools & Calculators</span>
-        <ul class="mobile-nav-nested">
-          <li><a href="${p}engineering-tools/air-treatment-package-builder.html"><i class="fas fa-layer-group" style="margin-right: 0.35rem; color: #0E7490;"></i> Air Train Package Builder</a></li>
-          <li><a href="${p}engineering-tools/air-dryer-sizing.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Air Dryer CFM Calculator</a></li>
-          <li><a href="${p}engineering-tools/cooling-tower-calculator.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Cooling Tower TR Calculator</a></li>
-          <li><a href="${p}engineering-tools/chiller-tonnage-calculator.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Chiller Heat Load Calculator</a></li>
-          <li><a href="${p}engineering-tools/compressed-air-energy-calculator.html"><i class="fas fa-bolt" style="margin-right: 0.35rem;"></i> Drain Energy Loss Calculator</a></li>
-        </ul>
-      </li>
+        <!-- Category Accordion 2: Compressed Air Treatment -->
+        <li class="mobile-accordion-item">
+          <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
+            <span class="accordion-title-wrap">
+              <i class="fas fa-wind accordion-icon" style="color: #0E7490;"></i>
+              <span>Compressed Air Treatment</span>
+              <span class="accordion-count">6</span>
+            </span>
+            <i class="fas fa-chevron-down accordion-arrow"></i>
+          </button>
+          <div class="mobile-accordion-content" style="display: none;">
+            <ul class="mobile-nav-nested">
+              <li><a href="${p}products/refrigerated-air-dryers.html">Refrigerated Air Dryers (+3°C PDP)</a></li>
+              <li><a href="${p}products/desiccant-air-dryers.html">Desiccant Air Dryers (-40°C PDP)</a></li>
+              <li><a href="${p}products/compressed-air-filters.html">Sub-Micron Coalescing Filters</a></li>
+              <li><a href="${p}products/automatic-drain-valves.html">Zero Air Loss Drain Valves</a></li>
+              <li><a href="${p}products/air-receiver-tanks.html">Air Receiver Tanks (IS 2825)</a></li>
+              <li><a href="${p}products/industrial-aftercoolers.html">Discharge Aftercoolers</a></li>
+            </ul>
+          </div>
+        </li>
 
-      <li><a href="${p}case-studies.html"><i class="fas fa-chart-line" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> Industrial Case Studies & ROI</a></li>
-      <li><a href="${p}certifications.html"><i class="fas fa-certificate" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> ISO 9001:2015 Certifications</a></li>
-      <li><a href="${p}installation.html"><i class="fas fa-tools" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> Installation & Commissioning</a></li>
-      <li><a href="${p}about.html"><i class="fas fa-info-circle" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> About Win Equipments</a></li>
-      <li><a href="${p}blog.html"><i class="fas fa-book" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> Technical Blog & Guides</a></li>
-      <li><a href="${p}contactus.html"><i class="fas fa-envelope" style="margin-right: 0.5rem; color: var(--color-brand-accent);"></i> Contact & Factory Works</a></li>
-    </ul>
+        <!-- Category Accordion 3: Engineering Tools & Calculators -->
+        <li class="mobile-accordion-item">
+          <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
+            <span class="accordion-title-wrap">
+              <i class="fas fa-calculator accordion-icon" style="color: #059669;"></i>
+              <span>Engineering Tools & Sizing</span>
+              <span class="accordion-count">5</span>
+            </span>
+            <i class="fas fa-chevron-down accordion-arrow"></i>
+          </button>
+          <div class="mobile-accordion-content" style="display: none;">
+            <ul class="mobile-nav-nested">
+              <li><a href="${p}engineering-tools/air-treatment-package-builder.html"><i class="fas fa-layer-group" style="margin-right: 0.35rem; color: #0E7490;"></i> Air Train Package Builder</a></li>
+              <li><a href="${p}engineering-tools/air-dryer-sizing.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Air Dryer CFM Sizing</a></li>
+              <li><a href="${p}engineering-tools/cooling-tower-calculator.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Cooling Tower TR Sizing</a></li>
+              <li><a href="${p}engineering-tools/chiller-tonnage-calculator.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Chiller Heat Load Sizing</a></li>
+              <li><a href="${p}engineering-tools/compressed-air-energy-calculator.html"><i class="fas fa-bolt" style="margin-right: 0.35rem;"></i> Drain Energy Loss Audit</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Category Accordion 4: Industries Served -->
+        <li class="mobile-accordion-item">
+          <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
+            <span class="accordion-title-wrap">
+              <i class="fas fa-industry accordion-icon" style="color: #D97706;"></i>
+              <span>Industries Served</span>
+            </span>
+            <i class="fas fa-chevron-down accordion-arrow"></i>
+          </button>
+          <div class="mobile-accordion-content" style="display: none;">
+            <ul class="mobile-nav-nested">
+              <li><a href="${p}industries/plastic-molding.html">Plastic Injection Molding & Extrusion</a></li>
+              <li><a href="${p}industries/laser-cutting.html">Laser Cutting & CNC Spindle Cooling</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Category Accordion 5: Company & Credentials -->
+        <li class="mobile-accordion-item">
+          <button type="button" class="mobile-accordion-toggle" aria-expanded="false">
+            <span class="accordion-title-wrap">
+              <i class="fas fa-building accordion-icon" style="color: #475569;"></i>
+              <span>Company & Credentials</span>
+            </span>
+            <i class="fas fa-chevron-down accordion-arrow"></i>
+          </button>
+          <div class="mobile-accordion-content" style="display: none;">
+            <ul class="mobile-nav-nested">
+              <li><a href="${p}about.html"><i class="fas fa-info-circle" style="margin-right: 0.4rem;"></i> About Win Equipments</a></li>
+              <li><a href="${p}certifications.html"><i class="fas fa-certificate" style="margin-right: 0.4rem;"></i> ISO 9001:2015 Certifications</a></li>
+              <li><a href="${p}case-studies.html"><i class="fas fa-chart-line" style="margin-right: 0.4rem;"></i> Industrial Case Studies & ROI</a></li>
+              <li><a href="${p}installation.html"><i class="fas fa-tools" style="margin-right: 0.4rem;"></i> Installation & Commissioning</a></li>
+              <li><a href="${p}blog.html"><i class="fas fa-book" style="margin-right: 0.4rem;"></i> Technical Blog & Guides</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li><a href="${p}contactus.html" class="mobile-nav-direct"><i class="fas fa-envelope" style="margin-right: 0.6rem; color: var(--color-brand-accent);"></i> Contact & Factory Works</a></li>
+      </ul>
+    </div>
 
     <div class="mobile-nav-actions">
       <a href="tel:+919597228969" class="btn btn-primary btn-sm" style="width: 100%;">
@@ -210,11 +282,27 @@ function initMobileNav() {
   const drawer = document.querySelector('.mobile-nav-drawer');
   const overlay = document.querySelector('.mobile-nav-overlay');
   const closeBtn = drawer ? drawer.querySelector('.mobile-nav-close') : null;
+  const searchTrigger = drawer ? drawer.querySelector('.mobile-nav-search-trigger') : null;
 
-  toggleBtns.forEach(btn => {
-    btn.setAttribute('aria-controls', 'mobile-nav-drawer');
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-haspopup', 'dialog');
+  // Enhance header with a direct mobile search button if not present
+  toggleBtns.forEach(toggleBtn => {
+    toggleBtn.setAttribute('aria-controls', 'mobile-nav-drawer');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.setAttribute('aria-haspopup', 'dialog');
+
+    if (toggleBtn.parentElement && !toggleBtn.parentElement.querySelector('.header-mobile-search-btn')) {
+      const searchBtn = document.createElement('button');
+      searchBtn.className = 'header-mobile-search-btn';
+      searchBtn.type = 'button';
+      searchBtn.setAttribute('aria-label', 'Search models and calculators');
+      searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+      searchBtn.addEventListener('click', () => {
+        if (typeof window.openQuickSearch === 'function') {
+          window.openQuickSearch();
+        }
+      });
+      toggleBtn.parentElement.insertBefore(searchBtn, toggleBtn);
+    }
   });
 
   let lastFocusedElement = null;
@@ -255,6 +343,48 @@ function initMobileNav() {
   });
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (overlay) overlay.addEventListener('click', closeDrawer);
+
+  if (searchTrigger) {
+    searchTrigger.addEventListener('click', () => {
+      closeDrawer();
+      setTimeout(() => {
+        if (typeof window.openQuickSearch === 'function') {
+          window.openQuickSearch();
+        }
+      }, 200);
+    });
+  }
+
+  // Mobile drawer accordions
+  if (drawer) {
+    drawer.querySelectorAll('.mobile-accordion-toggle').forEach(accBtn => {
+      accBtn.addEventListener('click', () => {
+        const isExpanded = accBtn.getAttribute('aria-expanded') === 'true';
+        const content = accBtn.nextElementSibling;
+        const arrow = accBtn.querySelector('.accordion-arrow');
+
+        // Optional: close other accordions for compact view
+        drawer.querySelectorAll('.mobile-accordion-toggle').forEach(other => {
+          if (other !== accBtn) {
+            other.setAttribute('aria-expanded', 'false');
+            if (other.nextElementSibling) other.nextElementSibling.style.display = 'none';
+            const otherArrow = other.querySelector('.accordion-arrow');
+            if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+          }
+        });
+
+        if (isExpanded) {
+          accBtn.setAttribute('aria-expanded', 'false');
+          if (content) content.style.display = 'none';
+          if (arrow) arrow.style.transform = 'rotate(0deg)';
+        } else {
+          accBtn.setAttribute('aria-expanded', 'true');
+          if (content) content.style.display = 'block';
+          if (arrow) arrow.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer && (drawer.classList.contains('is-open') || drawer.classList.contains('active'))) {
