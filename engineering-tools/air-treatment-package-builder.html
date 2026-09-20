@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compressed Air Package Builder & Train Sizer | Win Equipments</title>
+  <title>Compressed Air Treatment Package Builder & Train Sizer | Win Equipments</title>
 
   <!-- Meta Tags -->
   <meta name="description"
-    content="Interactive Compressed Air Treatment Package Builder. Size your matched Air Receiver Tank, Pre-Filter, Refrigerated Air Dryer, and Zero Loss Drain for your screw compressor. By Win Equipments Coimbatore.">
+    content="Interactive Compressed Air Treatment Package Builder. Size your matched Air Receiver Tank, Pre-Filter, Refrigerated or Desiccant Air Dryer, Micro-Filter, and Zero Loss Drain for your screw compressor. Built in Coimbatore by Win Equipments.">
   <meta name="keywords"
-    content="Compressed Air Package Builder, Air Compressor Sizing Train, Air Receiver Sizing, Dryer Filter Package, Win Equipments Coimbatore">
+    content="Compressed Air Package Builder, Air Compressor Sizing Train, Air Receiver Sizing, Dryer Filter Package, Win Equipments Coimbatore, ISO 8573-1 air package">
   <meta name="author" content="Win Equipments" />
   <meta name="robots" content="index, follow" />
 
@@ -19,7 +19,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Win Equipments">
   <meta property="og:url" content="https://winequipments.com/engineering-tools/air-treatment-package-builder.html">
-  <meta property="og:title" content="Compressed Air Package Builder & Train Sizer | Win Equipments">
+  <meta property="og:title" content="Compressed Air Treatment Package Builder & Train Sizer | Win Equipments">
   <meta property="og:description" content="Interactive Compressed Air Treatment Package Builder. Size your matched Air Receiver Tank, Pre-Filter, Refrigerated Air Dryer, and Zero Loss Drain for your compressor.">
   <meta property="og:image" content="https://winequipments.com/images/banner_opt.jpg">
   <meta property="og:locale" content="en_IN">
@@ -38,147 +38,323 @@
   <link rel="stylesheet" href="../css/components.css">
 
   <style>
+    /* Builder Custom Styles */
     .builder-hero {
-      background: linear-gradient(135deg, #0E2540 0%, #0369A1 100%);
+      background: linear-gradient(135deg, #0E2540 0%, #0F4C81 100%);
       color: #FFFFFF;
-      padding: 4rem 1rem 3rem;
+      padding: 3.5rem 1rem 4.5rem;
       text-align: center;
+      position: relative;
     }
     .builder-hero h1 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-size: clamp(1.85rem, 3.8vw, 2.6rem);
       color: #FFFFFF;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       font-weight: 800;
+      letter-spacing: -0.02em;
     }
     .builder-hero p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #BAE6FD;
       max-width: 780px;
       margin: 0 auto;
       line-height: 1.6;
     }
-    .train-container {
-      margin: -2.5rem auto 3rem;
+
+    .builder-workspace {
+      margin-top: -2.5rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .train-card-main {
       background: #FFFFFF;
       border-radius: var(--radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-xl);
+      padding: 2rem 2.5rem;
+      box-shadow: 0 20px 40px -15px rgba(14, 37, 64, 0.12);
       border: 1px solid var(--color-border-light);
     }
-    .hp-selector-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 0.75rem;
-      margin: 1.5rem 0 2.5rem;
-    }
-    .hp-btn {
-      padding: 0.85rem 0.5rem;
-      border: 2px solid #E2E8F0;
-      border-radius: 12px;
+
+    /* Controls Bar */
+    .builder-controls {
       background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .controls-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #0E2540;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hp-selector-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .hp-btn {
+      flex: 1 1 calc(14% - 0.65rem);
+      min-width: 85px;
+      padding: 0.75rem 0.5rem;
+      border: 2px solid #CBD5E1;
+      border-radius: 10px;
+      background: #FFFFFF;
       color: #0E2540;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .hp-btn small {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #64748B;
       font-weight: 500;
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
     }
     .hp-btn:hover {
-      border-color: #0284C7;
-      background: #F0F9FF;
+      border-color: #0E7490;
+      background: #F0FDF4;
+      transform: translateY(-2px);
     }
     .hp-btn.is-active {
-      border-color: #0284C7;
-      background: #0284C7;
+      border-color: #0E7490;
+      background: #0E7490;
       color: #FFFFFF;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+      box-shadow: 0 4px 14px rgba(14, 116, 144, 0.35);
     }
     .hp-btn.is-active small {
       color: #E0F2FE;
     }
-    .train-pipeline {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.25rem;
-      position: relative;
-      margin: 2rem 0;
+
+    /* Purity Option Toggle */
+    .purity-toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px dashed #CBD5E1;
     }
-    .train-step-card {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 1.5rem 1.25rem;
-      text-align: center;
-      position: relative;
-      transition: all 0.25s ease;
+
+    .purity-pill-group {
+      display: inline-flex;
+      background: #E2E8F0;
+      padding: 3px;
+      border-radius: 8px;
+      gap: 3px;
     }
-    .train-step-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      border-color: #0284C7;
+    .purity-pill {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .step-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+    .purity-pill.is-active {
+      background: #FFFFFF;
+      color: #0E2540;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Process Flow Banner */
+    .flow-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background: #0E2540;
       color: #FFFFFF;
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 0.2rem 0.65rem;
-      border-radius: 9999px;
-      letter-spacing: 0.05em;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
     }
-    .step-icon {
-      width: 52px;
-      height: 52px;
+    .flow-indicator span {
+      color: #38BDF8;
+    }
+
+    /* Train Pipeline Grid */
+    .train-pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      position: relative;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .train-step-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
       border-radius: 12px;
-      background: #E0F2FE;
-      color: #0284C7;
-      font-size: 1.4rem;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      min-height: 250px;
+    }
+    .train-step-card:hover {
+      border-color: #0E7490;
+      box-shadow: 0 8px 24px rgba(14, 116, 144, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .train-step-card.is-core {
+      border-color: #0E7490;
+      background: #F0FDF4;
+      box-shadow: 0 4px 16px rgba(14, 116, 144, 0.08);
+    }
+
+    .step-badge {
+      display: inline-block;
+      align-self: center;
+      background: #0E2540;
+      color: #FFFFFF;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.15rem 0.55rem;
+      border-radius: 9999px;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.65rem;
+    }
+    .train-step-card.is-core .step-badge {
+      background: #0E7490;
+    }
+
+    .step-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: #F1F5F9;
+      color: #0E2540;
+      font-size: 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0.5rem auto 1rem;
+      margin: 0 auto 0.75rem;
+      transition: background 0.2s ease;
     }
-    .step-title {
-      font-size: 0.85rem;
+    .train-step-card.is-core .step-icon-wrap {
+      background: #0E7490;
+      color: #FFFFFF;
+    }
+
+    .step-label {
+      font-size: 0.75rem;
       font-weight: 700;
       color: #64748B;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       margin-bottom: 0.35rem;
     }
-    .step-model {
-      font-size: 1.15rem;
+    .step-model-title {
+      font-size: 1rem;
       font-weight: 800;
       color: #0E2540;
+      line-height: 1.2;
       margin-bottom: 0.5rem;
+      min-height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .step-spec {
-      font-size: 0.8rem;
+    .step-desc-text {
+      font-size: 0.75rem;
       color: #475569;
-      line-height: 1.45;
+      line-height: 1.4;
+      background: #F8FAFC;
+      border-radius: 6px;
+      padding: 0.5rem;
+      border: 1px solid #F1F5F9;
     }
+
+    /* Arrow Connector on desktop */
+    @media (min-width: 992px) {
+      .train-step-card:not(:last-child)::after {
+        content: '→';
+        position: absolute;
+        right: -13px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 22px;
+        background: #0E2540;
+        color: #FFFFFF;
+        font-size: 0.75rem;
+        font-weight: 900;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    @media (max-width: 991px) {
+      .train-pipeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hp-btn {
+        flex: 1 1 calc(25% - 0.65rem);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .train-pipeline {
+        grid-template-columns: 1fr;
+      }
+      .hp-btn {
+        flex: 1 1 calc(33.3% - 0.65rem);
+      }
+      .train-card-main {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    /* Summary Card */
     .package-summary-card {
-      background: #ECFEFF;
-      border: 1px solid #A5F3FC;
-      border-radius: 16px;
-      padding: 1.75rem 2rem;
+      background: linear-gradient(135deg, #ECFEFF 0%, #E0F2FE 100%);
+      border: 1.5px solid #0E7490;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 2rem;
       margin-top: 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1.5rem;
+    }
+
+    /* RFQ Box */
+    .builder-rfq-box {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      border: 1px solid var(--color-border-light);
+      box-shadow: var(--shadow-lg);
+      margin-top: 3rem;
     }
   </style>
 </head>
@@ -205,143 +381,170 @@
     </div>
   </div>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-content">
-      <a href="../index.html" class="brand-logo" aria-label="Win Equipments Home">
+  <!-- SITE HEADER (Matching Design System) -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo-group">
         <img src="../images/logo.png" alt="Win Equipments Logo" class="brand-logo-img" width="48" height="48">
-        <div class="brand-text">
+        <div class="brand-title-wrap">
           <span class="brand-name">WIN EQUIPMENTS</span>
           <span class="brand-tagline">Save Water and Power</span>
         </div>
       </a>
 
-      <nav class="main-nav">
-        <ul class="nav-list">
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-desktop">
           <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="../products/refrigerated-air-dryers.html" class="nav-link">Air Dryers</a></li>
-          <li class="nav-item"><a href="../products/industrial-process-chillers.html" class="nav-link">Chillers</a></li>
-          <li class="nav-item"><a href="../products/round-cooling-towers.html" class="nav-link">Cooling Towers</a></li>
-          <li class="nav-item"><a href="air-dryer-sizing.html" class="nav-link is-active">Engineering Tools</a></li>
+          <li class="nav-item"><a href="../index.html#products" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="air-treatment-package-builder.html" class="nav-link" style="color: var(--color-brand-accent); font-weight: 700;">Package Builder</a></li>
+          <li class="nav-item"><a href="air-dryer-sizing.html" class="nav-link">CFM Calculator</a></li>
+          <li class="nav-item"><a href="cooling-tower-calculator.html" class="nav-link">Tower Calculator</a></li>
+          <li class="nav-item"><a href="chiller-tonnage-calculator.html" class="nav-link">Chiller Calculator</a></li>
           <li class="nav-item"><a href="../contactus.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
         <a href="#rfq-section" class="btn btn-cta btn-sm">Get Package RFQ</a>
-        <button class="mobile-toggle-btn" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+        <button class="mobile-toggle-btn" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars" style="font-size: 1.4rem;"></i>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- MAIN HERO -->
   <section class="builder-hero">
     <div class="container">
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.12); padding: 4px 14px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.2);">
+        <i class="fas fa-layer-group" style="color: #38BDF8;"></i> Industrial P&ID Visual Train Sizer
+      </div>
       <h1>Compressed Air Treatment Train Configurator</h1>
-      <p>Select your compressor motor rating to generate a thermodynamically matched, ISO 8573-1 Class 1.4.1 air treatment package built at our Arasur, Coimbatore plant.</p>
+      <p>Select your compressor capacity to dynamically configure a balanced, ISO 8573-1 certified air treatment train engineered for 42°C Indian ambient plant conditions.</p>
     </div>
   </section>
 
-  <!-- MAIN TRAIN BUILDER -->
-  <main class="container">
-    <div class="train-container">
-      <div style="text-align: center; margin-bottom: 1.5rem;">
-        <h2 style="font-size: 1.4rem; color: #0E2540; font-weight: 800; margin-bottom: 0.35rem;">Step 1: Select Compressor Motor Capacity</h2>
-        <p style="font-size: 0.875rem; color: #64748B;">Calculated for 7.0 bar g working pressure under Indian tropical ambient temperatures (38°C–42°C)</p>
+  <!-- WORKSPACE CONTENT -->
+  <main class="container builder-workspace" id="mainContent">
+    <div class="train-card-main">
+      
+      <!-- CONTROLS -->
+      <div class="builder-controls">
+        <div class="controls-title">
+          <i class="fas fa-tachometer-alt" style="color: #0E7490;"></i> Step 1: Select Air Compressor Rating
+        </div>
+
+        <div class="hp-selector-flex">
+          <button type="button" class="hp-btn" data-hp="10" data-cfm="40">10 HP<small>40 CFM</small></button>
+          <button type="button" class="hp-btn" data-hp="20" data-cfm="80">20 HP<small>80 CFM</small></button>
+          <button type="button" class="hp-btn is-active" data-hp="30" data-cfm="120">30 HP<small>120 CFM</small></button>
+          <button type="button" class="hp-btn" data-hp="40" data-cfm="160">40 HP<small>160 CFM</small></button>
+          <button type="button" class="hp-btn" data-hp="50" data-cfm="200">50 HP<small>200 CFM</small></button>
+          <button type="button" class="hp-btn" data-hp="75" data-cfm="300">75 HP<small>300 CFM</small></button>
+          <button type="button" class="hp-btn" data-hp="100" data-cfm="400">100 HP<small>400 CFM</small></button>
+        </div>
+
+        <div class="purity-toggle-row">
+          <div>
+            <div style="font-size: 0.825rem; font-weight: 700; color: #0E2540; margin-bottom: 0.25rem;">
+              <i class="fas fa-shield-alt" style="color: #0E7490; margin-right: 0.35rem;"></i> Target Pressure Dew Point (PDP)
+            </div>
+            <div style="font-size: 0.75rem; color: #64748B;">Switch between standard industrial plant air or ultra-dry desiccant purity</div>
+          </div>
+          <div class="purity-pill-group">
+            <button type="button" class="purity-pill is-active" id="btnRefDryer" data-type="ref">+3°C PDP (Refrigerated)</button>
+            <button type="button" class="purity-pill" id="btnDesDryer" data-type="des">-40°C PDP (Heatless Desiccant)</button>
+          </div>
+        </div>
       </div>
 
-      <div class="hp-selector-grid">
-        <button type="button" class="hp-btn" data-hp="10" data-cfm="40">10 HP<small>~40 CFM</small></button>
-        <button type="button" class="hp-btn" data-hp="20" data-cfm="80">20 HP<small>~80 CFM</small></button>
-        <button type="button" class="hp-btn is-active" data-hp="30" data-cfm="120">30 HP<small>~120 CFM</small></button>
-        <button type="button" class="hp-btn" data-hp="40" data-cfm="160">40 HP<small>~160 CFM</small></button>
-        <button type="button" class="hp-btn" data-hp="50" data-cfm="200">50 HP<small>~200 CFM</small></button>
-        <button type="button" class="hp-btn" data-hp="75" data-cfm="300">75 HP<small>~300 CFM</small></button>
-        <button type="button" class="hp-btn" data-hp="100" data-cfm="400">100 HP<small>~400 CFM</small></button>
+      <!-- FLOW HEADER -->
+      <div class="flow-indicator">
+        <div><i class="fas fa-compressor" style="margin-right: 0.35rem;"></i> Compressed Air Flow: <span>Inlet (7 bar g @ 45°C)</span></div>
+        <div><i class="fas fa-check-circle" style="color: #4ADE80; margin-right: 0.35rem;"></i> Output: <span id="flowOutputPurity">ISO 8573-1: Class 1.4.1</span></div>
       </div>
 
-      <div style="text-align: center; margin-bottom: 1rem;">
-        <h3 style="font-size: 1.25rem; color: #0E2540; font-weight: 800;">Step 2: Recommended Balanced Air Treatment Train</h3>
-      </div>
-
-      <!-- VISUAL 5-STEP TRAIN -->
+      <!-- VISUAL 5-STEP PIPELINE -->
       <div class="train-pipeline" id="trainPipeline">
-        <!-- Stage 1: Air Receiver -->
+        
+        <!-- Stage 1: Receiver Tank -->
         <div class="train-step-card">
           <span class="step-badge">STAGE 1</span>
-          <div class="step-icon"><i class="fas fa-drum-steelpan"></i></div>
-          <div class="step-title">Air Receiver Tank</div>
-          <div class="step-model" id="stepReceiverModel">WRV 100</div>
-          <div class="step-spec" id="stepReceiverSpec">1,000 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & pressure gauge</div>
+          <div class="step-icon-wrap"><i class="fas fa-database"></i></div>
+          <div class="step-label">Storage &amp; Pulse Damping</div>
+          <div class="step-model-title" id="stepReceiverModel">WRV 100</div>
+          <div class="step-desc-text" id="stepReceiverSpec">1,000 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety relief valve &amp; pressure gauge</div>
         </div>
 
         <!-- Stage 2: Pre-Filter -->
         <div class="train-step-card">
           <span class="step-badge">STAGE 2</span>
-          <div class="step-icon"><i class="fas fa-filter"></i></div>
-          <div class="step-title">Particulate Pre-Filter</div>
-          <div class="step-model" id="stepPreFilterModel">WMF 025 (Grade G)</div>
-          <div class="step-spec" id="stepPreFilterSpec">1.0 Micron • 140 CFM rated • Aluminum die-cast housing with DP indicator</div>
+          <div class="step-icon-wrap"><i class="fas fa-filter"></i></div>
+          <div class="step-label">Particulate Pre-Filter</div>
+          <div class="step-model-title" id="stepPreFilterModel">WMF 025 (Grade G)</div>
+          <div class="step-desc-text" id="stepPreFilterSpec">1.0 Micron protection • 140 CFM rated • Aluminum die-cast body with differential pressure gauge</div>
         </div>
 
-        <!-- Stage 3: Refrigerated Dryer -->
-        <div class="train-step-card" style="border-color: #0284C7; background: #F0F9FF;">
-          <span class="step-badge" style="background: #0284C7;">STAGE 3 (CORE)</span>
-          <div class="step-icon" style="background: #0284C7; color: #FFFFFF;"><i class="fas fa-snowflake"></i></div>
-          <div class="step-title">Refrigerated Air Dryer</div>
-          <div class="step-model" id="stepDryerModel" style="color: #0284C7;">WRD 150 S</div>
-          <div class="step-spec" id="stepDryerSpec">150 CFM • +3°C Dew Point • R134a • Zero Air Loss electronic capacitive drain</div>
+        <!-- Stage 3: Core Dryer -->
+        <div class="train-step-card is-core">
+          <span class="step-badge">STAGE 3 (CORE)</span>
+          <div class="step-icon-wrap"><i class="fas fa-snowflake" id="dryerIcon"></i></div>
+          <div class="step-label" id="dryerLabelText">Refrigerated Air Dryer</div>
+          <div class="step-model-title" id="stepDryerModel" style="color: #0E7490;">WRD 150 S</div>
+          <div class="step-desc-text" id="stepDryerSpec">150 CFM • +3°C Dew Point • R134a Eco-friendly refrigerant • Electronic Zero Loss auto drain</div>
         </div>
 
-        <!-- Stage 4: Coalescing Filter -->
+        <!-- Stage 4: Micro-Filter -->
         <div class="train-step-card">
           <span class="step-badge">STAGE 4</span>
-          <div class="step-icon"><i class="fas fa-tint-slash"></i></div>
-          <div class="step-title">Coalescing Micro-Filter</div>
-          <div class="step-model" id="stepAfterFilterModel">WMF 025 (Grade C)</div>
-          <div class="step-spec" id="stepAfterFilterSpec">0.01 Micron • Residual oil &lt; 0.01 mg/m³ • Borosilicate microfibers</div>
+          <div class="step-icon-wrap"><i class="fas fa-shield-alt"></i></div>
+          <div class="step-label">Coalescing Micro-Filter</div>
+          <div class="step-model-title" id="stepAfterFilterModel">WMF 025 (Grade C)</div>
+          <div class="step-desc-text" id="stepAfterFilterSpec">0.01 Micron • Oil residual &lt; 0.01 mg/m³ • Hydrophobic borosilicate microfibers</div>
         </div>
 
         <!-- Stage 5: Zero Loss Drain -->
         <div class="train-step-card">
           <span class="step-badge">STAGE 5</span>
-          <div class="step-icon"><i class="fas fa-faucet"></i></div>
-          <div class="step-title">Condensate Drain</div>
-          <div class="step-model" id="stepDrainModel">WADV-Z16</div>
-          <div class="step-spec" id="stepDrainSpec">Capacitive zero air loss electronic discharge • IP65 forged brass body</div>
+          <div class="step-icon-wrap"><i class="fas fa-tint"></i></div>
+          <div class="step-label">Condensate Discharge</div>
+          <div class="step-model-title" id="stepDrainModel">WADV-Z16</div>
+          <div class="step-desc-text" id="stepDrainSpec">Electronic capacitive zero-air-loss drain • Forged brass valve • Zero CFM wastage</div>
         </div>
       </div>
 
-      <!-- PACKAGE SUMMARY CARD -->
+      <!-- PACKAGE SUMMARY & GUARANTEE CARD -->
       <div class="package-summary-card">
         <div>
-          <div style="font-size: 0.75rem; font-weight: 700; color: #0E7490; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
-            ISO 8573-1:2010 Air Quality Class Guaranteed
+          <div style="font-size: 0.72rem; font-weight: 800; color: #0E7490; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem;">
+            Certified Engineering Air Quality Standard
           </div>
-          <div style="font-size: 1.35rem; font-weight: 800; color: #0E2540;">
-            Class 1.4.1 (Clean Dry Instrument Air)
+          <div style="font-size: 1.3rem; font-weight: 800; color: #0E2540;" id="summaryGuaranteeTitle">
+            Guaranteed ISO 8573-1: Class 1.4.1 (Clean Dry Plant Air)
           </div>
-          <div style="font-size: 0.85rem; color: #475569; margin-top: 0.25rem;">
-            100% moisture vapor eliminated, 0.01μm particulates filtered, zero oil carryover to pneumatic tools.
+          <div style="font-size: 0.825rem; color: #475569; margin-top: 0.35rem; max-width: 650px;" id="summaryGuaranteeDesc">
+            Eliminates 100% of liquid water, purifies aerosols down to 0.01μm, protecting CNC spindles, laser cutting heads, pneumatic cylinders, and paint booths from corrosion.
           </div>
         </div>
 
         <button type="button" class="btn btn-cta btn-lg" id="requestPackageBtn">
-          <i class="fas fa-paper-plane"></i> Request Complete Package Quote
+          <i class="fas fa-paper-plane" style="margin-right: 0.4rem;"></i> Quote This Matched Train
         </button>
       </div>
+
     </div>
 
     <!-- RFQ SECTION -->
-    <div id="rfq-section" style="background: #FFFFFF; border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--color-border-light); margin-bottom: 3rem; box-shadow: var(--shadow-lg);">
-      <div style="margin-bottom: 1.5rem; text-align: center;">
-        <h3 style="font-size: 1.5rem; color: #0E2540; font-weight: 800; margin-bottom: 0.5rem;">Request Formal Engineering Proposal for Package</h3>
-        <p style="font-size: 0.9rem; color: #64748B;">Direct manufacturer pricing with 12-month on-site warranty from our Arasur, Coimbatore works.</p>
+    <div id="rfq-section" class="builder-rfq-box">
+      <div style="margin-bottom: 1.75rem; text-align: center;">
+        <span class="badge badge-iso" style="margin-bottom: 0.5rem;">Direct Manufacturer Proposal</span>
+        <h3 style="font-size: 1.6rem; color: #0E2540; font-weight: 800; margin-bottom: 0.35rem;">Request Official Package Quotation &amp; Drawings</h3>
+        <p style="font-size: 0.9rem; color: #64748B;">Guaranteed manufacturer pricing with 12-month on-site warranty from Win Equipments Arasur Works, Coimbatore.</p>
       </div>
 
       <form class="rfq-form" action="/send_rfq.php" method="POST">
         <input type="text" name="website_url_hp" style="display:none;">
-        <input type="hidden" name="form_source" value="Air Package Configurator Tool">
+        <input type="hidden" name="form_source" value="Air Treatment Package Builder">
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
           <div>
@@ -350,7 +553,7 @@
           </div>
           <div>
             <label class="calc-label">Company / Factory Name *</label>
-            <input type="text" name="company_name" required placeholder="Company Name" class="calc-input">
+            <input type="text" name="company_name" required placeholder="Company / Plant Name" class="calc-input">
           </div>
           <div>
             <label class="calc-label">Mobile / WhatsApp *</label>
@@ -358,57 +561,122 @@
           </div>
           <div>
             <label class="calc-label">Official Email ID *</label>
-            <input type="email" name="contact_email" required placeholder="name@company.com" class="calc-input">
+            <input type="email" name="contact_email" required placeholder="purchase@company.com" class="calc-input">
           </div>
         </div>
 
         <div style="margin-bottom: 1.25rem;">
           <label class="calc-label">Configured Equipment Package</label>
-          <input type="text" name="equipment_type" id="packageEquipmentInput" value="30 HP Air Package: WRV 100 Receiver + WMF 025 Pre-Filter + WRD 150 S Dryer + WMF 025 Micro-Filter + WADV-Z16 Drain" class="calc-input" readonly style="background: #F1F5F9; font-weight: 600;">
+          <input type="text" name="equipment_type" id="packageEquipmentInput" value="30 HP (120 CFM) Package: WRV 100 Receiver + WMF 025 Pre-Filter + WRD 150 S Dryer + WMF 025 Micro-Filter + WADV-Z16 Drain" class="calc-input" readonly style="background: #F1F5F9; font-weight: 700; color: #0E2540;">
         </div>
 
         <div style="margin-bottom: 1.25rem;">
-          <label class="calc-label">Operating Parameters & Plant Location</label>
-          <textarea name="operating_parameters" rows="3" placeholder="Mention working pressure (bar), end application (CNC, Laser, Paint booth), and plant delivery location..." class="calc-input"></textarea>
+          <label class="calc-label">Operating Parameters &amp; Delivery Location</label>
+          <textarea name="operating_parameters" rows="3" placeholder="Mention working pressure (e.g. 7.0 bar), end application (CNC, Laser, Paint booth), and plant delivery location..." class="calc-input"></textarea>
         </div>
 
-        <div style="margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; background: #F8FAFC; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-          <input type="checkbox" id="cad_drawings_req" name="cad_drawings_requested" value="Yes" style="width: 18px; height: 18px; cursor: pointer;">
+        <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; background: #F8FAFC; padding: 0.85rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+          <input type="checkbox" id="cad_drawings_req" name="cad_drawings_requested" value="Yes" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--color-brand-accent);">
           <label for="cad_drawings_req" style="font-size: var(--text-xs); font-weight: 600; color: var(--color-text-main); cursor: pointer;">
-            <i class="fas fa-drafting-compass" style="color: var(--color-brand-accent); margin-right: 0.25rem;"></i> Request 2D GA & Foundation Fitment Drawings (for Plant / Piping Layout)
+            <i class="fas fa-drafting-compass" style="color: var(--color-brand-accent); margin-right: 0.35rem;"></i> Request 2D General Arrangement (GA) &amp; 3D Foundation CAD Drawings
           </label>
         </div>
 
         <button type="submit" class="btn btn-cta btn-lg" style="width: 100%;">
-          <i class="fas fa-paper-plane"></i> Submit for 24-Hour Engineering Proposal & Price Matrix
+          <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i> Submit for 24-Hour Engineering Proposal &amp; Price Matrix
         </button>
       </form>
     </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- SITE FOOTER (Matching Index & Standard Design System) -->
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div class="footer-brand-col">
-        <div class="footer-logo-row">
-          <img src="../images/logo.png" alt="Win Equipments Logo" width="44" height="44" loading="lazy" decoding="async">
-          <span class="footer-brand-text">WIN EQUIPMENTS</span>
+      <!-- Col 1: Brand Info -->
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+          <img src="../images/logo.png" alt="Win Equipments Logo" width="40" height="40">
+          <span style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; letter-spacing: -0.02em;">WIN EQUIPMENTS</span>
         </div>
-        <p class="footer-desc">
-          ISO 9001:2015 certified manufacturer of industrial chillers, FRP cooling towers, and compressed air treatment systems in Coimbatore, India. Save Water and Power.
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-brand-accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem;">Save Water and Power</div>
+        <p style="font-size: var(--text-sm); line-height: 1.6; margin-bottom: 1.25rem;">
+          Premier manufacturer of industrial cooling systems and compressed air treatment equipment. ISO 9001:2015 certified works in Arasur, Coimbatore.
         </p>
+        <div style="font-size: var(--text-xs); color: #CBD5E1; margin-bottom: 0.5rem;">
+          <strong>Proprietor:</strong> Mr. Ramasamy Ananthakumar
+        </div>
+        <div style="font-size: var(--text-xs); color: #CBD5E1; margin-bottom: 0.5rem;">
+          <strong>GSTIN:</strong> 33AJWPA2797B1Z7
+        </div>
+        <div style="font-size: var(--text-xs); color: #CBD5E1;">
+          <strong>Certification:</strong> ISO 9001:2015 (DAC / IAF Accredited)
+        </div>
       </div>
-      <div class="footer-links-col">
-        <h4 class="footer-col-title">Works & Contact</h4>
-        <p style="font-size: var(--text-xs); color: #cbd5e1; line-height: 1.6;">
-          <strong>Win Equipments</strong><br>
-          SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407, Tamil Nadu, India
-        </p>
-        <p style="font-size: var(--text-xs); color: #cbd5e1; margin-top: 0.5rem;">
-          <i class="fas fa-phone-alt"></i> +91 95972 28969 / +91 95972 28975<br>
-          <i class="fas fa-envelope"></i> info@winequipments.com
-        </p>
+
+      <!-- Col 2: Products -->
+      <div>
+        <div class="footer-col-title">Manufacturing Pillars</div>
+        <ul class="footer-links">
+          <li><a href="../products/refrigerated-air-dryers.html">Refrigerated Air Dryers</a></li>
+          <li><a href="../products/desiccant-air-dryers.html">Desiccant Air Dryers</a></li>
+          <li><a href="../products/industrial-process-chillers.html">Industrial Process Chillers</a></li>
+          <li><a href="../products/ice-flake-machines.html">Ice Flake Machines</a></li>
+          <li><a href="../products/anodizing-chillers.html">Anodizing Chillers</a></li>
+          <li><a href="../products/medical-scan-chillers.html">Medical Scan Chillers</a></li>
+          <li><a href="../products/acid-cooling-chillers.html">Acid Cooling Chillers</a></li>
+          <li><a href="../products/round-cooling-towers.html">Round FRP Cooling Towers</a></li>
+          <li><a href="../products/square-cooling-towers.html">Square Crossflow Towers</a></li>
+          <li><a href="../products/closed-circuit-cooling-towers.html">Closed Loop Cooling Towers</a></li>
+          <li><a href="../products/air-receiver-tanks.html">Air Receiver Tanks</a></li>
+          <li><a href="../products/compressed-air-filters.html">Compressed Air Filters</a></li>
+          <li><a href="../products/automatic-drain-valves.html">Automatic Drain Valves</a></li>
+          <li><a href="../products/spare-parts-consumables.html">Spares &amp; Consumables Hub</a></li>
+        </ul>
       </div>
+
+      <!-- Col 3: Tools & Hubs -->
+      <div>
+        <div class="footer-col-title">Industrial Hubs &amp; Tools</div>
+        <ul class="footer-links">
+          <li><a href="../case-studies.html">Case Studies &amp; Plant ROI</a></li>
+          <li><a href="air-treatment-package-builder.html" style="color: #38BDF8; font-weight: 700;">Air Train Package Builder</a></li>
+          <li><a href="air-dryer-sizing.html">Air Dryer CFM Calculator</a></li>
+          <li><a href="cooling-tower-calculator.html">Cooling Tower Sizing Tool</a></li>
+          <li><a href="chiller-tonnage-calculator.html">Chiller Tonnage Sizing</a></li>
+          <li><a href="compressed-air-energy-calculator.html">Drain Energy Loss Calculator</a></li>
+          <li><a href="../locations/chennai-industrial-chillers.html">Chennai Automotive Hub</a></li>
+          <li><a href="../locations/bangalore-compressed-air-dryers.html">Bangalore Tech Air Dryers</a></li>
+          <li><a href="../locations/hosur-cnc-air-dryers.html">Hosur CNC Machining Hub</a></li>
+          <li><a href="../locations/tirupur-textile-air-dryers.html">Tiruppur Textile Hub</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div>
+        <div class="footer-col-title">Arasur Works &amp; Contact</div>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt" style="color: var(--color-brand-accent); margin-top: 0.2rem;"></i>
+          <span>SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore – 641407, Tamil Nadu, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt" style="color: var(--color-brand-accent);"></i>
+          <span><a href="tel:+919597228969">+91 95972 28969</a><br><a href="tel:+919597228975">+91 95972 28975</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope" style="color: var(--color-brand-accent);"></i>
+          <span><a href="mailto:info@winequipments.com">info@winequipments.com</a></span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="https://maps.google.com/?q=Win+Equipments+Arasur+Coimbatore" class="btn btn-outline btn-sm" style="color: #FFFFFF; border-color: rgba(255,255,255,0.25);" target="_blank" rel="noopener">
+            <i class="fas fa-directions"></i> Get Factory Directions
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom" style="flex-wrap: wrap; gap: 0.5rem;">
+      <div>© 2008–2026 Win Equipments. Arasur Works, Coimbatore – 641407. All Rights Reserved.</div>
+      <div>ISO 9001:2015 Certified Manufacturer | Quality Without Compromise</div>
     </div>
   </footer>
 
@@ -430,48 +698,169 @@
   <script src="../js/main.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Equipment specs matrix for Refrigerated (+3°C) and Desiccant (-40°C) trains
       const PACKAGES = {
-        '10': { hp: 10, cfm: 40, receiver: 'WRV 025 (250 Liters)', receiverSpec: '250 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 008 (45 CFM)', dryer: 'WRD 40 S (40 CFM)', afterFilter: 'WMF 008 (45 CFM)', drain: 'WADV-T16' },
-        '20': { hp: 20, cfm: 80, receiver: 'WRV 050 (500 Liters)', receiverSpec: '500 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 015 (85 CFM)', dryer: 'WRD 100 S (100 CFM)', afterFilter: 'WMF 015 (85 CFM)', drain: 'WADV-Z16' },
-        '30': { hp: 30, cfm: 120, receiver: 'WRV 100 (1,000 Liters)', receiverSpec: '1,000 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 025 (140 CFM)', dryer: 'WRD 150 S (150 CFM)', afterFilter: 'WMF 025 (140 CFM)', drain: 'WADV-Z16' },
-        '40': { hp: 40, cfm: 160, receiver: 'WRV 100 (1,000 Liters)', receiverSpec: '1,000 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 035 (200 CFM)', dryer: 'WRD 200 S (200 CFM)', afterFilter: 'WMF 035 (200 CFM)', drain: 'WADV-Z16' },
-        '50': { hp: 50, cfm: 200, receiver: 'WRV 150 (1,500 Liters)', receiverSpec: '1,500 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 035 (200 CFM)', dryer: 'WRD 250 S (250 CFM)', afterFilter: 'WMF 035 (200 CFM)', drain: 'WADV-Z16' },
-        '75': { hp: 75, cfm: 300, receiver: 'WRV 200 (2,000 Liters)', receiverSpec: '2,000 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 060 (350 CFM)', dryer: 'WRD 350 S (350 CFM)', afterFilter: 'WMF 060 (350 CFM)', drain: 'WADV-Z16' },
-        '100': { hp: 100, cfm: 400, receiver: 'WRV 300 (3,000 Liters)', receiverSpec: '3,000 L • 10 bar g • IS 2825 / ASME', preFilter: 'WMF 100 (600 CFM)', dryer: 'WRD 500 S (500 CFM)', afterFilter: 'WMF 100 (600 CFM)', drain: 'WADV-Z16' }
+        '10': {
+          hp: 10, cfm: 40,
+          receiver: 'WRV 025 (250 L)', receiverSpec: '250 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 008 (Grade G)', preFilterSpec: '1.0 Micron protection • 45 CFM rated • Die-cast aluminum housing',
+          refDryer: 'WRD 40 S (40 CFM)', refDryerSpec: '40 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 005 (50 CFM)', desDryerSpec: '50 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 008 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        },
+        '20': {
+          hp: 20, cfm: 80,
+          receiver: 'WRV 050 (500 L)', receiverSpec: '500 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 015 (Grade G)', preFilterSpec: '1.0 Micron protection • 85 CFM rated • Die-cast aluminum housing',
+          refDryer: 'WRD 100 S (100 CFM)', refDryerSpec: '100 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 010 (100 CFM)', desDryerSpec: '100 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 015 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        },
+        '30': {
+          hp: 30, cfm: 120,
+          receiver: 'WRV 100 (1,000 L)', receiverSpec: '1,000 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 025 (Grade G)', preFilterSpec: '1.0 Micron protection • 140 CFM rated • Die-cast aluminum housing',
+          refDryer: 'WRD 150 S (150 CFM)', refDryerSpec: '150 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 015 (150 CFM)', desDryerSpec: '150 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 025 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        },
+        '40': {
+          hp: 40, cfm: 160,
+          receiver: 'WRV 100 (1,000 L)', receiverSpec: '1,000 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 035 (Grade G)', preFilterSpec: '1.0 Micron protection • 200 CFM rated • Die-cast aluminum housing',
+          refDryer: 'WRD 200 S (200 CFM)', refDryerSpec: '200 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 020 (200 CFM)', desDryerSpec: '200 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 035 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        },
+        '50': {
+          hp: 50, cfm: 200,
+          receiver: 'WRV 150 (1,500 L)', receiverSpec: '1,500 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 035 (Grade G)', preFilterSpec: '1.0 Micron protection • 200 CFM rated • Die-cast aluminum housing',
+          refDryer: 'WRD 250 S (250 CFM)', refDryerSpec: '250 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 030 (300 CFM)', desDryerSpec: '300 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 035 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        },
+        '75': {
+          hp: 75, cfm: 300,
+          receiver: 'WRV 200 (2,000 L)', receiverSpec: '2,000 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 060 (Grade G)', preFilterSpec: '1.0 Micron protection • 350 CFM rated • Flanged housing with DP gauge',
+          refDryer: 'WRD 350 S (350 CFM)', refDryerSpec: '350 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 040 (400 CFM)', desDryerSpec: '400 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 060 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        },
+        '100': {
+          hp: 100, cfm: 400,
+          receiver: 'WRV 300 (3,000 L)', receiverSpec: '3,000 Liters • 10 bar g • IS 2825 / ASME Sec VIII with safety valve & gauge',
+          preFilter: 'WMF 100 (Grade G)', preFilterSpec: '1.0 Micron protection • 600 CFM rated • Flanged housing with DP gauge',
+          refDryer: 'WRD 500 S (500 CFM)', refDryerSpec: '500 CFM • +3°C Dew Point • R134a • Electronic Zero Loss auto drain',
+          desDryer: 'WHD 050 (500 CFM)', desDryerSpec: '500 CFM • -40°C Dew Point • Twin Tower Heatless with Activated Alumina',
+          afterFilter: 'WMF 100 (Grade C)', afterFilterSpec: '0.01 Micron • Oil residual < 0.01 mg/m³ • Borosilicate microfibers',
+          drain: 'WADV-Z16', drainSpec: 'Capacitive electronic zero-air-loss drain • Forged brass • Zero air bleed'
+        }
       };
+
+      let currentHP = '30';
+      let currentType = 'ref'; // 'ref' or 'des'
 
       const hpButtons = document.querySelectorAll('.hp-btn');
       const receiverEl = document.getElementById('stepReceiverModel');
       const receiverSpecEl = document.getElementById('stepReceiverSpec');
       const preFilterEl = document.getElementById('stepPreFilterModel');
+      const preFilterSpecEl = document.getElementById('stepPreFilterSpec');
       const dryerEl = document.getElementById('stepDryerModel');
+      const dryerSpecEl = document.getElementById('stepDryerSpec');
+      const dryerLabelEl = document.getElementById('dryerLabelText');
+      const dryerIconEl = document.getElementById('dryerIcon');
       const afterFilterEl = document.getElementById('stepAfterFilterModel');
+      const afterFilterSpecEl = document.getElementById('stepAfterFilterSpec');
       const drainEl = document.getElementById('stepDrainModel');
+      const drainSpecEl = document.getElementById('stepDrainSpec');
       const packageInput = document.getElementById('packageEquipmentInput');
       const reqBtn = document.getElementById('requestPackageBtn');
+      const flowPurityEl = document.getElementById('flowOutputPurity');
+      const guaranteeTitle = document.getElementById('summaryGuaranteeTitle');
+      const guaranteeDesc = document.getElementById('summaryGuaranteeDesc');
+      const btnRef = document.getElementById('btnRefDryer');
+      const btnDes = document.getElementById('btnDesDryer');
 
-      function selectHP(hp) {
-        const p = PACKAGES[hp] || PACKAGES['30'];
-        hpButtons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-hp') === String(hp)));
+      function updateTrain() {
+        const p = PACKAGES[currentHP] || PACKAGES['30'];
 
         receiverEl.textContent = p.receiver;
         receiverSpecEl.textContent = p.receiverSpec;
-        preFilterEl.textContent = p.preFilter + ' (1μm)';
-        dryerEl.textContent = p.dryer;
-        afterFilterEl.textContent = p.afterFilter + ' (0.01μm)';
+        preFilterEl.textContent = p.preFilter;
+        preFilterSpecEl.textContent = p.preFilterSpec;
+        afterFilterEl.textContent = p.afterFilter;
+        afterFilterSpecEl.textContent = p.afterFilterSpec;
         drainEl.textContent = p.drain;
+        drainSpecEl.textContent = p.drainSpec;
 
-        packageInput.value = `${p.hp} HP (${p.cfm} CFM) Package: ${p.receiver} + ${p.dryer} + ${p.afterFilter} + ${p.drain}`;
+        if (currentType === 'ref') {
+          dryerLabelEl.textContent = 'Refrigerated Air Dryer (+3°C PDP)';
+          dryerEl.textContent = p.refDryer;
+          dryerSpecEl.textContent = p.refDryerSpec;
+          dryerIconEl.className = 'fas fa-snowflake';
+          flowPurityEl.textContent = 'ISO 8573-1: Class 1.4.1';
+          guaranteeTitle.textContent = 'Guaranteed ISO 8573-1: Class 1.4.1 (Clean Dry Plant Air)';
+          guaranteeDesc.textContent = 'Eliminates 100% of liquid water, purifies aerosols down to 0.01μm, protecting CNC spindles, laser cutting heads, pneumatic cylinders, and paint booths from corrosion.';
+          packageInput.value = `${p.hp} HP (${p.cfm} CFM) +3°C Package: ${p.receiver} + ${p.preFilter} + ${p.refDryer} + ${p.afterFilter} + ${p.drain}`;
+        } else {
+          dryerLabelEl.textContent = 'Desiccant Air Dryer (-40°C PDP)';
+          dryerEl.textContent = p.desDryer;
+          dryerSpecEl.textContent = p.desDryerSpec;
+          dryerIconEl.className = 'fas fa-wind';
+          flowPurityEl.textContent = 'ISO 8573-1: Class 1.2.1';
+          guaranteeTitle.textContent = 'Guaranteed ISO 8573-1: Class 1.2.1 (Ultra-Dry Process Air)';
+          guaranteeDesc.textContent = 'Ultra-low -40°C pressure dew point eliminates sub-zero condensation for critical electronics, pharma powders, nitrogen generation, and laser cutting.';
+          packageInput.value = `${p.hp} HP (${p.cfm} CFM) -40°C Desiccant Package: ${p.receiver} + ${p.preFilter} + ${p.desDryer} + ${p.afterFilter} + ${p.drain}`;
+        }
       }
 
       hpButtons.forEach(b => {
-        b.addEventListener('click', () => selectHP(b.getAttribute('data-hp')));
+        b.addEventListener('click', () => {
+          currentHP = b.getAttribute('data-hp');
+          hpButtons.forEach(btn => btn.classList.toggle('is-active', btn.getAttribute('data-hp') === currentHP));
+          updateTrain();
+        });
       });
 
-      reqBtn.addEventListener('click', () => {
-        document.getElementById('rfq-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+      if (btnRef && btnDes) {
+        btnRef.addEventListener('click', () => {
+          currentType = 'ref';
+          btnRef.classList.add('is-active');
+          btnDes.classList.remove('is-active');
+          updateTrain();
+        });
+        btnDes.addEventListener('click', () => {
+          currentType = 'des';
+          btnDes.classList.add('is-active');
+          btnRef.classList.remove('is-active');
+          updateTrain();
+        });
+      }
+
+      if (reqBtn) {
+        reqBtn.addEventListener('click', () => {
+          const rfq = document.getElementById('rfq-section');
+          if (rfq) {
+            rfq.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => {
+              const nameInput = rfq.querySelector('input[name="contact_name"]');
+              if (nameInput) nameInput.focus();
+            }, 500);
+          }
+        });
+      }
+
+      updateTrain();
     });
   </script>
 </body>
+
 </html>
