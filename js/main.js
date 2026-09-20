@@ -604,6 +604,7 @@ function initLeadForms() {
         } else {
           const assignedRef = (data && data.ref_id) ? data.ref_id : ('WE-' + Date.now().toString().slice(-6));
           showConfirmationModal(leadPayload, assignedRef);
+          showSuccessInline(form, assignedRef);
           form.reset();
         }
       })
@@ -619,6 +620,17 @@ function initLeadForms() {
       });
     });
   });
+}
+
+function showSuccessInline(form, refId) {
+  let existing = form.querySelector('.rfq-success-inline');
+  if (existing) existing.remove();
+  const banner = document.createElement('div');
+  banner.className = 'rfq-success-inline';
+  banner.style.cssText = 'background:#ECFDF5;border:1px solid #6EE7B7;color:#065F46;padding:1rem;border-radius:10px;margin-top:1rem;text-align:center;font-weight:600;font-size:0.95rem;animation:fadeIn 0.3s ease;';
+  banner.innerHTML = `<i class="fas fa-check-circle" style="color:#10B981;margin-right:0.5rem;font-size:1.1rem;"></i>Thank you! Technical RFQ <strong>#${refId}</strong> received. Our team will contact you within 24 hours.`;
+  form.appendChild(banner);
+  setTimeout(() => { if (banner) banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
 }
 
 function showErrorBanner(form, message) {
@@ -637,42 +649,59 @@ function showErrorBanner(form, message) {
 function showConfirmationModal(lead, refId) {
   let modal = document.getElementById('rfq-confirmation-modal');
   const safeRef = refId || ('WE-' + Date.now().toString().slice(-6));
+  const equipName = lead.equipment_type || 'Industrial Equipment';
+
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'rfq-confirmation-modal';
-    modal.className = 'rfq-modal-overlay';
+    modal.className = 'rfq-modal-overlay is-active active';
     modal.innerHTML = `
       <div class="rfq-modal-content">
-        <div class="rfq-modal-icon">\u2713</div>
-        <h3>Technical RFQ Received</h3>
-        <p>Thank you. Your engineering inquiry has been assigned Reference <strong id="rfq-modal-ref-id">#${safeRef}</strong>.</p>
-        <p class="rfq-modal-sub">An application engineer from our Arasur plant will review your operating parameters and dispatch a formal technical proposal within 24 hours.</p>
-        <div class="rfq-modal-actions">
-          <a id="rfq-modal-wa-link" href="https://wa.me/919597228969?text=Hi%2C%20I%20just%20submitted%20RFQ%20for%20${encodeURIComponent(lead.equipment_type || 'Industrial Equipment')}%20(Ref:%20${safeRef})" class="btn btn-accent btn-sm" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp (+91 95972 28969)
+        <button type="button" class="rfq-modal-close close-modal-btn" aria-label="Close modal">&times;</button>
+        <div class="rfq-modal-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <h3 style="font-size: 1.5rem; color: #0E2540; margin-bottom: 0.35rem; font-weight: 800;">Thank You! RFQ Received</h3>
+        <div style="display: inline-flex; align-items: center; gap: 0.4rem; background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; padding: 0.35rem 0.9rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 700; margin: 0.4rem 0 1rem;">
+          <i class="fas fa-file-invoice"></i> Reference: <span id="rfq-modal-ref-id">#${safeRef}</span>
+        </div>
+        <p class="rfq-modal-sub" style="font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 1.5rem;">
+          Your inquiry for <strong>${equipName}</strong> has been logged with our application engineering team in Arasur, Coimbatore. We will review your operating parameters and dispatch a formal proposal within 24 hours.
+        </p>
+        <div class="rfq-modal-actions" style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
+          <a id="rfq-modal-wa-link" href="https://wa.me/919597228969?text=Hi%20Win%20Equipments%2C%20I%20just%20submitted%20an%20RFQ%20for%20${encodeURIComponent(equipName)}%20(Ref:%20${safeRef})" class="btn btn-cta btn-lg" style="background: #25D366; border-color: #25D366; color: #ffffff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; border-radius: 8px; font-weight: 700;" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Instant WhatsApp Update (+91 95972 28969)
           </a>
-          <button class="btn btn-outline btn-sm close-modal-btn">Close</button>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; width: 100%;">
+            <a href="tel:+919597228969" class="btn btn-outline btn-md" style="flex: 1; text-decoration: none; text-align: center; border-radius: 8px;">
+              <i class="fas fa-phone-alt"></i> Call Plant
+            </a>
+            <button type="button" class="btn btn-secondary btn-md close-modal-btn" style="flex: 1; border-radius: 8px; background: #E2E8F0; color: #1E293B; border: none; font-weight: 600; cursor: pointer;">
+              Done
+            </button>
+          </div>
         </div>
       </div>
     `;
     document.body.appendChild(modal);
 
-    modal.querySelector('.close-modal-btn').addEventListener('click', () => {
-      modal.classList.remove('active');
+    modal.querySelectorAll('.close-modal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.remove('is-active', 'active');
+      });
     });
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
+      if (e.target === modal) modal.classList.remove('is-active', 'active');
     });
   } else {
     const refElem = modal.querySelector('#rfq-modal-ref-id');
     if (refElem) refElem.textContent = '#' + safeRef;
     const waLink = modal.querySelector('#rfq-modal-wa-link');
     if (waLink) {
-      waLink.href = `https://wa.me/919597228969?text=Hi%2C%20I%20just%20submitted%20RFQ%20for%20${encodeURIComponent(lead.equipment_type || 'Industrial Equipment')}%20(Ref:%20${safeRef})`;
+      waLink.href = `https://wa.me/919597228969?text=Hi%20Win%20Equipments%2C%20I%20just%20submitted%20an%20RFQ%20for%20${encodeURIComponent(equipName)}%20(Ref:%20${safeRef})`;
     }
+    modal.classList.add('is-active', 'active');
   }
-
-  modal.classList.add('active');
 }
 
 /* 4. WhatsApp Deep-Link Builder */
