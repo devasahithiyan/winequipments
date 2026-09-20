@@ -10,10 +10,11 @@
  */
 
 /* ── configuration ──────────────────────────────────────────────── */
-define('TO_EMAIL',   'info@winequipments.com');
-define('FROM_EMAIL', 'info@winequipments.com');   // Verified domain email on cPanel
-define('FROM_NAME',  'Win Equipments Website RFQ');
-define('SITE_URL',   'https://winequipments.com');
+define('TO_EMAIL',        'info@winequipments.com');
+define('SECONDARY_EMAIL', 'devasahithiyan@gmail.com');
+define('FROM_EMAIL',      'info@winequipments.com');   // Verified domain email on cPanel
+define('FROM_NAME',       'Win Equipments Website RFQ');
+define('SITE_URL',        'https://winequipments.com');
 
 /* ── helpers ─────────────────────────────────────────────────────── */
 function clean(string $v): string {
@@ -172,7 +173,8 @@ $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 /* ── dispatch mail ────────────────────────────────────────────────── */
-$sent = @mail(TO_EMAIL, $subject, $body, $headers);
+$allRecipients = TO_EMAIL . ', ' . SECONDARY_EMAIL;
+$sent = @mail($allRecipients, $subject, $body, $headers);
 
 if (!$sent) {
     error_log("[Win RFQ] mail() returned false for ref:{$refId} phone:{$phone}. Lead captured in CSV.");
