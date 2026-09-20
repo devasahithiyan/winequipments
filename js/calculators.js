@@ -215,12 +215,6 @@ const WinCalculators = {
    * 5. Generate Branded Equipment Sizing Proposal (Print / PDF)
    */
   generateProposalWindow: function(proposalTitle, equipmentDetails, inputParams) {
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-      alert('Please allow popups to generate your official engineering proposal sheet.');
-      return;
-    }
-    
     const today = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
     const proposalRef = 'WE-PROP-' + Math.floor(100000 + Math.random() * 900000);
 
@@ -262,7 +256,7 @@ const WinCalculators = {
       SF No: 4, 195 B, Kallangadu, Arasur Post<br>
       Coimbatore – 641407, Tamil Nadu, India<br>
       Phone: +91 95972 28969 / +91 95972 28975<br>
-      Web: https://winequipments.com • Email: marketing@winequipments.com
+      Web: https://winequipments.com • Email: info@winequipments.com
     </div>
   </div>
 
@@ -284,7 +278,7 @@ const WinCalculators = {
 
   <div class="section-title">3. Standard Manufacturer Guarantee & Next Steps</div>
   <p style="font-size: 12px; color: #475569; line-height: 1.6;">
-    This technical sizing document is generated based on standard thermodynamic formulas (ISO 8573-1 / CTI / ASHRAE). Win Equipments provides a <strong>12-Month Comprehensive On-Site Warranty</strong> with emergency 24/7 service support across Coimbatore, Tiruppur, Hosur, Chennai, and Bengaluru. For formal commercial quotation, customized voltage options (e.g. 380V/60Hz export), or CAD dimensional fitment drawings, contact our engineering office at <strong>+91 95972 28969</strong> or email <strong>marketing@winequipments.com</strong>.
+    This technical sizing document is generated based on standard thermodynamic formulas (ISO 8573-1 / CTI / ASHRAE). Win Equipments provides a <strong>12-Month Comprehensive On-Site Warranty</strong> with emergency 24/7 service support across Coimbatore, Tiruppur, Hosur, Chennai, and Bengaluru. For formal commercial quotation, customized voltage options (e.g. 380V/60Hz export), or CAD dimensional fitment drawings, contact our engineering office at <strong>+91 95972 28969</strong> or email <strong>info@winequipments.com</strong>.
   </p>
 
   <div class="footer">
@@ -295,9 +289,61 @@ const WinCalculators = {
 </html>
     `;
 
-    printWindow.document.open();
-    printWindow.document.write(html);
-    printWindow.document.close();
+    let printWindow = null;
+    try {
+      printWindow = window.open('', '_blank');
+    } catch (e) {
+      printWindow = null;
+    }
+
+    if (printWindow && !printWindow.closed) {
+      printWindow.document.open();
+      printWindow.document.write(html);
+      printWindow.document.close();
+      return;
+    }
+
+    // Fallback: Render inline modal if popup was blocked
+    let existingModal = document.getElementById('we-proposal-modal');
+    if (existingModal) existingModal.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'we-proposal-modal';
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(15,23,42,0.85);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;backdrop-filter:blur(4px);';
+    modal.innerHTML = `
+      <div style="background:#fff;width:100%;max-width:850px;height:90vh;max-height:900px;border-radius:12px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);display:flex;flex-direction:column;">
+        <div style="background:#0E2540;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e3a5f;">
+          <h3 style="margin:0;font-size:16px;color:#fff;font-weight:700;">Official Technical Proposal - ${proposalTitle}</h3>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <button id="we-modal-print-btn" style="background:#0E7490;color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;">Print / Save PDF</button>
+            <button id="we-modal-close-btn" style="background:transparent;color:#94A3B8;border:none;font-size:24px;cursor:pointer;line-height:1;padding:0 5px;">&times;</button>
+          </div>
+        </div>
+        <div style="flex:1;overflow:hidden;background:#fff;position:relative;">
+          <iframe id="we-proposal-iframe" style="width:100%;height:100%;border:none;"></iframe>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const iframe = document.getElementById('we-proposal-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(html);
+      iframe.contentWindow.document.close();
+    }
+
+    const closeBtn = document.getElementById('we-modal-close-btn');
+    if (closeBtn) closeBtn.onclick = () => modal.remove();
+    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+    const printBtn = document.getElementById('we-modal-print-btn');
+    if (printBtn && iframe && iframe.contentWindow) {
+      printBtn.onclick = () => {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+      };
+    }
   }
 };
 

@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductCategoryFilter();
   initMachineHotspots();
   initHomepageMiniCalculator();
+  initSpecTableQuoting();
 });
 
 /* 1. Subtle Page Transitions */
@@ -170,6 +171,7 @@ function injectMobileDrawer() {
       <li>
         <span class="mobile-nav-subhead">Engineering Tools & Calculators</span>
         <ul class="mobile-nav-nested">
+          <li><a href="${p}engineering-tools/air-treatment-package-builder.html"><i class="fas fa-layer-group" style="margin-right: 0.35rem; color: #0E7490;"></i> Air Train Package Builder</a></li>
           <li><a href="${p}engineering-tools/air-dryer-sizing.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Air Dryer CFM Calculator</a></li>
           <li><a href="${p}engineering-tools/cooling-tower-calculator.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Cooling Tower TR Calculator</a></li>
           <li><a href="${p}engineering-tools/chiller-tonnage-calculator.html"><i class="fas fa-calculator" style="margin-right: 0.35rem;"></i> Chiller Heat Load Calculator</a></li>
@@ -550,6 +552,60 @@ function initCalculatorBindings() {
       });
     }
   }
+/* 2.8 Spec Table 1-Click Interactive Model Quoting */
+function initSpecTableQuoting() {
+  const quoteButtons = document.querySelectorAll('.table-quote-btn');
+  if (!quoteButtons.length) return;
+
+  quoteButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const model = this.getAttribute('data-model') || this.closest('tr')?.cells[0]?.textContent.trim();
+      if (!model) return;
+
+      const rfqForm = document.querySelector('form.rfq-form') || document.querySelector('#rfq-section form');
+      if (!rfqForm) return;
+
+      let modelField = rfqForm.querySelector('[name="selected_model"]');
+      if (!modelField) {
+        modelField = rfqForm.querySelector('[name="equipment_type"]') || rfqForm.querySelector('[name="operating_parameters"]');
+      }
+
+      if (modelField) {
+        if (modelField.tagName === 'SELECT') {
+          let found = false;
+          for (let opt of modelField.options) {
+            if (opt.value.toLowerCase().includes(model.toLowerCase()) || opt.text.toLowerCase().includes(model.toLowerCase())) {
+              modelField.value = opt.value;
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            const newOpt = new Option(model + ' (Selected)', model, true, true);
+            modelField.add(newOpt);
+          }
+        } else if (modelField.tagName === 'TEXTAREA') {
+          if (!modelField.value.includes(model)) {
+            modelField.value = `Model of Interest: ${model}\n` + modelField.value;
+          }
+        } else {
+          modelField.value = model;
+        }
+
+        modelField.classList.remove('rfq-field-highlight');
+        void modelField.offsetWidth;
+        modelField.classList.add('rfq-field-highlight');
+      }
+
+      rfqForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const firstInput = rfqForm.querySelector('input:not([type="hidden"]), select');
+      if (firstInput) {
+        setTimeout(() => firstInput.focus(), 500);
+      }
+    });
+  });
 }
 
 /* 3. Unified Lead Form Dispatch Engine */
@@ -997,5 +1053,31 @@ function initHomepageMiniCalculator() {
     document.body.appendChild(script);
   }
 })();
+
+/* 11. Technical Model & Spec Quick Search (Ctrl+K) Loader */
+(function initQuickSearchLoader() {
+  const isFileProto = window.location.protocol === 'file:';
+  const pathDepth = window.location.pathname.split('/').filter(Boolean).length;
+  const prefix = (isFileProto && pathDepth >= 2) ? '../' : '';
+  const cssHref = isFileProto ? (prefix + 'css/quick-search.css') : '/css/quick-search.css';
+  const jsSrc = isFileProto ? (prefix + 'js/quick-search.js') : '/js/quick-search.js';
+
+  if (!document.getElementById('win-quicksearch-css')) {
+    const link = document.createElement('link');
+    link.id = 'win-quicksearch-css';
+    link.rel = 'stylesheet';
+    link.href = cssHref;
+    document.head.appendChild(link);
+  }
+
+  if (!document.getElementById('win-quicksearch-js')) {
+    const script = document.createElement('script');
+    script.id = 'win-quicksearch-js';
+    script.src = jsSrc;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+})();
+
 
 

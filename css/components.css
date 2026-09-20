@@ -2307,3 +2307,127 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
     content: "";
   }
 }
+
+/* ==========================================================================
+   12. SPEC TABLE INTERACTIVE MODEL QUOTING
+   ========================================================================== */
+.table-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-brand-accent, #0284C7);
+  color: #FFFFFF !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+
+.table-quote-btn:hover {
+  background: var(--color-brand-primary, #0E2540);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(2, 132, 199, 0.35);
+}
+
+.table-quote-btn i {
+  font-size: 0.7rem;
+}
+
+.rfq-field-highlight {
+  animation: rfqPulse 1.8s ease 2;
+  border-color: #0284C7 !important;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.25) !important;
+}
+
+@keyframes rfqPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+
+/* ==========================================================================
+   13. PRODUCT PAGE CLIENT TRUST MARQUEE
+   ========================================================================== */
+.product-trust-clients {
+  padding: 2rem 1.5rem 1.5rem;
+  background: var(--color-surface-card, #FFFFFF);
+  border-radius: var(--radius-xl, 16px);
+  border: 1px solid var(--color-border-light, #E2E8F0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.product-trust-clients-header {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #64748B);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.product-clients-marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 1.5rem;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.product-clients-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.5rem;
+  align-items: center;
+  animation: clientScroll 32s linear infinite;
+}
+
+.product-clients-track:hover {
+  animation-play-state: paused;
+}
+
+.product-client-item {
+  width: 96px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+  filter: grayscale(100%);
+  opacity: 0.75;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.product-client-item:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  border-color: #0284C7;
+  transform: translateY(-2px);
+}
+
+.product-client-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes clientScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - 1.5rem)); }
+}
+

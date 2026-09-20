@@ -137,13 +137,22 @@ if ($fp) {
 }
 
 /* ── compose email notification ───────────────────────────────────── */
+$cadRequested = !empty($data['cad_drawings_requested']);
+
 $subject = "Technical RFQ [{$refId}]: {$equipType} – {$name} / {$company}";
+if ($cadRequested) {
+    $subject .= " [CAD Drawings Requested]";
+}
 
 $body  = "Win Equipments – New Technical RFQ / Inquiry\n";
 $body .= str_repeat('=', 58) . "\n\n";
 $body .= "Reference ID  : {$refId}\n";
 $body .= "Source Page   : {$formSource}\n";
-$body .= "Received At   : " . date('d M Y, H:i:s T') . "\n\n";
+$body .= "Received At   : " . date('d M Y, H:i:s T') . "\n";
+if ($cadRequested) {
+    $body .= "CAD Drawings  : YES - 2D GA & Foundation Drawings Requested\n";
+}
+$body .= "\n";
 $body .= "── Customer Contact Details ──\n";
 $body .= "  Name    : {$name}\n";
 $body .= "  Company : {$company}\n";
