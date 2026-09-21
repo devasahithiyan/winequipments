@@ -130,7 +130,10 @@
 }
 
 /* Desktop Navigation Menu */
-.nav-desktop {
+.site-header nav > ul,
+.nav-desktop,
+.nav-desktop .nav-list,
+.nav-list {
   display: flex;
   align-items: center;
   gap: 1.75rem;
@@ -1604,7 +1607,9 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 992px) {
-  .nav-desktop { display: none !important; }
+  .nav-desktop,
+  .site-header nav,
+  .nav-list { display: none !important; }
   .mobile-toggle-btn { display: inline-flex !important; }
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .proof-grid { grid-template-columns: repeat(2, 1fr); }
