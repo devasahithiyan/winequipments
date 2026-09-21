@@ -82,3 +82,23 @@ def test_send_rfq_handles_cad_drawings():
     assert "cad_drawings_requested" in content
     assert "info@winequipments.com" in content
     assert "devasahithiyan@gmail.com" in content
+
+def test_main_js_syntax_and_spec_table_quoting():
+    """Verify js/main.js has zero syntax errors and spec table quoting is wired."""
+    import subprocess
+    js_path = os.path.join(ROOT_DIR, "js", "main.js")
+    res = subprocess.run(["node", "-c", js_path], capture_output=True, text=True)
+    assert res.returncode == 0, f"Syntax error in main.js: {res.stderr}"
+
+    with open(js_path, "r", encoding="utf-8") as f:
+        js_content = f.read()
+    assert "initSpecTableQuoting()" in js_content
+    assert "table-quote-btn-active" in js_content
+    assert "rfq-selected-model-banner" in js_content
+
+    css_path = os.path.join(ROOT_DIR, "css", "components.css")
+    with open(css_path, "r", encoding="utf-8") as f:
+        css_content = f.read()
+    assert ".table-quote-btn-active" in css_content
+    assert ".rfq-selected-model-banner" in css_content
+

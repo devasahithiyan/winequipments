@@ -683,6 +683,8 @@ function initCalculatorBindings() {
       });
     }
   }
+}
+
 /* 2.8 Spec Table 1-Click Interactive Model Quoting */
 function initSpecTableQuoting() {
   const quoteButtons = document.querySelectorAll('.table-quote-btn');
@@ -691,50 +693,131 @@ function initSpecTableQuoting() {
   quoteButtons.forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      const model = this.getAttribute('data-model') || this.closest('tr')?.cells[0]?.textContent.trim();
+
+      // Extract model name from data-model, or first column of row
+      let model = this.getAttribute('data-model');
+      if (!model) {
+        const row = this.closest('tr');
+        if (row && row.cells.length > 0) {
+          model = row.cells[0].textContent.trim();
+        }
+      }
       if (!model) return;
 
-      const rfqForm = document.querySelector('form.rfq-form') || document.querySelector('#rfq-section form');
+      // Locate RFQ container and form
+      const rfqSection = document.getElementById('rfq-section') ||
+                         document.querySelector('.rfq-section') ||
+                         document.getElementById('quote-section');
+      const rfqForm = rfqSection ? (rfqSection.querySelector('form') || rfqSection) : (document.querySelector('form.rfq-form') || document.querySelector('form[action*="rfq"]'));
+
+      // Update button visual state across all buttons
+      quoteButtons.forEach(b => {
+        b.classList.remove('table-quote-btn-active');
+        if (b.dataset.origHtml) {
+          b.innerHTML = b.dataset.origHtml;
+        }
+      });
+      if (!btn.dataset.origHtml) {
+        btn.dataset.origHtml = btn.innerHTML;
+      }
+      btn.classList.add('table-quote-btn-active');
+      btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Selected';
+
       if (!rfqForm) return;
 
-      let modelField = rfqForm.querySelector('[name="selected_model"]');
-      if (!modelField) {
-        modelField = rfqForm.querySelector('[name="equipment_type"]') || rfqForm.querySelector('[name="operating_parameters"]');
+      // Ensure hidden or explicit selected_model input exists
+      let hiddenModelInput = rfqForm.querySelector('input[name="selected_model"]');
+      if (!hiddenModelInput && !rfqForm.querySelector('select[name="selected_model"]')) {
+        hiddenModelInput = document.createElement('input');
+        hiddenModelInput.type = 'hidden';
+        hiddenModelInput.name = 'selected_model';
+        rfqForm.appendChild(hiddenModelInput);
+      }
+      if (hiddenModelInput) {
+        hiddenModelInput.value = model;
       }
 
-      if (modelField) {
-        if (modelField.tagName === 'SELECT') {
-          let found = false;
-          for (let opt of modelField.options) {
-            if (opt.value.toLowerCase().includes(model.toLowerCase()) || opt.text.toLowerCase().includes(model.toLowerCase())) {
-              modelField.value = opt.value;
-              found = true;
-              break;
-            }
+      // Check for select fields to match model
+      const selects = rfqForm.querySelectorAll('select');
+      let selectMatched = false;
+      selects.forEach(selectEl => {
+        for (let opt of selectEl.options) {
+          const optVal = opt.value.toLowerCase();
+          const optText = opt.text.toLowerCase();
+          const target = model.toLowerCase();
+          if (optVal.includes(target) || optText.includes(target) || target.includes(optVal.split(' ')[0])) {
+            selectEl.value = opt.value;
+            selectMatched = true;
+            selectEl.classList.remove('rfq-field-highlight');
+            void selectEl.offsetWidth;
+            selectEl.classList.add('rfq-field-highlight');
+            break;
           }
-          if (!found) {
-            const newOpt = new Option(model + ' (Selected)', model, true, true);
-            modelField.add(newOpt);
-          }
-        } else if (modelField.tagName === 'TEXTAREA') {
-          if (!modelField.value.includes(model)) {
-            modelField.value = `Model of Interest: ${model}\n` + modelField.value;
-          }
-        } else {
-          modelField.value = model;
         }
+      });
 
-        modelField.classList.remove('rfq-field-highlight');
-        void modelField.offsetWidth;
-        modelField.classList.add('rfq-field-highlight');
+      // If there is a select[name="selected_model"] and no option matched, add it
+      const modelSelect = rfqForm.querySelector('select[name="selected_model"]');
+      if (modelSelect && !selectMatched) {
+        const newOpt = new Option(`${model} (Selected from Spec Table)`, model, true, true);
+        modelSelect.add(newOpt);
+        modelSelect.value = model;
+        modelSelect.classList.remove('rfq-field-highlight');
+        void modelSelect.offsetWidth;
+        modelSelect.classList.add('rfq-field-highlight');
       }
 
-      rfqForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      const firstInput = rfqForm.querySelector('input:not([type="hidden"]), select');
-      if (firstInput) {
-        setTimeout(() => firstInput.focus(), 500);
+      // Also append to operating_parameters / message textarea if present
+      const textarea = rfqForm.querySelector('textarea[name="operating_parameters"], textarea[name="message"], textarea[name="notes"]');
+      if (textarea && !textarea.value.includes(model)) {
+        textarea.value = `Selected Model from Spec Table: ${model}\n` + textarea.value;
       }
+
+      // Render/update high-visibility dynamic selection banner in RFQ form
+      let banner = rfqForm.querySelector('#rfq-selected-model-banner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'rfq-selected-model-banner';
+        banner.className = 'rfq-selected-model-banner';
+        rfqForm.insertBefore(banner, rfqForm.firstElementChild);
+      }
+      banner.innerHTML = `
+        <div class="rfq-banner-content">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <span>Model Selected for Quotation: <strong>${model}</strong></span>
+        </div>
+        <button type="button" class="rfq-banner-clear" title="Clear selection" aria-label="Clear model selection">&times;</button>
+      `;
+      const clearBtn = banner.querySelector('.rfq-banner-clear');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          banner.remove();
+          if (hiddenModelInput) hiddenModelInput.value = '';
+          btn.classList.remove('table-quote-btn-active');
+          if (btn.dataset.origHtml) btn.innerHTML = btn.dataset.origHtml;
+        });
+      }
+
+      // Smooth scroll to RFQ section with header offset
+      const header = document.querySelector('.site-header');
+      const headerHeight = (header ? header.offsetHeight : 64) + 16;
+      const targetEl = rfqSection || rfqForm;
+      const rect = targetEl.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement?.scrollTop || 0;
+      const targetY = rect.top + scrollTop - headerHeight;
+
+      window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: 'smooth'
+      });
+
+      // Auto-focus first contact input
+      setTimeout(() => {
+        const firstInput = rfqForm.querySelector('input[name="contact_name"], input[name="Name"], input[type="text"]:not([style*="display: none"]):not([style*="display:none"])');
+        if (firstInput) {
+          firstInput.focus();
+        }
+      }, 450);
     });
   });
 }

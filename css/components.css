@@ -2770,6 +2770,12 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   font-size: 0.7rem;
 }
 
+.table-quote-btn-active {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.35) !important;
+}
+
 .rfq-field-highlight {
   animation: rfqPulse 1.8s ease 2;
   border-color: #0284C7 !important;
@@ -2779,6 +2785,64 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
 @keyframes rfqPulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.015); }
+}
+
+.rfq-selected-model-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: var(--radius-md, 8px);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  color: #065F46;
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 500;
+  animation: rfqBannerSlide 0.3s ease-out;
+}
+
+.rfq-selected-model-banner strong {
+  font-weight: 700;
+  color: #047857;
+  letter-spacing: 0.02em;
+}
+
+.rfq-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rfq-banner-content i {
+  color: #10B981;
+  font-size: 1.1rem;
+}
+
+.rfq-banner-clear {
+  background: none;
+  border: none;
+  color: #6B7280;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  transition: color 0.15s ease;
+}
+
+.rfq-banner-clear:hover {
+  color: #DC2626;
+}
+
+@keyframes rfqBannerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
