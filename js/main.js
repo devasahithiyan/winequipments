@@ -486,18 +486,8 @@ function initCalculatorBindings() {
       if (resCFM) resCFM.textContent = res.requiredDryerCFM + ' CFM';
       if (resFactor) resFactor.textContent = res.totalCorrectionFactor;
 
-      // Auto-prefill into quote form
-      const quoteForm = document.querySelector('#quote-section form');
-      if (quoteForm) {
-        let paramInput = quoteForm.querySelector('input[name="calculated_selection"]');
-        if (!paramInput) {
-          paramInput = document.createElement('input');
-          paramInput.type = 'hidden';
-          paramInput.name = 'calculated_selection';
-          quoteForm.appendChild(paramInput);
-        }
-        paramInput.value = `Model: ${res.recommendedModel}, Required CFM: ${res.requiredDryerCFM}, Factor: ${res.totalCorrectionFactor}`;
-      }
+      // Auto-prefill into quote form & update visible banner
+      updateCalcSubmittalBanner(res.recommendedModel, `${res.requiredDryerCFM} CFM Required • Derating Factor: ${res.totalCorrectionFactor}`);
     };
 
     [dryerNominal, dryerPressure, dryerInlet, dryerAmbient].forEach(el => {
@@ -562,17 +552,9 @@ function initCalculatorBindings() {
       }
       if (resEvap) resEvap.textContent = res.evaporationLoss + ' m³/hr';
 
-      // Auto-prefill into quote form
-      const quoteForm = document.querySelector('#quote-section form');
-      if (quoteForm && res.isValid) {
-        let paramInput = quoteForm.querySelector('input[name="calculated_selection"]');
-        if (!paramInput) {
-          paramInput = document.createElement('input');
-          paramInput.type = 'hidden';
-          paramInput.name = 'calculated_selection';
-          quoteForm.appendChild(paramInput);
-        }
-        paramInput.value = `Capacity: ${res.recommendedTR} TR, Range: ${res.rangeC}°C, Approach: ${res.approachC}°C, Evap: ${res.evaporationLoss} m3/h`;
+      // Auto-prefill into quote form & update visible banner
+      if (res.isValid) {
+        updateCalcSubmittalBanner(`${res.recommendedTR} TR Cooling Tower`, `Range: ${res.rangeC}°C • Approach: ${res.approachC}°C • Evaporation: ${res.evaporationLoss} m³/hr`);
       }
     };
 
@@ -639,17 +621,9 @@ function initCalculatorBindings() {
         resDelta.style.color = res.isValid ? '#FFFFFF' : '#EF4444';
       }
 
-      // Auto-prefill into quote form
-      const quoteForm = document.querySelector('#quote-section form');
-      if (quoteForm && res.isValid) {
-        let paramInput = quoteForm.querySelector('input[name="calculated_selection"]');
-        if (!paramInput) {
-          paramInput = document.createElement('input');
-          paramInput.type = 'hidden';
-          paramInput.name = 'calculated_selection';
-          quoteForm.appendChild(paramInput);
-        }
-        paramInput.value = `Chiller Tonnage: ${res.requiredTR} TR (${res.capacityKW} kW), Delta T: ${res.deltaT}°C`;
+      // Auto-prefill into quote form & update visible banner
+      if (res.isValid) {
+        updateCalcSubmittalBanner(`${res.requiredTR} TR Process Chiller`, `${res.capacityKW} kW Cooling • Delta-T: ${res.deltaT}°C • Flow: ${parseFloat(chillerFlow.value) || 60} LPM`);
       }
     };
 
@@ -691,6 +665,54 @@ function initCalculatorBindings() {
       });
     }
   }
+
+  // Wire Email Submittal buttons across all calculator pages
+  document.querySelectorAll('a[href="#quote-section"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const quoteSec = document.getElementById('quote-section');
+      if (quoteSec) {
+        const headerOffset = 90;
+        const pos = quoteSec.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: pos, behavior: 'smooth' });
+        const nameInput = quoteSec.querySelector('input[name="contact_name"]');
+        if (nameInput) setTimeout(() => nameInput.focus(), 400);
+      }
+    });
+  });
+}
+
+function updateCalcSubmittalBanner(modelName, detailsText) {
+  const quoteSection = document.getElementById('quote-section');
+  if (!quoteSection) return;
+
+  const quoteForm = quoteSection.querySelector('form');
+  if (!quoteForm) return;
+
+  let banner = quoteSection.querySelector('#calc-submittal-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'calc-submittal-banner';
+    banner.style.cssText = 'background: #ECFDF5; border: 1px solid #10B981; color: #065F46; padding: 0.85rem 1.25rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; animation: fadeIn 0.3s ease;';
+    quoteForm.parentNode.insertBefore(banner, quoteForm);
+  }
+
+  banner.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <i class="fas fa-check-circle" style="color: #10B981; font-size: 1.15rem;"></i>
+      <span>Sizing Calculation Selected: <strong style="color: #047857;">${modelName}</strong> <span style="font-weight: 500; color: #065F46;">(${detailsText})</span></span>
+    </div>
+    <span style="font-size: 0.75rem; background: #D1FAE5; color: #065F46; padding: 0.25rem 0.65rem; border-radius: 9999px; font-weight: 700; text-transform: uppercase;">Ready to Submit</span>
+  `;
+
+  let paramInput = quoteForm.querySelector('input[name="calculated_selection"]');
+  if (!paramInput) {
+    paramInput = document.createElement('input');
+    paramInput.type = 'hidden';
+    paramInput.name = 'calculated_selection';
+    quoteForm.appendChild(paramInput);
+  }
+  paramInput.value = `Model: ${modelName}, Specs: ${detailsText}`;
 }
 
 /* 2.8 Spec Table 1-Click Interactive Model Quoting */

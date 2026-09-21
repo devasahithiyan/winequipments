@@ -289,38 +289,32 @@ const WinCalculators = {
 </html>
     `;
 
-    let printWindow = null;
-    try {
-      printWindow = window.open('', '_blank');
-    } catch (e) {
-      printWindow = null;
-    }
-
-    if (printWindow && !printWindow.closed) {
-      printWindow.document.open();
-      printWindow.document.write(html);
-      printWindow.document.close();
-      return;
-    }
-
-    // Fallback: Render inline modal if popup was blocked
+    // Render interactive branded proposal modal directly (immune to popup blockers)
     let existingModal = document.getElementById('we-proposal-modal');
     if (existingModal) existingModal.remove();
 
     const modal = document.createElement('div');
     modal.id = 'we-proposal-modal';
-    modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(15,23,42,0.85);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;backdrop-filter:blur(4px);';
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(11,21,35,0.85);z-index:999999;display:flex;align-items:center;justify-content:center;padding:15px;box-sizing:border-box;backdrop-filter:blur(6px);animation:fadeIn 0.2s ease;';
     modal.innerHTML = `
-      <div style="background:#fff;width:100%;max-width:850px;height:90vh;max-height:900px;border-radius:12px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);display:flex;flex-direction:column;">
-        <div style="background:#0E2540;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e3a5f;">
-          <h3 style="margin:0;font-size:16px;color:#fff;font-weight:700;">Official Technical Proposal - ${proposalTitle}</h3>
-          <div style="display:flex;gap:10px;align-items:center;">
-            <button id="we-modal-print-btn" style="background:#0E7490;color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;">Print / Save PDF</button>
-            <button id="we-modal-close-btn" style="background:transparent;color:#94A3B8;border:none;font-size:24px;cursor:pointer;line-height:1;padding:0 5px;">&times;</button>
+      <div style="background:#fff;width:100%;max-width:880px;height:92vh;max-height:920px;border-radius:12px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,0.6);display:flex;flex-direction:column;border:1px solid #334155;">
+        <div style="background:#0B1523;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1E293B;flex-wrap:wrap;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <i class="fas fa-file-invoice" style="color:#0284C7;font-size:1.1rem;"></i>
+            <span style="font-size:15px;font-weight:700;color:#F8FAFC;">Official Technical Proposal • ${proposalTitle}</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button id="we-modal-print-btn" type="button" style="background:#EA580C;color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+              <i class="fas fa-print"></i> Print / Save as PDF
+            </button>
+            <button id="we-modal-email-btn" type="button" style="background:#0284C7;color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+              <i class="fas fa-envelope"></i> Email to Procurement
+            </button>
+            <button id="we-modal-close-btn" type="button" style="background:transparent;color:#94A3B8;border:none;font-size:26px;cursor:pointer;line-height:1;padding:0 6px;" aria-label="Close Proposal">&times;</button>
           </div>
         </div>
         <div style="flex:1;overflow:hidden;background:#fff;position:relative;">
-          <iframe id="we-proposal-iframe" style="width:100%;height:100%;border:none;"></iframe>
+          <iframe id="we-proposal-iframe" title="Technical Sizing Proposal Document" style="width:100%;height:100%;border:none;"></iframe>
         </div>
       </div>
     `;
@@ -344,6 +338,33 @@ const WinCalculators = {
         iframe.contentWindow.print();
       };
     }
+
+    const emailBtn = document.getElementById('we-modal-email-btn');
+    if (emailBtn) {
+      emailBtn.onclick = () => {
+        modal.remove();
+        const quoteSec = document.getElementById('quote-section');
+        if (quoteSec) {
+          const headerOffset = 80;
+          const pos = quoteSec.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: pos, behavior: 'smooth' });
+          const contactInput = quoteSec.querySelector('input[name="contact_name"]');
+          if (contactInput) setTimeout(() => contactInput.focus(), 500);
+        }
+      };
+    }
+
+    // Attempt direct print trigger with smooth fallback
+    setTimeout(() => {
+      try {
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.focus();
+          iframe.contentWindow.print();
+        }
+      } catch (err) {
+        // User can manually click Print / Save as PDF button
+      }
+    }, 400);
   }
 };
 
