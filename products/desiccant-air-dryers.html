@@ -503,7 +503,7 @@
           <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Receive GA dimensional drawings, valve datasheets, and quotation within 24 hours.</p>
         </div>
 
-        <form class="rfq-form">
+        <form class="rfq-form" action="../send_rfq.php" method="POST" enctype="multipart/form-data">
           <input type="text" name="website_url_hp" style="display: none;">
           <input type="hidden" name="equipment_type" value="Desiccant Air Dryer">
 
@@ -604,7 +604,7 @@
     </div>
   </aside>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=2.2"></script>
 </body>
 
 </html>

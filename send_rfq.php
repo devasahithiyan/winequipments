@@ -28,11 +28,22 @@ function jsonResponse(bool $ok, string $msg, array $extra = []): void {
     exit;
 }
 
-function redirectBack(bool $ok, string $page = '/contactus.html', string $refId = ''): void {
+function redirectBack(bool $ok, string $page = '/contactus.html', string $refId = '', string $equipType = ''): void {
     $status = $ok ? 'success' : 'error';
-    $url = SITE_URL . $page . '?form=' . $status;
+    $targetPath = $page;
+    $referer = $_POST['return_url'] ?? $_SERVER['HTTP_REFERER'] ?? '';
+    if ($referer) {
+        $parsed = parse_url($referer);
+        if (!empty($parsed['path'])) {
+            $targetPath = $parsed['path'];
+        }
+    }
+    $url = SITE_URL . $targetPath . '?form=' . $status;
     if ($refId) {
         $url .= '&ref=' . urlencode($refId);
+    }
+    if ($equipType) {
+        $url .= '&equipment=' . urlencode($equipType);
     }
     header('Location: ' . $url);
     exit;
@@ -231,5 +242,5 @@ if ($isAjax) {
         'contact_phone'  => $phone
     ]);
 } else {
-    redirectBack(true, '/contactus.html', $refId);
+    redirectBack(true, '/contactus.html', $refId, $equipType);
 }

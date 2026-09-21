@@ -471,7 +471,7 @@
           <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Receive sizing calculations, GA drawings, and quotation within 24 hours.</p>
         </div>
 
-        <form class="rfq-form">
+        <form class="rfq-form" action="../send_rfq.php" method="POST" enctype="multipart/form-data">
           <input type="text" name="website_url_hp" style="display: none;">
           <input type="hidden" name="equipment_type" value="Aftercooler">
 
@@ -550,7 +550,7 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=2.2"></script>
 
   <!-- Universal Floating WhatsApp Button -->
   <a href="https://wa.me/919597228969" class="floating-whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp with Win Equipments">

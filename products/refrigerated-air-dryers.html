@@ -788,7 +788,7 @@
           <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Fill in your compressor specifications to receive an official selection proposal within 24 hours.</p>
         </div>
 
-        <form class="rfq-form">
+        <form class="rfq-form" action="../send_rfq.php" method="POST" enctype="multipart/form-data">
           <input type="text" name="website_url_hp" style="display: none;" tabindex="-1" autocomplete="off">
           <input type="hidden" name="equipment_type" value="Refrigerated Air Dryer">
 
@@ -936,7 +936,7 @@
     </div>
   </aside>
 
-  <script src="../js/main.js" defer></script>
+  <script src="../js/main.js?v=2.2" defer></script>
 </body>
 
 </html>

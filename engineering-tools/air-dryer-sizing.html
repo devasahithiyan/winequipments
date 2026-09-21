@@ -295,7 +295,7 @@
           <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Enter your email and phone to receive the verified calculation sheet, GA dimensional drawing, and pricing.</p>
         </div>
 
-        <form class="rfq-form">
+        <form class="rfq-form" action="../send_rfq.php" method="POST" enctype="multipart/form-data">
           <input type="text" name="website_url_hp" style="display: none;">
           <input type="hidden" name="equipment_type" value="Air Dryer Sizing Calculation">
 
@@ -346,7 +346,7 @@
   </footer>
 
   <script src="../js/calculators.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=2.2"></script>
 
   <!-- Universal Floating WhatsApp Button -->
   <a href="https://wa.me/919597228969" class="floating-whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp with Win Equipments">
