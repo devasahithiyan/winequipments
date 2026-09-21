@@ -102,3 +102,22 @@ def test_main_js_syntax_and_spec_table_quoting():
     assert ".table-quote-btn-active" in css_content
     assert ".rfq-selected-model-banner" in css_content
 
+def test_faq_accordion_styling_and_clean_markup():
+    """Verify enterprise FAQ accordion styles are present in components.css and main.js."""
+    css_path = os.path.join(ROOT_DIR, "css", "components.css")
+    with open(css_path, "r", encoding="utf-8") as f:
+        css = f.read()
+    assert ".faq-accordion" in css
+    assert ".faq-item" in css
+    assert ".faq-question" in css
+    assert ".faq-answer" in css
+    assert ".faq-icon" in css
+    assert "#faqs details" in css
+    assert "rotate(180deg)" in css
+
+    js_path = os.path.join(ROOT_DIR, "js", "main.js")
+    with open(js_path, "r", encoding="utf-8") as f:
+        js = f.read()
+    assert "initFaqAccordions()" in js
+
+

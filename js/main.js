@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHomepageMiniCalculator();
   initSpecTableQuoting();
   initDrawingDropzones();
+  initFaqAccordions();
 });
 
 /* 1. Subtle Page Transitions */
@@ -911,6 +912,27 @@ function handleFileSelection(fileInput, dropzone, promptEl) {
     if (selectedDisplay) selectedDisplay.style.display = 'none';
     if (promptEl) promptEl.style.display = 'flex';
   }
+}
+
+/* 2.10 Interactive Enterprise FAQ Accordions */
+function initFaqAccordions() {
+  const faqContainers = document.querySelectorAll('#faqs, .faq-accordion');
+  if (!faqContainers.length) return;
+
+  faqContainers.forEach(container => {
+    const detailsList = container.querySelectorAll('details');
+    detailsList.forEach(details => {
+      details.addEventListener('toggle', function() {
+        if (this.open) {
+          detailsList.forEach(other => {
+            if (other !== this && other.open) {
+              other.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  });
 }
 
 /* 3. Unified Lead Form Dispatch Engine */
