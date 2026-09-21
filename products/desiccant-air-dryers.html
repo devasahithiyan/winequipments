@@ -180,50 +180,95 @@
     </div>
   </header>
 
-  <main class="section-py" style="padding-top: 2rem;">
-    <div class="container">
-      <nav style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 1.5rem;" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a> &gt; <a href="../index.html#products">Products</a> &gt; <span style="color: var(--color-brand-primary); font-weight: 600;">Desiccant Air Dryers</span>
-      </nav>
+  <!-- ENTERPRISE PRODUCT HERO & SUBNAV -->
+  <main>
+    <section class="product-hero-enterprise" id="overview">
+      <div class="container">
+        <nav class="product-breadcrumb-bar" aria-label="Breadcrumb">
+          <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+          <i class="fas fa-chevron-right" style="font-size: 0.65rem; color: #64748B;"></i>
+          <a href="../index.html#products">Products</a>
+          <i class="fas fa-chevron-right" style="font-size: 0.65rem; color: #64748B;"></i>
+          <span class="product-breadcrumb-current">Desiccant Air Dryers</span>
+        </nav>
 
-      <div class="grid-split-hero" style="margin-bottom: 3.5rem;">
-        <div>
-          <div class="hero-badge-row" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified</span>
-            <span class="badge badge-neutral"><i class="fas fa-industry"></i> 3,500+ Plant Installations</span>
-            <span class="badge badge-accent"><i class="fas fa-shield-alt"></i> 100% Factory Run-Tested</span>
-            <span class="badge badge-eco"><i class="fas fa-snowflake"></i> -40°C PDP (ISO 8573-1)</span>
+        <div class="product-hero-grid">
+          <!-- Left Column: Copy, CTAs, Telemetry -->
+          <div class="product-hero-content">
+            <div class="product-badge-group">
+              <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified</span>
+              <span class="badge badge-accent"><i class="fas fa-shield-alt"></i> 100% Factory Run-Tested</span>
+              <span class="badge badge-neutral"><i class="fas fa-industry"></i> 3,500+ Plant Installations</span>
+              <span class="badge badge-eco"><i class="fas fa-snowflake"></i> -40°C PDP (ISO 8573-1 Class 2)</span>
+            </div>
+
+            <h1 class="product-hero-title">Heatless Twin-Tower Desiccant Air Dryers</h1>
+            
+            <p class="product-hero-lead">
+              When zero moisture tolerance is non-negotiable. Win Equipments manufactures heavy-duty heatless desiccant air dryers engineered with activated alumina desiccant beds, PLC sequence controllers, and low-pressure-drop shuttle valves for pharma, defense, and precision instrumentation.
+            </p>
+
+            <div class="product-hero-ctas hero-actions">
+              <a href="#rfq-section" class="btn btn-cta btn-lg">
+                <i class="fas fa-snowflake"></i> Eliminate Sub-Zero Freeze-Ups & Corrosion — Get -40°C Sizing <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="../catlogue/Desiccant air dryer.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3);">
+                <i class="fas fa-file-pdf"></i> Technical Specs
+              </a>
+              <a href="../engineering-tools/air-dryer-sizing.html" class="btn btn-secondary btn-lg" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38BDF8;">
+                <i class="fas fa-calculator"></i> CFM Calculator
+              </a>
+            </div>
+
+            <div class="product-telemetry-strip">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Pressure Dew Point</span>
+                <span class="telemetry-value">-40°C to -70°C</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Purge Optimization</span>
+                <span class="telemetry-value">10% to 14% Purge</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Cycle Control</span>
+                <span class="telemetry-value">10-Min PLC Sync</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Desiccant Grade</span>
+                <span class="telemetry-value">Activated Alumina</span>
+              </div>
+            </div>
           </div>
 
-          <h1 style="margin-bottom: 1rem;">Heatless Twin-Tower Desiccant Compressed Air Dryers</h1>
-          
-          <p style="font-size: var(--text-lg); color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
-            When zero moisture tolerance is non-negotiable. Win Equipments manufactures heavy-duty heatless desiccant air dryers engineered with activated alumina desiccant beds, PLC sequence controllers, and low-pressure-drop shuttle valves for pharma, defense, and precision instrumentation.
-          </p>
-
-          <div class="hero-actions" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <a href="#rfq-section" class="btn btn-cta btn-lg">Eliminate Sub-Zero Freeze-Ups & Corrosion — Get -40°C Sizing <i class="fas fa-arrow-right"></i></a>
-            <a href="../catlogue/Desiccant air dryer.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener">
-              <i class="fas fa-file-pdf"></i> Technical Specs
-            </a>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: var(--text-sm); border-top: 1px solid var(--color-border-light); padding-top: 1.25rem;">
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Pressure Dew Point:</strong> -40°C (Std) / -70°C (Opt)</div>
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Purge Air:</strong> 10% to 14% Optimized</div>
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Cycle Time:</strong> 10-Minute PLC Sequenced</div>
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Valves:</strong> Long-Life Angle Seat Valves</div>
-          </div>
-        </div>
-
-        <div class="card" style="padding: 1.5rem; text-align: center; background: #FFFFFF;">
-          <img src="../images/Products/dessicantdryer.png" alt="Twin Tower Desiccant Air Dryer Front View" style="max-height: 340px; margin: 0 auto 1.25rem; object-fit: contain;" loading="lazy" decoding="async" width="400" height="340">
-          <div style="display: flex; justify-content: center; gap: 0.75rem;">
-            <span class="spec-pill">Model: WHD-030 – WHD-200</span>
-            <span class="spec-pill">Twin Tower Heatless</span>
+          <!-- Right Column: Visual Stage -->
+          <div class="product-hero-stage">
+            <span class="product-stage-badge">Model: WHD-030 – WHD-200</span>
+            <img src="../images/Products/dessicantdryer.png" alt="Twin Tower Desiccant Air Dryer Front View" width="400" height="340" loading="eager" fetchpriority="high">
+            <div class="product-stage-pills">
+              <span class="spec-pill" style="background: rgba(255, 255, 255, 0.1); color: #E2E8F0; border-color: rgba(255, 255, 255, 0.2);">Twin Tower Heatless</span>
+              <span class="spec-pill" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3);"><i class="fas fa-check-circle"></i> 100% Run-Tested Arasur</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- STICKY SUB-NAVIGATION -->
+    <nav class="product-subnav-bar" aria-label="Product Page Quick Navigation">
+      <div class="container product-subnav-inner">
+        <ul class="product-subnav-links">
+          <li><a href="#overview" class="product-subnav-link active">Overview</a></li>
+          <li><a href="#specifications" class="product-subnav-link">Technical Specs</a></li>
+          <li><a href="#applications" class="product-subnav-link">Applications</a></li>
+          <li><a href="#faqs" class="product-subnav-link">Engineering FAQs</a></li>
+        </ul>
+        <div class="product-subnav-action">
+          <a href="#rfq-section" class="btn btn-cta btn-sm"><i class="fas fa-file-invoice"></i> Request Price</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container section-py">
 
       <!-- DIRECT ANSWER BOX -->
       <div class="snippet-direct-answer">
@@ -233,7 +278,7 @@
       </div>
 
       <!-- SPECIFICATION TABLE -->
-      <div style="margin: 4rem 0;">
+      <div style="margin: 4rem 0;" id="specifications">
         <div class="section-header-center">
           <span class="badge badge-accent">Certified Engineering Matrix</span>
           <h2>Technical Specifications: WHD Series (300 to 2,000 CFM)</h2>
@@ -342,7 +387,7 @@
       </div>
 
       <!-- APPLICATION MATRIX -->
-      <div style="margin: 4.5rem 0;">
+      <div style="margin: 4.5rem 0;" id="applications">
         <div class="section-header-center">
           <span class="badge badge-accent">Sub-Zero Dew Point Operations</span>
           <h2>Critical Applications for Desiccant Air Dryers</h2>
@@ -375,7 +420,7 @@
       </div>
 
       <!-- FREQUENTLY ASKED QUESTIONS -->
-      <div style="margin: 4.5rem 0;">
+      <div style="margin: 4.5rem 0;" id="faqs">
         <div class="section-header-center">
           <span class="badge badge-accent">Technical FAQ</span>
           <h2>Desiccant Air Dryer FAQs</h2>

@@ -209,56 +209,98 @@
     </div>
   </header>
 
-  <!-- BREADCRUMB & HERO -->
-  <main class="section-py" style="padding-top: 2rem;">
-    <div class="container">
-      <nav style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 1.5rem;" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a> &gt; <a href="../index.html#products">Products</a> &gt; <span style="color: var(--color-brand-primary); font-weight: 600;">Spares & Consumables</span>
-      </nav>
+  <!-- ENTERPRISE PRODUCT HERO & SUBNAV -->
+  <main>
+    <section class="product-hero-enterprise" id="overview">
+      <div class="container">
+        <nav class="product-breadcrumb-bar" aria-label="Breadcrumb">
+          <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+          <i class="fas fa-chevron-right" style="font-size: 0.65rem; color: #64748B;"></i>
+          <a href="../index.html#products">Products</a>
+          <i class="fas fa-chevron-right" style="font-size: 0.65rem; color: #64748B;"></i>
+          <span class="product-breadcrumb-current">Spares &amp; Consumables</span>
+        </nav>
 
-      <div class="grid-split-hero" style="margin-bottom: 3.5rem;">
-        <div>
-          <div class="hero-badge-row" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified</span>
-            <span class="badge badge-neutral"><i class="fas fa-industry"></i> 3,500+ Plant Installations</span>
-            <span class="badge badge-accent"><i class="fas fa-shield-alt"></i> 100% Factory Run-Tested</span>
-            <span class="badge badge-eco"><i class="fas fa-check-double"></i> 100% OEM Spec Interchangeable</span>
+        <div class="product-hero-grid">
+          <!-- Left Column: Copy, CTAs, Telemetry -->
+          <div class="product-hero-content">
+            <div class="product-badge-group">
+              <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified</span>
+              <span class="badge badge-neutral"><i class="fas fa-industry"></i> 3,500+ Plant Installations</span>
+              <span class="badge badge-accent"><i class="fas fa-shield-alt"></i> 100% Factory Run-Tested</span>
+              <span class="badge badge-eco"><i class="fas fa-check-double"></i> 100% OEM Spec Interchangeable</span>
+            </div>
+
+            <h1 class="product-hero-title">Genuine Industrial Spares &amp; Maintenance Consumables Hub</h1>
+            
+            <p class="product-hero-lead">
+              Keep your air dryers, process chillers, and cooling towers operating at factory design efficiency. Order certified activated alumina, precision 0.01μ coalescing cartridges, zero-loss drain valve kits, and high-efficiency thermoformed PVC fills directly from our Arasur works.
+            </p>
+
+            <div class="product-hero-ctas hero-actions">
+              <a href="#rfq-section" class="btn btn-cta btn-lg">
+                <i class="fas fa-tools"></i> Avoid Plant Downtime — Get Factory Spares Pricing <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="../catlogue/E_Catalogue.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3);">
+                <i class="fas fa-file-pdf"></i> Master Catalog
+              </a>
+              <a href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20here%20is%20the%20photo%20of%20the%20spare%20part%20I%20need." class="btn btn-secondary btn-lg" target="_blank" rel="noopener" style="background: rgba(37, 211, 102, 0.15); border-color: rgba(37, 211, 102, 0.4); color: #25D366;">
+                <i class="fab fa-whatsapp"></i> WhatsApp Photo for ID
+              </a>
+            </div>
+
+            <div class="product-telemetry-strip">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Dispatch Speed</span>
+                <span class="telemetry-value">Same-Day In-Stock</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Coverage</span>
+                <span class="telemetry-value">Dryers, Chillers, Towers</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Compatibility</span>
+                <span class="telemetry-value">Universal OEM Drop-In</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Warranty</span>
+                <span class="telemetry-value">6-Month OEM Guarantee</span>
+              </div>
+            </div>
           </div>
 
-          <h1 style="margin-bottom: 1rem;">Genuine Industrial Spares & Maintenance Consumables Hub</h1>
-          
-          <p style="font-size: var(--text-lg); color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
-            Keep your air dryers, process chillers, and cooling towers operating at factory design efficiency. Order certified activated alumina, precision 0.01μ coalescing cartridges, zero-loss drain valve kits, and high-efficiency thermoformed PVC fills directly from our Arasur works.
-          </p>
-
-          <div class="hero-actions" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <a href="#rfq-section" class="btn btn-cta btn-lg">Avoid Plant Downtime — Get Factory Pricing <i class="fas fa-arrow-right"></i></a>
-            <a href="../catlogue/E_Catalogue.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener">
-              <i class="fas fa-file-pdf"></i> Technical Specs
-            </a>
-            <a href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20here%20is%20the%20photo%20of%20the%20spare%20part%20I%20need." class="btn btn-outline btn-lg" target="_blank" rel="noopener" style="color: #25D366; border-color: #25D366;">
-              <i class="fab fa-whatsapp"></i> WhatsApp Photo for ID
-            </a>
+          <!-- Right Column: Visual Stage -->
+          <div class="product-hero-stage">
+            <span class="product-stage-badge">Emergency Breakdown Support</span>
+            <img src="../images/Products/drainvalve.png" alt="Automatic Drain Valve and Spares Kit" width="400" height="340" loading="eager" fetchpriority="high">
+            <div class="product-stage-pills">
+              <span class="spec-pill" style="background: rgba(255, 255, 255, 0.1); color: #E2E8F0; border-color: rgba(255, 255, 255, 0.2);">Stocked in Arasur Hub</span>
+              <span class="spec-pill" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3);"><i class="fas fa-check-circle"></i> Direct OEM Arasur</span>
+            </div>
           </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: var(--text-sm); border-top: 1px solid var(--color-border-light); padding-top: 1.25rem;">
-            <div><i class="fas fa-shipping-fast" style="color: var(--color-brand-primary);"></i> <strong>Dispatch:</strong> Same-day for in-stock parts</div>
-            <div><i class="fas fa-shield-alt" style="color: var(--color-brand-accent);"></i> <strong>Warranty:</strong> 6-month OEM warranty</div>
-            <div><i class="fas fa-boxes" style="color: #10b981;"></i> <strong>Packaging:</strong> Moisture-sealed barrier bags</div>
-            <div><i class="fas fa-tools" style="color: #f59e0b;"></i> <strong>Technical Support:</strong> Sizing & retrofit guidance</div>
-          </div>
-        </div>
-
-        <div class="card" style="padding: 1.5rem; background: #ffffff; box-shadow: var(--shadow-xl); border-radius: var(--radius-xl); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-          <img src="../images/Products/drainvalve.png" alt="Automatic Drain Valve and Spares Kit" width="360" height="260" style="max-height: 260px; object-fit: contain; margin-bottom: 1rem;">
-          <div style="font-weight: 700; color: var(--color-brand-primary); font-size: var(--text-base);">Emergency Breakdown Support</div>
-          <p style="font-size: var(--text-xs); color: var(--color-text-muted); margin: 0.25rem 0 0.75rem;">Need urgent parts for a downed plant? Our Arasur warehouse stocks standard drains, cartridges, and fills for immediate counter pickup or express courier.</p>
-          <a href="tel:+919597228969" class="btn btn-secondary btn-sm" style="width: 100%;"><i class="fas fa-phone-alt"></i> Call Parts Desk: +91 95972 28969</a>
         </div>
       </div>
+    </section>
+
+    <!-- STICKY SUB-NAVIGATION -->
+    <nav class="product-subnav-bar" aria-label="Product Page Quick Navigation">
+      <div class="container product-subnav-inner">
+        <ul class="product-subnav-links">
+          <li><a href="#overview" class="product-subnav-link active">Overview</a></li>
+          <li><a href="#categories" class="product-subnav-link">Categories</a></li>
+          <li><a href="#specifications" class="product-subnav-link">Parts Matrix</a></li>
+          <li><a href="#faqs" class="product-subnav-link">Engineering FAQs</a></li>
+        </ul>
+        <div class="product-subnav-action">
+          <a href="#rfq-section" class="btn btn-cta btn-sm"><i class="fas fa-file-invoice"></i> Order Spares</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container section-py">
 
       <!-- PRODUCT SPARES CATALOGUE GRID -->
-      <section style="margin-bottom: 4rem;">
+      <section style="margin-bottom: 4rem;" id="categories">
         <div style="text-align: center; max-width: 700px; margin: 0 auto 2.5rem;">
           <span class="badge badge-accent" style="margin-bottom: 0.5rem;"><i class="fas fa-layer-group"></i> Catalog By Category</span>
           <h2>Standard Spare Parts & Consumables Portfolio</h2>
@@ -397,7 +439,7 @@
       </section>
 
       <!-- SPARES SPECIFICATIONS MATRIX -->
-      <div style="margin: 4rem 0;">
+      <div style="margin: 4rem 0;" id="specifications">
         <div class="section-header-center">
           <span class="badge badge-accent">Quick Reference Guide</span>
           <h2>OEM Spares & Consumables Specification Matrix</h2>
@@ -479,7 +521,7 @@
       </div>
 
       <!-- FREQUENTLY ASKED QUESTIONS -->
-      <div style="margin: 4.5rem 0;">
+      <div style="margin: 4.5rem 0;" id="faqs">
         <div class="section-header-center">
           <span class="badge badge-accent">Spares & Service FAQ</span>
           <h2>Frequently Asked Spares Questions</h2>

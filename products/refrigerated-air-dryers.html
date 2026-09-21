@@ -201,53 +201,97 @@
     </div>
   </header>
 
-  <!-- BREADCRUMB & HERO -->
-  <main class="section-py" style="padding-top: 2rem;">
-    <div class="container">
-      <nav style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: 1.5rem;" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a> &gt; <a href="../index.html#products">Products</a> &gt; <span style="color: var(--color-brand-primary); font-weight: 600;">Refrigerated Air Dryers</span>
-      </nav>
+  <!-- ENTERPRISE PRODUCT HERO & SUBNAV -->
+  <main>
+    <section class="product-hero-enterprise" id="overview">
+      <div class="container">
+        <nav class="product-breadcrumb-bar" aria-label="Breadcrumb">
+          <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+          <i class="fas fa-chevron-right" style="font-size: 0.65rem; color: #64748B;"></i>
+          <a href="../index.html#products">Products</a>
+          <i class="fas fa-chevron-right" style="font-size: 0.65rem; color: #64748B;"></i>
+          <span class="product-breadcrumb-current">Refrigerated Air Dryers</span>
+        </nav>
 
-      <div class="grid-split-hero" style="margin-bottom: 3.5rem;">
-        <!-- Left Column: Copy & CTAs -->
-        <div>
-          <div class="hero-badge-row" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified</span>
-            <span class="badge badge-neutral"><i class="fas fa-industry"></i> 3,500+ Plant Installations</span>
-            <span class="badge badge-accent"><i class="fas fa-shield-alt"></i> 100% Factory Run-Tested</span>
-            <span class="badge badge-eco"><i class="fas fa-snowflake"></i> +3°C PDP (ISO 8573-1)</span>
+        <div class="product-hero-grid">
+          <!-- Left Column: Copy, CTAs, Telemetry -->
+          <div class="product-hero-content">
+            <div class="product-badge-group">
+              <span class="badge badge-iso"><i class="fas fa-certificate"></i> ISO 9001:2015 Certified Works</span>
+              <span class="badge badge-accent"><i class="fas fa-shield-alt"></i> 100% Factory Run-Tested</span>
+              <span class="badge badge-neutral"><i class="fas fa-industry"></i> 3,500+ Regional Installs</span>
+              <span class="badge badge-eco"><i class="fas fa-snowflake"></i> +3°C PDP (ISO 8573-1 Class 4)</span>
+            </div>
+
+            <h1 class="product-hero-title">Industrial Refrigerated Compressed Air Dryers</h1>
+            
+            <p class="product-hero-lead">
+              Direct manufacturer of non-cycling refrigerated air dryers engineered for Indian tropical conditions (up to 50°C inlet). Protect CNC machine tools, textile air jet looms, automotive paint lines, and pneumatic actuators from liquid moisture, rust, and oil carryover.
+            </p>
+
+            <div class="product-hero-ctas hero-actions">
+              <a href="#rfq-section" class="btn btn-cta btn-lg">
+                <i class="fas fa-shield-virus"></i> Stop Paying for Moisture Damage — Get Sizing & Direct Price <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="../catlogue/refrigeration air dryer.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3);">
+                <i class="fas fa-file-pdf"></i> Technical Specs
+              </a>
+              <a href="../engineering-tools/air-dryer-sizing.html" class="btn btn-secondary btn-lg" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38BDF8;">
+                <i class="fas fa-calculator"></i> Sizing Calculator
+              </a>
+            </div>
+
+            <div class="product-telemetry-strip">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Pressure Dew Point</span>
+                <span class="telemetry-value">+3°C (Class 4)</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Capacity Range</span>
+                <span class="telemetry-value">20 to 2,000 CFM</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Ambient Rating</span>
+                <span class="telemetry-value">Up to 50°C Inlet</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Compressor Core</span>
+                <span class="telemetry-value">Emerson / Danfoss</span>
+              </div>
+            </div>
           </div>
 
-          <h1 style="margin-bottom: 1rem;">Industrial Refrigerated Compressed Air Dryers</h1>
-          
-          <p style="font-size: var(--text-lg); color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
-            Direct manufacturer of non-cycling refrigerated air dryers engineered for Indian tropical conditions. Protect CNC machine tools, textile air jet looms, painting booths, and pneumatic solenoids from moisture damage and pipe corrosion.
-          </p>
-
-          <div class="hero-actions" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <a href="#rfq-section" class="btn btn-cta btn-lg">Stop Paying for Moisture Damage — Get Sizing & Direct Price <i class="fas fa-arrow-right"></i></a>
-            <a href="../catlogue/refrigeration air dryer.pdf" download class="btn btn-outline btn-lg" target="_blank" rel="noopener">
-              <i class="fas fa-file-pdf"></i> Technical Specs
-            </a>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: var(--text-sm); border-top: 1px solid var(--color-border-light); padding-top: 1.25rem;">
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Pressure Dew Point:</strong> +3°C (Class 4)</div>
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Max Inlet Temp:</strong> 50°C Tropical</div>
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Compressor:</strong> Emerson / Danfoss</div>
-            <div><i class="fas fa-check" style="color: var(--color-brand-accent);"></i> <strong>Refrigerant:</strong> Eco-Friendly R134a/R407c</div>
-          </div>
-        </div>
-
-        <!-- Right Column: Visual Showcase -->
-        <div class="card" style="padding: 1.5rem; text-align: center; background: #FFFFFF;">
-          <img src="../images/Products/Refrigiratedairdryer1.png" alt="Refrigerated Air Dryer WRD Series Front View" style="max-height: 340px; margin: 0 auto 1.25rem; object-fit: contain;" loading="lazy" decoding="async" width="400" height="340">
-          <div style="display: flex; justify-content: center; gap: 0.75rem;">
-            <span class="spec-pill">Model: WRD 20 S – WRD 2000 T</span>
-            <span class="spec-pill">100% Run-Tested</span>
+          <!-- Right Column: Visual Showcase -->
+          <div class="product-hero-stage">
+            <span class="product-stage-badge">Model: WRD 20 S – WRD 2000 T</span>
+            <img src="../images/Products/Refrigiratedairdryer1.png" alt="Refrigerated Air Dryer WRD Series Front View" width="400" height="340" loading="eager" fetchpriority="high">
+            <div class="product-stage-pills">
+              <span class="spec-pill" style="background: rgba(255, 255, 255, 0.1); color: #E2E8F0; border-color: rgba(255, 255, 255, 0.2);">Non-Cycling Eco R134a/R407c</span>
+              <span class="spec-pill" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3);"><i class="fas fa-check-circle"></i> 100% Run-Tested Arasur</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- STICKY SUB-NAVIGATION -->
+    <nav class="product-subnav-bar" aria-label="Product Page Quick Navigation">
+      <div class="container product-subnav-inner">
+        <ul class="product-subnav-links">
+          <li><a href="#overview" class="product-subnav-link active">Overview</a></li>
+          <li><a href="#specifications" class="product-subnav-link">Technical Specs</a></li>
+          <li><a href="#working-principle" class="product-subnav-link">How It Works</a></li>
+          <li><a href="#piping-layout" class="product-subnav-link">P&ID Layout</a></li>
+          <li><a href="#applications" class="product-subnav-link">Applications</a></li>
+          <li><a href="#faqs" class="product-subnav-link">Engineering FAQs</a></li>
+        </ul>
+        <div class="product-subnav-action">
+          <a href="#rfq-section" class="btn btn-cta btn-sm"><i class="fas fa-file-invoice"></i> Request Price</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container section-py">
 
       <!-- DIRECT ANSWER SNIPPET BOX (Google AI Overview / Position 0 Target) -->
       <div class="snippet-direct-answer">
@@ -257,7 +301,7 @@
       </div>
 
       <!-- RESPONSIVE SPECIFICATION TABLE (FREEZE PANE) -->
-      <div style="margin: 4rem 0;">
+      <div style="margin: 4rem 0;" id="specifications">
         <div class="section-header-center">
           <span class="badge badge-accent">Full Engineering Data</span>
           <h2>Technical Specifications: WRD Series (20 to 2,000 CFM)</h2>
@@ -476,7 +520,7 @@
       </div>
 
       <!-- WORKING PRINCIPLE (4-STAGE THERMAL CYCLE) -->
-      <div style="margin: 4rem 0;">
+      <div style="margin: 4rem 0;" id="working-principle">
         <div class="section-header-center">
           <span class="badge badge-eco">Thermodynamic Cycle</span>
           <h2>How Win Equipments Refrigerated Dryers Work</h2>
@@ -503,7 +547,7 @@
       </div>
 
       <!-- TYPICAL P&ID PLANT INSTALLATION SCHEMATIC -->
-      <div style="margin: 4.5rem 0;" class="reveal-on-scroll">
+      <div style="margin: 4.5rem 0;" id="piping-layout" class="reveal-on-scroll">
         <div class="section-header-center">
           <span class="badge badge-accent">Engineering Layout & P&ID</span>
           <h2>Recommended Compressor Room Installation Layout</h2>
@@ -599,7 +643,7 @@
       </div>
 
       <!-- APPLICATION MATRIX -->
-      <div style="margin: 4.5rem 0;">
+      <div style="margin: 4.5rem 0;" id="applications">
         <div class="section-header-center">
           <span class="badge badge-accent">Industrial Use Cases</span>
           <h2>Primary Applications of Win Refrigerated Air Dryers</h2>
@@ -632,7 +676,7 @@
       </div>
 
       <!-- FREQUENTLY ASKED QUESTIONS -->
-      <div style="margin: 4.5rem 0;">
+      <div style="margin: 4.5rem 0;" id="faqs">
         <div class="section-header-center">
           <span class="badge badge-accent">Dryer Engineering FAQ</span>
           <h2>Refrigerated Air Dryer FAQs</h2>
