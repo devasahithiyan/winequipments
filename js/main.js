@@ -5,23 +5,33 @@
  */
 
 function initAll() {
-  initPageTransitions();
-  initScrollAnimations();
-  initMobileNav();
-  initMobileConversionDock();
-  initFormAccessibility();
-  initCalculatorBindings();
-  initLeadForms();
-  initWhatsAppTracking();
-  initServiceWorker();
-  initEquipmentFinder();
-  initProductCategoryFilter();
-  initMachineHotspots();
-  initHomepageMiniCalculator();
-  initSpecTableQuoting();
-  initDrawingDropzones();
-  initFaqAccordions();
-  checkUrlFormSuccess();
+  const fns = [
+    initPageTransitions,
+    initScrollAnimations,
+    initMobileNav,
+    initMobileConversionDock,
+    initFormAccessibility,
+    initCalculatorBindings,
+    initLeadForms,
+    initWhatsAppTracking,
+    initServiceWorker,
+    initEquipmentFinder,
+    initProductCategoryFilter,
+    initMachineHotspots,
+    initHomepageMiniCalculator,
+    initSpecTableQuoting,
+    initDrawingDropzones,
+    initFaqAccordions,
+    initHeroShowcaseTabs,
+    checkUrlFormSuccess
+  ];
+  fns.forEach(fn => {
+    try {
+      if (typeof fn === 'function') fn();
+    } catch (err) {
+      console.warn('Module init warning:', err);
+    }
+  });
 }
 
 if (document.readyState === 'loading') {
@@ -59,56 +69,34 @@ function initPageTransitions() {
       const targetUrl = new URL(link.href, window.location.href);
       const isSameOrigin = (targetUrl.origin === window.location.origin) ||
                            (window.location.protocol === 'file:' && targetUrl.protocol === 'file:');
-      if (isSameOrigin) {
-        if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search && targetUrl.hash) {
-          return;
-        }
-        e.preventDefault();
-        document.body.classList.add('page-is-leaving');
-        setTimeout(() => {
-          window.location.href = link.href;
-        }, 150);
+
+      if (!isSameOrigin) return;
+
+      // Handle in-page hash links gracefully
+      if (targetUrl.pathname === window.location.pathname && targetUrl.hash) {
+        return;
       }
+
+      e.preventDefault();
+      document.body.classList.add('page-is-leaving');
+      setTimeout(() => {
+        window.location.href = link.href;
+      }, 120);
     } catch (err) {
-      // Fallback to default link navigation
+      // Fall back to native navigation
     }
   });
 
   window.addEventListener('pageshow', (event) => {
-    if (event.persisted || document.body.classList.contains('page-is-leaving')) {
+    if (event.persisted) {
       document.body.classList.remove('page-is-leaving');
     }
   });
 }
 
-/* 2. Scroll Reveal Micro-animations */
+/* 2. Scroll Reveal (Guaranteed immediate visibility) */
 function initScrollAnimations() {
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-revealed');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -30px 0px'
-  });
-
-  const targets = document.querySelectorAll(
-    '.reveal-on-scroll, .section-header-center, .card, .metric-card, .snippet-direct-answer'
-  );
-  targets.forEach((el) => {
-    if (!el.classList.contains('reveal-on-scroll')) {
-      el.classList.add('reveal-on-scroll');
-    }
-    observer.observe(el);
-  });
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
 }
 
 /* 3. Universal Mobile Navigation Drawer & Injection */
@@ -832,14 +820,16 @@ function initSpecTableQuoting() {
       const header = document.querySelector('.site-header');
       const headerHeight = (header ? header.offsetHeight : 64) + 16;
       const targetEl = rfqSection || rfqForm;
-      const rect = targetEl.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement?.scrollTop || 0;
-      const targetY = rect.top + scrollTop - headerHeight;
+      if (targetEl) {
+        const rect = targetEl.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement?.scrollTop || 0;
+        const targetY = rect.top + scrollTop - headerHeight;
 
-      window.scrollTo({
-        top: Math.max(0, targetY),
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: Math.max(0, targetY),
+          behavior: 'smooth'
+        });
+      }
 
       // Auto-focus first contact input
       setTimeout(() => {
@@ -958,6 +948,37 @@ function initFaqAccordions() {
               other.removeAttribute('open');
             }
           });
+        }
+      });
+    });
+  });
+}
+
+/* 2.11 Interactive Hero Machinery Showcase Tabs */
+function initHeroShowcaseTabs() {
+  const tabs = document.querySelectorAll('.hero-tab-btn');
+  if (!tabs.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      if (!targetId) return;
+
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+
+      const showcaseItems = document.querySelectorAll('.hero-showcase-item');
+      showcaseItems.forEach(item => {
+        if (item.id === targetId) {
+          item.classList.add('active');
+          item.style.display = 'flex';
+        } else {
+          item.classList.remove('active');
+          item.style.display = 'none';
         }
       });
     });

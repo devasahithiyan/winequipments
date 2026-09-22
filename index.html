@@ -360,18 +360,67 @@
         </div>
       </div>
 
-      <!-- Hero Visual Card -->
+      <!-- Hero Visual Card (ELGi-Caliber Transparent Machinery Showcase) -->
       <div class="hero-visual-card">
-        <div style="position: relative; overflow: hidden; border-radius: var(--radius-lg);">
-          <img src="images/banner_opt.jpg" alt="Win Equipments Arasur Manufacturing Facility" width="600" height="400" loading="eager" fetchpriority="high" decoding="async">
-          <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--radius-sm); padding: 0.25rem 0.6rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; color: #38BDF8;">
-            <i class="fas fa-microchip"></i> 100% Factory Run-Tested
+        <!-- Interactive Machinery Selector Tabs -->
+        <div class="hero-showcase-tabs" role="tablist" aria-label="Equipment Showcase Selector">
+          <button type="button" class="hero-tab-btn active" data-target="showcase-chiller" role="tab" aria-selected="true">
+            <i class="fas fa-snowflake"></i> Process Chillers
+          </button>
+          <button type="button" class="hero-tab-btn" data-target="showcase-dryer" role="tab" aria-selected="false">
+            <i class="fas fa-wind"></i> Air Dryers
+          </button>
+          <button type="button" class="hero-tab-btn" data-target="showcase-tower" role="tab" aria-selected="false">
+            <i class="fas fa-water"></i> Cooling Towers
+          </button>
+        </div>
+
+        <!-- Machinery Showcase Display Stage -->
+        <div class="hero-showcase-stage">
+          <!-- Item 1: Industrial Process Chiller (Default Active) -->
+          <div class="hero-showcase-item active" id="showcase-chiller">
+            <div class="hero-img-wrap">
+              <img src="images/Products/chiller.png" alt="Win Equipments Industrial Process Chiller (1 to 150 TR)" width="480" height="420" loading="eager" fetchpriority="high" decoding="async" class="hero-product-img">
+            </div>
+            <div class="hero-equipment-badge">
+              <span class="hero-badge-title"><i class="fas fa-snowflake" style="color: #0284C7;"></i> WCP Series Process Chiller</span>
+              <span class="hero-badge-meta">1–150 TR &bull; &minus;5&deg;C to +25&deg;C &bull; 45&deg;C Tropical Ambient</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Refrigerated Air Dryer -->
+          <div class="hero-showcase-item" id="showcase-dryer" style="display: none;">
+            <div class="hero-img-wrap">
+              <img src="images/Products/Refrigiratedairdryer1.png" alt="Win Equipments Refrigerated Compressed Air Dryer (20 to 2000 CFM)" width="480" height="420" loading="lazy" decoding="async" class="hero-product-img">
+            </div>
+            <div class="hero-equipment-badge">
+              <span class="hero-badge-title"><i class="fas fa-wind" style="color: #0284C7;"></i> WRD Series Air Dryer</span>
+              <span class="hero-badge-meta">20–2,000 CFM &bull; +3&deg;C Pressure Dew Point &bull; Non-Cycling</span>
+            </div>
+          </div>
+
+          <!-- Item 3: FRP Cooling Tower -->
+          <div class="hero-showcase-item" id="showcase-tower" style="display: none;">
+            <div class="hero-img-wrap">
+              <img src="images/Products/coolingtower.png" alt="Win Equipments FRP Industrial Cooling Tower (10 to 1500 TR)" width="480" height="420" loading="lazy" decoding="async" class="hero-product-img">
+            </div>
+            <div class="hero-equipment-badge">
+              <span class="hero-badge-title"><i class="fas fa-water" style="color: #0284C7;"></i> WCT Series Cooling Tower</span>
+              <span class="hero-badge-meta">10–1,500 TR &bull; Virgin PVC Fills &bull; CTI Standard</span>
+            </div>
+          </div>
+
+          <!-- Top-right 100% Factory Run-Tested Tag -->
+          <div class="hero-status-pill">
+            <span class="status-dot"></span> 100% Factory Run-Tested
           </div>
         </div>
-        <div style="margin-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+
+        <!-- Showcase Footer Meta & Direct Master E-Catalogue Download -->
+        <div class="hero-showcase-footer">
           <div>
-            <div style="font-weight: 700; font-size: var(--text-sm); color: #0F172A;">Arasur Works Testing Bay &amp; Hydro-Rig</div>
-            <div style="font-size: var(--text-xs); color: #64748B;">SF No: 4, 195 B, Arasur, Coimbatore • Est. 2008</div>
+            <div class="hero-loc-title">Arasur Works Testing Bay &amp; Hydro-Rig</div>
+            <div class="hero-loc-sub">SF No: 4, 195 B, Arasur, Coimbatore &bull; Est. 2008</div>
           </div>
           <a href="catlogue/E_Catalogue.pdf" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
             <i class="fas fa-download"></i> Master E-Catalogue (PDF)

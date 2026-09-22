@@ -655,18 +655,195 @@
   background: #FFFFFF;
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-xl);
-  padding: 1.75rem;
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
-  transition: transform var(--transition-normal);
+  padding: 1.5rem;
+  box-shadow: 0 12px 36px -8px rgba(15, 23, 42, 0.08);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
 }
 .hero-visual-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 44px -10px rgba(15, 23, 42, 0.12);
 }
 
-.hero-visual-card img {
+/* Equipment Showcase Selector Tabs */
+.hero-showcase-tabs {
+  display: flex;
+  gap: 0.35rem;
+  background: #F1F5F9;
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #E2E8F0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.hero-showcase-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748B;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.hero-tab-btn:hover {
+  color: #0F172A;
+}
+
+.hero-tab-btn.active {
+  background: #FFFFFF;
+  color: #0284C7;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+/* Machinery Showcase Display Stage */
+.hero-showcase-stage {
+  position: relative;
+  height: 330px;
+  min-height: 330px;
+  background: radial-gradient(circle at 50% 40%, #FFFFFF 0%, #F1F5F9 100%);
+  border: 1px solid #E2E8F0;
   border-radius: var(--radius-lg);
-  background-color: var(--color-surface-bg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-showcase-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: fadeIn 0.25s ease;
+}
+
+.hero-img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 245px;
+  width: 100%;
   padding: 1rem;
+}
+
+.hero-product-img {
+  max-height: 225px;
+  max-width: 82%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 20px rgba(15, 23, 42, 0.12));
+  transition: transform 0.3s ease;
+}
+
+.hero-visual-card:hover .hero-product-img {
+  transform: scale(1.03);
+}
+
+/* Equipment Meta Overlay Badge */
+.hero-equipment-badge {
+  position: absolute;
+  bottom: 0.65rem;
+  left: 0.65rem;
+  right: 0.65rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-badge-title {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #0F172A;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hero-badge-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #0284C7;
+  font-weight: 600;
+}
+
+/* Factory Run-Tested Pill */
+.hero-status-pill {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #38BDF8;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  display: inline-block;
+  box-shadow: 0 0 6px #10B981;
+}
+
+/* Showcase Footer */
+.hero-showcase-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-loc-title {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: #0F172A;
+}
+
+.hero-loc-sub {
+  font-size: var(--text-xs);
+  color: #64748B;
 }
 
 /* Mobile Quick Category Shortcut Strip */

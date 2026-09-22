@@ -202,17 +202,16 @@ body.page-is-leaving main {
   animation: pageExitAnimation 0.16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Subtle Scroll Reveal Micro-animations */
+/* Safe Scroll Reveal (Content is always visible by default; never blank) */
 .reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .reveal-on-scroll.is-revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Stagger delay helpers for grids */
@@ -497,7 +496,6 @@ li {
 }
 
 /* Dark Context Overrides for Secondary & Outline */
-.hero-industrial .btn-secondary,
 .bg-blueprint-grid .btn-secondary,
 .section-dark .btn-secondary {
   background: rgba(255, 255, 255, 0.15);
@@ -505,7 +503,6 @@ li {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.hero-industrial .btn-secondary:hover,
 .bg-blueprint-grid .btn-secondary:hover,
 .section-dark .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.25);
@@ -513,14 +510,26 @@ li {
   color: #FFFFFF;
 }
 
-.hero-industrial .btn-outline,
+.hero-industrial .btn-outline {
+  background-color: #FFFFFF;
+  border-color: var(--color-border-medium, #CBD5E1);
+  color: var(--color-brand-primary, #0F172A);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.hero-industrial .btn-outline:hover {
+  background-color: #F8FAFC;
+  border-color: #94A3B8;
+  color: #0F172A;
+  transform: translateY(-2px);
+}
+
 .btn-outline-white {
   background-color: transparent;
   border-color: rgba(255, 255, 255, 0.35);
   color: #FFFFFF;
 }
 
-.hero-industrial .btn-outline:hover,
 .btn-outline-white:hover {
   background-color: rgba(255, 255, 255, 0.12);
   border-color: #FFFFFF;
