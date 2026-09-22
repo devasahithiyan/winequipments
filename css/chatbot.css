@@ -1,33 +1,116 @@
 /* ==========================================================================
-   WIN EQUIPMENTS – AI TECHNICAL ASSISTANT WIDGET STYLES
+   WIN EQUIPMENTS – EXECUTIVE B2B TECHNICAL DESK WIDGET STYLES
+   Design Standard: ELGi-Caliber Industrial Engineering Architecture
    ========================================================================== */
 
+/* 1. Proactive Floating Teaser Pill */
+.win-ai-teaser {
+  position: fixed;
+  bottom: 148px;
+  right: 24px;
+  z-index: 2050;
+  background: #FFFFFF;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  max-width: 290px;
+  animation: teaserEntrance 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.win-ai-teaser:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px -5px rgba(15, 23, 42, 0.2);
+}
+
+.win-ai-teaser-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #E0F2FE;
+  color: #0284C7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.win-ai-teaser-text {
+  flex: 1;
+  line-height: 1.35;
+  color: #1E293B;
+}
+
+.win-ai-teaser-text strong {
+  color: #0284C7;
+  font-weight: 700;
+}
+
+.win-ai-teaser-close {
+  background: none;
+  border: none;
+  color: #94A3B8;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.win-ai-teaser-close:hover {
+  color: #0F172A;
+}
+
+@keyframes teaserEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 2. Primary Floating Launcher Button */
 .win-ai-chat-launcher {
   position: fixed;
-  bottom: 92px;
+  bottom: 88px;
   right: 24px;
   z-index: 2100;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  background: linear-gradient(135deg, #0E2540 0%, #0369A1 100%);
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #0B1523 0%, #0284C7 100%);
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 9999px;
-  padding: 0.65rem 1.15rem;
-  box-shadow: 0 10px 25px rgba(14, 37, 64, 0.35);
+  padding: 0.65rem 1.25rem;
+  box-shadow: 0 10px 25px rgba(11, 21, 35, 0.35);
   cursor: pointer;
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-  font-size: 0.875rem;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.85rem;
   font-weight: 700;
+  letter-spacing: 0.01em;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
 }
 
 .win-ai-chat-launcher:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(14, 37, 64, 0.45);
-  background: linear-gradient(135deg, #0284C7 0%, #0E2540 100%);
+  box-shadow: 0 14px 32px rgba(2, 132, 199, 0.45);
+  background: linear-gradient(135deg, #0284C7 0%, #0B1523 100%);
 }
 
 .win-ai-chat-launcher .ai-icon-bubble {
@@ -58,28 +141,28 @@
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* Chat Window Modal */
+/* 3. Chat Window Container */
 .win-ai-chat-window {
   position: fixed;
-  bottom: 92px;
+  bottom: 88px;
   right: 24px;
-  width: 380px;
-  max-width: calc(100vw - 32px);
-  height: 540px;
-  max-height: calc(100vh - 120px);
+  width: 410px;
+  max-width: calc(100vw - 28px);
+  height: 590px;
+  max-height: calc(100vh - 105px);
   background: #FFFFFF;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(14, 37, 64, 0.35), 0 0 0 1px rgba(14, 37, 64, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px -12px rgba(11, 21, 35, 0.35), 0 0 0 1px rgba(11, 21, 35, 0.08);
   display: flex;
   flex-direction: column;
   z-index: 2200;
   overflow: hidden;
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-family: var(--font-sans, 'Open Sans', sans-serif);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px) scale(0.96);
+  transform: translateY(18px) scale(0.96);
   transform-origin: bottom right;
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.26s ease, transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.26s;
 }
 
 .win-ai-chat-window.is-open {
@@ -88,15 +171,16 @@
   transform: translateY(0) scale(1);
 }
 
-/* Chat Header */
+/* 4. Chat Header Bar */
 .win-ai-chat-header {
-  background: #0E2540;
+  background: #0B1523;
   color: #FFFFFF;
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.15rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #0284C7;
+  flex-shrink: 0;
 }
 
 .win-ai-chat-title-group {
@@ -116,44 +200,67 @@
   font-size: 1.1rem;
   color: #FFFFFF;
   box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  flex-shrink: 0;
 }
 
 .win-ai-header-text h4 {
   margin: 0;
-  font-size: 0.95rem;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.92rem;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.2;
 }
 
 .win-ai-header-text span {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #94A3B8;
   display: flex;
   align-items: center;
   gap: 0.35rem;
 }
 
-.win-ai-chat-close {
-  background: none;
+.win-ai-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.win-header-action-btn {
+  background: rgba(255, 255, 255, 0.1);
   border: none;
-  color: #94A3B8;
-  font-size: 1.25rem;
+  color: #E2E8F0;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
   cursor: pointer;
-  padding: 0.25rem;
-  line-height: 1;
-  transition: color 0.2s ease;
+  text-decoration: none;
+  transition: all 0.15s ease;
 }
 
-.win-ai-chat-close:hover {
+.win-header-action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
   color: #FFFFFF;
+  transform: scale(1.05);
 }
 
-/* Chat Messages Stream */
+.win-header-action-btn.call-btn:hover {
+  background: #0284C7;
+}
+
+.win-header-action-btn.wa-btn:hover {
+  background: #25D366;
+}
+
+/* 5. Messages Stream */
 .win-ai-chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 1.25rem;
+  padding: 1rem 1.15rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -161,13 +268,129 @@
   scroll-behavior: smooth;
 }
 
+/* Pre-Question Suggestions Welcome Screen */
+.win-ai-welcome-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 1.1rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.win-ai-welcome-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.5rem;
+}
+
+.win-ai-welcome-header i {
+  color: #0284C7;
+}
+
+.win-ai-welcome-card p {
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+
+/* Categorized Suggestion Question Cards */
+.win-ai-suggestions-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.win-ai-suggestions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.win-ai-suggestion-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 9px;
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.win-ai-suggestion-card:hover {
+  background: #FFFFFF;
+  border-color: #0284C7;
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+.win-ai-sugg-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #E0F2FE;
+  color: #0284C7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.win-ai-suggestion-card:hover .win-ai-sugg-icon {
+  background: #0284C7;
+  color: #FFFFFF;
+}
+
+.win-ai-sugg-content {
+  flex: 1;
+}
+
+.win-ai-sugg-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #0F172A;
+  line-height: 1.3;
+}
+
+.win-ai-sugg-sub {
+  font-size: 0.7rem;
+  color: #64748B;
+  line-height: 1.3;
+}
+
+/* Chat Message Bubbles */
 .win-ai-msg {
-  max-width: 86%;
+  max-width: 88%;
   padding: 0.8rem 1rem;
   border-radius: 14px;
-  font-size: 0.875rem;
+  font-size: 0.84rem;
   line-height: 1.55;
   word-break: break-word;
+  animation: msgEntrance 0.25s ease both;
+}
+
+@keyframes msgEntrance {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .win-ai-msg-bot {
@@ -176,20 +399,12 @@
   color: #1E293B;
   border: 1px solid #E2E8F0;
   border-bottom-left-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
-.win-ai-msg-bot p {
-  margin: 0 0 0.5rem;
-}
-
-.win-ai-msg-bot p:last-child {
-  margin-bottom: 0;
-}
-
-.win-ai-msg-bot ul, .win-ai-msg-bot ol {
-  margin: 0.35rem 0;
-  padding-left: 1.25rem;
+.win-ai-msg-bot strong {
+  color: #0F172A;
+  font-weight: 700;
 }
 
 .win-ai-msg-bot a {
@@ -203,92 +418,139 @@
   background: #0284C7;
   color: #FFFFFF;
   border-bottom-right-radius: 4px;
-  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  font-weight: 500;
 }
 
-/* Quick Suggestion Chips */
-.win-ai-chips-container {
-  padding: 0.6rem 1.25rem 0.4rem;
-  background: #FFFFFF;
-  border-top: 1px solid #E2E8F0;
+/* Dynamic Action Buttons below Bot Message */
+.win-ai-msg-actions {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #F1F5F9;
 }
 
-.win-ai-chips-container::-webkit-scrollbar {
-  display: none;
-}
-
-.win-ai-chip {
-  flex-shrink: 0;
+.win-ai-action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #0369A1;
-  background: #F0F9FF;
-  border: 1px solid #BAE6FD;
-  padding: 0.35rem 0.75rem;
-  border-radius: 9999px;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none !important;
   cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
 }
 
-.win-ai-chip:hover {
+.win-ai-action-btn.rfq {
+  background: #FFEDD5;
+  color: #C2410C;
+  border-color: #FDBA74;
+}
+.win-ai-action-btn.rfq:hover {
+  background: #EA580C;
+  color: #FFFFFF;
+}
+
+.win-ai-action-btn.wa {
+  background: #DCFCE7;
+  color: #15803D;
+  border-color: #86EFAC;
+}
+.win-ai-action-btn.wa:hover {
+  background: #16A34A;
+  color: #FFFFFF;
+}
+
+.win-ai-action-btn.call {
+  background: #E0F2FE;
+  color: #0369A1;
+  border-color: #7DD3FC;
+}
+.win-ai-action-btn.call:hover {
   background: #0284C7;
   color: #FFFFFF;
-  border-color: #0284C7;
 }
 
-/* Chat Input Bar */
+/* Typing Indicator */
+.win-ai-typing {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.95rem;
+}
+
+.win-ai-typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0284C7;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.win-ai-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.win-ai-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* 6. Chat Input Bar */
 .win-ai-chat-input-bar {
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.15rem;
   background: #FFFFFF;
   border-top: 1px solid #E2E8F0;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+  flex-shrink: 0;
 }
 
 .win-ai-chat-input-bar input {
   flex: 1;
+  padding: 0.65rem 0.95rem;
   border: 1px solid #CBD5E1;
-  border-radius: 9999px;
-  padding: 0.65rem 1.15rem;
-  font-size: 0.875rem;
-  outline: none;
+  border-radius: 9px;
   font-family: inherit;
-  transition: border-color 0.2s ease;
+  font-size: 16px !important; /* Prevents iOS auto-zoom */
+  color: #0F172A;
+  background: #F8FAFC;
+  outline: none;
+  min-height: 42px;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .win-ai-chat-input-bar input:focus {
   border-color: #0284C7;
+  background: #FFFFFF;
   box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 
 .win-ai-chat-send-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
   background: #0284C7;
   color: #FFFFFF;
   border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
+  cursor: pointer;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .win-ai-chat-send-btn:hover {
   background: #0369A1;
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .win-ai-chat-send-btn:disabled {
@@ -297,60 +559,37 @@
   transform: none;
 }
 
-/* Typing Indicator */
-.win-ai-typing {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.6rem 0.9rem;
-}
-
-.win-ai-typing-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #94A3B8;
-  animation: typingBounce 1.4s infinite ease-in-out both;
-}
-
-.win-ai-typing-dot:nth-child(1) { animation-delay: -0.32s; }
-.win-ai-typing-dot:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes typingBounce {
-  0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1); }
-}
-
-/* Responsive adjustment for Mobile */
+/* 7. Responsive Mobile Adaptations (<= 768px) */
 @media (max-width: 768px) {
+  .win-ai-teaser {
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 60px);
+    right: 12px;
+    max-width: 250px;
+    font-size: 0.76rem;
+    padding: 0.6rem 0.8rem;
+  }
+
   .win-ai-chat-launcher {
-    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 12px);
-    right: 14px;
-    padding: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(14, 116, 144, 0.45);
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 8px);
+    right: 12px;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.78rem;
+    box-shadow: 0 4px 16px rgba(11, 21, 35, 0.4);
     z-index: 1000;
   }
-  .win-ai-chat-launcher span {
-    display: none;
-  }
-  .win-ai-chat-launcher i {
-    font-size: 1.3rem;
-    margin: 0;
-  }
+
   .win-ai-chat-window {
-    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 8px);
-    right: 8px;
-    left: 8px;
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 4px);
+    right: 6px;
+    left: 6px;
     width: auto;
     max-width: none;
-    height: min(500px, 75vh);
+    height: min(530px, 78vh);
     border-radius: 14px;
     z-index: 1001;
+  }
+
+  .win-ai-suggestion-card {
+    padding: 0.55rem 0.75rem;
   }
 }

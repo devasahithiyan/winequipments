@@ -1485,13 +1485,25 @@ function initHomepageMiniCalculator() {
   recalculate();
 }
 
+function resolveWinAssetUrl(relativePath) {
+  try {
+    const scripts = document.querySelectorAll('script[src*="main.js"]');
+    const mainScript = document.currentScript || (scripts.length > 0 ? scripts[scripts.length - 1] : null);
+    if (mainScript && mainScript.src) {
+      const rootUrl = mainScript.src.replace(/js\/main\.js(\?.*)?$/, '');
+      return new URL(relativePath, rootUrl).href;
+    }
+  } catch (e) {}
+  const isSubdir = window.location.pathname.includes('/products/') ||
+                   window.location.pathname.includes('/locations/') ||
+                   window.location.pathname.includes('/tools/');
+  return (isSubdir ? '../' : './') + relativePath;
+}
+
 /* 10. AI Technical Sales & Sizing Assistant Widget Loader */
 (function initAiChatbotLoader() {
-  const isFileProto = window.location.protocol === 'file:';
-  const pathDepth = window.location.pathname.split('/').filter(Boolean).length;
-  const prefix = (isFileProto && pathDepth >= 2) ? '../' : '';
-  const cssHref = isFileProto ? (prefix + 'css/chatbot.css') : '/css/chatbot.css';
-  const jsSrc = isFileProto ? (prefix + 'js/chatbot.js') : '/js/chatbot.js';
+  const cssHref = resolveWinAssetUrl('css/chatbot.css');
+  const jsSrc = resolveWinAssetUrl('js/chatbot.js');
 
   if (!document.getElementById('win-chatbot-css')) {
     const link = document.createElement('link');
@@ -1512,11 +1524,8 @@ function initHomepageMiniCalculator() {
 
 /* 11. Technical Model & Spec Quick Search (Ctrl+K) Loader */
 (function initQuickSearchLoader() {
-  const isFileProto = window.location.protocol === 'file:';
-  const pathDepth = window.location.pathname.split('/').filter(Boolean).length;
-  const prefix = (isFileProto && pathDepth >= 2) ? '../' : '';
-  const cssHref = isFileProto ? (prefix + 'css/quick-search.css') : '/css/quick-search.css';
-  const jsSrc = isFileProto ? (prefix + 'js/quick-search.js') : '/js/quick-search.js';
+  const cssHref = resolveWinAssetUrl('css/quick-search.css');
+  const jsSrc = resolveWinAssetUrl('js/quick-search.js');
 
   if (!document.getElementById('win-quicksearch-css')) {
     const link = document.createElement('link');
