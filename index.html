@@ -430,85 +430,50 @@
     </div>
   </section>
 
-  <!-- Mobile Quick Product Category Strip (Visible on Mobile) -->
-  <div class="mobile-quick-category-bar" aria-label="Quick Product Categories">
-    <a href="products/industrial-process-chillers.html" class="mobile-quick-cat-pill">
-      <i class="fas fa-snowflake" style="color: #0284C7;"></i> Process Chillers
-    </a>
-    <a href="products/refrigerated-air-dryers.html" class="mobile-quick-cat-pill">
-      <i class="fas fa-wind" style="color: #0284C7;"></i> Air Dryers
-    </a>
-    <a href="products/round-cooling-towers.html" class="mobile-quick-cat-pill">
-      <i class="fas fa-water" style="color: #0284C7;"></i> Cooling Towers
-    </a>
-    <a href="products/air-receiver-tanks.html" class="mobile-quick-cat-pill">
-      <i class="fas fa-database" style="color: #0284C7;"></i> Air Receivers
-    </a>
-    <a href="products/compressed-air-filters.html" class="mobile-quick-cat-pill">
-      <i class="fas fa-filter" style="color: #0284C7;"></i> Air Filters
-    </a>
-    <a href="engineering-tools/air-treatment-package-builder.html" class="mobile-quick-cat-pill">
-      <i class="fas fa-layer-group" style="color: #0284C7;"></i> Package Builder
-    </a>
-  </div>
-
-  <!-- INTERACTIVE EQUIPMENT & APPLICATION MATCHER -->
-  <section style="position: relative; z-index: 20;">
+  <!-- EXECUTIVE MANUFACTURER CREDENTIALS & CAPABILITY OVERVIEW -->
+  <section class="executive-overview-section">
     <div class="container">
-      <div class="equipment-finder-bar">
-        <div class="finder-title">
-          <i class="fas fa-crosshairs" style="color: var(--color-brand-accent);"></i>
-          <span>Instant Industrial Equipment Matcher</span>
+      <div class="executive-overview-grid">
+        <div>
+          <span style="font-family: var(--font-heading, 'Montserrat', sans-serif); font-size: var(--text-xs); font-weight: 700; color: #0284C7; text-transform: uppercase; letter-spacing: 0.08em; display: inline-block; margin-bottom: 0.65rem;">
+            Direct Indian Manufacturer &bull; Arasur Works, Coimbatore
+          </span>
+          <h2 style="font-family: var(--font-heading, 'Montserrat', sans-serif); font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 800; color: #0F172A; line-height: 1.3; margin-bottom: 1rem;">
+            Heavy-Duty Compressed Air Treatment &amp; Industrial Process Cooling
+          </h2>
+          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 0;">
+            <strong>Win Equipments</strong> is an ISO 9001:2015 certified Indian engineering manufacturer headquartered in Arasur, Coimbatore. The company designs and manufactures heavy-duty <strong>Refrigerated and Desiccant Compressed Air Dryers</strong>, <strong>Air-Cooled &amp; Water-Cooled Process Chillers</strong>, and <strong>FRP Counterflow &amp; Crossflow Cooling Towers</strong>. Designed under the engineering philosophy <em>"Save Water and Power"</em>, all units are factory-calibrated for continuous 24/7 operation across severe 45°C high-ambient tropical environments.
+          </p>
         </div>
-        <form class="finder-grid" id="equipment-finder-form" onsubmit="return false;">
-          <div class="finder-field">
-            <label for="finder-app-select"><i class="fas fa-industry"></i> Plant Process / Sector</label>
-            <select id="finder-app-select" class="calc-input">
-              <option value="" disabled selected>Select your plant process...</option>
-              <option value="plastics">Plastic Injection Molding / Extrusion</option>
-              <option value="lasers">CNC Machining / Spindle / Fiber Laser</option>
-              <option value="anodizing">Aluminum Anodizing &amp; Hard Coat Lines</option>
-              <option value="medical">Medical Diagnostics (MRI / CT Scan / LINAC)</option>
-              <option value="acid_cooling">Acid Pickling, Reactor &amp; Battery Formation</option>
-              <option value="flake_ice">Fisheries, Poultry &amp; Concrete Dam Cooling</option>
-              <option value="textiles">Textile Spinning, Weaving &amp; Loom Air</option>
-              <option value="foundry">Foundry, Die-Casting &amp; Induction Furnace</option>
-              <option value="food_pharma">Food, Pharma &amp; Beverage Packaging</option>
-              <option value="automotive">Automotive Paint Booth &amp; Pneumatic Tools</option>
-            </select>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.85rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.35rem;">
+          <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: #E0F2FE; color: #0284C7; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div>
+              <div style="font-family: var(--font-heading, 'Montserrat', sans-serif); font-weight: 700; font-size: 0.88rem; color: #0F172A;">ISO 9001:2015 Registered</div>
+              <div style="font-size: 0.8rem; color: #64748B; line-height: 1.4;">Certified Quality Management System accredited by DAC / IAF.</div>
+            </div>
           </div>
-          <div class="finder-field">
-            <label for="finder-media-select"><i class="fas fa-sliders-h"></i> Utility &amp; Media Requirement</label>
-            <select id="finder-media-select" class="calc-input">
-              <option value="" disabled selected>Select utility requirement...</option>
-              <option value="dry_air">Dry Compressed Air (+3°C / -40°C PDP)</option>
-              <option value="chilled_water">Closed-Loop Chilled Water (5°C to 20°C)</option>
-              <option value="cooling_water">Condenser Water Heat Rejection (32°C Water)</option>
-              <option value="subzero_ice">Sub-Cooled Dry Flake Ice (-5°C to -8°C)</option>
-              <option value="titanium_acid">Corrosive Acid / Titanium Loop Cooling</option>
-              <option value="medical_redundant">Mission-Critical Redundant Scan Cooling (±0.5°C)</option>
-              <option value="air_storage">High-Capacity Air Receiver Buffer (7–16 bar)</option>
-              <option value="condensate_drain">Zero Air Loss Condensate Discharge</option>
-            </select>
+          <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: #E0F2FE; color: #0284C7; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;">
+              <i class="fas fa-temperature-high"></i>
+            </div>
+            <div>
+              <div style="font-family: var(--font-heading, 'Montserrat', sans-serif); font-weight: 700; font-size: 0.88rem; color: #0F172A;">45°C Tropical Ambient Reliability</div>
+              <div style="font-size: 0.8rem; color: #64748B; line-height: 1.4;">Custom-coiled copper condensers preventing high-pressure trip-outs.</div>
+            </div>
           </div>
-          <div class="finder-btn">
-            <button type="button" class="btn btn-cta btn-block" id="finder-match-btn">
-              <i class="fas fa-bolt"></i> Match System & View Specs
-            </button>
+          <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: #E0F2FE; color: #0284C7; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;">
+              <i class="fas fa-industry"></i>
+            </div>
+            <div>
+              <div style="font-family: var(--font-heading, 'Montserrat', sans-serif); font-weight: 700; font-size: 0.88rem; color: #0F172A;">Direct Factory Testing Rig</div>
+              <div style="font-size: 0.8rem; color: #64748B; line-height: 1.4;">100% full-load hydro and run tested at Arasur before dispatch.</div>
+            </div>
           </div>
-        </form>
-        <div id="finder-recommendation" class="finder-result" style="display: none;"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIRECT ANSWER SNIPPET BOX (Featured Snippet & AI Overview Target) -->
-  <section style="background-color: var(--color-surface-bg); padding: 1.5rem 0;">
-    <div class="container">
-      <div class="snippet-direct-answer">
-        <p>
-          <strong>Win Equipments</strong> is an ISO 9001:2015 certified Indian engineering manufacturer headquartered in Arasur, Coimbatore. The company designs and manufactures heavy-duty <strong>Refrigerated and Desiccant Compressed Air Dryers</strong>, <strong>Air-Cooled & Water-Cooled Process Chillers</strong>, and <strong>FRP Counterflow & Crossflow Cooling Towers</strong>. Designed under the engineering philosophy <em>"Save Water and Power"</em>, all units are factory-calibrated for continuous operation across South Indian high-ambient and tropical manufacturing environments.
-        </p>
+        </div>
       </div>
     </div>
   </section>
@@ -533,7 +498,7 @@
           <div class="proof-sub">DAC / IAF accredited manufacturing</div>
         </div>
         <div class="proof-item">
-          <div class="proof-number">4.7 / 5.0 <i class="fas fa-star" style="color: #F59E0B; font-size: 0.85em;"></i></div>
+          <div class="proof-number">4.7 / 5.0 <i class="fas fa-check-circle" style="color: #0284C7; font-size: 0.85em;"></i></div>
           <div class="proof-label">IndiaMART TrustSEAL Verified</div>
           <div class="proof-sub">Top-rated manufacturer in Coimbatore</div>
         </div>
