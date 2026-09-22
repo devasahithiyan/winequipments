@@ -114,14 +114,16 @@
 }
 
 .brand-name {
+  font-family: var(--font-heading);
   font-size: 1.35rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--color-brand-primary);
   line-height: 1.1;
 }
 
 .brand-tagline {
+  font-family: var(--font-heading);
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -148,6 +150,7 @@
 }
 
 .nav-link {
+  font-family: var(--font-heading);
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -684,6 +687,7 @@
 }
 
 .hero-tab-btn {
+  font-family: var(--font-heading);
   flex: 1;
   display: inline-flex;
   align-items: center;

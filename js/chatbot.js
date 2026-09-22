@@ -54,10 +54,10 @@
     launcher.id = 'winAiLauncher';
     launcher.className = 'win-ai-chat-launcher';
     launcher.setAttribute('role', 'button');
-    launcher.setAttribute('aria-label', 'Open AI Technical Assistant');
+    launcher.setAttribute('aria-label', 'Open Technical Support Desk');
     launcher.innerHTML = `
-      <div class="ai-icon-bubble"><i class="fas fa-robot"></i></div>
-      <span>Ask Win AI</span>
+      <div class="ai-icon-bubble"><i class="fas fa-headset"></i></div>
+      <span>Technical Desk</span>
       <span class="ai-online-pulse"></span>
     `;
     document.body.appendChild(launcher);
@@ -69,10 +69,10 @@
     windowEl.innerHTML = `
       <div class="win-ai-chat-header">
         <div class="win-ai-chat-title-group">
-          <div class="win-ai-avatar"><i class="fas fa-microchip"></i></div>
+          <div class="win-ai-avatar"><i class="fas fa-headset"></i></div>
           <div class="win-ai-header-text">
-            <h4>Win Equipments AI</h4>
-            <span><span class="ai-online-pulse"></span> Online • Arasur Technical Desk</span>
+            <h4>Win Technical Support</h4>
+            <span><span class="ai-online-pulse"></span> Online • Factory Engineering Desk</span>
           </div>
         </div>
         <button type="button" class="win-ai-chat-close" id="winAiClose" aria-label="Close Chat">&times;</button>
