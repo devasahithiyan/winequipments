@@ -6,41 +6,43 @@
  */
 
 :root {
-  /* Brand Color Palette - Modern Heavy Industrial */
-  --color-brand-primary: #0B1523;        /* Deep Machinery Navy */
-  --color-brand-primary-dark: #071526;   /* Dark Machinery Abutment */
-  --color-brand-primary-light: #16263B;  /* Slate Charcoal Panel Fill */
-  --color-slate-charcoal: #16263B;       /* Explicit Slate Charcoal Token */
-  --color-brand-accent: #0284C7;        /* Technical Precision Cyan Accent */
-  --color-brand-accent-hover: #0369A1;
-  --color-brand-accent-light: #E0F2FE;
+  /* Brand Color Palette - ELGi-Inspired Clean Industrial */
+  --color-brand-primary: #0F172A;        /* Primary Brand Slate */
+  --color-brand-primary-dark: #090D16;   /* Deep Slate Abutment */
+  --color-brand-primary-light: #1E293B;  /* Slate Panel Fill */
+  --color-slate-charcoal: #1E293B;       /* Explicit Slate Charcoal Token */
+  --color-brand-accent: #0284C7;        /* Precision Sky Accent */
+  --color-brand-accent-hover: #0369A1;   /* Precision Sky Accent Hover */
+  --color-brand-accent-light: #F0F9FF;
   --color-brand-accent-dark: #075985;
   --color-brand-sky: #0284C7;           /* Sky Blue Semantic Token */
-  --color-brand-sky-light: #E0F2FE;
-  --color-brand-eco: #008253;           /* Eco Efficiency Green */
-  --color-brand-eco-hover: #006641;
-  --color-brand-eco-light: #E6F5EF;
+  --color-brand-sky-light: #F0F9FF;
+  --color-brand-eco: #16A34A;           /* Standard Eco Green */
+  --color-brand-eco-hover: #15803D;
+  --color-brand-eco-light: #DCFCE7;
   --color-brand-cta: #EA580C;           /* Safety Amber CTA */
-  --color-brand-cta-hover: #C2410C;      /* Deepened Amber Hover */
+  --color-brand-cta-hover: #C2410C;      /* Safety Amber CTA Hover */
   --color-brand-cta-light: #FFEDD5;      /* Amber Tint */
 
-  /* Neutrals & Surfaces */
+  /* Neutrals & Surfaces - Clean Slate Ground */
   --color-surface-bg: #F8FAFC;         /* Clean Slate Ground */
-  --color-surface-card: #FFFFFF;
-  --color-surface-alt: #F1F5F9;
-  --color-surface-dark: #0B1523;
-  --color-surface-charcoal: #16263B;    /* Explicit Surface Charcoal Token */
+  --color-surface-card: #FFFFFF;       /* Crisp White Surface */
+  --color-surface-alt: #F1F5F9;        /* Light Secondary Ground */
+  --color-surface-hover: #F1F5F9;      /* Surface Hover State */
+  --color-surface-dark: #0F172A;
+  --color-surface-charcoal: #1E293B;   /* Explicit Surface Charcoal Token */
   
-  /* Text & Hierarchy */
-  --color-text-main: #1E293B;          /* High-Contrast Machine Slate */
+  /* Text & Hierarchy - Refined Body Charcoal & Deep Executive Slate */
+  --color-text-main: #334155;          /* Refined Body Charcoal */
+  --color-text-heading: #0F172A;       /* Deep Executive Slate */
   --color-text-muted: #64748B;
   --color-text-subtle: #94A3B8;
   --color-text-inverse: #FFFFFF;
   --color-text-inverse-muted: #94A3B8;
 
-  /* Borders & Dividers */
-  --color-border-light: #E2E8F0;
-  --color-border-medium: #CBD5E1;
+  /* Borders & Dividers - Restrained Subtle Borders */
+  --color-border-light: #E2E8F0;       /* Restrained Subtle Border Light */
+  --color-border-medium: #CBD5E1;      /* Restrained Subtle Border Medium */
   --color-border-dark: #334155;
   --color-border-hairline-dark: rgba(255, 255, 255, 0.12); /* Hairline 1px Divider for Dark Contexts */
   --color-border-focus: #0284C7;
@@ -246,7 +248,7 @@ button, input, select, textarea {
 
 /* Typography Hierarchy - Geometric High-Impact Headings & Fluid Scale */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-brand-primary);
+  color: var(--color-text-heading);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.03em;
@@ -287,6 +289,69 @@ p {
   line-height: 1.65;
   color: var(--color-text-main);
   margin-bottom: 1rem;
+}
+
+/* Base List & Bullet Hygiene */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-main);
+  line-height: 1.7;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* List Utilities */
+.clean-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.feature-list li i {
+  color: var(--color-brand-accent);
+  flex-shrink: 0;
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spec-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-main);
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--color-border-light);
+  margin-bottom: 0;
 }
 
 .mono {
@@ -863,25 +928,21 @@ p {
 /* ==========================================================================
    INDUSTRIAL ENGINEERING BACKGROUNDS & UTILITIES
    ========================================================================== */
-/* Authentic Dual-Scale CAD Blueprint Grid (40px major / 8px minor hairline subdivisions) */
+/* Clean Industrial Grid Background Utilities */
 .bg-blueprint-grid {
-  background-color: #0B1523;
+  background-color: #FFFFFF;
   background-image: 
-    linear-gradient(rgba(2, 132, 199, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2, 132, 199, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+    linear-gradient(rgba(2, 132, 199, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 132, 199, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .bg-blueprint-charcoal {
-  background-color: var(--color-slate-charcoal, #16263B);
+  background-color: var(--color-surface-bg, #F8FAFC);
   background-image: 
-    linear-gradient(rgba(2, 132, 199, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2, 132, 199, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+    linear-gradient(rgba(2, 132, 199, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 132, 199, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .bg-blueprint-light {

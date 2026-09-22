@@ -1,6 +1,7 @@
 {% extends "base_page.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- =======================================================================
      PAGE 1: COVER
      ======================================================================= -->
@@ -283,7 +284,7 @@
 
     <div class="qa-grid">
       <div class="qa-card">
-        <div class="qa-card-title">&#10003; Factory Acceptance Testing (FAT)</div>
+        <div class="qa-card-title"><i class="fas fa-check"></i> Factory Acceptance Testing (FAT)</div>
         <ul class="qa-list">
           {% for test in product.qa_features.testing %}
           <li>{{ test }}</li>
@@ -291,7 +292,7 @@
         </ul>
       </div>
       <div class="qa-card">
-        <div class="qa-card-title">&#9733; Certified Standards &amp; Accreditations</div>
+        <div class="qa-card-title"><i class="fas fa-star"></i> Certified Standards &amp; Accreditations</div>
         <ul class="qa-list">
           {% for cert in company.certifications_list %}
           <li>{{ cert }}</li>
@@ -302,7 +303,7 @@
     </div>
 
     <div class="warranty-box">
-      <div class="warranty-icon">&#128737;</div>
+      <div class="warranty-icon"><i class="fas fa-shield-alt"></i></div>
       <div class="warranty-text">
         <strong>Manufacturer Warranty Assurance:</strong> {{ product.qa_features.warranty }} Direct field service engineering and genuine replacement spare parts stocked at Arasur Works, Coimbatore.
       </div>
@@ -314,15 +315,15 @@
         <div class="contact-brand-name">{{ company.legal_name }}</div>
         <div class="contact-tagline-text">{{ company.tagline }} &bull; {{ company.certification }}</div>
         <div class="contact-detail-row">
-          <span class="contact-icon">&#128205;</span>
+          <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
           <span class="contact-address">{{ company.address }}</span>
         </div>
         <div class="contact-detail-row">
-          <span class="contact-icon">&#128222;</span>
+          <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
           <span class="contact-phone-highlight">{{ company.phone1 }} / {{ company.phone2 }}</span>
         </div>
         <div class="contact-detail-row">
-          <span class="contact-icon">&#9993;</span>
+          <span class="contact-icon"><i class="fas fa-envelope"></i></span>
           <a href="mailto:{{ company.email }}" class="contact-email-link">{{ company.email }}</a>
           <span style="color: #64748B;">&bull;</span>
           <span style="color: #38BDF8; font-weight: 600;">{{ company.website }}</span>

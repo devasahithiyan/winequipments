@@ -1,6 +1,7 @@
 {% extends "base_page.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- =======================================================================
      PAGE 1: MASTER CORPORATE COVER
      ======================================================================= -->
@@ -58,63 +59,64 @@
     <div class="inner-header-left">
       <img src="{{ image_root }}/{{ company.badges.logo }}" alt="Win Logo" class="inner-header-logo">
       <div>
-        <div class="inner-header-company">{{ company.name }}</div>
-        <div class="inner-header-sub">Save Water and Power &bull; ISO 9001:2015</div>
+        <div class="inner-header-title">WIN EQUIPMENTS &bull; CORPORATE PROFILE</div>
+        <div class="inner-header-subtitle">Precision Air &amp; Thermal Engineering Since 1993</div>
       </div>
     </div>
     <div class="inner-header-right">
-      <div class="inner-header-product">Master E-Catalogue</div>
-      <div class="inner-header-series">Corporate Profile &bull; Arasur Works</div>
+      <span class="inner-header-badge">{{ company.certification }}</span>
     </div>
   </div>
 
-  <div class="inner-content">
-    <div class="section-header">
-      <div class="section-category">Engineering Leadership Since 2008</div>
-      <h2 class="section-title">About Win Equipments</h2>
-      <div class="section-subtitle">Pioneering precision compressed air treatment &amp; process thermal systems in Coimbatore, India</div>
+  <div class="page-content">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Direct Manufacturing Infrastructure &amp; Technical Heritage</h2>
+      <div class="section-subtitle">Pioneering energy-efficient compressed air treatment and industrial process cooling solutions</div>
     </div>
 
-    <div style="display: flex; gap: 4mm; margin-bottom: 4mm;">
+    <!-- 2-Column Split: Intro Narrative + Plant Photo -->
+    <div style="display: flex; gap: 4mm; margin-bottom: 3.5mm;">
       <div style="flex: 1.2;">
-        <div class="overview-narrative-card" style="height: 100%;">
-          <p class="overview-text">Founded in 2008 by industrial engineering veteran <strong>{{ company.founder }}</strong>, Win Equipments has grown from an innovative design workshop into one of South India's foremost manufacturers of high-efficiency industrial compressed air dryers, process chillers, cooling towers, and heavy pressure vessels.</p>
-          <p class="overview-text">Operating from its integrated manufacturing plant at <strong>SF No: 4, 195 B, Kallangadu, Arasur Post, Coimbatore</strong>, the company upholds a foundational commitment encapsulated in its guiding motto: <em>"Save Water and Power"</em>. Every machine is engineered specifically to withstand severe Indian tropical and Middle-Eastern ambient conditions (up to 45&deg;C continuous and 50&deg;C peak), delivering unyielding reliability where generic machinery fails.</p>
-        </div>
+        <p style="font-size: 9.5pt; line-height: 1.4; color: #1E293B; margin-bottom: 2mm;">
+          Established in <strong>1993</strong> with headquarters and direct manufacturing facility at <strong>Arasur, Coimbatore</strong>, <strong>Win Equipments</strong> has engineered and delivered over <strong>3,500+ industrial installations</strong> across the Indian subcontinent and export markets.
+        </p>
+        <p style="font-size: 9pt; line-height: 1.35; color: #334155; margin-bottom: 2mm;">
+          Under the brand ethos <em>"Save Water and Power"</em>, every system is designed from first thermodynamic principles to withstand demanding tropical ambients (up to 45&deg;C) while maximizing heat transfer efficiency and minimizing specific power consumption.
+        </p>
+        <p style="font-size: 9pt; line-height: 1.35; color: #334155; margin: 0;">
+          Our facility integrates pressure vessel fabrication, heat exchanger assembly, automated electrical panel wiring, and comprehensive 4-stage factory run-testing prior to dispatch.
+        </p>
       </div>
-      <div style="flex: 0.8; display: flex; flex-direction: column; gap: 3mm;">
-        <div style="border: 1pt solid #E2E8F0; border-radius: 3pt; overflow: hidden; height: 42mm;">
-          <img src="{{ image_root }}/{{ company.facility_images.factory }}" alt="Arasur Works" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <div style="font-size: 8.5pt; color: #64748B; text-align: center; font-style: italic;">Win Equipments Manufacturing Plant, Arasur Works, Coimbatore</div>
+      <div style="flex: 0.8; border: 1pt solid #E2E8F0; border-radius: 3pt; overflow: hidden; height: 38mm;">
+        <img src="{{ image_root }}/{{ company.facility_images.bay }}" alt="Manufacturing Bay" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
     </div>
 
     <div class="benefits-grid" style="margin-bottom: 3.5mm;">
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#128300;</span>
+          <span class="benefit-icon"><i class="fas fa-microscope"></i></span>
           <span class="benefit-title">Integrated Design &amp; Fabrication</span>
         </div>
         <p class="benefit-narrative">In-house CNC machining, automated submerged-arc welding (SAW), high-precision sheet metal shearing, and electrostatic powder coating bays ensure total quality control from raw steel plates to final crated skids.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#127777;</span>
+          <span class="benefit-icon"><i class="fas fa-temperature-high"></i></span>
           <span class="benefit-title">Extreme Tropical Ambient Duty</span>
         </div>
         <p class="benefit-narrative">Unlike European and imported machinery that trips on high head pressure during Indian summer heat peaks, Win Equipments oversized condenser coils and generous heat exchanger areas deliver full rated capacity at 45&deg;C ambient.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#9889;</span>
+          <span class="benefit-icon"><i class="fas fa-bolt"></i></span>
           <span class="benefit-title">Thermodynamic Energy Conservation</span>
         </div>
         <p class="benefit-narrative">From zero-air-loss capacitive drains saving ₹42,000/yr per compressor, to 3-in-1 modular regenerator heat exchangers reducing refrigeration kW by 40%, our systems are engineered to minimize client utility bills.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#128736;</span>
+          <span class="benefit-icon"><i class="fas fa-tools"></i></span>
           <span class="benefit-title">Direct Factory Engineering Support</span>
         </div>
         <p class="benefit-narrative">Over 1,200 active installations across India backed by direct Coimbatore factory field engineers, fully stocked OEM spare parts warehousing, and comprehensive Annual Maintenance Contracts (AMC).</p>
@@ -165,7 +167,7 @@
 
     <div class="qa-grid" style="margin-bottom: 3.5mm;">
       <div class="qa-card">
-        <div class="qa-card-title">&#10003; 4-Stage Factory Acceptance Testing (FAT)</div>
+        <div class="qa-card-title"><i class="fas fa-check"></i> 4-Stage Factory Acceptance Testing (FAT)</div>
         <ul class="qa-list">
           <li><strong>Hydrostatic Proof Testing:</strong> 1.5&times; design pressure hold test on all pressure vessels, coils, and buffer tanks.</li>
           <li><strong>Helium Leak Detection:</strong> Mass spectrometer vacuum testing of refrigeration circuits (&lt;0.1 g/year loss).</li>
@@ -174,7 +176,7 @@
         </ul>
       </div>
       <div class="qa-card">
-        <div class="qa-card-title">&#9733; Global Accreditation Badges</div>
+        <div class="qa-card-title"><i class="fas fa-star"></i> Global Accreditation Badges</div>
         <ul class="qa-list">
           <li><strong>ISO 9001:2015:</strong> Certified Quality Management System covering design, manufacturing, testing, and servicing.</li>
           <li><strong>IAF (International Accreditation Forum):</strong> Globally recognized conformity assessment and trade compliance.</li>
@@ -441,28 +443,28 @@
     <div class="benefits-grid" style="margin-bottom: 3.5mm;">
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#127960;</span>
+          <span class="benefit-icon"><i class="fas fa-industry"></i></span>
           <span class="benefit-title">Coimbatore Works HQ &amp; Central Depot</span>
         </div>
         <p class="benefit-narrative">Central spare parts hub at Arasur with over ₹50 Lakhs in ready stock: Danfoss expansion valves, Copeland scroll compressors, activated alumina, and filter cartridges for immediate 24h dispatch.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#128663;</span>
+          <span class="benefit-icon"><i class="fas fa-car"></i></span>
           <span class="benefit-title">Chennai &amp; Sriperumbudur Automotive Hub</span>
         </div>
         <p class="benefit-narrative">Dedicated technical service engineers stationed in Chennai supporting tier-1 automotive suppliers, robotic assembly lines, electronics factories, and seaport logistics complexes.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#128205;</span>
+          <span class="benefit-icon"><i class="fas fa-map-marker-alt"></i></span>
           <span class="benefit-title">Bangalore &amp; Hosur Precision Tooling Corridor</span>
         </div>
         <p class="benefit-narrative">Rapid-response teams supporting precision CNC aerospace machine shops, medical device manufacturers, and high-power fiber laser fabrication facilities across Karnataka.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-title-row">
-          <span class="benefit-icon">&#128658;</span>
+          <span class="benefit-icon"><i class="fas fa-fire-extinguisher"></i></span>
           <span class="benefit-title">Tirupur &amp; Erode Textile Industrial Belt</span>
         </div>
         <p class="benefit-narrative">Same-day breakdown attendance and scheduled preventive maintenance for spinning mills, garment dyeing plants, and knitwear processing houses throughout Western Tamil Nadu.</p>
@@ -471,7 +473,7 @@
 
     <div class="qa-grid">
       <div class="qa-card">
-        <div class="qa-card-title">&#128203; Comprehensive AMC Contracts</div>
+        <div class="qa-card-title"><i class="fas fa-clipboard-check"></i> Comprehensive AMC Contracts</div>
         <ul class="qa-list">
           <li>Quarterly thermodynamic health and refrigerant charge audits</li>
           <li>Ultrasonic compressed air leak surveys to identify energy loss</li>
@@ -480,7 +482,7 @@
         </ul>
       </div>
       <div class="qa-card">
-        <div class="qa-card-title">&#9881; Genuine OEM Consumables Hub</div>
+        <div class="qa-card-title"><i class="fas fa-cog"></i> Genuine OEM Consumables Hub</div>
         <ul class="qa-list">
           <li>Spherical Activated Alumina (3–5mm &amp; 4–8mm) in 25/50 kg bags</li>
           <li>Molecular Sieve 13X / 4A for deep -70&deg;C dew point drying</li>
@@ -530,15 +532,15 @@
       <div style="font-size: 9pt; font-weight: 600; color: #38BDF8; text-transform: uppercase; letter-spacing: 1pt; margin-bottom: 3mm;">Save Water and Power &bull; {{ company.certification }}</div>
       
       <div class="contact-detail-row">
-        <span class="contact-icon">&#128205;</span>
+        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
         <span style="font-size: 9pt; color: #E2E8F0;">{{ company.address }}</span>
       </div>
       <div class="contact-detail-row">
-        <span class="contact-icon">&#128222;</span>
+        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
         <span style="font-size: 10pt; color: #38BDF8; font-weight: 800;">{{ company.phone1 }} &bull; {{ company.phone2 }}</span>
       </div>
       <div class="contact-detail-row">
-        <span class="contact-icon">&#9993;</span>
+        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
         <span style="font-size: 9.5pt; color: #FFFFFF;">{{ company.email }}</span>
         <span style="color: #64748B;">&bull;</span>
         <span style="font-size: 9.5pt; color: #38BDF8; font-weight: 700;">{{ company.website }}</span>

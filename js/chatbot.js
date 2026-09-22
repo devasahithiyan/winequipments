@@ -79,10 +79,10 @@
       </div>
 
       <div class="win-ai-chips-container" id="winAiChips">
-        <button type="button" class="win-ai-chip" data-query="How do I size an air dryer for my compressor?">⚡ Size Air Dryer</button>
-        <button type="button" class="win-ai-chip" data-query="What chiller tonnage do I need for injection molding / laser cutting?">❄️ Chiller Sizing</button>
-        <button type="button" class="win-ai-chip" data-query="Tell me about your FRP Cooling Towers and TR ratings">🏭 Cooling Towers</button>
-        <button type="button" class="win-ai-chip" data-query="How can I get an official quotation and price list?">📄 Get Quotation</button>
+        <button type="button" class="win-ai-chip" data-query="How do I size an air dryer for my compressor?"><i class="fas fa-bolt"></i> Size Air Dryer</button>
+        <button type="button" class="win-ai-chip" data-query="What chiller tonnage do I need for injection molding / laser cutting?"><i class="fas fa-snowflake"></i> Chiller Sizing</button>
+        <button type="button" class="win-ai-chip" data-query="Tell me about your FRP Cooling Towers and TR ratings"><i class="fas fa-industry"></i> Cooling Towers</button>
+        <button type="button" class="win-ai-chip" data-query="How can I get an official quotation and price list?"><i class="fas fa-file-invoice"></i> Get Quotation</button>
       </div>
 
       <div class="win-ai-chat-messages" id="winAiMessages"></div>
@@ -166,7 +166,7 @@
     if (chatHistory.length === 0) {
       // Default welcome message
       appendMessageDOM('bot', 
-        "👋 Welcome to **Win Equipments**! I am your AI Technical Application Engineer.\n\n" +
+        "Welcome to **Win Equipments**! I am your AI Technical Application Engineer.\n\n" +
         "I can help you calculate air dryer CFM, size process chillers, verify cooling tower TR, or connect you directly with our Arasur works.\n\n" +
         "What equipment are you planning for your plant?"
       );

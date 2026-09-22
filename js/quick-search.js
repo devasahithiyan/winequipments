@@ -93,7 +93,7 @@
           <div><i class="fas fa-microchip" style="color:#0284C7;margin-right:0.3rem;"></i> Win Equipments Engineering Index</div>
           <div class="win-search-shortcuts">
             <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
-            <span><kbd>↵</kbd> to select</span>
+            <span><kbd>Enter</kbd> to select</span>
           </div>
         </div>
       </div>

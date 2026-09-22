@@ -223,6 +223,9 @@
 
 .win-ai-chip {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.75rem;
   font-weight: 600;
   color: #0369A1;
