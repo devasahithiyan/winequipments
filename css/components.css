@@ -1972,10 +1972,88 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   }
 
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
   .proof-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .hero-actions { flex-direction: column; width: 100%; gap: 0.75rem; }
-  .hero-actions .btn { width: 100%; justify-content: center; }
+  .proof-number { font-size: clamp(1.35rem, 5vw, 1.85rem) !important; }
+  .proof-item { padding-left: 0.75rem !important; }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .hero-content {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .btn,
+  .btn-lg,
+  .btn-cta,
+  .hero-actions .btn,
+  .rfq-form button[type="submit"] {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+    line-height: 1.35 !important;
+  }
+
+  .badge {
+    white-space: normal !important;
+    line-height: 1.35 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-badge-row { gap: 0.45rem !important; margin-bottom: 1.25rem !important; }
+  .hero-badge-row .badge { font-size: 0.72rem !important; padding: 0.35rem 0.65rem !important; }
+  .hero-actions { flex-direction: column; width: 100%; gap: 0.75rem; margin-bottom: 1.75rem !important; }
+  .hero-actions .btn { width: 100%; justify-content: center; padding: 0.85rem 1rem !important; font-size: 0.92rem !important; }
+  .hero-sector-strip { gap: 0.35rem !important; }
+  .hero-sector-strip .badge-tech { font-size: 0.7rem !important; padding: 0.2rem 0.5rem !important; }
   .btn-lg { width: 100%; }
+
+  .hero-showcase-tabs { gap: 0.25rem !important; }
+  .hero-tab-btn { padding: 0.5rem 0.65rem !important; font-size: 0.76rem !important; gap: 0.35rem !important; }
+  .hero-showcase-stage { height: 280px !important; min-height: 280px !important; }
+  .hero-img-wrap { height: 195px !important; }
+  .hero-product-img { max-height: 175px !important; }
+  .hero-equipment-badge { padding: 0.4rem 0.65rem !important; }
+  .hero-badge-title { font-size: 0.78rem !important; }
+  .hero-badge-meta { font-size: 0.68rem !important; }
+
+  .rfq-form-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+  }
+  .sizing-nav-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .protocol-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .client-logo-grid {
+    display: none !important;
+  }
+  .hero-trust-list {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+  .segmented-nav-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    max-width: 100%;
+  }
+  .segmented-nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
 
   /* Product Spec Cards V2 Mobile Layout */
   .product-matrix-grid {
@@ -2123,18 +2201,6 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
 
 .segment-btn.is-active i {
   color: #38BDF8;
-}
-  gap: 0.4rem;
-}
-
-.segment-btn:hover {
-  color: var(--color-brand-primary);
-}
-
-.segment-btn.is-active {
-  background: var(--color-brand-primary, #0B1523);
-  color: #FFFFFF;
-  box-shadow: 0 4px 10px rgba(11, 21, 35, 0.25);
 }
 
 /* C. Product Spec Card V2 (Modern Industrial Card) */
@@ -2542,6 +2608,30 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border-medium, #CBD5E1);
   box-shadow: var(--shadow-lg);
+}
+
+.rfq-form-card {
+  max-width: 840px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.sizing-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.protocol-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
 }
 
 .rfq-header {
@@ -3435,6 +3525,14 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   }
   .pid-schematic-container {
     padding: 1.5rem 1rem;
+  }
+  .pid-pipeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .pid-flow-legend {
+    gap: 0.75rem;
   }
 }
 
@@ -4743,20 +4841,36 @@ summary::-webkit-details-marker {
 /* 7. Responsive Mobile Adaptations (<= 768px) */
 @media (max-width: 768px) {
   .win-ai-teaser {
-    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 60px);
-    right: 12px;
-    max-width: 250px;
-    font-size: 0.76rem;
-    padding: 0.6rem 0.8rem;
+    display: none !important;
   }
 
   .win-ai-chat-launcher {
     bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 8px);
     right: 12px;
-    padding: 0.55rem 0.95rem;
-    font-size: 0.78rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     box-shadow: 0 4px 16px rgba(11, 21, 35, 0.4);
     z-index: 1000;
+  }
+
+  .win-ai-chat-launcher span,
+  .win-ai-chat-launcher .ai-online-pulse {
+    display: none !important;
+  }
+
+  .win-ai-chat-launcher .ai-icon-bubble {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.15rem !important;
+    background: transparent !important;
   }
 
   .win-ai-chat-window {

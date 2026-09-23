@@ -562,20 +562,36 @@
 /* 7. Responsive Mobile Adaptations (<= 768px) */
 @media (max-width: 768px) {
   .win-ai-teaser {
-    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 60px);
-    right: 12px;
-    max-width: 250px;
-    font-size: 0.76rem;
-    padding: 0.6rem 0.8rem;
+    display: none !important;
   }
 
   .win-ai-chat-launcher {
     bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 8px);
     right: 12px;
-    padding: 0.55rem 0.95rem;
-    font-size: 0.78rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     box-shadow: 0 4px 16px rgba(11, 21, 35, 0.4);
     z-index: 1000;
+  }
+
+  .win-ai-chat-launcher span,
+  .win-ai-chat-launcher .ai-online-pulse {
+    display: none !important;
+  }
+
+  .win-ai-chat-launcher .ai-icon-bubble {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.15rem !important;
+    background: transparent !important;
   }
 
   .win-ai-chat-window {

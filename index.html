@@ -432,7 +432,7 @@
 
   <!-- MOBILE QUICK CATEGORY SHORTCUT STRIP (Mobile Viewports Only) -->
   <div class="mobile-quick-category-bar" aria-label="Quick Category Shortcuts">
-    <a href="#equipment-matrix" class="mobile-quick-cat-pill active">
+    <a href="#products" class="mobile-quick-cat-pill active">
       <i class="fas fa-th-large"></i> All Equipment
     </a>
     <a href="products/refrigerated-air-dryers.html" class="mobile-quick-cat-pill">
@@ -1770,7 +1770,7 @@
       </div>
 
       <!-- Sizing Navigation Tiles -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+      <div class="sizing-nav-grid">
         <a href="engineering-tools/air-treatment-package-builder.html" class="card" style="padding: 1.25rem; text-decoration: none; border-left: 4px solid #0E7490; background: #F0FDF4;">
           <div style="font-weight: 700; color: #0E7490; margin-bottom: 0.25rem;"><i class="fas fa-layer-group"></i> Air Train Configurator</div>
           <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Dryer + Receiver + Filter train package</div>
@@ -1804,7 +1804,7 @@
         <p class="section-lead">Every cooling tower, chiller, and dryer manufactured at our Arasur plant undergoes strict stage-wise quality checks.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+      <div class="protocol-steps-grid">
         <div class="card">
           <div class="mono" style="font-size: 1.5rem; font-weight: 800; color: var(--color-brand-accent); margin-bottom: 0.5rem;">01</div>
           <h4 style="margin-bottom: 0.5rem;">Thermal Sizing</h4>
@@ -1950,12 +1950,12 @@
         <p class="section-lead" style="color: var(--color-text-muted, #64748B);">Submit your operating parameters. Our senior application engineers in Arasur will dispatch a formal quotation within 24 hours.</p>
       </div>
 
-      <div style="max-width: 840px; margin: 0 auto; background: #FFFFFF; border-radius: var(--radius-xl); padding: 2.5rem; color: var(--color-text-main); border: 1px solid var(--color-border-light); box-shadow: var(--shadow-lg);">
+      <div class="rfq-form-card">
         <form class="rfq-form" id="masterHomeRfq" action="/send_rfq.php" method="POST" enctype="multipart/form-data">
           <!-- Honeypot anti-spam -->
           <input type="text" name="website_url_hp" style="display: none;" tabindex="-1" autocomplete="off">
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+          <div class="form-row-2col" style="margin-bottom: 1.25rem;">
             <div>
               <label class="calc-label">Full Name *</label>
               <input type="text" name="contact_name" required placeholder="e.g. Rajesh Kumar" class="calc-input">
@@ -1966,7 +1966,7 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+          <div class="form-row-2col" style="margin-bottom: 1.25rem;">
             <div>
               <label class="calc-label">Phone / WhatsApp Number *</label>
               <input type="tel" name="contact_phone" pattern="[0-9]{10,15}" required placeholder="e.g. 9876543210" class="calc-input">
@@ -1977,7 +1977,7 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+          <div class="form-row-2col" style="margin-bottom: 1.25rem;">
             <div>
               <label class="calc-label">Equipment Category Required *</label>
               <select name="equipment_type" required class="calc-input">
