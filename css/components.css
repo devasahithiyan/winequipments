@@ -2014,14 +2014,42 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   .hero-sector-strip .badge-tech { font-size: 0.7rem !important; padding: 0.2rem 0.5rem !important; }
   .btn-lg { width: 100%; }
 
-  .hero-showcase-tabs { gap: 0.25rem !important; }
-  .hero-tab-btn { padding: 0.5rem 0.65rem !important; font-size: 0.76rem !important; gap: 0.35rem !important; }
+  /* Mobile Machinery Showcase */
+  .hero-showcase-tabs {
+    gap: 0.35rem !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    padding-bottom: 2px !important;
+  }
+  .hero-showcase-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+  .hero-tab-btn {
+    flex: 1 0 auto !important;
+    padding: 0.55rem 0.75rem !important;
+    font-size: 0.76rem !important;
+    gap: 0.35rem !important;
+    white-space: nowrap !important;
+  }
   .hero-showcase-stage { height: 280px !important; min-height: 280px !important; }
   .hero-img-wrap { height: 195px !important; }
   .hero-product-img { max-height: 175px !important; }
   .hero-equipment-badge { padding: 0.4rem 0.65rem !important; }
   .hero-badge-title { font-size: 0.78rem !important; }
   .hero-badge-meta { font-size: 0.68rem !important; }
+  .hero-showcase-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+  .hero-showcase-footer .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
 
   .rfq-form-card {
     padding: 1.25rem 1rem !important;
@@ -2033,7 +2061,30 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   }
   .protocol-steps-grid {
     grid-template-columns: 1fr !important;
-    gap: 1rem !important;
+    gap: 0.85rem !important;
+  }
+  .protocol-steps-grid .card {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.85rem !important;
+    align-items: flex-start !important;
+    padding: 1rem 1.15rem !important;
+    text-align: left !important;
+  }
+  .protocol-steps-grid .card .mono {
+    font-size: 1.35rem !important;
+    line-height: 1 !important;
+    margin-bottom: 0 !important;
+    min-width: 32px !important;
+    flex-shrink: 0 !important;
+  }
+  .protocol-steps-grid .card h4 {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.95rem !important;
+  }
+  .protocol-steps-grid .card p {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
   }
   .client-logo-grid {
     display: none !important;
@@ -2053,6 +2104,43 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   }
   .segmented-nav-tabs::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Sector Trust Badges 2-column grid on mobile */
+  .sector-trust-badges-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  .sector-trust-badges-grid .badge {
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 0.72rem !important;
+    padding: 0.45rem 0.5rem !important;
+    width: 100% !important;
+  }
+
+  /* Technical Anatomy Container & Hotspots mobile fit */
+  .anatomy-section {
+    padding: 1.5rem 0.85rem !important;
+    border-radius: var(--radius-lg) !important;
+  }
+  .anatomy-hotspot-stage {
+    padding: 1.25rem 0.75rem !important;
+  }
+  .anatomy-feature-item {
+    padding: 0.85rem 0.95rem !important;
+  }
+  .anatomy-feature-item:hover,
+  .anatomy-feature-item.is-active {
+    transform: none !important;
+    border-left: 4px solid var(--color-brand-accent) !important;
+  }
+
+  /* Hide Ctrl+K hint on touchscreens */
+  .search-kbd,
+  .mobile-nav-drawer .search-kbd {
+    display: none !important;
   }
 
   /* Product Spec Cards V2 Mobile Layout */
@@ -2084,8 +2172,18 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   .product-spec-card-v2 .card-spec-grid {
     grid-template-columns: 1fr 1fr !important;
     min-height: auto !important;
-    padding: 0.65rem 0.75rem !important;
+    padding: 0.6rem 0.65rem !important;
     margin-bottom: 0.85rem !important;
+    gap: 0.45rem 0.6rem !important;
+  }
+  .product-spec-card-v2 .card-spec-grid .spec-cell-lbl {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.02em !important;
+  }
+  .product-spec-card-v2 .card-spec-grid .spec-cell-val {
+    font-size: 0.74rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
   }
   .card-actions-v2 {
     grid-template-columns: 1fr 1fr !important;
@@ -2119,7 +2217,17 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
     height: 32px !important;
   }
   .proof-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.85rem 0.65rem !important;
+  }
+  .proof-item {
+    padding: 0.85rem 0.5rem !important;
+  }
+  .proof-number {
+    font-size: 1.45rem !important;
+  }
+  .proof-label {
+    font-size: 0.72rem !important;
   }
 }
 
@@ -2413,6 +2521,11 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
 /* Hotspot Pin & Pulsing Dot */
 .hotspot-pin {
   position: absolute;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 10;
@@ -2462,7 +2575,13 @@ input[type="range"].calc-input::-webkit-slider-thumb:hover {
   background: #FFFFFF;
   border-color: var(--color-brand-accent);
   box-shadow: var(--shadow-md);
-  transform: translateX(6px);
+  border-left: 4px solid var(--color-brand-accent);
+}
+@media (min-width: 769px) {
+  .anatomy-feature-item:hover,
+  .anatomy-feature-item.is-active {
+    transform: translateX(6px);
+  }
 }
 
 .feature-header {
