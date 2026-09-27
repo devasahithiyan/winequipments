@@ -421,6 +421,9 @@ function initMobileConversionDock() {
       <a href="https://wa.me/919597228969?text=Hi%20Win%20Equipments%2C%20I%20am%20inquiring%20about%20industrial%20equipment%20specifications%20and%20pricing." class="dock-btn dock-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp Technical Support">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
+      <button type="button" class="dock-btn dock-ai" id="dockAiBtn" aria-label="AI Technical Sizing Desk">
+        <i class="fas fa-headset"></i> AI Desk
+      </button>
       <a href="${rfqLink}" class="dock-btn dock-rfq" aria-label="Request Technical RFQ">
         <i class="fas fa-file-invoice"></i> Get RFQ
       </a>

@@ -254,6 +254,41 @@
         closeChat();
       }
     });
+
+    // Mobile dock AI Desk button integration
+    document.addEventListener('click', function (e) {
+      const dockAi = e.target.closest('.dock-ai, #dockAiBtn');
+      if (dockAi) {
+        e.preventDefault();
+        toggleChat();
+      }
+    });
+
+    // Ensure .dock-ai exists in .dock-actions across any page
+    function ensureDockAiButton() {
+      const dockActions = document.querySelector('.dock-actions');
+      if (dockActions && !dockActions.querySelector('.dock-ai')) {
+        const rfqBtn = dockActions.querySelector('.dock-rfq');
+        const aiBtn = document.createElement('button');
+        aiBtn.type = 'button';
+        aiBtn.className = 'dock-btn dock-ai';
+        aiBtn.id = 'dockAiBtn';
+        aiBtn.setAttribute('aria-label', 'Open Technical Sizing AI Desk');
+        aiBtn.innerHTML = '<i class="fas fa-headset"></i> AI Desk';
+        aiBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          toggleChat();
+        });
+        if (rfqBtn) {
+          dockActions.insertBefore(aiBtn, rfqBtn);
+        } else {
+          dockActions.appendChild(aiBtn);
+        }
+      }
+    }
+    ensureDockAiButton();
+    // Re-check after slight delay in case main.js builds dock dynamically
+    setTimeout(ensureDockAiButton, 500);
   }
 
   function toggleChat() {
@@ -271,7 +306,9 @@
     if (teaser) teaser.style.display = 'none';
     teaserDismissed = true;
 
-    windowEl.classList.add('is-open');
+    if (windowEl) {
+      windowEl.classList.add('is-open');
+    }
     isOpen = true;
     setTimeout(() => {
       if (input) input.focus();
@@ -284,6 +321,11 @@
     if (windowEl) windowEl.classList.remove('is-open');
     isOpen = false;
   }
+
+  // Expose global API
+  window.openWinAiChat = openChat;
+  window.closeWinAiChat = closeChat;
+  window.toggleWinAiChat = toggleChat;
 
   function renderMessages() {
     const container = document.getElementById('winAiMessages');
