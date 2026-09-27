@@ -33,6 +33,9 @@ out/
 .env
 .env.local
 .env.*.local
+secrets.php
+secrets.*
+*.key
 
 # Python caches and test artifacts
 __pycache__/

@@ -487,9 +487,9 @@
 
     showTypingIndicator();
 
-    // Set a quick safety timeout for fetch (3.5s) to guarantee instantaneous response
+    // Set a safety timeout for fetch (12s) to allow LLM generation
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
 
     fetch(ENDPOINT, {
       method: 'POST',

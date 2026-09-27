@@ -37,6 +37,25 @@ if ($userMessage === '') {
     exit;
 }
 
+/* ── 0. Load Private Server Secrets ─────────────────────────────────────── */
+$apiKey = '';
+$potentialSecretPaths = [
+    dirname($_SERVER['DOCUMENT_ROOT'] ?? '') . '/secrets.php', // Production cPanel: /home/winequipments/secrets.php
+    '/home/winequipments/secrets.php',
+    __DIR__ . '/secrets.php' // Local development
+];
+foreach ($potentialSecretPaths as $path) {
+    if ($path && file_exists($path)) {
+        require_once $path;
+        break;
+    }
+}
+if (defined('GEMINI_API_KEY') && !empty(GEMINI_API_KEY)) {
+    $apiKey = GEMINI_API_KEY;
+} elseif (getenv('GEMINI_API_KEY')) {
+    $apiKey = getenv('GEMINI_API_KEY');
+}
+
 /* ── 1. Smart Local Engineering Intent Engine (Zero Latency & 100% Accurate) ── */
 $localReply = evaluateLocalProductEngine($userMessage);
 if ($localReply !== null) {
@@ -102,71 +121,73 @@ SIZING GUIDELINES:
 Always keep responses concise, factual, and direct. Offer WhatsApp connection: https://wa.me/919597228969 or phone +91 95972 28969.
 EOT;
 
-/* ── 3. Call LLM with Strict Temperature & Short Timeout ─────────────── */
-$messages = [
-    ['role' => 'system', 'content' => $systemPrompt]
-];
-
-if (is_array($history)) {
-    $slice = array_slice($history, -4);
-    foreach ($slice as $msg) {
-        if (isset($msg['role'], $msg['content']) && in_array($msg['role'], ['user', 'assistant'])) {
-            $messages[] = [
-                'role' => $msg['role'],
-                'content' => (string)$msg['content']
-            ];
+/* ── 3. Call Official Google Gemini API ──────────────────────────────────── */
+if (!empty($apiKey)) {
+    $contents = [];
+    if (is_array($history)) {
+        $slice = array_slice($history, -4);
+        foreach ($slice as $msg) {
+            if (isset($msg['role'], $msg['content']) && in_array($msg['role'], ['user', 'assistant'])) {
+                $contents[] = [
+                    'role' => ($msg['role'] === 'assistant' ? 'model' : 'user'),
+                    'parts' => [['text' => (string)$msg['content']]]
+                ];
+            }
         }
     }
-}
+    $contents[] = [
+        'role' => 'user',
+        'parts' => [['text' => $userMessage]]
+    ];
 
-$messages[] = ['role' => 'user', 'content' => $userMessage];
-
-$payload = json_encode([
-    'messages' => $messages,
-    'model' => 'openai',
-    'temperature' => 0.1,
-    'seed' => 42
-]);
-
-$ch = curl_init('https://text.pollinations.ai/');
-curl_setopt_array($ch, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => $payload,
-    CURLOPT_HTTPHEADER => [
-        'Content-Type: application/json',
-        'Accept: text/plain, application/json',
-        'User-Agent: WinEquipments-AI-Assistant/2.0'
-    ],
-    CURLOPT_TIMEOUT => 8,
-    CURLOPT_CONNECTTIMEOUT => 4,
-    CURLOPT_SSL_VERIFYPEER => true
-]);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-if ($response !== false && $httpCode === 200 && strlen(trim($response)) > 15) {
-    $cleanReply = trim($response);
-    $decoded = json_decode($cleanReply, true);
-    if (is_array($decoded)) {
-        if (isset($decoded['choices'][0]['message']['content'])) {
-            $cleanReply = $decoded['choices'][0]['message']['content'];
-        } elseif (isset($decoded['text'])) {
-            $cleanReply = $decoded['text'];
-        }
-    }
-
-    echo json_encode([
-        'success' => true,
-        'reply' => $cleanReply,
-        'engine' => 'Grounded-LLM'
+    $geminiPayload = json_encode([
+        'systemInstruction' => [
+            'parts' => [['text' => $systemPrompt]]
+        ],
+        'contents' => $contents,
+        'generationConfig' => [
+            'temperature' => 0.2,
+            'maxOutputTokens' => 700
+        ]
     ]);
-    exit;
+
+    $modelsToTry = ['gemini-3.5-flash-lite', 'gemini-3.5-flash'];
+    foreach ($modelsToTry as $modelName) {
+        $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$modelName}:generateContent?key=" . urlencode($apiKey);
+        $ch = curl_init($endpoint);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $geminiPayload,
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json',
+                'User-Agent: WinEquipments-AI-Desk/2.0'
+            ],
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_CONNECTTIMEOUT => 4,
+            CURLOPT_SSL_VERIFYPEER => true
+        ]);
+
+        $rawResponse = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($rawResponse !== false && $httpCode === 200) {
+            $parsed = json_decode($rawResponse, true);
+            if (!empty($parsed['candidates'][0]['content']['parts'][0]['text'])) {
+                $geminiReply = trim($parsed['candidates'][0]['content']['parts'][0]['text']);
+                echo json_encode([
+                    'success' => true,
+                    'reply' => $geminiReply,
+                    'engine' => "Google-Gemini ({$modelName})"
+                ]);
+                exit;
+            }
+        }
+    }
 }
 
-/* ── 4. Fallback if External API Times Out ────────────────────────────── */
+/* ── 4. Fallback if API Key Missing or Provider Offline ─────────────────── */
 $fallback = generateStrictProductFallback($userMessage);
 echo json_encode([
     'success' => true,
