@@ -188,6 +188,7 @@
           <span class="brand-name">WIN EQUIPMENTS</span>
           <span class="brand-tagline">Save Water and Power</span>
         </div>
+        <span class="header-live-badge"><span class="status-dot"></span> Arasur Works Live</span>
       </a>
 
       <!-- Desktop Navigation with CSS Dropdowns -->
@@ -307,7 +308,7 @@
 
       <!-- Header Action -->
       <div style="display: flex; align-items: center; gap: 1rem;">
-        <a href="#quick-rfq" class="btn btn-cta btn-sm">Request RFQ</a>
+        <a href="#quick-rfq" class="header-rfq-btn"><i class="fas fa-bolt"></i> Request RFQ</a>
         <button class="mobile-toggle-btn" aria-label="Toggle Mobile Navigation">
           <i class="fas fa-bars" style="font-size: 1.4rem;"></i>
         </button>
@@ -332,6 +333,45 @@
         <p class="hero-subtitle">
           Direct manufacturer of high-efficiency <strong>FRP Cooling Towers (10–1500 TR)</strong>, <strong>Process Chillers (1–150 TR)</strong>, and <strong>Refrigerated Air Dryers (20–2000 CFM)</strong>. Precision-engineered at our Arasur facility to prevent thermal downtime, stop pipeline moisture damage, and guarantee continuous 24/7 reliability in severe 45°C tropical ambient conditions.
         </p>
+
+        <!-- BREAKTHROUGH: Interactive 1-Click Compressor HP Sizing Widget -->
+        <div class="hero-calc-widget">
+          <div class="hero-calc-header">
+            <div class="hero-calc-title">
+              <i class="fas fa-bolt" style="color: #FF6B00;"></i>
+              <span>1-Click Compressor Sizing Match</span>
+            </div>
+            <span class="hero-calc-tag">45°C Ambient Rated Guarantee</span>
+          </div>
+          
+          <div class="hero-calc-hp-label">Select Your Compressor Horsepower (HP):</div>
+          <div class="hero-calc-pills" role="radiogroup" aria-label="Compressor Horsepower Selector">
+            <button type="button" class="hp-pill-btn" data-hp="10" role="radio" aria-checked="false">5–10 HP</button>
+            <button type="button" class="hp-pill-btn is-active" data-hp="20" role="radio" aria-checked="true">15–20 HP</button>
+            <button type="button" class="hp-pill-btn" data-hp="30" role="radio" aria-checked="false">25–30 HP</button>
+            <button type="button" class="hp-pill-btn" data-hp="50" role="radio" aria-checked="false">40–50 HP</button>
+            <button type="button" class="hp-pill-btn" data-hp="75" role="radio" aria-checked="false">60–75 HP</button>
+            <button type="button" class="hp-pill-btn" data-hp="100" role="radio" aria-checked="false">100+ HP</button>
+          </div>
+
+          <div class="hero-calc-result-card">
+            <div class="calc-result-col">
+              <span class="calc-res-lbl">Matching Air Dryer</span>
+              <span class="calc-res-val" id="heroMatchDryer">WIN-100 <span class="calc-unit">(100 CFM)</span></span>
+              <span class="calc-res-sub" id="heroFlowSub">2.83 m³/min • +3°C PDP Guaranteed</span>
+            </div>
+            <div class="calc-result-col">
+              <span class="calc-res-lbl">Matching Process Chiller</span>
+              <span class="calc-res-val" id="heroMatchChiller">WCP-5 <span class="calc-unit">(5 TR)</span></span>
+              <span class="calc-res-sub">15,000 kcal/hr • &minus;5°C to +25°C</span>
+            </div>
+            <div class="calc-result-cta">
+              <a href="#quick-rfq" id="heroMatchQuoteBtn" class="btn btn-cta btn-sm">
+                <i class="fas fa-file-invoice"></i> Get Factory Quote for WIN-100
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div class="hero-actions">
           <a href="#quick-rfq" class="btn btn-cta btn-lg">
@@ -408,6 +448,49 @@
               <span class="hero-badge-title"><i class="fas fa-water" style="color: #0284C7;"></i> WCT Series Cooling Tower</span>
               <span class="hero-badge-meta">10–1,500 TR &bull; Virgin PVC Fills &bull; CTI Standard</span>
             </div>
+          </div>
+
+          <!-- BREAKTHROUGH: Interactive Component Anatomy Hotspots -->
+          <div class="hero-hotspots-layer" aria-label="Interactive Component Anatomy">
+            <!-- Hotspot 1: Condenser Coil (Top Left/Exhaust Section) -->
+            <button type="button" class="hero-hotspot-pin" style="top: 22%; left: 34%;" data-dir="down" data-align="left" data-spot="condenser" aria-label="45°C Tropical Condenser">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-core"><i class="fas fa-plus"></i></span>
+              <div class="hotspot-tooltip">
+                <strong>45°C Tropical Condenser</strong>
+                <span>Seamless inner-grooved copper coils prevent summer high-pressure trip-outs.</span>
+              </div>
+            </button>
+
+            <!-- Hotspot 2: Smart PLC Controller (Front Panel) -->
+            <button type="button" class="hero-hotspot-pin" style="top: 62%; left: 42%;" data-dir="up" data-spot="plc" aria-label="Smart PLC Controller">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-core"><i class="fas fa-plus"></i></span>
+              <div class="hotspot-tooltip">
+                <strong>Smart Digital Microprocessor</strong>
+                <span>±0.5°C precise thermostatic regulation with automated fault diagnostic alarms.</span>
+              </div>
+            </button>
+
+            <!-- Hotspot 3: SS-304 Evaporator (Middle Left Side) -->
+            <button type="button" class="hero-hotspot-pin" style="top: 50%; left: 18%;" data-align="left" data-spot="evaporator" aria-label="SS-304 Heat Exchanger">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-core"><i class="fas fa-plus"></i></span>
+              <div class="hotspot-tooltip">
+                <strong>SS-304 Stainless Exchanger</strong>
+                <span>Zero-corrosion tube-in-tube design guarantees 0% freeze-up and long lifespan.</span>
+              </div>
+            </button>
+
+            <!-- Hotspot 4: Scroll Compressor (Lower Right Base Bay) -->
+            <button type="button" class="hero-hotspot-pin" style="top: 76%; right: 28%;" data-dir="up" data-align="right" data-spot="compressor" aria-label="Hermetic Scroll Compressor">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-core"><i class="fas fa-plus"></i></span>
+              <div class="hotspot-tooltip">
+                <strong>Copeland / Danfoss Scroll</strong>
+                <span>Hermetic scroll compressor with acoustic damping and thermal overload protector.</span>
+              </div>
+            </button>
           </div>
 
           <!-- Top-right 100% Factory Run-Tested Tag -->

@@ -175,13 +175,24 @@
   }
 
   function initTeaser() {
-    // Show teaser after 1.8s if chat hasn't been opened
-    setTimeout(() => {
-      if (!isOpen && !teaserDismissed && chatHistory.length === 0) {
-        const teaser = document.getElementById('winAiTeaser');
-        if (teaser) teaser.style.display = 'flex';
+    let shown = false;
+    function tryShow() {
+      if (shown || isOpen || teaserDismissed || chatHistory.length > 0) return;
+      if (window.innerWidth <= 768) return;
+      shown = true;
+      const teaser = document.getElementById('winAiTeaser');
+      if (teaser) teaser.style.display = 'flex';
+      window.removeEventListener('scroll', onScrollTeaser);
+    }
+    function onScrollTeaser() {
+      if (window.scrollY > 450) {
+        tryShow();
       }
-    }, 1800);
+    }
+    window.addEventListener('scroll', onScrollTeaser, { passive: true });
+    setTimeout(() => {
+      tryShow();
+    }, 15000);
   }
 
   function bindEvents() {

@@ -19,6 +19,8 @@ function initAll() {
     initProductCategoryFilter,
     initMachineHotspots,
     initHomepageMiniCalculator,
+    initHeroHpSizingWidget,
+    initHeroStageHotspots,
     initSpecTableQuoting,
     initDrawingDropzones,
     initFaqAccordions,
@@ -1505,8 +1507,8 @@ function resolveWinAssetUrl(relativePath) {
 
 /* 10. AI Technical Sales & Sizing Assistant Widget Loader */
 (function initAiChatbotLoader() {
-  const cssHref = resolveWinAssetUrl('css/chatbot.css');
-  const jsSrc = resolveWinAssetUrl('js/chatbot.js');
+  const cssHref = resolveWinAssetUrl('css/chatbot.css?v=2.3');
+  const jsSrc = resolveWinAssetUrl('js/chatbot.js?v=2.3');
 
   if (!document.getElementById('win-chatbot-css')) {
     const link = document.createElement('link');
@@ -1547,5 +1549,122 @@ function resolveWinAssetUrl(relativePath) {
   }
 })();
 
+/* ==========================================================================
+   BREAKTHROUGH: Hero 1-Click Compressor HP Sizing Widget
+   ========================================================================== */
+function initHeroHpSizingWidget() {
+  const pills = document.querySelectorAll('.hp-pill-btn');
+  const dryerVal = document.getElementById('heroMatchDryer');
+  const flowSub = document.getElementById('heroFlowSub');
+  const chillerVal = document.getElementById('heroMatchChiller');
+  const quoteBtn = document.getElementById('heroMatchQuoteBtn');
 
+  if (!pills.length || !dryerVal || !chillerVal) return;
 
+  const hpData = {
+    '10': {
+      dryer: 'WIN-45',
+      dryerUnit: '(45 CFM)',
+      flow: '1.27 m³/min • +3°C PDP Guaranteed',
+      chiller: 'WCP-3',
+      chillerUnit: '(3 TR)',
+      chillerSub: '9,000 kcal/hr • -5°C to +25°C'
+    },
+    '20': {
+      dryer: 'WIN-100',
+      dryerUnit: '(100 CFM)',
+      flow: '2.83 m³/min • +3°C PDP Guaranteed',
+      chiller: 'WCP-5',
+      chillerUnit: '(5 TR)',
+      chillerSub: '15,000 kcal/hr • -5°C to +25°C'
+    },
+    '30': {
+      dryer: 'WIN-150',
+      dryerUnit: '(150 CFM)',
+      flow: '4.25 m³/min • +3°C PDP Guaranteed',
+      chiller: 'WCP-7.5',
+      chillerUnit: '(7.5 TR)',
+      chillerSub: '22,500 kcal/hr • -5°C to +25°C'
+    },
+    '50': {
+      dryer: 'WIN-250',
+      dryerUnit: '(250 CFM)',
+      flow: '7.08 m³/min • +3°C PDP Guaranteed',
+      chiller: 'WCP-10',
+      chillerUnit: '(10 TR)',
+      chillerSub: '30,000 kcal/hr • -5°C to +25°C'
+    },
+    '75': {
+      dryer: 'WIN-350',
+      dryerUnit: '(350 CFM)',
+      flow: '9.91 m³/min • +3°C PDP Guaranteed',
+      chiller: 'WCP-15',
+      chillerUnit: '(15 TR)',
+      chillerSub: '45,000 kcal/hr • -5°C to +25°C'
+    },
+    '100': {
+      dryer: 'WIN-500',
+      dryerUnit: '(500 CFM)',
+      flow: '14.16 m³/min • +3°C PDP Guaranteed',
+      chiller: 'WCP-25',
+      chillerUnit: '(25 TR)',
+      chillerSub: '75,000 kcal/hr • -5°C to +25°C'
+    }
+  };
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', function() {
+      pills.forEach(p => {
+        p.classList.remove('is-active');
+        p.setAttribute('aria-checked', 'false');
+      });
+      this.classList.add('is-active');
+      this.setAttribute('aria-checked', 'true');
+
+      const hp = this.getAttribute('data-hp') || '20';
+      const match = hpData[hp] || hpData['20'];
+
+      dryerVal.innerHTML = `${match.dryer} <span class="calc-unit">${match.dryerUnit}</span>`;
+      if (flowSub) flowSub.textContent = match.flow;
+
+      chillerVal.innerHTML = `${match.chiller} <span class="calc-unit">${match.chillerUnit}</span>`;
+      const chillerSubEl = chillerVal.nextElementSibling;
+      if (chillerSubEl) chillerSubEl.textContent = match.chillerSub;
+
+      if (quoteBtn) {
+        quoteBtn.innerHTML = `<i class="fas fa-file-invoice"></i> Get Factory Quote for ${match.dryer}`;
+        quoteBtn.setAttribute('href', `#quick-rfq?model=${encodeURIComponent(match.dryer)}`);
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   BREAKTHROUGH: Hero Stage Hotspots Interactive Click & Hover
+   ========================================================================== */
+function initHeroStageHotspots() {
+  const pins = document.querySelectorAll('.hero-hotspots-layer .hero-hotspot-pin');
+  if (!pins.length) return;
+
+  pins.forEach(pin => {
+    pin.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isActive = this.classList.contains('is-active');
+      pins.forEach(p => p.classList.remove('is-active'));
+      if (!isActive) {
+        this.classList.add('is-active');
+      }
+    });
+
+    pin.addEventListener('mouseenter', function() {
+      pins.forEach(p => p.classList.remove('is-active'));
+      this.classList.add('is-active');
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.hero-hotspot-pin')) {
+      pins.forEach(p => p.classList.remove('is-active'));
+    }
+  });
+}

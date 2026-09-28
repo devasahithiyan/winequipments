@@ -8,31 +8,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Brand Color Palette - ELGi-Inspired Clean Industrial */
-  --color-brand-primary: #0F172A;        /* Primary Brand Slate */
-  --color-brand-primary-dark: #090D16;   /* Deep Slate Abutment */
-  --color-brand-primary-light: #1E293B;  /* Slate Panel Fill */
+  /* Brand Color Palette - Hyper-Modern Engineering Studio */
+  --color-brand-primary: #07132B;        /* Deep Titanium Obsidian */
+  --color-brand-primary-dark: #040A17;   /* Obsidian Ground */
+  --color-brand-primary-light: #162444;  /* Aerospace Navy Fill */
   --color-slate-charcoal: #1E293B;       /* Explicit Slate Charcoal Token */
-  --color-brand-accent: #0284C7;        /* Precision Sky Accent */
-  --color-brand-accent-hover: #0369A1;   /* Precision Sky Accent Hover */
-  --color-brand-accent-light: #F0F9FF;
-  --color-brand-accent-dark: #075985;
-  --color-brand-sky: #0284C7;           /* Sky Blue Semantic Token */
-  --color-brand-sky-light: #F0F9FF;
-  --color-brand-eco: #16A34A;           /* Standard Eco Green */
-  --color-brand-eco-hover: #15803D;
-  --color-brand-eco-light: #DCFCE7;
-  --color-brand-cta: #EA580C;           /* Safety Amber CTA */
-  --color-brand-cta-hover: #C2410C;      /* Safety Amber CTA Hover */
-  --color-brand-cta-light: #FFEDD5;      /* Amber Tint */
+  --color-brand-accent: #0062FF;        /* Electric Hyper-Cobalt */
+  --color-brand-accent-hover: #004ED0;   /* Deep Cobalt Hover */
+  --color-brand-accent-light: #EFF6FF;   /* Soft Ice Blue Fill */
+  --color-brand-accent-dark: #003FB3;
+  --color-brand-sky: #0062FF;           /* Modern Cobalt Semantic Token */
+  --color-brand-sky-light: #EFF6FF;
+  --color-brand-eco: #10B981;           /* Vivid Eco Green */
+  --color-brand-eco-hover: #059669;
+  --color-brand-eco-light: #D1FAE5;
+  --color-brand-cta: #FF6B00;           /* Vivid Safety Amber CTA */
+  --color-brand-cta-hover: #EA580C;      /* Safety Amber CTA Hover */
+  --color-brand-cta-light: #FFF7ED;      /* Amber Tint */
 
-  /* Neutrals & Surfaces - Clean Slate Ground */
-  --color-surface-bg: #F8FAFC;         /* Clean Slate Ground */
+  /* Neutrals & Surfaces - Clean Porcelain Titanium */
+  --color-surface-bg: #F8FAFD;         /* Clean Porcelain Ground */
   --color-surface-card: #FFFFFF;       /* Crisp White Surface */
   --color-surface-alt: #F1F5F9;        /* Light Secondary Ground */
   --color-surface-hover: #F1F5F9;      /* Surface Hover State */
-  --color-surface-dark: #0F172A;
-  --color-surface-charcoal: #1E293B;   /* Explicit Surface Charcoal Token */
+  --color-surface-dark: #07132B;
+  --color-surface-charcoal: #162444;   /* Surface Charcoal Token */
   
   /* Text & Hierarchy - Refined Body Charcoal & Deep Executive Slate */
   --color-text-main: #334155;          /* Refined Body Charcoal */
