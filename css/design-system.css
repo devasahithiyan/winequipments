@@ -9,7 +9,7 @@
 
 :root {
   /* Brand Color Palette - Hyper-Modern Engineering Studio */
-  --color-brand-primary: #07132B;        /* Deep Titanium Obsidian */
+  --color-brand-primary: #0F172A;        /* Deep Titanium Obsidian */
   --color-brand-primary-dark: #040A17;   /* Obsidian Ground */
   --color-brand-primary-light: #162444;  /* Aerospace Navy Fill */
   --color-slate-charcoal: #1E293B;       /* Explicit Slate Charcoal Token */
@@ -27,7 +27,7 @@
   --color-brand-cta-light: #FFF7ED;      /* Amber Tint */
 
   /* Neutrals & Surfaces - Clean Porcelain Titanium */
-  --color-surface-bg: #F8FAFD;         /* Clean Porcelain Ground */
+  --color-surface-bg: #F8FAFC;         /* Clean Porcelain Ground */
   --color-surface-card: #FFFFFF;       /* Crisp White Surface */
   --color-surface-alt: #F1F5F9;        /* Light Secondary Ground */
   --color-surface-hover: #F1F5F9;      /* Surface Hover State */
