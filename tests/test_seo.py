@@ -13,7 +13,8 @@ NOINDEX = {"404.html", "thank-you.html"}
 
 
 def pages():
-    return sorted(p for p in PUBLIC.rglob("*.html") if "img" not in p.parts)
+    # skip iCloud sync-conflict copies such as "about 2.html"
+    return sorted(p for p in PUBLIC.rglob("*.html") if "img" not in p.parts and not re.search(r" \d+\.html$", p.name))
 
 
 def rel(p):
