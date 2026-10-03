@@ -6,7 +6,7 @@
       <{{ heading }} class="product-row__name">{{ pr.name }}</{{ heading }}>
       <span class="product-row__desc">{{ pr.card }}</span>
     </span>
-    <span class="product-row__range">{{ pr.range }}<small>{{ pr.series }}</small></span>
+    <span class="product-row__range">{{ pr.range }}{% if pr.series != pr.range %}<small>{{ pr.series }}</small>{% endif %}</span>
   </a>
 </li>
 {% endmacro %}

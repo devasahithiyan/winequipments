@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Downloads', '/downloads.html')] %}
+{% block title %}Catalogues &amp; Datasheets | Win Equipments{% endblock %}
+{% block description %}Download Win Equipments product catalogues: refrigerated and desiccant air dryers, filters, drain valves, air receivers, chillers and cooling towers (PDF).{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1>Catalogues and datasheets</h1>
+    <p class="lede">Product catalogues with model tables, working principles and selection charts. Need a GA drawing or a datasheet for a specific model? Ask in the enquiry form.</p>
+  </div>
+</section>
+<section class="section section--rule" style="padding-top:var(--s-8)">
+  <div class="container">
+    <ul class="downloads">
+      <li><a href="/downloads/win-equipments-catalogue.pdf" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><strong>Win Equipments product catalogue</strong><span>All product lines · PDF, {{ pdf_size('/downloads/win-equipments-catalogue.pdf') }}</span></span></a></li>
+      {% set seen = [] %}
+      {% for fam in families.values() %}{% for pr in fam.products %}{% if pr.download and pr.download not in seen %}{% set _ = seen.append(pr.download) %}
+      <li><a href="{{ pr.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><strong>{{ 'WCT FRP cooling towers (round and square)' if 'frp-cooling' in pr.download else pr.series ~ ' ' ~ pr.name }}</strong><span>{{ fam.name }} · PDF, {{ pdf_size(pr.download) }}</span></span></a></li>
+      {% endif %}{% endfor %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% set heading = 'Need a drawing or a specific datasheet?' %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

@@ -342,6 +342,7 @@ def crumbs_ld(items):
 
 env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld)
 env.filters["pname"] = lambda slug: products[slug]["name"]
+env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"
 env.globals["fam_urls"] = lambda fam: [{"@type": "Product", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
 env.globals["industry_count"] = lambda i: sum(1 for p in products.values() if i in p.get("industries", []))
 
@@ -395,6 +396,7 @@ def main():
     render("pages/industries.html", "/industries/")
     for ind in industries.values():
         render("pages/industry.html", f"/industries/{ind['slug']}.html", ind=ind)
+    render("pages/downloads.html", "/downloads.html")
     render("pages/contact.html", "/contactus.html")
     render("pages/thanks.html", "/thank-you.html")
     render("pages/404.html", "/404.html")

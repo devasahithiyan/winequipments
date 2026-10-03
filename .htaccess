@@ -25,6 +25,9 @@
     RewriteRule ^products/automatic_drain_valve\.html$ /products/automatic-drain-valves.html [R=301,L]
     RewriteRule ^products/aftercooler\.html$ /products/industrial-aftercoolers.html [R=301,L]
 
+    # Temporary until the sizing tools hub is rebuilt
+    RewriteRule ^engineering-tools/?$ /engineering-tools/air-dryer-sizing.html [R=302,L]
+
     # 4. Catalogue & Brochure Typo Redirects
     RewriteRule ^catlogue/Automativ-Drain-valve\.pdf$ /catlogue/Automatic-Drain-Valve.pdf [R=301,L]
     RewriteRule ^catlogue/After-Coolers\.pdf$ /catlogue/E_Catalogue.pdf [R=301,L]
