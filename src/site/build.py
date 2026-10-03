@@ -503,10 +503,47 @@ def org_schema():
         "email": site["email"],
         "telephone": site["phones"][0]["tel"],
         "address": {"@type": "PostalAddress", "streetAddress": a["street"] + ", " + a["locality"], "addressLocality": a["city"], "addressRegion": a["region"], "postalCode": a["postal"], "addressCountry": a["country"]},
+        "image": image_url("images/about_us_2.jpg"),
+        "slogan": site["tagline"],
+        "founder": {"@type": "Person", "honorificPrefix": "Mr.", "name": site["founder"].removeprefix("Mr. ")},
+        "hasMap": site["maps"],
+        "areaServed": {"@type": "Country", "name": "India"},
+        "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": ph["tel"], "email": site["email"], "areaServed": "IN", "availableLanguage": ["en", "ta"]} for ph in site["phones"]],
+        "hasCredential": {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": site["certification"]},
+        "knowsAbout": ["Refrigerated air dryers", "Desiccant air dryers", "Compressed air filtration", "Process chillers", "FRP cooling towers", "Coil cooling towers"],
     }
 
 
+def product_ld(p):
+    """ProductGroup with one variant per catalogue model; no offers or ratings (none are published)."""
+    url = site["url"] + product_url(p["slug"])
+    imgs = [image_url(p["image"])] + [image_url(ph["path"]) for ph in photos if ph.get("product") == p["slug"]][:4]
+    base = {"name": p["h1"], "description": p["description"], "image": imgs, "url": url,
+            "brand": {"@type": "Brand", "name": site["name"]}, "manufacturer": {"@id": site["url"] + "/#org"},
+            "category": families[p["family"]]["name"]}
+    props = [{"@type": "PropertyValue", "name": k["label"], "value": k["value"]} for k in p.get("key_specs") or []]
+    if props:
+        base["additionalProperty"] = props
+    spec = p.get("spec")
+    if not spec or p["series"] in ("Engineered to order", "Spares"):
+        return dict({"@type": "Product", "@id": url + "#product"}, **base)
+    cols = [c for c in spec["columns"] if c["key"] != "model"]
+    variants = []
+    for r in spec["rows"]:
+        vp = []
+        for c in cols:
+            v = r.get(c["key"])
+            if v in (None, "", "—"):
+                continue
+            name = c["label"] + (f" ({c['unit']})" if c.get("unit") else "")
+            vp.append({"@type": "PropertyValue", "name": name, "value": v})
+        variants.append({"@type": "Product", "name": f"{r['model']} {p['name']}", "mpn": r["model"], "model": r["model"],
+                         "url": f"{url}#{model_id(r['model'])}", "additionalProperty": vp})
+    return dict({"@type": "ProductGroup", "@id": url + "#product", "productGroupID": p["series"], "model": p["series"], "hasVariant": variants}, **base)
+
+
 env.globals["org_schema"] = org_schema
+env.globals["product_ld"] = product_ld
 
 
 def faq_ld(items):

@@ -7,9 +7,7 @@
 {% block og_type %}product{% endblock %}
 {% block og_image %}{{ image_url(p.image) }}{% endblock %}
 {% block schema %}
-{% set prod_ld = {"@type": "Product", "name": p.h1, "description": p.description, "image": image_url(p.image), "brand": {"@type": "Brand", "name": site.name}, "manufacturer": {"@id": site.url ~ "/#org"}, "category": fam.name, "url": site.url ~ product_url(p.slug)} %}
-{% if p.series and p.series not in ('Engineered to order', 'Spares') %}{% set _ = prod_ld.update({"model": p.series}) %}{% endif %}
-{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), prod_ld, crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
+{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), product_ld(p), crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
 {% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
