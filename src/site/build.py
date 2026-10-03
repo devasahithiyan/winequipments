@@ -343,6 +343,7 @@ env.globals.update(
 )
 
 pages_written = []
+page_sources = {}
 
 
 
@@ -489,6 +490,12 @@ def render(template, url, **ctx):
     html = env.get_template(template).render(url=url, **ctx)
     path.write_text(html)
     pages_written.append(url)
+    srcs = [SRC / "templates" / template]
+    if "p" in ctx: srcs.append(DATA / "products" / f"{ctx['p']['slug']}.json")
+    if "a" in ctx: srcs.append(SRC / "content" / "blog" / f"{ctx['a']['slug']}.md")
+    if "loc" in ctx: srcs.append(DATA / "locations.json")
+    if "ind" in ctx or "fam" in ctx: srcs.append(DATA / "site.json")
+    page_sources[url] = srcs
 
 
 def org_schema():
@@ -663,11 +670,36 @@ def main():
     render("pages/thanks.html", "/thank-you.html")
     render("pages/404.html", "/404.html")
 
-    # sitemap
+    # html sitemap (lists every page by section, titles read back from the output)
+    def page_title(u):
+        f = OUT / (u.lstrip("/") + ("index.html" if u.endswith("/") else ""))
+        m = re.search(r"<h1[^>]*>(.*?)</h1>", f.read_text(), re.S)
+        return re.sub(r"<[^>]+>", "", m.group(1)).strip() if m else u
+    groups = {}
+    for u in [u for u in pages_written if u not in ("/404.html", "/thank-you.html")]:
+        sec = u.strip("/").split("/")[0] if u.count("/") > 1 else "main"
+        groups.setdefault(sec, []).append((u, page_title(u)))
+    render("pages/sitemap.html", "/sitemap.html", groups=groups)
+
+    # xml sitemap with images and lastmod from git history of each page's sources
+    def lastmod(u):
+        files = [str(f) for f in page_sources.get(u, []) if f.exists()]
+        dirty = subprocess.run(["git", "status", "--porcelain", "--", *files], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        if dirty or not files:
+            return date.today().isoformat()
+        d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", *files], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        return d or date.today().isoformat()
     urls = [u for u in pages_written if u not in ("/404.html", "/thank-you.html")]
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
     for u in urls:
-        sm.append(f"<url><loc>{site['url']}{u}</loc><lastmod>{date.today().isoformat()}</lastmod></url>")
+        f = OUT / (u.lstrip("/") + ("index.html" if u.endswith("/") else ""))
+        main = re.search(r'<main id="main">(.*?)</main>', f.read_text(), re.S)
+        imgs = []
+        for m in re.finditer(r'<img src="(/img/[^"]+)"[^>]*alt="([^"]+)"', main.group(1) if main else ""):
+            if m.group(1) not in imgs:
+                imgs.append(m.group(1))
+        img_xml = "".join(f"<image:image><image:loc>{site['url']}{i}</image:loc></image:image>" for i in imgs[:20])
+        sm.append(f"<url><loc>{site['url']}{u}</loc><lastmod>{lastmod(u)}</lastmod>{img_xml}</url>")
     sm.append("</urlset>")
     (OUT / "sitemap.xml").write_text("\n".join(sm))
     print(f"built {len(pages_written)} pages, css {size} bytes")

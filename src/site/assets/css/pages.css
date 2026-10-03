@@ -399,3 +399,8 @@
 .blog-list__desc { color: var(--ink-2); font-size: 0.9375rem; }
 .blog-list__meta { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: var(--s-2); font-size: var(--fs-small); color: var(--green-ink); font-weight: 650; }
 .blog-list__meta svg { width: 18px; height: 18px; }
+.sitemap-grid { display: grid; gap: var(--s-8); }
+@media (min-width: 760px) { .sitemap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.sitemap-grid h2 { font-size: 1.25rem; font-stretch: 85%; margin-bottom: var(--s-3); padding-bottom: var(--s-2); border-bottom: 1px solid var(--ink); }
+.sitemap-grid ul { list-style: none; display: grid; gap: var(--s-2); }
+.sitemap-grid a { color: var(--ink-2); }

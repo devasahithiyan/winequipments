@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Sitemap', '/sitemap.html')] %}
+{% set names = {"main": "Company", "products": "Products", "industries": "Industries", "engineering-tools": "Sizing tools", "blog": "Articles", "locations": "Areas we supply"} %}
+{% block title %}Sitemap | Win Equipments{% endblock %}
+{% block description %}Every page on the Win Equipments website: products, industries, sizing tools, articles, locations and company information.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head"><div class="container"><h1>Sitemap</h1></div></section>
+<section class="section section--rule">
+  <div class="container sitemap-grid">
+    {% for key in ["products", "industries", "engineering-tools", "blog", "locations", "main"] if key in groups %}
+    <div><h2>{{ names[key] }}</h2><ul>{% for u, t in groups[key] %}<li><a href="{{ u }}">{{ t }}</a></li>{% endfor %}</ul></div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
