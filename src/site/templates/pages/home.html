@@ -60,6 +60,7 @@
       <dl class="h-show__specs{% if loop.first %} is-active{% endif %}" data-specs="{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
         {% for k, v in h.specs %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}
         <a class="link-arrow" href="{{ product_url(h.p.slug) }}">{{ h.p.series }} range<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        {% if h.p.slug == 'industrial-process-chillers' %}<a class="h-show__360" href="#chiller-360"><span>360°</span>Turn the chiller around</a>{% endif %}
       </dl>
       {% endfor %}
     </div>
@@ -162,12 +163,13 @@
     <div class="h-works__copy" data-reveal>
       <h2 id="works-title">Made and tested at our own works</h2>
       <p>Win Equipments was established in {{ site.founded }} as a manufacturer of compressed air and water cooling systems. We also take on project consultancy: designing, planning and commissioning the system around the equipment.</p>
-      <div class="h-works__thumbs">
-        {{ picture('images/slideshow3.png', 'Technician wiring the control panel of a chiller', sizes='(min-width: 900px) 15vw, 45vw', max_w=900, gray=True) }}
-        {{ picture('images/cert_banner.jpg', 'Fabrication at the Win Equipments works', sizes='(min-width: 900px) 15vw, 45vw', max_w=900, gray=True) }}
-      </div>
       <a class="link-arrow" href="/about.html">About Win Equipments<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
+  </div>
+  <div class="container h-works__rail">
+    <h3 class="h-works__sub">Recent builds</h3>
+    {% set rail = home_photos %}{% set rail_id = 'home' %}{% set show_product = True %}
+    {% include "partials/photo_rail.html" %}
   </div>
 </section>
 

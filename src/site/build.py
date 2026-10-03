@@ -30,6 +30,8 @@ families = {f["id"]: f for f in site["families"]}
 for fam in families.values():
     fam["products"] = sorted([p for p in products.values() if p["family"] == fam["id"]], key=lambda p: p["order"])
 industries = {i["id"]: i for i in site["industries"]}
+photos = [dict(ph, path="images/works/" + ph["file"]) for ph in json.loads((DATA / "photos.json").read_text())]
+home_photos = sorted((ph for ph in photos if ph.get("home")), key=lambda ph: ph["home"])
 
 # ---------------------------------------------------------------- images
 WIDTHS = [320, 480, 640, 960, 1280, 1600]
@@ -332,7 +334,7 @@ def jsonld(obj):
 
 env = Environment(loader=FileSystemLoader(SRC / "templates"), undefined=StrictUndefined, autoescape=True, trim_blocks=True, lstrip_blocks=True)
 env.globals.update(
-    site=site, products=products, families=families, industries=industries,
+    site=site, products=products, families=families, industries=industries, photos=photos, home_photos=home_photos,
     picture=picture, image_url=image_url, studio=studio, whatsapp=whatsapp, model_id=model_id,
     product_url=product_url, family_of=family_of, cell=cell, jsonld=jsonld,
     dew_chart=dew_chart, dew_ladder=dew_ladder, tower_chart=tower_chart,

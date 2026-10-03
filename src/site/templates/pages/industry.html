@@ -21,6 +21,19 @@
     <ul class="pcards">{% for slug in ind.products %}{{ m.product_card(products[slug], 'h3', loop.index0 % 3) }}{% endfor %}</ul>
   </div>
 </section>
+{% set ns = namespace(r=[]) %}{% for ph in photos %}{% if ph.industry is defined and ph.industry == ind.slug %}{% set ns.r = ns.r + [ph] %}{% endif %}{% endfor %}{% for slug in ind.products %}{% for ph in (photos | selectattr('product', 'equalto', slug) | list)[:2] %}{% set ns.r = ns.r + [ph] %}{% endfor %}{% endfor %}
+{% if ns.r %}
+<section class="section section--rule" aria-labelledby="ind-photos">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="ind-photos">Equipment we have built</h2>
+      <p>Real photos of units for this kind of plant. Tap a photo to see it full size.</p>
+    </div>
+    {% set rail = ns.r[:10] %}{% set rail_id = ind.slug %}{% set show_product = True %}
+    {% include "partials/photo_rail.html" %}
+  </div>
+</section>
+{% endif %}
 {% set heading = 'Tell us about your plant' %}
 {% set intro = 'Describe the process and the duty: compressor capacity, heat load or water flow, temperatures and site conditions. Our engineers will recommend the equipment and quote.' %}
 {% include "partials/enquiry.html" %}

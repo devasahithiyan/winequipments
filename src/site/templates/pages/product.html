@@ -45,6 +45,7 @@
   </div>
 </section>
 
+{% set p_photos = photos | selectattr("product", "equalto", p.slug) | list %}
 <nav class="subnav" aria-label="On this page">
   <div class="container">
     <ul>
@@ -53,11 +54,27 @@
       {% if p.selection is defined %}<li><a href="#sizing">Sizing</a></li>{% endif %}
       {% if p.needs is defined %}<li><a href="#sizing-needs">What we need</a></li>{% endif %}
       {% if p.applications is defined %}<li><a href="#applications">Applications</a></li>{% endif %}
+      {% if p_photos %}<li><a href="#photos">Photos</a></li>{% endif %}
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#quote">Quote</a></li>
     </ul>
   </div>
 </nav>
+
+{% if p.slug == 'industrial-process-chillers' %}{% include "partials/chiller360.html" %}{% endif %}
+
+{% if p_photos %}
+<section class="p-section" aria-labelledby="photos">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="photos">Photos of our {{ p.name | lower }}</h2>
+      <p>Units we have built. Tap a photo to see it full size.</p>
+    </div>
+    {% set rail = p_photos %}{% set rail_id = p.slug %}
+    {% include "partials/photo_rail.html" %}
+  </div>
+</section>
+{% endif %}
 
 {% if p.spec %}
 <section class="p-section" aria-labelledby="specs">

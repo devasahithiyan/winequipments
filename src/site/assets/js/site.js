@@ -337,3 +337,78 @@
   };
   btn.addEventListener('click', load);
 })();
+
+/* photo rails + lightbox */
+(() => {
+  const rails = document.querySelectorAll('[data-rail]');
+  if (!rails.length) return;
+  rails.forEach((rail) => {
+    const list = rail.querySelector('[data-rail-list]');
+    const prev = rail.querySelector('[data-rail-prev]');
+    const next = rail.querySelector('[data-rail-next]');
+    const step = () => (list.firstElementChild ? list.firstElementChild.getBoundingClientRect().width + 12 : 300) * (innerWidth >= 1024 ? 2 : 1);
+    const sync = () => {
+      prev.disabled = list.scrollLeft < 8;
+      next.disabled = list.scrollLeft + list.clientWidth > list.scrollWidth - 8;
+    };
+    prev.addEventListener('click', () => list.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => list.scrollBy({ left: step(), behavior: 'smooth' }));
+    list.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
+  });
+
+  let lb, img, cap, count, items = [], idx = 0, opener = null;
+  const build = () => {
+    lb = document.createElement('dialog');
+    lb.className = 'lb';
+    lb.setAttribute('aria-label', 'Photo viewer');
+    lb.innerHTML = `<div class="lb__top"><span class="lb__count" aria-live="polite"></span><button type="button" class="lb__close" aria-label="Close photo"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <div class="lb__stage"><img class="lb__img" alt=""><button type="button" class="lb__nav lb__nav--prev" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="lb__nav lb__nav--next" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-chev"/></svg></button></div>
+      <p class="lb__cap"></p>`;
+    document.body.appendChild(lb);
+    img = lb.querySelector('.lb__img'); cap = lb.querySelector('.lb__cap'); count = lb.querySelector('.lb__count');
+    lb.querySelector('.lb__close').addEventListener('click', () => lb.close());
+    lb.querySelector('.lb__nav--prev').addEventListener('click', () => show(idx - 1));
+    lb.querySelector('.lb__nav--next').addEventListener('click', () => show(idx + 1));
+    lb.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+    lb.addEventListener('close', () => { document.body.classList.remove('lb-open'); opener?.focus(); });
+    lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('lb__stage')) lb.close(); });
+    let sx = null;
+    const stage = lb.querySelector('.lb__stage');
+    stage.addEventListener('pointerdown', (e) => { sx = e.clientX; });
+    stage.addEventListener('pointerup', (e) => {
+      if (sx === null) return;
+      const dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    });
+  };
+  const show = (n) => {
+    idx = (n + items.length) % items.length;
+    const a = items[idx];
+    const thumb = a.querySelector('img');
+    img.classList.add('is-loading');
+    img.onload = () => img.classList.remove('is-loading');
+    img.src = a.href;
+    img.alt = thumb ? thumb.alt : '';
+    cap.textContent = a.dataset.lbCaption || '';
+    count.textContent = `${idx + 1} / ${items.length}`;
+    const pre = new Image(); pre.src = items[(idx + 1) % items.length].href;
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-lightbox] a.rail__link');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    if (!lb) build();
+    if (typeof lb.showModal !== 'function') { location.href = a.href; return; }
+    items = Array.from(a.closest('[data-lightbox]').querySelectorAll('a.rail__link'));
+    opener = a;
+    show(items.indexOf(a));
+    lb.showModal();
+    document.body.classList.add('lb-open');
+    (window.dataLayer = window.dataLayer || []).push({ event: 'photo_open', page: location.pathname });
+  });
+})();
