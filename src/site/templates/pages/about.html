@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('About', '/about.html')] %}
+{% block title %}About Win Equipments | Manufacturer in Arasur, Coimbatore since 2008{% endblock %}
+{% block description %}Win Equipments has manufactured air dryers, process chillers and FRP cooling towers at Arasur, Coimbatore since 2008. ISO 9001:2015 certified, 1,200+ installations.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "AboutPage", "url": site.url ~ "/about.html", "about": {"@id": site.url ~ "/#org"}}]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1 data-split>About Win Equipments</h1>
+    <p class="lede">We design, build and commission compressed air treatment equipment, process chillers and cooling towers at our works in Arasur, Coimbatore. Founded in {{ site.founded }} by {{ site.founder }}.</p>
+  </div>
+</section>
+
+<section class="a-hero">
+  <div class="container">
+    <figure class="a-hero__fig" data-parallax>
+      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 1280px) 1200px, 100vw', eager=True, max_w=1280) }}
+      <figcaption>The team at our Arasur works</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="h-numbers" aria-label="Win Equipments in numbers">
+  <div class="container h-numbers__row">
+    <div data-reveal><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div>
+    <div data-reveal style="--d:1"><strong><span data-count="1200">1,200</span>+</strong><span>Installations across industry</span></div>
+    <div data-reveal style="--d:2"><strong><span data-count="15">15</span></strong><span>Product lines</span></div>
+    <div data-reveal style="--d:3"><strong>ISO 9001</strong><span>2015 certified quality system</span></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="who">
+  <div class="container a-split">
+    <div class="a-split__head" data-reveal>
+      <h2 id="who">Manufacturer, supplier and project partner</h2>
+    </div>
+    <div class="a-split__body stack" data-reveal style="--d:1">
+      <p class="lede">Win Equipments was established in {{ site.founded }} as a manufacturer of compressed air and water cooling systems. We make the equipment, and we also take on project consultancy: designing, planning and commissioning the system around it.</p>
+      <p>Our equipment is fabricated and assembled at our works in Arasur by the team pictured above. After commissioning we support each installation with service and spares.</p>
+      <ul class="a-ticks">
+        <li>Compressed air treatment: refrigerated and desiccant dryers, filters, drain valves, air receivers and aftercoolers</li>
+        <li>Process cooling: WCP process chillers and chillers engineered for anodizing, acid, medical scan and ice flake duties</li>
+        <li>Heat rejection: round and square FRP cooling towers and coil cooling towers</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="families">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="families">What we make</h2>
+      <p>Fifteen product lines in three families.</p>
+    </div>
+    <ul class="a-fams">
+      {% for fam in families.values() %}
+      <li data-reveal style="--d:{{ loop.index0 }}"><a href="/products/{{ fam.slug }}.html">
+        <span class="a-fams__img">{{ picture(studio(fam.products[0].image), '', sizes='(min-width: 900px) 30vw, 90vw', max_w=640) }}</span>
+        <strong>{{ fam.name }}</strong><span>{{ fam.summary }}</span><em>{{ fam.products | length }} products</em>
+      </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="h-process" id="installation" aria-labelledby="process-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <h2 id="process-title">Installation and service</h2>
+      <p>From the first enquiry to commissioning and after-sales support, one team at our Arasur works handles the job.</p>
+    </div>
+    <ol class="h-steps" data-steps>
+      {% for title, text in site.process %}
+      <li class="h-step" data-reveal style="--d:{{ loop.index0 }}"><span class="h-step__n">{{ loop.index }}</span><h3>{{ title }}</h3><p>{{ text }}</p></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="builds">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="builds">Recent builds</h2>
+      <p>Real photos of equipment from our works. Tap a photo to see it full size.</p>
+    </div>
+    {% set rail = home_photos %}{% set rail_id = 'about' %}{% set show_product = True %}
+    {% include "partials/photo_rail.html" %}
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="quality">
+  <div class="container a-split">
+    <div class="a-split__head" data-reveal>
+      <h2 id="quality">Quality</h2>
+      <p>Our quality management system is certified to ISO 9001:2015.</p>
+      <a class="link-arrow" href="/certifications.html">Certifications<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="a-badges" data-reveal style="--d:1">
+      {{ picture('images/iso.png', 'ISO', sizes='120px', max_w=320) }}
+      {{ picture('images/dac.png', 'DAC, Dubai Accreditation Center: ISO 9001:2015 certified', sizes='120px', max_w=320) }}
+      {{ picture('images/iaf.png', 'IAF, International Accreditation Forum', sizes='120px', max_w=320) }}
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="visit">
+  <div class="container a-split">
+    <div class="a-split__head" data-reveal>
+      <h2 id="visit">Visit the works</h2>
+      <p>Visits to the works are welcome by appointment. Call or WhatsApp us to arrange one.</p>
+    </div>
+    <div class="a-visit" data-reveal style="--d:1">
+      <address>{{ site.address_lines | join('<br>' | safe) }}</address>
+      <div class="btn-row">
+        <a class="btn btn--secondary" href="{{ site.maps }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Open in Google Maps</a>
+        <a class="btn btn--secondary" href="tel:{{ site.phones[0].tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phones[0].display }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/enquiry.html" %}
+{% endblock %}

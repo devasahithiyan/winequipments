@@ -469,6 +469,8 @@ def main():
         render("pages/industry.html", f"/industries/{ind['slug']}.html", ind=ind)
     render("pages/downloads.html", "/downloads.html")
     render("pages/contact.html", "/contactus.html")
+    render("pages/about.html", "/about.html")
+    render("pages/certifications.html", "/certifications.html")
     render("pages/thanks.html", "/thank-you.html")
     render("pages/404.html", "/404.html")
 

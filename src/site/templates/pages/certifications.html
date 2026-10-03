@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('About', '/about.html'), ('Certifications', '/certifications.html')] %}
+{% set faqs = [
+  {"q": "Is Win Equipments ISO certified?", "a": "Yes. Our quality management system is certified to ISO 9001:2015. The certification carries the DAC (Dubai Accreditation Center) and IAF (International Accreditation Forum) accreditation marks."},
+  {"q": "Can I get a copy of the certificate?", "a": "Yes. Ask on WhatsApp +91 95972 28969 or email info@winequipments.com and we will send a copy for your vendor registration."},
+  {"q": "Are air receivers pressure tested?", "a": "Every WRV air receiver is hydrostatically tested: 12, 17 or 21 bar g for the 7, 10 and 12.5 bar g working pressure variants. Vessels can be fabricated to ASME VIII on requirement."}
+] %}
+{% block title %}Certifications: ISO 9001:2015 | Win Equipments, Coimbatore{% endblock %}
+{% block description %}Win Equipments is ISO 9001:2015 certified (DAC and IAF accreditation marks). How our chillers, air receivers and other equipment are tested before dispatch.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), faq_ld(faqs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1 data-split>Certifications</h1>
+    <p class="lede">Our quality management system is certified to ISO 9001:2015, covering how we design, build and test the equipment we supply.</p>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="iso">
+  <div class="container">
+    <article class="cert" data-reveal>
+      <div class="cert__marks">
+        {{ picture('images/iso.png', 'ISO', sizes='(min-width: 900px) 160px, 30vw', max_w=320) }}
+        {{ picture('images/dac.png', 'DAC, Dubai Accreditation Center: ISO 9001:2015 certified', sizes='(min-width: 900px) 160px, 30vw', max_w=320) }}
+        {{ picture('images/iaf.png', 'IAF, International Accreditation Forum', sizes='(min-width: 900px) 160px, 30vw', max_w=320) }}
+      </div>
+      <div class="cert__body stack">
+        <p class="cert__tag">Quality management system</p>
+        <h2 id="iso">ISO 9001:2015</h2>
+        <p>ISO 9001 is the international standard for quality management systems. Our certification carries the accreditation marks of the DAC (Dubai Accreditation Center) and the IAF (International Accreditation Forum).</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ whatsapp('Hello Win Equipments, please send a copy of your ISO 9001:2015 certificate.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>Request a copy</a>
+          <a class="btn btn--secondary" href="mailto:{{ site.email }}?subject=ISO%209001%20certificate" data-track="email_click">Email us</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="testing">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="testing">Tested before dispatch</h2>
+      <p>What our catalogues state about testing, product by product.</p>
+    </div>
+    <ul class="cert-tests">
+      <li data-reveal><h3><a href="/products/air-receiver-tanks.html">Air receiver tanks</a></h3><p>Every vessel is hydrostatically tested.</p>
+        <dl><div><dt>7 bar g working</dt><dd>12 bar g test</dd></div><div><dt>10 bar g working</dt><dd>17 bar g test</dd></div><div><dt>12.5 bar g working</dt><dd>21 bar g test</dd></div></dl>
+        <p class="cert-tests__note">ASME VIII fabrication on requirement.</p></li>
+      <li data-reveal style="--d:1"><h3><a href="/products/industrial-process-chillers.html">Process chillers</a></h3><p>Each WCP chiller is a self-contained unit and is factory tested before delivery.</p></li>
+      <li data-reveal style="--d:2"><h3><a href="/products/refrigerated-air-dryers.html">Refrigerated air dryers</a></h3><p>Rated at 45 °C inlet, 35 °C ambient and 7 bar g for a +3 °C pressure dew point. Correction factors for other conditions are published on the product page.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="faq">
+  <div class="container h-faq__grid">
+    <div data-reveal><h2 id="faq">Questions</h2></div>
+    {{ m.faq(faqs) }}
+  </div>
+</section>
+{% include "partials/enquiry.html" %}
+{% endblock %}

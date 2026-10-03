@@ -225,5 +225,28 @@
       "file": "images/clients/5.jpg",
       "name": "Inorbit"
     }
-  ]
+  ],
+  "process": [
+    [
+      "Share your requirement",
+      "Compressor CFM, heat load in TR or water flow, temperatures and site conditions. A drawing or nameplate photo helps."
+    ],
+    [
+      "We size the equipment",
+      "Our engineers select the model from catalogue ratings and correction factors, or engineer a special unit."
+    ],
+    [
+      "Built at Arasur",
+      "Fabricated and assembled at our works in Arasur, Coimbatore."
+    ],
+    [
+      "Tested before dispatch",
+      "Chillers are factory tested before delivery; air receivers are hydrostatically tested."
+    ],
+    [
+      "Commissioned and supported",
+      "We plan and commission the system, then provide after-sales service and spares."
+    ]
+  ],
+  "founder": "Mr. Ramasamy Ananthakumar"
 }

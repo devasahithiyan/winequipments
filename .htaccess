@@ -26,6 +26,8 @@
     RewriteRule ^products/aftercooler\.html$ /products/industrial-aftercoolers.html [R=301,L]
 
     # Temporary until the sizing tools hub is rebuilt
+    RewriteRule ^installation\.html$ /about.html#installation [R=301,L,NE]
+    RewriteRule ^case-studies\.html$ /about.html [R=301,L]
     RewriteRule ^engineering-tools/?$ /engineering-tools/air-dryer-sizing.html [R=302,L]
 
     # 4. Catalogue & Brochure Typo Redirects
