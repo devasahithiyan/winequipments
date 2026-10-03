@@ -1,10 +1,8 @@
 ---
 # Deploys the generated site in public/ (built by: python3 src/site/build.py).
-# cp never deletes, so pages not yet rebuilt (about, blog, tools, locations)
-# keep serving from the previous deploy until they are replaced.
+# public/ includes the generated .htaccess (redirects, caching, security headers).
 deployment:
   tasks:
     - export DEPLOYPATH=/home/winequipments/public_html/
     - /bin/mkdir -p $DEPLOYPATH/uploads
     - /bin/cp -R public/. $DEPLOYPATH
-    - /bin/cp .htaccess $DEPLOYPATH

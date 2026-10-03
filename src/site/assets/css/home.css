@@ -34,7 +34,7 @@
   mask-image: radial-gradient(ellipse 58% 62% at 50% 55%, #000 0%, rgba(0, 0, 0, 0.35) 55%, transparent 78%); opacity: 0.9; }
 .h-show__stage::after { content: ""; position: absolute; left: 6%; right: 6%; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--rule-strong) 20%, var(--rule-strong) 80%, transparent); }
 .h-show__slide { position: absolute; inset: 0; display: block; z-index: 1; }
-.h-show__slide picture { height: 100%; width: 100%; display: block; }
+.h-show__slide > a, .h-show__slide picture { height: 100%; width: 100%; display: block; }
 .h-show__slide img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
 .js .h-show__slide { opacity: 0; transform: translateX(24px) scale(0.97); transition: opacity 0.7s var(--ease-out), transform 0.9s var(--ease-out); pointer-events: none; }
 .js .h-show__slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
@@ -49,6 +49,7 @@
 .h-show.is-playing .h-show__tab.is-active .h-show__bar::after { animation: tabfill var(--dur, 5s) linear both; }
 @keyframes tabfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .h-show__specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); margin: 0; align-items: end; }
+.h-show__specs > dl { display: contents; }
 .h-show__specs div { display: grid; gap: 2px; }
 .h-show__specs dt { font-size: var(--fs-label); color: var(--muted); }
 .h-show__specs dd { margin: 0; font-weight: 650; font-stretch: 90%; font-size: clamp(0.9375rem, 0.88rem + 0.3vw, 1.125rem); line-height: 1.25; }

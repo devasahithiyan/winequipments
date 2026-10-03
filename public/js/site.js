@@ -412,3 +412,8 @@
     (window.dataLayer = window.dataLayer || []).push({ event: 'photo_open', page: location.pathname });
   });
 })();
+
+/* the old site registered a service worker; make sure none is left controlling the page */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister())).catch(() => {});
+}

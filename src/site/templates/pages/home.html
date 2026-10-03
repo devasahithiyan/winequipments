@@ -40,9 +40,9 @@
     <div class="h-show" data-switcher>
       <div class="h-show__stage">
         {% for h in heroes %}
-        <a class="h-show__slide{% if loop.first %} is-active{% endif %}" id="hs-{{ loop.index }}" href="{{ product_url(h.p.slug) }}" role="tabpanel" aria-labelledby="ht-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
-          {{ picture(studio(h.p.image), h.p.h1 ~ ' by Win Equipments', sizes='(min-width: 900px) 46vw, 88vw', eager=loop.first, max_w=900) }}
-        </a>
+        <div class="h-show__slide{% if loop.first %} is-active{% endif %}" id="hs-{{ loop.index }}" role="tabpanel" aria-labelledby="ht-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+          <a href="{{ product_url(h.p.slug) }}" tabindex="-1" aria-hidden="true">{{ picture(studio(h.p.image), h.p.h1 ~ ' by Win Equipments', sizes='(min-width: 900px) 46vw, 88vw', eager=loop.first, max_w=900) }}</a>
+        </div>
         {% endfor %}
       </div>
       <div class="h-show__tabs" role="tablist" aria-label="Product families">
@@ -51,11 +51,11 @@
         {% endfor %}
       </div>
       {% for h in heroes %}
-      <dl class="h-show__specs{% if loop.first %} is-active{% endif %}" data-specs="{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
-        {% for k, v in h.specs %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}
+      <div class="h-show__specs{% if loop.first %} is-active{% endif %}" data-specs="{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+        <dl>{% for k, v in h.specs %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}</dl>
         <a class="link-arrow" href="{{ product_url(h.p.slug) }}">{{ h.p.series }} range<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         {% if h.p.slug == 'industrial-process-chillers' %}<a class="h-show__360" href="#chiller-360"><span>360°</span>Turn the chiller around</a>{% endif %}
-      </dl>
+      </div>
       {% endfor %}
     </div>
   </div>

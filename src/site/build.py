@@ -484,6 +484,16 @@ def load_articles():
         arts.append(meta)
     return sorted(arts, key=lambda a: (a.get("order", "99").zfill(3), a["slug"]))
 
+
+def build_htaccess():
+    rules = []
+    for src, dst in json.loads((DATA / "redirects.json").read_text()):
+        pat = "^" + re.escape(src).replace("\\ ", " ") + "$"
+        flags = "R=301,L,NE" if "#" in dst else "R=301,L"
+        rules.append(f'    RewriteRule "{pat}" {dst} [{flags}]')
+    tpl = (SRC / "htaccess.tpl").read_text()
+    (OUT / ".htaccess").write_text(tpl.replace("{{REDIRECTS}}", "\n".join(rules)))
+
 def render(template, url, **ctx):
     path = OUT / url.lstrip("/") / "index.html" if url.endswith("/") else OUT / url.lstrip("/")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -581,12 +591,11 @@ def copy_static():
     for f in (SRC / "static").glob("*"):
         if f.is_file():
             shutil.copy2(f, OUT / f.name)
-    downloads = SRC / "static" / "downloads"
-    if downloads.exists():
-        shutil.copytree(downloads, OUT / "downloads", dirs_exist_ok=True)
-    for php in ("send_rfq.php", "api_chat.php"):
-        if (ROOT / php).exists():
-            shutil.copy2(ROOT / php, OUT / php)
+    for sub in ("downloads", "uploads"):
+        if (SRC / "static" / sub).exists():
+            shutil.copytree(SRC / "static" / sub, OUT / sub, dirs_exist_ok=True)
+    for php in (SRC / "php").glob("*.php"):
+        shutil.copy2(php, OUT / php.name)
 
 
 def build_chat_knowledge():
@@ -669,6 +678,8 @@ def main():
     render("pages/certifications.html", "/certifications.html")
     render("pages/thanks.html", "/thank-you.html")
     render("pages/404.html", "/404.html")
+
+    build_htaccess()
 
     # html sitemap (lists every page by section, titles read back from the output)
     def page_title(u):
