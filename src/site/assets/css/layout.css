@@ -187,3 +187,4 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
 .social a:hover { background: var(--green); border-color: var(--green); transform: translateY(-2px); }
 .social svg { width: 18px; height: 18px; }
 .site-footer .social { display: flex; flex-direction: row; }
+.footer-review { display: inline-flex; margin-top: var(--s-4); font-weight: 650; color: #fff; }

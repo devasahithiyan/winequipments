@@ -313,3 +313,19 @@
 @media (max-width: 767px) { .lb__nav { display: none; } }
 .lb__cap { padding: var(--s-3) var(--s-5) calc(var(--s-4) + env(safe-area-inset-bottom)); text-align: center; font-size: 0.9375rem; color: #e6ece8; }
 body.lb-open { overflow: hidden; }
+
+/* enquiry success + thank-you page */
+.form-success__tick { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--green); color: #fff; margin-bottom: var(--s-4); }
+.form-success__tick svg { width: 28px; height: 28px; }
+.motion .form-success__tick svg path { stroke-dasharray: 24; animation: tick-draw 0.6s var(--ease-out) 0.2s both; }
+@keyframes tick-draw { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+.form-success__next { list-style: none; counter-reset: s; display: grid; gap: var(--s-2); margin: var(--s-4) 0; }
+.form-success__next li { counter-increment: s; position: relative; padding-left: 34px; color: var(--ink-2); }
+.form-success__next li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: #eef6ef; color: var(--green-ink); font-size: 0.8125rem; font-weight: 700; }
+.form-success__fast { font-weight: 600; color: var(--ink); margin-bottom: var(--s-4); }
+.form-success .btn svg, .ty .btn svg { width: 20px; height: 20px; }
+.ty { max-width: 44rem; }
+.ty h1 { font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem); line-height: 1.04; font-stretch: 74%; letter-spacing: -0.02em; margin-bottom: var(--s-3); }
+.ty__more { margin-top: var(--s-10); padding-top: var(--s-5); border-top: 1px solid var(--rule); }
+.ty__more p { font-weight: 650; margin-bottom: var(--s-2); }
+.ty__more ul { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }

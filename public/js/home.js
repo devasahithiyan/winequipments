@@ -33,11 +33,29 @@
     };
     const stop = () => { clearTimeout(timer); cine.classList.remove('is-playing'); };
     bars.forEach((b, k) => b.addEventListener('click', () => { warm(); show(k); play(); }));
+    /* swap in the works film when the connection and settings allow it */
+    const video = $('[data-cine-video]', cine);
+    const conn = navigator.connection || {};
+    if (video && !reduce && !conn.saveData && !/(^|-)2g$/.test(conn.effectiveType || '')) {
+      const tall = matchMedia('(max-width: 759px) and (orientation: portrait)').matches;
+      const sources = tall ? [[video.dataset.srcTall, 'video/mp4']] : [[video.dataset.srcWideWebm, 'video/webm'], [video.dataset.srcWide, 'video/mp4']];
+      const start = () => {
+        sources.forEach(([src, type]) => { const s = document.createElement('source'); s.src = src; s.type = type; video.appendChild(s); });
+        video.addEventListener('playing', () => {
+          cine.classList.add('has-video'); stop();
+          num.textContent = '▶'; cap.textContent = 'Filmed at our Arasur works';
+        }, { once: true });
+        video.load();
+        video.play().catch(() => {});
+      };
+      if (document.readyState === 'complete') setTimeout(start, 300); else addEventListener('load', () => setTimeout(start, 300), { once: true });
+      document.addEventListener('visibilitychange', () => { if (cine.classList.contains('has-video')) document.hidden ? video.pause() : video.play().catch(() => {}); });
+    }
     if (!reduce) {
       setTimeout(warm, 1500);
-      if (hasIO) new IntersectionObserver((en) => { en[0].isIntersecting ? play() : stop(); }, { threshold: 0.2 }).observe(cine);
+      if (hasIO) new IntersectionObserver((en) => { if (cine.classList.contains('has-video')) return; en[0].isIntersecting ? play() : stop(); }, { threshold: 0.2 }).observe(cine);
       else play();
-      document.addEventListener('visibilitychange', () => { document.hidden ? stop() : play(); });
+      document.addEventListener('visibilitychange', () => { if (cine.classList.contains('has-video')) return; document.hidden ? stop() : play(); });
     }
   }
 

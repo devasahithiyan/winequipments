@@ -23,7 +23,7 @@ ErrorDocument 404 /404.html
     <FilesMatch "\.(html|xml)$">
         Header set Cache-Control "no-cache"
     </FilesMatch>
-    <FilesMatch "\.(css|js|woff2|avif|webp|png|jpg|jpeg|svg)$">
+    <FilesMatch "\.(css|js|woff2|avif|webp|png|jpg|jpeg|svg|mp4|webm)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
     <FilesMatch "\.pdf$">
@@ -34,6 +34,8 @@ ErrorDocument 404 /404.html
 <IfModule mod_mime.c>
     AddType image/avif .avif
     AddType font/woff2 .woff2
+    AddType video/mp4 .mp4
+    AddType video/webm .webm
 </IfModule>
 
 <IfModule mod_deflate.c>

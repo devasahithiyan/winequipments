@@ -2,7 +2,10 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   window.dataLayer = window.dataLayer || [];
-  const track = (event, data = {}) => window.dataLayer.push({ event, page: location.pathname, ...data });
+  const track = (event, data = {}) => {
+    window.dataLayer.push({ event, page: location.pathname, ...data });
+    if (typeof window.gtag === 'function') window.gtag('event', event, { page_path: location.pathname, ...data });
+  };
 
   /* analytics hooks */
   document.addEventListener('click', (e) => {
@@ -194,6 +197,12 @@
         const ref = data.ref || data.reference || data.refId || '';
         const refEl = success && $('[data-ref]', success);
         if (refEl) refEl.textContent = ref || 'received';
+        const follow = success && $('[data-wa-follow]', success);
+        if (follow) {
+          const product = (form.equipment_type || {}).value || '';
+          const msg = `Hello Win Equipments, I just sent an enquiry from the website${ref ? ` (reference ${ref})` : ''}${product && !/^Not sure/.test(product) ? ` for ${product}` : ''}. Sharing photos and details here.`;
+          follow.href = `https://wa.me/919597228969?text=${encodeURIComponent(msg)}`;
+        }
         form.classList.add('is-sent');
         if (success) success.focus();
         track('quote_submit', { product: (form.equipment_type || {}).value || '' });

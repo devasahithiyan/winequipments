@@ -29,6 +29,8 @@
   ("aftercooler-6.jpg", "Aftercooler ready for dispatch", "center 60%")
 ] %}
 <section class="cine" aria-labelledby="hero-title" data-cine>
+  <video class="cine__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-cine-video
+    data-src-wide-webm="/video/works-1280.webm" data-src-wide="/video/works-1280.mp4" data-src-tall="/video/works-portrait.mp4"></video>
   <div class="cine__reel" aria-hidden="true">
     {% for f, cap, pos in reel %}
     <div class="cine__shot{% if loop.first %} is-active{% endif %}" style="--pos:{{ pos }}" data-cine-shot data-cap="{{ cap }}">

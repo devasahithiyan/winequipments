@@ -199,3 +199,9 @@
   .motion .needs li { animation: fadeup 0.8s var(--ease-out) both; animation-delay: calc(var(--n) * 110ms + 700ms); }
 }
 .cine__inner { padding-bottom: calc(var(--s-12) + var(--s-12)); }
+
+/* hero video (from the company film): replaces the photo reel once it is playing */
+.cine__video { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+.cine.has-video .cine__video { opacity: 1; }
+.cine.has-video .cine__reel { opacity: 0; transition: opacity 1.2s ease; }
+.cine.has-video .cine__bars { display: none; }

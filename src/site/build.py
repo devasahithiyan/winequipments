@@ -491,7 +491,7 @@ def build_htaccess():
     rules = []
     for src, dst in json.loads((DATA / "redirects.json").read_text()):
         pat = "^" + re.escape(src).replace("\\ ", " ") + "$"
-        flags = "R=301,L,NE" if "#" in dst else "R=301,L"
+        flags = "R=302,L,NE" if dst.startswith("http") else ("R=301,L,NE" if "#" in dst else "R=301,L")
         rules.append(f'    RewriteRule "{pat}" {dst} [{flags}]')
     tpl = (SRC / "htaccess.tpl").read_text()
     (OUT / ".htaccess").write_text(tpl.replace("{{REDIRECTS}}", "\n".join(rules)))
@@ -597,7 +597,7 @@ def copy_static():
     for f in (SRC / "static").glob("*"):
         if f.is_file():
             shutil.copy2(f, OUT / f.name)
-    for sub in ("downloads", "uploads"):
+    for sub in ("downloads", "uploads", "video"):
         if (SRC / "static" / sub).exists():
             shutil.copytree(SRC / "static" / sub, OUT / sub, dirs_exist_ok=True)
     for php in (SRC / "php").glob("*.php"):

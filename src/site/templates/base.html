@@ -22,6 +22,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.classList.add('js')</script>
 {% block schema %}{% endblock %}
+{% if site.ga4_id %}<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4_id }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ site.ga4_id }}',{anonymize_ip:true});</script>{% endif %}
 </head>
 <body class="{% block body_class %}has-action-bar{% endblock %}">
 {% include "partials/icons.html" %}
