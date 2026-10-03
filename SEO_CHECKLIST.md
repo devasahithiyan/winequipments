@@ -29,18 +29,11 @@ Import the site from Search Console, or verify it directly, then submit the same
 - **Address, exactly as on the site:** SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407.
 - **Phones:** +91 95972 28969 (primary) and +91 95972 28975. **Website:** https://winequipments.com.
 - **Photos:** upload the real photos from `images/works/`, the team photo and the works.
-- **Products:** add the 15 product lines with links to their pages.
+- **Products:** add the 19 product lines with links to their pages.
 - **Reviews:** ask customers for Google reviews. The site never shows invented ratings.
 
 ## Profiles to link (send us the URLs)
 Facebook, Instagram and IndiaMART are added. Send LinkedIn or YouTube channel URLs if you have them. They will be added as `sameAs` in the Organization schema (`org_schema()` in `src/site/build.py`).
-
-## Analytics
-Send a GA4 Measurement ID. The site already pushes these events:
-- `quote_submit`, `quote_intent`;
-- `whatsapp_click`, `call_click`, `email_click`;
-- `catalogue_download`;
-- `chat_open`, `chat_message`, `photo_open`.
 
 ## Content that would lift rankings further
 - Real case studies (customer permission, industry, duty, equipment supplied, result).
