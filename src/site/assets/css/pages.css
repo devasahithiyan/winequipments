@@ -419,3 +419,7 @@
 .p-hero__media--photo .p-hero__stage { background: none; aspect-ratio: 4 / 3; height: auto; border-radius: var(--r-3); overflow: hidden; box-shadow: var(--shadow-1); }
 .p-hero__media--photo .p-hero__shot img { object-fit: cover; object-position: center; }
 @media (min-width: 900px) { .p-hero__media--photo .p-hero__stage { height: auto; max-height: 62svh; } }
+.a-works { list-style: none; display: grid; gap: var(--s-4); }
+@media (min-width: 760px) { .a-works { grid-template-columns: 1fr 1fr; } .a-works__item--wide { grid-column: 1 / -1; } }
+.a-works .rail__link { aspect-ratio: 16 / 9; }
+.a-works__item { display: grid; gap: var(--s-2); }

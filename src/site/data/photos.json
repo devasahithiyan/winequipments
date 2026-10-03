@@ -35,5 +35,8 @@
   {"file": "condensing-unit.jpg", "caption": "Condensing unit", "product": "condensing-units"},
   {"file": "milk-coconut-chiller.jpg", "caption": "Chiller for milk and coconut water", "product": "milk-chillers"},
   {"file": "soda-chiller.jpg", "caption": "Soda chiller", "product": "soda-chillers"},
-  {"file": "shell-tube-heat-exchanger.jpg", "caption": "Shell and tube heat exchanger", "product": "shell-and-tube-heat-exchangers"}
+  {"file": "shell-tube-heat-exchanger.jpg", "caption": "Shell and tube heat exchanger", "product": "shell-and-tube-heat-exchangers"},
+  {"file": "shop-floor-assembly.jpg", "caption": "Assembly floor at our Arasur works", "product": null, "works": 1},
+  {"file": "shop-floor-control-panel.jpg", "caption": "Wiring a chiller control panel", "product": null, "works": 2},
+  {"file": "shop-floor-fabrication.jpg", "caption": "Fabrication at the works", "product": null, "works": 3}
 ]

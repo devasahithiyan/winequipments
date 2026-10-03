@@ -49,6 +49,18 @@
   </div>
 </section>
 
+<section class="section section--rule" aria-labelledby="works">
+  <div class="container">
+    <div class="section-head" data-reveal><h2 id="works">Inside our works</h2><p>Fabrication, assembly, wiring and testing all happen under one roof at Arasur.</p></div>
+    {% set rail = photos | selectattr('works', 'defined') | sort(attribute='works') | list %}{% set rail_id = 'works' %}
+    <ul class="a-works" data-lightbox="works">
+      {% for ph in rail %}
+      <li class="a-works__item{% if loop.first %} a-works__item--wide{% endif %}" data-reveal style="--d:{{ loop.index0 }}"><a class="rail__link" href="{{ image_url(ph.path, 1600) | replace(site.url, '') }}" data-lb-caption="{{ ph.caption }}">{{ picture(ph.path, ph.caption, sizes='(min-width: 960px) 60vw, 100vw', max_w=1400) }}</a><p class="rail__cap"><span>{{ ph.caption }}</span></p></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
 <section class="section section--rule" aria-labelledby="families">
   <div class="container">
     <div class="section-head" data-reveal>
