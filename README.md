@@ -22,7 +22,7 @@ Requires Python 3.11+, Jinja2, Pillow and numpy. Image variants are cached in `.
 | Templates | `src/site/templates/` |
 | CSS / JS | `src/site/assets/css`, `src/site/assets/js` |
 | PHP (enquiry form, chat) | `src/site/php/` |
-| Catalogue PDFs | `src/site/static/downloads/` |
+| Catalogue PDFs (generated) | `python3 src/site/catalogue/build_catalogues.py` → `src/site/static/downloads/`; originals kept in `src/site/catalogue/originals/` |
 
 ## Rules
 - Only real facts: catalogue data, company data and owner-confirmed information. No invented prices, ratings or claims. See `CONTENT_TODO.md`.
