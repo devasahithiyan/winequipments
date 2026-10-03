@@ -1,36 +1,75 @@
 {% extends "base.html" %}
 {% import "partials/macros.html" as m %}
 {% set crumbs = [('Home', '/'), ('Contact', '/contactus.html')] %}
+{% set faqs = [
+  {"q": "How do I get a quotation?", "a": "Send your requirement with the form on this page, on WhatsApp +91 95972 28969, or by email to info@winequipments.com. Include capacity, operating conditions and site details, and our engineers will reply with a recommended model and quotation."},
+  {"q": "Can I visit the works?", "a": "Yes. Visits to our works in Arasur, Coimbatore are welcome by appointment. Call or WhatsApp us to arrange one."},
+  {"q": "Do you provide service and spares?", "a": "Yes. We commission the equipment we supply and provide after-sales service and spares, including cooling tower fills, sprinklers, motors and fans, and refrigeration parts."},
+  {"q": "Where can I download your catalogues?", "a": "All product catalogues are free to download on the Downloads page."}
+] %}
 {% block title %}Contact Win Equipments, Arasur, Coimbatore{% endblock %}
+{% block og_image %}{{ image_url('images/works/hero-shop-floor-assembly.jpg') }}{% endblock %}
 {% block description %}Contact Win Equipments, Coimbatore: call or WhatsApp +91 95972 28969, email info@winequipments.com, or visit our Arasur works.{% endblock %}
-{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "ContactPage", "url": site.url ~ "/contactus.html", "about": {"@id": site.url ~ "/#org"}}]}) }}{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "ContactPage", "url": site.url ~ "/contactus.html", "about": {"@id": site.url ~ "/#org"}}, faq_ld(faqs)]}) }}{% endblock %}
 {% block main %}
-{{ m.breadcrumb(crumbs) }}
-<section class="page-head">
-  <div class="container">
-    <h1 data-split>Contact us</h1>
-    <p class="lede">Call, WhatsApp or email us, or send your requirement with the form below. Visits to the works are welcome by appointment.</p>
+<section class="ct-hero" aria-labelledby="ct-title">
+  <div class="ct-hero__bg" aria-hidden="true">{{ picture('images/works/hero-shop-floor-assembly.jpg', '', sizes='100vw', eager=True, max_w=1920) }}</div>
+  <div class="container ct-hero__inner">
+    <nav class="ct-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact</span></nav>
+    <p class="ct-kicker" data-intro><span></span>Arasur, Coimbatore · since {{ site.founded }}</p>
+    <h1 id="ct-title" class="ct-hero__title" data-split>Talk to an engineer</h1>
+    <p class="ct-hero__lede" data-intro style="--d:2">Tell us what your plant needs. The people who design and build the equipment will recommend a model and send a quotation.</p>
   </div>
 </section>
-<section class="section section--rule" style="padding-top:var(--s-8)">
-  <div class="container contact-grid">
-    <ul class="contact-lines">
-      {% for ph in site.phones %}<li><span class="label">Phone{% if loop.first %} &amp; WhatsApp{% endif %}</span><a href="tel:{{ ph.tel }}" data-track="call_click">{{ ph.display }}</a></li>{% endfor %}
-      <li><span class="label">WhatsApp</span><a href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click">Message us on WhatsApp</a></li>
-      <li><span class="label">Email</span><a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a></li>
-      <li><span class="label">Works</span><address>{{ site.address_lines | join('<br>' | safe) }}</address><a href="{{ site.maps }}" rel="noopener" target="_blank">Open in Google Maps</a></li>
-    </ul>
-    <div class="stack">
-      <h2>What helps us quote quickly</h2>
-      <ol class="need-list">
-        <li>The product, or the problem you need solved</li>
-        <li>Capacity: compressor CFM, heat load in TR or kW, or water flow in m³/hr</li>
-        <li>Operating pressure, temperatures and your plant's ambient temperature</li>
-        <li>A drawing, nameplate photo or existing equipment details if you are replacing a unit</li>
-      </ol>
+
+<div class="container">
+  <ul class="ct-cards">
+    <li style="--n:0"><a class="ct-card ct-card--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click">
+      <span class="ct-card__ic"><svg aria-hidden="true"><use href="#i-wa"/></svg></span>
+      <span class="ct-card__k">WhatsApp</span><strong>{{ site.phones[0].display }}</strong><span class="ct-card__note">Send photos, nameplates or drawings</span>
+      <span class="ct-card__go">Start a chat<svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    <li style="--n:1"><div class="ct-card">
+      <span class="ct-card__ic"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
+      <span class="ct-card__k">Call</span>
+      {% for ph in site.phones %}<a class="ct-card__line" href="tel:{{ ph.tel }}" data-track="call_click">{{ ph.display }}</a>{% endfor %}
+      <span class="ct-card__note">Speak to our engineers directly</span></div></li>
+    <li style="--n:2"><a class="ct-card" href="mailto:{{ site.email }}" data-track="email_click">
+      <span class="ct-card__ic"><svg aria-hidden="true"><use href="#i-mail"/></svg></span>
+      <span class="ct-card__k">Email</span><strong>{{ site.email }}</strong><span class="ct-card__note">For specifications and documents</span>
+      <span class="ct-card__go">Write to us<svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    <li style="--n:3"><a class="ct-card" href="{{ site.maps }}" target="_blank" rel="noopener">
+      <span class="ct-card__ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+      <span class="ct-card__k">Visit the works</span><strong>Arasur, Coimbatore</strong><span class="ct-card__note">By appointment</span>
+      <span class="ct-card__go">Get directions<svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+  </ul>
+</div>
+
+{% set heading = 'Send your requirement' %}
+{% set intro = 'The more you tell us, the faster we can recommend the right model. Fill in what you know; our engineers will ask for the rest.' %}
+{% set checklist = True %}
+{% include "partials/enquiry.html" %}
+
+<section class="section" aria-labelledby="find-us">
+  <div class="container ab-visit">
+    <div class="ab-visit__info" data-reveal>
+      <h2 id="find-us">Find our works</h2>
+      <address>{{ site.address_lines | join('<br>' | safe) }}</address>
+      <div class="btn-row">
+        <a class="btn btn--secondary" href="{{ site.maps }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Directions</a>
+        <a class="btn btn--secondary" href="tel:{{ site.phones[0].tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call before visiting</a>
+      </div>
+      <div class="ab-follow"><p>Follow our latest builds</p><ul>{% for so in site.social %}<li><a href="{{ so.url }}" target="_blank" rel="noopener me"><svg aria-hidden="true"><use href="#{{ so.icon }}"/></svg>{{ so.name }}</a></li>{% endfor %}</ul></div>
+    </div>
+    <div class="ab-map" data-reveal style="--d:1">
+      <iframe title="Map: Win Equipments, Arasur, Coimbatore" src="https://www.google.com/maps?q=Win+Equipments,+Kallangadu,+Nadu+Arasur,+Coimbatore+641407&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
-{% set heading = 'Send your requirement' %}
-{% include "partials/enquiry.html" %}
+
+<section class="section section--rule" aria-labelledby="faq">
+  <div class="container h-faq__grid">
+    <div data-reveal><h2 id="faq">Questions</h2><p>Looking for a catalogue? <a href="/downloads.html">Download it here</a>.</p></div>
+    {{ m.faq(faqs) }}
+  </div>
+</section>
 {% endblock %}

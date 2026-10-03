@@ -5,11 +5,20 @@
     <div>
       <h2 id="quote-title">{{ heading if heading is defined else 'Tell us your requirement' }}</h2>
       <p class="lede" style="margin-top:var(--s-4)">{{ intro if intro is defined else 'Share your capacity, operating conditions or a drawing. An engineer from our Arasur works will reply with a recommended model and quotation.' }}</p>
+      {% if checklist is defined %}
+      <ol class="enquiry__check">
+        <li><strong>The product, or the problem</strong>Tell us what you need to dry, cool or reject.</li>
+        <li><strong>Capacity</strong>Compressor CFM, heat load in TR or kW, or water flow in m³/hr.</li>
+        <li><strong>Conditions</strong>Operating pressure, temperatures and your plant's ambient temperature.</li>
+        <li><strong>Anything existing</strong>A drawing, nameplate photo or current equipment details if you are replacing a unit.</li>
+      </ol>
+      {% else %}
       <div class="enquiry__direct">
         <a href="{{ whatsapp('Hello Win Equipments, I need a quote' ~ (' for ' ~ prod.name if prod else '') ~ '.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp {{ site.phones[0].display }}</a>
         {% for ph in site.phones %}<a href="tel:{{ ph.tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call {{ ph.display }}</a>{% endfor %}
         <a href="mailto:{{ site.email }}" data-track="email_click"><svg aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a>
       </div>
+      {% endif %}
     </div>
     <div class="form-panel">
       <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq>
