@@ -16,6 +16,7 @@
   {"fam": families.cooling, "img": "images/Products/electroplatingchiller.png", "alt": "Process chiller built by Win Equipments", "feature": ["industrial-process-chillers", "anodizing-chillers", "medical-scan-chillers", "acid-cooling-chillers", "ice-flake-machines"]},
   {"fam": families.towers, "img": "images/Products/Squarecoolingtower1.png", "alt": "WCT square FRP cooling tower", "feature": ["round-cooling-towers", "square-cooling-towers", "closed-circuit-cooling-towers", "spare-parts-consumables"]}
 ] %}
+{% set short = {"refrigerated-air-dryers": "Refrigerated dryers", "desiccant-air-dryers": "Desiccant dryers", "compressed-air-filters": "Air filters", "air-receiver-tanks": "Air receivers", "automatic-drain-valves": "Drain valves", "industrial-aftercoolers": "Aftercoolers", "industrial-process-chillers": "Process chillers", "anodizing-chillers": "Anodizing chillers", "medical-scan-chillers": "Scan chillers", "acid-cooling-chillers": "Acid chillers", "ice-flake-machines": "Ice flake machines", "round-cooling-towers": "FRP cooling towers", "square-cooling-towers": "FRP cooling towers", "closed-circuit-cooling-towers": "Coil cooling towers", "spare-parts-consumables": "Spares"} %}
 {% set steps = [
   ("Share your requirement", "Compressor CFM, heat load in TR or water flow, temperatures and site conditions. A drawing or nameplate photo helps."),
   ("We size the equipment", "Our engineers select the model from catalogue ratings and correction factors, or engineer a special unit."),
@@ -46,6 +47,7 @@
       <div class="h-show__stage">
         {% for h in heroes %}
         <a class="h-show__slide{% if loop.first %} is-active{% endif %}" id="hs-{{ loop.index }}" href="{{ product_url(h.p.slug) }}" role="tabpanel" aria-labelledby="ht-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+          <span class="h-show__code" aria-hidden="true">{{ h.p.series.split()[0] }}</span>
           {{ picture(studio(h.p.image), h.p.h1 ~ ' by Win Equipments', sizes='(min-width: 900px) 46vw, 88vw', eager=loop.first, max_w=900) }}
         </a>
         {% endfor %}
@@ -176,7 +178,12 @@
     </div>
     <ul class="h-ind__grid">
       {% for ind in industries.values() %}
-      <li data-reveal style="--d:{{ loop.index0 % 4 }}"><a href="/industries/{{ ind.slug }}.html"><span class="h-ind__name">{{ ind.name }}</span><span class="h-ind__meta">{{ ind.products | length }} product lines</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      {% set ns = namespace(imgs=[], labels=[]) %}{% for slug in ind.products %}{% set img = products[slug].image %}{% if img.endswith('.png') and img not in ns.imgs and ns.imgs|length < 3 %}{% set ns.imgs = ns.imgs + [img] %}{% endif %}{% if short[slug] not in ns.labels %}{% set ns.labels = ns.labels + [short[slug]] %}{% endif %}{% endfor %}
+      <li data-reveal style="--d:{{ loop.index0 % 4 }}"><a href="/industries/{{ ind.slug }}.html">
+        <span class="h-ind__thumbs" aria-hidden="true">{% for img in ns.imgs %}<span>{{ picture(studio(img), '', sizes='72px', max_w=320) }}</span>{% endfor %}</span>
+        <span class="h-ind__name">{{ ind.name }}</span>
+        <span class="h-ind__meta">{{ ns.labels | join(' · ') }}</span>
+        <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
       {% endfor %}
     </ul>
   </div>

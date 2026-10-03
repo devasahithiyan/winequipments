@@ -12,6 +12,7 @@
 body.has-action-bar .chat-launcher { bottom: calc(var(--bar-h) + var(--s-3) + env(safe-area-inset-bottom)); transition: bottom 0.25s var(--ease-out), transform 0.3s var(--ease-out); }
 body:has(.action-bar.is-hidden) .chat-launcher, body:has(.action-bar:not(.is-ready)) .chat-launcher { bottom: calc(var(--s-4) + env(safe-area-inset-bottom)); }
 @media (max-width: 1023px) { .chat-launcher { height: 48px; width: 48px; padding: 0; justify-content: center; } .chat-launcher span { display: none; } }
+@media (max-width: 1023px) { body:has(.action-bar.is-hidden) .chat-launcher:not([aria-expanded="true"]), body:has(.action-bar:not(.is-ready)) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; } .chat-launcher { transition: bottom 0.25s var(--ease-out), transform 0.3s var(--ease-out), opacity 0.25s; } }
 @media (min-width: 1024px) { body.has-action-bar .chat-launcher { bottom: var(--s-6); } }
 body.menu-open .chat-launcher { display: none; }
 
