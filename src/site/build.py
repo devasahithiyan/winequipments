@@ -475,7 +475,8 @@ def load_articles():
         meta = {}
         for line in fm.strip().split("\n"):
             k, _, v = line.partition(":")
-            meta[k.strip()] = v.strip()
+            v = v.strip()
+            meta[k.strip()] = v[1:-1] if len(v) > 1 and v[0] == v[-1] == '"' else v
         meta["slug"] = f.stem
         meta["url"] = f"/blog/{f.stem}.html"
         meta["products"] = [x.strip() for x in meta.get("products", "").split(",") if x.strip()]
