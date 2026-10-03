@@ -44,3 +44,7 @@ __pycache__/
 leads_log_secure.csv
 .agents/
 .build-cache/
+
+# iCloud sync-conflict copies
+* [0-9].*
+* [0-9]

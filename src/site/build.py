@@ -743,6 +743,9 @@ def main():
         sm.append(f"<url><loc>{site['url']}{u}</loc><lastmod>{lastmod(u)}</lastmod>{img_xml}</url>")
     sm.append("</urlset>")
     (OUT / "sitemap.xml").write_text("\n".join(sm))
+    for f in OUT.rglob("*"):  # iCloud sync-conflict copies such as "site 2.css"
+        if f.is_file() and re.search(r" \d+(\.[^.]+)?$", f.name):
+            f.unlink()
     removed = prune_images()
     print(f"built {len(pages_written)} pages, css {size} bytes, pruned {removed} unused images")
 
