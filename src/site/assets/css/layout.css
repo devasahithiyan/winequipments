@@ -20,9 +20,11 @@
 /* header */
 .site-header {
   position: sticky; top: 0; z-index: 40;
-  background: color-mix(in srgb, var(--paper) 96%, transparent);
-  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
+.site-header.is-scrolled { border-bottom-color: var(--rule); box-shadow: 0 6px 20px rgba(21, 32, 26, 0.06); }
 .site-header__bar { display: flex; align-items: center; gap: var(--s-3); height: var(--header-h); }
 .brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; color: var(--ink); margin-right: auto; min-height: var(--tap); }
 .brand .logo { width: 72px; height: auto; flex: none; }

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% import "partials/macros.html" as m %}
 {% set crumbs = [('Home', '/'), ('Products', '/products/'), (fam.name, '/products/' ~ fam.slug ~ '.html')] %}
+{% set lead = fam.products[0] %}
 {% block title %}{{ fam.title }}{% endblock %}
 {% block description %}{{ fam.description }}{% endblock %}
 {% block schema %}
@@ -8,60 +9,63 @@
 {% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="hub-hero">
-  <div class="container hub-hero__grid">
-    <div>
-      <h1>{{ fam.name }}</h1>
-      <p class="lede" style="margin-top:var(--s-4)">{{ fam.lede }}</p>
-      <div class="btn-row" style="margin-top:var(--s-6)">
-        <a class="btn btn--primary" href="#quote" data-quote-link>Talk to an engineer</a>
-        <a class="btn btn--secondary" href="#range">See the range</a>
+<section class="f-hero">
+  <div class="container f-hero__grid">
+    <div class="f-hero__copy">
+      <p class="f-hero__count" data-intro>{{ fam.products | length }} product lines</p>
+      <h1 data-split>{{ fam.name }}</h1>
+      <p class="lede" data-intro style="--d:2">{{ fam.lede }}</p>
+      <div class="btn-row" data-intro style="--d:3">
+        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Talk to an engineer</a>
+        <a class="btn btn--secondary btn--lg" href="#range">See the range</a>
       </div>
     </div>
-    <figure class="chart-plate" style="margin:0">
-      {% if fam.id == 'air' %}
-        {{ dew_ladder('narrow') }}{{ dew_ladder('wide') }}
-        <figcaption>Pick the dryer by the dew point your process needs. Values from the WRD and WHD catalogues.</figcaption>
-      {% elif fam.id == 'towers' %}
-        {{ tower_chart('narrow') }}{{ tower_chart('wide') }}
-        <figcaption>FRP towers cool by evaporation to wet bulb + 4 °C; coil towers keep water sealed and cool it to ambient + 4 °C. From the WCT and WCC catalogues.</figcaption>
-      {% else %}
-        {{ picture(fam.image, 'WCP industrial process chiller by Win Equipments', sizes='(min-width: 900px) 40vw, 90vw', eager=True, max_w=700) }}
-        <figcaption>WCP air- and water-cooled process chillers, 0.5 to 20 TR, with built-in stainless steel tank and pump.</figcaption>
-      {% endif %}
-    </figure>
+    <div class="f-hero__stage" data-intro style="--d:1">
+      {{ picture(studio(lead.image), lead.h1 ~ ' by Win Equipments', sizes='(min-width: 960px) 46vw, 88vw', eager=True, max_w=1000) }}
+    </div>
   </div>
 </section>
 
 <section class="section section--rule" id="range" aria-labelledby="range-title">
   <div class="container">
-    <div class="section-head"><h2 id="range-title">Which one do you need?</h2></div>
-    <table class="compare">
-      <thead><tr><th scope="col">Product</th><th scope="col">Range</th><th scope="col">Choose it when</th><th scope="col"><span class="visually-hidden">Link</span></th></tr></thead>
+    <div class="section-head" data-reveal>
+      <h2 id="range-title">The {{ fam.short | lower }} range</h2>
+      <p>Open a product for the full model table, rating conditions and downloads.</p>
+    </div>
+    <ul class="pcards">
+      {% for pr in fam.products %}{{ m.product_card(pr, 'h3', loop.index0 % 3) }}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--surface section--rule" aria-labelledby="choose-title">
+  <div class="container">
+    <div class="two-col">
+      <div class="stack" data-reveal>
+        <h2 id="choose-title">Which one do you need?</h2>
+        {% if fam.id == 'air' %}<p>Pick the dryer by the pressure dew point your process needs, then protect it with the right filters, drains and receivers.</p>
+        {% elif fam.id == 'towers' %}<p>FRP towers cool water by evaporation to wet bulb + 4 °C. Coil towers keep water sealed and cool it to ambient + 4 °C.</p>
+        {% else %}<p>Standard WCP chillers cover 0.5 to 20 TR. Special duties such as anodizing, acid cooling, imaging equipment and flake ice are engineered to order.</p>{% endif %}
+      </div>
+      {% if fam.id in ('air', 'towers') %}
+      <figure class="chart-plate" data-reveal style="--d:1;margin:0">
+        {% if fam.id == 'air' %}{{ dew_ladder('narrow') }}{{ dew_ladder('wide') }}<figcaption>Pressure dew point by dryer type, from the WRD and WHD catalogues.</figcaption>
+        {% else %}{{ tower_chart('narrow') }}{{ tower_chart('wide') }}<figcaption>From the WCT and WCC catalogues.</figcaption>{% endif %}
+      </figure>
+      {% endif %}
+    </div>
+    <table class="compare" style="margin-top:var(--s-10)" data-reveal>
+      <thead><tr><th scope="col">Product</th><th scope="col">Range</th><th scope="col">Choose it when</th></tr></thead>
       <tbody>
         {% for pr in fam.products %}
-        <tr>
-          <th scope="row"><a href="{{ product_url(pr.slug) }}">{{ pr.name }}</a></th>
-          <td data-label="Range">{{ pr.range }}{% if pr.series not in ('Engineered to order', 'Spares') %} · {{ pr.series }}{% endif %}</td>
-          <td data-label="Choose it when">{{ pr.card }}</td>
-          <td><a class="link-arrow" href="{{ product_url(pr.slug) }}">Specifications<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></td>
-        </tr>
+        <tr><th scope="row"><a href="{{ product_url(pr.slug) }}">{{ pr.name }}</a></th><td data-label="Range">{{ pr.range }}</td><td data-label="Choose it when">{{ pr.card }}</td></tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
 </section>
 
-<section class="section section--rule" aria-labelledby="list-title">
-  <div class="container">
-    <div class="section-head"><h2 id="list-title">{{ fam.name }} range</h2></div>
-    <ul class="product-rows">
-      {% for pr in fam.products %}{{ m.product_row(pr) }}{% endfor %}
-    </ul>
-  </div>
-</section>
-
-{% set heading = 'Not sure which ' ~ fam.short ~ ' unit fits?' %}
+{% set heading = 'Not sure which ' ~ fam.short | lower ~ ' unit fits?' %}
 {% set intro = 'Tell us what the equipment has to do. Our engineers will size it and reply with a recommendation and quotation.' %}
 {% include "partials/enquiry.html" %}
 {% endblock %}

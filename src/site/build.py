@@ -103,8 +103,11 @@ def studio(path):
     rel = str(out.relative_to(ROOT))
     if out.exists() and out.stat().st_mtime >= src.stat().st_mtime:
         return rel
+    probe = Image.open(src)
+    if probe.mode not in ("RGBA", "LA", "P"):
+        return path
     out.parent.mkdir(parents=True, exist_ok=True)
-    im = Image.open(src).convert("RGBA")
+    im = probe.convert("RGBA")
     a = np.array(im).astype(np.int32)
     alpha = a[..., 3]
     inner = np.array(Image.fromarray(((alpha > 8) * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(11))) > 0

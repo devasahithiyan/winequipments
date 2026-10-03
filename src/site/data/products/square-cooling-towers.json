@@ -10,7 +10,9 @@
   "card": "Square-footprint FRP towers with spray nozzles and drift eliminators.",
   "lede": "Square WCT towers use the same evaporative principle as round towers in a square footprint that packs neatly against walls and in rows. Water is distributed by spray nozzles over PVC fills, with PVC drift eliminators to cut carry-over loss.",
   "image": "images/Products/Squarecoolingtower1.png",
-  "gallery": [],
+  "gallery": [
+    "images/Products/coolingtower2.png"
+  ],
   "range": "10–300 TR",
   "capacity": {
     "key": "tr",

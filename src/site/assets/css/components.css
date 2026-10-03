@@ -259,3 +259,12 @@
 .mini-table th, .mini-table td { border: 1px solid var(--rule); padding: var(--s-1) var(--s-2); text-align: center; }
 .mini-table th { background: var(--paper-2); font-weight: 600; }
 .scroll-x { position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* motion: content is visible by default; only enhanced when JS confirms motion is welcome */
+@keyframes fadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(0.55em); } to { opacity: 1; transform: none; } }
+.motion [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.9s var(--ease-out); transition-delay: calc(var(--d, 0) * 90ms); }
+.motion [data-reveal].is-in { opacity: 1; transform: none; }
+.motion [data-intro] { animation: fadeup 0.9s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 110ms + 250ms); }
+.motion [data-split] .w { display: inline-block; animation: rise 0.9s var(--ease-out) both; animation-delay: calc(var(--i) * 55ms + 80ms); }
+.motion .h-show__stage { animation: fadeup 1s var(--ease-out) 0.3s both; }

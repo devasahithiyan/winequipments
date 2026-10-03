@@ -16,17 +16,29 @@
 
 <section class="p-hero">
   <div class="container p-hero__grid">
-    <h1 class="p-hero__title">{{ p.h1 }}</h1>
-    <div class="p-hero__media">
+    <h1 class="p-hero__title" data-split>{{ p.h1 }}</h1>
+    {% set shots = [p.image] + p.gallery %}
+    <div class="p-hero__media" data-gallery>
       <span class="p-hero__series">{{ p.series }}</span>
-      {{ picture(p.image, p.h1 ~ ' manufactured by Win Equipments', sizes='(min-width: 900px) 40vw, 90vw', eager=True, max_w=900) }}
+      <div class="p-hero__stage">
+        {% for img in shots %}
+        <div class="p-hero__shot{% if loop.first %} is-active{% endif %}" data-shot="{{ loop.index0 }}"{% if not loop.first %} hidden{% endif %}>{{ picture(studio(img), p.h1 ~ ' manufactured by Win Equipments' ~ ('' if loop.first else ', view ' ~ loop.index), sizes='(min-width: 900px) 44vw, 88vw', eager=loop.first, max_w=1000) }}</div>
+        {% endfor %}
+      </div>
+      {% if shots | length > 1 %}
+      <div class="p-hero__thumbs" role="group" aria-label="Product views">
+        {% for img in shots %}
+        <button type="button" class="p-hero__thumb{% if loop.first %} is-active{% endif %}" data-thumb="{{ loop.index0 }}" aria-label="View {{ loop.index }} of {{ shots | length }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ picture(studio(img), '', sizes='72px', max_w=320) }}</button>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
     <div class="p-hero__body">
-      <p class="p-hero__lede">{{ p.lede }}</p>
-      {% if p.key_specs %}{{ m.readout(p.key_specs) }}{% endif %}
-      <div class="btn-row">
-        <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
-        <a class="btn btn--secondary btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+      <p class="p-hero__lede" data-intro style="--d:2">{{ p.lede }}</p>
+      {% if p.key_specs %}<div data-intro style="--d:3">{{ m.readout(p.key_specs) }}</div>{% endif %}
+      <div class="btn-row" data-intro style="--d:4">
+        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
+        <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
         {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Catalogue PDF</a>{% endif %}
       </div>
     </div>
@@ -50,7 +62,7 @@
 {% if p.spec %}
 <section class="p-section" aria-labelledby="specs">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <h2 id="specs">{{ p.series }} specifications</h2>
       <p>{{ p.spec.rows | length }} standard models{% if p.capacity.unit in ('CFM','TR','litres') %}. Enter your requirement to find the model that covers it{% endif %}.<span class="only-mobile"> Tap a model to see every value.</span></p>
     </div>
@@ -68,7 +80,7 @@
 {% if p.grades is defined %}
 <section class="p-section" aria-labelledby="grades">
   <div class="container">
-    <div class="section-head"><h2 id="grades">Filter grades</h2><p>Each WMF housing takes any of the four colour-coded elements. Install them in series to reach the air class your process needs.</p></div>
+    <div class="section-head" data-reveal><h2 id="grades">Filter grades</h2><p>Each WMF housing takes any of the four colour-coded elements. Install them in series to reach the air class your process needs.</p></div>
     <table class="compare">
       <thead><tr><th scope="col">Grade</th><th scope="col">Particle removal</th><th scope="col">Oil removal</th><th scope="col">Initial pressure drop</th><th scope="col">Media</th><th scope="col">Efficiency</th><th scope="col">ISO 8573-1</th></tr></thead>
       <tbody>
@@ -84,7 +96,7 @@
 {% if p.principle is defined %}
 <section class="p-section" aria-labelledby="how">
   <div class="container two-col">
-    <div class="stack">
+    <div class="stack" data-reveal>
       <h2 id="how">How it works</h2>
       <p class="lede">{{ p.principle.intro }}</p>
       {% if p.slug == 'refrigerated-air-dryers' %}
@@ -95,7 +107,7 @@
       {% endif %}
     </div>
     <div>
-      <ol class="stages">
+      <ol class="stages" data-reveal>
         {% for s in p.principle.stages %}<li class="stage"><h3>{{ s.name }}</h3><p>{{ s.text }}</p></li>{% endfor %}
       </ol>
       {% if p.installation is defined and p.installation %}
@@ -112,8 +124,8 @@
 {% if p.features is defined %}
 <section class="p-section" aria-labelledby="build">
   <div class="container">
-    <div class="section-head"><h2 id="build">What goes into it</h2></div>
-    <div class="feature-list">
+    <div class="section-head" data-reveal><h2 id="build">What goes into it</h2></div>
+    <div class="feature-list" data-reveal>
       {% for f in p.features %}
       <div class="feature"><h3>{{ f.title }}</h3><ul>{% for pt in f.points %}<li>{{ pt }}</li>{% endfor %}</ul></div>
       {% endfor %}
@@ -125,7 +137,7 @@
 {% if p.selection is defined %}
 <section class="p-section" aria-labelledby="sizing">
   <div class="container">
-    <div class="section-head"><h2 id="sizing">Sizing for your conditions</h2><p>{{ p.selection.formula }}</p></div>
+    <div class="section-head" data-reveal><h2 id="sizing">Sizing for your conditions</h2><p>{{ p.selection.formula }}</p></div>
     {% if p.selection.kind is defined and p.selection.kind == 'approach' %}
     <p style="margin-bottom:var(--s-4)">{{ p.selection.intro }}</p>
     <div class="scroll-x">
@@ -171,8 +183,8 @@
 {% if p.spare_groups is defined %}
 <section class="p-section" aria-labelledby="spares">
   <div class="container">
-    <div class="section-head"><h2 id="spares">Spares we supply</h2></div>
-    <div class="feature-list">
+    <div class="section-head" data-reveal><h2 id="spares">Spares we supply</h2></div>
+    <div class="feature-list" data-reveal>
       {% for g in p.spare_groups %}<div class="feature"><h3>{{ g.name }}</h3><ul>{% for i in g['items'] %}<li>{{ i }}</li>{% endfor %}</ul></div>{% endfor %}
     </div>
   </div>
@@ -187,7 +199,7 @@
       <p>{{ 'Built to order: each unit is sized from your duty. Send these details and our engineers will recommend a configuration and quote.' if p.engineered is defined else 'Send these details and we will confirm the part and quote.' }}</p>
       <a class="btn btn--primary" href="#quote" data-quote-link>Send your requirement</a>
     </div>
-    <ol class="need-list">{% for n in p.needs %}<li>{{ n }}</li>{% endfor %}</ol>
+    <ol class="need-list" data-reveal>{% for n in p.needs %}<li>{{ n }}</li>{% endfor %}</ol>
   </div>
 </section>
 {% endif %}
@@ -199,7 +211,7 @@
       <h2 id="applications">Applications</h2>
       {% if p.applications_note is defined %}<p class="finder__note">{{ p.applications_note }}</p>{% endif %}
     </div>
-    <ul class="tags">{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
+    <ul class="tags" data-reveal>{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
   </div>
 </section>
 {% endif %}
@@ -214,7 +226,7 @@
 {% if p.related %}
 <section class="p-section" aria-labelledby="related">
   <div class="container">
-    <div class="section-head"><h2 id="related">Works with</h2></div>
+    <div class="section-head" data-reveal><h2 id="related">Works with</h2></div>
     <ul class="product-rows related">
       {% for slug in p.related %}{% if slug in products %}{{ m.product_row(products[slug]) }}{% endif %}{% endfor %}
     </ul>

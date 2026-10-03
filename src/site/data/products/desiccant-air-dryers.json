@@ -10,7 +10,9 @@
   "card": "Twin-tower dryers that adsorb moisture for −20 °C to −40 °C pressure dew points.",
   "lede": "Where a +3 °C dew point is not dry enough, WHD heatless dryers pass compressed air through a bed of activated alumina or molecular sieve. One tower dries while the other regenerates with a small flow of purge air, switching every few minutes.",
   "image": "images/Products/dessicantdryer.png",
-  "gallery": [],
+  "gallery": [
+    "images/Products/refrigiratedairdryer3.png"
+  ],
   "range": "300–2000 CFM",
   "capacity": {
     "key": "cfm",

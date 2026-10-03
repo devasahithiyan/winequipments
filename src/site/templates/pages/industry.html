@@ -8,17 +8,17 @@
 {{ m.breadcrumb(crumbs) }}
 <section class="page-head">
   <div class="container">
-    <h1>{{ ind.name }}</h1>
+    <h1 data-split>{{ ind.name }}</h1>
     <p class="lede">{{ ind.intro }}</p>
   </div>
 </section>
 <section class="section section--rule" aria-labelledby="ind-products">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <h2 id="ind-products">Equipment used in {{ ind.name | lower }}</h2>
       <p>From the application lists in our product catalogues. Open a product for its full model range.</p>
     </div>
-    <ul class="product-rows">{% for slug in ind.products %}{{ m.product_row(products[slug]) }}{% endfor %}</ul>
+    <ul class="pcards">{% for slug in ind.products %}{{ m.product_card(products[slug], 'h3', loop.index0 % 3) }}{% endfor %}</ul>
   </div>
 </section>
 {% set heading = 'Tell us about your plant' %}

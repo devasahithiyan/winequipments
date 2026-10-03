@@ -9,7 +9,7 @@
   "description": "Industrial ice flake machines engineered to order by Win Equipments, Coimbatore. Share your daily ice requirement and application for sizing.",
   "card": "Flake ice machines sized to your daily ice requirement.",
   "lede": "Flake ice cools product quickly and evenly in food processing, fisheries, poultry and concrete. Win Equipments builds ice flake machines to order, sized from your daily ice requirement and site conditions.",
-  "image": "images/Products/iceflakemachine.png",
+  "image": "images/Products/ice-flake-machine.jpg",
   "engineered": true,
   "needs": [
     "Ice required per day (kg or tonnes)",

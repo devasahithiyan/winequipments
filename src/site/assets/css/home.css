@@ -174,11 +174,3 @@
 .h-faq__grid p { color: var(--ink-2); }
 @media (min-width: 960px) { .h-faq__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-12); } }
 
-/* motion: content is visible by default; only enhanced when JS confirms motion is welcome */
-@keyframes fadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-@keyframes rise { from { opacity: 0; transform: translateY(0.55em); } to { opacity: 1; transform: none; } }
-.motion [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.9s var(--ease-out); transition-delay: calc(var(--d, 0) * 90ms); }
-.motion [data-reveal].is-in { opacity: 1; transform: none; }
-.motion .h-hero__title .w { display: inline-block; animation: rise 0.9s var(--ease-out) both; animation-delay: calc(var(--i) * 55ms + 80ms); }
-.motion .h-show__stage { animation: fadeup 1s var(--ease-out) 0.3s both; }
-.motion [data-intro] { animation: fadeup 0.9s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 110ms + 250ms); }

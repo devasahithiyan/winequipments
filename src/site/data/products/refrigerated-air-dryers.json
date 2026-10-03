@@ -11,8 +11,7 @@
   "lede": "Compressed air leaves the compressor saturated with water. WRD dryers chill it to a +3°C pressure dew point so the moisture condenses and drains out before it reaches your machines, valves and finished product.",
   "image": "images/Products/Refrigiratedairdryer1.png",
   "gallery": [
-    "images/Products/refrigiratedairdryer2.png",
-    "images/Products/refrigiratedairdryer3.png"
+    "images/Products/refrigiratedairdryer2.png"
   ],
   "range": "10–2000 CFM",
   "capacity": {

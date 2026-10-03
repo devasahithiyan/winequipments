@@ -3,24 +3,6 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.includes('static');
   const hasIO = 'IntersectionObserver' in window;
-  if (!reduce && hasIO) document.documentElement.classList.add('motion');
-
-  /* headline: rise word by word */
-  const title = $('[data-split]');
-  if (title && !reduce) {
-    const words = title.textContent.trim().split(/\s+/);
-    title.setAttribute('aria-label', title.textContent.trim());
-    title.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`).join(' ');
-  }
-
-  /* reveal on scroll */
-  if (!reduce && hasIO) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    $$('[data-reveal]').forEach((el) => io.observe(el));
-  }
-
   /* hero product switcher */
   const sw = $('[data-switcher]');
   if (sw) {
@@ -92,54 +74,4 @@
     figs.forEach((f) => io.observe(f));
   }
 
-  /* count-up */
-  const fmt = (n) => n.toLocaleString('en-IN');
-  const counters = $$('[data-count]');
-  if (counters.length && hasIO && !reduce) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        io.unobserve(e.target);
-        const el = e.target;
-        const to = parseInt(el.dataset.count, 10);
-        const from = parseInt(el.dataset.from || '0', 10);
-        const t0 = performance.now();
-        const D = 1400;
-        const tick = (t) => {
-          const k = Math.min(1, (t - t0) / D);
-          const eased = 1 - Math.pow(1 - k, 4);
-          el.textContent = fmt(Math.round(from + (to - from) * eased));
-          if (k < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      });
-    }, { threshold: 0.6 });
-    counters.forEach((c) => io.observe(c));
-  }
-
-  /* scroll-linked: process line fill and works photo parallax */
-  const steps = $('[data-steps]');
-  const par = $('[data-parallax] img');
-  if (!reduce && (steps || par)) {
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const vh = innerHeight;
-      if (steps) {
-        const r = steps.getBoundingClientRect();
-        const p = Math.min(1, Math.max(0, (vh * 0.75 - r.top) / (r.height + vh * 0.25)));
-        steps.style.setProperty('--p', p.toFixed(3));
-      }
-      if (par) {
-        const r = par.parentElement.getBoundingClientRect();
-        if (r.bottom > 0 && r.top < vh) {
-          const k = (r.top + r.height / 2 - vh / 2) / vh;
-          par.style.setProperty('--py', `${(-6 + k * 8).toFixed(2)}%`);
-        }
-      }
-    };
-    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    addEventListener('resize', update);
-    update();
-  } else if (steps) steps.style.setProperty('--p', '1');
 })();

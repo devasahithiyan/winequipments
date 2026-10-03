@@ -8,18 +8,18 @@
 {{ m.breadcrumb(crumbs) }}
 <section class="page-head">
   <div class="container">
-    <h1>Products</h1>
+    <h1 data-split>Products</h1>
     <p class="lede">Fifteen product lines in three families, all manufactured at our works in Arasur, Coimbatore.</p>
   </div>
 </section>
 {% for fam in families.values() %}
 <section class="section section--rule" aria-labelledby="f-{{ fam.id }}">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <h2 id="f-{{ fam.id }}"><a href="/products/{{ fam.slug }}.html" style="color:inherit">{{ fam.name }}</a></h2>
       <p>{{ fam.summary }}</p>
     </div>
-    <ul class="product-rows">{% for pr in fam.products %}{{ m.product_row(pr) }}{% endfor %}</ul>
+    <ul class="pcards">{% for pr in fam.products %}{{ m.product_card(pr, 'h3', loop.index0 % 3) }}{% endfor %}</ul>
   </div>
 </section>
 {% endfor %}
