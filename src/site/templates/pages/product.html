@@ -226,7 +226,11 @@
       <h2 id="applications">Applications</h2>
       {% if p.applications_note is defined %}<p class="finder__note">{{ p.applications_note }}</p>{% endif %}
     </div>
-    <ul class="tags" data-reveal>{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
+    <div class="stack">
+      <ul class="tags" data-reveal>{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
+      {% set used = site.industries | selectattr('products', 'contains', p.slug) | list %}
+      {% if used %}<p class="used-in"><span>Industry guides:</span> {% for i in used %}<a href="/industries/{{ i.slug }}.html">{{ i.name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+    </div>
   </div>
 </section>
 {% endif %}
