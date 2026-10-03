@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% import "partials/macros.html" as m %}
 {% set crumbs = [('Home', '/'), ('About', '/about.html')] %}
-{% block title %}About Win Equipments | Manufacturer in Arasur, Coimbatore since 2008{% endblock %}
-{% block description %}Win Equipments has manufactured air dryers, process chillers and FRP cooling towers at Arasur, Coimbatore since 2008. ISO 9001:2015 certified, 1,200+ installations.{% endblock %}
+{% block title %}About Win Equipments | Coimbatore Manufacturer since 2008{% endblock %}
+{% block og_image %}{{ image_url('images/about_us_2.jpg') }}{% endblock %}
+{% block description %}Win Equipments has built air dryers, process chillers and FRP cooling towers at Arasur, Coimbatore since 2008. ISO 9001:2015, 1,200+ installations.{% endblock %}
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "AboutPage", "url": site.url ~ "/about.html", "about": {"@id": site.url ~ "/#org"}}]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}

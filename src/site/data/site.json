@@ -37,7 +37,7 @@
       "slug": "compressed-air-treatment",
       "name": "Compressed Air Treatment",
       "short": "Air treatment",
-      "title": "Compressed Air Treatment Equipment Manufacturer | Win Equipments",
+      "title": "Compressed Air Treatment Equipment | Win Equipments",
       "description": "Refrigerated and desiccant air dryers, compressed air filters, drain valves, air receivers and aftercoolers manufactured by Win Equipments, Coimbatore.",
       "lede": "Dry, clean compressed air protects machines, valves and finished product. We make every stage of the treatment line, from the aftercooler at the compressor to the dry air receiver at the plant header.",
       "summary": "Dryers, filters, drains and receivers for dry, clean compressed air.",
@@ -48,8 +48,8 @@
       "slug": "process-cooling",
       "name": "Process Cooling",
       "short": "Process cooling",
-      "title": "Industrial Chiller Manufacturer, Coimbatore | Process Cooling | Win Equipments",
-      "description": "Industrial process water chillers 0.5–20 TR, plus anodizing, acid, medical scan chillers and ice flake machines engineered to order by Win Equipments, Coimbatore.",
+      "title": "Industrial Chillers & Process Cooling | Win Equipments",
+      "description": "Process chillers from 0.5 to 20 TR plus anodizing, acid, medical scan chillers and ice flake machines, built by Win Equipments in Coimbatore.",
       "lede": "Process chillers hold water at a set temperature so moulds, presses, baths and machines run at a steady temperature. Standard WCP chillers cover 0.5 to 20 TR; special duties are engineered to order.",
       "summary": "Chillers that hold process water at a set temperature.",
       "image": "images/Products/chiller.png"
@@ -59,7 +59,7 @@
       "slug": "cooling-towers",
       "name": "Cooling Towers",
       "short": "Cooling towers",
-      "title": "FRP Cooling Tower Manufacturer, Coimbatore | Round, Square & Coil | Win Equipments",
+      "title": "FRP & Coil Cooling Towers, Coimbatore | Win Equipments",
       "description": "Round and square FRP cooling towers 10–300 TR and coil cooling towers 40–280 TR, plus cooling tower spares. Manufactured by Win Equipments, Coimbatore.",
       "lede": "Cooling towers reject process heat to the atmosphere. FRP towers cool water by evaporation to wet bulb + 4 °C; coil towers keep water sealed in a finned coil and cool it to ambient + 4 °C.",
       "summary": "FRP and coil towers that reject process heat to atmosphere.",
@@ -76,7 +76,9 @@
         "industrial-process-chillers",
         "round-cooling-towers",
         "square-cooling-towers"
-      ]
+      ],
+      "title": "Chillers & Cooling Towers for Plastics | Win Equipments",
+      "description": "Process chillers and FRP cooling towers for injection moulding, blow moulding and plastic machinery. Built by Win Equipments, Coimbatore."
     },
     {
       "id": "textile",
@@ -88,7 +90,9 @@
         "round-cooling-towers",
         "square-cooling-towers",
         "closed-circuit-cooling-towers"
-      ]
+      ],
+      "title": "Air Dryers & Cooling Towers for Textile Mills | Win",
+      "description": "Refrigerated air dryers, FRP cooling towers and coil cooling towers for spinning, weaving and knitting mills. Built by Win Equipments, Coimbatore."
     },
     {
       "id": "automotive",
@@ -101,7 +105,9 @@
         "round-cooling-towers",
         "square-cooling-towers",
         "closed-circuit-cooling-towers"
-      ]
+      ],
+      "title": "Air Dryers & Chillers for CNC Machine Shops | Win",
+      "description": "Refrigerated air dryers, process chillers and cooling towers for automotive plants and CNC machine shops. Built by Win Equipments, Coimbatore."
     },
     {
       "id": "food-beverage",
@@ -114,7 +120,9 @@
         "ice-flake-machines",
         "round-cooling-towers",
         "closed-circuit-cooling-towers"
-      ]
+      ],
+      "title": "Chillers & Air Dryers for Food & Dairy | Win Equipments",
+      "description": "Process chillers, ice flake machines, refrigerated air dryers and cooling towers for food, dairy and beverage plants. Win Equipments, Coimbatore."
     },
     {
       "id": "pharma",
@@ -126,7 +134,9 @@
         "acid-cooling-chillers",
         "closed-circuit-cooling-towers",
         "round-cooling-towers"
-      ]
+      ],
+      "title": "Chillers & Air Dryers for Pharma & Chemical | Win",
+      "description": "Acid cooling chillers, refrigerated air dryers and cooling towers for pharmaceutical and chemical plants. Built by Win Equipments, Coimbatore."
     },
     {
       "id": "healthcare",
@@ -137,7 +147,9 @@
         "medical-scan-chillers",
         "closed-circuit-cooling-towers",
         "round-cooling-towers"
-      ]
+      ],
+      "title": "MRI & CT Chillers for Hospitals | Win Equipments",
+      "description": "Medical scan chillers for MRI and CT equipment, plus FRP and coil cooling towers for hospitals. Built by Win Equipments, Coimbatore."
     },
     {
       "id": "power",
@@ -148,7 +160,9 @@
         "closed-circuit-cooling-towers",
         "round-cooling-towers",
         "square-cooling-towers"
-      ]
+      ],
+      "title": "Cooling Towers for Diesel Gensets & Power | Win",
+      "description": "Coil cooling towers for diesel gensets 150–2000 kVA, and FRP cooling towers for power plant duties. Built by Win Equipments, Coimbatore."
     },
     {
       "id": "cement",
@@ -161,7 +175,9 @@
         "round-cooling-towers",
         "square-cooling-towers",
         "closed-circuit-cooling-towers"
-      ]
+      ],
+      "title": "Air Dryers & Cooling Towers for Cement & Sugar | Win",
+      "description": "Compressed air dryers, process chillers and cooling towers for cement, paper and sugar plants. Built by Win Equipments, Coimbatore."
     }
   ],
   "clients": [

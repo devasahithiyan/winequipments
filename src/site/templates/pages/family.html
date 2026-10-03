@@ -3,6 +3,7 @@
 {% set crumbs = [('Home', '/'), ('Products', '/products/'), (fam.name, '/products/' ~ fam.slug ~ '.html')] %}
 {% set lead = fam.products[0] %}
 {% block title %}{{ fam.title }}{% endblock %}
+{% block og_image %}{{ image_url(fam.products[0].image) }}{% endblock %}
 {% block description %}{{ fam.description }}{% endblock %}
 {% block schema %}
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "CollectionPage", "name": fam.name, "url": site.url ~ "/products/" ~ fam.slug ~ ".html", "hasPart": fam_urls(fam)}]}) }}

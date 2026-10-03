@@ -2,7 +2,7 @@
 {% import "partials/macros.html" as m %}
 {% set crumbs = [('Home', '/'), ('Contact', '/contactus.html')] %}
 {% block title %}Contact Win Equipments, Arasur, Coimbatore{% endblock %}
-{% block description %}Contact Win Equipments for air dryers, chillers and cooling towers. Call +91 95972 28969, WhatsApp, email info@winequipments.com, or visit our works in Arasur, Coimbatore.{% endblock %}
+{% block description %}Contact Win Equipments, Coimbatore: call or WhatsApp +91 95972 28969, email info@winequipments.com, or visit our Arasur works.{% endblock %}
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "ContactPage", "url": site.url ~ "/contactus.html", "about": {"@id": site.url ~ "/#org"}}]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}

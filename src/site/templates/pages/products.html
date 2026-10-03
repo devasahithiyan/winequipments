@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% import "partials/macros.html" as m %}
 {% set crumbs = [('Home', '/'), ('Products', '/products/')] %}
-{% block title %}Products: Air Dryers, Chillers, Cooling Towers | Win Equipments{% endblock %}
-{% block description %}All Win Equipments products: refrigerated and desiccant air dryers, filters, drain valves, air receivers, process chillers, FRP and coil cooling towers, and spares.{% endblock %}
+{% block title %}Air Dryers, Chillers & Cooling Towers | Win Equipments{% endblock %}
+{% block description %}All Win Equipments products: refrigerated and desiccant air dryers, filters, drain valves, air receivers, process chillers and FRP cooling towers.{% endblock %}
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
