@@ -9,6 +9,7 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Article", "headline": a.title, "description": a.description, "datePublished": a.date, "dateModified": a.updated, "image": self.og_image(), "author": {"@type": "Organization", "name": site.name, "url": site.url ~ "/"}, "publisher": {"@id": site.url ~ "/#org"}, "mainEntityOfPage": site.url ~ a.url, "articleSection": a.category, "wordCount": a.words, "inLanguage": "en-IN"}]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
+<div class="read-progress" aria-hidden="true"></div>
 <article class="art">
   <header class="art__head container">
     <p class="art__cat">{{ a.category }}</p>

@@ -1,0 +1,55 @@
+/* ===== subtle motion layer: hover feedback everywhere, ambient motion only when motion is welcome ===== */
+
+/* desktop nav: the underline slides in from the left instead of appearing */
+.nav-link { position: relative; }
+@media (hover: hover) {
+  .nav-link:hover:not([aria-current="page"]):not([aria-expanded="true"]) { border-bottom-color: transparent; }
+  .nav-link::after { content: ""; position: absolute; left: var(--s-3); right: var(--s-3); bottom: -1px; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease-out); }
+  .nav-link:hover:not([aria-current="page"]):not([aria-expanded="true"])::after { transform: scaleX(1); }
+}
+
+/* buttons: a small lift and shadow on hover, a press on click */
+.btn { transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.25s var(--ease-out), box-shadow 0.25s; }
+@media (hover: hover) {
+  .btn--primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(10, 125, 32, 0.25); }
+  .btn--secondary:hover { transform: translateY(-1px); }
+}
+.btn:active { transform: translateY(0); box-shadow: none; }
+
+/* product cards and tiles: image eases up slightly inside its frame */
+.pcard__stage img, .a-fams__img img, .t-hub__img img { transition: transform 0.6s var(--ease-out); }
+@media (hover: hover) {
+  .pcard a:hover .pcard__stage img, .a-fams a:hover .a-fams__img img, .t-hub a:hover .t-hub__img img { transform: translateY(-4px) scale(1.03); }
+}
+
+/* tables: the hovered row is easy to follow across wide spec tables */
+@media (hover: hover) {
+  .spec-table tbody tr, .a-table tbody tr { transition: background-color 0.15s; }
+  .spec-table tbody tr:hover, .a-table tbody tr:hover { background: #eef6ef; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* expandable rows open and close smoothly where the browser supports it */
+  @supports (interpolate-size: allow-keywords) {
+    :root { interpolate-size: allow-keywords; }
+    .faq details::details-content, .model details::details-content, .form-more::details-content {
+      block-size: 0; overflow: clip; transition: block-size 0.35s var(--ease-out), content-visibility 0.35s allow-discrete;
+    }
+    .faq details[open]::details-content, .model details[open]::details-content, .form-more[open]::details-content { block-size: auto; }
+  }
+
+  /* hero products breathe very slightly */
+  .motion .h-show__slide.is-active > a, .motion .p-hero__shot.is-active picture { animation: float 7s ease-in-out 1.2s infinite; }
+  .motion .p-hero__media--photo .p-hero__shot.is-active picture { animation: none; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+  /* photo rails: cards arrive one after another */
+  .motion .rail__item { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease-out), transform 0.7s var(--ease-out); transition-delay: calc(var(--d, 0) * 70ms); }
+  .motion .rail.is-in .rail__item { opacity: 1; transform: none; }
+
+  /* articles: a thin reading-progress line under the header */
+  @supports (animation-timeline: scroll()) {
+    .read-progress { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 60; background: var(--green); transform-origin: left; transform: scaleX(0); animation: read linear both; animation-timeline: scroll(root); pointer-events: none; }
+    @keyframes read { to { transform: scaleX(1); } }
+  }
+}

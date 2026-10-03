@@ -417,3 +417,12 @@
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister())).catch(() => {});
 }
+
+/* photo rails reveal their cards as they scroll into view */
+(() => {
+  const rails = document.querySelectorAll('[data-rail-reveal]');
+  if (!rails.length) return;
+  if (!document.documentElement.classList.contains('motion') || !('IntersectionObserver' in window)) { rails.forEach((r) => r.classList.add('is-in')); return; }
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.15 });
+  rails.forEach((r) => io.observe(r));
+})();

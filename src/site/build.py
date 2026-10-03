@@ -632,7 +632,7 @@ def build_chat_knowledge():
 
 
 def build_css():
-    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "home.css", "chiller360.css", "chat.css"]
+    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "home.css", "chiller360.css", "chat.css", "motion.css"]
     css = "\n".join((SRC / "assets" / "css" / f).read_text() for f in order if (SRC / "assets" / "css" / f).exists())
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     css = re.sub(r"\s+", " ", css)

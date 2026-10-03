@@ -1,5 +1,5 @@
 {# Horizontal rail of real photos; each opens the shared lightbox. Expects `rail` (list of photo dicts) and `rail_id`. #}
-<div class="rail" data-rail>
+<div class="rail" data-rail data-rail-reveal>
   <div class="rail__bar">
     <p class="rail__count">{{ rail | length }} photo{{ 's' if rail | length != 1 }} · tap to enlarge</p>
     <div class="rail__nav" aria-hidden="true">
@@ -9,7 +9,7 @@
   </div>
   <ul class="rail__list" data-rail-list data-lightbox="{{ rail_id }}">
     {% for ph in rail %}
-    <li class="rail__item">
+    <li class="rail__item" style="--d:{{ loop.index0 % 5 }}">
       <a class="rail__link" href="{{ image_url(ph.path, 1600) | replace(site.url, '') }}" data-lb-caption="{{ ph.caption }}{% if ph.product %} · {{ products[ph.product].name }}{% endif %}">
         {{ picture(ph.path, ph.caption, sizes='(min-width: 1024px) 22vw, (min-width: 640px) 36vw, 72vw', max_w=900) }}
       </a>
