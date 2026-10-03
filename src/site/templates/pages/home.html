@@ -19,6 +19,7 @@
 {% block schema %}
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), {"@type": "WebSite", "@id": site.url ~ "/#website", "url": site.url ~ "/", "name": site.name, "publisher": {"@id": site.url ~ "/#org"}}, faq_ld(faqs)]}) }}
 {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/css/home.css?v={{ css_ver }}"><link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endblock %}
 {% block main %}
 <section class="h-hero" aria-labelledby="hero-title">
   <div class="h-hero__bg" aria-hidden="true"></div>

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Static site generator for winequipments.com. Run: python3 src/site/build.py"""
+import hashlib
 import json
 import os
 import math
@@ -632,16 +633,41 @@ def build_chat_knowledge():
     (OUT / "chat_knowledge.php").write_text("<?php\nreturn <<<'EOT'\n" + text + "\nEOT;\n")
 
 
-def build_css():
-    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "home.css", "chiller360.css", "chat.css", "motion.css"]
-    css = "\n".join((SRC / "assets" / "css" / f).read_text() for f in order if (SRC / "assets" / "css" / f).exists())
+def _min_css(css):
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     css = re.sub(r"\s+", " ", css)
-    css = re.sub(r"\s*([{};,>])\s*", r"\1", css).replace(";}", "}")
-    (OUT / "css").mkdir(parents=True, exist_ok=True)
-    (OUT / "css" / "site.css").write_text(css)
-    return len(css)
+    return re.sub(r"\s*([{};,>])\s*", r"\1", css).replace(";}", "}")
 
+
+CSS_BUNDLES = {
+    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "sections.css", "chat.css", "motion.css"],
+    "home.css": ["home.css"],
+    "viewer.css": ["chiller360.css"],
+}
+
+
+def build_css():
+    (OUT / "css").mkdir(parents=True, exist_ok=True)
+    sizes, digest = {}, hashlib.md5()
+    for name, parts in CSS_BUNDLES.items():
+        css = _min_css("\n".join((SRC / "assets" / "css" / f).read_text() for f in parts))
+        (OUT / "css" / name).write_text(css)
+        sizes[name] = len(css)
+        digest.update(css.encode())
+    env.globals["css_ver"] = digest.hexdigest()[:8]
+    return sizes["site.css"]
+
+
+def prune_images():
+    """Delete generated images no page references any more."""
+    used = set()
+    for f in list(OUT.rglob("*.html")) + [OUT / "sitemap.xml"]:
+        used |= set(re.findall(r"/img/([^\"\s,?)]+)", f.read_text()))
+    removed = 0
+    for f in (OUT / "img").iterdir():
+        if f.name not in used:
+            f.unlink(); removed += 1
+    return removed
 
 def main():
     if OUT.exists():
@@ -655,7 +681,6 @@ def main():
         f.unlink()
     size = build_css()
     env.globals["css_bytes"] = size
-    import hashlib
     env.globals["js_ver"] = hashlib.md5(b"".join((SRC / "assets" / "js" / f).read_bytes() for f in sorted(os.listdir(SRC / "assets" / "js")))).hexdigest()[:8]
 
     build_chat_knowledge()
@@ -718,7 +743,8 @@ def main():
         sm.append(f"<url><loc>{site['url']}{u}</loc><lastmod>{lastmod(u)}</lastmod>{img_xml}</url>")
     sm.append("</urlset>")
     (OUT / "sitemap.xml").write_text("\n".join(sm))
-    print(f"built {len(pages_written)} pages, css {size} bytes")
+    removed = prune_images()
+    print(f"built {len(pages_written)} pages, css {size} bytes, pruned {removed} unused images")
 
 
 if __name__ == "__main__":

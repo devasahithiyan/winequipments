@@ -1,0 +1,43 @@
+/* ===== section patterns shared by the homepage and inner pages ===== */
+.btn--lg { min-height: 56px; padding: 0 var(--s-6); font-size: 1.0625rem; }
+.btn--lg.btn--wa { padding: 0 var(--s-5); }
+.h-head { display: grid; gap: var(--s-3); max-width: 48rem; margin-bottom: clamp(2rem, 1.2rem + 3vw, 4rem); }
+.h-head h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem); line-height: 1.02; letter-spacing: -0.02em; font-stretch: 74%; }
+.h-head p { color: var(--ink-2); font-size: var(--fs-lede); }
+.page-home section h2 { scroll-margin-top: calc(var(--header-h) + 24px); }
+
+/* numbers */
+.h-numbers { background: var(--ink); color: #c9d3cc; padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem); }
+.h-numbers__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8) var(--s-6); }
+@media (min-width: 900px) { .h-numbers__row { grid-template-columns: repeat(4, 1fr); } }
+.h-numbers__row > div { display: grid; gap: var(--s-1); padding-top: var(--s-4); border-top: 1px solid #3a4840; }
+.h-numbers__row strong { color: #fff; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); font-stretch: 72%; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.h-numbers__row > div > span { font-size: var(--fs-small); }
+
+/* process */
+.h-process { padding-block: var(--section); background: var(--surface); border-block: 1px solid var(--rule); }
+.h-steps { list-style: none; display: grid; gap: 0; position: relative; --p: 0; }
+.h-steps::before, .h-steps::after { content: ""; position: absolute; left: calc(1.5rem - 1px); top: 1.5rem; bottom: 1.5rem; width: 2px; background: var(--rule); }
+.h-steps::after { background: var(--green); transform-origin: top; transform: scaleY(var(--p)); }
+.h-step { display: grid; grid-template-columns: 3rem 1fr; column-gap: var(--s-4); padding-bottom: var(--s-8); position: relative; z-index: 1; }
+.h-step:last-child { padding-bottom: 0; }
+.h-step__n { grid-row: 1 / 3; width: 3rem; height: 3rem; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink); display: grid; place-items: center; font-weight: 700; font-size: 1.125rem; }
+.h-step h3 { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); font-stretch: 85%; line-height: 3rem; }
+.h-step p { color: var(--ink-2); }
+@media (min-width: 900px) {
+  .h-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-6); }
+  .h-steps::before, .h-steps::after { left: 1.5rem; right: 1.5rem; top: calc(1.5rem - 1px); bottom: auto; width: auto; height: 2px; }
+  .h-steps::after { transform-origin: left; transform: scaleX(var(--p)); }
+  .h-step { grid-template-columns: 1fr; row-gap: var(--s-3); padding: 0; }
+  .h-step__n { grid-row: auto; }
+  .h-step h3 { line-height: 1.25; margin-top: var(--s-2); }
+}
+
+/* faq */
+.h-faq { padding-block: var(--section); background: var(--surface); border-top: 1px solid var(--rule); }
+.h-faq__grid { display: grid; gap: var(--s-8); }
+.h-faq__grid h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem); line-height: 1.02; font-stretch: 74%; letter-spacing: -0.02em; margin-bottom: var(--s-3); }
+.h-faq__grid p { color: var(--ink-2); }
+@media (min-width: 960px) { .h-faq__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-12); } }
+
+

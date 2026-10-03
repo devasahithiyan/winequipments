@@ -9,6 +9,7 @@
 {% block schema %}
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), product_ld(p), crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
 {% endblock %}
+{% block extra_css %}{% if p.slug == 'industrial-process-chillers' or p.spin is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
 
