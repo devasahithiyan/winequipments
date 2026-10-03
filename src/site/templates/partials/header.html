@@ -26,20 +26,30 @@
   <div class="mega" id="mega-products" hidden>
     <div class="container mega__grid">
       {% for fam in families.values() %}
-      <div class="mega__col">
-        <h3><a href="/products/{{ fam.slug }}.html">{{ fam.name }}</a></h3>
+      <div class="mega__col" style="--i:{{ loop.index0 }}">
+        <p class="mega__head"><a href="/products/{{ fam.slug }}.html">{{ fam.name }}</a><span>{{ fam.products | length }}</span></p>
         <ul>
           {% for p in fam.products %}
-          <li><a href="{{ product_url(p.slug) }}">{{ p.name }}<span>{{ p.range }}</span></a></li>
+          <li><a class="mega__item" href="{{ product_url(p.slug) }}"{% if url == product_url(p.slug) %} aria-current="page"{% endif %}>
+            <span class="mega__thumb" aria-hidden="true">{{ picture(studio(p.image), '', sizes='44px', max_w=320) }}</span>
+            <span class="mega__txt"><strong>{{ p.name }}</strong><em{% if p.range == 'Engineered to order' %} class="is-eto"{% endif %}>{{ 'Made to order' if p.range == 'Engineered to order' else p.range }}</em></span>
+            <svg class="mega__go" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a></li>
           {% endfor %}
         </ul>
+        <a class="mega__all" href="/products/{{ fam.slug }}.html">View all {{ fam.short | lower if fam.short is defined else fam.name | lower }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       {% endfor %}
-      <div class="mega__aside">
-        <h3>Not sure which unit you need?</h3>
-        <p>Tell us your compressor capacity, heat load or water flow. Our engineers will recommend the model and reply with a quote.</p>
-        <a class="btn btn--primary" href="#quote" data-quote-link>Talk to an engineer</a>
-        <a class="link-arrow" href="/products/">All products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <div class="mega__aside" style="--i:3">
+        <p class="mega__head"><span class="mega__aside-h">Size it yourself</span></p>
+        <ul class="mega__tools">
+          {% for t in tools %}<li><a href="{{ t.url }}"><strong>{{ t.name }}</strong><span>{{ t.card }}</span></a></li>{% endfor %}
+          <li><a href="/products/industrial-process-chillers.html#chiller-360"><strong><i class="mega__badge">360°</i>Turn a WCP chiller around</strong><span>Interactive model with its components.</span></a></li>
+        </ul>
+        <div class="mega__cta">
+          <p>Not sure which unit you need? Our engineers will recommend the model.</p>
+          <a class="btn btn--primary" href="#quote" data-quote-link>Talk to an engineer</a>
+        </div>
       </div>
     </div>
   </div>

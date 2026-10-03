@@ -426,3 +426,12 @@ if ('serviceWorker' in navigator) {
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.15 });
   rails.forEach((r) => io.observe(r));
 })();
+
+/* load the product menu thumbnails as soon as someone heads for the menu */
+(() => {
+  const btn = document.querySelector('[data-mega]');
+  const mega = document.getElementById('mega-products');
+  if (!btn || !mega) return;
+  const warm = () => mega.querySelectorAll('img[loading="lazy"]').forEach((i) => { i.loading = 'eager'; });
+  ['pointerenter', 'focus', 'click'].forEach((ev) => btn.addEventListener(ev, warm, { once: true }));
+})();
