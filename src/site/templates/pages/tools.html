@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Sizing tools', '/engineering-tools/')] %}
+{% block title %}Sizing Calculators: Dryers, Chillers, Towers | Win{% endblock %}
+{% block description %}Free calculators to size a compressed air dryer, process chiller or cooling tower from your duty, using the ratings in Win Equipments catalogues.{% endblock %}
+{% block schema %}{% set ns = namespace(items=[]) %}{% for t in tools %}{% set ns.items = ns.items + [{"@type": "ListItem", "position": loop.index, "name": t.name, "url": site.url ~ t.url}] %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "CollectionPage", "name": "Sizing tools", "url": site.url ~ "/engineering-tools/", "mainEntity": {"@type": "ItemList", "itemListElement": ns.items}}]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1 data-split>Sizing tools</h1>
+    <p class="lede">Size the equipment from your own figures. Every calculator uses the ratings and correction factors printed in our catalogues, and links to the matching model.</p>
+  </div>
+</section>
+<section class="section section--rule" aria-label="Calculators">
+  <div class="container">
+    <ul class="t-hub">
+      {% for t in tools %}
+      <li data-reveal style="--d:{{ loop.index0 }}"><a href="{{ t.url }}">
+        <span class="t-hub__img">{{ picture(studio(products[t.product].image), '', sizes='(min-width: 900px) 30vw, 90vw', max_w=640) }}</span>
+        <strong>{{ t.name }}</strong><span>{{ t.card }}</span><em>Open calculator<svg aria-hidden="true"><use href="#i-arrow"/></svg></em>
+      </a></li>
+      {% endfor %}
+    </ul>
+    <p class="t-hub__note">Need something else sized, such as a filter set, air receiver or a special chiller? Send us your duty and our engineers will select it.</p>
+  </div>
+</section>
+{% include "partials/enquiry.html" %}
+{% endblock %}

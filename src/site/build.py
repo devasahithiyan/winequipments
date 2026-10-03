@@ -345,6 +345,61 @@ env.globals.update(
 pages_written = []
 
 
+
+# ---------------------------------------------------------------- sizing tools (catalogue data only)
+tools = [
+    {"id": "dryer", "url": "/engineering-tools/air-dryer-sizing.html", "product": "refrigerated-air-dryers",
+     "name": "Air dryer sizing calculator", "card": "Compressor CFM and site conditions to a WRD or WHD model.",
+     "title": "Air Dryer Sizing Calculator (CFM) | Win Equipments",
+     "description": "Size a refrigerated air dryer from compressor CFM, inlet and ambient temperature, pressure and dew point, using WRD catalogue correction factors.",
+     "h1": "Air dryer sizing calculator",
+     "lede": "Enter your compressor's capacity and site conditions. The calculator applies the correction factors from our WRD catalogue and picks the dryer that covers the duty.",
+     "method": ["Dryer nominal capacity = compressor actual capacity ÷ (C1 × C2 × C3 × C4), where C1 to C4 are the catalogue factors for inlet temperature, ambient temperature, inlet pressure and dew point.",
+                "WRD dryers are rated at 45 °C inlet, 35 °C ambient, 7 bar g and a +3 °C pressure dew point, where every factor is 1.0. Flow capacities are per ISO 7183 (free air at 20 °C, 1 bar).",
+                "For −20 °C or −40 °C dew points the calculator selects a WHD heatless desiccant dryer by flow: activated alumina (A) for −20 °C, molecular sieve (M) for −40 °C, both at 38 °C and 7 bar g."],
+     "faqs": [{"q": "How do I size a refrigerated air dryer?", "a": "Take the compressor's actual free air delivery in CFM and divide it by the product of the four correction factors for inlet temperature, ambient temperature, pressure and dew point. Choose the WRD model whose rated CFM is equal to or above the result."},
+              {"q": "Why does a hot plant need a bigger dryer?", "a": "At 40 °C ambient the factor is 0.91 and at 45 °C it is 0.87, so the dryer must be rated higher than the compressor flow to deliver the same dew point."},
+              {"q": "When do I need a desiccant dryer instead?", "a": "When the process needs a pressure dew point below freezing, such as −20 °C or −40 °C. Refrigerated dryers deliver +3 °C."}]},
+    {"id": "chiller", "url": "/engineering-tools/chiller-tonnage-calculator.html", "product": "industrial-process-chillers",
+     "name": "Chiller tonnage calculator", "card": "Water flow and temperature rise to TR and a WCP model.",
+     "title": "Chiller Tonnage Calculator (TR) | Win Equipments",
+     "description": "Work out the chiller capacity in TR from water flow and temperature rise, corrected for outlet and ambient temperature, and find the matching WCP model.",
+     "h1": "Chiller tonnage calculator",
+     "lede": "Enter the process water flow and how much it heats up. The calculator works out the heat load, applies the WCP catalogue factors for outlet and ambient temperature, and picks a model.",
+     "method": ["Heat load (TR) = water flow (LPM) × ΔT (°C) ÷ 50.4, because 1 TR = 3,024 kcal/hr and water carries 1 kcal per kg per °C. A known load in kW converts at 1 TR = 3.517 kW.",
+                "WCP chillers are rated at 15 °C water outlet and 40 °C ambient. Required nominal capacity = heat load ÷ (outlet factor × ambient factor), using the factors from our catalogue.",
+                "Each WCP model also has a rated water flow; the calculator flags when your flow is above it."],
+     "faqs": [{"q": "How do I calculate chiller tonnage?", "a": "Multiply the water flow in litres per minute by the temperature rise in °C and divide by 50.4. For example 100 LPM with a 5 °C rise is about 9.9 TR."},
+              {"q": "Why does a lower outlet temperature need a bigger chiller?", "a": "A chiller delivers less capacity at colder water. At 10 °C outlet the catalogue factor is 0.75 and at 5 °C it is 0.6, so the nominal capacity must be higher."},
+              {"q": "What if I need more than 20 TR?", "a": "WCP standard models go up to 20 TR. Send us your duty and our engineers will propose a larger or multiple-unit solution."}]},
+    {"id": "tower", "url": "/engineering-tools/cooling-tower-calculator.html", "product": "round-cooling-towers",
+     "name": "Cooling tower calculator", "card": "Flow and temperatures to heat load, a WCT model and water loss.",
+     "title": "Cooling Tower Calculator: TR & Evaporation | Win",
+     "description": "Calculate cooling tower heat load in TR, check the approach to wet bulb, choose the fill type and estimate evaporation loss, then find a WCT tower.",
+     "h1": "Cooling tower calculator",
+     "lede": "Enter the water flow, hot and cold water temperatures and your site wet bulb. The calculator gives the heat load, checks it against our WCT ratings and estimates the water lost to evaporation.",
+     "method": ["Heat load (TR) = flow (m³/hr) × range (°C) × 1,000 ÷ 3,024, where range is hot minus cold water temperature.",
+                "WCT towers are rated for cold water at wet bulb + 4 °C, with 0.6 m³/hr of water per TR (a 5 °C range). The calculator picks the smallest tower whose rated TR and water flow both cover your duty.",
+                "Fill type follows the hot water temperature: L fills up to 55 °C, H fills from 55 to 85 °C, polypropylene rings (P) above that. Evaporation loss = 0.00085 × 1.8 × flow (m³/hr) × range (°C)."],
+     "faqs": [{"q": "How cold can a cooling tower make the water?", "a": "WCT towers are rated to deliver water at the wet bulb temperature plus 4 °C. A colder target needs a special selection, so ask our engineers."},
+              {"q": "How much make-up water does a cooling tower need?", "a": "Evaporation alone is about 0.00085 × 1.8 × flow × range. For 30 m³/hr and a 5 °C range that is about 0.23 m³/hr, before drift and blow-down."},
+              {"q": "Round or square tower?", "a": "Both WCT ranges cover 10 to 300 TR with the same ratings. Square towers suit tight or rectangular spaces and multi-cell layouts; round towers are the bottle type."}]},
+]
+tools_by_id = {t["id"]: t for t in tools}
+
+
+def tool_data(tid):
+    if tid == "dryer":
+        wrd = products["refrigerated-air-dryers"]["spec"]["rows"]
+        whd = products["desiccant-air-dryers"]["spec"]["rows"]
+        return {"wrd": [{"model": r["model"], "cfm": r["cfm"]} for r in wrd], "whd": [{"model": r["model"], "cfm": r["cfm"]} for r in whd],
+                "wrd_url": product_url("refrigerated-air-dryers"), "whd_url": product_url("desiccant-air-dryers")}
+    if tid == "chiller":
+        return {"wcp": [{"model": r["model"], "tr": r["tr"], "lpm": r["lpm"]} for r in products["industrial-process-chillers"]["spec"]["rows"]],
+                "url": product_url("industrial-process-chillers")}
+    return {s: [{"model": r["model"], "tr": r["tr"], "m3hr": r["m3hr"]} for r in products[f"{s}-cooling-towers"]["spec"]["rows"]] for s in ("round", "square")} | {
+        "round_url": product_url("round-cooling-towers"), "square_url": product_url("square-cooling-towers")}
+
 def render(template, url, **ctx):
     path = OUT / url.lstrip("/") / "index.html" if url.endswith("/") else OUT / url.lstrip("/")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -379,7 +434,7 @@ def crumbs_ld(items):
     return {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": site["url"] + h} for i, (n, h) in enumerate(items)]}
 
 
-env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld)
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data)
 env.filters["pname"] = lambda slug: products[slug]["name"]
 env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"
 env.globals["fam_urls"] = lambda fam: [{"@type": "Product", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
@@ -470,6 +525,9 @@ def main():
     render("pages/downloads.html", "/downloads.html")
     render("pages/contact.html", "/contactus.html")
     render("pages/about.html", "/about.html")
+    render("pages/tools.html", "/engineering-tools/")
+    for t in tools:
+        render("pages/tool.html", t["url"], tool=t)
     render("pages/certifications.html", "/certifications.html")
     render("pages/thanks.html", "/thank-you.html")
     render("pages/404.html", "/404.html")

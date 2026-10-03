@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Sizing tools', '/engineering-tools/'), (tool.name, tool.url)] %}
+{% block title %}{{ tool.title }}{% endblock %}
+{% block og_image %}{{ image_url(products[tool.product].image) }}{% endblock %}
+{% block description %}{{ tool.description }}{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "WebApplication", "name": tool.name, "url": site.url ~ tool.url, "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "provider": {"@id": site.url ~ "/#org"}}, faq_ld(tool.faqs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1 data-split>{{ tool.h1 }}</h1>
+    <p class="lede">{{ tool.lede }}</p>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="calc">
+  <div class="container t-grid">
+    <form class="t-form" data-tool="{{ tool.id }}" novalidate>
+      <h2 id="calc" class="visually-hidden">Calculator</h2>
+      {% if tool.id == 'dryer' %}
+      <div class="field"><label for="t-cfm">Compressor actual capacity (FAD)</label><div class="unit-input"><input id="t-cfm" name="cfm" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 250"><span>CFM</span></div>
+        <p class="hint">Don't know the CFM? <label class="t-inline" for="t-hp">Enter compressor HP</label> <span class="unit-input unit-input--sm"><input id="t-hp" name="hp" type="number" inputmode="decimal" min="0" step="any" placeholder="HP"><span>HP</span></span> <span class="hint">(about 4 CFM per HP; the nameplate FAD is more accurate)</span></p></div>
+      {% set names = ['inlet', 'ambient', 'pressure', 'dew'] %}
+      <div class="form-grid form-grid--2">
+        {% for t in products['refrigerated-air-dryers'].selection.tables %}{% set nm = names[loop.index0] %}{% set dflt = {'inlet': 45, 'ambient': 35, 'pressure': 7, 'dew': 3}[nm] %}
+        <div class="field"><label for="t-{{ nm }}">{{ t.name.split('·')[1] | trim }}</label>
+          <select class="select" id="t-{{ nm }}" name="{{ nm }}">
+            {% for pt in t.points %}<option value="{{ pt[1] }}"{% if pt[0] == dflt %} selected{% endif %}>{{ pt[0] }} {{ t.unit }}{% if nm == 'dew' %} PDP{% endif %}</option>{% endfor %}
+          </select></div>
+        {% endfor %}
+      </div>
+      <fieldset class="t-radio"><legend>Need a lower dew point?</legend>
+        <label><input type="radio" name="dry" value="ref" checked> No, +3 to +10 °C is fine</label>
+        <label><input type="radio" name="dry" value="A"> −20 °C (activated alumina)</label>
+        <label><input type="radio" name="dry" value="M"> −40 °C (molecular sieve)</label>
+      </fieldset>
+      {% elif tool.id == 'chiller' %}
+      <div class="form-grid form-grid--2">
+        <div class="field"><label for="t-lpm">Water flow</label><div class="unit-input"><input id="t-lpm" name="lpm" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 100"><span>LPM</span></div></div>
+        <div class="field"><label for="t-dt">Temperature rise across the process (ΔT)</label><div class="unit-input"><input id="t-dt" name="dt" type="number" inputmode="decimal" min="0" step="any" value="5"><span>°C</span></div></div>
+        {% set tabs = products['industrial-process-chillers'].selection.tables %}
+        <div class="field"><label for="t-out">Water outlet temperature</label><select class="select" id="t-out" name="out">{% for pt in tabs[0].points %}<option value="{{ pt[1] }}"{% if pt[0] == 15 %} selected{% endif %}>{{ pt[0] }} °C</option>{% endfor %}</select></div>
+        <div class="field"><label for="t-amb">Ambient temperature</label><select class="select" id="t-amb" name="amb">{% for pt in tabs[1].points %}<option value="{{ pt[1] }}"{% if pt[0] == 40 %} selected{% endif %}>{{ pt[0] }} °C</option>{% endfor %}</select></div>
+      </div>
+      <p class="hint">Or enter a known heat load: <span class="unit-input unit-input--sm"><input id="t-kw" name="kw" type="number" inputmode="decimal" min="0" step="any" placeholder="kW"><span>kW</span></span></p>
+      {% else %}
+      <div class="form-grid form-grid--2">
+        <div class="field"><label for="t-flow">Circulating water flow</label><div class="unit-input"><input id="t-flow" name="flow" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 30"><span>m³/hr</span></div></div>
+        <div class="field"><label for="t-in">Hot water temperature (to the tower)</label><div class="unit-input"><input id="t-in" name="tin" type="number" inputmode="decimal" step="any" value="37"><span>°C</span></div></div>
+        <div class="field"><label for="t-cold">Required cold water temperature</label><div class="unit-input"><input id="t-cold" name="tout" type="number" inputmode="decimal" step="any" value="32"><span>°C</span></div></div>
+        <div class="field"><label for="t-wb">Design wet bulb temperature at site</label><div class="unit-input"><input id="t-wb" name="wb" type="number" inputmode="decimal" step="any" value="27"><span>°C</span></div></div>
+      </div>
+      <fieldset class="t-radio"><legend>Tower shape</legend>
+        <label><input type="radio" name="shape" value="round" checked> Round (bottle type)</label>
+        <label><input type="radio" name="shape" value="square"> Square</label>
+      </fieldset>
+      {% endif %}
+      <noscript><p class="hint">This calculator needs JavaScript. You can also send us your figures and we will size the equipment.</p></noscript>
+    </form>
+    <div class="t-result" aria-live="polite" data-tool-out>
+      <p class="t-result__label">Result</p>
+      <p class="t-result__empty">Enter your figures to see the matching model.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="method">
+  <div class="container a-split">
+    <div class="a-split__head" data-reveal><h2 id="method">How it is calculated</h2><p>From our product catalogue. Our engineers confirm every selection before quoting.</p></div>
+    <div class="stack t-method" data-reveal style="--d:1">
+      {% for para in tool.method %}<p>{{ para | safe }}</p>{% endfor %}
+      <p><a class="link-arrow" href="{{ product_url(tool.product) }}">{{ products[tool.product].name }}: all models<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="faq">
+  <div class="container h-faq__grid">
+    <div data-reveal><h2 id="faq">Questions</h2></div>
+    {{ m.faq(tool.faqs) }}
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="more-tools">
+  <div class="container">
+    <h2 id="more-tools" class="t-more__h">More sizing tools</h2>
+    <ul class="t-cards">{% for t in tools if t.id != tool.id %}<li><a href="{{ t.url }}"><strong>{{ t.name }}</strong><span>{{ t.card }}</span></a></li>{% endfor %}</ul>
+  </div>
+</section>
+{% include "partials/enquiry.html" %}
+<script type="application/json" id="tool-data">{{ tool_data(tool.id) | tojson }}</script>
+{% endblock %}
+{% block scripts %}<script src="/js/tools.js?v={{ js_ver }}" defer></script>{% endblock %}
