@@ -47,7 +47,6 @@
       <div class="h-show__stage">
         {% for h in heroes %}
         <a class="h-show__slide{% if loop.first %} is-active{% endif %}" id="hs-{{ loop.index }}" href="{{ product_url(h.p.slug) }}" role="tabpanel" aria-labelledby="ht-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
-          <span class="h-show__code" aria-hidden="true">{{ h.p.series.split()[0] }}</span>
           {{ picture(studio(h.p.image), h.p.h1 ~ ' by Win Equipments', sizes='(min-width: 900px) 46vw, 88vw', eager=loop.first, max_w=900) }}
         </a>
         {% endfor %}

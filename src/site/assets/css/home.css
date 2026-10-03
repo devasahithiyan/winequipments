@@ -34,10 +34,6 @@
   mask-image: radial-gradient(ellipse 58% 62% at 50% 55%, #000 0%, rgba(0, 0, 0, 0.35) 55%, transparent 78%); opacity: 0.9; }
 .h-show__stage::after { content: ""; position: absolute; left: 6%; right: 6%; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--rule-strong) 20%, var(--rule-strong) 80%, transparent); }
 .h-show__slide { position: absolute; inset: 0; display: block; z-index: 1; }
-.h-show__code { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); z-index: -1; font-weight: 800; font-stretch: 62%; font-size: clamp(9rem, 2rem + 34vw, 24rem); line-height: 0.8; letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1.5px rgba(10, 125, 32, 0.3); white-space: nowrap; user-select: none; }
-.js .h-show__slide .h-show__code { transition: transform 1.1s var(--ease-out), opacity 0.7s; }
-.js .h-show__slide:not(.is-active) .h-show__code { transform: translate(-42%, -50%); opacity: 0; }
-.js .h-show__slide.is-leaving .h-show__code { transform: translate(-58%, -50%); }
 .h-show__slide picture { height: 100%; width: 100%; display: block; }
 .h-show__slide img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
 .js .h-show__slide { opacity: 0; transform: translateX(24px) scale(0.97); transition: opacity 0.7s var(--ease-out), transform 0.9s var(--ease-out); pointer-events: none; }

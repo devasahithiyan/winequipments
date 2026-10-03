@@ -36,6 +36,11 @@ if (isset($data['history']) && is_array($data['history'])) {
     }
 }
 
+$pageTitle = '';
+if (isset($data['page']['title']) && is_string($data['page']['title'])) {
+    $pageTitle = trim(preg_replace('/[^\p{L}\p{N} &,.\-\/()]/u', '', mb_substr($data['page']['title'], 0, 120)));
+}
+
 /* ── simple per-IP rate limit: 30 messages per 10 minutes ──────────── */
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $bucket = sys_get_temp_dir() . '/win_chat_' . md5($ip);
@@ -56,7 +61,7 @@ $knowledge = @include __DIR__ . '/chat_knowledge.php';
 $apiKey = loadApiKey();
 if ($apiKey && is_string($knowledge)) {
     $system = <<<EOT
-You are the website assistant for Win Equipments, an industrial equipment manufacturer in Arasur, Coimbatore, India.
+You are the AI assistant on the Win Equipments website. Win Equipments is an industrial equipment manufacturer in Arasur, Coimbatore, India. If asked, say plainly that you are an AI assistant and that Win Equipments engineers confirm every selection and quotation.
 Answer questions about Win Equipments products, help visitors pick a product or model, and guide them to request a quote.
 
 Rules:
@@ -68,10 +73,12 @@ Rules:
 - Keep replies under 120 words. Use short paragraphs or bullets. You may use **bold** and plain links. No headings, no tables.
 - Reply in the same language the visitor writes in (English or Tamil).
 - End with a clear next step when the visitor seems ready: request a quote on the page, WhatsApp, or call.
+- If the visitor says "this product" or similar, they mean the page they are viewing (below).
 
 PRODUCT DATA:
 {$knowledge}
 EOT;
+    if ($pageTitle !== '') { $system .= "\n\nThe visitor is currently viewing the page: {$pageTitle}"; }
 
     $contents = [];
     foreach ($history as $m) {
