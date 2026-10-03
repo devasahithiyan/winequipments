@@ -213,7 +213,7 @@
     let typing = false;
     const update = () => { bar.classList.toggle('is-hidden', typing || Object.values(vis).some(Boolean)); bar.classList.add('is-ready'); };
     $$('#quote, .site-footer').forEach((el, i) => new IntersectionObserver((en) => { vis[i] = en[en.length - 1].isIntersecting; update(); }, { threshold: 0.02 }).observe(el));
-    const heroCta = $('.h-hero__ctas, .hero .btn-row, .p-hero .btn-row, .hub-hero .btn-row');
+    const heroCta = $('.cine__ctas, .h-hero__ctas, .hero .btn-row, .p-hero .btn-row, .hub-hero .btn-row');
     if (heroCta) new IntersectionObserver((en) => { const e = en[en.length - 1]; vis.hero = e.isIntersecting; update(); }).observe(heroCta);
     document.addEventListener('focusin', (e) => { if (e.target.matches('input, textarea, select') && !e.target.closest('.action-bar')) { typing = true; update(); } });
     document.addEventListener('focusout', () => { typing = false; update(); });

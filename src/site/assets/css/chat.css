@@ -99,3 +99,6 @@ body.chat-open { overflow: hidden; }
 .chat__send:disabled { opacity: 0.5; cursor: progress; }
 .chat__note { margin-top: var(--s-2); font-size: 0.75rem; line-height: 1.4; color: var(--muted); text-align: center; }
 @media (prefers-reduced-motion: reduce) { .chat__shimmer, .chat__dots i, .chat__avatar.is-busy svg, .chat__msg.is-streaming > :last-child::after { animation: none; } .chat__shimmer { color: var(--muted); background: none; } }
+/* homepage: keep the launcher off the cinematic hero; it arrives once the hero actions scroll away */
+body.page-home:has(.action-bar.is-hidden) .chat-launcher:not([aria-expanded="true"]),
+body.page-home:has(.action-bar:not(.is-ready)) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; }
