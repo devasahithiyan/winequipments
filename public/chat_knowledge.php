@@ -117,6 +117,22 @@ Engineered to order. To quote we need: Process fluid, concentration and operatin
 Flake ice cools product quickly and evenly in food processing, fisheries, poultry and concrete. Win Equipments builds ice flake machines to order, sized from your daily ice requirement and site conditions.
 Engineered to order. To quote we need: Ice required per day (kg or tonnes); Application (fish, poultry, dairy, concrete, chemical); Feed water quality and temperature; Ice storage requirement; Available power supply and plant ambient temperature
 
+### Shell & Tube Heat Exchangers (Engineered to order) — range Engineered to order — https://winequipments.com/products/shell-and-tube-heat-exchangers.html
+A shell and tube heat exchanger transfers heat between two fluids without mixing them: one flows through a bundle of tubes, the other around the tubes inside the shell. Win Equipments builds them to order, sized from your fluids, flows and temperatures.
+Engineered to order. To quote we need: Both fluids and their properties (water, oil, process fluid); Flow rate on each side; Inlet and required outlet temperatures on each side; Design pressure and temperature; Preferred shell and tube materials; Allowable pressure drop and connection sizes
+
+### Milk & Coconut Water Chillers (Engineered to order) — range Engineered to order — https://winequipments.com/products/milk-chillers.html
+Milk, coconut water and other liquid foods need to be cooled quickly after collection or processing and then held cold. Win Equipments builds chillers for these duties to order, sized from your product, volume and temperatures.
+Engineered to order. To quote we need: Product to be cooled and volume per batch or per day; Product temperature in and required temperature out; Time allowed to reach the temperature; Direct product cooling or chilled water for your existing exchanger; Hygiene and contact-material requirements; Available power supply and installation space
+
+### Soda Chillers (Engineered to order) — range Engineered to order — https://winequipments.com/products/soda-chillers.html
+Carbon dioxide dissolves better in cold water, so carbonated drinks are made and dispensed cold. Win Equipments builds soda chillers to order for beverage and soda plants, sized from your output and temperatures.
+Engineered to order. To quote we need: Output required (litres per hour); Inlet water temperature and required outlet temperature; Whether the chiller feeds a carbonator, filler or dispenser; Available power supply; Installation space and ambient temperature
+
+### Condensing Units (Engineered to order) — range Engineered to order — https://winequipments.com/products/condensing-units.html
+A condensing unit is the compressor half of a refrigeration system: the refrigeration compressor, condenser and controls on one base, piped to an evaporator in a cold room, process cooler or air handler. Win Equipments assembles condensing units to order.
+Engineered to order. To quote we need: Refrigeration capacity (kW or TR) and evaporating temperature; What the evaporator cools: cold room, process or air handler; Refrigerant preference; Site ambient temperature; Available power supply; Distance between the condensing unit and the evaporator
+
 ## Cooling Towers
 ### Round FRP Cooling Towers (WCT RL Series) — range 10–300 TR — https://winequipments.com/products/round-cooling-towers.html
 A cooling tower rejects waste heat from your process to the atmosphere by evaporation. WCT round towers spray hot water over honeycomb PVC fills while an axial fan draws air through, returning water to your equipment at wet bulb + 4 °C.

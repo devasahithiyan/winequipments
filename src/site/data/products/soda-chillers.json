@@ -1,0 +1,47 @@
+{
+  "family": "cooling",
+  "series": "Engineered to order",
+  "engineered": true,
+  "gallery": [
+    "images/Products/sodachiller2.png"
+  ],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "download": null,
+  "slug": "soda-chillers",
+  "order": 8,
+  "name": "Soda Chillers",
+  "h1": "Soda Chillers for Beverage Plants",
+  "title": "Soda Chillers for Beverage Plants | Win Equipments",
+  "description": "Soda chillers for carbonated drinks and beverage plants, engineered to order by Win Equipments, Coimbatore. Share output and temperatures.",
+  "card": "Chillers built to order to cool water and drinks for soda and beverage production.",
+  "lede": "Carbon dioxide dissolves better in cold water, so carbonated drinks are made and dispensed cold. Win Equipments builds soda chillers to order for beverage and soda plants, sized from your output and temperatures.",
+  "image": "images/Products/Sodachiller.png",
+  "applications": [
+    "Soda and carbonated drink production",
+    "Beverage filling lines",
+    "Chilled drinking water"
+  ],
+  "needs": [
+    "Output required (litres per hour)",
+    "Inlet water temperature and required outlet temperature",
+    "Whether the chiller feeds a carbonator, filler or dispenser",
+    "Available power supply",
+    "Installation space and ambient temperature"
+  ],
+  "related": [
+    "milk-chillers",
+    "industrial-process-chillers",
+    "ice-flake-machines"
+  ],
+  "industries": [
+    "food-beverage"
+  ],
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ]
+}

@@ -3,8 +3,8 @@
 {% set lineup = [products['refrigerated-air-dryers'], products['industrial-process-chillers'], products['round-cooling-towers']] %}
 {{ x.head("Win Equipments product catalogue") }}
 {{ x.cover(lineup, "Product catalogue", "Air dryers, chillers and cooling towers", "Compressed air treatment · Process cooling · Heat rejection",
-   "Win Equipments designs, builds and commissions compressed air treatment equipment, process chillers and cooling towers at its works in Arasur, Coimbatore. Fifteen product lines in three families.",
-   [{"label": "Established", "value": site.founded | string}, {"label": "Installations", "value": site.installations}, {"label": "Product lines", "value": "15"}, {"label": "Quality system", "value": site.certification}], url) }}
+   "Win Equipments designs, builds and commissions compressed air treatment equipment, process chillers and cooling towers at its works in Arasur, Coimbatore. " ~ product_count_word ~ " product lines in three families.",
+   [{"label": "Established", "value": site.founded | string}, {"label": "Installations", "value": site.installations}, {"label": "Product lines", "value": product_count | string}, {"label": "Quality system", "value": site.certification}], url) }}
 
 <section class="page">
   <p class="kicker">About us</p>
@@ -16,7 +16,7 @@
     </div>
     <img class="about-photo" src="{{ img('images/about_us_2.jpg', 1100) }}" alt="">
   </div>
-  <div class="numbers"><div><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div><div><strong>{{ site.installations }}</strong><span>Installations across industry</span></div><div><strong>15</strong><span>Product lines</span></div><div><strong>ISO 9001</strong><span>2015 certified quality system</span></div></div>
+  <div class="numbers"><div><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div><div><strong>{{ site.installations }}</strong><span>Installations across industry</span></div><div><strong>{{ product_count }}</strong><span>Product lines</span></div><div><strong>ISO 9001</strong><span>2015 certified quality system</span></div></div>
   <div class="block"><h3 style="margin-bottom:3mm">From enquiry to commissioning</h3><ol class="steps">{% for t, d in site.process %}<li><strong>{{ t }}</strong>{{ d }}</li>{% endfor %}</ol></div>
   <div class="block"><h3 style="margin-bottom:3mm">Contents</h3>
     <ol class="toc">{% for fam in families.values() %}{% for p in fam.products %}<li>{{ p.name }}<span>{{ p.range }}</span></li>{% endfor %}{% endfor %}</ol></div>

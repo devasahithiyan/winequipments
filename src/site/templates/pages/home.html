@@ -16,7 +16,7 @@
   {"fam": families.cooling, "img": "images/Products/electroplatingchiller.png", "alt": "Process chiller built by Win Equipments", "feature": ["industrial-process-chillers", "anodizing-chillers", "medical-scan-chillers", "acid-cooling-chillers", "ice-flake-machines"]},
   {"fam": families.towers, "img": "images/Products/Squarecoolingtower1.png", "alt": "WCT square FRP cooling tower", "feature": ["round-cooling-towers", "square-cooling-towers", "closed-circuit-cooling-towers", "spare-parts-consumables"]}
 ] %}
-{% set short = {"refrigerated-air-dryers": "Refrigerated dryers", "desiccant-air-dryers": "Desiccant dryers", "compressed-air-filters": "Air filters", "air-receiver-tanks": "Air receivers", "automatic-drain-valves": "Drain valves", "industrial-aftercoolers": "Aftercoolers", "industrial-process-chillers": "Process chillers", "anodizing-chillers": "Anodizing chillers", "medical-scan-chillers": "Scan chillers", "acid-cooling-chillers": "Acid chillers", "ice-flake-machines": "Ice flake machines", "round-cooling-towers": "FRP cooling towers", "square-cooling-towers": "FRP cooling towers", "closed-circuit-cooling-towers": "Coil cooling towers", "spare-parts-consumables": "Spares"} %}
+{% set short = {"refrigerated-air-dryers": "Refrigerated dryers", "desiccant-air-dryers": "Desiccant dryers", "compressed-air-filters": "Air filters", "air-receiver-tanks": "Air receivers", "automatic-drain-valves": "Drain valves", "industrial-aftercoolers": "Aftercoolers", "industrial-process-chillers": "Process chillers", "anodizing-chillers": "Anodizing chillers", "medical-scan-chillers": "Scan chillers", "acid-cooling-chillers": "Acid chillers", "ice-flake-machines": "Ice flake machines", "round-cooling-towers": "FRP cooling towers", "square-cooling-towers": "FRP cooling towers", "closed-circuit-cooling-towers": "Coil cooling towers", "spare-parts-consumables": "Spares", "shell-and-tube-heat-exchangers": "Heat exchangers", "milk-chillers": "Milk chillers", "soda-chillers": "Soda chillers", "condensing-units": "Condensing units"} %}
 {% set steps = site.process %}
 {% block title %}Air Dryers, Chillers & Cooling Towers, Coimbatore | Win{% endblock %}
 {% block description %}Win Equipments manufactures refrigerated and desiccant air dryers, process chillers and FRP cooling towers in Coimbatore. ISO 9001:2015, since 2008.{% endblock %}
@@ -76,7 +76,7 @@
 <section class="h-range" id="products" aria-labelledby="range-title">
   <div class="container">
     <div class="h-head" data-reveal>
-      <h2 id="range-title">Fifteen product lines.<br>Three families. One works.</h2>
+      <h2 id="range-title">{{ product_count_word }} product lines.<br>Three families. One works.</h2>
     </div>
     <div class="h-range__grid">
       <div class="h-range__pin">
@@ -112,7 +112,7 @@
   <div class="container h-numbers__row">
     <div data-reveal><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div>
     <div data-reveal style="--d:1"><strong><span data-count="1200">1,200</span>+</strong><span>Installations across industry</span></div>
-    <div data-reveal style="--d:2"><strong><span data-count="15">15</span></strong><span>Product lines</span></div>
+    <div data-reveal style="--d:2"><strong><span data-count="{{ product_count }}">{{ product_count }}</span></strong><span>Product lines</span></div>
     <div data-reveal style="--d:3"><strong>ISO 9001</strong><span>2015 certified quality system</span></div>
   </div>
 </section>

@@ -27,7 +27,7 @@
   <div class="container h-numbers__row">
     <div data-reveal><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div>
     <div data-reveal style="--d:1"><strong><span data-count="1200">1,200</span>+</strong><span>Installations across industry</span></div>
-    <div data-reveal style="--d:2"><strong><span data-count="15">15</span></strong><span>Product lines</span></div>
+    <div data-reveal style="--d:2"><strong><span data-count="{{ product_count }}">{{ product_count }}</span></strong><span>Product lines</span></div>
     <div data-reveal style="--d:3"><strong>ISO 9001</strong><span>2015 certified quality system</span></div>
   </div>
 </section>
@@ -53,7 +53,7 @@
   <div class="container">
     <div class="section-head" data-reveal>
       <h2 id="families">What we make</h2>
-      <p>Fifteen product lines in three families.</p>
+      <p>{{ product_count_word }} product lines in three families.</p>
     </div>
     <ul class="a-fams">
       {% for fam in families.values() %}

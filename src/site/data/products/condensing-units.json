@@ -1,0 +1,44 @@
+{
+  "family": "cooling",
+  "series": "Engineered to order",
+  "engineered": true,
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "download": null,
+  "slug": "condensing-units",
+  "order": 9,
+  "name": "Condensing Units",
+  "h1": "Refrigeration Condensing Units",
+  "title": "Refrigeration Condensing Units | Win Equipments",
+  "description": "Refrigeration condensing units with compressor, condenser and controls on one base, assembled to order by Win Equipments, Coimbatore.",
+  "card": "Compressor, condenser and controls on one base, assembled to order for your evaporator.",
+  "lede": "A condensing unit is the compressor half of a refrigeration system: the refrigeration compressor, condenser and controls on one base, piped to an evaporator in a cold room, process cooler or air handler. Win Equipments assembles condensing units to order.",
+  "image": "images/works/condensing-unit.jpg",
+  "applications": [
+    "Cold rooms and cold storage",
+    "Process cooling with a separate evaporator",
+    "Air handling and coil cooling"
+  ],
+  "needs": [
+    "Refrigeration capacity (kW or TR) and evaporating temperature",
+    "What the evaporator cools: cold room, process or air handler",
+    "Refrigerant preference",
+    "Site ambient temperature",
+    "Available power supply",
+    "Distance between the condensing unit and the evaporator"
+  ],
+  "related": [
+    "industrial-process-chillers",
+    "ice-flake-machines",
+    "shell-and-tube-heat-exchangers"
+  ],
+  "industries": [],
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ]
+}

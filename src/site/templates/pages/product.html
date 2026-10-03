@@ -16,7 +16,7 @@
   <div class="container p-hero__grid">
     <h1 class="p-hero__title" data-split>{{ p.h1 }}</h1>
     {% set shots = [p.image] + p.gallery %}
-    <div class="p-hero__media" data-gallery>
+    <div class="p-hero__media{% if not p.image.endswith('.png') %} p-hero__media--photo{% endif %}" data-gallery>
       <span class="p-hero__series">{{ p.series }}</span>
       <div class="p-hero__stage">
         {% for img in shots %}

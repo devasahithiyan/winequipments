@@ -576,6 +576,9 @@ locations = json.loads((DATA / "locations.json").read_text())
 industries_by_slug = {i["slug"]: i for i in site["industries"]}
 env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
+NUM_WORDS = {15: "Fifteen", 16: "Sixteen", 17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty", 21: "Twenty-one", 22: "Twenty-two"}
+env.globals["product_count"] = len(products)
+env.globals["product_count_word"] = NUM_WORDS.get(len(products), str(len(products)))
 env.tests["contains"] = lambda seq, item: item in seq
 env.filters["datefmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%-d %B %Y")
 env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"

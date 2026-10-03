@@ -414,3 +414,8 @@
 .ind-how h3 a:hover { color: var(--green-ink); text-decoration: underline; }
 .ind-how h3 span { font-size: var(--fs-small); color: var(--green-ink); font-weight: 650; margin-left: var(--s-2); white-space: nowrap; }
 .ind-how p { color: var(--ink-2); max-width: 52rem; }
+/* heroes whose main image is a real photo rather than a studio cut-out */
+.p-hero__media--photo .p-hero__series { position: static; }
+.p-hero__media--photo .p-hero__stage { background: none; aspect-ratio: 4 / 3; height: auto; border-radius: var(--r-3); overflow: hidden; box-shadow: var(--shadow-1); }
+.p-hero__media--photo .p-hero__shot img { object-fit: cover; object-position: center; }
+@media (min-width: 900px) { .p-hero__media--photo .p-hero__stage { height: auto; max-height: 62svh; } }

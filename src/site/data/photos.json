@@ -31,9 +31,9 @@
   {"file": "air-receivers-group.jpg", "caption": "Air receiver tanks", "product": "air-receiver-tanks", "home": 10},
   {"file": "air-filters-pre-moisture.jpg", "caption": "Pre-filter and moisture filter", "product": "compressed-air-filters"},
   {"file": "drain-valve-low-discharge.jpg", "caption": "Automatic drain valve, low discharge", "product": "automatic-drain-valves"},
-  {"file": "refrigeration-rack-multi-compressor.jpg", "caption": "Refrigeration skid with twin compressors", "product": null, "home": 12},
-  {"file": "condensing-unit.jpg", "caption": "Condensing unit", "product": null},
-  {"file": "milk-coconut-chiller.jpg", "caption": "Chiller for milk and coconut water", "product": null, "industry": "food-dairy-beverage"},
-  {"file": "soda-chiller.jpg", "caption": "Soda chiller", "product": null, "industry": "food-dairy-beverage"},
-  {"file": "shell-tube-heat-exchanger.jpg", "caption": "Shell and tube heat exchanger", "product": null}
+  {"file": "refrigeration-rack-multi-compressor.jpg", "caption": "Refrigeration skid with twin compressors", "product": "condensing-units", "home": 12},
+  {"file": "condensing-unit.jpg", "caption": "Condensing unit", "product": "condensing-units"},
+  {"file": "milk-coconut-chiller.jpg", "caption": "Chiller for milk and coconut water", "product": "milk-chillers"},
+  {"file": "soda-chiller.jpg", "caption": "Soda chiller", "product": "soda-chillers"},
+  {"file": "shell-tube-heat-exchanger.jpg", "caption": "Shell and tube heat exchanger", "product": "shell-and-tube-heat-exchangers"}
 ]

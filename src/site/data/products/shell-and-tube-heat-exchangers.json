@@ -1,0 +1,44 @@
+{
+  "family": "cooling",
+  "series": "Engineered to order",
+  "engineered": true,
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "download": null,
+  "slug": "shell-and-tube-heat-exchangers",
+  "order": 6,
+  "name": "Shell & Tube Heat Exchangers",
+  "h1": "Shell and Tube Heat Exchangers",
+  "title": "Shell & Tube Heat Exchangers, Coimbatore | Win Equipments",
+  "description": "Shell and tube heat exchangers engineered to order by Win Equipments, Coimbatore. Share both fluids, flows and temperatures for sizing.",
+  "card": "Heat exchangers built to order to transfer heat between two fluids without mixing them.",
+  "lede": "A shell and tube heat exchanger transfers heat between two fluids without mixing them: one flows through a bundle of tubes, the other around the tubes inside the shell. Win Equipments builds them to order, sized from your fluids, flows and temperatures.",
+  "image": "images/Products/heat-exchanger.png",
+  "applications": [
+    "Hydraulic and lubricating oil cooling",
+    "Process water and fluid cooling",
+    "Heat transfer between process streams"
+  ],
+  "needs": [
+    "Both fluids and their properties (water, oil, process fluid)",
+    "Flow rate on each side",
+    "Inlet and required outlet temperatures on each side",
+    "Design pressure and temperature",
+    "Preferred shell and tube materials",
+    "Allowable pressure drop and connection sizes"
+  ],
+  "related": [
+    "industrial-process-chillers",
+    "round-cooling-towers",
+    "industrial-aftercoolers"
+  ],
+  "industries": [],
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ]
+}

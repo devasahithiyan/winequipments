@@ -75,6 +75,7 @@ def fmt(v):
 
 env = Environment(loader=FileSystemLoader(str(HERE / "templates")), autoescape=True)
 env.globals.update(site=site, products=products, families=families, photos=photos, img=img, cutout=cutout, qr=qr,
+                   product_count=len(products), product_count_word=site_build.NUM_WORDS.get(len(products), str(len(products))),
                    product_url=site_build.product_url, dew_chart=site_build.dew_chart, today=date.today(),
                    industries=site["industries"], css=Markup((HERE / "templates" / "print.css").read_text()),
                    chart_css=Markup((site_build.SRC / "assets" / "css" / "chart.css").read_text()),
