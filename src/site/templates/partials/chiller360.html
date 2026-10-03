@@ -1,0 +1,89 @@
+{# Interactive CSS-3D model of a WCP 100 process chiller, drawn from the product photo. #}
+{% set ch = products['industrial-process-chillers'] %}
+{% set feat = {} %}{% for f in ch.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
+{% set row = (ch.spec.rows | selectattr('model', 'equalto', 'WCP 100') | list)[0] %}
+{% set parts = [
+  {"t": "Controls", "face": "front", "pts": feat['Controls']},
+  {"t": "Condenser and fans", "face": "front", "pts": ["The refrigerant compressor sends the absorbed heat to the condenser", "Air-cooled or water-cooled condenser", "WCP 100 uses " ~ row.fans ~ " cooling fans"]},
+  {"t": "Refrigeration compressor", "face": "left", "pts": feat['Refrigeration compressor']},
+  {"t": "Brazed plate heat exchanger", "face": "left", "pts": feat['Brazed plate heat exchanger']},
+  {"t": "Stainless steel tank", "face": "top", "pts": feat['Tank'] + ["WCP 100 tank: " ~ row.tank ~ " litres"]},
+  {"t": "Circulating pump", "face": "back", "pts": feat['Circulating pump']}
+] %}
+<section class="c3" id="chiller-360" aria-labelledby="c3-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <p class="c3__eyebrow"><span>360°</span> Process chiller</p>
+      <h2 id="c3-title">Turn a WCP chiller around</h2>
+      <p>Drag the chiller to look at it from every side, then pick a component to see what it does.</p>
+    </div>
+    <div class="c3__grid">
+      <div class="c3__viewer" data-c3>
+        <div class="c3__stage" tabindex="0" role="img" aria-label="3D model of a WCP 100 process chiller. Use the left and right arrow keys to rotate it." data-c3-stage>
+          <div class="c3__floor" aria-hidden="true"></div>
+          <div class="c3__shadow" aria-hidden="true"></div>
+          <div class="c3__model" aria-hidden="true" data-c3-model>
+            <div class="c3__face c3__face--front" data-face="0">
+              <div class="c3__upper"><div class="c3__panel c3__panel--grille-wrap"><div class="c3__fans"><i></i><i></i><i></i><i></i></div><div class="c3__grille"></div></div></div>
+              <div class="c3__lower c3__lower--split">
+                <div class="c3__panel c3__ctrl"><span class="c3__display">15.0</span><span class="c3__cap">CONTROLLER</span><span class="c3__btns"><i></i><i></i><i class="b"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i></i></span></div>
+                <div class="c3__panel c3__brand"><b>WIN</b><span>WCP 100</span></div>
+              </div>
+              <span class="c3__hs" data-hs="1" style="left:14%;top:58%">1</span>
+              <span class="c3__hs" data-hs="2" style="left:62%;top:26%">2</span>
+            </div>
+            <div class="c3__face c3__face--left" data-face="90">
+              <div class="c3__upper c3__upper--split"><div class="c3__panel"></div><div class="c3__panel c3__panel--sticker"><i></i></div></div>
+              <div class="c3__lower"><div class="c3__panel c3__panel--grille-wrap"><div class="c3__grille c3__grille--fine"></div></div></div>
+              <span class="c3__hs" data-hs="3" style="left:50%;top:76%">3</span>
+              <span class="c3__hs" data-hs="4" style="left:28%;top:30%">4</span>
+            </div>
+            <div class="c3__face c3__face--back" data-face="180">
+              <div class="c3__upper c3__upper--split"><div class="c3__panel"></div><div class="c3__panel"></div></div>
+              <div class="c3__lower c3__lower--split"><div class="c3__panel"></div><div class="c3__panel"></div></div>
+              <span class="c3__hs" data-hs="6" style="left:30%;top:74%">6</span>
+            </div>
+            <div class="c3__face c3__face--right" data-face="-90">
+              <div class="c3__upper"><div class="c3__panel"></div></div>
+              <div class="c3__lower"><div class="c3__panel"></div></div>
+            </div>
+            <div class="c3__face c3__face--top" data-face="top">
+              <div class="c3__panel"></div>
+              <span class="c3__hs" data-hs="5" style="left:50%;top:50%">5</span>
+            </div>
+          </div>
+          <p class="c3__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3"/></svg>Drag to rotate</p>
+          <span class="c3__deg" aria-hidden="true" data-c3-deg>035°</span>
+        </div>
+        <div class="c3__controls">
+          <button type="button" class="c3__btn" data-c3-rot="-45" aria-label="Rotate left"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="c3__btn" data-c3-rot="45" aria-label="Rotate right"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-play aria-pressed="true">Pause</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-reset>Reset view</button>
+        </div>
+        <p class="c3__note">Illustrative 3D model based on a WCP 100. Component positions are indicative and vary by model.</p>
+      </div>
+
+      <div class="c3__info">
+        <ol class="c3__parts" data-c3-parts>
+          {% for p in parts %}
+          <li class="c3__part{% if loop.first %} is-active{% endif %}">
+            <button type="button" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="c3p-{{ loop.index }}" data-part="{{ loop.index }}" data-face="{{ p.face }}"><span class="c3__n">{{ loop.index }}</span>{{ p.t }}<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul id="c3p-{{ loop.index }}">{% for pt in p.pts %}<li>{{ pt }}</li>{% endfor %}</ul>
+          </li>
+          {% endfor %}
+        </ol>
+        <dl class="c3__specs">
+          <div><dt>Capacity</dt><dd>{{ row.tr }} TR</dd></div>
+          <div><dt>Cooling fans</dt><dd>{{ row.fans }}</dd></div>
+          <div><dt>Tank</dt><dd>{{ row.tank }} L {{ row.tank_mat }}</dd></div>
+          <div><dt>Condenser</dt><dd>{{ row.condenser }}</dd></div>
+        </dl>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#quote" data-quote-model="WCP 100">Quote a WCP chiller</a>
+          <a class="btn btn--secondary" href="{{ product_url(ch.slug) }}">All {{ ch.spec.rows | length }} WCP models</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
