@@ -400,6 +400,89 @@ def tool_data(tid):
     return {s: [{"model": r["model"], "tr": r["tr"], "m3hr": r["m3hr"]} for r in products[f"{s}-cooling-towers"]["spec"]["rows"]] for s in ("round", "square")} | {
         "round_url": product_url("round-cooling-towers"), "square_url": product_url("square-cooling-towers")}
 
+
+# ---------------------------------------------------------------- blog (tiny markdown)
+def _inline(t):
+    t = html_escape(t)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', t)
+    return t
+
+
+def html_escape(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def md(text):
+    out, para, lst, table = [], [], None, []
+
+    def flush():
+        nonlocal para, lst, table
+        if para:
+            out.append("<p>" + _inline(" ".join(para)) + "</p>"); para = []
+        if lst:
+            tag, items = lst
+            out.append(f"<{tag}>" + "".join(f"<li>{_inline(i)}</li>" for i in items) + f"</{tag}>"); lst = None
+        if table:
+            rows = [[c.strip() for c in r.strip().strip("|").split("|")] for r in table if not re.match(r"^\|?\s*:?-{3}", r.strip())]
+            head, body = rows[0], rows[1:]
+            out.append('<div class="scroll-x"><table class="a-table"><thead><tr>' + "".join(f'<th scope="col">{_inline(c)}</th>' for c in head) + "</tr></thead><tbody>"
+                       + "".join("<tr>" + "".join((f'<th scope="row">{_inline(c)}</th>' if i == 0 else f"<td>{_inline(c)}</td>") for i, c in enumerate(r)) + "</tr>" for r in body) + "</tbody></table></div>")
+            table = []
+
+    for line in text.split("\n"):
+        st = line.strip()
+        if not st:
+            flush(); continue
+        if st.startswith("|"):
+            if para or lst: flush()
+            table.append(st); continue
+        if table: flush()
+        m = re.match(r"^(#{2,3})\s+(.*)", st)
+        if m:
+            flush(); lvl = len(m.group(1)); slug = model_id(m.group(2))
+            out.append(f'<h{lvl} id="{slug}">{_inline(m.group(2))}</h{lvl}>'); continue
+        if st.startswith("@chart"):
+            flush(); kind = st.split()[1]
+            if kind == "dew":
+                out.append(f'<figure class="chart-plate a-figure">{dew_chart("narrow")}{dew_chart("wide")}<figcaption>Water vapour held by compressed air at 7 bar g. Calculated values.</figcaption></figure>')
+            continue
+        if st.startswith("@photo"):
+            flush(); f, _, cap = st[6:].strip().partition("|")
+            out.append(f'<figure class="a-figure a-photo">{picture("images/works/" + f.strip(), cap.strip(), sizes="(min-width: 900px) 760px, 100vw", max_w=1200)}<figcaption>{html_escape(cap.strip())}</figcaption></figure>')
+            continue
+        if st.startswith("> "):
+            flush(); out.append(f'<aside class="a-note"><p>{_inline(st[2:])}</p></aside>'); continue
+        m = re.match(r"^(-|\d+\.)\s+(.*)", st)
+        if m:
+            if para: flush()
+            tag = "ol" if m.group(1)[0].isdigit() else "ul"
+            if lst and lst[0] != tag: flush()
+            if not lst: lst = (tag, [])
+            lst[1].append(m.group(2)); continue
+        if lst: flush()
+        para.append(st)
+    flush()
+    return Markup("\n".join(out))
+
+
+def load_articles():
+    arts = []
+    for f in sorted((SRC / "content" / "blog").glob("*.md")):
+        raw = f.read_text()
+        _, fm, body = raw.split("---", 2)
+        meta = {}
+        for line in fm.strip().split("\n"):
+            k, _, v = line.partition(":")
+            meta[k.strip()] = v.strip()
+        meta["slug"] = f.stem
+        meta["url"] = f"/blog/{f.stem}.html"
+        meta["products"] = [x.strip() for x in meta.get("products", "").split(",") if x.strip()]
+        meta["body"] = body
+        meta["words"] = len(re.sub(r"[@#>|*\-]", " ", body).split())
+        arts.append(meta)
+    return sorted(arts, key=lambda a: (a.get("order", "99").zfill(3), a["slug"]))
+
 def render(template, url, **ctx):
     path = OUT / url.lstrip("/") / "index.html" if url.endswith("/") else OUT / url.lstrip("/")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -434,8 +517,11 @@ def crumbs_ld(items):
     return {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": site["url"] + h} for i, (n, h) in enumerate(items)]}
 
 
-env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data)
+articles = load_articles()
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data, articles=articles, md=md)
 env.filters["pname"] = lambda slug: products[slug]["name"]
+env.tests["contains"] = lambda seq, item: item in seq
+env.filters["datefmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%-d %B %Y")
 env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"
 env.globals["fam_urls"] = lambda fam: [{"@type": "Product", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
 env.globals["industry_count"] = lambda i: sum(1 for p in products.values() if i in p.get("industries", []))
@@ -526,6 +612,9 @@ def main():
     render("pages/contact.html", "/contactus.html")
     render("pages/about.html", "/about.html")
     render("pages/tools.html", "/engineering-tools/")
+    render("pages/blog.html", "/blog.html")
+    for a in articles:
+        render("pages/article.html", a["url"], a=a)
     for t in tools:
         render("pages/tool.html", t["url"], tool=t)
     render("pages/certifications.html", "/certifications.html")

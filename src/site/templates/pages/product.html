@@ -241,6 +241,16 @@
 </section>
 
 {% if p.related %}
+{% set p_arts = (articles | selectattr('products', 'contains', p.slug) | list)[:3] %}
+{% if p_arts %}
+<section class="p-section" aria-labelledby="guides">
+  <div class="container">
+    <h2 id="guides" class="t-more__h">Guides for {{ p.name | lower }}</h2>
+    <ul class="t-cards">{% for b in p_arts %}<li><a href="{{ b.url }}"><strong>{{ b.title }}</strong><span>{{ b.description }}</span></a></li>{% endfor %}</ul>
+  </div>
+</section>
+{% endif %}
+
 <section class="p-section" aria-labelledby="related">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="related">Works with</h2></div>
