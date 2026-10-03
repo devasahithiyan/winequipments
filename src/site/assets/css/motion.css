@@ -39,7 +39,7 @@
   }
 
   /* hero products breathe very slightly */
-  .motion .h-show__slide.is-active > a, .motion .p-hero__shot.is-active picture { animation: float 7s ease-in-out 1.2s infinite; }
+  .motion .p-hero__shot.is-active picture { animation: float 7s ease-in-out 1.2s infinite; }
   .motion .p-hero__media--photo .p-hero__shot.is-active picture { animation: none; }
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 

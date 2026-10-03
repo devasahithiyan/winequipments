@@ -268,7 +268,6 @@
 .motion [data-intro] { animation: fadeup 0.9s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 110ms + 250ms); }
 .motion [data-split] .w { display: inline-block; animation: riseT 0.8s var(--ease-out) both; animation-delay: calc(var(--i) * 45ms); }
 @keyframes riseT { from { transform: translateY(0.38em); } }
-.motion .h-show__stage { animation: fadeup 1s var(--ease-out) 0.3s both; }
 
 /* ===== photo rail ===== */
 .rail { min-width: 0; }

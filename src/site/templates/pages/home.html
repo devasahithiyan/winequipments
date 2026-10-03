@@ -6,11 +6,6 @@
   {"q": "How do I get a quotation?", "a": "Send your requirement through the enquiry form, WhatsApp +91 95972 28969 or email info@winequipments.com. Include your capacity (CFM, TR or water flow), operating pressure and plant conditions so our engineers can size the equipment."},
   {"q": "Which refrigerated dryer suits my compressor?", "a": "Start with the compressor's actual capacity in CFM and correct it for inlet temperature, ambient temperature, pressure and dew point using the factors on the refrigerated dryer page. The calculator there does this for you."}
 ] %}
-{% set heroes = [
-  {"tab": "Air dryers", "p": products['refrigerated-air-dryers'], "specs": [("Capacity", "10–2000 CFM"), ("Dew point", "+3 °C"), ("Pressure", "3–16 bar g")]},
-  {"tab": "Chillers", "p": products['industrial-process-chillers'], "specs": [("Capacity", "0.5–20 TR"), ("Condenser", "Air or water"), ("Tank", "Stainless steel")]},
-  {"tab": "Cooling towers", "p": products['round-cooling-towers'], "specs": [("Capacity", "10–300 TR"), ("Outlet", "Wet bulb + 4 °C"), ("Inlet", "40–100 °C")]}
-] %}
 {% set shows = [
   {"fam": families.air, "img": "images/Products/dessicantdryer.png", "alt": "WHD heatless desiccant air dryer", "feature": ["refrigerated-air-dryers", "desiccant-air-dryers", "compressed-air-filters", "air-receiver-tanks", "automatic-drain-valves"]},
   {"fam": families.cooling, "img": "images/Products/electroplatingchiller.png", "alt": "Process chiller built by Win Equipments", "feature": ["industrial-process-chillers", "anodizing-chillers", "medical-scan-chillers", "acid-cooling-chillers", "ice-flake-machines"]},
@@ -26,38 +21,43 @@
 {% endblock %}
 {% block main %}
 <section class="h-hero" aria-labelledby="hero-title">
+  <div class="h-hero__bg" aria-hidden="true"></div>
   <div class="container h-hero__grid">
     <div class="h-hero__copy">
-      <h1 id="hero-title" class="h-hero__title" data-split>Air dryers, chillers and cooling towers, built in Coimbatore</h1>
-      <p class="h-hero__lede" data-intro style="--d:2">Designed, built and tested at our Arasur works since {{ site.founded }}, and sized to your plant's air, water and heat load.</p>
+      <p class="h-hero__kicker" data-intro><span class="h-hero__dot"></span>Manufacturer · Arasur, Coimbatore · since {{ site.founded }}</p>
+      <h1 id="hero-title" class="h-hero__title" data-split>Dry air and cool water your plant can count on</h1>
+      <p class="h-hero__lede" data-intro style="--d:2">We design, build and commission compressed air dryers, process chillers and cooling towers, sized to your plant and backed by our own service and spares.</p>
       <div class="btn-row h-hero__ctas" data-intro style="--d:3">
-        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
-        <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg><span class="btn__label">WhatsApp</span></a>
+        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Get a recommendation</a>
+        <a class="btn btn--secondary btn--lg" href="/engineering-tools/">Size it yourself</a>
       </div>
-      <p class="h-hero__credit" data-intro style="--d:4"><span>Since {{ site.founded }}</span><span>{{ site.installations }} installations</span><span>{{ site.certification }}</span></p>
+      <p class="h-hero__wa" data-intro style="--d:4">Prefer to talk? <a href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp an engineer</a></p>
+      <dl class="h-hero__trust" data-intro style="--d:5">
+        <div><dt>Installations</dt><dd>{{ site.installations }}</dd></div>
+        <div><dt>In business since</dt><dd>{{ site.founded }}</dd></div>
+        <div><dt>Quality system</dt><dd>ISO 9001:2015</dd></div>
+      </dl>
     </div>
-
-    <div class="h-show" data-switcher>
-      <div class="h-show__stage">
-        {% for h in heroes %}
-        <div class="h-show__slide{% if loop.first %} is-active{% endif %}" id="hs-{{ loop.index }}" role="tabpanel" aria-labelledby="ht-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
-          <a href="{{ product_url(h.p.slug) }}" tabindex="-1" aria-hidden="true">{{ picture(studio(h.p.image), h.p.h1 ~ ' by Win Equipments', sizes='(min-width: 900px) 46vw, 88vw', eager=loop.first, max_w=900) }}</a>
-        </div>
-        {% endfor %}
-      </div>
-      <div class="h-show__tabs" role="tablist" aria-label="Product families">
-        {% for h in heroes %}
-        <button class="h-show__tab{% if loop.first %} is-active{% endif %}" id="ht-{{ loop.index }}" role="tab" type="button" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-controls="hs-{{ loop.index }}" tabindex="{{ '0' if loop.first else '-1' }}"><span>{{ h.tab }}</span><i class="h-show__bar" aria-hidden="true"></i></button>
-        {% endfor %}
-      </div>
-      {% for h in heroes %}
-      <div class="h-show__specs{% if loop.first %} is-active{% endif %}" data-specs="{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
-        <dl>{% for k, v in h.specs %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}</dl>
-        <a class="link-arrow" href="{{ product_url(h.p.slug) }}">{{ h.p.series }} range<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        {% if h.p.slug == 'industrial-process-chillers' %}<a class="h-show__360" href="#chiller-360"><span>360°</span>Turn the chiller around</a>{% endif %}
-      </div>
+    <div class="h-lineup" aria-label="Our three product families">
+      {% set lineup = [(products['round-cooling-towers'], 'tower', 'Cooling towers', '10–300 TR', '/products/cooling-towers.html'), (products['industrial-process-chillers'], 'chiller', 'Process chillers', '0.5–20 TR', '/products/process-cooling.html'), (products['refrigerated-air-dryers'], 'dryer', 'Air dryers', '10–2000 CFM', '/products/compressed-air-treatment.html')] %}
+      {% for pr, key, label, rng, href in lineup %}
+      <a class="h-lineup__item h-lineup__item--{{ key }}" href="{{ href }}" style="--n:{{ loop.index0 }}">
+        {{ picture(studio(pr.image), pr.h1 ~ ' by Win Equipments', sizes='(min-width: 960px) 26vw, 44vw', eager=loop.index0 == 1, max_w=900) }}
+        <span class="h-lineup__tag"><strong>{{ label }}</strong>{{ rng }}</span>
+      </a>
       {% endfor %}
+      <span class="h-lineup__floor" aria-hidden="true"></span>
     </div>
+  </div>
+  <div class="container">
+    <nav class="h-paths" aria-label="What does your plant need?">
+      <p class="h-paths__q">What does your plant need?</p>
+      <ul>
+        <li data-intro style="--d:6"><a href="/products/compressed-air-treatment.html"><span class="h-paths__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9h11a3 3 0 1 0-3-3M3 15h15a3 3 0 1 1-3 3M3 12h8"/></svg></span><span><strong>Dry, clean compressed air</strong><em>Air dryers, filters, drains, receivers</em></span><svg class="h-paths__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li data-intro style="--d:7"><a href="/products/process-cooling.html"><span class="h-paths__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9M9.5 4.5 12 6l2.5-1.5M9.5 19.5 12 18l2.5 1.5"/></svg></span><span><strong>Cold process water</strong><em>Process and special-duty chillers</em></span><svg class="h-paths__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li data-intro style="--d:8"><a href="/products/cooling-towers.html"><span class="h-paths__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21c0-6 2-9 2-13h6c0 4 2 7 2 13zM8 3c1 1 1 2 0 3M12 2c1 1 1 2 0 3M16 3c1 1 1 2 0 3"/></svg></span><span><strong>Rejecting process heat</strong><em>FRP and coil cooling towers</em></span><svg class="h-paths__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </nav>
   </div>
 </section>
 

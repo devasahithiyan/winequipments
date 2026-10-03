@@ -81,7 +81,7 @@
 <section class="section section--rule ab-clients" aria-labelledby="clients">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="clients">Plants we supply</h2><p>A few of the manufacturers running Win Equipments.</p></div>
-    <ul class="logo-wall">{% for c in site.clients %}<li data-reveal style="--d:{{ loop.index0 % 5 }}">{{ picture(c.file, c.name, sizes='160px') }}</li>{% endfor %}</ul>
+    <ul class="logo-wall" data-reveal>{% for c in site.clients %}<li>{{ picture(c.file, c.name, sizes='160px') }}</li>{% endfor %}</ul>
     <div class="ab-ind" data-reveal>
       <p>Industries we serve</p>
       <ul>{% for i in site.industries %}<li><a href="/industries/{{ i.slug }}.html">{{ i.name }}</a></li>{% endfor %}</ul>
