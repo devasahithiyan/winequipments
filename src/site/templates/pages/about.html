@@ -7,18 +7,23 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "AboutPage", "url": site.url ~ "/about.html", "about": {"@id": site.url ~ "/#org"}}]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
-  <div class="container">
-    <h1 data-split>About Win Equipments</h1>
-    <p class="lede">We design, build and commission compressed air treatment equipment, process chillers and cooling towers at our works in Arasur, Coimbatore. Founded in {{ site.founded }} by {{ site.founder }}.</p>
-  </div>
-</section>
-
-<section class="a-hero">
-  <div class="container">
-    <figure class="a-hero__fig" data-parallax>
-      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 1280px) 1200px, 100vw', eager=True, max_w=1280) }}
+<section class="ab-hero">
+  <div class="container ab-hero__grid">
+    <div class="ab-hero__copy">
+      <p class="ab-kicker" data-intro><span></span>Since {{ site.founded }} · Arasur, Coimbatore</p>
+      <h1 data-split>Built in Coimbatore since {{ site.founded }}</h1>
+      <p class="lede" data-intro style="--d:2">Win Equipments designs, manufactures and commissions compressed air treatment equipment, process chillers and cooling towers. We are a manufacturer, supplier and exporter, founded by {{ site.founder }}.</p>
+      <div class="btn-row" data-intro style="--d:3">
+        <a class="btn btn--primary" href="#quote" data-quote-link>Talk to our engineers</a>
+        <a class="btn btn--secondary" href="#visit">Visit the works</a>
+      </div>
+      <ul class="ab-social" data-intro style="--d:4">{% for so in site.social %}<li><a href="{{ so.url }}" target="_blank" rel="noopener me"><svg aria-hidden="true"><use href="#{{ so.icon }}"/></svg>{{ so.name }}</a></li>{% endfor %}</ul>
+    </div>
+    <figure class="ab-hero__media" data-intro style="--d:1">
+      <div class="ab-hero__photo">{{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 55vw, 100vw', eager=True, max_w=1280) }}</div>
       <figcaption>The team at our Arasur works</figcaption>
+      <div class="ab-badge ab-badge--a"><strong>{{ site.installations }}</strong><span>installations</span></div>
+      <div class="ab-badge ab-badge--b">{{ picture('images/iso.png', 'ISO', sizes='40px', max_w=320) }}<span>ISO 9001:2015<br>certified</span></div>
     </figure>
   </div>
 </section>
@@ -33,19 +38,14 @@
 </section>
 
 <section class="section" aria-labelledby="who">
-  <div class="container a-split">
-    <div class="a-split__head" data-reveal>
-      <h2 id="who">Manufacturer, supplier and project partner</h2>
-    </div>
-    <div class="a-split__body stack" data-reveal style="--d:1">
-      <p class="lede">Win Equipments was established in {{ site.founded }} as a manufacturer of compressed air and water cooling systems. We make the equipment, and we also take on project consultancy: designing, planning and commissioning the system around it.</p>
-      <p>Our equipment is fabricated and assembled at our works in Arasur by the team pictured above. After commissioning we support each installation with service and spares.</p>
-      <ul class="a-ticks">
-        <li>Compressed air treatment: refrigerated and desiccant dryers, filters, drain valves, air receivers and aftercoolers</li>
-        <li>Process cooling: WCP process chillers and chillers engineered for anodizing, acid, medical scan and ice flake duties</li>
-        <li>Heat rejection: round and square FRP cooling towers and coil cooling towers</li>
-      </ul>
-    </div>
+  <div class="container">
+    <div class="section-head" data-reveal><h2 id="who">What we do</h2><p>One team from the first enquiry to after-sales support.</p></div>
+    <ul class="pillars">
+      <li data-reveal><span class="pillars__ic"><svg aria-hidden="true"><use href="#i-ruler"/></svg></span><h3>Design and sizing</h3><p>Our engineers select the model from catalogue ratings and correction factors, or engineer a special unit around your duty.</p></li>
+      <li data-reveal style="--d:1"><span class="pillars__ic"><svg aria-hidden="true"><use href="#i-cog"/></svg></span><h3>Manufacturing</h3><p>Fabrication and assembly at our works in Arasur, Coimbatore. Chillers are factory tested; air receivers are hydrostatically tested.</p></li>
+      <li data-reveal style="--d:2"><span class="pillars__ic"><svg aria-hidden="true"><use href="#i-plug"/></svg></span><h3>Project consultancy</h3><p>We design, plan and commission the system around the equipment: piping, filtration, drains and controls.</p></li>
+      <li data-reveal style="--d:3"><span class="pillars__ic"><svg aria-hidden="true"><use href="#i-wrench"/></svg></span><h3>Service and spares</h3><p>After-sales service and spares for the equipment we supply, from cooling tower fills to refrigeration parts.</p></li>
+    </ul>
   </div>
 </section>
 
@@ -75,6 +75,17 @@
       </a></li>
       {% endfor %}
     </ul>
+  </div>
+</section>
+
+<section class="section section--rule ab-clients" aria-labelledby="clients">
+  <div class="container">
+    <div class="section-head" data-reveal><h2 id="clients">Plants we supply</h2><p>A few of the manufacturers running Win Equipments.</p></div>
+    <ul class="logo-wall">{% for c in site.clients %}<li data-reveal style="--d:{{ loop.index0 % 5 }}">{{ picture(c.file, c.name, sizes='160px') }}</li>{% endfor %}</ul>
+    <div class="ab-ind" data-reveal>
+      <p>Industries we serve</p>
+      <ul>{% for i in site.industries %}<li><a href="/industries/{{ i.slug }}.html">{{ i.name }}</a></li>{% endfor %}</ul>
+    </div>
   </div>
 </section>
 
@@ -118,18 +129,20 @@
   </div>
 </section>
 
-<section class="section section--rule" aria-labelledby="visit">
-  <div class="container a-split">
-    <div class="a-split__head" data-reveal>
-      <h2 id="visit">Visit the works</h2>
+<section class="section section--rule" id="visit" aria-labelledby="visit-title">
+  <div class="container ab-visit">
+    <div class="ab-visit__info" data-reveal>
+      <h2 id="visit-title">Visit the works</h2>
       <p>Visits to the works are welcome by appointment. Call or WhatsApp us to arrange one.</p>
-    </div>
-    <div class="a-visit" data-reveal style="--d:1">
       <address>{{ site.address_lines | join('<br>' | safe) }}</address>
       <div class="btn-row">
-        <a class="btn btn--secondary" href="{{ site.maps }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Open in Google Maps</a>
+        <a class="btn btn--secondary" href="{{ site.maps }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Directions</a>
         <a class="btn btn--secondary" href="tel:{{ site.phones[0].tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phones[0].display }}</a>
       </div>
+      <div class="ab-follow"><p>Follow our latest builds</p><ul>{% for so in site.social %}<li><a href="{{ so.url }}" target="_blank" rel="noopener me"><svg aria-hidden="true"><use href="#{{ so.icon }}"/></svg>{{ so.name }}</a></li>{% endfor %}</ul></div>
+    </div>
+    <div class="ab-map" data-reveal style="--d:1">
+      <iframe title="Map: Win Equipments, Arasur, Coimbatore" src="https://www.google.com/maps?q=Win+Equipments,+Kallangadu,+Nadu+Arasur,+Coimbatore+641407&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>

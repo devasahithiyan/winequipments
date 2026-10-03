@@ -528,6 +528,7 @@ def org_schema():
         "areaServed": {"@type": "Country", "name": "India"},
         "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": ph["tel"], "email": site["email"], "areaServed": "IN", "availableLanguage": ["en", "ta"]} for ph in site["phones"]],
         "hasCredential": {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": site["certification"]},
+        "sameAs": [s["url"] for s in site.get("social", [])],
         "knowsAbout": ["Refrigerated air dryers", "Desiccant air dryers", "Compressed air filtration", "Process chillers", "FRP cooling towers", "Coil cooling towers"],
     }
 

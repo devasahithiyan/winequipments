@@ -266,5 +266,17 @@
       "We plan and commission the system, then provide after-sales service and spares."
     ]
   ],
-  "founder": "Mr. Ramasamy Ananthakumar"
+  "founder": "Mr. Ramasamy Ananthakumar",
+  "social": [
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/winequipment",
+      "icon": "i-fb"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/winequipments/",
+      "icon": "i-ig"
+    }
+  ]
 }

@@ -9,6 +9,7 @@
           {% for ph in site.phones %}<a href="tel:{{ ph.tel }}" data-track="call_click">{{ ph.display }}</a>{% endfor %}
           <a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a>
         </address>
+        <ul class="social">{% for s in site.social %}<li><a href="{{ s.url }}" target="_blank" rel="noopener me" aria-label="Win Equipments on {{ s.name }}"><svg aria-hidden="true"><use href="#{{ s.icon }}"/></svg></a></li>{% endfor %}</ul>
       </div>
       {% for fam in families.values() %}
       <div class="footer-col">
