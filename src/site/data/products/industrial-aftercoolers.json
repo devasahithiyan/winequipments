@@ -37,5 +37,35 @@
       "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
     }
   ],
-  "download": null
+  "download": null,
+  "spin": [
+    [
+      "aftercooler-4.jpg",
+      "Front, fan side"
+    ],
+    [
+      "aftercooler-7.jpg",
+      "Front, with moisture separator and filter regulator"
+    ],
+    [
+      "aftercooler-5.jpg",
+      "Front right"
+    ],
+    [
+      "aftercooler-6.jpg",
+      "Right side"
+    ],
+    [
+      "aftercooler-3.jpg",
+      "Back right, coil side"
+    ],
+    [
+      "aftercooler-2.jpg",
+      "Back, finned coil"
+    ],
+    [
+      "aftercooler-1.jpg",
+      "Front left, moisture separator"
+    ]
+  ]
 }

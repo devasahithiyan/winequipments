@@ -60,6 +60,7 @@
 </nav>
 
 {% if p.slug == 'industrial-process-chillers' %}{% include "partials/chiller360.html" %}{% endif %}
+{% if p.spin is defined %}{% include "partials/photo_spin.html" %}{% endif %}
 
 {% if p_photos %}
 <section class="p-section" aria-labelledby="photos">

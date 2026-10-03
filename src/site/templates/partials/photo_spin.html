@@ -1,0 +1,32 @@
+{# Multi-angle photo viewer: real photos of one unit from several sides. Expects `p` with p.spin = [[file, caption], ...] #}
+<section class="spin" aria-labelledby="spin-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <p class="c3__eyebrow"><span>{{ p.spin | length }} views</span> Real photos</p>
+      <h2 id="spin-title">Walk around the aftercooler</h2>
+      <p>Drag the photo, use the arrows or tap a view to see the unit from every side. These are photos of one aftercooler built at our works.</p>
+    </div>
+    <div class="spin__viewer" data-spin>
+      <div class="spin__stage" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Aftercooler photographed from {{ p.spin | length }} sides. Use the left and right arrow keys to change view." data-spin-stage>
+        {% for f, cap in p.spin %}
+        <figure class="spin__frame{% if loop.first %} is-active{% endif %}" data-spin-frame="{{ loop.index0 }}" aria-hidden="{{ 'false' if loop.first else 'true' }}">
+          {{ picture('images/works/' ~ f, 'Aftercooler: ' ~ cap, sizes='(min-width: 1024px) 760px, 100vw', max_w=1400) }}
+        </figure>
+        {% endfor %}
+        <p class="c3__hint spin__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3"/></svg>Drag to walk around</p>
+        <span class="c3__deg spin__count" aria-live="polite" data-spin-count>1 / {{ p.spin | length }}</span>
+      </div>
+      <div class="spin__bar">
+        <button type="button" class="c3__btn" data-spin-step="-1" aria-label="Previous view"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+        <ol class="spin__thumbs">
+          {% for f, cap in p.spin %}
+          <li><button type="button" class="spin__thumb{% if loop.first %} is-active{% endif %}" data-spin-go="{{ loop.index0 }}" aria-label="View {{ loop.index }}: {{ cap }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ picture('images/works/' ~ f, '', sizes='72px', max_w=320) }}</button></li>
+          {% endfor %}
+        </ol>
+        <button type="button" class="c3__btn" data-spin-step="1" aria-label="Next view"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+      </div>
+      <p class="spin__cap" data-spin-cap>{{ p.spin[0][1] }}</p>
+    </div>
+  </div>
+</section>
+<script src="/js/spin.js?v={{ js_ver }}" defer></script>
