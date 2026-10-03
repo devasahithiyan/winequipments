@@ -320,3 +320,20 @@
     }));
   });
 })();
+
+/* chat launcher: load the assistant on first tap */
+(() => {
+  const btn = document.querySelector('.chat-launcher');
+  if (!btn) return;
+  const load = () => {
+    btn.removeEventListener('click', load);
+    btn.setAttribute('aria-busy', 'true');
+    const sc = document.createElement('script');
+    sc.src = btn.dataset.chatSrc;
+    sc.onload = () => { btn.removeAttribute('aria-busy'); window.WinChat.init(btn); };
+    sc.onerror = () => { btn.removeAttribute('aria-busy'); location.href = 'https://wa.me/919597228969'; };
+    document.head.appendChild(sc);
+    (window.dataLayer = window.dataLayer || []).push({ event: 'chat_open', page: location.pathname });
+  };
+  btn.addEventListener('click', load);
+})();

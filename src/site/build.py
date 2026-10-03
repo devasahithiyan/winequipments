@@ -400,8 +400,37 @@ def copy_static():
             shutil.copy2(ROOT / php, OUT / php)
 
 
+def build_chat_knowledge():
+    """Product facts for the chat assistant, generated from the same data as the pages."""
+    lines = [f"Company: {site['name']}, manufacturer in Arasur, Coimbatore, Tamil Nadu, India, established {site['founded']}. "
+             f"{site['certification']} certified. {site['installations']} installations. Phones: {', '.join(p['display'] for p in site['phones'])}. "
+             f"WhatsApp: https://wa.me/{site['whatsapp']}. Email: {site['email']}. Address: {', '.join(site['address_lines'])}.", ""]
+    for fam in families.values():
+        lines.append(f"## {fam['name']}")
+        for p in fam["products"]:
+            url = site["url"] + product_url(p["slug"])
+            lines.append(f"### {p['name']} ({p['series']}) — range {p['range']} — {url}")
+            lines.append(p["lede"])
+            for k in p.get("key_specs", []):
+                lines.append(f"- {k['label']}: {k['value']}")
+            for c in p.get("conditions", []):
+                lines.append(f"- {c['label']}: {c['value']}")
+            if p.get("spec"):
+                cols = p["spec"]["columns"]
+                lines.append("Models: " + " | ".join(", ".join(f"{c['label']}{(' (' + c['unit'] + ')') if c.get('unit') else ''}: {cell(r, c['key'])}" for c in cols) for r in p["spec"]["rows"]))
+                for n in p["spec"]["notes"]:
+                    lines.append(f"Note: {n}")
+            if p.get("needs"):
+                lines.append("Engineered to order. To quote we need: " + "; ".join(p["needs"]))
+            if p.get("selection", {}).get("formula"):
+                lines.append("Sizing: " + p["selection"]["formula"])
+            lines.append("")
+    text = "\n".join(lines).replace("EOT", "E0T")
+    (OUT / "chat_knowledge.php").write_text("<?php\nreturn <<<'EOT'\n" + text + "\nEOT;\n")
+
+
 def build_css():
-    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "home.css"]
+    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "home.css", "chat.css"]
     css = "\n".join((SRC / "assets" / "css" / f).read_text() for f in order if (SRC / "assets" / "css" / f).exists())
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     css = re.sub(r"\s+", " ", css)
@@ -426,6 +455,7 @@ def main():
     import hashlib
     env.globals["js_ver"] = hashlib.md5(b"".join((SRC / "assets" / "js" / f).read_bytes() for f in sorted(os.listdir(SRC / "assets" / "js")))).hexdigest()[:8]
 
+    build_chat_knowledge()
     render("pages/home.html", "/")
     for fam in families.values():
         render("pages/family.html", f"/products/{fam['slug']}.html", fam=fam)
