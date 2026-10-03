@@ -47,9 +47,11 @@ These pages now say **engineered to order** and list what the customer should se
 
 ## 5. Assets needed
 
-- Official vector logo (SVG/AI/EPS). The site currently uses a redrawn SVG based on the 94 × 53 px PNG.
+- Official vector logo (SVG/AI/EPS) or a larger PNG (at least 400 px wide). The site uses the original 94 × 53 px `images/logo.png`, which looks soft on high-resolution screens.
 - Factory photography: shop floor, fabrication, testing, finished equipment, installations at customer sites (with permission). Existing factory photos had a baked-in green tint; they are shown in black and white.
 - Clean product photos for aftercoolers, spares, acid chillers.
+- **Studio photography brief (biggest visual upgrade):** WRD dryer, WCP chiller, WCT round and square towers, WHD dryer, WMF filters, WRV receiver, WCC coil tower. Seamless light-grey backdrop, three-quarter front view, even soft light, 2000 px or larger. Current cut-outs are about 600 px and the chiller cut-out has a dark halo.
+- `images/banner_opt.jpg` and `Industrial_Equipment_Video_Generation.mp4` are AI-generated (Veo watermark) and are not used on the site.
 - Blog images: the current ones are AI-generated (holograms, non-Indian factories). Replace with real photos or remove.
 
 ## 6. Content to write

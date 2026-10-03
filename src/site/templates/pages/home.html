@@ -6,13 +6,18 @@
   {"q": "How do I get a quotation?", "a": "Send your requirement through the enquiry form, WhatsApp +91 95972 28969 or email info@winequipments.com. Include your capacity (CFM, TR or water flow), operating pressure and plant conditions so our engineers can size the equipment."},
   {"q": "Which refrigerated dryer suits my compressor?", "a": "Start with the compressor's actual capacity in CFM and correct it for inlet temperature, ambient temperature, pressure and dew point using the factors on the refrigerated dryer page. The calculator there does this for you."}
 ] %}
-{% set tiles = [
-  {"fam": families.air, "p": products['refrigerated-air-dryers'], "h": 80, "feature": ["refrigerated-air-dryers", "desiccant-air-dryers", "compressed-air-filters", "air-receiver-tanks"]},
-  {"fam": families.cooling, "p": products['industrial-process-chillers'], "h": 88, "feature": ["industrial-process-chillers", "anodizing-chillers", "medical-scan-chillers", "ice-flake-machines"]},
-  {"fam": families.towers, "p": products['round-cooling-towers'], "h": 100, "feature": ["round-cooling-towers", "square-cooling-towers", "closed-circuit-cooling-towers", "spare-parts-consumables"]}
+{% set heroes = [
+  {"tab": "Air dryers", "p": products['refrigerated-air-dryers'], "specs": [("Capacity", "10–2000 CFM"), ("Dew point", "+3 °C"), ("Pressure", "3–16 bar g")]},
+  {"tab": "Chillers", "p": products['industrial-process-chillers'], "specs": [("Capacity", "0.5–20 TR"), ("Condenser", "Air or water"), ("Tank", "Stainless steel")]},
+  {"tab": "Cooling towers", "p": products['round-cooling-towers'], "specs": [("Capacity", "10–300 TR"), ("Outlet", "Wet bulb + 4 °C"), ("Inlet", "40–100 °C")]}
+] %}
+{% set shows = [
+  {"fam": families.air, "img": "images/Products/dessicantdryer.png", "alt": "WHD heatless desiccant air dryer", "feature": ["refrigerated-air-dryers", "desiccant-air-dryers", "compressed-air-filters", "air-receiver-tanks", "automatic-drain-valves"]},
+  {"fam": families.cooling, "img": "images/Products/electroplatingchiller.png", "alt": "Process chiller built by Win Equipments", "feature": ["industrial-process-chillers", "anodizing-chillers", "medical-scan-chillers", "acid-cooling-chillers", "ice-flake-machines"]},
+  {"fam": families.towers, "img": "images/Products/Squarecoolingtower1.png", "alt": "WCT square FRP cooling tower", "feature": ["round-cooling-towers", "square-cooling-towers", "closed-circuit-cooling-towers", "spare-parts-consumables"]}
 ] %}
 {% set steps = [
-  ("Share your requirement", "Send the duty: compressor CFM, heat load in TR or water flow, temperatures and site conditions. A drawing or nameplate photo helps."),
+  ("Share your requirement", "Compressor CFM, heat load in TR or water flow, temperatures and site conditions. A drawing or nameplate photo helps."),
   ("We size the equipment", "Our engineers select the model from catalogue ratings and correction factors, or engineer a special unit."),
   ("Built at Arasur", "Fabricated and assembled at our works in Arasur, Coimbatore."),
   ("Tested before dispatch", "Chillers are factory tested before delivery; air receivers are hydrostatically tested."),
@@ -20,149 +25,173 @@
 ] %}
 {% block title %}Air Dryer, Chiller &amp; Cooling Tower Manufacturer, Coimbatore | Win Equipments{% endblock %}
 {% block description %}Win Equipments manufactures refrigerated and desiccant air dryers, industrial chillers and FRP cooling towers in Coimbatore. ISO 9001:2015, since 2008.{% endblock %}
+{% block body_class %}has-action-bar page-home{% endblock %}
 {% block schema %}
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), {"@type": "WebSite", "@id": site.url ~ "/#website", "url": site.url ~ "/", "name": site.name, "publisher": {"@id": site.url ~ "/#org"}}, faq_ld(faqs)]}) }}
 {% endblock %}
 {% block main %}
-<section class="hero" aria-labelledby="hero-title">
-  <div class="container">
-    <div class="hero__copy">
-      <h1 id="hero-title">Air dryers, chillers and cooling towers, built in Coimbatore</h1>
-      <div class="hero__aside">
-        <p class="hero__lede">Designed, built and tested at our Arasur works since {{ site.founded }}, and sized to your plant's air, water and heat load.</p>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
-          <a class="btn btn--secondary btn--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg><span class="btn__label">WhatsApp</span></a>
-        </div>
+<section class="h-hero" aria-labelledby="hero-title">
+  <div class="container h-hero__grid">
+    <div class="h-hero__copy">
+      <h1 id="hero-title" class="h-hero__title" data-split>Air dryers, chillers and cooling towers, built in Coimbatore</h1>
+      <p class="h-hero__lede" data-intro style="--d:2">Designed, built and tested at our Arasur works since {{ site.founded }}, and sized to your plant's air, water and heat load.</p>
+      <div class="btn-row h-hero__ctas" data-intro style="--d:3">
+        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
+        <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg><span class="btn__label">WhatsApp</span></a>
       </div>
+      <p class="h-hero__credit" data-intro style="--d:4"><span>Since {{ site.founded }}</span><span>{{ site.installations }} installations</span><span>{{ site.certification }}</span></p>
     </div>
-    <div class="tiles" id="products">
-      {% for t in tiles %}
-      <article class="tile" aria-labelledby="tile-{{ t.fam.id }}">
-        <a class="tile__stage" href="/products/{{ t.fam.slug }}.html" tabindex="-1" aria-hidden="true">
-          <span class="tile__img" style="--h:{{ t.h }}%">{{ picture(t.p.image, '', sizes='(min-width: 900px) 26vw, 60vw', eager=True, max_w=640) }}</span>
+
+    <div class="h-show" data-switcher>
+      <div class="h-show__stage">
+        {% for h in heroes %}
+        <a class="h-show__slide{% if loop.first %} is-active{% endif %}" id="hs-{{ loop.index }}" href="{{ product_url(h.p.slug) }}" role="tabpanel" aria-labelledby="ht-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+          {{ picture(studio(h.p.image), h.p.h1 ~ ' by Win Equipments', sizes='(min-width: 900px) 46vw, 88vw', eager=loop.first, max_w=900) }}
         </a>
-        <div class="tile__body">
-          <h2 id="tile-{{ t.fam.id }}" class="tile__title"><a href="/products/{{ t.fam.slug }}.html">{{ t.fam.name }}</a></h2>
-          <p class="tile__summary">{{ t.fam.summary }}</p>
-          <ul class="tile__list">
-            {% for slug in t.feature %}{% set pr = products[slug] %}
-            <li><a href="{{ product_url(pr.slug) }}"><span>{{ pr.name }}</span><span class="tile__range">{{ pr.range }}</span></a></li>
-            {% endfor %}
-          </ul>
-          <a class="link-arrow" href="/products/{{ t.fam.slug }}.html">All {{ t.fam.products | length }} {{ t.fam.short | lower }} products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-      </article>
+        {% endfor %}
+      </div>
+      <div class="h-show__tabs" role="tablist" aria-label="Product families">
+        {% for h in heroes %}
+        <button class="h-show__tab{% if loop.first %} is-active{% endif %}" id="ht-{{ loop.index }}" role="tab" type="button" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-controls="hs-{{ loop.index }}" tabindex="{{ '0' if loop.first else '-1' }}"><span>{{ h.tab }}</span><i class="h-show__bar" aria-hidden="true"></i></button>
+        {% endfor %}
+      </div>
+      {% for h in heroes %}
+      <dl class="h-show__specs{% if loop.first %} is-active{% endif %}" data-specs="{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+        {% for k, v in h.specs %}<div><dt>{{ k }}</dt><dd>{{ v }}</dd></div>{% endfor %}
+        <a class="link-arrow" href="{{ product_url(h.p.slug) }}">{{ h.p.series }} range<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </dl>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<section class="trust" aria-labelledby="trust-title">
-  <div class="container trust__grid">
-    <div class="trust__facts">
-      <h2 id="trust-title" class="visually-hidden">Why plants choose Win Equipments</h2>
-      <div class="trust__fact trust__fact--iso">{{ picture('images/iso.png', 'ISO 9001:2015 certified', sizes='56px', max_w=200) }}<span><strong>{{ site.certification }}</strong>Certified quality system</span></div>
-      <div class="trust__fact"><span><strong>Since {{ site.founded }}</strong>Manufacturing in Coimbatore</span></div>
-      <div class="trust__fact"><span><strong>{{ site.installations }}</strong>Installations across industry</span></div>
+<section class="marquee" aria-label="Plants we supply">
+  <p class="marquee__label container">Supplying plants including</p>
+  <div class="marquee__track" data-marquee>
+    <ul class="marquee__list">
+      {% for c in site.clients %}<li>{{ picture(c.file, c.name, sizes='140px') }}</li>{% endfor %}
+    </ul>
+    <ul class="marquee__list" aria-hidden="true">
+      {% for c in site.clients %}<li>{{ picture(c.file, '', sizes='140px') }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="h-range" id="products" aria-labelledby="range-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <h2 id="range-title">Fifteen product lines.<br>Three families. One works.</h2>
     </div>
-    <div class="trust__clients">
-      <p class="trust__label">Supplying plants including</p>
-      <ul class="logo-wall">
-        {% for c in site.clients[:10] %}<li>{{ picture(c.file, c.name, sizes='140px') }}</li>{% endfor %}
-      </ul>
+    <div class="h-range__grid">
+      <div class="h-range__pin">
+        {% for s in shows %}
+        <div class="h-range__text{% if loop.first %} is-active{% endif %}" data-range-text="{{ loop.index0 }}">
+          <p class="h-range__count">{{ s.fam.products | length }} products</p>
+          <h3><a href="/products/{{ s.fam.slug }}.html">{{ s.fam.name }}</a></h3>
+          <p class="h-range__lede">{{ s.fam.lede }}</p>
+          <ul class="h-range__list">
+            {% for slug in s.feature %}{% set pr = products[slug] %}
+            <li><a href="{{ product_url(pr.slug) }}"><span>{{ pr.name }}</span><span>{{ pr.range }}</span></a></li>
+            {% endfor %}
+          </ul>
+          <a class="btn btn--secondary" href="/products/{{ s.fam.slug }}.html">Explore {{ s.fam.short | lower }}</a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="h-range__media">
+        {% for s in shows %}
+        <figure class="h-range__fig" data-range-fig="{{ loop.index0 }}">
+          <a href="/products/{{ s.fam.slug }}.html" tabindex="-1" aria-hidden="true">{{ picture(studio(s.img), s.alt, sizes='(min-width: 900px) 52vw, 80vw', max_w=900) }}</a>
+          <figcaption><strong>{{ s.fam.name }}</strong>{{ s.fam.summary }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="process-title">
-  <div class="container">
-    <div class="section-head section-head--row">
-      <div>
-        <h2 id="process-title">How we work with you</h2>
-        <p>From the first enquiry to commissioning, one team at our Arasur works handles the job.</p>
+<section class="h-numbers" aria-label="Win Equipments in numbers">
+  <div class="container h-numbers__row">
+    <div data-reveal><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div>
+    <div data-reveal style="--d:1"><strong><span data-count="1200">1,200</span>+</strong><span>Installations across industry</span></div>
+    <div data-reveal style="--d:2"><strong><span data-count="15">15</span></strong><span>Product lines</span></div>
+    <div data-reveal style="--d:3"><strong>ISO 9001</strong><span>2015 certified quality system</span></div>
+  </div>
+</section>
+
+<section class="h-eng" aria-labelledby="eng-title">
+  <div class="container h-eng__grid">
+    <div class="h-eng__copy" data-reveal>
+      <h2 id="eng-title">Sized from real engineering data</h2>
+      <p class="lede">Compressed air leaves the compressor saturated. A WRD dryer chills it from 45 °C to a +3 °C pressure dew point, and 92% of the water vapour condenses and drains away.</p>
+      <p>Every product page carries the full model table, rating conditions and correction factors from our catalogues.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/products/refrigerated-air-dryers.html#sizing">Size a dryer</a>
+        <a class="btn btn--secondary" href="/downloads.html">Download catalogues</a>
       </div>
-      <a class="link-arrow" href="/contactus.html">Start with your requirement<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <ol class="process">
+    <figure class="chart-plate h-eng__chart" data-reveal style="--d:1">
+      {{ dew_chart('narrow') }}{{ dew_chart('wide') }}
+      <figcaption>Water vapour held by compressed air at 7 bar g. Calculated values.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="h-process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <h2 id="process-title">From enquiry to commissioning</h2>
+      <p>One team at our Arasur works handles the job end to end.</p>
+    </div>
+    <ol class="h-steps" data-steps>
       {% for title, text in steps %}
-      <li class="process__step"><span class="process__n" aria-hidden="true">{{ loop.index }}</span><h3>{{ title }}</h3><p>{{ text }}</p></li>
+      <li class="h-step" data-reveal style="--d:{{ loop.index0 }}"><span class="h-step__n">{{ loop.index }}</span><h3>{{ title }}</h3><p>{{ text }}</p></li>
       {% endfor %}
     </ol>
   </div>
 </section>
 
-<section class="band-dark" aria-labelledby="works-title">
-  <div class="container works">
-    <div class="works__copy">
+<section class="h-works" aria-labelledby="works-title">
+  <div class="container h-works__grid">
+    <figure class="h-works__main" data-parallax>
+      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 900px) 62vw, 100vw', max_w=960) }}
+    </figure>
+    <div class="h-works__copy" data-reveal>
       <h2 id="works-title">Made and tested at our own works</h2>
       <p>Win Equipments was established in {{ site.founded }} as a manufacturer of compressed air and water cooling systems. We also take on project consultancy: designing, planning and commissioning the system around the equipment.</p>
-      <a class="btn btn--outline-light" href="/about.html">About Win Equipments</a>
-    </div>
-    <figure class="works__photos">
-      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 900px) 56vw, 100vw', max_w=960, cls='works__main') }}
-      {{ picture('images/slideshow3.png', 'Technician wiring the control panel of a chiller', sizes='(min-width: 900px) 28vw, 50vw', max_w=900, gray=True) }}
-      {{ picture('images/cert_banner.jpg', 'Fabrication at the Win Equipments works', sizes='(min-width: 900px) 28vw, 50vw', max_w=900, gray=True) }}
-    </figure>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="eng-title">
-  <div class="container explain">
-    <div class="explain__copy">
-      <h2 id="eng-title">Sized from real engineering data</h2>
-      <p class="lede">Every model is selected from published ratings, not guesswork. For a refrigerated dryer, that means chilling compressed air from 45 °C to a +3 °C pressure dew point so the water condenses and drains out.</p>
-      <ul class="check-list">
-        <li>Model tables with capacity, power and dimensions on every product page</li>
-        <li>Correction factors for your inlet temperature, ambient and pressure</li>
-        <li>Original catalogues to download</li>
-      </ul>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="/products/refrigerated-air-dryers.html#sizing">Size a dryer</a>
-        <a class="btn btn--secondary" href="/downloads.html">Catalogues</a>
+      <div class="h-works__thumbs">
+        {{ picture('images/slideshow3.png', 'Technician wiring the control panel of a chiller', sizes='(min-width: 900px) 15vw, 45vw', max_w=900, gray=True) }}
+        {{ picture('images/cert_banner.jpg', 'Fabrication at the Win Equipments works', sizes='(min-width: 900px) 15vw, 45vw', max_w=900, gray=True) }}
       </div>
+      <a class="link-arrow" href="/about.html">About Win Equipments<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <figure class="chart-plate">
-      {{ dew_chart('narrow') }}{{ dew_chart('wide') }}
-      <figcaption>Water vapour held by compressed air at 7 bar g, and what a WRD dryer removes. Calculated values.</figcaption>
-    </figure>
   </div>
 </section>
 
-<section class="section section--surface" id="industries" aria-labelledby="ind-title">
+<section class="h-ind" id="industries" aria-labelledby="ind-title">
   <div class="container">
-    <div class="section-head section-head--row">
-      <div>
-        <h2 id="ind-title">Where our equipment runs</h2>
-        <p>Pick your industry to see the equipment it uses.</p>
-      </div>
-      <a class="link-arrow" href="/industries/">All industries<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <div class="h-head" data-reveal>
+      <h2 id="ind-title">Where our equipment runs</h2>
+      <p>Choose your industry to see the equipment it uses.</p>
     </div>
-    <ul class="ind-grid">
+    <ul class="h-ind__grid">
       {% for ind in industries.values() %}
-      <li><a href="/industries/{{ ind.slug }}.html"><span class="ind-grid__name">{{ ind.name }}</span><span class="ind-grid__meta">{{ ind.products | map('pname') | list | first }}{% if ind.products | length > 1 %} + {{ ind.products | length - 1 }} more{% endif %}</span></a></li>
+      <li data-reveal style="--d:{{ loop.index0 % 4 }}"><a href="/industries/{{ ind.slug }}.html"><span class="h-ind__name">{{ ind.name }}</span><span class="h-ind__meta">{{ ind.products | length }} product lines</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
       {% endfor %}
     </ul>
   </div>
 </section>
 
-<section class="section" aria-labelledby="faq-title">
-  <div class="container resources">
-    <div>
-      <h2 id="dl-title">Catalogues</h2>
-      <ul class="downloads downloads--compact">
-        {% for slug in ['refrigerated-air-dryers', 'industrial-process-chillers', 'round-cooling-towers', 'compressed-air-filters'] %}{% set pr = products[slug] %}
-        <li><a href="{{ pr.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><strong>{{ 'FRP cooling towers' if slug == 'round-cooling-towers' else pr.name }}</strong><span>{{ pr.series if slug != 'round-cooling-towers' else 'WCT Series' }} · PDF</span></span></a></li>
-        {% endfor %}
-      </ul>
-      <a class="link-arrow" href="/downloads.html">All downloads<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-    <div>
+<section class="h-faq" aria-labelledby="faq-title">
+  <div class="container h-faq__grid">
+    <div data-reveal>
       <h2 id="faq-title">Common questions</h2>
-      {{ m.faq(faqs) }}
+      <p>Can't find your answer? <a href="{{ whatsapp('Hello Win Equipments, I have a question.') }}">Ask us on WhatsApp</a>.</p>
     </div>
+    {{ m.faq(faqs) }}
   </div>
 </section>
 
 {% include "partials/enquiry.html" %}
 {% endblock %}
+{% block scripts %}<script src="/js/home.js?v={{ js_ver }}" defer></script>{% endblock %}

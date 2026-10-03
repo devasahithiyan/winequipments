@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Static site generator for winequipments.com. Run: python3 src/site/build.py"""
 import json
+import os
 import math
 import re
 import shutil
@@ -11,7 +12,8 @@ from urllib.parse import quote
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from markupsafe import Markup
-from PIL import Image, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageOps
+import numpy as np
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent.parent
@@ -92,6 +94,38 @@ def picture(path, alt, sizes="100vw", cls="", eager=False, max_w=None, gray=Fals
     )
     image_registry[path] = fb
     return Markup(html)
+
+
+def studio(path):
+    """Clean a product cut-out: drop dark halo pixels at the edge, trim, and add a soft floor shadow."""
+    src = ROOT / path
+    out = ROOT / ".build-cache" / "studio" / (Path(path).stem + "-studio.png")
+    rel = str(out.relative_to(ROOT))
+    if out.exists() and out.stat().st_mtime >= src.stat().st_mtime:
+        return rel
+    out.parent.mkdir(parents=True, exist_ok=True)
+    im = Image.open(src).convert("RGBA")
+    a = np.array(im).astype(np.int32)
+    alpha = a[..., 3]
+    inner = np.array(Image.fromarray(((alpha > 8) * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(11))) > 0
+    band = (alpha > 8) & ~inner
+    alpha = np.where(band & (a[..., :3].max(axis=2) < 45), 0, alpha)
+    a[..., 3] = alpha
+    im = Image.fromarray(a.astype(np.uint8), "RGBA")
+    im.putalpha(im.getchannel("A").filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(0.6)))
+    im = im.crop(im.getchannel("A").point(lambda v: 255 if v > 20 else 0).getbbox())
+    w, h = im.size
+    padx, top, sh = int(w * 0.10), int(h * 0.03), int(h * 0.07)
+    W, H = w + 2 * padx, h + top + sh
+    shadow = Image.new("L", (W, H), 0)
+    base = top + h
+    ImageDraw.Draw(shadow).ellipse([W / 2 - w * 0.46, base - sh * 0.55, W / 2 + w * 0.46, base + sh * 0.55], fill=70)
+    shadow = shadow.filter(ImageFilter.GaussianBlur(max(6, sh * 0.45)))
+    canvas = Image.new("RGBA", (W, H), (21, 32, 26, 0))
+    canvas.putalpha(shadow)
+    canvas.alpha_composite(im, (padx, top))
+    canvas.save(out, optimize=True)
+    return rel
 
 
 def image_url(path, w=1200):
@@ -296,7 +330,7 @@ def jsonld(obj):
 env = Environment(loader=FileSystemLoader(SRC / "templates"), undefined=StrictUndefined, autoescape=True, trim_blocks=True, lstrip_blocks=True)
 env.globals.update(
     site=site, products=products, families=families, industries=industries,
-    picture=picture, image_url=image_url, whatsapp=whatsapp, model_id=model_id,
+    picture=picture, image_url=image_url, studio=studio, whatsapp=whatsapp, model_id=model_id,
     product_url=product_url, family_of=family_of, cell=cell, jsonld=jsonld,
     dew_chart=dew_chart, dew_ladder=dew_ladder, tower_chart=tower_chart,
     year=date.today().year, today=date.today().isoformat(),
@@ -321,7 +355,7 @@ def org_schema():
         "@id": site["url"] + "/#org",
         "name": site["name"],
         "url": site["url"] + "/",
-        "logo": site["url"] + "/img/logo-mark.png",
+        "logo": site["url"] + "/logo.png",
         "foundingDate": str(site["founded"]),
         "email": site["email"],
         "telephone": site["phones"][0]["tel"],
@@ -364,7 +398,7 @@ def copy_static():
 
 
 def build_css():
-    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css"]
+    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "home.css"]
     css = "\n".join((SRC / "assets" / "css" / f).read_text() for f in order if (SRC / "assets" / "css" / f).exists())
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     css = re.sub(r"\s+", " ", css)
@@ -386,6 +420,8 @@ def main():
         f.unlink()
     size = build_css()
     env.globals["css_bytes"] = size
+    import hashlib
+    env.globals["js_ver"] = hashlib.md5(b"".join((SRC / "assets" / "js" / f).read_bytes() for f in sorted(os.listdir(SRC / "assets" / "js")))).hexdigest()[:8]
 
     render("pages/home.html", "/")
     for fam in families.values():
