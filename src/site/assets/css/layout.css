@@ -150,3 +150,7 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
 .hero__grid > *, .p-hero__grid > *, .hub-hero__grid > *, .split > *, .two-col > *, .contact-grid > *,
 .enquiry__grid > *, .proof > *, .family > *, .tool-teaser > *, .footer-grid > *, .mega__grid > * { min-width: 0; }
 .menu-sheet[hidden] { display: none; }
+.footer-areas { margin-top: var(--s-8); padding-top: var(--s-5); border-top: 1px solid #2f3b34; font-size: var(--fs-small); color: #b9c6bd; line-height: 2; }
+.footer-areas a { color: #e6ece8; }
+.footer-base > span:last-child { line-height: 2; }
+.footer-areas + .footer-base { margin-top: var(--s-4); }

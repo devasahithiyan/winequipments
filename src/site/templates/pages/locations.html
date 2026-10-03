@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Locations', '/locations/')] %}
+{% block title %}Areas We Supply: Tamil Nadu & Karnataka | Win{% endblock %}
+{% block description %}Win Equipments builds air dryers, chillers and cooling towers in Coimbatore and supplies plants in Tiruppur, Erode, Hosur, Chennai and Bengaluru.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1 data-split>Areas we supply</h1>
+    <p class="lede">Everything is built at our works in Arasur, Coimbatore. These pages cover the equipment plants in each area most often ask us for.</p>
+  </div>
+</section>
+<section class="section section--rule" aria-label="Locations">
+  <div class="container">
+    <ul class="blog-list">
+      {% for l in locations %}
+      <li data-reveal style="--d:{{ loop.index0 % 3 }}"><a href="/locations/{{ l.slug }}.html"><span class="blog-list__cat">{{ l.city }}, {{ l.region }}</span><strong>{{ l.h1 }}</strong><span class="blog-list__desc">{{ l.description }}</span><span class="blog-list__meta">View<svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% include "partials/enquiry.html" %}
+{% endblock %}

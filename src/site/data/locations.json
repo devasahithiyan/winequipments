@@ -1,0 +1,107 @@
+[
+  {
+    "slug": "tirupur-textile-air-dryers",
+    "city": "Tiruppur",
+    "region": "Tamil Nadu",
+    "title": "Air Dryers for Tiruppur Textile Mills | Win Equipments",
+    "description": "Refrigerated air dryers, filters and drains for Tiruppur knitting, garment and textile units, built and commissioned from our Arasur works near Coimbatore.",
+    "h1": "Air dryers for Tiruppur textile and garment units",
+    "lede": "Tiruppur's knitting, dyeing and garment units run compressed air for machines that cannot tolerate water. We build refrigerated air dryers, filters and drains at our works in Arasur, Coimbatore, and supply and commission them for units in Tiruppur.",
+    "products": ["refrigerated-air-dryers", "compressed-air-filters", "automatic-drain-valves", "air-receiver-tanks"],
+    "industry": "textile-mills",
+    "tool": "/engineering-tools/air-dryer-sizing.html",
+    "points": [
+      ["Why dry air matters here", "Water in compressed air can mark yarn and fabric, corrode pneumatic valves and upset air jets. A refrigerated dryer at a +3 °C pressure dew point keeps liquid water out of the lines."],
+      ["Size for summer", "Dryer capacity falls as ambient and inlet temperatures rise. At 40 °C ambient a dryer delivers 0.91 of its rating, so size for your hottest month with the catalogue correction factors."],
+      ["Keep the condenser clean", "Fibre and dust settle on dryer condensers in textile halls. Regular cleaning keeps the dew point steady."]
+    ],
+    "faqs": [
+      {"q": "Do you supply air dryers to Tiruppur?", "a": "Yes. Our dryers, filters, drains and receivers are built at our works in Arasur, Coimbatore, and we supply and commission them for units in Tiruppur. Send your compressor details for a selection and quotation."},
+      {"q": "Which dryer suits a textile unit?", "a": "Most textile plant air needs a refrigerated dryer with a +3 °C pressure dew point, a pre-filter and automatic drains. WRD dryers cover 10 to 2000 CFM."}
+    ]
+  },
+  {
+    "slug": "hosur-cnc-air-dryers",
+    "city": "Hosur",
+    "region": "Tamil Nadu",
+    "title": "Air Dryers & Chillers for Hosur CNC Shops | Win Equipments",
+    "description": "Refrigerated air dryers, filters and process chillers for Hosur's automotive and CNC machine shops, built and commissioned by Win Equipments, Coimbatore.",
+    "h1": "Air dryers and chillers for Hosur machine shops",
+    "lede": "Hosur's automotive and engineering units depend on clean, dry compressed air for CNC machines and automation, and on chilled water for process cooling. We build the dryers, filters and process chillers at our works in Arasur, Coimbatore.",
+    "products": ["refrigerated-air-dryers", "compressed-air-filters", "industrial-process-chillers", "round-cooling-towers"],
+    "industry": "automotive-cnc",
+    "tool": "/engineering-tools/air-dryer-sizing.html",
+    "points": [
+      ["Dry air for CNC machines", "Water in the air corrodes solenoid valves and cylinders on machine tools and automation. A refrigerated dryer with a pre-filter keeps liquid water out."],
+      ["Cleaner air where it counts", "Coalescing filters build air quality up to ISO 8573-1: ZP to 0.1 micron, ZO to 0.01 micron and 0.01 mg/m³ oil, ZC activated carbon for oil vapour."],
+      ["Chilled process water", "WCP process chillers from 0.5 to 20 TR come with a stainless steel tank and pump, for machine and process cooling."]
+    ],
+    "faqs": [
+      {"q": "Do you supply equipment to Hosur?", "a": "Yes. We build our equipment at Arasur, Coimbatore, and supply and commission it for plants in Hosur. Send your requirement for a selection and quotation."},
+      {"q": "Can you supply both the dryer and the chiller?", "a": "Yes. We make compressed air treatment equipment and process chillers, so one enquiry can cover both."}
+    ]
+  },
+  {
+    "slug": "erode-cooling-towers",
+    "city": "Erode",
+    "region": "Tamil Nadu",
+    "title": "FRP Cooling Towers for Erode Industries | Win Equipments",
+    "description": "Round and square FRP cooling towers, 10 to 300 TR, and coil cooling towers for Erode's textile, processing and engineering units. Built in Coimbatore.",
+    "h1": "Cooling towers for Erode industries",
+    "lede": "Erode's textile processing, food and engineering units reject process heat to cooling towers. We build round and square FRP towers and coil cooling towers at our works in Arasur, Coimbatore.",
+    "products": ["round-cooling-towers", "square-cooling-towers", "closed-circuit-cooling-towers", "spare-parts-consumables"],
+    "industry": "textile-mills",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      ["Rated performance", "WCT towers are rated to return water at wet bulb + 4 °C, with 0.6 m³/hr of water per TR at a 5 °C range."],
+      ["Choose the fill for your water", "L fills up to 55 °C inlet, H fills from 55 to 85 °C, and polypropylene rings (P) for hotter or dirtier water."],
+      ["Plan for make-up water", "Evaporation loss is about 0.00085 × 1.8 × flow × range. For 30 m³/hr and a 5 °C range that is about 0.23 m³/hr."]
+    ],
+    "faqs": [
+      {"q": "Do you supply cooling towers to Erode?", "a": "Yes. Our towers are built at Arasur, Coimbatore, and we supply them, with spares, to plants in Erode. Send your flow and temperatures for a selection."},
+      {"q": "Round or square tower?", "a": "Both WCT ranges cover 10 to 300 TR with the same ratings. Square towers suit tight or rectangular spaces and multi-cell layouts."}
+    ]
+  },
+  {
+    "slug": "chennai-industrial-chillers",
+    "city": "Chennai",
+    "region": "Tamil Nadu",
+    "title": "Industrial Chillers for Chennai Plants | Win Equipments",
+    "description": "WCP process chillers from 0.5 to 20 TR and engineered chillers for Chennai's automotive, plastics and manufacturing plants. Built by Win Equipments.",
+    "h1": "Process chillers for Chennai plants",
+    "lede": "Chennai's automotive, plastics and manufacturing plants need chilled water held at a steady temperature. We build WCP process chillers and engineered chillers at our works in Arasur, Coimbatore.",
+    "products": ["industrial-process-chillers", "anodizing-chillers", "round-cooling-towers", "square-cooling-towers"],
+    "industry": "plastic-molding",
+    "tool": "/engineering-tools/chiller-tonnage-calculator.html",
+    "points": [
+      ["Size from flow and temperature", "Heat load in TR = water flow (LPM) × temperature rise (°C) ÷ 50.4. 100 LPM with a 5 °C rise is about 9.9 TR."],
+      ["Allow for hot weather", "WCP chillers are rated at 15 °C outlet and 40 °C ambient. At 45 °C ambient the catalogue factor is 0.9, so size for your hottest conditions."],
+      ["Self-contained units", "Each WCP chiller has a closed stainless steel tank, pump and air- or water-cooled condenser, and is factory tested before delivery."]
+    ],
+    "faqs": [
+      {"q": "Do you supply chillers to Chennai?", "a": "Yes. Our chillers are built at Arasur, Coimbatore, and supplied to plants in Chennai. Send your flow, temperatures and ambient conditions for a selection."},
+      {"q": "What if I need more than 20 TR?", "a": "WCP standard models go up to 20 TR. Our engineers will propose a larger or multiple-unit solution for bigger loads."}
+    ]
+  },
+  {
+    "slug": "bangalore-compressed-air-dryers",
+    "city": "Bengaluru",
+    "region": "Karnataka",
+    "title": "Compressed Air Dryers for Bengaluru | Win Equipments",
+    "description": "Refrigerated and desiccant air dryers, filters and drains for Bengaluru's engineering, electronics and pharma plants, built by Win Equipments, Coimbatore.",
+    "h1": "Compressed air dryers for Bengaluru plants",
+    "lede": "Bengaluru's engineering, electronics and pharmaceutical plants need compressed air dried to the right dew point. We build refrigerated and heatless desiccant dryers, filters and drains at our works in Arasur, Coimbatore.",
+    "products": ["refrigerated-air-dryers", "desiccant-air-dryers", "compressed-air-filters", "automatic-drain-valves"],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/air-dryer-sizing.html",
+    "points": [
+      ["Plant air at +3 °C", "WRD refrigerated dryers deliver a +3 °C pressure dew point from 10 to 2000 CFM, suitable for most machine and automation air."],
+      ["Very dry air at −20 °C or −40 °C", "WHD heatless desiccant dryers use activated alumina (−20 °C) or molecular sieve (−40 °C) for instrument air, electronics and pharmaceutical work."],
+      ["Filters to ISO 8573-1", "GP, ZP, ZO and ZC coalescing filters take the air to the particle and oil class your process needs."]
+    ],
+    "faqs": [
+      {"q": "Do you supply air dryers to Bengaluru?", "a": "Yes. Our dryers are built at Arasur, Coimbatore, and supplied to plants in Bengaluru. Send your compressor capacity, pressure and required dew point."},
+      {"q": "Refrigerated or desiccant?", "a": "Choose refrigerated (+3 °C) for general plant air and desiccant (−20 °C or −40 °C) where air must stay dry below freezing or the process needs very dry air."}
+    ]
+  }
+]

@@ -518,7 +518,9 @@ def crumbs_ld(items):
 
 
 articles = load_articles()
-env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data, articles=articles, md=md)
+locations = json.loads((DATA / "locations.json").read_text())
+industries_by_slug = {i["slug"]: i for i in site["industries"]}
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
 env.tests["contains"] = lambda seq, item: item in seq
 env.filters["datefmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%-d %B %Y")
@@ -613,6 +615,9 @@ def main():
     render("pages/about.html", "/about.html")
     render("pages/tools.html", "/engineering-tools/")
     render("pages/blog.html", "/blog.html")
+    render("pages/locations.html", "/locations/")
+    for loc in locations:
+        render("pages/location.html", f"/locations/{loc['slug']}.html", loc=loc)
     for a in articles:
         render("pages/article.html", a["url"], a=a)
     for t in tools:
