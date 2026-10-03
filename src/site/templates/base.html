@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}{{ site.name }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{% endblock %}">
+<link rel="canonical" href="{{ site.url }}{{ url }}">
+{% block robots %}{% endblock %}
+<meta name="theme-color" content="#f6f7f3">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css?v={{ css_bytes }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="{% block og_type %}website{% endblock %}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+<meta property="og:url" content="{{ site.url }}{{ url }}">
+<meta property="og:image" content="{% block og_image %}{{ image_url('images/about_us.jpg') }}{% endblock %}">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+{% block schema %}{% endblock %}
+</head>
+<body class="{% block body_class %}has-action-bar{% endblock %}">
+{% include "partials/icons.html" %}
+<a class="skip-link" href="#main">Skip to content</a>
+{% include "partials/header.html" %}
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+{% include "partials/footer.html" %}
+{% block action_bar %}
+{% include "partials/action_bar.html" %}
+{% endblock %}
+<script src="/js/site.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

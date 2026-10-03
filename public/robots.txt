@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Disallow: /send_rfq.php
+Disallow: /api_chat.php
+
+Sitemap: https://winequipments.com/sitemap.xml

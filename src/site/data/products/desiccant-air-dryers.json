@@ -1,0 +1,328 @@
+{
+  "slug": "desiccant-air-dryers",
+  "family": "air",
+  "order": 2,
+  "name": "Heatless Desiccant Air Dryers",
+  "series": "WHD Series",
+  "h1": "Heatless Desiccant Air Dryers",
+  "title": "Desiccant Air Dryer Manufacturer, Coimbatore | WHD 300–2000 CFM",
+  "description": "WHD heatless twin-tower desiccant air dryers, 300–2000 CFM, −20 °C to −40 °C pressure dew point, 7–12.5 bar g. Win Equipments, Coimbatore.",
+  "card": "Twin-tower dryers that adsorb moisture for −20 °C to −40 °C pressure dew points.",
+  "lede": "Where a +3 °C dew point is not dry enough, WHD heatless dryers pass compressed air through a bed of activated alumina or molecular sieve. One tower dries while the other regenerates with a small flow of purge air, switching every few minutes.",
+  "image": "images/Products/dessicantdryer.png",
+  "gallery": [],
+  "range": "300–2000 CFM",
+  "capacity": {
+    "key": "cfm",
+    "unit": "CFM",
+    "label": "Air flow"
+  },
+  "key_specs": [
+    {
+      "label": "Capacity",
+      "value": "300 to 2000 CFM"
+    },
+    {
+      "label": "Pressure dew point",
+      "value": "−20 °C (alumina) · −40 °C (molecular sieve)"
+    },
+    {
+      "label": "Working pressure",
+      "value": "7 to 12.5 bar g"
+    },
+    {
+      "label": "Inlet temperature",
+      "value": "45 °C"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Dew point rating",
+      "value": "At 38 °C inlet and 7 bar g"
+    },
+    {
+      "label": "Design pressure",
+      "value": "13.2 bar g"
+    },
+    {
+      "label": "Cycle time",
+      "value": "10 min"
+    },
+    {
+      "label": "Power supply",
+      "value": "220 V AC ± 5%, 1 Ph, 50 Hz"
+    }
+  ],
+  "highlights": [
+    "Twin towers, heatless pressure-swing regeneration",
+    "Activated alumina or molecular sieve",
+    "Motorised cam timer",
+    "Tower pressure gauges",
+    "Purge flow valve",
+    "Pressure relief valves on both towers",
+    "Shipped fully assembled, piped and wired"
+  ],
+  "principle": {
+    "intro": "A heatless desiccant dryer removes water vapour by adsorption onto a desiccant bed. No heater is used: a small part of the dried air regenerates the off-line tower.",
+    "stages": [
+      {
+        "name": "Pre-filter",
+        "text": "A pre-filter removes free water, oil and dust scale that would damage the desiccant."
+      },
+      {
+        "name": "Adsorb",
+        "text": "Wet air flows up through the on-line tower; the desiccant bed adsorbs water vapour. Low velocities stop bed fluidisation and dusting."
+      },
+      {
+        "name": "Purge",
+        "text": "A small flow of dry air is expanded through the off-line tower and exhausted through a muffler, stripping the moisture it holds."
+      },
+      {
+        "name": "Switch",
+        "text": "The timer and solenoid valves switch towers on a fixed cycle so one tower is always drying."
+      },
+      {
+        "name": "After-filter",
+        "text": "An after-filter removes desiccant dust before the air reaches your equipment."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Controls",
+      "points": [
+        "Power-on light and on-off switch",
+        "Accurate motorised cam timer",
+        "PLC and cycle-failure indication (optional)"
+      ]
+    },
+    {
+      "title": "Desiccant bed",
+      "points": [
+        "Large bed for sufficient contact time",
+        "Sized to save heat of adsorption, minimising purge air",
+        "Bulk desiccant: no special cartridges"
+      ]
+    },
+    {
+      "title": "Valves",
+      "points": [
+        "Non-lubricated inlet control valves",
+        "Purge flow valve to adjust purge rate",
+        "Pressure relief valve on each tower"
+      ]
+    },
+    {
+      "title": "Frame",
+      "points": [
+        "Structural steel frame with floor stand",
+        "Lifting lugs",
+        "Optional factory-mounted pre- and after-filters"
+      ]
+    },
+    {
+      "title": "Quiet running",
+      "points": [
+        "Heavy-duty purge exhaust mufflers"
+      ]
+    },
+    {
+      "title": "Options",
+      "points": [
+        "Higher pressures and lower dew points on request"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WHD series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "cfm",
+        "label": "Flow rate",
+        "unit": "CFM",
+        "primary": true
+      },
+      {
+        "key": "m3hr",
+        "label": "Flow rate",
+        "unit": "m³/hr"
+      },
+      {
+        "key": "variant",
+        "label": "Desiccant options"
+      },
+      {
+        "key": "supply",
+        "label": "Electrical",
+        "unit": "V / Ph / Hz"
+      },
+      {
+        "key": "dims",
+        "label": "L × W × H",
+        "unit": "mm",
+        "primary": true
+      },
+      {
+        "key": "conn",
+        "label": "In / out",
+        "unit": "NB"
+      },
+      {
+        "key": "kg",
+        "label": "Weight",
+        "unit": "kg"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WHD 030",
+        "cfm": 300,
+        "m3hr": 510,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "1450 × 1100 × 2500",
+        "conn": "1½″",
+        "kg": 450
+      },
+      {
+        "model": "WHD 040",
+        "cfm": 400,
+        "m3hr": 680,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "1450 × 1200 × 2500",
+        "conn": "2″",
+        "kg": 630
+      },
+      {
+        "model": "WHD 050",
+        "cfm": 500,
+        "m3hr": 850,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "1650 × 1250 × 2300",
+        "conn": "3″",
+        "kg": 720
+      },
+      {
+        "model": "WHD 060",
+        "cfm": 600,
+        "m3hr": 1020,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "1650 × 1250 × 2500",
+        "conn": "3″",
+        "kg": 910
+      },
+      {
+        "model": "WHD 075",
+        "cfm": 750,
+        "m3hr": 1275,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "2100 × 1400 × 2300",
+        "conn": "4″",
+        "kg": 1100
+      },
+      {
+        "model": "WHD 100",
+        "cfm": 1000,
+        "m3hr": 1700,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "2100 × 1400 × 2500",
+        "conn": "4″",
+        "kg": 1200
+      },
+      {
+        "model": "WHD 125",
+        "cfm": 1250,
+        "m3hr": 2125,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "2100 × 1400 × 2800",
+        "conn": "6″",
+        "kg": 1500
+      },
+      {
+        "model": "WHD 150",
+        "cfm": 1500,
+        "m3hr": 2550,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "2300 × 1500 × 2300",
+        "conn": "6″",
+        "kg": 2100
+      },
+      {
+        "model": "WHD 200",
+        "cfm": 2000,
+        "m3hr": 3400,
+        "variant": "A / M",
+        "supply": "220 / 1 / 50",
+        "dims": "2300 × 1500 × 2700",
+        "conn": "6″",
+        "kg": 2400
+      }
+    ],
+    "notes": [
+      "A: activated alumina, pressure dew point −20 °C at 38 °C and 7 bar g working pressure.",
+      "M: molecular sieves, pressure dew point −40 °C at 38 °C and 7 bar g working pressure.",
+      "Design pressure 13.2 bar g. Standard supply 220 V AC ± 5%, 1 Ph, 50 Hz.",
+      "Model code: WHD + capacity code (e.g. WHD 100 = 1000 CFM) + desiccant type."
+    ]
+  },
+  "filters_note": "Every dryer should have a pre-filter (free water and dust), a zero-oil filter (oil carried over from the compressor shortens desiccant life) and an after-filter (desiccant dust).",
+  "installation": [
+    "Air compressor",
+    "Aftercooler",
+    "Wet air receiver",
+    "Pre-filter + zero-oil filter",
+    "Desiccant air dryer",
+    "After-filter",
+    "Dry air receiver"
+  ],
+  "applications": [
+    "Pharmaceutical",
+    "Electronics",
+    "Instrument air",
+    "Food packaging",
+    "Paint lines",
+    "Outdoor air lines in cold conditions"
+  ],
+  "applications_note": "Typical uses for sub-zero dew points; confirm suitability for your process with our engineers.",
+  "faqs": [
+    {
+      "q": "Alumina or molecular sieve: which do I need?",
+      "a": "Activated alumina gives a −20 °C pressure dew point; molecular sieve gives −40 °C (both at 38 °C inlet and 7 bar g). Choose molecular sieve when your process needs the lower dew point."
+    },
+    {
+      "q": "Why does a desiccant dryer need filters?",
+      "a": "A pre-filter keeps free water and dust off the desiccant, a zero-oil filter stops compressor oil from coating it, and an after-filter catches desiccant dust before it reaches your equipment."
+    },
+    {
+      "q": "What does heatless mean?",
+      "a": "The off-line tower is regenerated with a small flow of dry purge air instead of a heater, so there is no heater to maintain."
+    },
+    {
+      "q": "What working pressure is supported?",
+      "a": "Standard WHD dryers work from 7 to 12.5 bar g with a design pressure of 13.2 bar g. Higher pressures can be offered on request."
+    }
+  ],
+  "related": [
+    "compressed-air-filters",
+    "refrigerated-air-dryers",
+    "air-receiver-tanks",
+    "automatic-drain-valves"
+  ],
+  "industries": [
+    "pharma",
+    "food-beverage",
+    "automotive"
+  ],
+  "download": "/downloads/desiccant-air-dryers.pdf"
+}

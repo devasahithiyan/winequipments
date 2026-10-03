@@ -1,0 +1,27 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        {% include "partials/logo.html" %}
+        <p>Manufacturer of compressed air dryers, process chillers and FRP cooling towers in Coimbatore since {{ site.founded }}.</p>
+        <address class="footer-contact">
+          <span>{{ site.address_lines | join(', ') }}</span>
+          {% for ph in site.phones %}<a href="tel:{{ ph.tel }}" data-track="call_click">{{ ph.display }}</a>{% endfor %}
+          <a href="mailto:{{ site.email }}" data-track="email_click">{{ site.email }}</a>
+        </address>
+      </div>
+      {% for fam in families.values() %}
+      <div class="footer-col">
+        <h2><a href="/products/{{ fam.slug }}.html">{{ fam.name }}</a></h2>
+        <ul>
+          {% for p in fam.products %}<li><a href="{{ product_url(p.slug) }}">{{ p.name }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="footer-base">
+      <span>© {{ year }} {{ site.name }} · {{ site.certification }} certified</span>
+      <span><a href="/about.html">About</a> · <a href="/downloads.html">Downloads</a> · <a href="/blog.html">Articles</a> · <a href="/sitemap.xml">Sitemap</a></span>
+    </div>
+  </div>
+</footer>

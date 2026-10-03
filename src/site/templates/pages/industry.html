@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Industries', '/industries/'), (ind.name, '/industries/' ~ ind.slug ~ '.html')] %}
+{% block title %}{{ ind.name }}: Air Dryers, Chillers &amp; Cooling Towers | Win Equipments{% endblock %}
+{% block description %}Equipment from Win Equipments, Coimbatore, used in {{ ind.name | lower }}: {{ ind.products | map('pname') | join(', ') | lower }}.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1>{{ ind.name }}</h1>
+    <p class="lede">{{ ind.intro }}</p>
+  </div>
+</section>
+<section class="section section--rule" aria-labelledby="ind-products">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="ind-products">Equipment used in {{ ind.name | lower }}</h2>
+      <p>From the application lists in our product catalogues. Open a product for its full model range.</p>
+    </div>
+    <ul class="product-rows">{% for slug in ind.products %}{{ m.product_row(products[slug]) }}{% endfor %}</ul>
+  </div>
+</section>
+{% set heading = 'Tell us about your plant' %}
+{% set intro = 'Describe the process and the duty: compressor capacity, heat load or water flow, temperatures and site conditions. Our engineers will recommend the equipment and quote.' %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

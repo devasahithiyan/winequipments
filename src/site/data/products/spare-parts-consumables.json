@@ -1,0 +1,65 @@
+{
+  "slug": "spare-parts-consumables",
+  "family": "towers",
+  "order": 4,
+  "name": "Spares & Consumables",
+  "series": "Spares",
+  "h1": "Spares for Cooling Towers, Chillers and Air Dryers",
+  "title": "Cooling Tower, Chiller & Air Dryer Spares | Win Equipments Coimbatore",
+  "description": "Cooling tower spares (FRP body, PVC fills, drift eliminators, sprinklers, motors, fans) and refrigeration spares (compressors, condensers, valves, filter elements). Win Equipments.",
+  "card": "Fills, fans, motors, sprinklers, compressors, valves and filter elements.",
+  "lede": "Win Equipments supplies spares for cooling towers, chillers, refrigerated dryers and compressed air filters. Send the part name, the equipment model or a photo, and we will confirm the replacement.",
+  "image": "images/Products/coolingtower3.png",
+  "spares": true,
+  "spare_groups": [
+    {
+      "name": "Cooling tower spares",
+      "items": [
+        "FRP body",
+        "PVC fills",
+        "Drift eliminator fills",
+        "PP rings",
+        "Sprinkler",
+        "CT motors",
+        "Spray nozzles",
+        "CT fans"
+      ]
+    },
+    {
+      "name": "Refrigeration & air treatment spares",
+      "items": [
+        "Refrigeration compressor",
+        "Condenser",
+        "Filter dryer",
+        "Cooling fan",
+        "Expansion valve",
+        "Pressure switch",
+        "Refrigerant gases",
+        "Filter elements"
+      ]
+    }
+  ],
+  "needs": [
+    "Part name, or a photo of the part and its nameplate",
+    "Equipment type and model",
+    "Quantity required",
+    "Delivery location"
+  ],
+  "related": [
+    "round-cooling-towers",
+    "compressed-air-filters",
+    "industrial-process-chillers"
+  ],
+  "industries": [],
+  "gallery": [],
+  "range": "Spares",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "How do I identify the right spare?",
+      "a": "Send the part name, equipment model or a clear photo of the part and its nameplate on WhatsApp or by email, and we will confirm the replacement and quote."
+    }
+  ],
+  "download": null
+}

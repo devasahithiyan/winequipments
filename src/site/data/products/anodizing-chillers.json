@@ -1,0 +1,40 @@
+{
+  "slug": "anodizing-chillers",
+  "family": "cooling",
+  "order": 3,
+  "name": "Anodizing Chillers",
+  "series": "Engineered to order",
+  "h1": "Anodizing & Electroplating Chillers",
+  "title": "Anodizing Chiller Manufacturer, Coimbatore | Electroplating Bath Cooling",
+  "description": "Chillers for anodizing and electroplating bath cooling, engineered to order by Win Equipments, Coimbatore. Share your bath chemistry and heat load for sizing.",
+  "card": "Bath chillers engineered to order for anodizing and electroplating lines.",
+  "lede": "Anodizing and electroplating baths heat up as current passes through the electrolyte, and the bath must be held within its process temperature window. Win Equipments builds bath chillers to order, with wetted materials chosen for your chemistry.",
+  "image": "images/Products/electroplatingchiller.png",
+  "engineered": true,
+  "needs": [
+    "Process type (anodizing, hard anodizing, electroplating) and bath chemistry",
+    "Bath volume and required bath temperature",
+    "Rectifier rating (A and V) or measured heat load",
+    "Cooling method: immersion coil or external heat exchanger",
+    "Available power supply and plant ambient temperature"
+  ],
+  "related": [
+    "acid-cooling-chillers",
+    "industrial-process-chillers",
+    "medical-scan-chillers"
+  ],
+  "industries": [
+    "automotive"
+  ],
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ],
+  "download": null
+}

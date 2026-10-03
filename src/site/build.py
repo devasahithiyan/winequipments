@@ -1,0 +1,413 @@
+#!/usr/bin/env python3
+"""Static site generator for winequipments.com. Run: python3 src/site/build.py"""
+import json
+import math
+import re
+import shutil
+import subprocess
+from datetime import date
+from pathlib import Path
+from urllib.parse import quote
+
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
+from markupsafe import Markup
+from PIL import Image, ImageOps
+
+SRC = Path(__file__).resolve().parent
+ROOT = SRC.parent.parent
+OUT = ROOT / "public"
+CACHE = ROOT / ".build-cache" / "img"
+DATA = SRC / "data"
+
+site = json.loads((DATA / "site.json").read_text())
+products = {}
+for f in sorted((DATA / "products").glob("*.json")):
+    p = json.loads(f.read_text())
+    products[p["slug"]] = p
+families = {f["id"]: f for f in site["families"]}
+for fam in families.values():
+    fam["products"] = sorted([p for p in products.values() if p["family"] == fam["id"]], key=lambda p: p["order"])
+industries = {i["id"]: i for i in site["industries"]}
+
+# ---------------------------------------------------------------- images
+WIDTHS = [320, 480, 640, 960, 1280, 1600]
+image_registry = {}
+
+
+def _encode(src: Path, key: str, w: int, fmt: str, gray: bool) -> Path:
+    out = CACHE / f"{key}-{w}.{fmt}"
+    if out.exists() and out.stat().st_mtime >= src.stat().st_mtime:
+        return out
+    out.parent.mkdir(parents=True, exist_ok=True)
+    im = Image.open(src)
+    im = ImageOps.exif_transpose(im)
+    if gray:
+        im = ImageOps.autocontrast(ImageOps.grayscale(im.convert("RGB")), cutoff=0.5).convert("RGB")
+    elif im.mode not in ("RGB", "RGBA"):
+        im = im.convert("RGBA")
+    if im.width > w:
+        im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+    if fmt == "avif":
+        im.save(out, "AVIF", quality=55)
+    elif fmt == "webp":
+        im.save(out, "WEBP", quality=78, method=6)
+    else:
+        if im.mode == "RGBA":
+            im.save(out, "PNG", optimize=True)
+        else:
+            im.convert("RGB").save(out, "JPEG", quality=80, optimize=True, progressive=True)
+    return out
+
+
+def picture(path, alt, sizes="100vw", cls="", eager=False, max_w=None, gray=False):
+    """Return a <picture> with AVIF/WebP sources and a fallback, all copied into public/img."""
+    src = ROOT / path
+    im = Image.open(src)
+    W, H = im.size
+    has_alpha = im.mode in ("RGBA", "LA", "P")
+    key = re.sub(r"[^a-z0-9]+", "-", Path(path).stem.lower()).strip("-") + ("-g" if gray else "")
+    cap = min(W, max_w or W)
+    widths = [w for w in WIDTHS if w < cap] + [cap]
+    fallback_fmt = "png" if has_alpha and not gray else "jpg"
+    srcsets = {}
+    for fmt in ("avif", "webp", fallback_fmt):
+        parts = []
+        for w in widths:
+            f = _encode(src, key, w, fmt, gray)
+            dest = OUT / "img" / f.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            if not dest.exists() or dest.stat().st_mtime < f.stat().st_mtime:
+                shutil.copy2(f, dest)
+            parts.append(f"/img/{f.name} {w}w")
+        srcsets[fmt] = ", ".join(parts)
+    h = round(H * cap / W)
+    loading = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
+    fb = f"/img/{key}-{cap}.{fallback_fmt}"
+    html = (
+        f'<picture class="{cls}">'
+        f'<source type="image/avif" srcset="{srcsets["avif"]}" sizes="{sizes}">'
+        f'<source type="image/webp" srcset="{srcsets["webp"]}" sizes="{sizes}">'
+        f'<img src="{fb}" srcset="{srcsets[fallback_fmt]}" sizes="{sizes}" width="{cap}" height="{h}" alt="{alt}" {loading}>'
+        f"</picture>"
+    )
+    image_registry[path] = fb
+    return Markup(html)
+
+
+def image_url(path, w=1200):
+    """Absolute URL of a resized JPEG/PNG, for Open Graph and schema."""
+    src = ROOT / path
+    im = Image.open(src)
+    has_alpha = im.mode in ("RGBA", "LA", "P")
+    key = re.sub(r"[^a-z0-9]+", "-", Path(path).stem.lower()).strip("-")
+    w = min(w, im.width)
+    f = _encode(src, key, w, "png" if has_alpha else "jpg", False)
+    dest = OUT / "img" / f.name
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(f, dest)
+    return f"{site['url']}/img/{f.name}"
+
+
+# ---------------------------------------------------------------- physics for charts
+P_HPA = 7 * 1000 + 1013.25  # 7 bar g
+
+
+def es(t):
+    if t >= 0:
+        return 6.112 * math.exp(17.62 * t / (243.12 + t))
+    return 6.112 * math.exp(22.46 * t / (272.62 + t))
+
+
+def w_gkg(t, p=P_HPA):
+    e = es(t)
+    return 622 * e / (p - e)
+
+
+def fmt_num(v, d=1):
+    s = f"{v:.{d}f}"
+    return s.replace("-", "−")
+
+
+def dew_chart(mode="wide"):
+    """Saturation curve of compressed air at 7 bar g with the WRD process line 45 °C → +3 °C."""
+    if mode == "wide":
+        W, H, ml, mr, mt, mb, fs = 640, 400, 52, 24, 24, 48, 13
+    else:
+        W, H, ml, mr, mt, mb, fs = 360, 300, 34, 70, 22, 44, 12
+    t0, t1, y1 = 0, 60, 16
+    pw, ph = W - ml - mr, H - mt - mb
+
+    def X(t):
+        return ml + (t - t0) / (t1 - t0) * pw
+
+    def Y(v):
+        return mt + ph - v / y1 * ph
+
+    out = [f'<svg viewBox="0 0 {W} {H}" class="chart chart--{mode}" role="img" aria-labelledby="dc-t-{mode} dc-d-{mode}" font-size="{fs}">']
+    out.append(f'<title id="dc-t-{mode}">Water vapour held by compressed air at 7 bar g</title>')
+    a, b = w_gkg(45), w_gkg(3)
+    pct = round((a - b) / a * 100)
+    out.append(
+        f'<desc id="dc-d-{mode}">Saturation curve from 0 to 60 °C. Air leaving the aftercooler saturated at 45 °C holds about {fmt_num(a)} g of water per kg; '
+        f'a WRD dryer chills it to a +3 °C pressure dew point, where it holds {fmt_num(b, 2)} g/kg, so about {pct}% of the vapour condenses and drains.</desc>'
+    )
+    # rulings: true measuring grid under the chart only
+    step_t = 5 if mode == "wide" else 10
+    for t in range(t0, t1 + 1, step_t):
+        major = t % 10 == 0
+        out.append(f'<line x1="{X(t):.1f}" y1="{mt}" x2="{X(t):.1f}" y2="{mt+ph}" class="{"rule-major" if major else "rule-minor"}"/>')
+        if major:
+            out.append(f'<text x="{X(t):.1f}" y="{mt+ph+fs+6}" text-anchor="middle" class="tick">{t}</text>')
+    for v in range(0, y1 + 1, 2):
+        major = v % 4 == 0
+        out.append(f'<line x1="{ml}" y1="{Y(v):.1f}" x2="{ml+pw}" y2="{Y(v):.1f}" class="{"rule-major" if major else "rule-minor"}"/>')
+        if major:
+            out.append(f'<text x="{ml-8}" y="{Y(v)+4:.1f}" text-anchor="end" class="tick">{v}</text>')
+    out.append(f'<text x="{ml+pw}" y="{H-6}" text-anchor="end" class="axis">Temperature, °C</text>')
+    out.append(f'<text x="{ml}" y="{mt-8}" class="axis">g water / kg air</text>')
+    # inlet rating band 10–60 °C
+    out.append(f'<rect x="{X(10):.1f}" y="{mt+ph}" width="{X(60)-X(10):.1f}" height="4" class="band"/>')
+    # saturation curve
+    pts = " ".join(f"{X(t):.1f},{Y(w_gkg(t)):.1f}" for t in [i * 0.5 for i in range(0, 121)] if w_gkg(t) <= y1 + 0.2)
+    out.append(f'<polyline points="{pts}" class="sat"/>')
+    lbl_t = 55 if mode == "wide" else 52
+    out.append(f'<text x="{X(lbl_t)-6:.1f}" y="{Y(w_gkg(lbl_t))-8:.1f}" text-anchor="end" class="sat-label">Saturation at 7 bar g</text>')
+    # process line along the curve 45 → 3
+    proc = " ".join(f"{X(t):.1f},{Y(w_gkg(t)):.1f}" for t in [45 - i * 0.5 for i in range(0, 85)])
+    out.append(f'<polyline points="{proc}" class="process"/>')
+    # condensate bracket
+    bx = X(45) + (14 if mode == "wide" else 10)
+    out.append(f'<line x1="{bx:.1f}" y1="{Y(a):.1f}" x2="{bx:.1f}" y2="{Y(b):.1f}" class="bracket"/>')
+    out.append(f'<line x1="{bx-4:.1f}" y1="{Y(a):.1f}" x2="{bx+4:.1f}" y2="{Y(a):.1f}" class="bracket"/>')
+    out.append(f'<line x1="{bx-4:.1f}" y1="{Y(b):.1f}" x2="{bx+4:.1f}" y2="{Y(b):.1f}" class="bracket"/>')
+    mid = (Y(a) + Y(b)) / 2
+    out.append(f'<text x="{bx+8:.1f}" y="{mid-4:.1f}" class="note-strong">{pct}%</text>')
+    out.append(f'<text x="{bx+8:.1f}" y="{mid+fs+2:.1f}" class="note">condensed</text>')
+    # state points
+    out.append(f'<circle cx="{X(45):.1f}" cy="{Y(a):.1f}" r="5" class="pt pt-a"/>')
+    out.append(f'<circle cx="{X(3):.1f}" cy="{Y(b):.1f}" r="5" class="pt pt-b"/>')
+    ax_, ay_ = X(45) - 10, Y(a) - 12
+    out.append(f'<text x="{ax_:.1f}" y="{ay_:.1f}" text-anchor="end" class="state">45 °C in · {fmt_num(a)} g/kg</text>')
+    ly = Y(4.2 if mode == "narrow" else 3.6)
+    out.append(f'<line x1="{X(3):.1f}" y1="{Y(b)-6:.1f}" x2="{X(3):.1f}" y2="{ly+6:.1f}" class="bracket"/>')
+    out.append(f'<text x="{X(3)-2:.1f}" y="{ly-fs-2:.1f}" class="state">+3 °C dew point</text>')
+    out.append(f'<text x="{X(3)-2:.1f}" y="{ly:.1f}" class="note">{fmt_num(b, 2)} g/kg</text>')
+    out.append("</svg>")
+    return Markup("".join(out))
+
+
+def dew_ladder(mode="wide"):
+    """Pressure dew point delivered by each Win dryer on one temperature scale."""
+    narrow = mode == "narrow"
+    W, H = (360, 210) if narrow else (560, 150)
+    ml, mr = 18, 18
+    t0, t1 = -45, 10
+    fs = 12 if narrow else 13
+
+    def X(t):
+        return ml + (t - t0) / (t1 - t0) * (W - ml - mr)
+
+    out = [f'<svg viewBox="0 0 {W} {H}" class="chart chart--{mode}" role="img" aria-label="Pressure dew point delivered by each dryer: WRD refrigerated +3 °C, WHD with activated alumina −20 °C, WHD with molecular sieve −40 °C" font-size="{fs}">']
+    y = 110 if narrow else 70
+    out.append(f'<line x1="{ml}" y1="{y}" x2="{W-mr}" y2="{y}" class="axis-line"/>')
+    for t in range(-40, 11, 10):
+        out.append(f'<line x1="{X(t):.1f}" y1="{y-5}" x2="{X(t):.1f}" y2="{y+5}" class="axis-line"/>')
+        out.append(f'<text x="{X(t):.1f}" y="{y+22}" text-anchor="middle" class="tick">{fmt_num(t,0)}</text>')
+    pts = [(3, "WRD refrigerated", "+3 °C", "pt-b"), (-20, "WHD alumina", "−20 °C", "pt-c"), (-40, "WHD mol. sieve", "−40 °C", "pt-c")]
+    if narrow:
+        rows = {3: 30, -20: 62, -40: 30}
+        for t, name, val, cls in pts:
+            ty = rows[t]
+            anchor = "end" if t > 0 else "start"
+            dx = 0
+            out.append(f'<line x1="{X(t):.1f}" y1="{ty+8}" x2="{X(t):.1f}" y2="{y-7}" class="bracket"/>')
+            out.append(f'<text x="{X(t)+dx:.1f}" y="{ty-12}" text-anchor="{anchor}" class="state">{name}</text>')
+            out.append(f'<text x="{X(t)+dx:.1f}" y="{ty+3}" text-anchor="{anchor}" class="note-strong">{val}</text>')
+            out.append(f'<circle cx="{X(t):.1f}" cy="{y}" r="6" class="pt {cls}"/>')
+        out.append(f'<text x="{W-mr}" y="{H-8}" text-anchor="end" class="axis">Pressure dew point, °C, at 7 bar g</text>')
+    else:
+        for t, name, val, cls in pts:
+            out.append(f'<circle cx="{X(t):.1f}" cy="{y}" r="6" class="pt {cls}"/>')
+            up = t != -40
+            ty = y - 18 if up else y + 48
+            anchor = "end" if t > 0 else ("middle" if t == -20 else "start")
+            out.append(f'<text x="{X(t):.1f}" y="{ty}" text-anchor="{anchor}" class="state">{name} · {val}</text>')
+        out.append(f'<text x="{W-mr}" y="{H-6}" text-anchor="end" class="axis">Pressure dew point, °C, rated at 7 bar g</text>')
+    out.append("</svg>")
+    return Markup("".join(out))
+
+
+def tower_chart(mode="wide"):
+    """Where each tower type can bring hot water: FRP to wet bulb + 4 °C, coil to ambient + 4 °C."""
+    narrow = mode == "narrow"
+    W, H = (360, 250) if narrow else (560, 210)
+    ml, mr = 14, 14
+    t0, t1 = 20, 100
+    fs = 12 if narrow else 13
+
+    def X(t):
+        return ml + (t - t0) / (t1 - t0) * (W - ml - mr)
+
+    out = [f'<svg viewBox="0 0 {W} {H}" class="chart chart--{mode}" role="img" aria-label="FRP cooling towers take inlet water of 40 to 100 °C down to wet bulb plus 4 °C. Coil cooling towers take 75 to 90 °C water down to ambient plus 4 °C." font-size="{fs}">']
+    out.append('<defs><marker id="arr-' + mode + '" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M10,0 L0,5 L10,10 z" class="arrow"/></marker></defs>')
+    rows = [("FRP towers", 40, 100, "to wet bulb + 4 °C"), ("Coil towers", 75, 90, "to ambient + 4 °C")]
+    gap = 100 if narrow else 78
+    for i, (name, a, b, to) in enumerate(rows):
+        y = 56 + i * gap
+        out.append(f'<text x="{ml}" y="{y-26}" class="state">{name}</text>')
+        out.append(f'<text x="{W-mr}" y="{y-26}" text-anchor="end" class="note">inlet {a}–{b} °C</text>')
+        out.append(f'<rect x="{X(a):.1f}" y="{y-6}" width="{X(b)-X(a):.1f}" height="12" class="band-hot"/>')
+        out.append(f'<line x1="{X(a):.1f}" y1="{y}" x2="{X(30):.1f}" y2="{y}" class="process" marker-end="url(#arr-{mode})"/>')
+        out.append(f'<text x="{ml}" y="{y+26}" class="note-strong">{to}</text>')
+    for t in range(20, 101, 20):
+        out.append(f'<text x="{X(t):.1f}" y="{H-6}" text-anchor="middle" class="tick">{t} °C</text>')
+    out.append("</svg>")
+    return Markup("".join(out))
+
+
+# ---------------------------------------------------------------- helpers
+def whatsapp(text):
+    return f"https://wa.me/{site['whatsapp']}?text={quote(text)}"
+
+
+def model_id(model):
+    return re.sub(r"[^a-z0-9]+", "-", model.lower()).strip("-")
+
+
+def product_url(slug):
+    return f"/products/{slug}.html"
+
+
+def family_of(p):
+    return families[p["family"]]
+
+
+def cell(row, key):
+    v = row.get(key, "")
+    if isinstance(v, float):
+        v = f"{v:g}"
+    return v
+
+
+def jsonld(obj):
+    return Markup('<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "</script>")
+
+
+env = Environment(loader=FileSystemLoader(SRC / "templates"), undefined=StrictUndefined, autoescape=True, trim_blocks=True, lstrip_blocks=True)
+env.globals.update(
+    site=site, products=products, families=families, industries=industries,
+    picture=picture, image_url=image_url, whatsapp=whatsapp, model_id=model_id,
+    product_url=product_url, family_of=family_of, cell=cell, jsonld=jsonld,
+    dew_chart=dew_chart, dew_ladder=dew_ladder, tower_chart=tower_chart,
+    year=date.today().year, today=date.today().isoformat(),
+    w_gkg=w_gkg, fmt_num=fmt_num,
+)
+
+pages_written = []
+
+
+def render(template, url, **ctx):
+    path = OUT / url.lstrip("/") / "index.html" if url.endswith("/") else OUT / url.lstrip("/")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    html = env.get_template(template).render(url=url, **ctx)
+    path.write_text(html)
+    pages_written.append(url)
+
+
+def org_schema():
+    a = site["address"]
+    return {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": site["url"] + "/#org",
+        "name": site["name"],
+        "url": site["url"] + "/",
+        "logo": site["url"] + "/img/logo-mark.png",
+        "foundingDate": str(site["founded"]),
+        "email": site["email"],
+        "telephone": site["phones"][0]["tel"],
+        "address": {"@type": "PostalAddress", "streetAddress": a["street"] + ", " + a["locality"], "addressLocality": a["city"], "addressRegion": a["region"], "postalCode": a["postal"], "addressCountry": a["country"]},
+    }
+
+
+env.globals["org_schema"] = org_schema
+
+
+def faq_ld(items):
+    return {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in items]}
+
+
+def crumbs_ld(items):
+    return {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": site["url"] + h} for i, (n, h) in enumerate(items)]}
+
+
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld)
+env.filters["pname"] = lambda slug: products[slug]["name"]
+env.globals["fam_urls"] = lambda fam: [{"@type": "Product", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
+env.globals["industry_count"] = lambda i: sum(1 for p in products.values() if i in p.get("industries", []))
+
+
+def copy_static():
+    for d in ("css", "js", "fonts"):
+        src = SRC / "assets" / d
+        if src.exists():
+            shutil.copytree(src, OUT / d, dirs_exist_ok=True)
+    for f in (SRC / "static").glob("*"):
+        if f.is_file():
+            shutil.copy2(f, OUT / f.name)
+    downloads = SRC / "static" / "downloads"
+    if downloads.exists():
+        shutil.copytree(downloads, OUT / "downloads", dirs_exist_ok=True)
+    for php in ("send_rfq.php", "api_chat.php"):
+        if (ROOT / php).exists():
+            shutil.copy2(ROOT / php, OUT / php)
+
+
+def build_css():
+    order = ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css"]
+    css = "\n".join((SRC / "assets" / "css" / f).read_text() for f in order if (SRC / "assets" / "css" / f).exists())
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"\s+", " ", css)
+    css = re.sub(r"\s*([{};,>])\s*", r"\1", css).replace(";}", "}")
+    (OUT / "css").mkdir(parents=True, exist_ok=True)
+    (OUT / "css" / "site.css").write_text(css)
+    return len(css)
+
+
+def main():
+    if OUT.exists():
+        for child in OUT.iterdir():
+            if child.name == "img":
+                continue
+            shutil.rmtree(child) if child.is_dir() else child.unlink()
+    OUT.mkdir(exist_ok=True)
+    copy_static()
+    for f in (OUT / "css").glob("*.css"):
+        f.unlink()
+    size = build_css()
+    env.globals["css_bytes"] = size
+
+    render("pages/home.html", "/")
+    for fam in families.values():
+        render("pages/family.html", f"/products/{fam['slug']}.html", fam=fam)
+    render("pages/products.html", "/products/")
+    for p in products.values():
+        render("pages/product.html", product_url(p["slug"]), p=p, fam=families[p["family"]])
+    render("pages/industries.html", "/industries/")
+    for ind in industries.values():
+        render("pages/industry.html", f"/industries/{ind['slug']}.html", ind=ind)
+    render("pages/contact.html", "/contactus.html")
+    render("pages/thanks.html", "/thank-you.html")
+    render("pages/404.html", "/404.html")
+
+    # sitemap
+    urls = [u for u in pages_written if u not in ("/404.html", "/thank-you.html")]
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for u in urls:
+        sm.append(f"<url><loc>{site['url']}{u}</loc><lastmod>{date.today().isoformat()}</lastmod></url>")
+    sm.append("</urlset>")
+    (OUT / "sitemap.xml").write_text("\n".join(sm))
+    print(f"built {len(pages_written)} pages, css {size} bytes")
+
+
+if __name__ == "__main__":
+    main()

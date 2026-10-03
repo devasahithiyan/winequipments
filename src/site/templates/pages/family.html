@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Products', '/products/'), (fam.name, '/products/' ~ fam.slug ~ '.html')] %}
+{% block title %}{{ fam.title }}{% endblock %}
+{% block description %}{{ fam.description }}{% endblock %}
+{% block schema %}
+{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "CollectionPage", "name": fam.name, "url": site.url ~ "/products/" ~ fam.slug ~ ".html", "hasPart": fam_urls(fam)}]}) }}
+{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="hub-hero">
+  <div class="container hub-hero__grid">
+    <div>
+      <h1>{{ fam.name }}</h1>
+      <p class="lede" style="margin-top:var(--s-4)">{{ fam.lede }}</p>
+      <div class="btn-row" style="margin-top:var(--s-6)">
+        <a class="btn btn--primary" href="#quote" data-quote-link>Talk to an engineer</a>
+        <a class="btn btn--secondary" href="#range">See the range</a>
+      </div>
+    </div>
+    <figure class="chart-plate" style="margin:0">
+      {% if fam.id == 'air' %}
+        {{ dew_ladder('narrow') }}{{ dew_ladder('wide') }}
+        <figcaption>Pick the dryer by the dew point your process needs. Values from the WRD and WHD catalogues.</figcaption>
+      {% elif fam.id == 'towers' %}
+        {{ tower_chart('narrow') }}{{ tower_chart('wide') }}
+        <figcaption>FRP towers cool by evaporation to wet bulb + 4 °C; coil towers keep water sealed and cool it to ambient + 4 °C. From the WCT and WCC catalogues.</figcaption>
+      {% else %}
+        {{ picture(fam.image, 'WCP industrial process chiller by Win Equipments', sizes='(min-width: 900px) 40vw, 90vw', eager=True, max_w=700) }}
+        <figcaption>WCP air- and water-cooled process chillers, 0.5 to 20 TR, with built-in stainless steel tank and pump.</figcaption>
+      {% endif %}
+    </figure>
+  </div>
+</section>
+
+<section class="section section--rule" id="range" aria-labelledby="range-title">
+  <div class="container">
+    <div class="section-head"><h2 id="range-title">Which one do you need?</h2></div>
+    <table class="compare">
+      <thead><tr><th scope="col">Product</th><th scope="col">Range</th><th scope="col">Choose it when</th><th scope="col"><span class="visually-hidden">Link</span></th></tr></thead>
+      <tbody>
+        {% for pr in fam.products %}
+        <tr>
+          <th scope="row"><a href="{{ product_url(pr.slug) }}">{{ pr.name }}</a></th>
+          <td data-label="Range">{{ pr.range }}{% if pr.series not in ('Engineered to order', 'Spares') %} · {{ pr.series }}{% endif %}</td>
+          <td data-label="Choose it when">{{ pr.card }}</td>
+          <td><a class="link-arrow" href="{{ product_url(pr.slug) }}">Specifications<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="list-title">
+  <div class="container">
+    <div class="section-head"><h2 id="list-title">{{ fam.name }} range</h2></div>
+    <ul class="product-rows">
+      {% for pr in fam.products %}{{ m.product_row(pr) }}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% set heading = 'Not sure which ' ~ fam.short ~ ' unit fits?' %}
+{% set intro = 'Tell us what the equipment has to do. Our engineers will size it and reply with a recommendation and quotation.' %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

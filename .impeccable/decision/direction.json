@@ -1,0 +1,132 @@
+{
+  "title": "Choose the visual world for Win Equipments",
+  "question": "The roll assigned the Dew-Point Chart world. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Dew-Point Chart",
+      "kicker": "THE ROLL",
+      "lineage": "Psychrometric and dew-point charts every HVAC and compressed-air engineer reads",
+      "thesis": "Show the equipment doing its job: air and water moving from a hot 45°C plant to a guaranteed dew point or leaving temperature, plotted.",
+      "palette": ["#F6F7F3", "#15201A", "#008810", "#1D4E89", "#C8D0CA"],
+      "materials": ["chart paper with true measuring rulings", "one green process line", "tabular engineering figures", "real product photography"],
+      "viewport": "Phone: short headline naming dryers, chillers and FRP cooling towers, Request Quote, then a live chart plotting 45°C inlet air falling to +3°C pressure dew point in green with labelled state points. Desktop: headline left, chart and product photo right.",
+      "risk": "If the chart becomes decoration instead of real numbers it turns into the blueprint-grid costume the old site wore.",
+      "raised": [
+        {"from": "challenger-signal", "raise": "Design conditions (45°C ambient, 7 bar, inlet temperature) stay locked as a persistent readout on every product page, like a timecode in its corner."},
+        {"from": "challenger-sleeve", "raise": "Colour commits at page scale once: the enquiry close is a full flat #008810 field, not green sprinkled everywhere."},
+        {"from": "challenger-automata", "raise": "Every working-principle diagram labels each stage and steps through it one stage at a time."},
+        {"from": "challenger-dive", "raise": "On phones a single vertical capacity axis rules the model ladder in the spec explorer."},
+        {"from": "challenger-hypercard", "raise": "Every model row is addressable (e.g. #wrd-500) and its quote link carries the model, so the trail back is exact."}
+      ],
+      "wireframe": {"cols": 6, "rows": 12, "regions": [
+        {"label": "header: logo · call · Menu", "x": 0, "y": 0, "w": 6, "h": 1},
+        {"label": "H1 + one line", "x": 0, "y": 1, "w": 6, "h": 2},
+        {"label": "Request Quote", "x": 0, "y": 3, "w": 4, "h": 1, "accent": true},
+        {"label": "dew-point chart: 45°C → +3°C", "x": 0, "y": 4, "w": 6, "h": 4, "accent": true},
+        {"label": "ISO 9001 · since 2008 · 1,200+ installs", "x": 0, "y": 8, "w": 6, "h": 1},
+        {"label": "3 product families", "x": 0, "y": 9, "w": 6, "h": 3}
+      ]}
+    },
+    {
+      "id": "model-pick",
+      "label": "The Datasheet & GA Drawing",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Manufacturer datasheets and general-arrangement drawings with title blocks",
+      "thesis": "The site reads like a well-made engineering datasheet: title block, dimensioned views, revision table.",
+      "palette": ["#FFFFFF", "#1A1D1F", "#008810", "#E4E7E5"],
+      "materials": ["title-block rules", "dimension lines", "model tables", "product cut-outs"],
+      "viewport": "Product family names set as a datasheet title block, a dimensioned product view, model range table below.",
+      "risk": "Familiar: close to the blueprint look most industrial redesigns land on, and easy to tip into costume."
+    },
+    {
+      "id": "challenger-splitflap",
+      "label": "Split-Flap Concourse Board",
+      "verdict": "competitive",
+      "lineage": "Rail departure boards",
+      "thesis": "Model ranges as a ruled departure board: fixed columns, rows that update in place.",
+      "palette": ["#111311", "#F2F2EE", "#008810", "#E8A23A"],
+      "materials": ["matte flap cells", "brushed steel frame", "condensed white sans"],
+      "viewport": "A board of models with capacity, power and connection columns; the selected model flips into view.",
+      "case": "Fuses well for spec tables (product clarity holds) but plant engineers don't identify with rail concourses, and a dark board fights bright factory light.",
+      "risk": "Reads as novelty if the board is used for anything but real model data."
+    },
+    {
+      "id": "challenger-signal",
+      "label": "Emergency Signal Card",
+      "verdict": "declined",
+      "lineage": "Broadcast test cards",
+      "thesis": "Colour bars and a locked timecode.",
+      "palette": ["#0B0B0B", "#F4F4F4", "#E53935", "#1E88E5"],
+      "materials": ["colour bars", "tape noise"],
+      "viewport": "Alert card with a crawl.",
+      "case": "Fuses poorly: no audience identification, obscures the offer.",
+      "kept": "A locked, always-visible readout (design conditions).",
+      "risk": "Alarmist."
+    },
+    {
+      "id": "challenger-sleeve",
+      "label": "French Pop Sleeve",
+      "verdict": "declined",
+      "lineage": "1960s yé-yé record sleeves",
+      "thesis": "One flat saturated ground per release.",
+      "palette": ["#F26B21", "#2EC4B6", "#FFFFFF"],
+      "materials": ["flat ink", "cropped portrait"],
+      "viewport": "Flat colour field with a cropped image.",
+      "case": "Fuses poorly: playful register undermines engineering trust.",
+      "kept": "Total commitment of one flat colour field at page scale.",
+      "risk": "Frivolous."
+    },
+    {
+      "id": "challenger-automata",
+      "label": "Paper Automata",
+      "verdict": "declined",
+      "lineage": "Hand-cranked paper mechanisms",
+      "thesis": "Folds and linkages that move in procession.",
+      "palette": ["#F4F0E6", "#2B2B2B", "#C62828"],
+      "materials": ["cut paper", "kraft board"],
+      "viewport": "A crank-driven procession.",
+      "case": "Fuses poorly: whimsical, hides specifications.",
+      "kept": "Every mechanism shows and labels its linkage stage by stage.",
+      "risk": "Craft-fair tone."
+    },
+    {
+      "id": "challenger-dive",
+      "label": "Mesophotic Deep Dive",
+      "verdict": "declined",
+      "lineage": "Technical dive profiles",
+      "thesis": "One vertical depth axis rules everything.",
+      "palette": ["#0A1F33", "#E8F4F8", "#2EC4D6"],
+      "materials": ["deep blue gradient", "marine snow"],
+      "viewport": "A vertical descent.",
+      "case": "Fuses poorly: dark, decorative, far from the plant floor.",
+      "kept": "A single vertical measurement axis organising content on phones.",
+      "risk": "Atmosphere over information."
+    },
+    {
+      "id": "challenger-hypercard",
+      "label": "HyperCard Stack",
+      "verdict": "declined",
+      "lineage": "1-bit HyperCard stacks",
+      "thesis": "Linked cards with an exact trail back.",
+      "palette": ["#FFFFFF", "#000000"],
+      "materials": ["1-bit dither", "pixel type"],
+      "viewport": "A stack of linked cards.",
+      "case": "Fuses poorly: retro-computing has nothing to do with industrial buyers.",
+      "kept": "Every item is deep-linkable and the trail back is exact.",
+      "risk": "Nostalgia."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code"},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "What industrial manufacturers ship (Atlas Copco, ELGi, BEKO), executed with full craft.",
+    "palette": ["#FFFFFF", "#1F2933", "#008810", "#F2F4F5"],
+    "materials": ["clean grid", "product photography", "mega-menu"],
+    "viewport": "Photo hero with headline and Request Quote, category grid, trust strip, industries.",
+    "risk": "Indistinguishable from competitors by design."
+  },
+  "steer": true
+}

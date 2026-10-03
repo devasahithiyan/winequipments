@@ -43,3 +43,4 @@ __pycache__/
 .pytest_cache/
 leads_log_secure.csv
 .agents/
+.build-cache/

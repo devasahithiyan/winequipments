@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% block title %}Page not found | Win Equipments{% endblock %}
+{% block description %}The page you were looking for has moved. Find air dryers, chillers and cooling towers from Win Equipments.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<section class="page-head section">
+  <div class="container">
+    <h1>This page has moved</h1>
+    <p class="lede">The product you were looking for is still here. Pick it from the list below or ask us directly.</p>
+  </div>
+</section>
+{% for fam in families.values() %}
+<section class="section section--rule section--tight">
+  <div class="container">
+    <h2 style="margin-bottom:var(--s-4)">{{ fam.name }}</h2>
+    <ul class="product-rows">{% for pr in fam.products %}{{ m.product_row(pr) }}{% endfor %}</ul>
+  </div>
+</section>
+{% endfor %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

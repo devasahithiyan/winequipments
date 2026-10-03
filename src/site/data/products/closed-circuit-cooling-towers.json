@@ -1,0 +1,359 @@
+{
+  "slug": "closed-circuit-cooling-towers",
+  "family": "towers",
+  "order": 3,
+  "name": "Coil Cooling Towers",
+  "series": "WCC Series",
+  "h1": "Coil Cooling Towers (Dry Coolers)",
+  "title": "Coil Cooling Tower & Dry Cooler Manufacturer | WCC 40–280 TR",
+  "description": "WCC finned-coil dry cooling towers, 40–280 TR, for diesel gensets 150–2000 kVA and closed process loops. Copper tubes, galvanised frame. Win Equipments, Coimbatore.",
+  "card": "Finned copper-coil dry coolers that keep process water sealed from the air.",
+  "lede": "A coil cooling tower cools process hot water inside a sealed finned-coil heat exchanger, so the water never touches the air. WCC units are built for diesel genset jacket water and other closed loops, cooling water to ambient + 4 °C.",
+  "image": "images/Products/coilcooling.png",
+  "gallery": [
+    "images/Products/coilcooling2.png"
+  ],
+  "range": "40–280 TR",
+  "capacity": {
+    "key": "tr",
+    "unit": "TR",
+    "label": "Capacity"
+  },
+  "key_specs": [
+    {
+      "label": "Capacity",
+      "value": "40 to 280 TR"
+    },
+    {
+      "label": "Diesel genset duty",
+      "value": "150 to 2000 kVA"
+    },
+    {
+      "label": "Inlet water temperature",
+      "value": "75 to 90 °C"
+    },
+    {
+      "label": "Outlet water",
+      "value": "Ambient + 4 °C"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Inlet water pressure",
+      "value": "2 to 3 bar g"
+    },
+    {
+      "label": "Pressure drop",
+      "value": "0.5 bar max."
+    },
+    {
+      "label": "Motors",
+      "value": "IP55, extended SS shaft"
+    },
+    {
+      "label": "Enclosure",
+      "value": "Fibre glass / GI panels"
+    }
+  ],
+  "highlights": [
+    "Imported copper tubes",
+    "Heavy-wall steel header pipes",
+    "Galvanised steel frame",
+    "Low-noise axial fans",
+    "Motors designed for rain and dust"
+  ],
+  "principle": {
+    "intro": "The coil cooling tower works on heat transfer through a heat exchanger with extended fins, cooled by fan-driven air. The process water stays inside the coil.",
+    "stages": [
+      {
+        "name": "Hot water in",
+        "text": "Hot water from the diesel engine (or other load) enters the coil inlet header."
+      },
+      {
+        "name": "Finned coil",
+        "text": "Water flows through copper tubes with extended fins; aerodynamically balanced axial fans push air across them."
+      },
+      {
+        "name": "Cold water out",
+        "text": "Cooled water leaves the outlet header and a pump returns it to the engine to pick up heat again."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Coil",
+      "points": [
+        "Imported copper tubes",
+        "Extended fins for heat transfer",
+        "Heavy-wall steel header pipes"
+      ]
+    },
+    {
+      "title": "Fans & motors",
+      "points": [
+        "High-efficiency, low-noise axial fans",
+        "IP55 motors with extended SS shaft",
+        "Low motor speed reduces noise"
+      ]
+    },
+    {
+      "title": "Structure",
+      "points": [
+        "Heavy-duty channel base frame",
+        "Galvanised steel frame",
+        "Non-corrosive fibre glass / GI panels"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WCC series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "tr",
+        "label": "Capacity",
+        "unit": "TR",
+        "primary": true
+      },
+      {
+        "key": "hp",
+        "label": "Motor power",
+        "unit": "HP",
+        "primary": true
+      },
+      {
+        "key": "rpm",
+        "label": "Motor speed",
+        "unit": "rpm"
+      },
+      {
+        "key": "motors",
+        "label": "Motors",
+        "unit": "qty"
+      },
+      {
+        "key": "fan",
+        "label": "Fan diameter",
+        "unit": "mm"
+      },
+      {
+        "key": "dims",
+        "label": "L × W × H",
+        "unit": "mm"
+      },
+      {
+        "key": "dp",
+        "label": "Pressure drop",
+        "unit": "bar max."
+      },
+      {
+        "key": "holding",
+        "label": "Water holding",
+        "unit": "litres"
+      },
+      {
+        "key": "conn",
+        "label": "In / out",
+        "unit": "NB"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WCC 40",
+        "tr": 40,
+        "hp": "3",
+        "rpm": 960,
+        "motors": 2,
+        "fan": 1060,
+        "dims": "3300 × 1500 × 1400",
+        "dp": "0.5",
+        "holding": 72,
+        "conn": "3″ / 3″"
+      },
+      {
+        "model": "WCC 60",
+        "tr": 60,
+        "hp": "5",
+        "rpm": 960,
+        "motors": 2,
+        "fan": 1060,
+        "dims": "3500 × 1500 × 1400",
+        "dp": "0.5",
+        "holding": 110,
+        "conn": "3″ / 3″"
+      },
+      {
+        "model": "WCC 80",
+        "tr": 80,
+        "hp": "5",
+        "rpm": 960,
+        "motors": 2,
+        "fan": 1200,
+        "dims": "3300 × 1500 × 1700",
+        "dp": "0.5",
+        "holding": 140,
+        "conn": "3″ / 3″"
+      },
+      {
+        "model": "WCC 100",
+        "tr": 100,
+        "hp": "5",
+        "rpm": 960,
+        "motors": 2,
+        "fan": 1200,
+        "dims": "3500 × 1500 × 2750",
+        "dp": "0.5",
+        "holding": 180,
+        "conn": "3″ / 3″"
+      },
+      {
+        "model": "WCC 120",
+        "tr": 120,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 2,
+        "fan": 1200,
+        "dims": "3750 × 1500 × 2750",
+        "dp": "0.5",
+        "holding": 220,
+        "conn": "3″ / 3″"
+      },
+      {
+        "model": "WCC 140",
+        "tr": 140,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 2,
+        "fan": 1200,
+        "dims": "4300 × 1500 × 2750",
+        "dp": "0.5",
+        "holding": 250,
+        "conn": "3″ / 3″"
+      },
+      {
+        "model": "WCC 160",
+        "tr": 160,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 3,
+        "fan": 1200,
+        "dims": "4800 × 1500 × 2750",
+        "dp": "0.5",
+        "holding": 280,
+        "conn": "4″ / 4″"
+      },
+      {
+        "model": "WCC 180",
+        "tr": 180,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 3,
+        "fan": 1200,
+        "dims": "5400 × 1500 × 2750",
+        "dp": "0.5",
+        "holding": 325,
+        "conn": "4″ / 4″"
+      },
+      {
+        "model": "WCC 200",
+        "tr": 200,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 4,
+        "fan": 1200,
+        "dims": "6000 × 1500 × 2500",
+        "dp": "0.5",
+        "holding": 360,
+        "conn": "4″ / 4″"
+      },
+      {
+        "model": "WCC 220",
+        "tr": 220,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 4,
+        "fan": 1200,
+        "dims": "6500 × 1500 × 2500",
+        "dp": "0.5",
+        "holding": 390,
+        "conn": "4″ / 4″"
+      },
+      {
+        "model": "WCC 240",
+        "tr": 240,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 4,
+        "fan": 1200,
+        "dims": "7000 × 1500 × 2500",
+        "dp": "0.5",
+        "holding": 430,
+        "conn": "4″ / 4″"
+      },
+      {
+        "model": "WCC 280",
+        "tr": 280,
+        "hp": "7.5",
+        "rpm": 960,
+        "motors": 6,
+        "fan": 1200,
+        "dims": "7000 × 1500 × 2500",
+        "dp": "0.5",
+        "holding": 430,
+        "conn": "4″ / 4″"
+      }
+    ],
+    "notes": [
+      "Outlet water temperature is ambient + 4 °C. Inlet water 75–90 °C at 2–3 bar g."
+    ]
+  },
+  "installation": [
+    "Diesel engine / process load",
+    "Hot water to coil inlet",
+    "WCC coil cooling tower",
+    "Pump",
+    "Cold water back to load"
+  ],
+  "applications": [
+    "Diesel genset cooling",
+    "Automobile",
+    "Chemical",
+    "Electronics",
+    "Food & beverage",
+    "Glass",
+    "Pharmaceutical",
+    "Textile",
+    "Cement",
+    "Distilleries & breweries",
+    "Health care & hospitals"
+  ],
+  "faqs": [
+    {
+      "q": "How is a coil cooling tower different from an FRP cooling tower?",
+      "a": "In an FRP tower the water is sprayed into the air and cooled by evaporation, reaching wet bulb + 4 °C. In a WCC coil tower the water stays sealed inside finned copper tubes and is cooled by air alone, reaching ambient + 4 °C, with no water loss or contamination."
+    },
+    {
+      "q": "Which genset sizes do WCC units suit?",
+      "a": "WCC coil cooling towers cover diesel gensets from 150 to 2000 kVA."
+    },
+    {
+      "q": "What inlet water temperature can they handle?",
+      "a": "Inlet water from 75 to 90 °C at 2 to 3 bar g."
+    }
+  ],
+  "related": [
+    "round-cooling-towers",
+    "square-cooling-towers",
+    "industrial-process-chillers"
+  ],
+  "industries": [
+    "pharma",
+    "food-beverage",
+    "textile",
+    "automotive"
+  ],
+  "download": "/downloads/closed-circuit-cooling-towers.pdf"
+}

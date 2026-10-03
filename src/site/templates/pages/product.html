@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set wa_text = 'Hello Win Equipments, I need a quote for ' ~ p.name ~ '.' %}
+{% set crumbs = [('Home', '/'), ('Products', '/products/'), (fam.name, '/products/' ~ fam.slug ~ '.html'), (p.name, product_url(p.slug))] %}
+{% block title %}{{ p.title }}{% endblock %}
+{% block description %}{{ p.description }}{% endblock %}
+{% block og_type %}product{% endblock %}
+{% block og_image %}{{ image_url(p.image) }}{% endblock %}
+{% block schema %}
+{% set prod_ld = {"@type": "Product", "name": p.h1, "description": p.description, "image": image_url(p.image), "brand": {"@type": "Brand", "name": site.name}, "manufacturer": {"@id": site.url ~ "/#org"}, "category": fam.name, "url": site.url ~ product_url(p.slug)} %}
+{% if p.series and p.series not in ('Engineered to order', 'Spares') %}{% set _ = prod_ld.update({"model": p.series}) %}{% endif %}
+{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), prod_ld, crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
+{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+
+<section class="p-hero">
+  <div class="container p-hero__grid">
+    <h1 class="p-hero__title">{{ p.h1 }}</h1>
+    <div class="p-hero__media">
+      <span class="p-hero__series">{{ p.series }}</span>
+      {{ picture(p.image, p.h1 ~ ' manufactured by Win Equipments', sizes='(min-width: 900px) 40vw, 90vw', eager=True, max_w=900) }}
+    </div>
+    <div class="p-hero__body">
+      <p class="p-hero__lede">{{ p.lede }}</p>
+      {% if p.key_specs %}{{ m.readout(p.key_specs) }}{% endif %}
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
+        <a class="btn btn--secondary btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Catalogue PDF</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="subnav" aria-label="On this page">
+  <div class="container">
+    <ul>
+      {% if p.spec %}<li><a href="#specs">Specifications</a></li>{% endif %}
+      {% if p.principle is defined %}<li><a href="#how">How it works</a></li>{% endif %}
+      {% if p.selection is defined %}<li><a href="#sizing">Sizing</a></li>{% endif %}
+      {% if p.needs is defined %}<li><a href="#sizing-needs">What we need</a></li>{% endif %}
+      {% if p.applications is defined %}<li><a href="#applications">Applications</a></li>{% endif %}
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#quote">Quote</a></li>
+    </ul>
+  </div>
+</nav>
+
+{% if p.spec %}
+<section class="p-section" aria-labelledby="specs">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="specs">{{ p.series }} specifications</h2>
+      <p>{{ p.spec.rows | length }} standard models{% if p.capacity.unit in ('CFM','TR','litres') %}. Enter your requirement to find the model that covers it{% endif %}.<span class="only-mobile"> Tap a model to see every value.</span></p>
+    </div>
+    {% if p.conditions is defined %}
+    <div class="conditions" style="margin-bottom:var(--s-6)">
+      <h3>Rating conditions</h3>
+      <dl>{% for c in p.conditions %}<div><dt>{{ c.label }}</dt><dd>{{ c.value }}</dd></div>{% endfor %}</dl>
+    </div>
+    {% endif %}
+    {% include "partials/spec_explorer.html" %}
+  </div>
+</section>
+{% endif %}
+
+{% if p.grades is defined %}
+<section class="p-section" aria-labelledby="grades">
+  <div class="container">
+    <div class="section-head"><h2 id="grades">Filter grades</h2><p>Each WMF housing takes any of the four colour-coded elements. Install them in series to reach the air class your process needs.</p></div>
+    <table class="compare">
+      <thead><tr><th scope="col">Grade</th><th scope="col">Particle removal</th><th scope="col">Oil removal</th><th scope="col">Initial pressure drop</th><th scope="col">Media</th><th scope="col">Efficiency</th><th scope="col">ISO 8573-1</th></tr></thead>
+      <tbody>
+      {% for g in p.grades %}
+      <tr><th scope="row">{{ g.code }}</th><td data-label="Particle removal">{{ g.particle }}</td><td data-label="Oil removal">{{ g.oil }}</td><td data-label="Initial pressure drop">{{ g.dp }}</td><td data-label="Media">{{ g.media }}</td><td data-label="Efficiency">{{ g.efficiency }}</td><td data-label="ISO 8573-1">{{ g.class }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
+
+{% if p.principle is defined %}
+<section class="p-section" aria-labelledby="how">
+  <div class="container two-col">
+    <div class="stack">
+      <h2 id="how">How it works</h2>
+      <p class="lede">{{ p.principle.intro }}</p>
+      {% if p.slug == 'refrigerated-air-dryers' %}
+      <figure class="chart-plate" style="margin:var(--s-6) 0 0">
+        {{ dew_chart('narrow') }}{{ dew_chart('wide') }}
+        <figcaption>Calculated for compressed air at 7 bar g. Chilling saturated air from 45 °C to the +3 °C dew point condenses most of the water vapour, which the separator drains.</figcaption>
+      </figure>
+      {% endif %}
+    </div>
+    <div>
+      <ol class="stages">
+        {% for s in p.principle.stages %}<li class="stage"><h3>{{ s.name }}</h3><p>{{ s.text }}</p></li>{% endfor %}
+      </ol>
+      {% if p.installation is defined and p.installation %}
+      <h3 style="margin:var(--s-8) 0 var(--s-3)">Typical installation</h3>
+      <ol class="line-diagram">
+        {% for step in p.installation %}<li class="{{ 'is-this' if (p.name.split(' ')[0] | lower) in (step | lower) or (p.name | lower).rstrip('s') in (step | lower) else '' }}"><span>{{ step }}</span></li>{% endfor %}
+      </ol>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if p.features is defined %}
+<section class="p-section" aria-labelledby="build">
+  <div class="container">
+    <div class="section-head"><h2 id="build">What goes into it</h2></div>
+    <div class="feature-list">
+      {% for f in p.features %}
+      <div class="feature"><h3>{{ f.title }}</h3><ul>{% for pt in f.points %}<li>{{ pt }}</li>{% endfor %}</ul></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if p.selection is defined %}
+<section class="p-section" aria-labelledby="sizing">
+  <div class="container">
+    <div class="section-head"><h2 id="sizing">Sizing for your conditions</h2><p>{{ p.selection.formula }}</p></div>
+    {% if p.selection.kind is defined and p.selection.kind == 'approach' %}
+    <p style="margin-bottom:var(--s-4)">{{ p.selection.intro }}</p>
+    <div class="scroll-x">
+      <table class="mini-table">
+        <thead><tr><th scope="col">ΔT °C \ approach °C</th>{% for a in p.selection.approaches %}<th scope="col">{{ a }}</th>{% endfor %}</tr></thead>
+        <tbody>{% for d in p.selection.deltas %}<tr><th scope="row">{{ d }}</th>{% for v in p.selection.grid[loop.index0] %}<td>{{ v }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+      </table>
+    </div>
+    {% else %}
+    {% if p.slug == 'refrigerated-air-dryers' %}
+    <div class="finder" data-correction style="margin-bottom:var(--s-6)">
+      <div class="form-grid form-grid--2">
+        <div class="field"><label for="c-flow">Compressor actual capacity</label><div class="unit-input"><input id="c-flow" type="number" inputmode="decimal" min="0" placeholder="e.g. 250" data-c-flow><span>CFM</span></div></div>
+        {% for t in p.selection.tables %}
+        <div class="field"><label for="c{{ loop.index }}">{{ t.name }}</label>
+          <select class="select" id="c{{ loop.index }}" data-c-factor>
+            {% for pt in t.points %}<option value="{{ pt[1] }}"{% if (loop.index0 == 3 and t.unit == '°C' and 'Inlet' in t.name) or (pt[1] == 1.0) %} selected{% endif %}>{{ pt[0] }} {{ t.unit }} · ×{{ pt[1] }}</option>{% endfor %}
+          </select>
+        </div>
+        {% endfor %}
+      </div>
+      <p class="finder__result" aria-live="polite" data-c-result>Enter the compressor capacity to calculate the dryer nominal capacity.</p>
+    </div>
+    {% endif %}
+    <div class="corr-tables">
+      {% for t in p.selection.tables %}
+      <div class="scroll-x">
+        <table class="mini-table">
+          <caption>{{ t.name }}</caption>
+          <tbody>
+            <tr><th scope="row">{{ t.unit }}</th>{% for pt in t.points %}<td>{{ pt[0] }}</td>{% endfor %}</tr>
+            <tr><th scope="row">Factor</th>{% for pt in t.points %}<td>{{ pt[1] }}</td>{% endfor %}</tr>
+          </tbody>
+        </table>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if p.spare_groups is defined %}
+<section class="p-section" aria-labelledby="spares">
+  <div class="container">
+    <div class="section-head"><h2 id="spares">Spares we supply</h2></div>
+    <div class="feature-list">
+      {% for g in p.spare_groups %}<div class="feature"><h3>{{ g.name }}</h3><ul>{% for i in g['items'] %}<li>{{ i }}</li>{% endfor %}</ul></div>{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if p.needs is defined %}
+<section class="p-section" aria-labelledby="sizing-needs">
+  <div class="container two-col">
+    <div class="stack">
+      <h2 id="sizing-needs">{{ 'What to send us' if p.spare_groups is defined else 'What we need to size it' }}</h2>
+      <p>{{ 'Built to order: each unit is sized from your duty. Send these details and our engineers will recommend a configuration and quote.' if p.engineered is defined else 'Send these details and we will confirm the part and quote.' }}</p>
+      <a class="btn btn--primary" href="#quote" data-quote-link>Send your requirement</a>
+    </div>
+    <ol class="need-list">{% for n in p.needs %}<li>{{ n }}</li>{% endfor %}</ol>
+  </div>
+</section>
+{% endif %}
+
+{% if p.applications is defined %}
+<section class="p-section" aria-labelledby="applications">
+  <div class="container two-col">
+    <div class="stack">
+      <h2 id="applications">Applications</h2>
+      {% if p.applications_note is defined %}<p class="finder__note">{{ p.applications_note }}</p>{% endif %}
+    </div>
+    <ul class="tags">{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
+  </div>
+</section>
+{% endif %}
+
+<section class="p-section" aria-labelledby="faq">
+  <div class="container two-col">
+    <h2 id="faq">Questions engineers ask</h2>
+    {{ m.faq(p.faqs) }}
+  </div>
+</section>
+
+{% if p.related %}
+<section class="p-section" aria-labelledby="related">
+  <div class="container">
+    <div class="section-head"><h2 id="related">Works with</h2></div>
+    <ul class="product-rows related">
+      {% for slug in p.related %}{% if slug in products %}{{ m.product_row(products[slug]) }}{% endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% set heading = 'Need help selecting ' ~ ('a ' ~ p.name.rstrip('s') | lower if not p.spare_groups is defined else 'a spare') ~ '?' %}
+{% set intro = 'Tell us your requirement and an engineer will recommend the model and send a quotation. You can also attach a drawing or nameplate photo.' %}
+{% set prod = p %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

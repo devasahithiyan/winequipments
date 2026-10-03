@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Industries', '/industries/')] %}
+{% block title %}Industries Served: Air Dryers, Chillers &amp; Cooling Towers | Win Equipments{% endblock %}
+{% block description %}Win Equipments supplies compressed air dryers, process chillers and cooling towers to plastics, textile, automotive, food, pharma, healthcare, power and cement plants.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1>Industries we serve</h1>
+    <p class="lede">Choose your industry to see the equipment it uses, then open a product for its model range and specifications.</p>
+  </div>
+</section>
+<section class="section section--rule" style="padding-top:var(--s-8)">
+  <div class="container">
+    <ul class="ind-list ind-list--detail">
+      {% for ind in industries.values() %}
+      <li><a href="/industries/{{ ind.slug }}.html">{{ ind.name }}<small>{{ ind.products | map('pname') | join(' · ') }}</small></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% include "partials/enquiry.html" %}
+{% endblock %}

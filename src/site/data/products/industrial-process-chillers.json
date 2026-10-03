@@ -1,0 +1,463 @@
+{
+  "slug": "industrial-process-chillers",
+  "family": "cooling",
+  "order": 1,
+  "name": "Industrial Process Chillers",
+  "series": "WCP Series",
+  "h1": "Industrial Process Water Chillers",
+  "title": "Industrial Chiller Manufacturer, Coimbatore | WCP 0.5–20 TR",
+  "description": "WCP industrial process water chillers, 0.5–20 TR, air or water cooled, built-in stainless steel tank and pump. Manufactured by Win Equipments, Coimbatore.",
+  "card": "Holds process water at a set temperature with a closed stainless steel tank and pump.",
+  "lede": "WCP chillers keep process water at a prescribed set temperature using refrigeration. Each unit is self-contained, with a closed stainless steel tank, high-pressure pump and air- or water-cooled condenser, and is factory tested before delivery.",
+  "image": "images/Products/chiller.png",
+  "gallery": [],
+  "range": "0.5–20 TR",
+  "capacity": {
+    "key": "tr",
+    "unit": "TR",
+    "label": "Cooling capacity"
+  },
+  "key_specs": [
+    {
+      "label": "Capacity",
+      "value": "0.5 to 20 TR"
+    },
+    {
+      "label": "Temperature difference",
+      "value": "5 °C"
+    },
+    {
+      "label": "Inlet water pressure",
+      "value": "2 to 4 bar g"
+    },
+    {
+      "label": "Inlet water temperature",
+      "value": "5 to 30 °C"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Water outlet temperature (ideal)",
+      "value": "15 °C"
+    },
+    {
+      "label": "Ambient temperature (ideal)",
+      "value": "40 °C"
+    },
+    {
+      "label": "Water ΔT",
+      "value": "5 °C"
+    },
+    {
+      "label": "Water inlet pressure",
+      "value": "1 bar g ideal · 2–4 bar g max"
+    }
+  ],
+  "highlights": [
+    "Compact design",
+    "Built-in closed stainless steel tank",
+    "High-pressure pump",
+    "Air cooled or water cooled",
+    "Microprocessor control (optional)",
+    "Closed cooling system",
+    "More heat transfer area"
+  ],
+  "principle": {
+    "intro": "The chilling plant has two circuits: a refrigeration system (compressor, condenser, fan, expansion device and evaporator) and a water circulating system (pump, motor and tubing).",
+    "stages": [
+      {
+        "name": "Water in",
+        "text": "Process water returns to the chiller through the water inlet."
+      },
+      {
+        "name": "Evaporate",
+        "text": "In the brazed plate heat exchanger (evaporator) the water is cooled by the refrigerant. Counter-flow achieves the maximum temperature difference with minimum pressure drop."
+      },
+      {
+        "name": "Reject heat",
+        "text": "The refrigerant compressor sends the absorbed heat to an air- or water-cooled condenser."
+      },
+      {
+        "name": "Water out",
+        "text": "Cooled water is pumped from the closed stainless steel tank back to the process at the set temperature."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Brazed plate heat exchanger",
+      "points": [
+        "Sized to keep fluid velocities and turbulence high",
+        "Counter-flow for maximum temperature difference",
+        "Minimum pressure drop"
+      ]
+    },
+    {
+      "title": "Refrigeration compressor",
+      "points": [
+        "Hermetically sealed reciprocating or scroll",
+        "Suitable for eco-friendly gases",
+        "Low noise, low power consumption"
+      ]
+    },
+    {
+      "title": "Circulating pump",
+      "points": [
+        "Stainless steel impeller, mechanical seal",
+        "Rated for 24-hour duty",
+        "Motor overload protection"
+      ]
+    },
+    {
+      "title": "Tank",
+      "points": [
+        "Non-corrosive insulated stainless steel tank",
+        "Closed tank: no heat gain",
+        "Removable steel covers for access"
+      ]
+    },
+    {
+      "title": "Controls",
+      "points": [
+        "Programmed temperature controller with alarms",
+        "On-delay protects the compressor",
+        "High / low pressure gauges and switches"
+      ]
+    },
+    {
+      "title": "Hot gas bypass valve",
+      "points": [
+        "Prevents evaporator temperature dropping below 5 °C",
+        "Manual or automatic"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WCP series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "tr",
+        "label": "Capacity",
+        "unit": "TR",
+        "primary": true
+      },
+      {
+        "key": "m3hr",
+        "label": "Capacity",
+        "unit": "m³/hr"
+      },
+      {
+        "key": "kw",
+        "label": "Refrigeration compressor",
+        "unit": "kW",
+        "primary": true
+      },
+      {
+        "key": "supply",
+        "label": "Electrical",
+        "unit": "V / Ph / Hz"
+      },
+      {
+        "key": "fans",
+        "label": "Cooling fans",
+        "unit": "qty"
+      },
+      {
+        "key": "condenser",
+        "label": "Condenser"
+      },
+      {
+        "key": "lpm",
+        "label": "Water flow",
+        "unit": "LPM"
+      },
+      {
+        "key": "pump",
+        "label": "Water pump",
+        "unit": "HP"
+      },
+      {
+        "key": "tank",
+        "label": "Water tank",
+        "unit": "litres"
+      },
+      {
+        "key": "tank_mat",
+        "label": "Tank material"
+      },
+      {
+        "key": "kg",
+        "label": "Shipping weight",
+        "unit": "kg"
+      },
+      {
+        "key": "conn",
+        "label": "End connection",
+        "unit": "BSP / NB"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WCP 005",
+        "tr": 0.5,
+        "m3hr": 0.3,
+        "kw": "0.9",
+        "supply": "230 / 1 / 50",
+        "fans": 1,
+        "condenser": "Air / Water",
+        "lpm": 6,
+        "pump": "0.5",
+        "tank": 15,
+        "tank_mat": "SS",
+        "kg": 125,
+        "conn": "¾″"
+      },
+      {
+        "model": "WCP 007",
+        "tr": 0.75,
+        "m3hr": 0.45,
+        "kw": "1.2",
+        "supply": "230 / 1 / 50",
+        "fans": 1,
+        "condenser": "Air / Water",
+        "lpm": 8,
+        "pump": "0.5",
+        "tank": 20,
+        "tank_mat": "SS",
+        "kg": 135,
+        "conn": "¾″"
+      },
+      {
+        "model": "WCP 010",
+        "tr": 1,
+        "m3hr": 0.6,
+        "kw": "1.5",
+        "supply": "230 / 1 / 50",
+        "fans": 1,
+        "condenser": "Air / Water",
+        "lpm": 10,
+        "pump": "0.5",
+        "tank": 25,
+        "tank_mat": "SS",
+        "kg": 150,
+        "conn": "¾″"
+      },
+      {
+        "model": "WCP 020",
+        "tr": 2,
+        "m3hr": 1.2,
+        "kw": "2.5",
+        "supply": "230 / 1 / 50",
+        "fans": 1,
+        "condenser": "Air / Water",
+        "lpm": 21,
+        "pump": "0.75",
+        "tank": 40,
+        "tank_mat": "SS",
+        "kg": 200,
+        "conn": "1″"
+      },
+      {
+        "model": "WCP 030",
+        "tr": 3,
+        "m3hr": 1.8,
+        "kw": "3.4",
+        "supply": "440 / 3 / 50",
+        "fans": 1,
+        "condenser": "Air / Water",
+        "lpm": 32,
+        "pump": "1",
+        "tank": 60,
+        "tank_mat": "SS",
+        "kg": 240,
+        "conn": "1″"
+      },
+      {
+        "model": "WCP 050",
+        "tr": 5,
+        "m3hr": 3.0,
+        "kw": "6.0",
+        "supply": "440 / 3 / 50",
+        "fans": 2,
+        "condenser": "Air / Water",
+        "lpm": 52,
+        "pump": "1.5",
+        "tank": 80,
+        "tank_mat": "SS",
+        "kg": 350,
+        "conn": "1½″"
+      },
+      {
+        "model": "WCP 075",
+        "tr": 7.5,
+        "m3hr": 4.5,
+        "kw": "9.2",
+        "supply": "440 / 3 / 50",
+        "fans": 3,
+        "condenser": "Air / Water",
+        "lpm": 80,
+        "pump": "2",
+        "tank": 140,
+        "tank_mat": "SS",
+        "kg": 475,
+        "conn": "1½″"
+      },
+      {
+        "model": "WCP 100",
+        "tr": 10,
+        "m3hr": 6.0,
+        "kw": "11.5",
+        "supply": "440 / 3 / 50",
+        "fans": 4,
+        "condenser": "Air / Water",
+        "lpm": 100,
+        "pump": "2",
+        "tank": 180,
+        "tank_mat": "SS / MS",
+        "kg": 550,
+        "conn": "2″"
+      },
+      {
+        "model": "WCP 150",
+        "tr": 15,
+        "m3hr": 9.0,
+        "kw": "18.0",
+        "supply": "440 / 3 / 50",
+        "fans": 6,
+        "condenser": "Air / Water",
+        "lpm": 155,
+        "pump": "2",
+        "tank": 250,
+        "tank_mat": "SS / MS",
+        "kg": 700,
+        "conn": "2″"
+      },
+      {
+        "model": "WCP 200",
+        "tr": 20,
+        "m3hr": 12.0,
+        "kw": "22.5",
+        "supply": "440 / 3 / 50",
+        "fans": 8,
+        "condenser": "Air / Water",
+        "lpm": 202,
+        "pump": "2",
+        "tank": 320,
+        "tank_mat": "SS / MS",
+        "kg": 1000,
+        "conn": "2″"
+      }
+    ],
+    "notes": [
+      "Model code: WCP + capacity in TR (e.g. WCP 050 = 5 TR). Working pressure 2–4 bar g max.",
+      "Pressure drop within 0.2 bar g max.",
+      "Rated power is the maximum power consumed at rated conditions.",
+      "Voltage range 180–260 V for 1 Ph and 380–420 V for 3 Ph."
+    ]
+  },
+  "selection": {
+    "formula": "Heat load Q = m × ΔT (m = mass flow in LPM, ΔT = inlet − outlet temperature). Q in kcal/min × 60 = kcal/hr.",
+    "tables": [
+      {
+        "name": "Water outlet temperature",
+        "unit": "°C",
+        "points": [
+          [
+            5,
+            0.6
+          ],
+          [
+            10,
+            0.75
+          ],
+          [
+            15,
+            1.0
+          ],
+          [
+            20,
+            1.16
+          ],
+          [
+            25,
+            1.3
+          ]
+        ]
+      },
+      {
+        "name": "Ambient temperature",
+        "unit": "°C",
+        "points": [
+          [
+            30,
+            1.2
+          ],
+          [
+            35,
+            1.1
+          ],
+          [
+            40,
+            1.0
+          ],
+          [
+            45,
+            0.9
+          ],
+          [
+            50,
+            0.8
+          ]
+        ]
+      }
+    ]
+  },
+  "installation": [],
+  "applications": [
+    "Automobile",
+    "Injection moulding & plastics",
+    "Hydraulic presses & drives",
+    "Compressor cooling",
+    "Milk, dairy & pasteurising",
+    "Food products",
+    "Lubricant & oil cooling",
+    "Pulp & paper",
+    "Printing ink & paper waxing",
+    "Sugar",
+    "Footwear"
+  ],
+  "faqs": [
+    {
+      "q": "What two values do I need to select a chiller?",
+      "a": "The required water outlet (cold) temperature, and the heat load to be removed. Heat load Q = mass flow (LPM) × ΔT between inlet and outlet temperature."
+    },
+    {
+      "q": "Are WCP chillers air cooled or water cooled?",
+      "a": "Every WCP model is available with either an air-cooled or a water-cooled condenser."
+    },
+    {
+      "q": "What is the tank made of?",
+      "a": "Up to WCP 075 the tank is stainless steel. WCP 100 to WCP 200 are offered in stainless or mild steel."
+    },
+    {
+      "q": "How does ambient temperature affect capacity?",
+      "a": "Capacity is rated at 40 °C ambient. At 45 °C apply a factor of 0.9, at 50 °C 0.8."
+    }
+  ],
+  "related": [
+    "round-cooling-towers",
+    "anodizing-chillers",
+    "medical-scan-chillers",
+    "ice-flake-machines"
+  ],
+  "industries": [
+    "plastics",
+    "food-beverage",
+    "automotive"
+  ],
+  "download": "/downloads/industrial-process-chillers.pdf"
+}

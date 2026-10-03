@@ -1,0 +1,229 @@
+{
+  "name": "Win Equipments",
+  "tagline": "Save Water and Power",
+  "url": "https://winequipments.com",
+  "founded": 2008,
+  "installations": "1,200+",
+  "address": {
+    "street": "SF No. 4/195 B, Kallangadu, Nadu Arasur",
+    "locality": "Arasur Post",
+    "city": "Coimbatore",
+    "region": "Tamil Nadu",
+    "postal": "641407",
+    "country": "IN"
+  },
+  "address_lines": [
+    "SF No. 4/195 B, Kallangadu, Nadu Arasur",
+    "Arasur Post, Coimbatore 641 407",
+    "Tamil Nadu, India"
+  ],
+  "phones": [
+    {
+      "display": "+91 95972 28969",
+      "tel": "+919597228969"
+    },
+    {
+      "display": "+91 95972 28975",
+      "tel": "+919597228975"
+    }
+  ],
+  "whatsapp": "919597228969",
+  "email": "info@winequipments.com",
+  "certification": "ISO 9001:2015",
+  "maps": "https://www.google.com/maps/search/?api=1&query=Win+Equipments+Arasur+Coimbatore",
+  "families": [
+    {
+      "id": "air",
+      "slug": "compressed-air-treatment",
+      "name": "Compressed Air Treatment",
+      "short": "Air treatment",
+      "title": "Compressed Air Treatment Equipment Manufacturer | Win Equipments",
+      "description": "Refrigerated and desiccant air dryers, compressed air filters, drain valves, air receivers and aftercoolers manufactured by Win Equipments, Coimbatore.",
+      "lede": "Dry, clean compressed air protects machines, valves and finished product. We make every stage of the treatment line, from the aftercooler at the compressor to the dry air receiver at the plant header.",
+      "summary": "Dryers, filters, drains and receivers for dry, clean compressed air.",
+      "image": "images/Products/Refrigiratedairdryer1.png"
+    },
+    {
+      "id": "cooling",
+      "slug": "process-cooling",
+      "name": "Process Cooling",
+      "short": "Process cooling",
+      "title": "Industrial Chiller Manufacturer, Coimbatore | Process Cooling | Win Equipments",
+      "description": "Industrial process water chillers 0.5–20 TR, plus anodizing, acid, medical scan chillers and ice flake machines engineered to order by Win Equipments, Coimbatore.",
+      "lede": "Process chillers hold water at a set temperature so moulds, presses, baths and machines run at a steady temperature. Standard WCP chillers cover 0.5 to 20 TR; special duties are engineered to order.",
+      "summary": "Chillers that hold process water at a set temperature.",
+      "image": "images/Products/chiller.png"
+    },
+    {
+      "id": "towers",
+      "slug": "cooling-towers",
+      "name": "Cooling Towers",
+      "short": "Cooling towers",
+      "title": "FRP Cooling Tower Manufacturer, Coimbatore | Round, Square & Coil | Win Equipments",
+      "description": "Round and square FRP cooling towers 10–300 TR and coil cooling towers 40–280 TR, plus cooling tower spares. Manufactured by Win Equipments, Coimbatore.",
+      "lede": "Cooling towers reject process heat to the atmosphere. FRP towers cool water by evaporation to wet bulb + 4 °C; coil towers keep water sealed in a finned coil and cool it to ambient + 4 °C.",
+      "summary": "FRP and coil towers that reject process heat to atmosphere.",
+      "image": "images/Products/coolingtower.png"
+    }
+  ],
+  "industries": [
+    {
+      "id": "plastics",
+      "slug": "plastic-molding",
+      "name": "Plastics & injection moulding",
+      "intro": "Injection moulding machines, moulds and hydraulic oil need a steady cooling-water temperature, and PET blowing and plastic machinery need cooling towers sized to the process heat.",
+      "products": [
+        "industrial-process-chillers",
+        "round-cooling-towers",
+        "square-cooling-towers"
+      ]
+    },
+    {
+      "id": "textile",
+      "slug": "textile-mills",
+      "name": "Textile, spinning & knitting mills",
+      "intro": "Spinning, knitting and hosiery mills run pneumatic machines that need dry compressed air, and process water that is cooled by towers.",
+      "products": [
+        "refrigerated-air-dryers",
+        "round-cooling-towers",
+        "square-cooling-towers",
+        "closed-circuit-cooling-towers"
+      ]
+    },
+    {
+      "id": "automotive",
+      "slug": "automotive-cnc",
+      "name": "Automotive & CNC machine shops",
+      "intro": "Automotive plants and CNC machine shops depend on dry, clean compressed air for tools and automation, and on chilled water for machines and hydraulics.",
+      "products": [
+        "refrigerated-air-dryers",
+        "industrial-process-chillers",
+        "round-cooling-towers",
+        "square-cooling-towers",
+        "closed-circuit-cooling-towers"
+      ]
+    },
+    {
+      "id": "food-beverage",
+      "slug": "food-dairy-beverage",
+      "name": "Food, dairy & beverage",
+      "intro": "Food processing, dairies, soft-drink plants and breweries use chilled water, flake ice and cooling towers, and dry compressed air for packaging and process lines.",
+      "products": [
+        "refrigerated-air-dryers",
+        "industrial-process-chillers",
+        "ice-flake-machines",
+        "round-cooling-towers",
+        "closed-circuit-cooling-towers"
+      ]
+    },
+    {
+      "id": "pharma",
+      "slug": "pharma-chemical",
+      "name": "Pharma & chemical",
+      "intro": "Chemical and pharmaceutical plants need process cooling that suits the fluid, closed-loop cooling that keeps water clean, and dry compressed air.",
+      "products": [
+        "refrigerated-air-dryers",
+        "acid-cooling-chillers",
+        "closed-circuit-cooling-towers",
+        "round-cooling-towers"
+      ]
+    },
+    {
+      "id": "healthcare",
+      "slug": "hospitals-healthcare",
+      "name": "Hospitals & healthcare",
+      "intro": "Hospitals need cooling for imaging equipment and for building and generator loads.",
+      "products": [
+        "medical-scan-chillers",
+        "closed-circuit-cooling-towers",
+        "round-cooling-towers"
+      ]
+    },
+    {
+      "id": "power",
+      "slug": "diesel-gensets-power",
+      "name": "Diesel gensets & power",
+      "intro": "Diesel generator sets reject engine jacket heat that must be cooled continuously. Coil cooling towers keep the jacket water sealed; FRP towers suit open circuits.",
+      "products": [
+        "closed-circuit-cooling-towers",
+        "round-cooling-towers",
+        "square-cooling-towers"
+      ]
+    },
+    {
+      "id": "cement",
+      "slug": "cement-paper-sugar",
+      "name": "Cement, paper & sugar",
+      "intro": "Cement plants, paper mills and sugar factories run large compressed air systems and process cooling loops.",
+      "products": [
+        "refrigerated-air-dryers",
+        "industrial-process-chillers",
+        "round-cooling-towers",
+        "square-cooling-towers",
+        "closed-circuit-cooling-towers"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "file": "images/clients/2.jpg",
+      "name": "Ramco Cements"
+    },
+    {
+      "file": "images/clients/3.jpg",
+      "name": "Ashok Leyland"
+    },
+    {
+      "file": "images/clients/4.jpg",
+      "name": "Nemak"
+    },
+    {
+      "file": "images/clients/8.jpg",
+      "name": "Exide Industries"
+    },
+    {
+      "file": "images/clients/10.jpg",
+      "name": "Godrej & Boyce"
+    },
+    {
+      "file": "images/clients/13.jpg",
+      "name": "Hindustan Paper Corporation"
+    },
+    {
+      "file": "images/clients/7.jpg",
+      "name": "Agni Steels"
+    },
+    {
+      "file": "images/clients/15.jpg",
+      "name": "Kiscol"
+    },
+    {
+      "file": "images/clients/6.jpg",
+      "name": "Watertec"
+    },
+    {
+      "file": "images/clients/11.jpg",
+      "name": "Aseptic Fruits"
+    },
+    {
+      "file": "images/clients/12.jpg",
+      "name": "Shinago"
+    },
+    {
+      "file": "images/clients/14.jpg",
+      "name": "Lakshmi Mills"
+    },
+    {
+      "file": "images/clients/16.jpg",
+      "name": "Pothys"
+    },
+    {
+      "file": "images/clients/9.jpg",
+      "name": "Flubbers"
+    },
+    {
+      "file": "images/clients/5.jpg",
+      "name": "Inorbit"
+    }
+  ]
+}

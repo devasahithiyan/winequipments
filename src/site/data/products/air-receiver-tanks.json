@@ -1,0 +1,276 @@
+{
+  "slug": "air-receiver-tanks",
+  "family": "air",
+  "order": 5,
+  "name": "Air Receiver Tanks",
+  "series": "WRV Series",
+  "h1": "Compressed Air Receiver Tanks",
+  "title": "Air Receiver Tank Manufacturer, Coimbatore | WRV 250–10,000 L",
+  "description": "WRV compressed air receiver tanks, 250–10,000 litres standard, 7 to 12.5 bar g working pressure, hydrostatically tested, ASME VIII on request. Win Equipments.",
+  "card": "Hydro-tested pressure vessels that store air and settle condensate.",
+  "lede": "An air receiver stores compressed air, steadies pressure for the plant and gives condensate somewhere to settle before it travels down the line. Every WRV vessel is designed to requirement and hydrostatically tested, with ASME VIII fabrication available on request.",
+  "image": "images/Products/Airreciever.png",
+  "gallery": [
+    "images/Products/airreciever2.png",
+    "images/Products/airreciever3.png"
+  ],
+  "range": "250–10,000 L",
+  "capacity": {
+    "key": "litres",
+    "unit": "litres",
+    "label": "Capacity"
+  },
+  "key_specs": [
+    {
+      "label": "Standard models",
+      "value": "250 to 10,000 litres"
+    },
+    {
+      "label": "Working pressure",
+      "value": "7 · 10 · 12.5 bar g"
+    },
+    {
+      "label": "Designed to requirement",
+      "value": "0.5 to 40 m³, 6 to 30 bar g"
+    },
+    {
+      "label": "Inlet air temperature",
+      "value": "Up to 100 °C"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Testing",
+      "value": "Every vessel hydrostatically tested"
+    },
+    {
+      "label": "Code",
+      "value": "ASME VIII on requirement"
+    },
+    {
+      "label": "Accessories",
+      "value": "Supplied with standard accessories"
+    },
+    {
+      "label": "Orientation",
+      "value": "Vertical and horizontal"
+    }
+  ],
+  "highlights": [
+    "Designed as per requirement",
+    "All vessels hydrostatically tested",
+    "Supplied with standard accessories",
+    "Fabricated to ASME VIII on requirement",
+    "Vertical and horizontal"
+  ],
+  "principle": {
+    "intro": "Air drawn into a compressor carries moisture. Compression raises its temperature and its capacity to hold water vapour; when the air cools again, that vapour condenses.",
+    "stages": [
+      {
+        "name": "Store",
+        "text": "The receiver stores compressed air and evens out pressure swings between compressor and plant demand."
+      },
+      {
+        "name": "Cool",
+        "text": "Air slows and cools in the vessel, so part of the condensate drops out downstream of the compressor."
+      },
+      {
+        "name": "Drain",
+        "text": "Condensate collects at the bottom and is removed through the drain; the air leaving is still saturated and needs drying."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Pressure classes",
+      "points": [
+        "Variant 2: 7 bar g working, 8 bar g design, 12 bar g hydro test",
+        "Variant 3: 10 bar g working, 11 bar g design, 17 bar g hydro test",
+        "Variant 4: 12.5 bar g working, 14 bar g design, 21 bar g hydro test"
+      ]
+    },
+    {
+      "title": "Access",
+      "points": [
+        "Hand hole up to WRV 150",
+        "Man hole from WRV 200"
+      ]
+    },
+    {
+      "title": "Foundation",
+      "points": [
+        "Legs up to WRV 150",
+        "Skirt or legs from WRV 200"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WRV series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "litres",
+        "label": "Capacity",
+        "unit": "litres",
+        "primary": true
+      },
+      {
+        "key": "pressures",
+        "label": "Working pressure options",
+        "unit": "bar g",
+        "primary": true
+      },
+      {
+        "key": "dia",
+        "label": "Outer diameter",
+        "unit": "mm"
+      },
+      {
+        "key": "height",
+        "label": "Overall height",
+        "unit": "mm"
+      },
+      {
+        "key": "conn",
+        "label": "End connection",
+        "unit": "BSP / NB"
+      },
+      {
+        "key": "access",
+        "label": "Access"
+      },
+      {
+        "key": "foundation",
+        "label": "Foundation"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WRV 025",
+        "litres": 250,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 490,
+        "height": 1620,
+        "conn": "¾″ BSP",
+        "access": "Hand hole",
+        "foundation": "Leg"
+      },
+      {
+        "model": "WRV 050",
+        "litres": 500,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 630,
+        "height": 2000,
+        "conn": "1″ BSP",
+        "access": "Hand hole",
+        "foundation": "Leg"
+      },
+      {
+        "model": "WRV 100",
+        "litres": 1000,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 750,
+        "height": 2750,
+        "conn": "1½″ BSP",
+        "access": "Hand hole",
+        "foundation": "Leg"
+      },
+      {
+        "model": "WRV 150",
+        "litres": 1500,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 980,
+        "height": 3100,
+        "conn": "2″ BSP",
+        "access": "Hand hole",
+        "foundation": "Leg"
+      },
+      {
+        "model": "WRV 200",
+        "litres": 2000,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 980,
+        "height": 3250,
+        "conn": "2″ NB",
+        "access": "Man hole",
+        "foundation": "Skirt / leg"
+      },
+      {
+        "model": "WRV 300",
+        "litres": 3000,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 1250,
+        "height": 2940,
+        "conn": "4″ NB",
+        "access": "Man hole",
+        "foundation": "Skirt / leg"
+      },
+      {
+        "model": "WRV 500",
+        "litres": 5000,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 1500,
+        "height": 3525,
+        "conn": "6″ NB",
+        "access": "Man hole",
+        "foundation": "Skirt / leg"
+      },
+      {
+        "model": "WRV 1000",
+        "litres": 10000,
+        "pressures": "7 · 10 · 12.5",
+        "dia": 2000,
+        "height": 3450,
+        "conn": "8″ NB",
+        "access": "Man hole",
+        "foundation": "Skirt / leg"
+      }
+    ],
+    "notes": [
+      "Pressure variants: 2 = 7 bar g working / 8 design / 12 hydro test; 3 = 10 / 11 / 17; 4 = 12.5 / 14 / 21 bar g.",
+      "Vessels outside the standard range (0.5 to 40 m³, 6 to 30 bar g) are designed to requirement."
+    ]
+  },
+  "installation": [
+    "Air compressor",
+    "Wet air receiver",
+    "Refrigerated air dryer",
+    "Zero-oil filter",
+    "Dry air receiver"
+  ],
+  "applications": [
+    "Compressed air plants of all sizes",
+    "Wet receiver after the compressor",
+    "Dry receiver after the dryer and filters"
+  ],
+  "faqs": [
+    {
+      "q": "What pressure ratings are available?",
+      "a": "Each standard WRV size is offered at 7, 10 or 12.5 bar g working pressure, with design pressures of 8, 11 and 14 bar g and hydrostatic test pressures of 12, 17 and 21 bar g."
+    },
+    {
+      "q": "Can you build to ASME?",
+      "a": "Yes. Vessels can be fabricated to ASME VIII on requirement."
+    },
+    {
+      "q": "Do I need a wet and a dry receiver?",
+      "a": "A typical installation uses a wet receiver after the compressor to settle condensate, and a dry receiver after the dryer and filters to buffer clean, dry air for the plant."
+    }
+  ],
+  "related": [
+    "refrigerated-air-dryers",
+    "automatic-drain-valves",
+    "compressed-air-filters",
+    "desiccant-air-dryers"
+  ],
+  "industries": [
+    "automotive",
+    "textile",
+    "food-beverage",
+    "plastics"
+  ],
+  "download": "/downloads/air-receiver-tanks.pdf"
+}

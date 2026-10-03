@@ -1,0 +1,5 @@
+<div class="action-bar" id="action-bar">
+  <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
+  <a class="btn btn--secondary btn--icon btn--wa" href="{{ whatsapp(wa_text if wa_text is defined else 'Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+  <a class="btn btn--secondary btn--icon" href="tel:{{ site.phones[0].tel }}" data-track="call_click" aria-label="Call {{ site.phones[0].display }}"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
+</div>

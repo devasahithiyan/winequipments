@@ -1,0 +1,92 @@
+{# expects optional: prod (product dict), heading, intro #}
+{% set prod = prod if prod is defined else none %}
+<section class="enquiry section" id="quote" aria-labelledby="quote-title">
+  <div class="container enquiry__grid">
+    <div>
+      <h2 id="quote-title">{{ heading if heading is defined else 'Tell us your requirement' }}</h2>
+      <p class="lede" style="margin-top:var(--s-4)">{{ intro if intro is defined else 'Share your capacity, operating conditions or a drawing. An engineer from our Arasur works will reply with a recommended model and quotation.' }}</p>
+      <div class="enquiry__direct">
+        <a href="{{ whatsapp('Hello Win Equipments, I need a quote' ~ (' for ' ~ prod.name if prod else '') ~ '.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp {{ site.phones[0].display }}</a>
+        {% for ph in site.phones %}<a href="tel:{{ ph.tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call {{ ph.display }}</a>{% endfor %}
+        <a href="mailto:{{ site.email }}" data-track="email_click"><svg aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a>
+      </div>
+    </div>
+    <div class="form-panel">
+      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq>
+        <input type="hidden" name="return_url" value="/thank-you.html">
+        <input type="hidden" name="form_source" value="{{ url }}">
+        <div class="hp-field" aria-hidden="true"><label>Website <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form-grid form-grid--2">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input class="input" id="f-name" name="contact_name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+            <p class="field__error" id="f-name-err">Enter your name.</p>
+          </div>
+          <div class="field">
+            <label for="f-company">Company <span class="opt">(optional)</span></label>
+            <input class="input" id="f-company" name="company_name" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="f-phone">Mobile / WhatsApp</label>
+            <input class="input" id="f-phone" name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\-()]{10,18}" aria-describedby="f-phone-err">
+            <p class="field__error" id="f-phone-err">Enter a mobile number with at least 10 digits.</p>
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="opt">(optional)</span></label>
+            <input class="input" id="f-email" name="contact_email" type="email" inputmode="email" autocomplete="email" aria-describedby="f-email-err">
+            <p class="field__error" id="f-email-err">Check the email address.</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-product">Product</label>
+          <select class="select" id="f-product" name="equipment_type">
+            <option value="Not sure / need advice">Not sure, please advise</option>
+            {% for fam in families.values() %}
+            <optgroup label="{{ fam.name }}">
+              {% for pr in fam.products %}<option value="{{ pr.name }}"{% if prod and prod.slug == pr.slug %} selected{% endif %}>{{ pr.name }}</option>{% endfor %}
+            </optgroup>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-req">Requirement</label>
+          <textarea class="textarea" id="f-req" name="operating_parameters" rows="4" placeholder="{{ 'e.g. 300 CFM compressor at 7 bar, plant at 40 °C' if (prod and prod.family == 'air') or not prod else ('e.g. 5 TR, water at 15 °C, injection moulding' if prod.family == 'cooling' else 'e.g. 60 m³/hr, hot water 40 °C, wet bulb 28 °C') }}"></textarea>
+        </div>
+        <details class="form-more"{% if prod and prod.spec %} data-model-open{% endif %}>
+          <summary>Add model, pressure or a drawing <svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div>
+            <div class="form-grid form-grid--2">
+              <div class="field">
+                <label for="f-model">Model <span class="opt">(optional)</span></label>
+                {% if prod and prod.spec %}
+                <select class="select" id="f-model" name="selected_model">
+                  <option value="">Not selected</option>
+                  {% for row in prod.spec.rows %}<option value="{{ row.model }}">{{ row.model }}</option>{% endfor %}
+                </select>
+                {% else %}
+                <input class="input" id="f-model" name="selected_model" type="text">
+                {% endif %}
+              </div>
+              <div class="field">
+                <label for="f-pressure">Operating pressure / location <span class="opt">(optional)</span></label>
+                <input class="input" id="f-pressure" name="operating_pressure" type="text" placeholder="e.g. 7 bar g, Hosur">
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-file">Drawing or photo <span class="opt">(optional, up to 10 MB)</span></label>
+              <input class="input" id="f-file" name="drawing_file" type="file" accept=".pdf,.dwg,.dxf,.step,.stp,.png,.jpg,.jpeg,.doc,.docx,.zip">
+            </div>
+            <label class="check"><input type="checkbox" name="cad_drawings_requested" value="yes"> Send me a GA drawing with the quotation</label>
+          </div>
+        </details>
+        <p class="form-status" role="alert" data-status></p>
+        <button class="btn btn--primary btn--block" type="submit">Send enquiry</button>
+        <p class="form-legal">We use your details only to reply to this enquiry.</p>
+      </form>
+      <div class="form-success" role="status" tabindex="-1">
+        <h3>Thank you, we have your enquiry</h3>
+        <p>Reference <strong data-ref>—</strong>. An engineer will contact you on the number you gave. For anything urgent, WhatsApp or call {{ site.phones[0].display }}.</p>
+      </div>
+    </div>
+  </div>
+</section>

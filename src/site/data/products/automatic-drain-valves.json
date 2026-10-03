@@ -1,0 +1,339 @@
+{
+  "slug": "automatic-drain-valves",
+  "family": "air",
+  "order": 4,
+  "name": "Automatic Drain Valves",
+  "series": "WDV Series",
+  "h1": "Automatic Condensate Drain Valves",
+  "title": "Automatic Drain Valve Manufacturer, Coimbatore | WDV Series",
+  "description": "WDV automatic condensate drain valves: electronic timer, micro-controller and no-air-loss types, up to 1000 CFM, 16 kgf/cm² standard (40 and 70 optional). Win Equipments.",
+  "card": "Timer, micro-controller and no-air-loss drains that clear condensate automatically.",
+  "lede": "Even a small compressed air system produces large quantities of condensate laced with oil. WDV automatic drain valves discharge it from receivers, filters, dryers and pipelines without shutting the system down and without wasting compressed air.",
+  "image": "images/Products/drainvalve.png",
+  "gallery": [],
+  "range": "Up to 1000 CFM",
+  "capacity": {
+    "key": "cfm_max",
+    "unit": "CFM",
+    "label": "System capacity"
+  },
+  "key_specs": [
+    {
+      "label": "Types",
+      "value": "Electronic timer · micro-controller · no air loss · float"
+    },
+    {
+      "label": "System capacity",
+      "value": "Up to 1000 CFM"
+    },
+    {
+      "label": "Working pressure",
+      "value": "Up to 16 kgf/cm² (40 and 70 optional)"
+    },
+    {
+      "label": "Condensate temperature",
+      "value": "Up to 90 °C"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Timer range",
+      "value": "1 to 120 min (model dependent)"
+    },
+    {
+      "label": "Protection",
+      "value": "IP55 or IP65"
+    },
+    {
+      "label": "Supply",
+      "value": "230 V AC; 24 V, 48 V, 110 V AC or DC to order"
+    },
+    {
+      "label": "Pressure range",
+      "value": "3 to 70 bar g across the range"
+    }
+  ],
+  "highlights": [
+    "Medium discharge type",
+    "High discharge type",
+    "Micro-mini controller type",
+    "Mechanical float type",
+    "No air loss type"
+  ],
+  "principle": {
+    "intro": "Condensate carried with the air to end-use points is harmful if the system is not drained regularly. An automatic drain removes it without losing excessive compressed air and without shutting down the system.",
+    "stages": [
+      {
+        "name": "Collect",
+        "text": "Condensate collects at the low point of a receiver, filter, dryer or pipeline drop leg."
+      },
+      {
+        "name": "Strain",
+        "text": "A strainer-cum-manual shut-off valve protects the drain and allows isolation for service."
+      },
+      {
+        "name": "Discharge",
+        "text": "The valve opens on its timer interval, controller signal or float level and discharges the condensate at high velocity without clogging."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Electronic timer",
+      "points": [
+        "Adjustable interval and discharge time",
+        "Cast aluminium or stainless steel body",
+        "High-pressure 40 kgf/cm² versions"
+      ]
+    },
+    {
+      "title": "Micro-controller",
+      "points": [
+        "0.5–45 min interval, 0.5–10 s discharge",
+        "Brass body, built-in strainer"
+      ]
+    },
+    {
+      "title": "No air loss",
+      "points": [
+        "Discharges condensate only",
+        "No power required in float type"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WDV series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "type",
+        "label": "Type",
+        "primary": true
+      },
+      {
+        "key": "capacity",
+        "label": "Capacity",
+        "unit": "CFM",
+        "primary": true
+      },
+      {
+        "key": "pressure",
+        "label": "Max. operating pressure",
+        "unit": "kgf/cm²"
+      },
+      {
+        "key": "interval",
+        "label": "Valve interval",
+        "unit": "min"
+      },
+      {
+        "key": "discharge",
+        "label": "Discharge time",
+        "unit": "s"
+      },
+      {
+        "key": "pilot",
+        "label": "Pilot operated",
+        "unit": "BSP"
+      },
+      {
+        "key": "strainer",
+        "label": "Built-in strainer"
+      },
+      {
+        "key": "conn",
+        "label": "End connection",
+        "unit": "BSP"
+      },
+      {
+        "key": "moc",
+        "label": "Material"
+      },
+      {
+        "key": "supply",
+        "label": "Supply"
+      },
+      {
+        "key": "kg",
+        "label": "Weight",
+        "unit": "kg"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WDV M12",
+        "type": "Electronic timer",
+        "cfm_max": 50,
+        "capacity": "Up to 50",
+        "pressure": 16,
+        "interval": "1–120",
+        "discharge": "8",
+        "pilot": "NA",
+        "strainer": "Yes",
+        "conn": "½″",
+        "moc": "Cast aluminium",
+        "supply": "230 V AC*",
+        "kg": "0.9"
+      },
+      {
+        "model": "WDV H12",
+        "type": "Electronic timer",
+        "cfm_max": 500,
+        "capacity": "51–500",
+        "pressure": 16,
+        "interval": "1–136",
+        "discharge": "4",
+        "pilot": "⅛″",
+        "strainer": "NA",
+        "conn": "½″",
+        "moc": "Cast aluminium",
+        "supply": "230 V AC*",
+        "kg": "1.25"
+      },
+      {
+        "model": "WDV L40",
+        "type": "Electronic timer",
+        "cfm_max": 50,
+        "capacity": "Up to 50",
+        "pressure": 40,
+        "interval": "1–120",
+        "discharge": "8",
+        "pilot": "NA",
+        "strainer": "NA",
+        "conn": "½″",
+        "moc": "Stainless steel",
+        "supply": "230 V AC*",
+        "kg": "0.9"
+      },
+      {
+        "model": "WDV H40",
+        "type": "Electronic timer",
+        "cfm_max": 500,
+        "capacity": "51–500",
+        "pressure": 40,
+        "interval": "1–136",
+        "discharge": "4",
+        "pilot": "⅛″",
+        "strainer": "NA",
+        "conn": "½″",
+        "moc": "Stainless steel",
+        "supply": "230 V AC*",
+        "kg": "1.25"
+      },
+      {
+        "model": "WDV B16",
+        "type": "Electronic timer",
+        "cfm_max": 1000,
+        "capacity": "500–1000",
+        "pressure": 16,
+        "interval": "1–120",
+        "discharge": "4",
+        "pilot": "⅛″",
+        "strainer": "NA",
+        "conn": "1″",
+        "moc": "Cast aluminium",
+        "supply": "230 V AC*",
+        "kg": "2.45"
+      },
+      {
+        "model": "WDV E16",
+        "type": "Micro-controller",
+        "cfm_max": 500,
+        "capacity": "Up to 500",
+        "pressure": 16,
+        "interval": "0.5–45",
+        "discharge": "0.5–10",
+        "pilot": "NA",
+        "strainer": "Yes",
+        "conn": "½″",
+        "moc": "Brass",
+        "supply": "230 V AC*",
+        "kg": "0.5"
+      },
+      {
+        "model": "WDV ZA16",
+        "type": "Electronic timer",
+        "cfm_max": 1000,
+        "capacity": "Up to 1000",
+        "pressure": 16,
+        "interval": "1–120",
+        "discharge": "8",
+        "pilot": "⅛″",
+        "strainer": "NA",
+        "conn": "½″",
+        "moc": "Cast aluminium",
+        "supply": "230 V AC",
+        "kg": "3.0"
+      },
+      {
+        "model": "WDV F16",
+        "type": "No air loss",
+        "cfm_max": 1000,
+        "capacity": "Up to 1000",
+        "pressure": 16,
+        "interval": "NA",
+        "discharge": "NA",
+        "pilot": "NA",
+        "strainer": "NA",
+        "conn": "½″",
+        "moc": "Cast aluminium",
+        "supply": "Not required",
+        "kg": "1.0"
+      }
+    ],
+    "notes": [
+      "Input temperature up to 90 °C. Protection IP55 or IP65.",
+      "* 230 V AC standard; 24 V, 48 V, 110 V AC or DC as per customer.",
+      "Standard 7 to 16 kgf/cm²; 40 and 70 kgf/cm² optional."
+    ]
+  },
+  "installation": [
+    "Air receiver drain",
+    "Filter drain",
+    "Refrigerated dryer drain",
+    "Pipeline drop leg"
+  ],
+  "applications": [
+    "Air receivers",
+    "Compressed air filters",
+    "Refrigerated air dryers",
+    "Compressed air lines",
+    "Moisture separators"
+  ],
+  "advantages": [
+    "Stops moisture and oil carry-over to pneumatic equipment",
+    "Non-corrosive materials",
+    "High-velocity discharge without clogging",
+    "Increases efficiency of pneumatic equipment",
+    "Less maintenance",
+    "No power required in float type"
+  ],
+  "faqs": [
+    {
+      "q": "Which drain valve suits my system?",
+      "a": "Use WDV M12 or L40 up to 50 CFM, H12 or H40 from 51 to 500 CFM, and B16, ZA16 or F16 up to 1000 CFM. Choose the 40-series for pressures up to 40 kgf/cm²."
+    },
+    {
+      "q": "What is a no-air-loss drain?",
+      "a": "The WDV F16 discharges only condensate, so no compressed air is wasted, and it needs no electrical supply."
+    },
+    {
+      "q": "Can I get a low-voltage version?",
+      "a": "Yes. Standard supply is 230 V AC; 24 V, 48 V and 110 V AC or DC versions are available to order."
+    }
+  ],
+  "related": [
+    "air-receiver-tanks",
+    "compressed-air-filters",
+    "refrigerated-air-dryers"
+  ],
+  "industries": [
+    "automotive",
+    "textile",
+    "food-beverage"
+  ],
+  "download": "/downloads/automatic-drain-valves.pdf"
+}

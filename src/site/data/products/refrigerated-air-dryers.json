@@ -1,0 +1,599 @@
+{
+  "slug": "refrigerated-air-dryers",
+  "family": "air",
+  "order": 1,
+  "name": "Refrigerated Air Dryers",
+  "series": "WRD Series",
+  "h1": "Refrigerated Compressed Air Dryers",
+  "title": "Refrigerated Air Dryer Manufacturer, Coimbatore | WRD 20–2000 CFM",
+  "description": "WRD refrigerated compressed air dryers, 10–2000 CFM, +3°C pressure dew point, 3–16 bar g inlet. Manufactured by Win Equipments, Coimbatore.",
+  "card": "Removes moisture from compressed air by chilling it to a +3°C pressure dew point.",
+  "lede": "Compressed air leaves the compressor saturated with water. WRD dryers chill it to a +3°C pressure dew point so the moisture condenses and drains out before it reaches your machines, valves and finished product.",
+  "image": "images/Products/Refrigiratedairdryer1.png",
+  "gallery": [
+    "images/Products/refrigiratedairdryer2.png",
+    "images/Products/refrigiratedairdryer3.png"
+  ],
+  "range": "10–2000 CFM",
+  "capacity": {
+    "key": "cfm",
+    "unit": "CFM",
+    "label": "Air flow"
+  },
+  "key_specs": [
+    {
+      "label": "Capacity",
+      "value": "10 to 2000 CFM"
+    },
+    {
+      "label": "Pressure dew point",
+      "value": "+3 °C"
+    },
+    {
+      "label": "Inlet air pressure",
+      "value": "3 to 16 bar g"
+    },
+    {
+      "label": "Inlet air temperature",
+      "value": "10 to 60 °C"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Flow rating",
+      "value": "ISO 7183, FAD at 20 °C, 1 bar"
+    },
+    {
+      "label": "Max. working pressure",
+      "value": "16 bar g"
+    },
+    {
+      "label": "Pressure drop",
+      "value": "≤ 0.2 bar g"
+    },
+    {
+      "label": "Supply",
+      "value": "180–260 V 1 Ph · 380–420 V 3 Ph"
+    }
+  ],
+  "highlights": [
+    "Low pressure drop",
+    "Lowest operating cost",
+    "Maintenance free",
+    "Compact design",
+    "Power saving",
+    "Constant dew point at varying load",
+    "Eco-friendly refrigerant"
+  ],
+  "principle": {
+    "intro": "Air contains dust, moisture and traces of oil. Untreated wet compressed air causes equipment failures and contaminates the production process, so it must be dried before use.",
+    "stages": [
+      {
+        "name": "Pre-cool",
+        "text": "Saturated compressed air enters the pre-cooler / re-heater, where the outgoing cold air pre-cools it and reduces the heat load on the evaporator."
+      },
+      {
+        "name": "Chill",
+        "text": "In the evaporator the air is cooled further to the required dew point. The refrigerant compressor and condenser supply low-temperature refrigerant to the evaporator."
+      },
+      {
+        "name": "Separate",
+        "text": "Cooling reduces the air's capacity to hold water vapour; the moisture condenses and is removed by the water separator and automatic drain."
+      },
+      {
+        "name": "Re-heat",
+        "text": "The cold, dry air is re-heated as it passes back through the air-to-air heat exchanger before leaving the dryer."
+      },
+      {
+        "name": "Match load",
+        "text": "The thermostatic expansion valve and hot gas bypass valve match the refrigerant system to the compressed air cooling load, keeping the dew point constant."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Co-axial heat exchanger",
+      "points": [
+        "Acts as pre-cooler and evaporator",
+        "Copper tubes in a coiled tube-in-tube arrangement",
+        "Fully encapsulated in PUF insulation"
+      ]
+    },
+    {
+      "title": "Refrigeration compressor",
+      "points": [
+        "Hermetically sealed reciprocating or scroll compressor",
+        "Suitable for eco-friendly gases",
+        "Low noise and low power consumption"
+      ]
+    },
+    {
+      "title": "Thermostatic expansion valve",
+      "points": [
+        "Selected for the cooling load and operating condition",
+        "Holds a constant dew point at varying load",
+        "Responds to suction pressure and temperature"
+      ]
+    },
+    {
+      "title": "Temperature controller",
+      "points": [
+        "Programmed micro-controller",
+        "Indicates dew point, inlet and condensing temperature with alarms",
+        "On-delay timer protects the compressor"
+      ]
+    },
+    {
+      "title": "Hot gas bypass valve",
+      "points": [
+        "Fitted between compressor discharge and evaporator",
+        "Prevents evaporator temperature dropping below 5 °C",
+        "Manual or automatic"
+      ]
+    },
+    {
+      "title": "Condenser",
+      "points": [
+        "Air-cooled: aluminium plate-finned cross-flow exchanger",
+        "Water-cooled option on larger models",
+        "Spigot construction lowers pressure drop and compressor power"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WRD series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "cfm",
+        "label": "Capacity",
+        "unit": "CFM",
+        "primary": true
+      },
+      {
+        "key": "m3hr",
+        "label": "Capacity",
+        "unit": "m³/hr"
+      },
+      {
+        "key": "kw",
+        "label": "Refrigeration compressor",
+        "unit": "kW",
+        "primary": true
+      },
+      {
+        "key": "supply",
+        "label": "Electrical",
+        "unit": "V / Ph / Hz"
+      },
+      {
+        "key": "dims",
+        "label": "Dimensions L × W × H",
+        "unit": "mm"
+      },
+      {
+        "key": "condenser",
+        "label": "Condenser"
+      },
+      {
+        "key": "conn",
+        "label": "End connections",
+        "unit": "BSP / NB"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WRD 20 S",
+        "cfm": 20,
+        "m3hr": 34,
+        "kw": "0.13",
+        "supply": "230 / 1 / 50",
+        "dims": "550 × 400 × 600",
+        "condenser": "Air",
+        "conn": "½″"
+      },
+      {
+        "model": "WRD 40 S",
+        "cfm": 40,
+        "m3hr": 68,
+        "kw": "0.21",
+        "supply": "230 / 1 / 50",
+        "dims": "550 × 400 × 600",
+        "condenser": "Air",
+        "conn": "½″"
+      },
+      {
+        "model": "WRD 50 S",
+        "cfm": 50,
+        "m3hr": 85,
+        "kw": "0.28",
+        "supply": "230 / 1 / 50",
+        "dims": "540 × 500 × 600",
+        "condenser": "Air",
+        "conn": "¾″"
+      },
+      {
+        "model": "WRD 60 S",
+        "cfm": 60,
+        "m3hr": 102,
+        "kw": "0.32",
+        "supply": "230 / 1 / 50",
+        "dims": "540 × 500 × 800",
+        "condenser": "Air",
+        "conn": "¾″"
+      },
+      {
+        "model": "WRD 80 S",
+        "cfm": 80,
+        "m3hr": 136,
+        "kw": "0.40",
+        "supply": "230 / 1 / 50",
+        "dims": "540 × 500 × 800",
+        "condenser": "Air",
+        "conn": "1″"
+      },
+      {
+        "model": "WRD 100 S",
+        "cfm": 100,
+        "m3hr": 170,
+        "kw": "0.67",
+        "supply": "230 / 1 / 50",
+        "dims": "700 × 500 × 800",
+        "condenser": "Air",
+        "conn": "1″"
+      },
+      {
+        "model": "WRD 150 S",
+        "cfm": 150,
+        "m3hr": 255,
+        "kw": "0.85",
+        "supply": "230 / 1 / 50",
+        "dims": "700 × 500 × 1000",
+        "condenser": "Air",
+        "conn": "1½″"
+      },
+      {
+        "model": "WRD 200 S",
+        "cfm": 200,
+        "m3hr": 340,
+        "kw": "1.2",
+        "supply": "230 / 1 / 50",
+        "dims": "700 × 750 × 1000",
+        "condenser": "Air",
+        "conn": "1½″"
+      },
+      {
+        "model": "WRD 250 S",
+        "cfm": 250,
+        "m3hr": 425,
+        "kw": "1.35",
+        "supply": "230 / 1 / 50",
+        "dims": "900 × 750 × 1000",
+        "condenser": "Air",
+        "conn": "2″"
+      },
+      {
+        "model": "WRD 300 T",
+        "cfm": 300,
+        "m3hr": 510,
+        "kw": "1.7",
+        "supply": "440 / 3 / 50",
+        "dims": "900 × 750 × 1200",
+        "condenser": "Air",
+        "conn": "2″"
+      },
+      {
+        "model": "WRD 400 T",
+        "cfm": 400,
+        "m3hr": 680,
+        "kw": "2.0",
+        "supply": "440 / 3 / 50",
+        "dims": "950 × 1700 × 1200",
+        "condenser": "Air",
+        "conn": "2½″"
+      },
+      {
+        "model": "WRD 500 T",
+        "cfm": 500,
+        "m3hr": 850,
+        "kw": "2.3",
+        "supply": "440 / 3 / 50",
+        "dims": "1450 × 1700 × 1250",
+        "condenser": "Air",
+        "conn": "2½″"
+      },
+      {
+        "model": "WRD 600 T",
+        "cfm": 600,
+        "m3hr": 1020,
+        "kw": "2.72",
+        "supply": "440 / 3 / 50",
+        "dims": "1450 × 1700 × 2100",
+        "condenser": "Air / Water",
+        "conn": "2½″"
+      },
+      {
+        "model": "WRD 750 T",
+        "cfm": 750,
+        "m3hr": 1275,
+        "kw": "3.3",
+        "supply": "440 / 3 / 50",
+        "dims": "1450 × 1700 × 2100",
+        "condenser": "Air / Water",
+        "conn": "3″ NB flange"
+      },
+      {
+        "model": "WRD 1000 T",
+        "cfm": 1000,
+        "m3hr": 1700,
+        "kw": "4.5",
+        "supply": "440 / 3 / 50",
+        "dims": "1450 × 1700 × 2100",
+        "condenser": "Air / Water",
+        "conn": "4″ NB flange"
+      },
+      {
+        "model": "WRD 1500 T",
+        "cfm": 1500,
+        "m3hr": 2550,
+        "kw": "6.2",
+        "supply": "440 / 3 / 50",
+        "dims": "1450 × 1700 × 2100",
+        "condenser": "Air / Water",
+        "conn": "5″ NB flange"
+      },
+      {
+        "model": "WRD 2000 T",
+        "cfm": 2000,
+        "m3hr": 3400,
+        "kw": "7.8",
+        "supply": "440 / 3 / 50",
+        "dims": "1450 × 1700 × 2100",
+        "condenser": "Air / Water",
+        "conn": "6″ NB flange"
+      }
+    ],
+    "notes": [
+      "Model code: WRD + capacity in CFM + S (single phase) or T (three phase). Working pressure 16 bar g max.",
+      "Flow capacities per ISO 7183: air suction of FAD at 20 °C, 1 bar.",
+      "Rated power is the maximum power consumed at rated conditions.",
+      "Voltage range 180–260 V for 1 Ph and 380–420 V for 3 Ph."
+    ]
+  },
+  "selection": {
+    "formula": "Dryer nominal capacity = Compressor actual capacity ÷ (C1 × C2 × C3 × C4)",
+    "tables": [
+      {
+        "name": "C1 · Inlet temperature",
+        "unit": "°C",
+        "points": [
+          [
+            30,
+            1.2
+          ],
+          [
+            35,
+            1.15
+          ],
+          [
+            40,
+            1.05
+          ],
+          [
+            45,
+            1.0
+          ],
+          [
+            50,
+            0.85
+          ],
+          [
+            55,
+            0.8
+          ],
+          [
+            60,
+            0.7
+          ]
+        ]
+      },
+      {
+        "name": "C2 · Ambient temperature",
+        "unit": "°C",
+        "points": [
+          [
+            25,
+            1.2
+          ],
+          [
+            30,
+            1.15
+          ],
+          [
+            35,
+            1.0
+          ],
+          [
+            40,
+            0.91
+          ],
+          [
+            45,
+            0.87
+          ],
+          [
+            50,
+            0.78
+          ]
+        ]
+      },
+      {
+        "name": "C3 · Inlet pressure",
+        "unit": "bar g",
+        "points": [
+          [
+            4,
+            0.75
+          ],
+          [
+            5,
+            0.85
+          ],
+          [
+            6,
+            0.93
+          ],
+          [
+            7,
+            1.0
+          ],
+          [
+            8,
+            1.06
+          ],
+          [
+            9,
+            1.11
+          ],
+          [
+            10.5,
+            1.15
+          ],
+          [
+            11,
+            1.18
+          ],
+          [
+            12,
+            1.2
+          ],
+          [
+            13,
+            1.22
+          ],
+          [
+            14,
+            1.23
+          ],
+          [
+            15,
+            1.25
+          ]
+        ]
+      },
+      {
+        "name": "C4 · Dew point",
+        "unit": "°C",
+        "points": [
+          [
+            3,
+            1.0
+          ],
+          [
+            5,
+            1.09
+          ],
+          [
+            7,
+            1.15
+          ],
+          [
+            8,
+            1.18
+          ],
+          [
+            10,
+            1.3
+          ]
+        ]
+      }
+    ]
+  },
+  "moisture_example": {
+    "source": "Catalogue example for 4000 CFM of air",
+    "steps": [
+      {
+        "stage": "Ambient air in",
+        "litres_per_day": 5500
+      },
+      {
+        "stage": "Leaving aftercooler",
+        "litres_per_day": 1280
+      },
+      {
+        "stage": "Leaving dryer (vapour)",
+        "litres_per_day": 100
+      }
+    ],
+    "removed": [
+      {
+        "stage": "Aftercooler",
+        "litres_per_day": 4220
+      },
+      {
+        "stage": "Dryer",
+        "litres_per_day": 1180
+      }
+    ],
+    "note": "Without a refrigerated dryer about 1180 litres of water a day would enter the compressed air network."
+  },
+  "installation": [
+    "Air compressor",
+    "Aftercooler",
+    "Air receiver",
+    "Pre-filter",
+    "Refrigerated air dryer",
+    "Fine filters",
+    "Dry air receiver"
+  ],
+  "applications": [
+    "Automobile",
+    "Cement",
+    "Chemical",
+    "CNC machine shops",
+    "Electronics",
+    "Food processing",
+    "Foundry",
+    "Glass",
+    "Leather",
+    "Textile",
+    "Paper mills",
+    "Rice mills",
+    "Power plants",
+    "Printing"
+  ],
+  "faqs": [
+    {
+      "q": "What dew point does a WRD dryer deliver?",
+      "a": "WRD dryers deliver a +3 °C pressure dew point and hold it at varying load using a thermostatic expansion valve and hot gas bypass valve."
+    },
+    {
+      "q": "How do I size a refrigerated dryer for my compressor?",
+      "a": "Divide your compressor's actual capacity by the product of the four correction factors for inlet temperature, ambient temperature, inlet pressure and dew point. Then choose the WRD model at or above that nominal capacity. The sizing tool on this page does the calculation for you."
+    },
+    {
+      "q": "Which models run on single-phase power?",
+      "a": "Models with an S suffix (WRD 20 S to WRD 250 S) run on 230 V single phase. T models from WRD 300 T upward run on three-phase supply."
+    },
+    {
+      "q": "Is a water-cooled condenser available?",
+      "a": "Yes. WRD 600 T and larger are offered with air- or water-cooled condensers."
+    }
+  ],
+  "related": [
+    "compressed-air-filters",
+    "automatic-drain-valves",
+    "air-receiver-tanks",
+    "desiccant-air-dryers"
+  ],
+  "industries": [
+    "textile",
+    "automotive",
+    "food-beverage",
+    "plastics"
+  ],
+  "download": "/downloads/refrigerated-air-dryers.pdf"
+}

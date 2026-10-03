@@ -1,0 +1,39 @@
+{
+  "slug": "ice-flake-machines",
+  "family": "cooling",
+  "order": 5,
+  "name": "Ice Flake Machines",
+  "series": "Engineered to order",
+  "h1": "Industrial Ice Flake Machines",
+  "title": "Ice Flake Machine Manufacturer, Coimbatore | Industrial Flake Ice",
+  "description": "Industrial ice flake machines engineered to order by Win Equipments, Coimbatore. Share your daily ice requirement and application for sizing.",
+  "card": "Flake ice machines sized to your daily ice requirement.",
+  "lede": "Flake ice cools product quickly and evenly in food processing, fisheries, poultry and concrete. Win Equipments builds ice flake machines to order, sized from your daily ice requirement and site conditions.",
+  "image": "images/Products/iceflakemachine.png",
+  "engineered": true,
+  "needs": [
+    "Ice required per day (kg or tonnes)",
+    "Application (fish, poultry, dairy, concrete, chemical)",
+    "Feed water quality and temperature",
+    "Ice storage requirement",
+    "Available power supply and plant ambient temperature"
+  ],
+  "related": [
+    "industrial-process-chillers",
+    "round-cooling-towers"
+  ],
+  "industries": [
+    "food-beverage"
+  ],
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ],
+  "download": null
+}

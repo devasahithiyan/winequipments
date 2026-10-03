@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Products', '/products/')] %}
+{% block title %}Products: Air Dryers, Chillers, Cooling Towers | Win Equipments{% endblock %}
+{% block description %}All Win Equipments products: refrigerated and desiccant air dryers, filters, drain valves, air receivers, process chillers, FRP and coil cooling towers, and spares.{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1>Products</h1>
+    <p class="lede">Fifteen product lines in three families, all manufactured at our works in Arasur, Coimbatore.</p>
+  </div>
+</section>
+{% for fam in families.values() %}
+<section class="section section--rule" aria-labelledby="f-{{ fam.id }}">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="f-{{ fam.id }}"><a href="/products/{{ fam.slug }}.html" style="color:inherit">{{ fam.name }}</a></h2>
+      <p>{{ fam.summary }}</p>
+    </div>
+    <ul class="product-rows">{% for pr in fam.products %}{{ m.product_row(pr) }}{% endfor %}</ul>
+  </div>
+</section>
+{% endfor %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

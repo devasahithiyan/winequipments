@@ -1,0 +1,40 @@
+{% macro product_row(pr, heading='h3') %}
+<li class="product-row">
+  <a href="{{ product_url(pr.slug) }}">
+    <span class="product-row__img">{{ picture(pr.image, '', sizes='96px', max_w=200) }}</span>
+    <span>
+      <{{ heading }} class="product-row__name">{{ pr.name }}</{{ heading }}>
+      <span class="product-row__desc">{{ pr.card }}</span>
+    </span>
+    <span class="product-row__range">{{ pr.range }}<small>{{ pr.series }}</small></span>
+  </a>
+</li>
+{% endmacro %}
+
+{% macro faq(items) %}
+<div class="faq">
+  {% for f in items %}
+  <details>
+    <summary>{{ f.q }}<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+    <div><p>{{ f.a }}</p></div>
+  </details>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+
+{% macro breadcrumb(items) %}
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <ol>
+    {% for name, href in items %}
+    <li>{% if loop.last %}<span aria-current="page">{{ name }}</span>{% else %}<a href="{{ href }}">{{ name }}</a>{% endif %}</li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endmacro %}
+
+{% macro readout(specs, cls='') %}
+<dl class="readout {{ cls }}">
+  {% for s in specs %}<div><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>{% endfor %}
+</dl>
+{% endmacro %}

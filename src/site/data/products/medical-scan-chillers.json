@@ -1,0 +1,40 @@
+{
+  "slug": "medical-scan-chillers",
+  "family": "cooling",
+  "order": 2,
+  "name": "Medical Scan Chillers",
+  "series": "Engineered to order",
+  "h1": "Medical Scan Chillers for MRI and CT",
+  "title": "Medical Scan Chiller Manufacturer, Coimbatore | MRI & CT Cooling",
+  "description": "Process chillers for MRI and CT imaging equipment, engineered to order by Win Equipments, Coimbatore. Share your scanner's cooling requirement for sizing.",
+  "card": "Chillers engineered to order for the cooling circuits of MRI and CT scanners.",
+  "lede": "Imaging systems such as MRI and CT scanners reject heat into a closed water circuit that must be held at the temperature the equipment maker specifies. Win Equipments builds chillers for these duties to order, sized from your scanner's cooling requirement.",
+  "image": "images/Products/medicalchiller.png",
+  "engineered": true,
+  "needs": [
+    "Scanner make and model, and the OEM's cooling specification",
+    "Heat load (kW) and required supply water temperature",
+    "Water flow rate and allowable pressure drop",
+    "Available power supply and installation space",
+    "Whether a standby or backup arrangement is required"
+  ],
+  "related": [
+    "industrial-process-chillers",
+    "anodizing-chillers",
+    "acid-cooling-chillers"
+  ],
+  "industries": [
+    "healthcare"
+  ],
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ],
+  "download": null
+}

@@ -1,0 +1,466 @@
+{
+  "slug": "round-cooling-towers",
+  "family": "towers",
+  "order": 1,
+  "name": "Round FRP Cooling Towers",
+  "series": "WCT RL Series",
+  "h1": "Round FRP Cooling Towers",
+  "title": "FRP Cooling Tower Manufacturer, Coimbatore | Round 10–300 TR",
+  "description": "WCT round FRP bottle-type cooling towers, 10–300 TR, outlet water at wet bulb + 4 °C. Manufactured by Win Equipments, Coimbatore.",
+  "card": "Round bottle-type FRP towers that reject process heat by evaporation.",
+  "lede": "A cooling tower rejects waste heat from your process to the atmosphere by evaporation. WCT round towers spray hot water over honeycomb PVC fills while an axial fan draws air through, returning water to your equipment at wet bulb + 4 °C.",
+  "image": "images/Products/coolingtower.png",
+  "gallery": [
+    "images/Products/coolingtower2.png",
+    "images/Products/coolingtower3.png"
+  ],
+  "range": "10–300 TR",
+  "capacity": {
+    "key": "tr",
+    "unit": "TR",
+    "label": "Capacity"
+  },
+  "key_specs": [
+    {
+      "label": "Capacity",
+      "value": "10 to 300 TR"
+    },
+    {
+      "label": "Outlet water",
+      "value": "Wet bulb + 4 °C"
+    },
+    {
+      "label": "Inlet water temperature",
+      "value": "40 to 100 °C"
+    },
+    {
+      "label": "Inlet water pressure",
+      "value": "2 to 3 bar g"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Fills",
+      "value": "L: up to 55 °C inlet · H: 55–85 °C inlet · P: polypropylene rings"
+    },
+    {
+      "label": "Motor",
+      "value": "TEFC IP55, 415 V / 3 Ph / 50 Hz"
+    },
+    {
+      "label": "Working pressure",
+      "value": "2 to 3 bar g"
+    },
+    {
+      "label": "Evaporation loss",
+      "value": "0.00085 × 1.8 × flow × ΔT"
+    }
+  ],
+  "highlights": [
+    "TEFC IP55 extended-shaft motors",
+    "Dynamically balanced axial fan",
+    "Honeycomb PVC fills",
+    "Automatic rotary sprinkler",
+    "Anti-corrosive fasteners",
+    "HDG MS structure",
+    "UV-resin FRP casing"
+  ],
+  "principle": {
+    "intro": "A cooling tower is a heat-rejection device that extracts waste heat from the application to the atmosphere using a fan and motor. The heat rejection is evaporative.",
+    "stages": [
+      {
+        "name": "Distribute",
+        "text": "Hot water enters the main header and is distributed through the rotary sprinkler, whose jet recoil spins it for uniform flow."
+      },
+      {
+        "name": "Film",
+        "text": "Water spreads over the honeycomb PVC fills as a film with a large contact surface."
+      },
+      {
+        "name": "Evaporate",
+        "text": "The axial fan draws air up through the fills; a small part of the water evaporates and cools the rest."
+      },
+      {
+        "name": "Collect",
+        "text": "Cooled water falls as droplets into the basin and is pumped back to the equipment."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "FRP casing",
+      "points": [
+        "Gel-coated fibre glass reinforced polyester",
+        "Compact and light for easy installation"
+      ]
+    },
+    {
+      "title": "PVC fills",
+      "points": [
+        "Rigid PVC honeycomb, very large contact area",
+        "600 × 300 × 150 mm blocks",
+        "Flute height 12–19 mm, sheet 0.2–0.25 mm"
+      ]
+    },
+    {
+      "title": "Rotary sprinkler",
+      "points": [
+        "Jet recoil drives rotation for even distribution",
+        "Nylon and aluminium construction",
+        "Minimises drift loss"
+      ]
+    },
+    {
+      "title": "Motor",
+      "points": [
+        "Squirrel cage induction, TEFC, IP55",
+        "Flanged with extended shaft",
+        "Hindustan / Stark make"
+      ]
+    },
+    {
+      "title": "Fan",
+      "points": [
+        "Dynamically balanced axial type",
+        "Aluminium alloy and Nylon 66",
+        "Low noise, low running cost"
+      ]
+    },
+    {
+      "title": "PP rings option",
+      "points": [
+        "Easy to clean",
+        "Withstands more than 90 °C",
+        "Rigid, individual, not bonded"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WCT round cooling tower data sheet",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "tr",
+        "label": "Capacity",
+        "unit": "TR",
+        "primary": true
+      },
+      {
+        "key": "m3hr",
+        "label": "Water flow",
+        "unit": "m³/hr",
+        "primary": true
+      },
+      {
+        "key": "hp",
+        "label": "Motor",
+        "unit": "HP"
+      },
+      {
+        "key": "rpm",
+        "label": "Motor speed",
+        "unit": "rpm"
+      },
+      {
+        "key": "fan",
+        "label": "Fan diameter",
+        "unit": "mm"
+      },
+      {
+        "key": "conn",
+        "label": "In / out",
+        "unit": "NB"
+      },
+      {
+        "key": "dims",
+        "label": "Dia × H",
+        "unit": "mm"
+      },
+      {
+        "key": "ship",
+        "label": "Shipping weight",
+        "unit": "kg"
+      },
+      {
+        "key": "oper",
+        "label": "Operating weight",
+        "unit": "kg"
+      }
+    ],
+    "rows": [
+      {
+        "model": "WCT 010 RL",
+        "tr": 10,
+        "m3hr": 6,
+        "hp": "0.5",
+        "rpm": 1440,
+        "fan": 450,
+        "conn": "1½″ / 1½″",
+        "dims": "930 × 1690",
+        "ship": 80,
+        "oper": 280
+      },
+      {
+        "model": "WCT 020 RL",
+        "tr": 20,
+        "m3hr": 12,
+        "hp": "1",
+        "rpm": 960,
+        "fan": 750,
+        "conn": "2″ / 2″",
+        "dims": "1380 × 1690",
+        "ship": 100,
+        "oper": 450
+      },
+      {
+        "model": "WCT 030 RL",
+        "tr": 30,
+        "m3hr": 18,
+        "hp": "1",
+        "rpm": 960,
+        "fan": 750,
+        "conn": "3″ / 3″",
+        "dims": "1660 × 1860",
+        "ship": 175,
+        "oper": 540
+      },
+      {
+        "model": "WCT 040 RL",
+        "tr": 40,
+        "m3hr": 24,
+        "hp": "1",
+        "rpm": 960,
+        "fan": 850,
+        "conn": "3″ / 3″",
+        "dims": "1780 × 1950",
+        "ship": 205,
+        "oper": 700
+      },
+      {
+        "model": "WCT 050 RL",
+        "tr": 50,
+        "m3hr": 30,
+        "hp": "2",
+        "rpm": 960,
+        "fan": 900,
+        "conn": "3″ / 3″",
+        "dims": "1990 × 2120",
+        "ship": 260,
+        "oper": 760
+      },
+      {
+        "model": "WCT 060 RL",
+        "tr": 60,
+        "m3hr": 36,
+        "hp": "3",
+        "rpm": 960,
+        "fan": 1160,
+        "conn": "3″ / 3″",
+        "dims": "1920 × 2720",
+        "ship": 330,
+        "oper": 800
+      },
+      {
+        "model": "WCT 080 RL",
+        "tr": 80,
+        "m3hr": 48,
+        "hp": "3",
+        "rpm": 960,
+        "fan": 1160,
+        "conn": "4″ / 4″",
+        "dims": "2150 × 2670",
+        "ship": 375,
+        "oper": 890
+      },
+      {
+        "model": "WCT 100 RL",
+        "tr": 100,
+        "m3hr": 60,
+        "hp": "5",
+        "rpm": 960,
+        "fan": 1400,
+        "conn": "5″ / 5″",
+        "dims": "2895 × 3050",
+        "ship": 615,
+        "oper": 1850
+      },
+      {
+        "model": "WCT 125 RL",
+        "tr": 125,
+        "m3hr": 75,
+        "hp": "5",
+        "rpm": 960,
+        "fan": 1400,
+        "conn": "5″ / 5″",
+        "dims": "2950 × 3250",
+        "ship": 805,
+        "oper": 2300
+      },
+      {
+        "model": "WCT 150 RL",
+        "tr": 150,
+        "m3hr": 90,
+        "hp": "5",
+        "rpm": 960,
+        "fan": 1600,
+        "conn": "5″ / 5″",
+        "dims": "3000 × 3950",
+        "ship": 1005,
+        "oper": 2650
+      },
+      {
+        "model": "WCT 200 RL",
+        "tr": 200,
+        "m3hr": 120,
+        "hp": "7.5",
+        "rpm": 710,
+        "fan": 1800,
+        "conn": "6″ / 6″",
+        "dims": "3300 × 4230",
+        "ship": 1110,
+        "oper": 3050
+      },
+      {
+        "model": "WCT 300 RL",
+        "tr": 300,
+        "m3hr": 180,
+        "hp": "12.5",
+        "rpm": 600,
+        "fan": 2400,
+        "conn": "8″ / 8″",
+        "dims": "4450 × 3900",
+        "ship": 1950,
+        "oper": 4050
+      }
+    ],
+    "notes": [
+      "Model code: WCT + capacity in TR + R (round) + fill type: L low-temperature fills (up to 55 °C inlet), H high-temperature fills (55–85 °C inlet), P polypropylene rings. Working pressure 2–3 bar g max.",
+      "Each model is available in L, H and P variants.",
+      "Rated power is the maximum power consumed at rated conditions."
+    ]
+  },
+  "selection": {
+    "kind": "approach",
+    "intro": "Selection factor by cooling range (ΔT) and approach to wet bulb, round towers.",
+    "deltas": [
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "approaches": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "grid": [
+      [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    ],
+    "formula": "Evaporation loss = 0.00085 × 1.8 × flow rate (m³/hr) × ΔT"
+  },
+  "installation_notes": [
+    "Install the cooling tower below the sump outlet level only.",
+    "Do not place the pump above the sump outlet level."
+  ],
+  "applications": [
+    "Automobile",
+    "Cement",
+    "Chemical processing",
+    "Diesel generators",
+    "Distilleries & breweries",
+    "Soft drinks",
+    "Electronics",
+    "Food & beverage",
+    "Glass",
+    "Health care & hospitals",
+    "Induction furnaces",
+    "Paper mills",
+    "Plastic machinery",
+    "PET bottle machines",
+    "Spinning, knitting & hosiery",
+    "Sugar"
+  ],
+  "faqs": [
+    {
+      "q": "What outlet water temperature can a WCT tower achieve?",
+      "a": "Outlet water is rated at wet bulb temperature + 4 °C."
+    },
+    {
+      "q": "Which fill should I choose?",
+      "a": "L (low-temperature) fills for inlet water up to 55 °C, H (high-temperature) fills for 55–85 °C, and polypropylene rings (P) for hot or dirty water up to above 90 °C."
+    },
+    {
+      "q": "How much water is lost to evaporation?",
+      "a": "Evaporation loss ≈ 0.00085 × 1.8 × flow rate (m³/hr) × ΔT. For example, 30 m³/hr with a 5 °C range loses about 0.23 m³/hr."
+    },
+    {
+      "q": "Where should the tower be installed?",
+      "a": "Install the tower so the pump sits below the sump outlet level; never place the pump above the sump outlet."
+    }
+  ],
+  "related": [
+    "square-cooling-towers",
+    "closed-circuit-cooling-towers",
+    "industrial-process-chillers",
+    "spare-parts-consumables"
+  ],
+  "industries": [
+    "plastics",
+    "food-beverage",
+    "textile",
+    "automotive"
+  ],
+  "download": "/downloads/frp-cooling-towers.pdf"
+}

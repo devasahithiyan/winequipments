@@ -1,0 +1,41 @@
+{
+  "slug": "industrial-aftercoolers",
+  "family": "air",
+  "order": 6,
+  "name": "Aftercoolers",
+  "series": "Engineered to order",
+  "h1": "Compressed Air Aftercoolers with Moisture Separator",
+  "title": "Compressed Air Aftercooler Manufacturer, Coimbatore | With Moisture Separator",
+  "description": "Air-cooled compressed air aftercoolers with moisture separator, built by Win Equipments, Coimbatore. Share your compressor capacity and discharge temperature.",
+  "card": "Aftercoolers with moisture separator that cool compressor discharge air.",
+  "lede": "Air leaves the compressor hot and carrying most of its moisture as vapour. An aftercooler with moisture separator cools it immediately after the compressor so the bulk of that water condenses and drains out before the receiver and dryer.",
+  "image": "images/Products/aftercooler.png",
+  "engineered": true,
+  "needs": [
+    "Compressor capacity (CFM) and working pressure",
+    "Compressor discharge temperature",
+    "Air-cooled or water-cooled preference, and cooling water availability",
+    "Plant ambient temperature",
+    "Pipe connection size"
+  ],
+  "related": [
+    "refrigerated-air-dryers",
+    "air-receiver-tanks",
+    "automatic-drain-valves"
+  ],
+  "industries": [
+    "automotive",
+    "textile"
+  ],
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ],
+  "download": null
+}

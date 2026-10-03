@@ -1,0 +1,39 @@
+{
+  "slug": "acid-cooling-chillers",
+  "family": "cooling",
+  "order": 4,
+  "name": "Acid Cooling Chillers",
+  "series": "Engineered to order",
+  "h1": "Acid Cooling Chillers",
+  "title": "Acid Cooling Chiller Manufacturer, Coimbatore | Chemical Process Chillers",
+  "description": "Chillers for cooling acids and corrosive process fluids, engineered to order by Win Equipments, Coimbatore. Share the fluid, concentration and heat load for sizing.",
+  "card": "Chillers engineered to order for acids and corrosive process fluids.",
+  "lede": "Cooling acids and other corrosive fluids needs heat exchangers and pumps in materials that the fluid will not attack. Win Equipments builds these chillers to order, choosing materials from the fluid, its concentration and its temperature.",
+  "image": "images/Products/chiller.png",
+  "engineered": true,
+  "needs": [
+    "Process fluid, concentration and operating temperature",
+    "Heat load (kW) or flow rate with inlet and outlet temperatures",
+    "Direct fluid cooling or an intermediate water loop",
+    "Plant ambient temperature and available power supply",
+    "Site constraints such as fumes, enclosure or indoor/outdoor location"
+  ],
+  "related": [
+    "anodizing-chillers",
+    "industrial-process-chillers"
+  ],
+  "industries": [
+    "pharma"
+  ],
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "Why is there no standard model table?",
+      "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
+    }
+  ],
+  "download": null
+}

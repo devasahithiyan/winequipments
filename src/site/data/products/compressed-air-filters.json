@@ -1,0 +1,292 @@
+{
+  "slug": "compressed-air-filters",
+  "family": "air",
+  "order": 3,
+  "name": "Compressed Air Filters",
+  "series": "WMF Series",
+  "h1": "Compressed Air Filters",
+  "title": "Compressed Air Filter Manufacturer, Coimbatore | WMF 40–1700 CFM",
+  "description": "WMF coalescing compressed air filters, 40–1700 CFM, GP, ZP, ZO and ZC grades to ISO 8573-1, up to 30 bar g. Win Equipments, Coimbatore.",
+  "card": "Coalescing filters in four grades that remove oil, dirt, odour and water.",
+  "lede": "WMF high-efficiency coalescing filters remove oil, dirt, odour and water from compressed air, protecting everything installed downstream. Colour-coded elements in four grades build up air quality to ISO 8573-1.",
+  "image": "images/Products/compressedairfilters.png",
+  "gallery": [
+    "images/Products/compressedairfilters2.png",
+    "images/Products/compressedairfilters3.png"
+  ],
+  "range": "40–1700 CFM",
+  "capacity": {
+    "key": "cfm",
+    "unit": "CFM",
+    "label": "Air flow"
+  },
+  "key_specs": [
+    {
+      "label": "Capacity",
+      "value": "40 to 1700 CFM"
+    },
+    {
+      "label": "Grades",
+      "value": "GP · ZP · ZO · ZC"
+    },
+    {
+      "label": "Finest filtration",
+      "value": "0.01 micron, 0.005 mg/m³ oil"
+    },
+    {
+      "label": "Max. operating pressure",
+      "value": "30 bar g"
+    }
+  ],
+  "conditions": [
+    {
+      "label": "Air quality",
+      "value": "To ISO 8573-1"
+    },
+    {
+      "label": "Max. operating temperature",
+      "value": "80 °C"
+    },
+    {
+      "label": "Element change at",
+      "value": "0.7 bar g differential"
+    },
+    {
+      "label": "Accessories",
+      "value": "Differential pressure gauge · automatic drain valve"
+    }
+  ],
+  "highlights": [
+    "Air quality as per ISO 8573-1",
+    "Warranty for elements",
+    "Colour-coded elements per grade",
+    "Low pressure drop"
+  ],
+  "grades": [
+    {
+      "code": "GP",
+      "particle": "3 micron",
+      "oil": "—",
+      "dp": "0.03 bar g",
+      "media": "Polypropylene",
+      "efficiency": "—",
+      "class": "Particle class 3 · oil class 5"
+    },
+    {
+      "code": "ZP",
+      "particle": "0.1 micron",
+      "oil": "0.1 mg/m³",
+      "dp": "0.05 bar g",
+      "media": "Borosilicate",
+      "efficiency": "99%",
+      "class": "Particle class 1 · oil class 3"
+    },
+    {
+      "code": "ZO",
+      "particle": "0.01 micron",
+      "oil": "0.01 mg/m³",
+      "dp": "0.06 bar g",
+      "media": "Borosilicate",
+      "efficiency": "99.99%",
+      "class": "Particle class 1 · oil class 2"
+    },
+    {
+      "code": "ZC",
+      "particle": "0.01 micron",
+      "oil": "0.005 mg/m³",
+      "dp": "0.12 bar g",
+      "media": "Borosilicate with impregnated activated carbon",
+      "efficiency": "99.9999%",
+      "class": "Particle class 1 · oil class 1"
+    }
+  ],
+  "principle": {
+    "intro": "Filters are installed in series so each grade protects the next and the air reaches the class your process needs.",
+    "stages": [
+      {
+        "name": "GP",
+        "text": "General purpose: removes particles down to 3 micron ahead of the dryer."
+      },
+      {
+        "name": "ZP",
+        "text": "Removes particles to 0.1 micron and oil to 0.1 mg/m³."
+      },
+      {
+        "name": "ZO",
+        "text": "High-efficiency coalescing to 0.01 micron and 0.01 mg/m³ oil."
+      },
+      {
+        "name": "ZC",
+        "text": "Activated carbon removes oil vapour and odour to 0.005 mg/m³."
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Body",
+      "points": [
+        "Aluminium body",
+        "Condensate level indicator",
+        "Internal automatic drain and manual drain"
+      ]
+    },
+    {
+      "title": "Elements",
+      "points": [
+        "Colour-coded per grade",
+        "Polypropylene or borosilicate media",
+        "Change at 0.7 bar g differential"
+      ]
+    },
+    {
+      "title": "Monitoring",
+      "points": [
+        "Differential pressure indicator",
+        "Differential pressure gauge accessory"
+      ]
+    }
+  ],
+  "spec": {
+    "caption": "WMF series technical specifications",
+    "columns": [
+      {
+        "key": "model",
+        "label": "Model"
+      },
+      {
+        "key": "cfm",
+        "label": "Capacity",
+        "unit": "CFM",
+        "primary": true
+      },
+      {
+        "key": "m3hr",
+        "label": "Capacity",
+        "unit": "m³/hr"
+      },
+      {
+        "key": "conn",
+        "label": "Connection",
+        "unit": "BSP",
+        "primary": true
+      }
+    ],
+    "rows": [
+      {
+        "model": "WMF 004",
+        "cfm": 40,
+        "m3hr": 68.5,
+        "conn": "½″"
+      },
+      {
+        "model": "WMF 007",
+        "cfm": 50,
+        "m3hr": 80,
+        "conn": "½″"
+      },
+      {
+        "model": "WMF 010",
+        "cfm": 75,
+        "m3hr": 120,
+        "conn": "¾″"
+      },
+      {
+        "model": "WMF 018",
+        "cfm": 125,
+        "m3hr": 210,
+        "conn": "1″"
+      },
+      {
+        "model": "WMF 030",
+        "cfm": 200,
+        "m3hr": 335,
+        "conn": "1½″"
+      },
+      {
+        "model": "WMF 047",
+        "cfm": 310,
+        "m3hr": 510,
+        "conn": "2″"
+      },
+      {
+        "model": "WMF 070",
+        "cfm": 450,
+        "m3hr": 750,
+        "conn": "2″"
+      },
+      {
+        "model": "WMF 094",
+        "cfm": 600,
+        "m3hr": 1000,
+        "conn": "3″"
+      },
+      {
+        "model": "WMF 150",
+        "cfm": 900,
+        "m3hr": 1500,
+        "conn": "4″"
+      },
+      {
+        "model": "WMF 175",
+        "cfm": 1200,
+        "m3hr": 2040,
+        "conn": "5″"
+      },
+      {
+        "model": "WMF 240",
+        "cfm": 1700,
+        "m3hr": 2760,
+        "conn": "6″"
+      }
+    ],
+    "notes": [
+      "Each model is available in GP, ZP, ZO and ZC grades. Order as model + grade, e.g. WMF 030 ZO.",
+      "Working pressure 7 to 30 kg/cm²."
+    ]
+  },
+  "installation": [
+    "Air compressor",
+    "Aftercooler",
+    "Vortex separator",
+    "Wet air receiver",
+    "Dryer",
+    "ZP · ZO · ZC filters",
+    "Dry air receiver"
+  ],
+  "applications": [
+    "Instrument air",
+    "Paint shops",
+    "Food & beverage",
+    "Pharmaceutical",
+    "Electronics",
+    "Textile",
+    "General plant air"
+  ],
+  "faqs": [
+    {
+      "q": "Which filter grade do I need?",
+      "a": "Use GP (3 micron) as a pre-filter, ZP (0.1 micron) for general protection, ZO (0.01 micron, 0.01 mg/m³ oil) for high-quality air, and ZC (activated carbon) where oil vapour and odour must be removed."
+    },
+    {
+      "q": "When should elements be replaced?",
+      "a": "Replace the element when the differential pressure reaches 0.7 bar g."
+    },
+    {
+      "q": "What pressure can WMF filters handle?",
+      "a": "All grades are rated to a maximum operating pressure of 30 bar g and 80 °C."
+    }
+  ],
+  "related": [
+    "refrigerated-air-dryers",
+    "desiccant-air-dryers",
+    "automatic-drain-valves",
+    "air-receiver-tanks"
+  ],
+  "industries": [
+    "food-beverage",
+    "pharma",
+    "automotive",
+    "textile"
+  ],
+  "download": "/downloads/compressed-air-filters.pdf"
+}

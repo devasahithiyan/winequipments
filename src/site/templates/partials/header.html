@@ -1,0 +1,83 @@
+{% set section = url.split('/')[1] if url != '/' else '' %}
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/" aria-label="Win Equipments home">
+      {% include "partials/logo.html" %}
+      <span class="brand__text">Air dryers, chillers &amp; cooling towers<br>Manufacturer, Coimbatore</span>
+    </a>
+    <nav class="nav-desktop" aria-label="Main">
+      <ul>
+        <li>
+          <button class="nav-link" type="button" aria-expanded="false" aria-controls="mega-products" data-mega>Products<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+        </li>
+        <li><a class="nav-link" href="/industries/"{% if section == 'industries' %} aria-current="page"{% endif %}>Industries</a></li>
+        <li><a class="nav-link" href="/engineering-tools/"{% if section == 'engineering-tools' %} aria-current="page"{% endif %}>Sizing tools</a></li>
+        <li><a class="nav-link" href="/downloads.html"{% if url == '/downloads.html' %} aria-current="page"{% endif %}>Downloads</a></li>
+        <li><a class="nav-link" href="/about.html"{% if url == '/about.html' %} aria-current="page"{% endif %}>About</a></li>
+        <li><a class="nav-link" href="/contactus.html"{% if url == '/contactus.html' %} aria-current="page"{% endif %}>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--ghost btn--icon header-call" href="tel:{{ site.phones[0].tel }}" data-track="call_click" aria-label="Call {{ site.phones[0].display }}"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="btn__label">{{ site.phones[0].display }}</span></a>
+      <a class="btn btn--primary header-quote" href="#quote" data-quote-link>Request a quote</a>
+      <button class="btn btn--secondary menu-toggle" type="button" aria-expanded="false" aria-controls="menu-sheet"><svg aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
+    </div>
+  </div>
+  <div class="mega" id="mega-products" hidden>
+    <div class="container mega__grid">
+      {% for fam in families.values() %}
+      <div class="mega__col">
+        <h3><a href="/products/{{ fam.slug }}.html">{{ fam.name }}</a></h3>
+        <ul>
+          {% for p in fam.products %}
+          <li><a href="{{ product_url(p.slug) }}">{{ p.name }}<span>{{ p.range }}</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+      <div class="mega__aside">
+        <h3>Not sure which unit you need?</h3>
+        <p>Tell us your compressor capacity, heat load or water flow. Our engineers will recommend the model and reply with a quote.</p>
+        <a class="btn btn--primary" href="#quote" data-quote-link>Talk to an engineer</a>
+        <a class="link-arrow" href="/products/">All products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="menu-sheet" id="menu-sheet" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="menu-sheet__top">
+    <a class="brand" href="/" aria-label="Win Equipments home">{% include "partials/logo.html" %}</a>
+    <button class="btn btn--secondary" type="button" data-menu-close><svg aria-hidden="true"><use href="#i-close"/></svg>Close</button>
+  </div>
+  <div class="menu-sheet__body">
+    <div class="menu-search field">
+      <label class="visually-hidden" for="menu-filter">Find a product</label>
+      <input class="input" id="menu-filter" type="search" placeholder="Find a product, e.g. dryer, 50 TR" autocomplete="off" enterkeyhint="search">
+    </div>
+    <ul class="menu-results" id="menu-results" hidden></ul>
+    <p class="menu-empty" id="menu-empty" hidden>No product matches. <a href="#quote" data-quote-link>Ask our engineers</a>.</p>
+    <div id="menu-tree">
+      {% for fam in families.values() %}
+      <details class="menu-group"{% if p is defined and p.family == fam.id %} open{% endif %}>
+        <summary>{{ fam.name }}<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <ul>
+          {% for prod in fam.products %}
+          <li><a href="{{ product_url(prod.slug) }}" data-name="{{ prod.name }} {{ prod.series }} {{ prod.range }}"{% if url == product_url(prod.slug) %} aria-current="page"{% endif %}>{{ prod.name }}<span>{{ prod.range }}</span></a></li>
+          {% endfor %}
+          <li><a class="menu-all" href="/products/{{ fam.slug }}.html">All {{ fam.short }}</a></li>
+        </ul>
+      </details>
+      {% endfor %}
+      <a class="menu-link" href="/industries/">Industries<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
+      <a class="menu-link" href="/engineering-tools/">Sizing tools<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
+      <a class="menu-link" href="/downloads.html">Downloads<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
+      <a class="menu-link" href="/about.html">About us<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
+      <a class="menu-link" href="/contactus.html">Contact<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
+    </div>
+  </div>
+  <div class="menu-sheet__foot">
+    <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
+    <a class="btn btn--secondary btn--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% block title %}Air Dryer, Chiller &amp; Cooling Tower Manufacturer, Coimbatore | Win Equipments{% endblock %}
+{% block description %}Win Equipments manufactures refrigerated and desiccant air dryers, industrial chillers and FRP cooling towers in Coimbatore. ISO 9001:2015, since 2008.{% endblock %}
+{% block schema %}
+{% set faqs = [
+  {"q": "What does Win Equipments manufacture?", "a": "Compressed air treatment equipment (refrigerated and desiccant air dryers, filters, automatic drain valves, air receivers and aftercoolers), industrial process chillers, and FRP and coil cooling towers, plus spares. Everything is made at our works in Arasur, Coimbatore."},
+  {"q": "Where are you located?", "a": "Our works are at SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407, Tamil Nadu."},
+  {"q": "How do I get a quotation?", "a": "Send your requirement through the enquiry form, WhatsApp +91 95972 28969 or email info@winequipments.com. Include your capacity (CFM, TR or water flow), operating pressure and plant conditions so our engineers can size the equipment."},
+  {"q": "Which refrigerated dryer suits my compressor?", "a": "Start with the compressor's actual capacity in CFM and correct it for inlet temperature, ambient temperature, pressure and dew point using the factors on the refrigerated dryer page. The calculator there does this for you."}
+] %}
+{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), {"@type": "WebSite", "@id": site.url ~ "/#website", "url": site.url ~ "/", "name": site.name, "publisher": {"@id": site.url ~ "/#org"}}, faq_ld(faqs)]}) }}
+{% endblock %}
+{% block main %}
+<section class="hero">
+  <div class="container hero__grid">
+    <div>
+      <h1>Air dryers, chillers and cooling towers, built in Coimbatore</h1>
+      <p class="hero__lede">Designed, built and tested at our Arasur works, and sized to your plant's air, water and heat load.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
+        <a class="link-arrow" href="#products">Browse products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <p class="hero__credit"><span>Since {{ site.founded }}</span> · <span>{{ site.installations }} installations</span> · <span>{{ site.certification }} certified</span></p>
+    </div>
+    <figure class="hero__visual chart-plate">
+      {{ dew_chart('narrow') }}{{ dew_chart('wide') }}
+      <figcaption>What a WRD refrigerated dryer does: compressed air at 7 bar g, chilled from 45 °C to a +3 °C pressure dew point. Calculated values.</figcaption>
+      {{ picture('images/Products/Refrigiratedairdryer1.png', 'WRD refrigerated air dryer', sizes='(min-width: 900px) 220px, 34vw', cls='hero__product', eager=True, max_w=480) }}
+    </figure>
+  </div>
+</section>
+
+<section class="section section--rule" id="products" aria-labelledby="products-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="products-title">Three product families, one works</h2>
+      <p>Pick the family, then the product. Every product page lists the full model range with capacities, power and dimensions.</p>
+    </div>
+    <div class="families">
+      {% for fam in families.values() %}
+      <article class="family" aria-labelledby="fam-{{ fam.id }}">
+        <div class="family__head">
+          <h3 id="fam-{{ fam.id }}" style="font-size:var(--fs-h2)"><a href="/products/{{ fam.slug }}.html" style="color:inherit;text-decoration:none">{{ fam.name }}</a></h3>
+          <p>{{ fam.lede }}</p>
+          <a class="link-arrow" href="/products/{{ fam.slug }}.html">Compare {{ fam.short }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <ul class="product-rows">
+          {% for pr in fam.products %}{{ m.product_row(pr, 'span') }}{% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="works-title">
+  <div class="container proof">
+    <figure class="proof__photos">
+      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 900px) 46vw, 100vw', max_w=960) }}
+      {{ picture('images/slideshow3.png', 'Technician wiring the control panel of a chiller', sizes='(min-width: 900px) 23vw, 50vw', max_w=900, gray=True) }}
+      {{ picture('images/cert_banner.jpg', 'Fabrication at the Win Equipments works', sizes='(min-width: 900px) 23vw, 50vw', max_w=900, gray=True) }}
+      <figcaption>Our team and shop floor at Arasur, Coimbatore.</figcaption>
+    </figure>
+    <div class="stack">
+      <h2 id="works-title">Made and tested at our own works</h2>
+      <p class="lede">Win Equipments was established in {{ site.founded }} as a manufacturer of compressed air and water cooling systems. We also take on project consultancy: designing, planning and commissioning the system around the equipment.</p>
+      <ul class="facts">
+        <li><strong>Since {{ site.founded }}</strong><span>Manufacturing compressed air and water cooling systems in Coimbatore.</span></li>
+        <li><strong>{{ site.installations }}</strong><span>Installations across industry.</span></li>
+        <li><strong>{{ site.certification }}</strong><span>Certified quality management system.</span></li>
+        <li><strong>Tested</strong><span>Chillers are factory tested before delivery; every air receiver is hydrostatically tested.</span></li>
+      </ul>
+      <a class="link-arrow" href="/about.html">About Win Equipments<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" id="industries" aria-labelledby="ind-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="ind-title">Where our equipment runs</h2>
+      <p>Dry air and controlled water temperature matter wherever machines, moulds and processes run continuously.</p>
+    </div>
+    <ul class="ind-list">
+      {% for ind in industries.values() %}
+      <li><a href="/industries/{{ ind.slug }}.html">{{ ind.name }}<small>{{ ind.products | length }} product lines</small></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="tool-title">
+  <div class="container">
+    <div class="tool-teaser">
+      <div class="stack">
+        <h2 id="tool-title">Size a dryer for your compressor</h2>
+        <p>Enter your compressor's actual capacity and plant conditions. The calculator applies the correction factors from our WRD catalogue and shows the dryer that covers the duty.</p>
+        <a class="btn btn--primary" href="/products/refrigerated-air-dryers.html#sizing">Open the dryer sizing calculator</a>
+      </div>
+      <figure class="chart-plate" style="margin:0">
+        {{ dew_ladder('narrow') }}{{ dew_ladder('wide') }}
+        <figcaption>Pressure dew point delivered by each Win dryer, from the WRD and WHD catalogues.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="clients-title">
+  <div class="container">
+    <div class="section-head"><h2 id="clients-title">Some of the plants we supply</h2></div>
+    <ul class="logo-row">
+      {% for c in site.clients %}<li>{{ picture(c.file, c.name, sizes='160px') }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="faq-title">
+  <div class="container two-col">
+    <h2 id="faq-title">Common questions</h2>
+    {{ m.faq([
+      {"q": "What does Win Equipments manufacture?", "a": "Compressed air treatment equipment (refrigerated and desiccant air dryers, filters, automatic drain valves, air receivers and aftercoolers), industrial process chillers, and FRP and coil cooling towers, plus spares. Everything is made at our works in Arasur, Coimbatore."},
+      {"q": "Where are you located?", "a": "Our works are at SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407, Tamil Nadu."},
+      {"q": "How do I get a quotation?", "a": "Send your requirement through the enquiry form, WhatsApp +91 95972 28969 or email info@winequipments.com. Include your capacity (CFM, TR or water flow), operating pressure and plant conditions so our engineers can size the equipment."},
+      {"q": "Which refrigerated dryer suits my compressor?", "a": "Start with the compressor's actual capacity in CFM and correct it for inlet temperature, ambient temperature, pressure and dew point using the factors on the refrigerated dryer page. The calculator there does this for you."}
+    ]) }}
+  </div>
+</section>
+
+{% include "partials/enquiry.html" %}
+{% endblock %}

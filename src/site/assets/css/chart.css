@@ -1,0 +1,32 @@
+.chart-plate { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-2); padding: var(--s-3) var(--s-3) var(--s-2); }
+.chart-plate figcaption { font-size: var(--fs-label); color: var(--muted); padding: var(--s-2) var(--s-1) 0; line-height: 1.45; }
+.chart { width: 100%; height: auto; font-family: var(--font); overflow: visible; }
+.chart--wide { display: none; }
+@media (min-width: 560px) { .chart--narrow { display: none; } .chart--wide { display: block; } }
+.chart .rule-minor { stroke: var(--chart-minor); stroke-width: 1; }
+.chart .rule-major { stroke: var(--chart-major); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font-variant-numeric: tabular-nums; }
+.chart .axis { fill: var(--ink-2); font-weight: 600; }
+.chart .axis-line { stroke: var(--ink-2); stroke-width: 1.25; }
+.chart .band { fill: var(--blue); opacity: 0.35; }
+.chart .band-hot { fill: var(--hot); opacity: 0.85; }
+.chart .sat { fill: none; stroke: var(--blue); stroke-width: 2; }
+.chart .sat-label { fill: var(--blue); font-weight: 600; }
+.chart .process { fill: none; stroke: var(--green); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.chart .bracket { stroke: var(--ink); stroke-width: 1.25; }
+.chart .note { fill: var(--ink-2); }
+.chart .note-strong { fill: var(--green-ink); font-weight: 700; font-size: 1.15em; }
+.chart .state { fill: var(--ink); font-weight: 650; }
+.chart .pt { stroke: var(--surface); stroke-width: 2; }
+.chart .pt-a { fill: var(--hot); }
+.chart .pt-b { fill: var(--green); }
+.chart .pt-c { fill: var(--blue); }
+.chart .arrow { fill: var(--green); }
+
+/* one authored motion moment: the process line draws itself on load */
+@media (prefers-reduced-motion: no-preference) {
+  .js .chart .process { stroke-dasharray: var(--len, 1000); stroke-dashoffset: 0; animation: draw 1.6s var(--ease-out) 0.2s both; }
+  .js .chart .pt-b, .js .chart .note-strong, .js .chart .bracket { animation: fade 0.5s ease-out 1.4s both; }
+}
+@keyframes draw { from { stroke-dashoffset: var(--len, 1000); } to { stroke-dashoffset: 0; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }

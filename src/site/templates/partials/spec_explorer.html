@@ -1,0 +1,68 @@
+{# expects p (product with spec) #}
+{% set cols = p.spec.columns %}
+{% set capkey = p.capacity.key %}
+{% set kpi = (cols | selectattr('primary', 'defined') | rejectattr('key', 'equalto', capkey) | list) %}
+{% set kpi = kpi[0] if kpi else none %}
+{% set capcol = (cols | selectattr('key', 'equalto', capkey) | list) %}
+{% set capcol = capcol[0] if capcol else none %}
+<div class="explorer" data-explorer data-unit="{{ p.capacity.unit }}">
+  {% if p.capacity.unit in ('CFM', 'TR', 'litres') %}
+  <div class="finder" data-finder>
+    <div class="finder__row">
+      <div class="field">
+        <label for="duty-{{ p.slug }}">Your requirement</label>
+        <div class="unit-input"><input id="duty-{{ p.slug }}" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. {{ p.spec.rows[(p.spec.rows | length) // 2][capkey] }}" data-duty><span>{{ p.capacity.unit }}</span></div>
+      </div>
+    </div>
+    <p class="finder__result" aria-live="polite" data-finder-result>Enter your {{ p.capacity.label | lower }} to find the model that covers it.</p>
+    {% if p.slug == 'refrigerated-air-dryers' %}<p class="finder__note">Rated at 45 °C inlet, 35 °C ambient, 7 bar g and +3 °C dew point. For other conditions use the correction factors below.</p>{% endif %}
+  </div>
+  {% endif %}
+
+  <ol class="model-list" aria-label="{{ p.spec.caption }}">
+    {% for row in p.spec.rows %}
+    <li class="model" id="{{ model_id(row.model) }}" data-cap="{{ row[capkey] if row[capkey] is number else '' }}" data-model="{{ row.model }}">
+      <details>
+        <summary>
+          <span><span class="model__name">{{ row.model }}</span>{% if capcol %}<span class="model__cap">{{ cell(row, capkey) }} {{ capcol.get('unit', '') }}</span>{% endif %}</span>
+          {% if kpi %}<span class="model__kpi">{{ cell(row, kpi.key) }}<small>{{ kpi.get('unit') or kpi.label }}</small></span>{% else %}<span></span>{% endif %}
+          <svg aria-hidden="true"><use href="#i-chev"/></svg>
+        </summary>
+        <div class="model__body">
+          <dl>
+            {% for c in cols[1:] %}<div><dt>{{ c.label }}{% if c.unit is defined %} ({{ c.unit }}){% endif %}</dt><dd>{{ cell(row, c.key) }}</dd></div>{% endfor %}
+          </dl>
+          <a class="btn btn--secondary btn--block" href="#quote" data-quote-model="{{ row.model }}">Quote {{ row.model }}</a>
+        </div>
+      </details>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <div class="spec-table-wrap" tabindex="0" role="region" aria-label="{{ p.spec.caption }}, scrollable">
+    <table class="spec-table">
+      <caption>{{ p.spec.caption }}</caption>
+      <thead>
+        <tr>
+          {% for c in cols %}<th scope="col">{{ c.label }}{% if c.unit is defined %}<span>{{ c.unit }}</span>{% endif %}</th>{% endfor %}
+          <th scope="col"><span class="visually-hidden">Quote</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in p.spec.rows %}
+        <tr id="t-{{ model_id(row.model) }}" data-cap="{{ row[capkey] if row[capkey] is number else '' }}">
+          <th scope="row">{{ row.model }}</th>
+          {% for c in cols[1:] %}<td{% if c.primary is defined %} class="is-primary"{% endif %}>{{ cell(row, c.key) }}</td>{% endfor %}
+          <td><a class="quote-link" href="#quote" data-quote-model="{{ row.model }}">Quote<span class="visually-hidden"> {{ row.model }}</span></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if p.spec.notes %}
+  <ul class="explorer__notes">
+    {% for n in p.spec.notes %}<li>{{ n }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</div>
