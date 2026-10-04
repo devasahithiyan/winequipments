@@ -181,13 +181,18 @@
     {% endif %}
     <div class="corr-tables">
       {% for t in p.selection.tables %}
-      <div class="scroll-x">
-        <table class="mini-table">
+      <div class="corr{% if t.points | length > 8 %} corr--wide{% endif %}">
+        <table class="mini-table corr__h">
           <caption>{{ t.name }}</caption>
           <tbody>
             <tr><th scope="row">{{ t.unit }}</th>{% for pt in t.points %}<td>{{ pt[0] }}</td>{% endfor %}</tr>
             <tr><th scope="row">Factor</th>{% for pt in t.points %}<td>{{ pt[1] }}</td>{% endfor %}</tr>
           </tbody>
+        </table>
+        <table class="mini-table corr__v">
+          <caption>{{ t.name }}</caption>
+          <thead><tr><th scope="col">{{ t.unit }}</th><th scope="col">Factor</th></tr></thead>
+          <tbody>{% for pt in t.points %}<tr><td>{{ pt[0] }}</td><td>{{ pt[1] }}</td></tr>{% endfor %}</tbody>
         </table>
       </div>
       {% endfor %}
@@ -231,7 +236,7 @@
     <div class="stack">
       <ul class="tags" data-reveal>{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
       {% set used = site.industries | selectattr('products', 'contains', p.slug) | list %}
-      {% if used %}<p class="used-in"><span>Industry guides:</span> {% for i in used %}<a href="/industries/{{ i.slug }}.html">{{ i.name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+      {% if used %}<div class="used-in"><p>Used in these industries</p><ul>{% for i in used %}<li><a href="/industries/{{ i.slug }}.html">{{ i.name }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>{% endfor %}</ul></div>{% endif %}
     </div>
   </div>
 </section>
