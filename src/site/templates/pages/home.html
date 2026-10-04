@@ -76,14 +76,14 @@
     <ul>
       {% for t, d, fam, pr, rng in needs %}
       <li style="--n:{{ loop.index0 }}"><a href="/products/{{ fam.slug }}.html">
-        <span class="needs__txt">
-          <span class="needs__num">0{{ loop.index }}</span>
-          <strong>{{ t }}</strong>
-          <span class="needs__desc">{{ d }}</span>
-          <span class="needs__meta"><em>{{ rng }}</em><span>{{ fam.products | length }} product lines</span></span>
-          <span class="needs__go">Explore {{ fam.short | lower }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+        <span class="needs__head"><span class="needs__num">0{{ loop.index }}</span><span class="needs__fam">{{ fam.short }}</span></span>
+        <strong>{{ t }}</strong>
+        <span class="needs__desc">{{ d }}</span>
+        <span class="needs__row">
+          <span class="needs__fig"><em>{{ rng }}</em><span>{{ fam.products | length }} product lines</span></span>
+          <span class="needs__img">{{ picture(studio(pr.image), '', sizes='(min-width: 1024px) 10vw, 28vw', max_w=480) }}</span>
         </span>
-        <span class="needs__img">{{ picture(studio(pr.image), '', sizes='(min-width: 1024px) 14vw, 30vw', max_w=600) }}</span>
+        <span class="needs__go">Explore<svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a></li>
       {% endfor %}
     </ul>
