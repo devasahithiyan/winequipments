@@ -589,7 +589,7 @@ env.globals["product_count_word"] = NUM_WORDS.get(len(products), str(len(product
 env.tests["contains"] = lambda seq, item: item in seq
 env.filters["datefmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%-d %B %Y")
 env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"
-env.globals["fam_urls"] = lambda fam: [{"@type": "Product", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
+env.globals["fam_urls"] = lambda fam: [{"@type": "WebPage", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
 env.globals["industry_count"] = lambda i: sum(1 for p in products.values() if i in p.get("industries", []))
 
 
@@ -598,6 +598,12 @@ def copy_static():
         src = SRC / "assets" / d
         if src.exists():
             shutil.copytree(src, OUT / d, dirs_exist_ok=True)
+    try:
+        import rjsmin
+        for f in (OUT / "js").glob("*.js"):
+            f.write_text(rjsmin.jsmin(f.read_text()))
+    except ImportError:
+        print("rjsmin not installed: JS left unminified (pip install rjsmin)")
     for f in (SRC / "static").glob("*"):
         if f.is_file():
             shutil.copy2(f, OUT / f.name)

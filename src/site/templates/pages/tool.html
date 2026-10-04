@@ -4,7 +4,7 @@
 {% block title %}{{ tool.title }}{% endblock %}
 {% block og_image %}{{ image_url(products[tool.product].image) }}{% endblock %}
 {% block description %}{{ tool.description }}{% endblock %}
-{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "WebApplication", "name": tool.name, "url": site.url ~ tool.url, "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "provider": {"@id": site.url ~ "/#org"}}, faq_ld(tool.faqs)]}) }}{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "WebPage", "name": tool.name, "url": site.url ~ tool.url, "isAccessibleForFree": true, "provider": {"@id": site.url ~ "/#org"}}, faq_ld(tool.faqs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
 <section class="page-head">
