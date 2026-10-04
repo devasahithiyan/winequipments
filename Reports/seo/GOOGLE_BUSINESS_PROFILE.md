@@ -46,3 +46,41 @@ Checked 4 Oct 2026 from public Google results plus r.ananth73's Business Profile
 
 ## Why this matters
 Local searches ("air dryer manufacturer Coimbatore") are decided mostly by the Business Profile, its reviews and consistent address details. This profile already has the trust signals; the work is keeping it complete, active and free of duplicates.
+
+---
+
+## Live audit of the verified profile (4 Oct 2026, owner access via r.ananth73)
+
+| Item | Now | Fix |
+|---|---|---|
+| Postal code | **641048** (wrong; a customer review even says "Pincode 641407 its correct") | Change to **641407** |
+| Description | **Empty** | Add the 750-character description above |
+| Categories | Only "Manufacturer" | Add the secondary categories listed above |
+| Website link | `http://winequipments.com/` (not secure) | `https://winequipments.com/` |
+| Phone | One number | Add +91 95972 28975 as the second |
+| Service area | "India" (too broad, ranks for nothing local) | Coimbatore, Tiruppur, Erode, Salem, Hosur, Chennai, Bangalore |
+| Hours | Sunday closed; other days need confirming (panel said "opens 9am Mon") | Confirm and set hours for all 7 days |
+| Chat / messaging | Not set | Add the WhatsApp number |
+| Products, services, Q&A, posts | Not set | Add from the pack above |
+| Review replies | **None of the visible reviews have an owner reply** | Reply to all 39, newest first |
+| Review activity | Only 2 reviews in the last year; many are rating-only; most are 2019-2021 | Ask every customer from now on via winequipments.com/review |
+| Pending Google update | 1 unreviewed suggested change | Review before confirming |
+| Duplicate profile | "WinEquipments Cooling tower" unverified duplicate | Remove it |
+
+---
+
+## Applied on 4 Oct 2026 (live in the profile)
+- Description added (617 characters).
+- Categories: primary Industrial equipment supplier; additional Manufacturer, Air compressor supplier.
+- Website link changed to `https://winequipments.com/`.
+- Phones: primary 95972 28969, additional 95972 28975. 95972 28978 is not to be used anywhere.
+- Service areas: India, Coimbatore, Tiruppur, Erode.
+- Opening hours: Monday to Saturday 08:00-20:00, Sunday closed.
+
+## Still to do
+- Service areas: add Salem, Hosur, Chennai, Bengaluru.
+- Postal code 641048 should be 641407. Not changed because editing the address of a verified profile can trigger re-verification; decide first.
+- Products (11 lines), Q&A answers, WhatsApp messaging, photos, weekly posts.
+- Reply to all 39 reviews.
+- Remove the duplicate profile "WinEquipments Cooling tower" in r.ananth73's manager.
+- Google's pending suggested update (extra phone numbers 28978, 080 4860 2635 and others) was discarded, not confirmed.

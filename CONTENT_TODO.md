@@ -41,7 +41,7 @@ These pages now say **engineered to order** and list what the customer should se
 
 ## 4. Contact details
 
-- Phones used: +91 95972 28969 and +91 95972 28975. Original catalogues also list **+91 95972 28978** — add it?
+- Phones used: +91 95972 28969 (primary) and +91 95972 28975 (secondary). Owner confirmed +91 95972 28978 is not to be used anywhere.
 - Address used: SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407 (from the E-catalogue). Older catalogues show #106 B, S.N.R College Road, K.R. Puram — the PDFs still carry the old address.
 - Memberships shown on catalogues: TAPMA, IndiaMART TrustSEAL. Add to the About page?
 
