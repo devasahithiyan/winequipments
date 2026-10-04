@@ -444,3 +444,20 @@ if ('serviceWorker' in navigator) {
   const warm = () => mega.querySelectorAll('img[loading="lazy"]').forEach((i) => { i.loading = 'eager'; });
   ['pointerenter', 'focus', 'click'].forEach((ev) => btn.addEventListener(ev, warm, { once: true }));
 })();
+
+/* page transitions: start the green top line when a same-site page link is followed */
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const root = document.documentElement;
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href]');
+    if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || /\.(pdf|mp4|webm|zip|jpe?g|png|avif|webp)$/i.test(url.pathname)) return;
+    if (url.pathname === location.pathname && url.search === location.search) return; // in-page anchor
+    root.classList.add('is-navigating');
+  });
+  // back/forward cache restores the old page: clear the line
+  addEventListener('pageshow', () => root.classList.remove('is-navigating'));
+})();
