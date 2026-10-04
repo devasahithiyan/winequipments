@@ -84,3 +84,6 @@ Local searches ("air dryer manufacturer Coimbatore") are decided mostly by the B
 - Reply to all 39 reviews.
 - Remove the duplicate profile "WinEquipments Cooling tower" in r.ananth73's manager.
 - Google's pending suggested update (extra phone numbers 28978, 080 4860 2635 and others) was discarded, not confirmed.
+
+## Incident, 4 Oct 2026: profile asked for re-verification
+After the edits above, the profile in Business Profile Manager changed from **Verified** to **Verification required** (0% verified). Google offers a **business video** (record the location, equipment and proof of management). One of the saved edits (category, service area, phone, website or hours) triggered it; Google does not say which. No further edits were made after it appeared. The video has to be recorded at the factory by the owner, then submitted from Business Profile Manager > Get verified. Do not make more edits to the profile until it is verified again.
