@@ -22,10 +22,15 @@ window.WinChat = (() => {
   const format = (text) => {
     let h = esc(text);
     h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*\*/g, '');
-    h = h.replace(/(https?:\/\/[^\s<)]+[^\s<).,])/g, (u) => {
-      const label = u.includes('wa.me') ? 'WhatsApp us' : u.replace(/^https?:\/\/(www\.)?winequipments\.com/, '').replace(/\.html(#.*)?$/, '').replace(/^\/products\//, '').replace(/-/g, ' ') || u;
-      return `<a href="${u}"${u.includes('winequipments.com') ? '' : ' target="_blank" rel="noopener"'}>${label}</a>`;
-    });
+    const link = (u, text) => {
+      const label = text || (u.includes('wa.me') ? 'WhatsApp us' : u.replace(/^https?:\/\/(www\.)?winequipments\.com/, '').replace(/\.html(#.*)?$/, '').replace(/^\/products\//, '').replace(/^\//, '').replace(/-/g, ' ') || u);
+      return `<a href="${u}"${/winequipments\.com/.test(u) ? '' : ' target="_blank" rel="noopener"'}>${label}</a>`;
+    };
+    const links = [];
+    // markdown links [text](url) first, kept as placeholders so the bare-URL pass doesn't touch them
+    h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_, t, u) => { links.push(link(u, t)); return `\u0000${links.length - 1}\u0000`; });
+    h = h.replace(/(https?:\/\/[^\s<)]+[^\s<).,])/g, (u) => link(u));
+    h = h.replace(/\u0000(\d+)\u0000/g, (_, i) => links[+i]);
     return h.split(/\n{2,}/).map((p) => {
       const lines = p.split('\n');
       if (lines.every((l) => /^\s*[-•*]\s+/.test(l))) return '<ul>' + lines.map((l) => `<li>${l.replace(/^\s*[-•*]\s+/, '')}</li>`).join('') + '</ul>';
