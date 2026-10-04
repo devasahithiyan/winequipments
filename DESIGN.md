@@ -12,7 +12,7 @@ Tokens live in `src/site/assets/css/tokens.css`. Change a value there, never a h
 2. **One primary action per view.** Green filled buttons are reserved for quote and recommendation actions. Everything else is secondary (outlined) or a text link.
 3. **Mobile first.** Design at 360 px, then widen. There is no horizontal page scroll at any width from 320 to 1440 px; wide tables scroll inside their own box.
 4. **Product on a stage.** Cut-outs sit on a soft white radial "stage" with a faint chart-paper grid and a floor shadow (`studio()` in `build.py` cleans the cut-outs).
-5. **Motion explains, then gets out of the way.** Reveal on scroll, small hover lifts, and nothing that loops loudly. All ambient motion is off under `prefers-reduced-motion`.
+5. **Motion explains, then gets out of the way.** Reveal on scroll, small hover lifts, and nothing that loops loudly. All ambient motion is off under `prefers-reduced-motion`. Most motion is plain CSS (`motion.css`) and `site.js`. The homepage adds scroll-linked hero depth and spring entrances with [Motion](https://motion.dev) (`assets/js/home-motion.js`). Motion itself is vendored at `assets/js/vendor/motion.min.js` and loaded only after the page is idle, so it never delays first paint. Use it only where CSS can't do the job.
 
 ## Colour
 | Token | Value | Use |

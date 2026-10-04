@@ -691,7 +691,7 @@ def main():
         f.unlink()
     size = build_css()
     env.globals["css_bytes"] = size
-    env.globals["js_ver"] = hashlib.md5(b"".join((SRC / "assets" / "js" / f).read_bytes() for f in sorted(os.listdir(SRC / "assets" / "js")))).hexdigest()[:8]
+    env.globals["js_ver"] = hashlib.md5(b"".join((SRC / "assets" / "js" / f).read_bytes() for f in sorted(os.listdir(SRC / "assets" / "js")) if (SRC / "assets" / "js" / f).is_file())).hexdigest()[:8]
 
     build_chat_knowledge()
     render("pages/home.html", "/")

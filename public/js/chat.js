@@ -1,39 +1,5 @@
-/* Win Equipments AI assistant. Loaded on first tap of the launcher. */
-window.WinChat = (() => {
-  const ENDPOINT = '/api_chat.php';
-  const KEY = 'win_chat_v4';
-  const WA = 'https://wa.me/919597228969';
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const h1 = (document.querySelector('h1')?.textContent || '').trim();
-  const onProduct = /^\/products\/[^/]+\.html$/.test(location.pathname) && document.querySelector('.p-hero');
-  const SUGGEST = onProduct
-    ? [`Which ${h1.replace(/s$/, '')} model do I need?`, 'What details do you need for a quote?', 'Which dryer suits a 30 HP compressor?', 'Chiller for 100 LPM with 5 °C rise']
-    : ['Which dryer suits a 30 HP compressor?', 'Refrigerated or desiccant dryer?', 'Chiller for 100 LPM with 5 °C rise', 'Round or square cooling tower?'];
-  const quoteHref = document.getElementById('quote') ? '#quote' : '/contactus.html#quote';
-
-  let panel, log, form, input, sendBtn, launcher;
-  let history = [];
-  let busy = false;
-
-  try { history = JSON.parse(sessionStorage.getItem(KEY) || '[]'); } catch (_) { history = []; }
-  const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(history.slice(-12))); } catch (_) {} };
-
-  const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const format = (text) => {
-    let h = esc(text);
-    h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*\*/g, '');
-    const link = (u, text) => {
-      const label = text || (u.includes('wa.me') ? 'WhatsApp us' : u.replace(/^https?:\/\/(www\.)?winequipments\.com/, '').replace(/\.html(#.*)?$/, '').replace(/^\/products\//, '').replace(/^\//, '').replace(/-/g, ' ') || u);
-      return `<a href="${u}"${/winequipments\.com/.test(u) ? '' : ' target="_blank" rel="noopener"'}>${label}</a>`;
-    };
-    const links = [];
-    // markdown links [text](url) first, kept as placeholders so the bare-URL pass doesn't touch them
-    h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_, t, u) => { links.push(link(u, t)); return `\u0000${links.length - 1}\u0000`; });
-    h = h.replace(/(https?:\/\/[^\s<)]+[^\s<).,])/g, (u) => link(u));
-    h = h.replace(/\u0000(\d+)\u0000/g, (_, i) => links[+i]);
-    return h.split(/\n{2,}/).map((p) => {
-      const lines = p.split('\n');
-      if (lines.every((l) => /^\s*[-•*]\s+/.test(l))) return '<ul>' + lines.map((l) => `<li>${l.replace(/^\s*[-•*]\s+/, '')}</li>`).join('') + '</ul>';
+window.WinChat=(()=>{const ENDPOINT='/api_chat.php';const KEY='win_chat_v4';const WA='https://wa.me/919597228969';const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;const h1=(document.querySelector('h1')?.textContent||'').trim();const onProduct=/^\/products\/[^/]+\.html$/.test(location.pathname)&&document.querySelector('.p-hero');const SUGGEST=onProduct?[`Which ${h1.replace(/s$/, '')} model do I need?`,'What details do you need for a quote?','Which dryer suits a 30 HP compressor?','Chiller for 100 LPM with 5 °C rise']:['Which dryer suits a 30 HP compressor?','Refrigerated or desiccant dryer?','Chiller for 100 LPM with 5 °C rise','Round or square cooling tower?'];const quoteHref=document.getElementById('quote')?'#quote':'/contactus.html#quote';let panel,log,form,input,sendBtn,launcher;let history=[];let busy=false;try{history=JSON.parse(sessionStorage.getItem(KEY)||'[]');}catch(_){history=[];}
+const save=()=>{try{sessionStorage.setItem(KEY,JSON.stringify(history.slice(-12)));}catch(_){}};const esc=(s)=>s.replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const format=(text)=>{let h=esc(text);h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*\*/g,'');const link=(u,text)=>{const label=text||(u.includes('wa.me')?'WhatsApp us':u.replace(/^https?:\/\/(www\.)?winequipments\.com/,'').replace(/\.html(#.*)?$/,'').replace(/^\/products\//,'').replace(/^\//,'').replace(/-/g,' ')||u);return`<a href="${u}"${/winequipments\.com/.test(u) ? '' : ' target="_blank" rel="noopener"'}>${label}</a>`;};const links=[];h=h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(_,t,u)=>{links.push(link(u,t));return`\u0000${links.length - 1}\u0000`;});h=h.replace(/(https?:\/\/[^\s<)]+[^\s<).,])/g,(u)=>link(u));h=h.replace(/\u0000(\d+)\u0000/g,(_,i)=>links[+i]);return h.split(/\n{2,}/).map((p)=>{const lines=p.split('\n');if(lines.every((l)=>/^\s*[-•*]\s+/.test(l))) return '<ul>' + lines.map((l) => `<li>${l.replace(/^\s*[-•*]\s+/, '')}</li>`).join('') + '</ul>';
       return `<p>${lines.join('<br>')}</p>`;
     }).join('');
   };
@@ -78,7 +44,7 @@ window.WinChat = (() => {
     log.querySelector('.chat__next')?.remove();
     const n = document.createElement('div');
     n.className = 'chat__next';
-    n.innerHTML = `<a href="${quoteHref}" data-chat-quote>Request a quote</a><a href="${WA}?text=${encodeURIComponent('Hello Win Equipments, I have an enquiry.')}" target="_blank" rel="noopener" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp an engineer</a>`;
+    n.innerHTML = `<a href="${quoteHref}"data-chat-quote>Request a quote</a><a href="${WA}?text=${encodeURIComponent('Hello Win Equipments, I have an enquiry.')}"target="_blank"rel="noopener"data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp an engineer</a>`;
     n.querySelector('[data-chat-quote]').addEventListener('click', () => { if (window.innerWidth < 640 || quoteHref.startsWith('#')) close(false); });
     log.appendChild(n);
     scroll();
@@ -123,7 +89,7 @@ window.WinChat = (() => {
       reply = data && data.success && data.reply ? data.reply : '';
     } catch (_) { reply = ''; }
     typing(false);
-    if (!reply) reply = `I couldn't reach the assistant just now. Our engineers can help directly on WhatsApp: ${WA} or call **+91 95972 28969**.`;
+    if (!reply) reply = `I couldn't reach the assistant just now.Our engineers can help directly on WhatsApp:${WA}or call**+91 95972 28969**.`;
     await reveal(reply);
     history.push({ role: 'assistant', content: reply });
     save();
@@ -136,7 +102,7 @@ window.WinChat = (() => {
 
   const welcome = () => {
     add('bot', onProduct
-      ? `Hi, I'm the Win Equipments AI assistant. Ask me anything about **${h1}**: models, capacities, sizing or what we need to quote.`
+      ? `Hi,I'm the Win Equipments AI assistant.Ask me anything about**${h1}**:models,capacities,sizing or what we need to quote.`
       : "Hi, I'm the Win Equipments AI assistant. Ask me about our air dryers, chillers and cooling towers, or give me your compressor HP, water flow or heat load and I'll suggest a model.");
     const s = document.createElement('div');
     s.className = 'chat__suggest';
@@ -166,53 +132,4 @@ window.WinChat = (() => {
     panel.id = 'chat-panel';
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-label', 'Win Equipments AI assistant');
-    panel.innerHTML = `
-      <header class="chat__head">
-        <span class="chat__badge" aria-hidden="true"><svg><use href="#i-spark"/></svg></span>
-        <div class="chat__title"><strong>Win AI assistant</strong><span><i class="chat__live" aria-hidden="true"></i>AI · answers from our catalogues</span></div>
-        <button type="button" class="chat__icon" data-chat-reset aria-label="Start a new chat" title="New chat"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button>
-        <button type="button" class="chat__icon" data-chat-close aria-label="Close chat"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
-      </header>
-      <div class="chat__log" aria-live="polite"></div>
-      <form class="chat__form">
-        <div class="chat__field">
-          <label class="visually-hidden" for="chat-input">Ask the AI assistant</label>
-          <input id="chat-input" class="chat__input" type="text" maxlength="600" autocomplete="off" enterkeyhint="send" placeholder="Ask about a product, model or sizing">
-          <button type="submit" class="chat__send" aria-label="Send"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        </div>
-        <p class="chat__note">AI-generated answers can be wrong. Our engineers confirm every selection and quotation.</p>
-      </form>`;
-    document.body.appendChild(panel);
-    log = panel.querySelector('.chat__log');
-    form = panel.querySelector('.chat__form');
-    input = panel.querySelector('.chat__input');
-    sendBtn = panel.querySelector('.chat__send');
-    form.addEventListener('submit', (e) => { e.preventDefault(); send(input.value); });
-    panel.querySelector('[data-chat-close]').addEventListener('click', () => close());
-    panel.querySelector('[data-chat-reset]').addEventListener('click', reset);
-    panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-
-    if (history.length) {
-      history.forEach((m) => add(m.role === 'user' ? 'user' : 'bot', m.content));
-      nextSteps();
-    } else welcome();
-  };
-
-  const open = () => {
-    if (!panel) build();
-    panel.classList.add('is-open');
-    launcher.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('chat-open');
-    scroll();
-    setTimeout(() => input.focus(), 50);
-  };
-  const close = (refocus = true) => {
-    panel.classList.remove('is-open');
-    launcher.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('chat-open');
-    if (refocus) launcher.focus();
-  };
-  const toggle = () => (panel && panel.classList.contains('is-open') ? close() : open());
-
-  return { init(btn) { launcher = btn; btn.addEventListener('click', toggle); open(); } };
-})();
+    panel.innerHTML = `<header class="chat__head"><span class="chat__badge"aria-hidden="true"><svg><use href="#i-spark"/></svg></span><div class="chat__title"><strong>Win AI assistant</strong><span><i class="chat__live"aria-hidden="true"></i>AI · answers from our catalogues</span></div><button type="button"class="chat__icon"data-chat-reset aria-label="Start a new chat"title="New chat"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button><button type="button"class="chat__icon"data-chat-close aria-label="Close chat"><svg aria-hidden="true"><use href="#i-close"/></svg></button></header><div class="chat__log"aria-live="polite"></div><form class="chat__form"><div class="chat__field"><label class="visually-hidden"for="chat-input">Ask the AI assistant</label><input id="chat-input"class="chat__input"type="text"maxlength="600"autocomplete="off"enterkeyhint="send"placeholder="Ask about a product, model or sizing"><button type="submit"class="chat__send"aria-label="Send"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div><p class="chat__note">AI-generated answers can be wrong.Our engineers confirm every selection and quotation.</p></form>`;document.body.appendChild(panel);log=panel.querySelector('.chat__log');form=panel.querySelector('.chat__form');input=panel.querySelector('.chat__input');sendBtn=panel.querySelector('.chat__send');form.addEventListener('submit',(e)=>{e.preventDefault();send(input.value);});panel.querySelector('[data-chat-close]').addEventListener('click',()=>close());panel.querySelector('[data-chat-reset]').addEventListener('click',reset);panel.addEventListener('keydown',(e)=>{if(e.key==='Escape')close();});if(history.length){history.forEach((m)=>add(m.role==='user'?'user':'bot',m.content));nextSteps();}else welcome();};const open=()=>{if(!panel)build();panel.classList.add('is-open');launcher.setAttribute('aria-expanded','true');document.body.classList.add('chat-open');scroll();setTimeout(()=>input.focus(),50);};const close=(refocus=true)=>{panel.classList.remove('is-open');launcher.setAttribute('aria-expanded','false');document.body.classList.remove('chat-open');if(refocus)launcher.focus();};const toggle=()=>(panel&&panel.classList.contains('is-open')?close():open());return{init(btn){launcher=btn;btn.addEventListener('click',toggle);open();}};})();

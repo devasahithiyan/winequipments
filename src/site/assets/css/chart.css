@@ -27,6 +27,9 @@
 @media (prefers-reduced-motion: no-preference) {
   .js .chart .process { stroke-dasharray: var(--len, 1000); stroke-dashoffset: 0; animation: draw 1.6s var(--ease-out) 0.2s both; }
   .js .chart .pt-b, .js .chart .note-strong, .js .chart .bracket { animation: fade 0.5s ease-out 1.4s both; }
+  /* below the fold (homepage), hold the drawing until the chart scrolls into view */
+  .motion [data-reveal]:not(.is-in) .chart .process,
+  .motion [data-reveal]:not(.is-in) .chart :is(.pt-b, .note-strong, .bracket) { animation-play-state: paused; }
 }
 @keyframes draw { from { stroke-dashoffset: var(--len, 1000); } to { stroke-dashoffset: 0; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
