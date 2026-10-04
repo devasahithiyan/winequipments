@@ -43,7 +43,7 @@ ErrorDocument 404 /404.html
     RewriteRule "^catlogue/refrigeration air dryer\.pdf$" /downloads/refrigerated-air-dryers.pdf [R=301,L]
     RewriteRule "^catlogue/ice flake machine\.pdf$" /products/ice-flake-machines.html [R=301,L]
     RewriteRule "^catlogue/specialized chillers\.pdf$" /products/process-cooling.html [R=301,L]
-    RewriteRule "^review$" https://www.google.com/maps/search/?api=1&query=Win+Equipments+Kallangadu+Nadu+Arasur+Coimbatore [R=302,L,NE]
+    RewriteRule "^review$" https://search.google.com/local/writereview?placeid=ChIJMfKa9733qDsRoQi36twgRwU [R=302,L,NE]
     RewriteRule "^products/rounded_cooling_towers$" /products/round-cooling-towers.html [R=301,L]
     RewriteRule "^products/refrigerated_air_dryers$" /products/refrigerated-air-dryers.html [R=301,L]
     RewriteRule "^products/cooling_towers$" /products/round-cooling-towers.html [R=301,L]

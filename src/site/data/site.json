@@ -30,7 +30,7 @@
   "whatsapp": "919597228969",
   "email": "info@winequipments.com",
   "certification": "ISO 9001:2015",
-  "maps": "https://www.google.com/maps/search/?api=1&query=Win+Equipments+Arasur+Coimbatore",
+  "maps": "https://www.google.com/maps?cid=380308826738854049",
   "families": [
     {
       "id": "air",
@@ -285,5 +285,5 @@
     }
   ],
   "ga4_id": "G-ETXTGY37TG",
-  "review_url": "https://www.google.com/maps/search/?api=1&query=Win+Equipments+Kallangadu+Nadu+Arasur+Coimbatore"
+  "review_url": "https://search.google.com/local/writereview?placeid=ChIJMfKa9733qDsRoQi36twgRwU"
 }
