@@ -250,7 +250,9 @@
 </section>
 
 {% if p.related %}
-{% set p_arts = (articles | selectattr('products', 'contains', p.slug) | list)[:3] %}
+{% set p_all = articles | selectattr('products', 'contains', p.slug) | list %}
+{# the three core guides by order, then up to three of the newest so new articles surface #}
+{% set p_arts = p_all[:3] + (p_all[3:] | sort(attribute='date', reverse=True) | list)[:3] %}
 {% if p_arts %}
 <section class="p-section" aria-labelledby="guides">
   <div class="container">
