@@ -489,7 +489,11 @@ def load_articles():
 
 def build_htaccess():
     rules = []
-    for src, dst in json.loads((DATA / "redirects.json").read_text()):
+    pairs = [tuple(p) for p in json.loads((DATA / "redirects.json").read_text())]
+    # The old site also served clean URLs, and Google still lists them
+    pairs += [(s[:-5], d) for s, d in pairs if s.endswith(".html") and not d.startswith("http")]
+    pairs += [(p, f"/{p}.html") for p in ("about", "certifications", "contactus", "blog", "downloads")]
+    for src, dst in pairs:
         pat = "^" + re.escape(src).replace("\\ ", " ") + "$"
         flags = "R=302,L,NE" if dst.startswith("http") else ("R=301,L,NE" if "#" in dst else "R=301,L")
         rules.append(f'    RewriteRule "{pat}" {dst} [{flags}]')

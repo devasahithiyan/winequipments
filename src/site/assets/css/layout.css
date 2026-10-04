@@ -193,3 +193,11 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
 .site-footer .social { display: flex; flex-direction: row; }
 .footer-review { display: inline-flex; margin-top: var(--s-4); font-weight: 650; color: #fff; }
 .breadcrumb li:last-child > span { display: block; }
+/* phones: footer shows family headings only (each links to its family page with every product) */
+@media (max-width: 639px) {
+  .footer-grid .footer-col:not(.footer-brand) ul { display: none; }
+  .footer-grid .footer-col:not(.footer-brand) h2 { margin-bottom: 0; }
+  .footer-grid .footer-col:not(.footer-brand) h2 a { display: flex; justify-content: space-between; align-items: center; min-height: 44px; border-bottom: 1px solid #2f3b34; }
+  .footer-grid .footer-col:not(.footer-brand) h2 a::after { content: "→"; color: #8fe0a0; }
+  .footer-grid { row-gap: var(--s-2); }
+}
