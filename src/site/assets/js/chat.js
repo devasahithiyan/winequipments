@@ -210,7 +210,7 @@ window.WinChat = (() => {
     panel.classList.remove('is-open');
     launcher.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('chat-open');
-    if (refocus) launcher.focus();
+    if (refocus) (launcher.offsetParent === null && document.querySelector('[data-chat-proxy]') || launcher).focus();
   };
   const toggle = () => (panel && panel.classList.contains('is-open') ? close() : open());
 

@@ -1,0 +1,28 @@
+/* print: product pages print as a clean datasheet (black on white, every value visible) */
+@media print {
+  @page { margin: 14mm; }
+  html, body { background: #fff !important; color: #000 !important; }
+  body.has-action-bar { padding-bottom: 0; }
+  .site-header, .subnav, .action-bar, .chat-launcher, .to-top, .toast, .skip-link, .read-progress, .menu-sheet, .mega,
+  .enquiry, .h-quick, .site-footer, .rail, .p-hero__thumbs, .btn, .btn-row, .marquee, video, .c3, .lb, .m-collapse__sum, .fam-finder, .copy-btn { display: none !important; }
+  html::after { display: none !important; }
+  *, *::before, *::after { box-shadow: none !important; text-shadow: none !important; animation: none !important; transition: none !important; }
+  [data-reveal], [data-intro], .lz, .pcard a { opacity: 1 !important; transform: none !important; }
+  details > * { display: block !important; }
+  details::details-content { content-visibility: visible !important; block-size: auto !important; }
+  details > summary svg { display: none; }
+  a { color: #000 !important; text-decoration: none; }
+  .p-hero__title::after { content: "winequipments.com · +91 95972 28969"; display: block; margin-top: 4mm; font-size: 10pt; font-weight: 400; letter-spacing: 0; }
+  .p-section { padding-block: 6mm; break-inside: auto; }
+  h2, h3 { break-after: avoid; }
+  tr, .feature, .stage, .conditions { break-inside: avoid; }
+  .spec-table th span { display: block; font-weight: 400; }
+  .only-mobile { display: none !important; }
+  table { width: 100% !important; border-collapse: collapse; }
+  th, td { border: 1px solid #999 !important; padding: 2mm !important; background: #fff !important; color: #000 !important; }
+  .scroll-x { overflow: visible !important; }
+  .model-list, .finder, .quote-link, .spec-table th:last-child, .spec-table td:last-child { display: none !important; }
+  .spec-table-wrap { display: block !important; overflow: visible !important; }
+  .spec-table { font-size: 8.5pt; }
+  img { max-width: 60mm !important; height: auto !important; }
+}

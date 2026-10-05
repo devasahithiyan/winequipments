@@ -147,6 +147,43 @@
     });
   });
 
+  /* family capacity finder: highlight the product ranges whose largest standard model covers the duty */
+  $$('[data-fam-finder]').forEach((ff) => {
+    const input = $('[data-fam-cap]', ff);
+    const out = $('[data-fam-result]', ff);
+    const unit = ff.dataset.unit;
+    const list = ff.parentElement.querySelector('.pcards');
+    if (!input || !out || !list) return;
+    const cards = $$('.pcard', list);
+    const initial = out.textContent;
+    const tag = (card, text) => {
+      let t = $('.pcard__tag', card);
+      if (!text) { if (t) t.remove(); return; }
+      if (!t) { t = document.createElement('span'); t.className = 'pcard__tag'; $('.pcard__body', card).prepend(t); }
+      t.textContent = text;
+    };
+    input.addEventListener('input', () => {
+      const v = parseFloat(input.value);
+      const on = v > 0;
+      list.classList.toggle('is-filtering', on);
+      const hits = [];
+      cards.forEach((c) => {
+        const same = c.dataset.capUnit === unit;
+        const max = parseFloat(c.dataset.capMax);
+        const hit = on && same && v <= max;
+        c.classList.toggle('is-match', hit);
+        c.classList.toggle('is-out', on && same && !hit);
+        tag(c, !on ? '' : hit ? `Covers ${v} ${unit}` : (same ? `Standard range up to ${max} ${unit}` : ('eto' in c.dataset ? 'Engineered to order' : '')));
+        if (hit) hits.push($('.pcard__name', c).textContent);
+      });
+      if (!on) { out.textContent = initial; return; }
+      out.innerHTML = hits.length
+        ? `${hits.length} standard range${hits.length > 1 ? 's cover' : ' covers'} ${v} ${unit}:${hits.join(', ')}. Open one to find the exact model.`
+        : `${v} ${unit} is above our standard ranges. <a href="#quote" data-quote-link>Ask our engineers</a> for a larger or multiple-unit solution.`;
+      track('family_finder', { value: v, unit });
+    });
+  });
+
   /* WRD correction calculator */
   const corr = $('[data-correction]');
   if (corr) {
@@ -175,6 +212,7 @@
       let ok = el.checkValidity();
       if (el.type === 'tel' && el.value) ok = el.value.replace(/\D/g, '').length >= 10;
       field.classList.toggle('has-error', !ok);
+      field.classList.toggle('is-valid', ok && !!el.value);
       el.setAttribute('aria-invalid', String(!ok));
       return ok;
     };
@@ -186,7 +224,12 @@
       e.preventDefault();
       const fields = $$('input[required], input[type="email"], input[type="tel"]', form);
       const bad = fields.filter((el) => !validate(el));
-      if (bad.length) { bad[0].focus(); return; }
+      if (bad.length) {
+        const panel = form.closest('.form-panel, .h-quick__panel') || form;
+        panel.classList.remove('shake'); void panel.offsetWidth; panel.classList.add('shake');
+        panel.addEventListener('animationend', () => panel.classList.remove('shake'), { once: true });
+        bad[0].focus(); return;
+      }
       const btn = $('button[type="submit"]', form);
       btn.setAttribute('aria-busy', 'true'); btn.disabled = true; btn.textContent = 'Sending…';
       status.className = 'form-status';
@@ -200,12 +243,13 @@
         const follow = success && $('[data-wa-follow]', success);
         if (follow) {
           const product = (form.equipment_type || {}).value || '';
-          const msg = `Hello Win Equipments, I just sent an enquiry from the website${ref ? ` (reference ${ref})` : ''}${product && !/^Not sure/.test(product) ? ` for ${product}` : ''}. Sharing photos and details here.`;
+          /* plain strings, not nested template literals: the minifier drops their leading spaces */
+          const msg = 'Hello Win Equipments, I just sent an enquiry from the website' + (ref ? ' (reference ' + ref + ')' : '') + (product && !/^Not sure/.test(product) ? ' for ' + product : '') + '. Sharing photos and details here.';
           follow.href = `https://wa.me/919597228969?text=${encodeURIComponent(msg)}`;
         }
         form.classList.add('is-sent');
         if (success) success.focus();
-        track('quote_submit', { product: (form.equipment_type || {}).value || '' });
+        track('quote_submit', { product: (form.equipment_type || {}).value || '', variant: (form.form_variant || {}).value || 'full' });
       } catch (err) {
         status.className = 'form-status is-error';
         status.innerHTML = 'We could not send your enquiry. Please WhatsApp or call +91 95972 28969, or email info@winequipments.com.';
@@ -221,7 +265,7 @@
     const vis = {};
     let typing = false;
     const update = () => { bar.classList.toggle('is-hidden', typing || Object.values(vis).some(Boolean)); bar.classList.add('is-ready'); };
-    $$('#quote, .site-footer').forEach((el, i) => new IntersectionObserver((en) => { vis[i] = en[en.length - 1].isIntersecting; update(); }, { threshold: 0.02 }).observe(el));
+    $$('#quote, .h-quick, .site-footer').forEach((el, i) => new IntersectionObserver((en) => { vis[i] = en[en.length - 1].isIntersecting; update(); }, { threshold: 0.02 }).observe(el));
     const heroCta = $('.cine__ctas, .h-hero__ctas, .hero .btn-row, .p-hero .btn-row, .hub-hero .btn-row');
     if (heroCta) new IntersectionObserver((en) => { const e = en[en.length - 1]; vis.hero = e.isIntersecting; update(); }).observe(heroCta);
     document.addEventListener('focusin', (e) => { if (e.target.matches('input, textarea, select') && !e.target.closest('.action-bar')) { typing = true; update(); } });
@@ -236,6 +280,15 @@
       en.forEach((x) => { if (x.isIntersecting) { sublinks.forEach((a) => a.classList.remove('is-active')); const a = map.get(x.target.id); if (a) { a.classList.add('is-active'); a.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } } });
     }, { rootMargin: '-30% 0px -60% 0px' });
     map.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  /* long product sections: folded on phones, open (summary hidden) from 900px */
+  const folds = $$('[data-m-collapse]');
+  if (folds.length) {
+    const wide = matchMedia('(min-width: 900px)');
+    const sync = () => folds.forEach((d) => { d.open = wide.matches; });
+    sync();
+    wide.addEventListener('change', sync);
   }
 
   /* chart: give the process line its own length for the draw-on */
@@ -310,7 +363,17 @@
   /* header: solid after scroll */
   const header = $('.site-header');
   if (header) {
-    const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 24);
+    const narrow = matchMedia('(max-width: 899px)');
+    let lastY = scrollY;
+    const onScroll = () => {
+      const y = scrollY;
+      header.classList.toggle('is-scrolled', y > 24);
+      /* phones: tuck the header away while scrolling down, bring it back on any scroll up */
+      const busy = document.body.matches('.menu-open, .chat-open') || header.contains(document.activeElement);
+      if (!narrow.matches || busy || y < 200) document.body.classList.remove('hdr-hide');
+      else if (Math.abs(y - lastY) > 6) document.body.classList.toggle('hdr-hide', y > lastY);
+      lastY = y;
+    };
     addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
@@ -345,6 +408,8 @@
     (window.dataLayer = window.dataLayer || []).push({ event: 'chat_open', page: location.pathname });
   };
   btn.addEventListener('click', load);
+  /* phones: the action bar's AI button opens the same assistant */
+  document.querySelectorAll('[data-chat-proxy]').forEach((p) => p.addEventListener('click', () => btn.click()));
 })();
 
 /* photo rails + lightbox */
@@ -460,4 +525,88 @@ if ('serviceWorker' in navigator) {
   });
   // back/forward cache restores the old page: clear the line
   addEventListener('pageshow', () => root.classList.remove('is-navigating'));
+})();
+
+/* back to top: only on long pages, once you are well down */
+(() => {
+  const btn = document.querySelector('[data-to-top]');
+  if (!btn) return;
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const long = document.documentElement.scrollHeight > innerHeight * 3;
+    btn.hidden = !long;
+    btn.classList.toggle('is-shown', long && scrollY > innerHeight * 1.5);
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+  btn.addEventListener('click', () => {
+    scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    const skip = document.querySelector('.skip-link');
+    if (skip) skip.focus({ preventScroll: true });
+  });
+})();
+
+/* desktop: a copy button beside phone numbers and the email address */
+(() => {
+  if (!matchMedia('(hover: hover) and (min-width: 1024px)').matches || !navigator.clipboard) return;
+  let toast, timer;
+  const say = (msg) => {
+    if (!toast) { toast = document.createElement('div'); toast.className = 'toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast); }
+    toast.textContent = msg;
+    toast.classList.add('is-shown');
+    clearTimeout(timer);
+    timer = setTimeout(() => toast.classList.remove('is-shown'), 1600);
+  };
+  document.querySelectorAll('.enquiry__direct a[href^="tel:"], .enquiry__direct a[href^="mailto:"], .footer-contact a[href^="tel:"], .footer-contact a[href^="mailto:"]').forEach((a) => {
+    const value = decodeURIComponent(a.getAttribute('href').replace(/^(tel|mailto):/, ''));
+    const label = a.href.startsWith('tel:') ? value.replace(/^\+91/, '+91 ').replace(/(\d{5})(\d{5})$/, '$1 $2') : value;
+    const wrap = document.createElement('span');
+    wrap.className = 'copy-wrap';
+    a.replaceWith(wrap);
+    wrap.appendChild(a);
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'copy-btn';
+    b.setAttribute('aria-label', `Copy ${label}`);
+    b.innerHTML = '<svg aria-hidden="true"><use href="#i-copy"/></svg>';
+    b.addEventListener('click', () => navigator.clipboard.writeText(label).then(() => {
+      say(`Copied ${label}`);
+      b.classList.add('is-done');
+      setTimeout(() => b.classList.remove('is-done'), 1600);
+      (window.dataLayer = window.dataLayer || []).push({ event: 'contact_copy', page: location.pathname });
+    }).catch(() => {}));
+    wrap.appendChild(b);
+  });
+})();
+
+/* lazy images fade in as they arrive */
+(() => {
+  if (!document.documentElement.classList.contains('motion')) return;
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    if (img.complete && img.naturalWidth) return;
+    const box = img.closest('picture') || img;
+    box.classList.add('lz');
+    const done = () => box.classList.add('is-loaded');
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+})();
+
+/* desktop: the assistant pill nudges once per visit after 15 s, unless the visitor is already enquiring */
+(() => {
+  const btn = document.querySelector('.chat-launcher');
+  if (!btn || !document.documentElement.classList.contains('motion') || !matchMedia('(min-width: 1024px)').matches) return;
+  try { if (sessionStorage.getItem('win-chat-nudged')) return; } catch (_) {}
+  let enquiring = false;
+  const quote = document.getElementById('quote');
+  if (quote && 'IntersectionObserver' in window) new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) enquiring = true; }).observe(quote);
+  document.addEventListener('focusin', (e) => { if (e.target.closest('form')) enquiring = true; });
+  setTimeout(() => {
+    if (enquiring || btn.getAttribute('aria-expanded') === 'true' || btn.offsetParent === null) return;
+    btn.classList.add('is-nudge');
+    btn.addEventListener('animationend', (e) => { if (e.animationName === 'chatnudge') btn.classList.remove('is-nudge'); });
+    try { sessionStorage.setItem('win-chat-nudged', '1'); } catch (_) {}
+  }, 15000);
 })();

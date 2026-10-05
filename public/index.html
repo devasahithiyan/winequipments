@@ -8,8 +8,8 @@
 <link rel="canonical" href="https://winequipments.com/">
 <meta name="theme-color" content="#f6f7f3">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=2a244429">
-<link rel="stylesheet" href="/css/home.css?v=2a244429"><link rel="stylesheet" href="/css/viewer.css?v=2a244429"><link rel="icon" href="/logo.png" type="image/png">
+<link rel="stylesheet" href="/css/site.css?v=c09397b5">
+<link rel="stylesheet" href="/css/home.css?v=c09397b5"><link rel="stylesheet" href="/css/viewer.css?v=c09397b5"><link rel="icon" href="/logo.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Win Equipments">
 <meta property="og:title" content="Air Dryers, Chillers & Cooling Towers, Coimbatore | Win">
@@ -43,6 +43,7 @@
   <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2.5h8.5L19 7v14.5H6z"/><path d="M14 2.5V7h5"/><path d="M9 13h7M9 16.5h7M9 9.5h3"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
 </svg><a class="skip-link" href="#main">Skip to content</a>
@@ -427,6 +428,63 @@
   </div>
 </section>
 
+<section class="h-quick" aria-labelledby="quick-title">
+  <div class="container h-quick__grid">
+    <div class="h-quick__copy" data-reveal>
+      <h2 id="quick-title">Get a quote in a minute</h2>
+      <p>Tell us the product and the capacity. An engineer from our Arasur works will call or WhatsApp you with a recommended model.</p>
+      <a class="link-arrow" href="#quote" data-quote-link>Need to add a drawing or conditions? Use the full form<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="h-quick__panel" data-reveal style="--d:1">
+      <form class="form h-quick__form" action="/send_rfq.php" method="post" novalidate data-rfq>
+        <input type="hidden" name="return_url" value="/thank-you.html">
+        <input type="hidden" name="form_source" value="/">
+        <input type="hidden" name="form_variant" value="quick">
+        <div class="hp-field" aria-hidden="true"><label>Website <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form-grid form-grid--2">
+          <div class="field">
+            <label for="q-product">Product</label>
+            <select class="select" id="q-product" name="equipment_type">
+              <option value="Not sure / need advice">Not sure, please advise</option>
+              <optgroup label="Compressed Air Treatment">
+<option value="Refrigerated Air Dryers">Refrigerated Air Dryers</option><option value="Heatless Desiccant Air Dryers">Heatless Desiccant Air Dryers</option><option value="Compressed Air Filters">Compressed Air Filters</option><option value="Automatic Drain Valves">Automatic Drain Valves</option><option value="Air Receiver Tanks">Air Receiver Tanks</option><option value="Aftercoolers">Aftercoolers</option><option value="Moisture Separators">Moisture Separators</option>              </optgroup>
+              <optgroup label="Process Cooling">
+<option value="Industrial Process Chillers">Industrial Process Chillers</option><option value="Medical Scan Chillers">Medical Scan Chillers</option><option value="Anodizing Chillers">Anodizing Chillers</option><option value="Acid Cooling Chillers">Acid Cooling Chillers</option><option value="Ice Flake Machines">Ice Flake Machines</option><option value="Shell &amp; Tube Heat Exchangers">Shell &amp; Tube Heat Exchangers</option><option value="Milk &amp; Coconut Water Chillers">Milk &amp; Coconut Water Chillers</option><option value="Soda Chillers">Soda Chillers</option><option value="Condensing Units">Condensing Units</option>              </optgroup>
+              <optgroup label="Cooling Towers">
+<option value="Round FRP Cooling Towers">Round FRP Cooling Towers</option><option value="Square FRP Cooling Towers">Square FRP Cooling Towers</option><option value="Coil Cooling Towers">Coil Cooling Towers</option><option value="Spares &amp; Consumables">Spares &amp; Consumables</option>              </optgroup>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-cap">Capacity <span class="opt">(optional)</span></label>
+            <input class="input" id="q-cap" name="operating_parameters" type="text" placeholder="e.g. 300 CFM, 5 TR or 60 m³/hr">
+          </div>
+          <div class="field">
+            <label for="q-name">Your name</label>
+            <input class="input" id="q-name" name="contact_name" type="text" autocomplete="name" required aria-describedby="q-name-err">
+            <p class="field__error" id="q-name-err">Enter your name.</p>
+          </div>
+          <div class="field">
+            <label for="q-phone">Mobile / WhatsApp</label>
+            <input class="input" id="q-phone" name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\-\(\)]{10,18}" aria-describedby="q-phone-err">
+            <p class="field__error" id="q-phone-err">Enter a mobile number with at least 10 digits.</p>
+          </div>
+        </div>
+        <p class="form-status" role="alert" data-status></p>
+        <button class="btn btn--primary btn--block btn--lg" type="submit">Send enquiry</button>
+        <p class="form-legal">We use your details only to reply to this enquiry.</p>
+      </form>
+      <div class="form-success" role="status" tabindex="-1">
+        <span class="form-success__tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+        <h3>Thank you, we have your enquiry</h3>
+        <p>Reference <strong data-ref>—</strong>. An engineer from our Arasur works will contact you on the number you gave.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20I%20just%20sent%20an%20enquiry%20from%20the%20website." data-wa-follow data-track="whatsapp_followup"><svg aria-hidden="true"><use href="#i-wa"/></svg>Continue on WhatsApp</a>
+          <a class="btn btn--secondary" href="tel:+919597228969" data-track="call_click">Call +91 95972 28969</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="c3" id="chiller-360" aria-labelledby="c3-title">
   <div class="container">
     <div class="h-head" data-reveal>
@@ -522,7 +580,7 @@
     </div>
   </div>
 </section>
-<script src="/js/chiller360.js?v=771ffa4c" defer></script>
+<script src="/js/chiller360.js?v=0c95b541" defer></script>
 <section class="h-numbers" aria-label="Win Equipments in numbers">
   <div class="container h-numbers__row">
     <div data-reveal><strong>2008</strong><span>Established in Coimbatore</span></div>
@@ -770,7 +828,7 @@
           </div>
           <div class="field">
             <label for="f-phone">Mobile / WhatsApp</label>
-            <input class="input" id="f-phone" name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\-()]{10,18}" aria-describedby="f-phone-err">
+            <input class="input" id="f-phone" name="contact_phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\-\(\)]{10,18}" aria-describedby="f-phone-err">
             <p class="field__error" id="f-phone-err">Enter a mobile number with at least 10 digits.</p>
           </div>
           <div class="field">
@@ -871,11 +929,13 @@
       <span><a href="/about.html">About</a> · <a href="/certifications.html">Certifications</a> · <a href="/engineering-tools/">Sizing tools</a> · <a href="/blog.html">Articles</a> · <a href="/blog/glossary.html">Glossary</a> · <a href="/downloads.html">Downloads</a> · <a href="/sitemap.html">Sitemap</a></span>
     </div>
   </div>
-</footer><button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v=771ffa4c"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
+</footer><button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v=0c95b541"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
 <div class="action-bar" id="action-bar">
   <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
   <a class="btn btn--secondary btn--icon btn--wa" href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20I%20have%20an%20enquiry." data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
   <a class="btn btn--secondary btn--icon" href="tel:+919597228969" data-track="call_click" aria-label="Call +91 95972 28969"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
-</div><script src="/js/site.js?v=771ffa4c" defer></script>
-<script src="/js/home.js?v=771ffa4c" defer></script><script src="/js/home-motion.js?v=771ffa4c" defer></script></body>
+  <button class="btn btn--secondary btn--icon action-bar__ai" type="button" data-chat-proxy aria-label="Ask our AI assistant"><svg aria-hidden="true"><use href="#i-spark"/></svg></button>
+</div><button class="to-top" type="button" aria-label="Back to top" data-to-top hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+<script src="/js/site.js?v=0c95b541" defer></script>
+<script src="/js/home.js?v=0c95b541" defer></script><script src="/js/home-motion.js?v=0c95b541" defer></script></body>
 </html>

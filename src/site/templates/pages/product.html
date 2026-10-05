@@ -11,6 +11,7 @@
 {% endblock %}
 {% block extra_css %}{% if p.slug == 'industrial-process-chillers' or p.spin is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
 {% block main %}
+<div class="read-progress" aria-hidden="true"></div>
 {{ m.breadcrumb(crumbs) }}
 
 <section class="p-hero">
@@ -40,6 +41,7 @@
         <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
         {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Catalogue PDF</a>{% endif %}
       </div>
+      <p class="p-hero__trust" data-intro style="--d:5"><span>Made at our Arasur works</span><span>{{ site.certification }}</span><span>{{ site.installations }} installations since {{ site.founded }}</span></p>
     </div>
   </div>
 </section>
@@ -82,6 +84,7 @@
     <div class="section-head" data-reveal>
       <h2 id="specs">{{ p.series }} specifications</h2>
       <p>{{ p.spec.rows | length }} standard models{% if p.capacity.unit in ('CFM','TR','litres') %}. Enter your requirement to find the model that covers it{% endif %}.<span class="only-mobile"> Tap a model to see every value.</span></p>
+      {% if p.download %}<a class="link-arrow" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download the {{ p.series }} catalogue (PDF)</a>{% endif %}
     </div>
     {% if p.conditions is defined %}
     <div class="conditions" style="margin-bottom:var(--s-6)">
@@ -142,11 +145,14 @@
 <section class="p-section" aria-labelledby="build">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="build">What goes into it</h2></div>
+    <details class="m-collapse" data-m-collapse open>
+    <summary class="m-collapse__sum">Show all {{ p.features | length }} build details<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
     <div class="feature-list" data-reveal>
       {% for f in p.features %}
       <div class="feature"><h3>{{ f.title }}</h3><ul>{% for pt in f.points %}<li>{{ pt }}</li>{% endfor %}</ul></div>
       {% endfor %}
     </div>
+    </details>
   </div>
 </section>
 {% endif %}
@@ -179,6 +185,8 @@
       <p class="finder__result" aria-live="polite" data-c-result>Enter the compressor capacity to calculate the dryer nominal capacity.</p>
     </div>
     {% endif %}
+    <details class="m-collapse" data-m-collapse open>
+    <summary class="m-collapse__sum">Show the {{ p.selection.tables | length }} correction factor tables<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
     <div class="corr-tables">
       {% for t in p.selection.tables %}
       <div class="corr{% if t.points | length > 8 %} corr--wide{% endif %}">
@@ -197,6 +205,7 @@
       </div>
       {% endfor %}
     </div>
+    </details>
     {% endif %}
   </div>
 </section>
@@ -206,9 +215,12 @@
 <section class="p-section" aria-labelledby="spares">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="spares">Spares we supply</h2></div>
+    <details class="m-collapse" data-m-collapse open>
+    <summary class="m-collapse__sum">Show all {{ p.spare_groups | length }} spares groups<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
     <div class="feature-list" data-reveal>
       {% for g in p.spare_groups %}<div class="feature"><h3>{{ g.name }}</h3><ul>{% for i in g['items'] %}<li>{{ i }}</li>{% endfor %}</ul></div>{% endfor %}
     </div>
+    </details>
   </div>
 </section>
 {% endif %}

@@ -337,3 +337,37 @@ body.lb-open { overflow: hidden; }
 .ty__more { margin-top: var(--s-10); padding-top: var(--s-5); border-top: 1px solid var(--rule); }
 .ty__more p { font-weight: 650; margin-bottom: var(--s-2); }
 .ty__more ul { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+
+/* submit buttons: a small spinner beside "Sending…" */
+.btn[aria-busy="true"] { cursor: progress; opacity: 0.85; }
+.btn[aria-busy="true"]::before { content: ""; width: 16px; height: 16px; flex: none; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: btnspin 0.7s linear infinite; }
+@keyframes btnspin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .btn[aria-busy="true"]::before { animation: none; } }
+
+/* fields confirm themselves once filled correctly */
+.field.is-valid .input { border-color: var(--green); padding-right: 40px; background-repeat: no-repeat; background-position: right 12px center; background-size: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a7d20' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+
+/* back to top: appears on long pages once you are well down */
+.to-top { position: fixed; right: var(--gutter); z-index: 34; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--rule-strong); border-radius: 50%; background: var(--surface); color: var(--ink); cursor: pointer; box-shadow: 0 6px 18px rgba(21, 32, 26, 0.12);
+  bottom: calc(var(--s-4) + 48px + var(--s-3) + env(safe-area-inset-bottom)); opacity: 0; visibility: hidden; transform: translateY(12px); pointer-events: none; transition: opacity 0.25s, transform 0.3s var(--ease-out), border-color 0.15s, visibility 0s 0.3s; }
+.to-top[hidden] { display: none; }
+.to-top svg { width: 20px; height: 20px; transform: rotate(180deg); }
+.to-top.is-shown { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition-delay: 0s; }
+.to-top:hover { border-color: var(--ink); }
+@media (max-width: 1023px) {
+  body.has-action-bar .to-top { bottom: calc(var(--bar-h) + var(--s-3) + env(safe-area-inset-bottom)); }
+  /* the bar steps aside for forms and the footer; so does this button, so it never sits on a field */
+  body:has(.action-bar.is-hidden) .to-top { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+@media (min-width: 1024px) { .to-top { bottom: calc(var(--s-6) + 52px + var(--s-3)); } }
+body.menu-open .to-top, body.chat-open .to-top { display: none; }
+
+/* copy phone / email (desktop, where tel: links do nothing useful) */
+.copy-wrap { display: inline-flex; align-items: center; gap: var(--s-2); }
+.copy-btn { width: 32px; height: 32px; display: grid; place-items: center; flex: none; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: var(--r-1); background: transparent; color: inherit; cursor: pointer; opacity: 0.7; transition: opacity 0.15s, border-color 0.15s, background-color 0.15s; }
+.copy-btn svg { width: 16px; height: 16px; }
+.copy-btn:hover, .copy-btn:focus-visible { opacity: 1; border-color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.08); }
+.copy-btn.is-done { opacity: 1; border-color: #8fe0a0; color: #8fe0a0; }
+.toast { position: fixed; left: 50%; bottom: var(--s-8); z-index: 90; padding: var(--s-2) var(--s-4); border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: var(--fs-small); box-shadow: 0 10px 28px rgba(21, 32, 26, 0.25); transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.3s var(--ease-out); }
+.toast.is-shown { opacity: 1; transform: translate(-50%, 0); }

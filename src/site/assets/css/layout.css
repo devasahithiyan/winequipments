@@ -166,7 +166,7 @@ body.menu-open { overflow: hidden; }
 /* sticky action bar (phones) */
 .action-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
-  display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--s-2);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: var(--s-2);
   padding: var(--s-2) var(--gutter) calc(var(--s-2) + env(safe-area-inset-bottom));
   background: var(--surface); border-top: 1px solid var(--rule);
   box-shadow: 0 -4px 16px rgba(21, 32, 26, 0.08);
@@ -207,3 +207,10 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
 .breadcrumb li { flex: 0 1 auto; min-width: 0; }
 .breadcrumb li:first-child { flex: none; }
 .breadcrumb li > a, .breadcrumb li > span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* phones: one readable "back to parent" link instead of a row of clipped crumbs */
+@media (max-width: 599px) {
+  .breadcrumb li:not(:nth-last-child(2)) { display: none; }
+  .breadcrumb li:nth-last-child(2) { flex: 0 1 auto; }
+  .breadcrumb li:nth-last-child(2)::before { content: "←"; color: var(--green-ink); }
+  .breadcrumb li:nth-last-child(2) > a { color: var(--ink-2); font-weight: 550; }
+}

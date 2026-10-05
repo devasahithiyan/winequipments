@@ -37,6 +37,7 @@
 {% block action_bar %}
 {% include "partials/action_bar.html" %}
 {% endblock %}
+<button class="to-top" type="button" aria-label="Back to top" data-to-top hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
 <script src="/js/site.js?v={{ js_ver }}" defer></script>
 {% block scripts %}{% endblock %}
 </body>

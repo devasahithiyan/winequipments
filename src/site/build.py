@@ -30,6 +30,18 @@ for f in sorted((DATA / "products").glob("*.json")):
 families = {f["id"]: f for f in site["families"]}
 for fam in families.values():
     fam["products"] = sorted([p for p in products.values() if p["family"] == fam["id"]], key=lambda p: p["order"])
+# family-page capacity finder: the largest standard model of each product, in the unit most of the family uses
+for p in products.values():
+    cap, rows = p.get("capacity"), (p.get("spec") or {}).get("rows") or []
+    vals = []
+    for r in rows:
+        try: vals.append(float(r.get(cap["key"]))) if cap else None
+        except (TypeError, ValueError): pass
+    if vals:
+        p["cap_max"], p["cap_unit"] = max(vals), cap["unit"]
+for fam in families.values():
+    units = [p["cap_unit"] for p in fam["products"] if p.get("cap_unit") in ("CFM", "TR")]
+    fam["finder_unit"] = max(set(units), key=units.count) if units else None
 industries = {i["id"]: i for i in site["industries"]}
 photos = [dict(ph, path="images/works/" + ph["file"]) for ph in json.loads((DATA / "photos.json").read_text())]
 home_photos = sorted((ph for ph in photos if ph.get("home")), key=lambda ph: ph["home"])
@@ -744,7 +756,7 @@ def _min_css(css):
 
 
 CSS_BUNDLES = {
-    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "sections.css", "chat.css", "motion.css"],
+    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "sections.css", "chat.css", "motion.css", "print.css"],
     "home.css": ["home.css"],
     "viewer.css": ["chiller360.css"],
 }

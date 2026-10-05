@@ -25,6 +25,9 @@ body:has(.action-bar.is-hidden) .chat-launcher, body:has(.action-bar:not(.is-rea
   body:has(.action-bar.is-hidden) .chat-launcher:not([aria-expanded="true"]), body:has(.action-bar:not(.is-ready)) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; }
 }
 @media (min-width: 1024px) { body.has-action-bar .chat-launcher { bottom: var(--s-6); } }
+/* phones: the assistant lives in the action bar, so the floating pill never covers the page */
+@media (max-width: 1023px) { body.has-action-bar:has(.action-bar) .chat-launcher:not([aria-expanded="true"]) { display: none; } }
+.action-bar__ai svg { color: var(--green); }
 body.menu-open .chat-launcher { display: none; }
 @media (prefers-reduced-motion: reduce) { .chat-launcher { animation: none; } }
 

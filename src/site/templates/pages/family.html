@@ -33,6 +33,13 @@
       <h2 id="range-title">The {{ fam.short | lower }} range</h2>
       <p>Open a product for the full model table, rating conditions and downloads.</p>
     </div>
+    {% if fam.finder_unit %}
+    <div class="fam-finder" data-fam-finder data-unit="{{ fam.finder_unit }}">
+      <label for="fam-cap">Your requirement</label>
+      <div class="unit-input"><input id="fam-cap" type="number" inputmode="decimal" min="0" step="any" placeholder="{{ 'e.g. 250' if fam.finder_unit == 'CFM' else 'e.g. 5' }}" data-fam-cap><span>{{ fam.finder_unit }}</span></div>
+      <p class="fam-finder__result" aria-live="polite" data-fam-result>Enter {{ 'your compressor capacity' if fam.finder_unit == 'CFM' else 'the cooling load' }} to see which standard ranges cover it.</p>
+    </div>
+    {% endif %}
     <ul class="pcards">
       {% for pr in fam.products %}{{ m.product_card(pr, 'h3', loop.index0 % 3) }}{% endfor %}
     </ul>
