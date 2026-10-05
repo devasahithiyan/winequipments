@@ -4,7 +4,7 @@ seo_title: Air-Cooled vs Water-Cooled Chiller: Which to Choose | Win
 description: How air-cooled and water-cooled process chillers reject heat, how site ambient, an existing cooling tower, space and water decide which to buy.
 date: 2026-10-05
 updated: 2026-10-05
-products: industrial-process-chillers, round-cooling-towers, square-cooling-towers
+products: industrial-process-chillers, round-cooling-towers, square-cooling-towers, air-cooled-chillers
 category: Chillers
 order: 17
 photo: chiller-air-cooled.jpg | Air-cooled process chiller

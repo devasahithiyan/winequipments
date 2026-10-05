@@ -77,11 +77,11 @@ Not used: stock/third-party images (plate HX renders, refrigeration spares, filt
 - Rating 4.7/5 from 19 IndiaMART buyers (63% five-star) → shown as text with a link; **no review schema** (Google treats it as self-serving).
 - Buyer locations: Pune, Ahmedabad, Hyderabad, Kadapa, Rourkela, Thrissur, Thiruvananthapuram, Visakhapatnam, Arakkonam, Chennai; abroad: Saudi Arabia, Kenya, Philippines, Pakistan.
 - Note: two reviews are for products Win does not list (rotary gear pumps, bypass valves); two low ratings (1★, 2★) are for liquid line filter driers in 2019.
-- **ISO 9001:2015: IndiaMART says issued 11 Jan 2017, expired 10 Jan 2020.** The site says "certified" on every product page. Needs owner answer.
+- ISO 9001:2015: IndiaMART shows the old certificate (11 Jan 2017 to 10 Jan 2020). **Confirmed current on 5 Oct 2026**, so the site keeps "ISO 9001:2015 certified". Update the dates on IndiaMART; send a copy so the Certifications page can show the number and validity.
 - **Founded: IndiaMART 2010, site 2008.** Site keeps 2008 until the owner says otherwise.
 
 ## 6. Questions for the owner
-1. Is there a current ISO 9001:2015 certificate? Please send it. If not, we change the wording to "was certified (2017–2020)".
+1. ~~Current ISO certificate?~~ Confirmed 5 Oct 2026. Please send a copy and update the IndiaMART certificate dates.
 2. Founded 2008 or 2010?
 3. Correct the excluded prices in section 2.
 4. Send real photos and a spec sheet for plate heat exchangers and screw chillers.

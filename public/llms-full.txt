@@ -241,6 +241,16 @@ Series: Engineered to order
 Range: Engineered to order
 Refrigeration condensing units with compressor, condenser and controls on one base, assembled to order by Win Equipments, Coimbatore.
 
+### Air-Cooled Water Chillers
+URL: https://winequipments.com/products/air-cooled-chillers.html
+Series: Engineered to order
+Range: 0.5–15 TR packaged
+Air-cooled water chillers with built-in tank and pump, 0.5 to 15 TR, made by Win Equipments, Coimbatore. No cooling tower needed. 1 TR from ₹55,000.
+- Packaged range: 0.5 to 15 TR
+- 1 TR unit: 3,000 kcal/hr
+- 2 TR unit: 6,200 kcal/hr
+- Chilled water: 5 to 15 °C
+
 ## Cooling Towers
 
 ### Round FRP Cooling Towers
@@ -333,6 +343,24 @@ URL: https://winequipments.com/products/spare-parts-consumables.html
 Series: Spares
 Range: Spares
 Spares for cooling towers (fills, drift eliminators, sprinklers, motors, fans) and refrigeration (compressors, condensers, valves, filters).
+
+### Cooling Tower PVC Fills, Drift Eliminators and Fans
+URL: https://winequipments.com/products/cooling-tower-fills.html
+Series: Spares
+Range: Spares
+PVC cooling tower fills (600 × 300 × 150 mm), drift eliminators, spray nozzles, PP rings and fan blades from Win Equipments, Coimbatore.
+- Fill pack size: 600 × 300 × 150 mm
+- Sheet thickness: 0.2 to 0.25 mm
+- Flute height: 12 to 19 mm
+- Material: PVC, black or blue
+
+### Fanless Natural Draft Cooling Towers
+URL: https://winequipments.com/products/fanless-cooling-towers.html
+Series: Engineered to order
+Range: Engineered to order
+Fanless natural draft cooling towers for hot water at 75–90 °C from gensets, furnaces and compressors. No fan motor. Engineered to order by Win Equipments.
+- Draft: Natural, no fan
+- Hot water temperature: 75 to 90 °C
 
 ## Guides: short answers and FAQs
 

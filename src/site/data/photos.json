@@ -56,7 +56,7 @@
   {"file": "compact-desiccant-dryer.jpg", "caption": "Twin-tower desiccant air dryer", "product": "desiccant-air-dryers", "source": "indiamart"},
   {"file": "heatless-dryer-twin-tower.jpg", "caption": "Heatless twin-tower desiccant dryer", "product": "desiccant-air-dryers", "source": "indiamart"},
   {"file": "desiccant-dryer-green.jpg", "caption": "Twin-tower desiccant dryer, green towers", "product": "desiccant-air-dryers", "source": "indiamart"},
-  {"file": "air-cooled-chiller-fans.jpg", "caption": "Air-cooled water chiller with condenser fans", "product": "industrial-process-chillers", "source": "indiamart"},
+  {"file": "air-cooled-chiller-fans.jpg", "caption": "Air-cooled water chiller with condenser fans", "product": "air-cooled-chillers", "source": "indiamart"},
   {"file": "online-water-chiller-10tr.jpg", "caption": "10 TR online water chiller", "product": "industrial-process-chillers", "source": "indiamart"},
   {"file": "wcp-chiller-air-cooled.jpg", "caption": "WCP air-cooled water chiller", "product": "industrial-process-chillers", "source": "indiamart"},
   {"file": "wcp-chiller-panel.jpg", "caption": "WCP water chiller with control buttons", "product": "industrial-process-chillers", "source": "indiamart"},
@@ -69,6 +69,12 @@
   {"file": "moisture-separator-red.jpg", "caption": "Flanged moisture separator with WIN badge", "product": "moisture-separators", "source": "indiamart"},
   {"file": "air-receiver-vertical-yellow.jpg", "caption": "Vertical air receivers with WIN badge", "product": "air-receiver-tanks", "source": "indiamart"},
   {"file": "air-receiver-vertical-grey.jpg", "caption": "Vertical air receiver tank", "product": "air-receiver-tanks", "source": "indiamart"},
-  {"file": "pvc-fills-black.jpg", "caption": "Black PVC cooling tower fill packs", "product": "spare-parts-consumables", "source": "indiamart"},
-  {"file": "pvc-fills-blue.jpg", "caption": "Blue honeycomb PVC fill packs", "product": "spare-parts-consumables", "source": "indiamart"}
+  {"file": "pvc-fills-black.jpg", "caption": "Black PVC cooling tower fill packs", "product": "cooling-tower-fills", "source": "indiamart"},
+  {"file": "pvc-fills-blue.jpg", "caption": "Blue honeycomb PVC fill packs", "product": "cooling-tower-fills", "source": "indiamart"},
+  {"file": "fanless-cooling-tower-installed.jpg", "caption": "Fanless natural draft cooling tower installed at a plant", "product": "fanless-cooling-towers", "source": "indiamart"},
+  {"file": "air-cooled-chiller-large.jpg", "caption": "Large chiller with air-cooled condenser fans in the works", "product": "air-cooled-chillers", "source": "indiamart"},
+  {"file": "air-cooled-chiller-blue.jpg", "caption": "Air-cooled chiller, blue frame with gauges", "product": "air-cooled-chillers", "source": "indiamart"},
+  {"file": "air-cooled-chiller-wcp100.jpg", "caption": "WCP 100 air-cooled water chiller", "product": "air-cooled-chillers", "source": "indiamart"},
+  {"file": "drift-eliminator-pvc.jpg", "caption": "PVC drift eliminator pack", "product": "cooling-tower-fills", "source": "indiamart"},
+  {"file": "cooling-tower-fan-blades.jpg", "caption": "Four-blade aluminium alloy cooling tower fan", "product": "cooling-tower-fills", "source": "indiamart"}
 ]

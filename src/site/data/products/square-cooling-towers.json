@@ -426,7 +426,8 @@
     "round-cooling-towers",
     "closed-circuit-cooling-towers",
     "industrial-process-chillers",
-    "spare-parts-consumables"
+    "spare-parts-consumables",
+    "cooling-tower-fills"
   ],
   "industries": [
     "plastics",

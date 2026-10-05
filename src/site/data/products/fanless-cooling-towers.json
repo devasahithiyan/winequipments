@@ -1,0 +1,39 @@
+{
+  "slug": "fanless-cooling-towers",
+  "family": "towers",
+  "order": 6,
+  "name": "Fanless Cooling Towers",
+  "series": "Engineered to order",
+  "engineered": true,
+  "h1": "Fanless Natural Draft Cooling Towers",
+  "title": "Fanless Cooling Tower Manufacturer | Win Equipments",
+  "description": "Fanless natural draft cooling towers for hot water at 75–90 °C from gensets, furnaces and compressors. No fan motor. Engineered to order by Win Equipments.",
+  "card": "Natural draft towers with no fan, for hot water from gensets, furnaces and compressors.",
+  "lede": "A fanless cooling tower moves air by natural draft instead of a fan, so there is no fan motor to run, service or replace. We build fanless towers to order for hot water at 75 to 90 °C from diesel generators, foundries, induction furnaces, air compressors and refrigeration systems.",
+  "image": "images/works/fanless-cooling-tower-installed.jpg",
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [
+    {"label": "Draft", "value": "Natural, no fan"},
+    {"label": "Hot water temperature", "value": "75 to 90 °C"}
+  ],
+  "price": {"low": 100000, "unit": "per tower", "detail": "Fanless cooling tower: from ₹1,00,000.", "source": "https://www.indiamart.com/winequipments/cooling-towers.html", "as_of": "2026-10-05"},
+  "spec": null,
+  "applications": ["Diesel generator jacket water", "Foundries and induction furnaces", "Air compressor cooling", "Refrigeration systems"],
+  "needs": [
+    "Heat load or water flow and temperatures (in and out)",
+    "Source of hot water: genset, furnace, compressor or other",
+    "Site wet bulb temperature, if known",
+    "Space available and whether the tower sits on the ground or a roof",
+    "Water quality"
+  ],
+  "related": ["closed-circuit-cooling-towers", "round-cooling-towers", "square-cooling-towers", "cooling-tower-fills"],
+  "industries": [],
+  "download": null,
+  "faqs": [
+    {"q": "How does a fanless cooling tower work?", "a": "Hot water is spread through the tower and air flows through it by natural draft, carried by the difference in temperature between the warm air inside and the cooler air outside, so no fan is needed."},
+    {"q": "Where are fanless cooling towers used?", "a": "For hot water at 75 to 90 °C from diesel generators, foundries, induction furnaces, air compressors and refrigeration systems."},
+    {"q": "What are the advantages of a fanless tower?", "a": "No fan motor to power, maintain or replace, and no fan noise. The trade-off is that it is larger than a fan-driven tower of the same duty."},
+    {"q": "How much does a fanless cooling tower cost?", "a": "From ₹1,00,000 as listed on our IndiaMART store on 5 October 2026. Each tower is engineered to order, so the price depends on your heat load and site."}
+  ]
+}

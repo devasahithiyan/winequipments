@@ -1,0 +1,47 @@
+{
+  "slug": "cooling-tower-fills",
+  "family": "towers",
+  "order": 5,
+  "name": "Cooling Tower Fills",
+  "series": "Spares",
+  "h1": "Cooling Tower PVC Fills, Drift Eliminators and Fans",
+  "title": "Cooling Tower PVC Fills & Drift Eliminators | Win",
+  "description": "PVC cooling tower fills (600 × 300 × 150 mm), drift eliminators, spray nozzles, PP rings and fan blades from Win Equipments, Coimbatore.",
+  "card": "PVC fill packs, drift eliminators, nozzles, PP rings and fan blades for FRP cooling towers.",
+  "lede": "Fills are where a cooling tower does its work: hot water spreads over thin PVC sheets so air can take the heat away. When fills clog with scale or break down, the tower stops reaching its design temperature. We supply replacement PVC fills, drift eliminators, spray nozzles, PP rings and fan blades for FRP towers.",
+  "image": "images/works/pvc-fills-blue.jpg",
+  "gallery": ["images/works/pvc-fills-black.jpg"],
+  "range": "Spares",
+  "key_specs": [
+    {"label": "Fill pack size", "value": "600 × 300 × 150 mm"},
+    {"label": "Sheet thickness", "value": "0.2 to 0.25 mm"},
+    {"label": "Flute height", "value": "12 to 19 mm"},
+    {"label": "Material", "value": "PVC, black or blue"}
+  ],
+  "price": {"low": 155, "high": 195, "unit": "per fill pack", "detail": "PVC fill pack 600 × 300 × 150 mm: ₹155 (black), ₹195 (blue). Drift eliminator: ₹750. Spray nozzle: ₹75. PP rings: ₹1.75–₹2.25 each. Fan: ₹10,000.", "source": "https://www.indiamart.com/winequipments/spares-for-cooling-towers.html", "as_of": "2026-10-05"},
+  "spec": null,
+  "features": [
+    {"title": "PVC fills", "points": ["Fill pack 600 × 300 × 150 mm", "Sheet thickness 0.2 to 0.25 mm, flute height 12 to 19 mm", "Honeycomb, corrugated and double-edged designs", "Black or blue PVC"]},
+    {"title": "Drift eliminators", "points": ["Rigid PVC, 0.3 mm sheet", "Pack size 600 × 600 × 120 mm", "Cut the water carried out of the tower with the air", "Used on square cooling towers"]},
+    {"title": "Spray nozzles and sprinklers", "points": ["PVC nozzles, 3/4 inch BSPT thread", "Orifice 3 to 4 mm", "Rotary sprinklers for round towers"]},
+    {"title": "PP rings", "points": ["Polypropylene pall-type rings", "Sizes 38 × 38, 50 × 50 and 75 × 75 mm", "Rated for water above 85 °C", "Also used as scrubber packing"]},
+    {"title": "Fans and motors", "points": ["Aluminium alloy fan, 4 blades", "Blade thickness 4 to 8 mm, bore 28 mm", "Flanged extended-shaft cooling tower motors, 415 V, 3 phase, 50 Hz"]}
+  ],
+  "applications": ["Replacing clogged or broken fills in FRP round and square towers", "Reducing drift loss on square towers", "Restoring water distribution with new nozzles", "Scrubber and high-temperature packing (PP rings)"],
+  "needs": [
+    "Tower make, model and capacity (TR)",
+    "Round or square tower",
+    "Fill size and type now fitted, or a photo",
+    "Quantity of fill packs or tower cell size",
+    "Hot water temperature"
+  ],
+  "related": ["round-cooling-towers", "square-cooling-towers", "spare-parts-consumables", "fanless-cooling-towers"],
+  "industries": [],
+  "download": null,
+  "faqs": [
+    {"q": "What size are your cooling tower fills?", "a": "Our standard PVC fill pack is 600 × 300 × 150 mm, with 0.2 to 0.25 mm sheet and a flute height of 12 to 19 mm, in black or blue PVC."},
+    {"q": "How do I know the fills need replacing?", "a": "The tower stops reaching its design outlet temperature, water channels through in streams instead of spreading, or the fill packs are visibly scaled, sagging or broken. Send a photo and the tower details and we will confirm."},
+    {"q": "What does a drift eliminator do?", "a": "It catches water droplets that the fan air would otherwise carry out of the tower, cutting water loss and wet surroundings. Ours are rigid PVC packs, 600 × 600 × 120 mm, for square towers."},
+    {"q": "Do you supply fills for towers made by other companies?", "a": "Send the fill size, type and a photo of what is fitted now. If our standard packs match or can be cut to fit, we will quote."}
+  ]
+}

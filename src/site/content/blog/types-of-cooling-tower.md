@@ -4,7 +4,7 @@ seo_title: Types of Cooling Tower: Round, Square, Coil Explained
 description: The main cooling tower types, and the three that Win Equipments builds: round and square FRP towers and coil (dry cooler) towers, with how to choose.
 date: 2026-10-05
 updated: 2026-10-05
-products: round-cooling-towers, square-cooling-towers, closed-circuit-cooling-towers
+products: round-cooling-towers, square-cooling-towers, closed-circuit-cooling-towers, fanless-cooling-towers
 category: Cooling towers
 order: 21
 photo: square-towers-three.jpg | Three square FRP cooling towers

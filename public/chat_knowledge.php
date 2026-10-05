@@ -137,6 +137,14 @@ Engineered to order. To quote we need: Output required (litres per hour); Inlet 
 A condensing unit is the compressor half of a refrigeration system: the refrigeration compressor, condenser and controls on one base, piped to an evaporator in a cold room, process cooler or air handler. Win Equipments assembles condensing units to order.
 Engineered to order. To quote we need: Refrigeration capacity (kW or TR) and evaporating temperature; What the evaporator cools: cold room, process or air handler; Refrigerant preference; Site ambient temperature; Available power supply; Distance between the condensing unit and the evaporator
 
+### Air-Cooled Chillers (Engineered to order) — range 0.5–15 TR packaged — https://winequipments.com/products/air-cooled-chillers.html
+An air-cooled chiller rejects its heat to the surrounding air through finned condenser coils and fans, so it needs no cooling tower, condenser water pump or water treatment. We build packaged air-cooled water chillers from 0.5 to 15 TR with a built-in tank and pump, and larger units to order.
+- Packaged range: 0.5 to 15 TR
+- 1 TR unit: 3,000 kcal/hr
+- 2 TR unit: 6,200 kcal/hr
+- Chilled water: 5 to 15 °C
+Engineered to order. To quote we need: Cooling load (TR or kcal/hr) or the machine to be cooled; Chilled water temperature required; Water flow rate, if known; Highest ambient temperature at site; Power supply: single or three phase; Indoor or outdoor installation
+
 ## Cooling Towers
 ### Round FRP Cooling Towers (WCT RL Series) — range 10–300 TR — https://winequipments.com/products/round-cooling-towers.html
 A cooling tower rejects waste heat from your process to the atmosphere by evaporation. WCT round towers spray hot water over honeycomb PVC fills while an axial fan draws air through, returning water to your equipment at wet bulb + 4 °C.
@@ -186,5 +194,19 @@ Note: Outlet water temperature is ambient + 4 °C. Inlet water 75–90 °C at 2�
 ### Spares & Consumables (Spares) — range Spares — https://winequipments.com/products/spare-parts-consumables.html
 Win Equipments supplies spares for cooling towers, chillers, refrigerated dryers and compressed air filters. Send the part name, the equipment model or a photo, and we will confirm the replacement.
 Engineered to order. To quote we need: Part name, or a photo of the part and its nameplate; Equipment type and model; Quantity required; Delivery location
+
+### Cooling Tower Fills (Spares) — range Spares — https://winequipments.com/products/cooling-tower-fills.html
+Fills are where a cooling tower does its work: hot water spreads over thin PVC sheets so air can take the heat away. When fills clog with scale or break down, the tower stops reaching its design temperature. We supply replacement PVC fills, drift eliminators, spray nozzles, PP rings and fan blades for FRP towers.
+- Fill pack size: 600 × 300 × 150 mm
+- Sheet thickness: 0.2 to 0.25 mm
+- Flute height: 12 to 19 mm
+- Material: PVC, black or blue
+Engineered to order. To quote we need: Tower make, model and capacity (TR); Round or square tower; Fill size and type now fitted, or a photo; Quantity of fill packs or tower cell size; Hot water temperature
+
+### Fanless Cooling Towers (Engineered to order) — range Engineered to order — https://winequipments.com/products/fanless-cooling-towers.html
+A fanless cooling tower moves air by natural draft instead of a fan, so there is no fan motor to run, service or replace. We build fanless towers to order for hot water at 75 to 90 °C from diesel generators, foundries, induction furnaces, air compressors and refrigeration systems.
+- Draft: Natural, no fan
+- Hot water temperature: 75 to 90 °C
+Engineered to order. To quote we need: Heat load or water flow and temperatures (in and out); Source of hot water: genset, furnace, compressor or other; Site wet bulb temperature, if known; Space available and whether the tower sits on the ground or a roof; Water quality
 
 EOT;

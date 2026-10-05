@@ -460,7 +460,8 @@
     "round-cooling-towers",
     "anodizing-chillers",
     "medical-scan-chillers",
-    "ice-flake-machines"
+    "ice-flake-machines",
+    "air-cooled-chillers"
   ],
   "industries": [
     "plastics",

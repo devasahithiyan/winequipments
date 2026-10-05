@@ -355,7 +355,8 @@
   "related": [
     "round-cooling-towers",
     "square-cooling-towers",
-    "industrial-process-chillers"
+    "industrial-process-chillers",
+    "fanless-cooling-towers"
   ],
   "industries": [
     "pharma",
