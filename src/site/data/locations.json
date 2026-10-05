@@ -540,5 +540,809 @@
         "a": "Standard WCP chillers cover 0.5 to 20 TR. Larger or special duties are engineered to order."
       }
     ]
+  },
+  {
+    "slug": "pune-heat-exchangers",
+    "city": "Pune",
+    "region": "Maharashtra",
+    "title": "Heat Exchanger Manufacturer in Pune | Win Equipments",
+    "description": "Shell and tube heat exchangers engineered to order at Arasur, Coimbatore and supplied to Pune plants. Share fluids, flows and temperatures for a quote.",
+    "h1": "Shell and tube heat exchangers for Pune plants",
+    "lede": "We build shell and tube heat exchangers to order at our works in Arasur, Coimbatore, and supply plants in Pune and its industrial belts. Each exchanger is sized from your fluids, flows and temperatures.",
+    "products": [
+      "shell-and-tube-heat-exchangers",
+      "industrial-process-chillers",
+      "industrial-aftercoolers"
+    ],
+    "industry": "automotive-cnc",
+    "points": [
+      [
+        "Oil coolers for machining and press lines",
+        "Pune's automotive and engineering belt around Pimpri-Chinchwad, Chakan and Talegaon runs machining centres, presses and hydraulic power packs whose oil must be kept cool. Send the oil grade, flow, and the temperatures in and out."
+      ],
+      [
+        "Pharma and food duties",
+        "Pune's pharmaceutical and food plants use exchangers to heat or cool process fluids. Tell us the fluid, any cleaning or corrosion concern and the allowable pressure drop so the materials can be chosen."
+      ],
+      [
+        "What a quotation needs",
+        "Both fluids, the flow on each side, inlet and required outlet temperatures, design pressure and temperature, preferred materials and allowable pressure drop. With these we size the exchanger; there is no standard model list."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply heat exchangers to Pune?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Pune. Send your requirement and site and we will confirm the configuration and delivery arrangements."
+      },
+      {
+        "q": "Which Pune industries use shell and tube exchangers?",
+        "a": "Automotive and engineering plants use them on hydraulic and lubricating oil circuits, and pharmaceutical and food plants on process fluids. The design depends on your fluids rather than the industry."
+      },
+      {
+        "q": "Can the cooling water come from a tower or chiller?",
+        "a": "Yes. The cooling side can be fed from a cooling tower or a process chiller. We make both, so the set can be sized together."
+      }
+    ]
+  },
+  {
+    "slug": "pune-cooling-towers",
+    "city": "Pune",
+    "region": "Maharashtra",
+    "title": "Cooling Tower Manufacturer in Pune | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers (40–280 TR) from Win Equipments, supplied to Pune plants. Send your duty for a quote.",
+    "h1": "Cooling tower manufacturer for Pune plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants in Pune. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "automotive-cnc",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      [
+        "Add up the loads on one tower",
+        "Plants in Pimpri-Chinchwad, Chakan and Ranjangaon often send air compressors, induction furnaces, process chillers and hydraulics to the same tower circuit. Heat load (TR) = flow (m³/hr) × range (°C) × 1,000 ÷ 3,024, so list each load and add them."
+      ],
+      [
+        "Square towers for crowded plots",
+        "Industrial plots around Pune are often tight. A square WCT tower packs against walls and in rows, while a round tower suits an open site. Both cover 10 to 300 TR with the same sizing."
+      ],
+      [
+        "Gensets on the same site",
+        "Where a diesel genset needs sealed jacket water cooling, a WCC coil tower (40 to 280 TR, for 150 to 2000 kVA) keeps the water out of the air, so there is no evaporation or contamination."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers to Pimpri-Chinchwad and Chakan?",
+        "a": "Yes. We supply plants around Pune from our works in Arasur, Coimbatore. Send your duty and site and we will select the tower and confirm delivery arrangements."
+      },
+      {
+        "q": "How do I size a tower for several machines?",
+        "a": "Add the heat load of every machine on the circuit in TR, then choose the WCT model rated for the total at your site's wet bulb. The cooling tower calculator does the arithmetic."
+      },
+      {
+        "q": "Do you supply spares for existing towers?",
+        "a": "Yes. We supply fills, drift eliminators, sprinklers, motors and fans. Send the tower model and the part you need."
+      }
+    ]
+  },
+  {
+    "slug": "pune-industrial-chillers",
+    "city": "Pune",
+    "region": "Maharashtra",
+    "title": "Industrial Chiller Manufacturer in Pune | Win Equipments",
+    "description": "WCP process chillers from 0.5 to 20 TR and engineered chillers for Pune's manufacturing plants, built by Win Equipments, Coimbatore. Get a quote.",
+    "h1": "Industrial water chillers for Pune plants",
+    "lede": "Pune's automotive, plastics, food and pharmaceutical plants need chilled water held at a steady temperature. We build WCP process chillers and engineered chillers at our works in Arasur, Coimbatore.",
+    "products": [
+      "industrial-process-chillers",
+      "anodizing-chillers",
+      "round-cooling-towers",
+      "square-cooling-towers"
+    ],
+    "industry": "plastic-molding",
+    "tool": "/engineering-tools/chiller-tonnage-calculator.html",
+    "points": [
+      [
+        "Moulds and machining coolant",
+        "Injection moulds and machine-tool coolant circuits are common chiller loads in Pune's plastics and engineering units. Heat load (TR) = flow (LPM) × temperature rise (°C) ÷ 50.4, so 100 LPM with a 5 °C rise is about 9.9 TR."
+      ],
+      [
+        "Chilled water at 10 °C costs capacity",
+        "WCP chillers are rated at 15 °C outlet. At 10 °C the catalogue factor is 0.75, so a 9.9 TR load needs 13.2 TR nominal, which is a WCP 150 and not a WCP 100."
+      ],
+      [
+        "Food and pharma duties",
+        "Where the fluid is a food product or a corrosive process fluid, an engineered chiller with suitable materials is built to order. Send the fluid, volume and temperatures."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply industrial chillers to Pune?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Pune. Send your flow, temperatures and ambient conditions for a selection."
+      },
+      {
+        "q": "What size chiller do I need?",
+        "a": "Work out the heat load in TR, then divide by the outlet and ambient correction factors. The chiller tonnage calculator applies both and picks the WCP model."
+      },
+      {
+        "q": "Can you supply more than 20 TR?",
+        "a": "Standard WCP models go up to 20 TR. Our engineers will propose a larger or multiple-unit solution for bigger loads."
+      }
+    ]
+  },
+  {
+    "slug": "delhi-cooling-towers",
+    "city": "Delhi NCR",
+    "region": "Delhi",
+    "title": "Cooling Tower Manufacturer in Delhi NCR | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers from Win Equipments, supplied to Delhi NCR plants. Send your duty for a quotation.",
+    "h1": "Cooling tower manufacturer for Delhi NCR plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants across Delhi NCR. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "automotive-cnc",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      [
+        "Noida, Faridabad, Gurugram and Manesar",
+        "Engineering and manufacturing units across these industrial areas use tower water for chillers, compressors and furnaces. Give us the heat load, flow and temperatures of each so the tower is sized for the combined duty."
+      ],
+      [
+        "Hot, dry summers help evaporative cooling",
+        "In dry weather the wet bulb sits well below the air temperature, and a WCT tower returns water at wet bulb + 4 °C. Give us your site's design wet bulb for the hottest month."
+      ],
+      [
+        "Diesel gensets in NCR",
+        "Many NCR sites run diesel gensets for backup. A WCC coil tower cools the engine jacket water in a sealed coil, with no evaporation, for sets from 150 to 2000 kVA."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers to Noida, Gurugram and Faridabad?",
+        "a": "Yes. We supply plants across Delhi NCR from our works in Arasur, Coimbatore. Send your duty and site and we will confirm the selection and delivery arrangements."
+      },
+      {
+        "q": "How much make-up water will the tower use?",
+        "a": "Evaporation loss = 0.00085 × 1.8 × flow (m³/hr) × range (°C). For 30 m³/hr and a 5 °C range that is about 0.23 m³/hr, before drift and blow-down."
+      },
+      {
+        "q": "Which fill suits hot water?",
+        "a": "L fills suit inlet water up to 55 °C, H fills 55 to 85 °C, and polypropylene rings take hotter or dirty water."
+      }
+    ]
+  },
+  {
+    "slug": "delhi-air-dryers",
+    "city": "Delhi NCR",
+    "region": "Delhi",
+    "title": "Compressed Air Dryer Supplier in Delhi NCR | Win",
+    "description": "Refrigerated and desiccant air dryers, filters and drains built by Win Equipments, Coimbatore and supplied to Delhi NCR plants. Send your CFM for a quote.",
+    "h1": "Compressed air dryers for Delhi NCR plants",
+    "lede": "Engineering, automotive and manufacturing plants across Delhi NCR need compressed air dried to the right dew point. We build refrigerated and desiccant dryers, filters and drains at our works in Arasur, Coimbatore.",
+    "products": [
+      "refrigerated-air-dryers",
+      "desiccant-air-dryers",
+      "compressed-air-filters",
+      "automatic-drain-valves"
+    ],
+    "industry": "automotive-cnc",
+    "tool": "/engineering-tools/air-dryer-sizing.html",
+    "points": [
+      [
+        "Size for the hottest day",
+        "A WRD dryer is rated at 45 °C inlet, 35 °C ambient and 7 bar g. A 250 CFM compressor at 50 °C inlet and 40 °C ambient needs about 323 CFM of dryer, so a plant that sizes by CFM alone ends up undersized in an NCR summer."
+      ],
+      [
+        "Cold winter mornings",
+        "Air lines that run outdoors or through cold bays can fall below +3 °C in winter, where a refrigerated dryer's dew point is no longer enough. A WHD heatless desiccant dryer (−20 °C or −40 °C) keeps the line dry."
+      ],
+      [
+        "Filters in dusty industrial areas",
+        "WMF coalescing filters (GP, ZP, ZO, ZC) take the air to your ISO 8573-1 class. Change an element when the differential pressure reaches 0.7 bar g."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply air dryers to Noida, Gurugram and Faridabad?",
+        "a": "Yes. Our dryers are built at Arasur, Coimbatore and supplied to plants across Delhi NCR. Send your compressor capacity, pressure and required dew point."
+      },
+      {
+        "q": "What dew point does an ISO 8573-1 class 2 specification need?",
+        "a": "Class 2 is a pressure dew point of −40 °C or lower, reached by a WHD dryer with molecular sieve. Class 4 (+3 °C) is the refrigerated dryer's class."
+      },
+      {
+        "q": "Do I need a dryer if my compressor has an aftercooler?",
+        "a": "Usually yes. An aftercooler leaves the air saturated at a lower temperature, so water still condenses later in the lines."
+      }
+    ]
+  },
+  {
+    "slug": "ahmedabad-cooling-towers",
+    "city": "Ahmedabad",
+    "region": "Gujarat",
+    "title": "Cooling Tower Manufacturer in Ahmedabad | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers from Win Equipments, supplied to Ahmedabad plants. Send your duty for a quote.",
+    "h1": "Cooling tower manufacturer for Ahmedabad plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants in Ahmedabad and across Gujarat. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      [
+        "GIDC estates and the Sanand area",
+        "Chemical, pharmaceutical and engineering units in Vatva, Naroda, Odhav and Sanand cool reactors, chillers and compressors with tower water. Send the heat load and the hot and cold water temperatures for each circuit."
+      ],
+      [
+        "Hard water and blow-down",
+        "Evaporation concentrates dissolved salts, so an open tower needs blow-down and treatment. Tell us your make-up water quality, which also sets the choice of fill."
+      ],
+      [
+        "Hot weather and the wet bulb",
+        "Summer heat is high, but a tower works on wet bulb, which is lower than the air temperature. Use your site's design wet bulb; WCT towers return water at wet bulb + 4 °C."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers to Ahmedabad and Sanand?",
+        "a": "Yes. We supply plants in Ahmedabad and around it from our works in Arasur, Coimbatore. Send your duty and site and we will confirm the selection and delivery arrangements."
+      },
+      {
+        "q": "Which tower suits a chemical plant's corrosive atmosphere?",
+        "a": "WCT towers have UV-resin FRP casings on a hot-dip galvanised structure. For hot or dirty water, polypropylene fill rings withstand more than 90 °C."
+      },
+      {
+        "q": "Is a coil tower better when the water must stay sealed?",
+        "a": "Yes. A WCC coil tower keeps the water in a finned copper coil, so nothing from the air gets in, and it returns water at ambient + 4 °C."
+      }
+    ]
+  },
+  {
+    "slug": "ahmedabad-heat-exchangers",
+    "city": "Ahmedabad",
+    "region": "Gujarat",
+    "title": "Heat Exchanger Manufacturer in Ahmedabad | Win Equipments",
+    "description": "Shell and tube heat exchangers engineered to order at Arasur, Coimbatore and supplied to Ahmedabad plants. Send fluids, flows and temperatures for a quote.",
+    "h1": "Shell and tube heat exchangers for Ahmedabad plants",
+    "lede": "We build shell and tube heat exchangers to order at our works in Arasur, Coimbatore, and supply plants in Ahmedabad. Each unit is sized from your fluids, flows and temperatures.",
+    "products": [
+      "shell-and-tube-heat-exchangers",
+      "industrial-process-chillers",
+      "industrial-aftercoolers"
+    ],
+    "industry": "pharma-chemical",
+    "points": [
+      [
+        "Corrosive and process fluids",
+        "Chemical and pharmaceutical units in Ahmedabad's GIDC estates often cool or heat aggressive fluids. Tube and shell materials depend on the fluids; plain steel suits many oil duties, while cooling water and aggressive fluids may call for copper alloys or stainless steel."
+      ],
+      [
+        "Put the dirtier fluid where it can be cleaned",
+        "A common textbook rule is to put the fouling fluid on the tube side, where straight tubes are easier to clean, and the higher-pressure fluid in the tubes. We confirm the arrangement once you share the duty."
+      ],
+      [
+        "Pressure drop limits the layout",
+        "The allowable pressure drop limits how fast fluids can be pushed through, which sets the tube count and length. State it in your enquiry along with the connection sizes."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply heat exchangers to Ahmedabad?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Ahmedabad. Send your requirement and site and we will confirm the configuration and delivery arrangements."
+      },
+      {
+        "q": "Which materials can you use?",
+        "a": "Tell us both fluids and any corrosion concern and we will propose shell and tube materials, from plain steel to copper alloys or stainless steel."
+      },
+      {
+        "q": "Can the exchanger be paired with a chiller?",
+        "a": "Yes. The cooling side can be fed from a process chiller or a cooling tower, and we make both."
+      }
+    ]
+  },
+  {
+    "slug": "ahmedabad-industrial-chillers",
+    "city": "Ahmedabad",
+    "region": "Gujarat",
+    "title": "Industrial Chiller Manufacturer in Ahmedabad | Win",
+    "description": "WCP process chillers from 0.5 to 20 TR and engineered chillers for Ahmedabad plants, built by Win Equipments, Coimbatore. Send your duty for a quote.",
+    "h1": "Industrial water chillers for Ahmedabad plants",
+    "lede": "Chemical, pharmaceutical and engineering plants in Ahmedabad need chilled water at a steady temperature. We build WCP process chillers and engineered chillers at our works in Arasur, Coimbatore.",
+    "products": [
+      "industrial-process-chillers",
+      "anodizing-chillers",
+      "round-cooling-towers",
+      "square-cooling-towers"
+    ],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/chiller-tonnage-calculator.html",
+    "points": [
+      [
+        "Hot summers cut air-cooled capacity",
+        "An air-cooled WCP chiller rejects heat to the surrounding air, so capacity falls as ambient rises: factor 1.0 at 40 °C, 0.9 at 45 °C and 0.8 at 50 °C. A 10 TR WCP 100 gives about 9 TR at 45 °C."
+      ],
+      [
+        "Water-cooled where a tower exists",
+        "A plant that already runs a cooling tower with spare capacity can use a water-cooled WCP chiller, which rejects its heat to tower water and can sit in an enclosed room."
+      ],
+      [
+        "Chemical and acid duties",
+        "Chilling acids or corrosive process fluids needs materials chosen for the fluid. We build acid cooling chillers to order; send the fluid, concentration and heat load."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply industrial chillers to Ahmedabad?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Ahmedabad. Send your flow, temperatures and ambient conditions for a selection."
+      },
+      {
+        "q": "Air-cooled or water-cooled for Ahmedabad?",
+        "a": "Air-cooled needs only power and free air but loses capacity in extreme heat; water-cooled needs a cooling tower. Our guide on air-cooled vs water-cooled chillers explains the choice."
+      },
+      {
+        "q": "What does the chiller tank hold?",
+        "a": "WCP models carry a closed insulated stainless steel tank from 15 litres (WCP 005) to 320 litres (WCP 200), with a pump rated for 24-hour duty."
+      }
+    ]
+  },
+  {
+    "slug": "chennai-cooling-towers",
+    "city": "Chennai",
+    "region": "Tamil Nadu",
+    "title": "Cooling Tower Manufacturer in Chennai | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers from Win Equipments, supplied to Chennai plants. Send your duty for a quotation.",
+    "h1": "Cooling tower manufacturer for Chennai plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants in Chennai. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "automotive-cnc",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      [
+        "Oragadam, Sriperumbudur and Ambattur",
+        "Automotive, electronics and engineering plants in these areas run chillers, compressors and process lines on tower water. Send the heat load, flow and temperatures for each circuit."
+      ],
+      [
+        "Humid coastal air narrows the margin",
+        "Chennai's humid air raises the wet bulb, and a tower can only return water at wet bulb + 4 °C. Give us your design wet bulb and the cold water temperature you need; if the target is close to the wet bulb, the tower must be larger."
+      ],
+      [
+        "Pump position matters",
+        "Install the tower so the pump sits below the sump outlet level. A pump above the sump outlet can lose prime."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers to Chennai?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Chennai. Send your duty and site and we will confirm the selection and delivery arrangements."
+      },
+      {
+        "q": "What is approach and why does it matter in humid weather?",
+        "a": "Approach is cold water out minus wet bulb. A smaller approach needs a larger tower, so in humid conditions asking for water close to the wet bulb costs more capacity."
+      },
+      {
+        "q": "Do you supply cooling tower spares in Chennai?",
+        "a": "Yes. We supply fills, drift eliminators, sprinklers, motors and fans. Send the tower model and the part you need."
+      }
+    ]
+  },
+  {
+    "slug": "chennai-air-dryers",
+    "city": "Chennai",
+    "region": "Tamil Nadu",
+    "title": "Compressed Air Dryers for Chennai Plants | Win Equipments",
+    "description": "Refrigerated and desiccant air dryers, filters and drains built by Win Equipments, Coimbatore and supplied to Chennai plants. Send your CFM for a quote.",
+    "h1": "Compressed air dryers for Chennai plants",
+    "lede": "Chennai's automotive, electronics and engineering plants need compressed air dried to the right dew point. We build refrigerated and desiccant dryers, filters and drains at our works in Arasur, Coimbatore.",
+    "products": [
+      "refrigerated-air-dryers",
+      "desiccant-air-dryers",
+      "compressed-air-filters",
+      "automatic-drain-valves"
+    ],
+    "industry": "automotive-cnc",
+    "tool": "/engineering-tools/air-dryer-sizing.html",
+    "points": [
+      [
+        "Humid air puts more water in the lines",
+        "Saturated air at 7 bar g and 45 °C holds about 7.5 g of water per kg; dried to +3 °C it holds about 0.6 g/kg. Humid coastal intake air means the aftercooler, dryer and drains have more to remove."
+      ],
+      [
+        "Drain every low point",
+        "Fit an automatic drain on the receiver, each filter, the dryer and every pipeline drop leg. A no-air-loss drain such as the WDV F16 discharges condensate only, with no electricity."
+      ],
+      [
+        "Electronics and paint lines",
+        "Electronics assembly and paint shops often need air drier than +3 °C. A WHD heatless desiccant dryer gives −20 °C (alumina) or −40 °C (molecular sieve), with filters before and after."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply air dryers to Chennai?",
+        "a": "Yes. Our dryers are built at Arasur, Coimbatore and supplied to plants in Chennai. Send your compressor capacity, pressure and required dew point."
+      },
+      {
+        "q": "How much water does my compressor put into the system?",
+        "a": "A 100 CFM compressor running continuously can put around 34 litres a day into the system (calculated for saturated air at 45 °C and 7 bar g, dried to +3 °C)."
+      },
+      {
+        "q": "Where does the dryer go in the line?",
+        "a": "After the aftercooler, air receiver and a GP pre-filter, with finer filters after it and a three-valve bypass so it can be serviced without stopping production."
+      }
+    ]
+  },
+  {
+    "slug": "bangalore-cooling-towers",
+    "city": "Bengaluru",
+    "region": "Karnataka",
+    "title": "Cooling Tower Manufacturer in Bengaluru | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers from Win Equipments, supplied to Bengaluru plants. Send your duty for a quotation.",
+    "h1": "Cooling tower manufacturer for Bengaluru plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants in Bengaluru. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      [
+        "Peenya, Bommasandra and Whitefield",
+        "Engineering, electronics and machine-tool plants in these areas run chillers, compressors and furnaces on tower water. Send the heat load, flow and temperatures for each circuit."
+      ],
+      [
+        "Gensets at hospitals, offices and data rooms",
+        "Backup diesel gensets are common in Bengaluru. A WCC coil tower cools the engine jacket water in a sealed coil for sets from 150 to 2000 kVA, with no evaporation or water loss. Send the genset kVA, the engine maker's heat rejection and your ambient."
+      ],
+      [
+        "Rooftop and tight sites",
+        "City plots are often tight. Square WCT towers pack against walls and in rows and are available from 10 to 300 TR."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers to Bengaluru?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Bengaluru. Send your duty and site and we will confirm the selection and delivery arrangements."
+      },
+      {
+        "q": "What do I send for a genset cooling tower?",
+        "a": "The genset rating in kVA, the engine maker's heat rejection and water flow, and your site ambient temperature."
+      },
+      {
+        "q": "Is a coil tower or an FRP tower better for Bengaluru?",
+        "a": "Choose a coil tower where the water must stay sealed (genset jacket water). Choose an FRP tower where you need the coldest water on an open circuit, since it reaches wet bulb + 4 °C."
+      }
+    ]
+  },
+  {
+    "slug": "bangalore-heat-exchangers",
+    "city": "Bengaluru",
+    "region": "Karnataka",
+    "title": "Heat Exchanger Manufacturer in Bengaluru | Win Equipments",
+    "description": "Shell and tube heat exchangers engineered to order at Arasur, Coimbatore and supplied to Bengaluru plants. Send fluids, flows and temperatures for a quote.",
+    "h1": "Shell and tube heat exchangers for Bengaluru plants",
+    "lede": "We build shell and tube heat exchangers to order at our works in Arasur, Coimbatore, and supply plants in Bengaluru. Each unit is sized from your fluids, flows and temperatures.",
+    "products": [
+      "shell-and-tube-heat-exchangers",
+      "industrial-process-chillers",
+      "industrial-aftercoolers"
+    ],
+    "industry": "automotive-cnc",
+    "points": [
+      [
+        "Machine tools and electronics",
+        "Machine-tool and electronics plants in Peenya and Bommasandra run hydraulic and lubrication circuits and process cooling loops. Tell us the fluid and the temperatures and we will propose the exchanger."
+      ],
+      [
+        "The balance behind every design",
+        "Heat given up by the hot fluid equals heat taken by the cold fluid, from flow, specific heat and temperature change. The required surface follows from that duty, the heat transfer coefficient and the temperature difference."
+      ],
+      [
+        "Compressed air side",
+        "For compressor discharge air, our aftercoolers with moisture separator are built to order. Send the compressor CFM, pressure and discharge temperature."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply heat exchangers to Bengaluru?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Bengaluru. Send your requirement and site and we will confirm the configuration and delivery arrangements."
+      },
+      {
+        "q": "Can you size a heat exchanger from a datasheet?",
+        "a": "Yes. Send both fluids, flows, inlet and outlet temperatures, design pressure and temperature, preferred materials and allowable pressure drop."
+      },
+      {
+        "q": "Is there a standard model list?",
+        "a": "No. Shell and tube heat exchangers are engineered to order, so each one is sized from your duty."
+      }
+    ]
+  },
+  {
+    "slug": "mumbai-air-dryers",
+    "city": "Mumbai",
+    "region": "Maharashtra",
+    "title": "Compressed Air Dryers for Mumbai Plants | Win Equipments",
+    "description": "Refrigerated and desiccant air dryers, filters and drains built by Win Equipments, Coimbatore and supplied to Mumbai plants. Send your CFM for a quote.",
+    "h1": "Compressed air dryers for Mumbai plants",
+    "lede": "Mumbai-region pharmaceutical, chemical and engineering plants need compressed air dried to the right dew point. We build refrigerated and desiccant dryers, filters and drains at our works in Arasur, Coimbatore.",
+    "products": [
+      "refrigerated-air-dryers",
+      "desiccant-air-dryers",
+      "compressed-air-filters",
+      "automatic-drain-valves"
+    ],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/air-dryer-sizing.html",
+    "points": [
+      [
+        "Navi Mumbai, Thane-Belapur and Taloja",
+        "Pharmaceutical, chemical and engineering units in these MIDC belts often need air drier than +3 °C. A WHD heatless desiccant dryer (300 to 2000 CFM) gives −20 °C or −40 °C when the process or an ISO 8573-1 class demands it."
+      ],
+      [
+        "Oil must not reach the desiccant",
+        "Oil and liquid water ruin desiccant. Fit a pre-filter for free water and dust, a zero-oil filter before the dryer, and an after-filter to catch desiccant dust."
+      ],
+      [
+        "Running cost of purge air",
+        "A heatless dryer uses a small flow of its own dried air to regenerate the off-line tower, a running cost a refrigerated dryer does not have. Choose desiccant only where the dryness is needed."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply air dryers to Mumbai and Navi Mumbai?",
+        "a": "Yes. Our dryers are built at Arasur, Coimbatore and supplied to plants around Mumbai. Send your compressor capacity, pressure and required dew point."
+      },
+      {
+        "q": "Which dryer for a pharmaceutical plant?",
+        "a": "It depends on the dew point and ISO 8573-1 class your process or customer specifies. A refrigerated dryer reaches class 4 (+3 °C); a desiccant dryer reaches class 3 (−20 °C) or class 2 (−40 °C)."
+      },
+      {
+        "q": "How often does the desiccant tower switch?",
+        "a": "WHD dryers switch towers on a fixed 10-minute cycle, so one tower is always drying while the other is regenerated."
+      }
+    ]
+  },
+  {
+    "slug": "hyderabad-cooling-towers",
+    "city": "Hyderabad",
+    "region": "Telangana",
+    "title": "Cooling Tower Manufacturer in Hyderabad | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers from Win Equipments, supplied to Hyderabad plants. Send your duty for a quotation.",
+    "h1": "Cooling tower manufacturer for Hyderabad plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants in Hyderabad. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "points": [
+      [
+        "Patancheru, Jeedimetla and Bollaram",
+        "Pharmaceutical and bulk drug plants in these areas and the Genome Valley cluster cool reactors, chillers and compressors on tower water. Send the heat load, flow and temperatures for each circuit."
+      ],
+      [
+        "Water quality sets the plan",
+        "Evaporation concentrates dissolved salts, so open towers need blow-down and treatment. Your make-up water quality also decides the fill: L up to 55 °C, H for 55 to 85 °C, polypropylene rings for hotter or dirty water."
+      ],
+      [
+        "Chiller condenser duty on the tower",
+        "A water-cooled chiller adds its condenser heat (cooling load plus compressor input) to the tower. For a WCP 050 that is up to about 23.6 kW on top of the process load, so check the tower has the spare capacity."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers to Hyderabad?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Hyderabad. Send your duty and site and we will confirm the selection and delivery arrangements."
+      },
+      {
+        "q": "How do I check an existing tower can take a chiller?",
+        "a": "Add the chiller's condenser heat to the tower's duty and compare with the tower's rated TR. The cooling tower calculator helps."
+      },
+      {
+        "q": "Do you make towers above 300 TR?",
+        "a": "Standard FRP towers go up to 300 TR. For larger loads, send your duty and our engineers will propose multiple towers."
+      }
+    ]
+  },
+  {
+    "slug": "kolkata-heat-exchangers",
+    "city": "Kolkata",
+    "region": "West Bengal",
+    "title": "Heat Exchanger Manufacturer in Kolkata | Win Equipments",
+    "description": "Shell and tube heat exchangers engineered to order at Arasur, Coimbatore and supplied to Kolkata plants. Send fluids, flows and temperatures for a quote.",
+    "h1": "Shell and tube heat exchangers for Kolkata plants",
+    "lede": "We build shell and tube heat exchangers to order at our works in Arasur, Coimbatore, and supply plants in Kolkata and the surrounding Howrah and Hooghly belts. Each unit is sized from your fluids, flows and temperatures.",
+    "products": [
+      "shell-and-tube-heat-exchangers",
+      "industrial-process-chillers",
+      "industrial-aftercoolers"
+    ],
+    "industry": "automotive-cnc",
+    "points": [
+      [
+        "Howrah and Hooghly engineering units",
+        "Engineering and manufacturing units in these belts use heat exchangers for oil cooling and process heat transfer. Send the fluids, flows and temperatures for a recommended configuration."
+      ],
+      [
+        "Arrangements and thermal expansion",
+        "Fixed tube sheet, U-tube and floating head designs differ in how they handle thermal expansion and how easily the bundle comes out for cleaning. Ask the manufacturer which suits your duty."
+      ],
+      [
+        "Cooling water source",
+        "Water for the shell side can come from a round or square WCT cooling tower or a WCP process chiller. We make both, so the whole circuit can be sized together."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply heat exchangers to Kolkata?",
+        "a": "Yes. We build them at Arasur, Coimbatore and supply plants in Kolkata. Send your requirement and site and we will confirm the configuration and delivery arrangements."
+      },
+      {
+        "q": "What can a shell and tube exchanger cool?",
+        "a": "Typical duties are hydraulic and lubricating oil cooling, process water and fluid cooling, and heat transfer between process streams."
+      },
+      {
+        "q": "What do you need for a quotation?",
+        "a": "Both fluids, flows, inlet and required outlet temperatures, design pressure and temperature, preferred materials and allowable pressure drop."
+      }
+    ]
+  },
+  {
+    "slug": "coimbatore-industrial-chillers",
+    "city": "Coimbatore",
+    "region": "Tamil Nadu",
+    "title": "Industrial Chiller Manufacturer in Coimbatore | Win",
+    "description": "WCP process chillers from 0.5 to 20 TR and engineered chillers, built at Arasur, Coimbatore by Win Equipments. Send your duty for a quotation.",
+    "h1": "Industrial chiller manufacturer in Coimbatore",
+    "lede": "We build WCP process chillers and engineered chillers at our works in Arasur, Coimbatore, for the engineering, foundry, textile and plastics plants around us.",
+    "products": [
+      "industrial-process-chillers",
+      "anodizing-chillers",
+      "round-cooling-towers",
+      "square-cooling-towers"
+    ],
+    "industry": "plastic-molding",
+    "tool": "/engineering-tools/chiller-tonnage-calculator.html",
+    "points": [
+      [
+        "Built where you can see it",
+        "Our works is in Arasur, so Coimbatore plants can visit, see the chiller built and arrange spares and service directly. Call or WhatsApp to arrange a visit."
+      ],
+      [
+        "Ten standard models",
+        "WCP chillers run from the 0.5 TR WCP 005 to the 20 TR WCP 200, each with a stainless steel tank, pump and temperature controller, air- or water-cooled."
+      ],
+      [
+        "Textile and plastics duties",
+        "Coimbatore's plastics and textile units use chilled water for moulds and process lines. Send the flow, temperature rise and outlet temperature for a selection."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Are your chillers made in Coimbatore?",
+        "a": "Yes. WCP chillers are built and factory tested at our works in Arasur, Coimbatore."
+      },
+      {
+        "q": "How do I size a chiller?",
+        "a": "Heat load (TR) = flow (LPM) × temperature rise (°C) ÷ 50.4, corrected for outlet and ambient temperature. The chiller tonnage calculator does both."
+      },
+      {
+        "q": "Do you service chillers in Coimbatore?",
+        "a": "We supply spares and service for our equipment. Send the model and the problem, or call or WhatsApp us."
+      }
+    ]
+  },
+  {
+    "slug": "gujarat-cooling-towers",
+    "city": "Gujarat",
+    "region": "",
+    "title": "Cooling Tower Manufacturer in Gujarat | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers from Win Equipments, supplied across Gujarat. Send your duty for a quotation.",
+    "h1": "Cooling tower manufacturer for Gujarat plants",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants across Gujarat. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "pharma-chemical",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "scope": "state",
+    "points": [
+      [
+        "Vapi, Ankleshwar and Dahej",
+        "Chemical and pharmaceutical belts along the Gujarat corridor cool reactors and process fluids with tower water. Hot or dirty water calls for polypropylene fill rings, which withstand more than 90 °C."
+      ],
+      [
+        "Surat textiles and Morbi ceramics",
+        "Textile units in Surat and ceramics units in Morbi run compressors, chillers and furnaces that all reject heat to a cooling circuit. Add the loads in TR to size the tower."
+      ],
+      [
+        "Dry coil towers where water is scarce",
+        "A WCC coil tower loses no water to evaporation, which can suit sites where make-up water is scarce and ambient + 4 °C is cold enough."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Do you supply cooling towers across Gujarat?",
+        "a": "Yes. We supply plants across Gujarat from our works in Arasur, Coimbatore. Send your duty and site and we will confirm the selection and delivery arrangements."
+      },
+      {
+        "q": "Which Gujarat industries use cooling towers?",
+        "a": "Chemical, pharmaceutical, textile, ceramics, plastics and engineering plants all use them. Sizing depends on your heat load and wet bulb, not on the industry."
+      },
+      {
+        "q": "Do you also supply Ahmedabad?",
+        "a": "Yes, see our page for cooling towers in Ahmedabad and Sanand."
+      }
+    ]
+  },
+  {
+    "slug": "tamil-nadu-cooling-towers",
+    "city": "Tamil Nadu",
+    "region": "",
+    "title": "Cooling Tower Manufacturer in Tamil Nadu | Win Equipments",
+    "description": "FRP round and square cooling towers (10–300 TR) and coil towers made in Coimbatore by Win Equipments and supplied across Tamil Nadu. Get a quote.",
+    "h1": "Cooling tower manufacturer in Tamil Nadu",
+    "lede": "We build FRP and coil cooling towers at our works in Arasur, Coimbatore and supply plants across Tamil Nadu. Round and square towers cover 10 to 300 TR; coil towers cover 40 to 280 TR.",
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers",
+      "closed-circuit-cooling-towers",
+      "spare-parts-consumables"
+    ],
+    "industry": "textile-mills",
+    "tool": "/engineering-tools/cooling-tower-calculator.html",
+    "scope": "state",
+    "points": [
+      [
+        "Textile, pump and foundry belts",
+        "Mills in Tiruppur, Coimbatore and Erode, and the pump and foundry units around Coimbatore, use cooling towers on compressor, chiller and furnace circuits. Our works is in Arasur, so spares and service start close to the source."
+      ],
+      [
+        "Automotive plants at Chennai and Hosur",
+        "Chennai and Hosur automotive and engineering plants run chillers, compressors and gensets on tower or coil-tower water. Send the loads and site conditions."
+      ],
+      [
+        "One tower, several shapes",
+        "Round towers suit open plots; square towers pack against walls and in rows. Both cover 10 to 300 TR and are sized identically."
+      ]
+    ],
+    "faqs": [
+      {
+        "q": "Which Tamil Nadu cities do you supply?",
+        "a": "We supply plants across Tamil Nadu, including Coimbatore, Tiruppur, Erode, Hosur and Chennai, and across India. Send your site and duty for a selection."
+      },
+      {
+        "q": "Where are your cooling towers made?",
+        "a": "WCT and WCC towers are built at our works in Arasur, Coimbatore."
+      },
+      {
+        "q": "Do you supply spares for other makes?",
+        "a": "We supply spares and consumables for cooling towers, chillers and air dryers. Send the part and the tower details and we will confirm what we can supply."
+      }
+    ]
   }
 ]

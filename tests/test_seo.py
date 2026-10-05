@@ -133,7 +133,7 @@ def test_article_answer_and_faq(page):
 def test_org_schema_service_area():
     org = next(n for n in graph((PUBLIC / "index.html").read_text()) if n.get("@id") == SITE + "/#org")
     cities = {a["name"] for a in org["areaServed"] if a["@type"] == "City"}
-    assert cities == {"Coimbatore", "Tiruppur", "Erode", "Hosur", "Chennai", "Bengaluru"}
+    assert {"Coimbatore", "Chennai", "Bengaluru", "Pune", "Delhi", "Ahmedabad"} <= cities
 
 
 def test_glossary():
@@ -159,3 +159,25 @@ def test_robots_ai_crawlers():
     txt = (PUBLIC / "robots.txt").read_text()
     for bot in ("GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"):
         assert f"User-agent: {bot}" in txt
+
+
+def test_location_pages_are_not_city_swapped_templates():
+    """Each location page's own text (lede, points, FAQs) must differ from every other page's."""
+    L = {l["slug"]: l for l in json.loads((Path(__file__).resolve().parent.parent / "src/site/data/locations.json").read_text())}
+
+    def shingles(l):
+        words = " ".join([l["lede"]] + [a + " " + b for a, b in l["points"]] + [f["q"] + " " + f["a"] for f in l["faqs"]]).split()
+        return {" ".join(words[i:i + 6]) for i in range(len(words) - 5)}
+
+    S = {k: shingles(v) for k, v in L.items()}
+    for k, a in S.items():
+        for j, b in S.items():
+            if k < j:
+                assert len(a & b) / min(len(a), len(b)) < 0.5, f"{k} and {j} share too much text"
+
+
+def test_every_location_page_listed_in_llms():
+    idx = (PUBLIC / "llms.txt").read_text()
+    for p in (PUBLIC / "locations").glob("*.html"):
+        if p.name != "index.html":
+            assert f"/locations/{p.name}" in idx, p.name

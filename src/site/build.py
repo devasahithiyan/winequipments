@@ -542,8 +542,8 @@ def render(template, url, **ctx):
     page_sources[url] = srcs
 
 
-# cities the owner has confirmed Win supplies; do not add others without confirmation
-SERVED_CITIES = ["Coimbatore", "Tiruppur", "Erode", "Hosur", "Chennai", "Bengaluru"]
+# the owner confirmed on 5 Oct 2026 that Win supplies everywhere in India; these are the cities that have location pages
+SERVED_CITIES = ["Coimbatore", "Tiruppur", "Erode", "Hosur", "Chennai", "Bengaluru", "Pune", "Delhi", "Ahmedabad", "Mumbai", "Hyderabad", "Kolkata"]
 
 
 def org_schema():
@@ -659,7 +659,7 @@ def build_llms():
         f"> {site['name']} (est. {site['founded']}) manufactures compressed air treatment equipment, process chillers, cooling towers and heat exchangers "
         f"at Arasur, Coimbatore, Tamil Nadu, India, with {site['installations']} installations. Tagline: {site['tagline']}.", "",
         f"Address: {addr}", f"Phone: {phones}", f"Email: {site['email']}",
-        f"Cities supplied: {', '.join(SERVED_CITIES)}", "",
+        f"Supplied across India. City pages: {', '.join(SERVED_CITIES)}", "",
     ]
     idx = head + ["## Product families"]
     idx += [f"- [{f['name']}]({u}/products/{f['slug']}.html): {f['description']}" for f in families.values()]

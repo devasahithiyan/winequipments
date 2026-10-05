@@ -22,6 +22,8 @@ Each task lists: files, what "done" means, and whether it is blocked on the owne
 - The product-to-guide links and the `air_receiver` redirect already existed.
 - HowTo rich results were retired by Google in 2023, and Speakable is for news only, so both are dropped.
 
+**Added later on 5 Oct 2026:** the owner confirmed Win supplies everywhere in India, so 18 more location pages were added (now 31): Pune (heat exchangers, cooling towers, chillers), Delhi NCR (cooling towers, air dryers), Ahmedabad (cooling towers, heat exchangers, chillers), Chennai (cooling towers, air dryers), Bengaluru (cooling towers, heat exchangers), Mumbai (air dryers), Hyderabad (cooling towers), Kolkata (heat exchangers), Coimbatore (chillers), and state pages for Gujarat and Tamil Nadu. Cities and product pairs were chosen from Semrush and Keyword Planner demand (`semrush_volumes.csv`, `keyword_planner_volumes.csv`). Each page has its own local-industry points and FAQs; a test fails if any two pages share half their text. Only catalogue facts are used: no customers, installations, local offices or delivery times are claimed. Real local detail from the owner (nearby customers, delivery times, site photos) would strengthen them.
+
 **Still open:**
 - Phase 4.2: location page depth (needs local facts from the owner).
 - Phase 4.4: title tuning (after Search Console data, from about 20 Oct).

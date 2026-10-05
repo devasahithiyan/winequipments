@@ -7,7 +7,7 @@ Static site for Win Equipments, Arasur, Coimbatore (manufacturer of compressed a
 - Phones: +91 95972 28969 (primary), +91 95972 28975 (secondary). **Never use 95972 28978.** Address: SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407.
 - Give real, labelled numbers (measured vs calculated). No assumptions presented as facts.
 - Work autonomously, but no payments, no billing changes (Google Ads has a campaign that must stay unable to run), no passwords, accept terms only with explicit permission.
-- Do not claim supply to cities the owner has not confirmed (confirmed: Coimbatore, Tiruppur, Erode, Hosur, Chennai, Bengaluru). "Efficacy Tech Equipments LLP" is not this company.
+- The owner confirmed on 5 Oct 2026 that Win supplies everywhere in India, so location pages for any Indian city are fine. Still do not invent customers, installations, local offices or delivery times for a city; say "we supply plants in X" and "send your site for delivery arrangements". "Efficacy Tech Equipments LLP" is not this company.
 - Do not edit the Google Business Profile until it is re-verified (it shows "Verification required").
 
 ## Build and test
