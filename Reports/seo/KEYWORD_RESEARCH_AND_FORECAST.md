@@ -218,3 +218,9 @@ Gaps total about 17,000 searches a month for the products Win Equipments makes. 
 Semrush's "competitors" list for winequipments.com returned directories and company registries (IndiaMART, TradeIndia, Kompass, Zauba) because you share only one keyword with each. The real competitors are the ones named above.
 
 Also: Semrush shows `efficacyllp.in` and `efficacyglobal.com` as 100%-relevant competitors, and "efficacy tech equipments llp" ranks on your home page. Please confirm whether that is your own related company or another business using your name.
+
+---
+
+## 12. Google Keyword Planner cross-check, 5 Oct 2026
+
+Keyword Planner returned data for 286 of the 475 candidates (`keyword_planner_volumes.csv`). The Ads account has no spend, so Google gives only buckets (0-10, 10-100, 100-1k, 1k-10k, 10k-100k), not exact numbers. The buckets agree with Semrush on every term I compared: cooling tower and heat exchanger are in 10k-100k; heat exchanger manufacturers in india, compressed air dryer, air receiver tank and refrigerated air dryer are in 1k-10k; cooling tower manufacturers in coimbatore, cooling tower manufacturers in india and air receiver tank manufacturers are in 100-1k. **Semrush's exact figures (section 10) are the ones used for the forecast; Keyword Planner is confirmation.** Running the batches left 6 saved plans in the Ads account; billing and campaigns were not touched.
