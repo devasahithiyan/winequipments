@@ -38,6 +38,14 @@
       "value": "Up to 100 °C"
     }
   ],
+  "price": {
+    "low": 30000,
+    "high": 80000,
+    "unit": "per tank",
+    "detail": "500 L: ₹30,000. Horizontal 250–500 L: ₹50,000. Vertical: ₹80,000.",
+    "source": "https://www.indiamart.com/winequipments/air-receivers.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Testing",

@@ -49,6 +49,22 @@
   </div>
 </section>
 
+{% set r = site.indiamart_rating %}
+<section class="section section--rule" aria-labelledby="buyers">
+  <div class="container two-col">
+    <div class="stack" data-reveal>
+      <h2 id="buyers">Buyers in India and abroad</h2>
+      <p>Buyers rate us <strong>{{ r.value }} out of 5</strong> from {{ r.count }} ratings on <a href="{{ r.url }}" target="_blank" rel="noopener">our IndiaMART store</a> (as of {{ r.as_of | datefmt }}).</p>
+      <p>Rated by buyers in {{ r.buyer_places_india | join(', ') }}, and abroad in {{ r.buyer_countries | join(', ') }}. We hold an Import Export Code (IEC {{ site.iec }}) and ship equipment for export.</p>
+    </div>
+    <dl class="readout" data-reveal>
+      <div><dt>IndiaMART rating</dt><dd>{{ r.value }} / 5 ({{ r.count }} ratings)</dd></div>
+      <div><dt>GSTIN</dt><dd>{{ site.gstin }}</dd></div>
+      <div><dt>Import Export Code</dt><dd>{{ site.iec }}</dd></div>
+    </dl>
+  </div>
+</section>
+
 <section class="section section--rule" aria-labelledby="works">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="works">Inside our works</h2><p>Fabrication, assembly, wiring and testing all happen under one roof at Arasur.</p></div>

@@ -37,6 +37,14 @@
       "value": "10 to 60 °C"
     }
   ],
+  "price": {
+    "low": 25000,
+    "high": 350000,
+    "unit": "per dryer",
+    "detail": "51–120 CFM: ₹25,000. WRD 500 T: ₹2,00,000. WRD 1250: ₹3,50,000.",
+    "source": "https://www.indiamart.com/winequipments/air-dryers.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Flow rating",

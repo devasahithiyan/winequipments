@@ -583,13 +583,31 @@ def org_schema():
     }
 
 
+def inr(n):
+    """Indian digit grouping: 350000 -> '3,50,000'."""
+    s = str(int(n))
+    if len(s) <= 3:
+        return s
+    head, tail = s[:-3], s[-3:]
+    return ",".join([head[max(0, i - 2):i] for i in range(len(head), 0, -2)][::-1]) + "," + tail
+
+
+env.filters["inr"] = inr
+
+
 def product_ld(p):
-    """ProductGroup with one variant per catalogue model; no offers or ratings (none are published)."""
+    """ProductGroup with one variant per catalogue model. Offers only where the owner has published an
+    indicative price (IndiaMART listing, see Reports/seo/indiamart/MAPPING.md); no ratings."""
     url = site["url"] + product_url(p["slug"])
     imgs = [image_url(p["image"])] + [image_url(ph["path"]) for ph in photos if ph.get("product") == p["slug"]][:4]
     base = {"name": p["h1"], "description": p["description"], "image": imgs, "url": url,
             "brand": {"@type": "Brand", "name": site["name"]}, "manufacturer": {"@id": site["url"] + "/#org"},
             "category": families[p["family"]]["name"]}
+    if p.get("price"):
+        pr = p["price"]
+        base["offers"] = {"@type": "AggregateOffer", "priceCurrency": "INR", "lowPrice": pr["low"],
+                          "highPrice": pr.get("high", pr["low"]), "availability": "https://schema.org/InStock",
+                          "seller": {"@id": site["url"] + "/#org"}, "url": url}
     props = [{"@type": "PropertyValue", "name": k["label"], "value": k["value"]} for k in p.get("key_specs") or []]
     if props:
         base["additionalProperty"] = props
@@ -626,6 +644,7 @@ def crumbs_ld(items):
 articles = load_articles()
 glossary = json.loads((SRC / "content" / "glossary.json").read_text())
 locations = json.loads((DATA / "locations.json").read_text())
+env.globals["reviews"] = json.loads((DATA / "reviews.json").read_text())
 industries_by_slug = {i["slug"]: i for i in site["industries"]}
 env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
@@ -634,6 +653,7 @@ env.globals["product_count"] = len(products)
 env.globals["product_count_word"] = NUM_WORDS.get(len(products), str(len(products)))
 env.tests["contains"] = lambda seq, item: item in seq
 env.filters["datefmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%-d %B %Y")
+env.filters["monthfmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%B %Y")
 env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"
 env.globals["fam_urls"] = lambda fam: [{"@type": "WebPage", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
 env.globals["industry_count"] = lambda i: sum(1 for p in products.values() if i in p.get("industries", []))

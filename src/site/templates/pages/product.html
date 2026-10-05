@@ -36,6 +36,7 @@
     <div class="p-hero__body">
       <p class="p-hero__lede" data-intro style="--d:2">{{ p.lede }}</p>
       {% if p.key_specs %}<div data-intro style="--d:3">{{ m.readout(p.key_specs) }}</div>{% endif %}
+      {% if p.price is defined %}<p class="p-hero__price" data-intro style="--d:3"><strong>Indicative price: ₹{{ p.price.low | inr }}{% if p.price.high is defined %} – ₹{{ p.price.high | inr }}{% endif %} {{ p.price.unit }}</strong>{{ p.price.detail }} Prices as listed on <a href="{{ p.price.source }}" rel="noopener" target="_blank">our IndiaMART store</a> ({{ p.price.as_of | datefmt }}); your price depends on the specification, so ask for a quote.</p>{% endif %}
       <div class="btn-row" data-intro style="--d:4">
         <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
         <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>

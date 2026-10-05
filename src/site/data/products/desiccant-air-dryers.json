@@ -37,6 +37,14 @@
       "value": "45 °C"
     }
   ],
+  "price": {
+    "low": 15000,
+    "high": 250000,
+    "unit": "per dryer",
+    "detail": "Compact wall-mounted 10–40 CFM: ₹15,000. Heatless 20–1000 CFM: from ₹1,20,000. 121–500 CFM: ₹2,50,000.",
+    "source": "https://www.indiamart.com/winequipments/air-dryers.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Dew point rating",

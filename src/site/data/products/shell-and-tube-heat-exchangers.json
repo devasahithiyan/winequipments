@@ -5,6 +5,13 @@
   "gallery": [],
   "range": "Engineered to order",
   "key_specs": [],
+  "price": {
+    "low": 50000,
+    "unit": "per unit",
+    "detail": "Shell and tube, MS, 8 bar: from ₹50,000.",
+    "source": "https://www.indiamart.com/winequipments/heat-exchangers.html",
+    "as_of": "2026-10-05"
+  },
   "spec": null,
   "download": null,
   "slug": "shell-and-tube-heat-exchangers",

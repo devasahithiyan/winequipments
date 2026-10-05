@@ -34,6 +34,20 @@
   </div>
 </section>
 
+{% set scope = loc.get("scope") %}
+{% set rv = namespace(r=[]) %}{% for x in reviews['items'] %}{% if (scope == 'country' and x.country != 'India') or (scope == 'state' and x.region == loc.city) or (not scope and x.place == loc.city) %}{% set rv.r = rv.r + [x] %}{% endif %}{% endfor %}
+{% if rv.r %}
+<section class="section section--rule" aria-labelledby="loc-buyers">
+  <div class="container two-col">
+    <h2 id="loc-buyers">{{ 'Buyers abroad' if scope == 'country' else 'Buyers in ' ~ loc.city }}</h2>
+    <div class="stack">
+      <ul class="need-list">{% for x in rv.r | sort(attribute='date', reverse=True) %}<li>A buyer in {{ x.place or x.country }} rated us {{ x.rating }} out of 5{% if x.product %} for {{ x.product }}{% endif %} ({{ x.date | monthfmt }}).</li>{% endfor %}</ul>
+      <p class="finder__note">Ratings from <a href="{{ reviews.source }}" target="_blank" rel="noopener">our IndiaMART store</a>, read {{ reviews.read | datefmt }}. Overall: {{ site.indiamart_rating.value }} out of 5 from {{ site.indiamart_rating.count }} ratings.</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {% set ns2 = namespace(r=[]) %}{% for slug in loc.products %}{% for ph in (photos | selectattr('product', 'equalto', slug) | list)[:3] %}{% set ns2.r = ns2.r + [ph] %}{% endfor %}{% endfor %}
 {% if ns2.r %}
 <section class="section section--rule" aria-labelledby="loc-photos">

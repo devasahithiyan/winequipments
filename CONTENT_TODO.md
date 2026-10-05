@@ -36,6 +36,8 @@ These pages now say **engineered to order** and list what the customer should se
 - "3,500+ installations" → replaced with **1,200+** (confirmed).
 - "15+ years", "99.4% uptime", "Tier-1", "98%", "15–20% energy saving", "N+1 redundancy", "<65 dBA", "Bitzer/Frascold", "Copeland/Danfoss", "helium leak test", "24-month warranty", "same-day dispatch", "6-month OEM guarantee".
 - Self-published review schema (AggregateRating 4.7 / 65) and invented prices (₹28,000–₹5,50,000) in Product schema.
+  - Update 5 Oct 2026: indicative prices are back on 13 product pages, now taken from the owner's own IndiaMART listings (each with source URL and date; `Offer` schema only, still no review schema). Prices that looked wrong were left out; see `Reports/seo/indiamart/MAPPING.md` section 2 for the owner to correct.
+  - IndiaMART shows the ISO 9001:2015 certificate expired on 10 Jan 2020, and gives 2010 (not 2008) as the founding year. Both need the owner's answer.
 - Four anonymous case studies (Tiruppur, Hosur, Coimbatore, Erode) — parked until real projects with permission are supplied.
 - DAC (Dubai Accreditation Center) and IAF wording: the original desiccant catalogue shows DAC and ISO logos. Please send the certificate so certifications can be listed exactly as issued.
 

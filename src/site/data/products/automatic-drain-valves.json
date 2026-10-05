@@ -35,6 +35,14 @@
       "value": "Up to 90 °C"
     }
   ],
+  "price": {
+    "low": 1800,
+    "high": 5000,
+    "unit": "per valve",
+    "detail": "Timer drain valve, 1 inch, 5–16 bar: ₹1,800. Pneumatic drain valve: ₹5,000.",
+    "source": "https://www.indiamart.com/winequipments/automatic-drain-valves.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Timer range",

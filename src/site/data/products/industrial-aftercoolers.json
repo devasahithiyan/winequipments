@@ -31,6 +31,14 @@
   "gallery": [],
   "range": "Engineered to order",
   "key_specs": [],
+  "price": {
+    "low": 25000,
+    "high": 150000,
+    "unit": "per unit",
+    "detail": "Air-cooled or water-cooled: ₹25,000. Vertical: ₹30,000. 300 CFM air-cooled: ₹50,000. Industrial: ₹1,50,000.",
+    "source": "https://www.indiamart.com/winequipments/industrial-aftercooler.html",
+    "as_of": "2026-10-05"
+  },
   "spec": null,
   "faqs": [
     {

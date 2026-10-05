@@ -285,5 +285,31 @@
     }
   ],
   "ga4_id": "G-ETXTGY37TG",
-  "review_url": "https://search.google.com/local/writereview?placeid=ChIJMfKa9733qDsRoQi36twgRwU"
+  "review_url": "https://search.google.com/local/writereview?placeid=ChIJMfKa9733qDsRoQi36twgRwU",
+  "gstin": "33AJWPA2797B1Z7",
+  "iec": "3212007729",
+  "indiamart_rating": {
+    "value": 4.7,
+    "count": 19,
+    "as_of": "2026-10-05",
+    "url": "https://www.indiamart.com/winequipments/testimonial.html",
+    "buyer_places_india": [
+      "Pune",
+      "Ahmedabad",
+      "Hyderabad",
+      "Chennai",
+      "Kadapa",
+      "Visakhapatnam",
+      "Rourkela",
+      "Thrissur",
+      "Thiruvananthapuram",
+      "Arakkonam"
+    ],
+    "buyer_countries": [
+      "Saudi Arabia",
+      "Kenya",
+      "the Philippines",
+      "Pakistan"
+    ]
+  }
 }

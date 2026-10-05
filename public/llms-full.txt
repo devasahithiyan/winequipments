@@ -628,6 +628,18 @@ A: Each unit is engineered around the customer's duty, so we size and quote each
 Q: Can the same exchanger be used for water and oil?
 A: Yes, if the materials, pressure and temperatures suit both fluids. Tell us both fluids when you enquire.
 
+### Chiller, cooling tower and air dryer prices in India (2026)
+URL: https://winequipments.com/blog/industrial-equipment-prices-india.html
+Short answer: Our indicative prices (IndiaMART, 5 October 2026) are ₹55,000 to ₹78,000 for a 1 TR chiller and ₹3,50,000 for 10 TR; ₹65,000 for a 50 TR FRP cooling tower and ₹1,05,000 to ₹1,25,000 for 100 TR; and ₹25,000 to ₹3,50,000 for a refrigerated air dryer. Your price depends on capacity at your conditions and what is included.
+Q: How much does a 1 TR water chiller cost?
+A: Our 1 TR (3,000 kcal/hr) WCP chillers are listed at ₹55,000 to ₹78,000 on our IndiaMART store as of 5 October 2026. The price depends on the compressor, controls and whether a tank and pump are included.
+Q: What is the price of a 100 TR cooling tower?
+A: Our 100 TR FRP round cooling towers are listed at ₹1,05,000 to ₹1,25,000, and a 100 TR square tower at ₹1,50,000 (5 October 2026). The final price depends on your wet bulb temperature, range and approach.
+Q: What is the price of a compressed air dryer?
+A: Our refrigerated air dryers range from ₹25,000 for 51–120 CFM to ₹3,50,000 for the WRD 1250. Compact desiccant dryers start at ₹15,000 for 10–40 CFM.
+Q: Are these prices final?
+A: No. They are indicative prices from our IndiaMART listings for the models shown. Send your requirement and we will quote for your duty and site.
+
 ## Glossary
 
 - Aftercooler: A heat exchanger fitted straight after the compressor that cools the hot discharge air, so the bulk of its water vapour condenses and is drained by a moisture separator. The air leaves cooler but still saturated.

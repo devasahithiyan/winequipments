@@ -60,6 +60,7 @@ Supplied across India. City pages: Coimbatore, Tiruppur, Erode, Hosur, Chennai, 
 - [Compressed air dryers: types, dew point and how to choose](https://winequipments.com/blog/compressed-air-dryer-guide.html): A plain guide to compressed air dryers for compressors: refrigerated and desiccant types, pressure dew point, ISO 8573-1 classes and sizing corrections.
 - [Moisture separators for air compressors: what they do and where they go](https://winequipments.com/blog/moisture-separator-guide.html): What a compressed air moisture separator does, why it sits after the aftercooler, how it works, and what to send us to have one engineered.
 - [Shell and tube heat exchangers: types, selection and design inputs](https://winequipments.com/blog/shell-and-tube-heat-exchanger-guide.html): The main heat exchanger types, how a shell and tube heat exchanger works, what design information is needed, and what Win Equipments builds to order.
+- [Chiller, cooling tower and air dryer prices in India (2026)](https://winequipments.com/blog/industrial-equipment-prices-india.html): Indicative 2026 prices for process chillers, FRP cooling towers, dry coolers, air dryers and receivers from Win Equipments, and what moves the price.
 - [Glossary](https://winequipments.com/blog/glossary.html): definitions of compressed air and cooling terms
 
 ## Sizing tools

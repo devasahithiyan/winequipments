@@ -58,7 +58,7 @@ def test_structure(page):
     assert canon == SITE + url_of(page), canon
     for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', src, re.S):
         json.loads(block)
-    assert "3,500" not in src and "3500+" not in src
+    assert "3,500+" not in src and "3500+" not in src and "3,500 installations" not in src
     for img in re.findall(r"<img\b[^>]*>", src):
         assert "alt=" in img, img
 
@@ -181,3 +181,29 @@ def test_every_location_page_listed_in_llms():
     for p in (PUBLIC / "locations").glob("*.html"):
         if p.name != "index.html":
             assert f"/locations/{p.name}" in idx, p.name
+
+
+DATA = Path(__file__).resolve().parent.parent / "src/site/data"
+
+
+def test_prices_are_sourced():
+    """Every published price names its source and date (owner's IndiaMART listing) and is shown on the page."""
+    for f in (DATA / "products").glob("*.json"):
+        p = json.loads(f.read_text())
+        pr = p.get("price")
+        if not pr:
+            continue
+        assert pr["source"].startswith("https://www.indiamart.com/winequipments/") and pr["as_of"], f.name
+        assert pr["low"] > 0 and pr.get("high", pr["low"]) >= pr["low"], f.name
+        src = (PUBLIC / "products" / f"{p['slug']}.html").read_text()
+        assert "Indicative price" in src and '"lowPrice"' in src, p["slug"]
+
+
+def test_no_rating_schema_or_reviewer_names():
+    """Ratings are shown as text only: no AggregateRating/Review schema, and no reviewer names on any page."""
+    names = ["Chodvadiya", "Dasgupta", "Weru", "Alamag", "Sayeed", "Thangavel", "Sadashivan", "Topiwala", "Bista", "Calma"]
+    for page in ALL:
+        src = page.read_text()
+        assert '"AggregateRating"' not in src and '"Review"' not in src, rel(page)
+        for n in names:
+            assert n not in src, f"{n} on {rel(page)}"

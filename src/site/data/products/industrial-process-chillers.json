@@ -35,6 +35,14 @@
       "value": "5 to 30 °C"
     }
   ],
+  "price": {
+    "low": 45000,
+    "high": 350000,
+    "unit": "per chiller",
+    "detail": "Portable mini chiller: ₹45,000. 1 TR: ₹55,000–₹78,000. 2 TR: ₹85,000. 3 TR: ₹1,40,000. 5 TR: ₹2,30,000. 10 TR: ₹3,50,000.",
+    "source": "https://www.indiamart.com/winequipments/industrial-chillers.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Water outlet temperature (ideal)",

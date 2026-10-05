@@ -1,0 +1,26 @@
+{
+  "source": "https://www.indiamart.com/winequipments/testimonial.html",
+  "read": "2026-10-05",
+  "note": "Buyer ratings from our IndiaMART store. Names are left out. Product is blank where the buyer named something we do not list. Shown as text only; never as review schema.",
+  "items": [
+    {"place": "Pune", "region": "Maharashtra", "country": "India", "rating": 5, "date": "2025-11-10", "product": "air dryers"},
+    {"place": "Ahmedabad", "region": "Gujarat", "country": "India", "rating": 5, "date": "2025-07-07", "product": ""},
+    {"place": "Kadapa", "region": "Andhra Pradesh", "country": "India", "rating": 5, "date": "2024-01-18", "product": ""},
+    {"place": "Rourkela", "region": "Odisha", "country": "India", "rating": 4, "date": "2023-10-31", "product": "cooling tower fills"},
+    {"place": "", "region": "", "country": "Saudi Arabia", "rating": 5, "date": "2022-07-21", "product": "an air receiver tank"},
+    {"place": "Hyderabad", "region": "Telangana", "country": "India", "rating": 5, "date": "2022-03-11", "product": "cooling tower parts"},
+    {"place": "", "region": "", "country": "the Philippines", "rating": 4, "date": "2021-03-05", "product": "cooling towers"},
+    {"place": "", "region": "", "country": "Kenya", "rating": 5, "date": "2023-11-06", "product": "plate heat exchangers"},
+    {"place": "", "region": "", "country": "the Philippines", "rating": 4, "date": "2023-01-03", "product": "cooling tower fans"},
+    {"place": "Thrissur", "region": "Kerala", "country": "India", "rating": 4, "date": "2020-12-09", "product": ""},
+    {"place": "", "region": "", "country": "Saudi Arabia", "rating": 5, "date": "2019-11-26", "product": "air-cooled chillers"},
+    {"place": "Arakkonam", "region": "Tamil Nadu", "country": "India", "rating": 5, "date": "2019-07-18", "product": "a milk chiller"},
+    {"place": "Chennai", "region": "Tamil Nadu", "country": "India", "rating": 5, "date": "2019-06-13", "product": "chillers"},
+    {"place": "Chennai", "region": "Tamil Nadu", "country": "India", "rating": 5, "date": "2019-01-07", "product": "an air receiver tank"},
+    {"place": "", "region": "", "country": "Saudi Arabia", "rating": 3, "date": "2018-07-12", "product": "cooling towers"},
+    {"place": "Thiruvananthapuram", "region": "Kerala", "country": "India", "rating": 5, "date": "2018-03-29", "product": "a horizontal air receiver"},
+    {"place": "", "region": "", "country": "Pakistan", "rating": 5, "date": "2017-11-02", "product": "cooling towers"},
+    {"place": "", "region": "", "country": "Kenya", "rating": 1, "date": "2019-08-21", "product": "a liquid line filter drier"},
+    {"place": "Visakhapatnam", "region": "Andhra Pradesh", "country": "India", "rating": 2, "date": "2019-07-12", "product": "a liquid line filter drier"}
+  ]
+}

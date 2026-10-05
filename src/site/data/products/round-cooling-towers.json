@@ -37,6 +37,14 @@
       "value": "2 to 3 bar g"
     }
   ],
+  "price": {
+    "low": 65000,
+    "high": 150000,
+    "unit": "per tower",
+    "detail": "50 TR: ₹65,000–₹80,000. 100 TR: ₹1,05,000–₹1,25,000. 150 TR: ₹1,50,000.",
+    "source": "https://www.indiamart.com/winequipments/cooling-tower.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Fills",

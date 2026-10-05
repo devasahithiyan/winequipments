@@ -7,6 +7,13 @@
   ],
   "range": "Engineered to order",
   "key_specs": [],
+  "price": {
+    "low": 120000,
+    "unit": "per unit",
+    "detail": "Soda chiller unit: ₹1,20,000.",
+    "source": "https://www.indiamart.com/winequipments/industrial-chillers.html",
+    "as_of": "2026-10-05"
+  },
   "spec": null,
   "download": null,
   "slug": "soda-chillers",

@@ -37,6 +37,14 @@
       "value": "Ambient + 4 °C"
     }
   ],
+  "price": {
+    "low": 150000,
+    "high": 450000,
+    "unit": "per unit",
+    "detail": "Dry coolers for 150–2000 kVA gensets: ₹1,50,000–₹4,50,000. 51–100 TR: ₹2,50,000.",
+    "source": "https://www.indiamart.com/winequipments/cooling-towers.html",
+    "as_of": "2026-10-05"
+  },
   "conditions": [
     {
       "label": "Inlet water pressure",

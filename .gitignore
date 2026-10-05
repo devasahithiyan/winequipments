@@ -51,3 +51,7 @@ leads_log_secure.csv
 
 .claude/skills/
 Reports/seo/HANDOFF_PRIVATE.md
+
+# IndiaMART photo downloads (review only, not site assets)
+Reports/seo/indiamart/photos/
+Reports/seo/indiamart/reviews.csv
