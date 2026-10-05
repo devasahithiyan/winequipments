@@ -29,7 +29,12 @@ Health score 93 (+12 vs the previous crawl). 149 errors, 191 warnings, 139 notic
 - Notices: 137 resources formatted as page links; 1 llms.txt not found (fixed in commit 8e5d834, awaiting deploy); 1 page with one internal link.
 - Zero 4xx/5xx errors, broken internal links, duplicate titles/descriptions, missing H1/meta, canonical or redirect-chain problems.
 
-## Not obtained
-- The tracking campaign's per-keyword positions: the position API returned "campaign not found" for project id 27533134. Export from the Semrush UI (Position Tracking > Overview > Export).
-- Adding competitors to the campaign: needs the Semrush UI; the plan appears to limit the campaign to one target.
-- API units: several calls reported negative balances, so the trial allowance may be spent.
+## Position Tracking, all 45 keywords (day 1)
+Saved as `semrush_position_tracking_2026-10-05.csv` (read from the Semrush UI; campaign id 5590065). Only 3 of 45 rank in the top 100: "win equipments" #1, "cooling tower manufacturers in coimbatore" #16 (square-cooling-towers page), "cooling tower capacity" #39. The other 42 are not in the top 100, including every dryer, drain valve, receiver, chiller and heat exchanger term.
+
+## Done in the Semrush UI
+- Competitors added to the tracking campaign: gemindia.com, goldcoolingtowers.com, worldcoolingtowers.com (the plan allows 20). They start showing from the next daily update.
+
+## Notes
+- The tracking API returns "campaign not found" for project id 27533134, so rankings must be read from the UI.
+- Several API calls reported negative unit balances; the trial allowance may be spent.
