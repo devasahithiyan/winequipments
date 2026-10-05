@@ -1,4 +1,5 @@
-{# Interactive CSS-3D model of a WCP 100 process chiller, drawn from the product photo. #}
+{# Interactive model of a WCP 100 process chiller. The CSS-3D box below is the poster and fallback;
+   chiller360.js swaps in the WebGL model (chiller3d.js, three.js) when the viewer scrolls near. #}
 {% set ch = products['industrial-process-chillers'] %}
 {% set feat = {} %}{% for f in ch.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
 {% set row = (ch.spec.rows | selectattr('model', 'equalto', 'WCP 100') | list)[0] %}
@@ -24,7 +25,7 @@
           <div class="c3__shadow" aria-hidden="true"></div>
           <div class="c3__model" aria-hidden="true" data-c3-model>
             <div class="c3__face c3__face--front" data-face="0">
-              <div class="c3__upper"><div class="c3__panel c3__panel--grille-wrap"><div class="c3__fans"><i></i><i></i><i></i><i></i></div><div class="c3__grille"></div></div></div>
+              <div class="c3__upper"><div class="c3__panel c3__panel--grille-wrap c3__panel--condenser"><div class="c3__coil"></div><div class="c3__grille"></div></div></div>
               <div class="c3__lower c3__lower--split">
                 <div class="c3__panel c3__ctrl"><span class="c3__display">15.0</span><span class="c3__cap">CONTROLLER</span><span class="c3__btns"><i></i><i></i><i class="b"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i></i></span></div>
                 <div class="c3__panel c3__brand"><b>WIN</b><span>WCP 100</span></div>
@@ -48,7 +49,7 @@
               <div class="c3__lower"><div class="c3__panel"></div></div>
             </div>
             <div class="c3__face c3__face--top" data-face="top">
-              <div class="c3__panel"></div>
+              <div class="c3__panel c3__panel--top"><div class="c3__fans"><i></i><i></i><i></i><i></i></div></div>
               <span class="c3__hs" data-hs="5" style="left:50%;top:50%">5</span>
             </div>
           </div>
@@ -87,4 +88,5 @@
     </div>
   </div>
 </section>
+<script type="importmap">{"imports":{"three":"/js/vendor/three.module.min.js?v=170"}}</script>
 <script src="/js/chiller360.js?v={{ js_ver }}" defer></script>

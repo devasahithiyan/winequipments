@@ -1,5 +1,6 @@
 /* 360° chiller model (partials/chiller360.html). */
 (() => {
+  const ver = (document.currentScript && new URL(document.currentScript.src).search) || '';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || location.search.includes('static');
@@ -16,8 +17,11 @@
     const HOME = { ry: 35, rx: -14 };
     const VIEW = { front: { ry: 18, rx: -12 }, left: { ry: 68, rx: -12 }, back: { ry: 200, rx: -12 }, top: { ry: 30, rx: -46 } };
     let ry = HOME.ry, rx = HOME.rx, vel = 0, anim = null, playing = !reduce, inView = false, last = 0;
+    let view3d = null; // WebGL model (chiller3d.js) once loaded; the CSS model is the poster and fallback
 
     const render = () => {
+      deg.textContent = String(Math.round(((ry % 360) + 360) % 360)).padStart(3, '0') + '°';
+      if (view3d) return view3d.set(ry, rx);
       model.style.setProperty('--ry', `${ry}deg`);
       model.style.setProperty('--rx', `${rx}deg`);
       faces.forEach((f) => {
@@ -25,7 +29,6 @@
         const c = Math.cos(((f.a + ry + 25) * Math.PI) / 180);
         f.el.style.setProperty('--dark', (0.34 * (1 - Math.max(0, c))).toFixed(3));
       });
-      deg.textContent = `${String(Math.round(((ry % 360) + 360) % 360)).padStart(3, '0')}°`;
     };
     const setPlaying = (on) => {
       playing = on && !reduce;
@@ -101,13 +104,36 @@
         b.parentElement.classList.toggle('is-active', on);
         if (on && turn) { touched(); const v = VIEW[b.dataset.face]; tweenTo(v.ry, v.rx); }
       });
-      $$('.c3__hs', model).forEach((h) => h.classList.toggle('is-active', h.dataset.hs === String(n)));
+      $$('.c3__hs', stage).forEach((h) => h.classList.toggle('is-active', h.dataset.hs === String(n)));
     };
     parts.forEach((b) => b.addEventListener('click', () => select(b.dataset.part, true)));
     select(1, false);
 
     if (hasIO) new IntersectionObserver((en) => { inView = en[0].isIntersecting; }, { threshold: 0.2 }).observe(stage);
     else inView = true;
+
+    /* upgrade to the WebGL model as the viewer approaches; any failure leaves the CSS model in place */
+    const webgl = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } };
+    const saveData = navigator.connection && navigator.connection.saveData;
+    let loading = false;
+    const upgrade = () => {
+      if (loading || view3d || saveData || !webgl() || !HTMLScriptElement.supports?.('importmap')) return;
+      loading = true;
+      import('/js/chiller3d.js' + ver).then((m) => m.init({
+        stage, reduce,
+        hotspots: $$('.c3__hs', model),
+        onSelect: (n) => select(n, true),
+        onLost: () => { view3d = null; stage.classList.remove('is-3d'); render(); }
+      })).then((v) => {
+        view3d = v;
+        render();
+        requestAnimationFrame(() => stage.classList.add('is-3d'));
+      }).catch(() => { loading = false; });
+    };
+    if (hasIO) {
+      const near = new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) { near.disconnect(); upgrade(); } }, { rootMargin: '400px 0px' });
+      near.observe(stage);
+    } else upgrade();
     setPlaying(!reduce);
     render();
     requestAnimationFrame(loop);

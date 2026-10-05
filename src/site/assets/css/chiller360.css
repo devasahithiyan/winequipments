@@ -54,7 +54,12 @@
   background-image: linear-gradient(90deg, var(--panel) 32%, transparent 32%), linear-gradient(var(--panel) 32%, transparent 32%);
   background-size: calc(var(--s) * 0.028) calc(var(--s) * 0.028); }
 .c3__grille--fine { background-color: #2a3034; background-size: calc(var(--s) * 0.022) calc(var(--s) * 0.022); }
-.c3__fans { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; place-items: center; background: #2a3034; }
+.c3__coil { grid-area: 1 / 1; border-radius: 2px; background: repeating-linear-gradient(180deg, #8e9599 0 10px, #9a6f4f 10px 13px), #8e9599; }
+.c3__panel--condenser { padding-top: 22%; }
+/* the fans sit on top of the unit behind wire guards, as on the real WCP 100 */
+.c3__panel--top { display: grid; padding: 10%; }
+.c3__fans { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6%; place-items: center; }
+.c3__panel--top .c3__fans i { width: 92%; box-shadow: inset 0 0 0 2px #444d53, 0 0 0 3px #1b1f22; }
 .c3__fans i { width: 78%; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(from 0deg, #59636a 0 18deg, #2a3034 18deg 90deg); box-shadow: inset 0 0 0 2px #444d53; }
 .motion .c3__fans i { animation: c3fan 1.6s linear infinite; }
 @keyframes c3fan { to { transform: rotate(360deg); } }
@@ -141,3 +146,13 @@
 @media (prefers-reduced-motion: reduce) { .spin__frame { transition: none; } }
 .c3__btn[data-spin-step="1"] svg { transform: rotate(-90deg); }
 .spin__thumbs { justify-content: safe center; }
+
+/* ===== WebGL model (chiller3d.js): fades in over the CSS poster ===== */
+.c3__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 0.6s var(--ease-out); touch-action: pan-y; }
+.c3__stage.is-3d .c3__canvas { opacity: 1; }
+.c3__model, .c3__shadow, .c3__floor { transition: opacity 0.4s; }
+.c3__stage.is-3d .c3__model, .c3__stage.is-3d .c3__shadow, .c3__stage.is-3d .c3__floor { opacity: 0; pointer-events: none; }
+.c3__stage.is-3d { background: radial-gradient(ellipse 60% 52% at 50% 58%, #fff 0%, rgba(255, 255, 255, 0) 78%); }
+.c3__hsl { position: absolute; inset: 0; pointer-events: none; }
+.c3__hsl .c3__hs { pointer-events: auto; cursor: pointer; transition: transform 0.3s var(--ease-out), background 0.2s, color 0.2s, opacity 0.2s; }
+.c3__hsl .c3__hs.is-away { opacity: 0; pointer-events: none; }
