@@ -8,6 +8,7 @@ products: round-cooling-towers, square-cooling-towers, closed-circuit-cooling-to
 category: Cooling towers
 order: 21
 photo: square-towers-three.jpg | Three square FRP cooling towers
+answer: Cooling towers are grouped by how air moves (natural or mechanical draft, counter flow or cross flow), whether the water touches the air (open or closed circuit) and shape. Win builds round and square evaporative FRP towers (10 to 300 TR, wet bulb + 4 °C) and coil cooling towers (40 to 280 TR, ambient + 4 °C).
 ---
 A cooling tower removes heat from process water and rejects it to the atmosphere. Towers are grouped in several ways: by how air moves, by whether the water touches the air, and by shape. This guide covers the types Win Equipments builds first, then the general types you may see in other literature.
 

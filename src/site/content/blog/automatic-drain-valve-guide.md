@@ -8,6 +8,7 @@ products: automatic-drain-valves, air-receiver-tanks, compressed-air-filters, re
 category: Air dryers
 order: 22
 photo: drain-valve-low-discharge.jpg | WDV automatic drain valve
+answer: An automatic drain valve discharges condensate from receivers, filters, dryers, separators and drop legs without an operator. Timer and micro-controller drains open on a set interval and lose some air; a no-air-loss drain is operated by condensate level and discharges only water. Choose by system CFM, pressure, supply and air loss.
 ---
 Compressed air carries water. When it cools in the receiver, filters and pipework, that water condenses, often mixed with compressor oil. If it is not removed it is carried to your tools and machines. An automatic drain valve removes it without an operator opening a manual cock.
 

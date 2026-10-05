@@ -3,11 +3,12 @@ title: How an industrial process chiller works
 seo_title: How a Process Chiller Works: Circuits & Parts | Win
 description: The two circuits inside a process water chiller, what each component does, and how the chiller holds your water at a set temperature.
 date: 2026-10-04
-updated: 2026-10-04
+updated: 2026-10-05
 products: industrial-process-chillers, anodizing-chillers, medical-scan-chillers
 category: Chillers
 order: 13
 photo: chiller-twin-circuit-open.jpg | Large chiller in assembly with its side panels off
+answer: A process chiller has two circuits that meet in one heat exchanger. A pump circulates process water through the evaporator, where boiling refrigerant absorbs its heat. The refrigeration compressor rejects that heat through an air-cooled or water-cooled condenser, and cooled water returns to the process at the set temperature.
 ---
 A process chiller keeps water at a set temperature so moulds, presses, baths and machines run consistently. Inside, it has two separate circuits that meet in one heat exchanger.
 
@@ -45,3 +46,17 @@ An **air-cooled** chiller rejects heat through finned condensers and fans, so it
 The same principle is used in chillers built to order for [anodizing and electroplating baths](/products/anodizing-chillers.html), [acid and corrosive fluids](/products/acid-cooling-chillers.html) and [MRI and CT scanners](/products/medical-scan-chillers.html), with materials and controls chosen for each duty.
 
 Ready to size one? Read [how to size a process chiller](/blog/how-to-size-a-process-chiller.html) or use the [chiller tonnage calculator](/engineering-tools/chiller-tonnage-calculator.html).
+
+## Frequently asked questions
+
+### What are the main parts of a process chiller?
+A brazed plate heat exchanger (evaporator), refrigeration compressor, condenser and fans, circulating pump, insulated tank, temperature controller, hot gas bypass valve, and pressure gauges and switches.
+
+### What is the difference between an air-cooled and a water-cooled chiller?
+An air-cooled chiller rejects heat through finned condensers and fans and needs only power and fresh air. A water-cooled chiller rejects heat into water from a cooling tower and suits plants that already run a tower.
+
+### What does the hot gas bypass valve do in a chiller?
+It stops the evaporator dropping below 5 °C at low load, so the water in it cannot freeze.
+
+### Why does a chiller have a closed stainless steel tank?
+A closed, insulated tank stops the chilled water gaining heat from the room before it is pumped back to the process.

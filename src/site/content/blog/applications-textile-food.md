@@ -3,10 +3,11 @@ title: Compressed air drying in textile, food and plastics plants
 seo_title: Air Dryers for Textile, Food & Plastics Plants | Win
 description: Why textile mills, food plants and plastics shops need dry compressed air, and which dryer, filters and drains suit each.
 date: 2026-09-16
-updated: 2026-10-03
+updated: 2026-10-05
 products: refrigerated-air-dryers, desiccant-air-dryers, compressed-air-filters, automatic-drain-valves
 category: Applications
 order: 8
+answer: Textile mills need dry air to protect yarn, valves and air-jet looms; food plants to prevent corrosion and microbial growth in pipework; plastics plants to protect actuators and finished parts. Most use a refrigerated dryer with a pre-filter and automatic drains, adding finer or carbon filters or a desiccant dryer where needed.
 ---
 Around Coimbatore and Tiruppur, textile, food and plastics plants are among the biggest users of compressed air. Each needs dry air for a different reason.
 
@@ -35,3 +36,17 @@ Which ISO 8573-1 class you need depends on your equipment and customers. Our gui
 ## Sizing for summer
 
 All three industries run hot plants. Dryer capacity falls as inlet and ambient temperatures rise, so size with the [air dryer sizing calculator](/engineering-tools/air-dryer-sizing.html) using your hottest conditions.
+
+## Frequently asked questions
+
+### Why do textile mills need compressed air dryers?
+Spinning, winding and weaving machines use compressed air for splicing, cleaning and, on air-jet looms, weft insertion. Water in the air can mark yarn and fabric, corrode valves and upset the air jets.
+
+### What air dryer and filters suit a food or dairy plant?
+A refrigerated dryer for general plant air with ZP and ZO coalescing filters, plus a ZC activated carbon filter where odour and oil vapour must be removed. Where the air is used in very dry or cold areas, a desiccant dryer gives −20 °C or −40 °C dew point.
+
+### Do plastics and injection moulding plants need dry air?
+Yes. Air operates mould actuators, part ejection, blow-off and conveying, and water causes corrosion in actuators and can spot finished parts. A refrigerated dryer with a pre-filter and drains is the typical set-up.
+
+### How should a dryer be sized for a hot plant?
+Size it for your hottest conditions, because dryer capacity falls as inlet and ambient temperatures rise. The air dryer sizing calculator applies the correction factors.

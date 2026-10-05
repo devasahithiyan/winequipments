@@ -8,6 +8,7 @@ products: industrial-process-chillers, round-cooling-towers, square-cooling-towe
 category: Chillers
 order: 17
 photo: chiller-air-cooled.jpg | Air-cooled process chiller
+answer: An air-cooled chiller rejects heat to plant air through finned condensers and fans, needing only power and free air. A water-cooled chiller rejects heat to cooling tower water and can sit indoors, but needs a tower, pump and make-up water. Every WCP chiller from 0.5 to 20 TR is offered either way.
 ---
 Every WCP process chiller, from the 0.5 TR WCP 005 to the 20 TR WCP 200, is offered with either an air-cooled or a water-cooled condenser. The refrigeration circuit, the stainless steel tank and the pump are the same. The only question is where the heat goes once it has been taken out of your process water.
 
@@ -83,3 +84,17 @@ An air-cooled chiller has to breathe. Give it free space on the condenser side s
 ## Next steps
 
 Work out your heat load first ([how to size a process chiller](/blog/how-to-size-a-process-chiller.html)), then see the full WCP model table on the [industrial process chillers page](/products/industrial-process-chillers.html). If you are going water-cooled, the [round](/products/round-cooling-towers.html) and [square](/products/square-cooling-towers.html) WCT towers cover 10 to 300 TR. For how the refrigeration circuit works, read [how a process chiller works](/blog/how-a-process-chiller-works.html).
+
+## Frequently asked questions
+
+### Which is better, an air-cooled or a water-cooled chiller?
+It depends on the site. Choose air-cooled with no spare cooling tower capacity, scarce water, and space for hot air to escape. Choose water-cooled when a tower with spare capacity already serves the plant, or the chiller must sit indoors or in a very hot room.
+
+### How much heat does a chiller condenser reject?
+The cooling load plus the compressor input. A WCP 050 rated at 5 TR (about 17.6 kW) with a 6.0 kW compressor at maximum rated power must reject up to about 23.6 kW.
+
+### Does high ambient temperature reduce air-cooled chiller capacity?
+Yes. WCP chillers are rated at 40 °C ambient; the factor is 0.9 at 45 °C and 0.8 at 50 °C, so a 10 TR WCP 100 delivers about 9 TR at 45 °C and about 8 TR at 50 °C.
+
+### Can a water-cooled chiller share an existing cooling tower?
+Yes, if the tower has spare capacity. Add the chiller's condenser heat (load plus compressor power) to the tower's duty and check it with the cooling tower calculator.

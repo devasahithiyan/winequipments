@@ -134,6 +134,24 @@ def studio(path):
     return rel
 
 
+def logo_clean(path):
+    """Trim the white margin around a client logo; return (cached path, display height in px for equal visual weight)."""
+    src = ROOT / path
+    out = ROOT / ".build-cache" / "logos" / (Path(path).stem + "-logo.png")
+    if not (out.exists() and out.stat().st_mtime >= src.stat().st_mtime):
+        out.parent.mkdir(parents=True, exist_ok=True)
+        im = Image.open(src).convert("RGB")
+        diff = (255 - np.array(im).astype(np.int32)).max(axis=2) > 24
+        ys, xs = np.nonzero(diff)
+        if len(xs):
+            im = im.crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
+        im.save(out, optimize=True)
+    w, h = Image.open(out).size
+    # equal-area sizing: wide wordmarks get shorter, square marks taller
+    disp = round(min(58, max(32, 46 * math.sqrt(2.6 / (w / h)))))
+    return str(out.relative_to(ROOT)), disp
+
+
 def image_url(path, w=1200):
     """Absolute URL of a resized JPEG/PNG, for Open Graph and schema."""
     src = ROOT / path
@@ -336,7 +354,7 @@ def jsonld(obj):
 env = Environment(loader=FileSystemLoader(SRC / "templates"), undefined=StrictUndefined, autoescape=True, trim_blocks=True, lstrip_blocks=True)
 env.globals.update(
     site=site, products=products, families=families, industries=industries, photos=photos, home_photos=home_photos,
-    picture=picture, image_url=image_url, studio=studio, whatsapp=whatsapp, model_id=model_id,
+    picture=picture, image_url=image_url, studio=studio, logo_clean=logo_clean, whatsapp=whatsapp, model_id=model_id,
     product_url=product_url, family_of=family_of, cell=cell, jsonld=jsonld,
     dew_chart=dew_chart, dew_ladder=dew_ladder, tower_chart=tower_chart,
     year=date.today().year, today=date.today().isoformat(),
@@ -481,6 +499,16 @@ def load_articles():
         meta["slug"] = f.stem
         meta["url"] = f"/blog/{f.stem}.html"
         meta["products"] = [x.strip() for x in meta.get("products", "").split(",") if x.strip()]
+        # optional closing FAQ section: "## Frequently asked questions" then "### Question" + answer paragraph
+        # the answer is the first paragraph; anything after the last answer (a closing call to action) renders below the FAQ
+        body, _, faq_src = body.partition("\n## Frequently asked questions\n")
+        meta["faqs"], meta["after_faq"] = [], ""
+        for blk in re.split(r"^### ", faq_src, flags=re.M)[1:]:
+            q, _, rest = blk.partition("\n")
+            ans, _, tail = rest.strip().partition("\n\n")
+            ans = " ".join(ans.split())
+            meta["faqs"].append({"q": q.strip(), "a": re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", ans).replace("**", ""), "html": Markup(_inline(ans))})
+            meta["after_faq"] = tail.strip()
         meta["body"] = body
         meta["words"] = len(re.sub(r"[@#>|*\-]", " ", body).split())
         arts.append(meta)
@@ -514,6 +542,10 @@ def render(template, url, **ctx):
     page_sources[url] = srcs
 
 
+# cities the owner has confirmed Win supplies; do not add others without confirmation
+SERVED_CITIES = ["Coimbatore", "Tiruppur", "Erode", "Hosur", "Chennai", "Bengaluru"]
+
+
 def org_schema():
     a = site["address"]
     return {
@@ -530,7 +562,8 @@ def org_schema():
         "slogan": site["tagline"],
         "founder": {"@type": "Person", "honorificPrefix": "Mr.", "name": site["founder"].removeprefix("Mr. ")},
         "hasMap": site["maps"],
-        "areaServed": {"@type": "Country", "name": "India"},
+        "areaServed": [{"@type": "Country", "name": "India"}] + [{"@type": "City", "name": c} for c in SERVED_CITIES],
+        "knowsLanguage": ["en", "ta"],
         "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": ph["tel"], "email": site["email"], "areaServed": "IN", "availableLanguage": ["en", "ta"]} for ph in site["phones"]],
         "hasCredential": {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": site["certification"]},
         "sameAs": [s["url"] for s in site.get("social", [])],
@@ -579,9 +612,10 @@ def crumbs_ld(items):
 
 
 articles = load_articles()
+glossary = json.loads((SRC / "content" / "glossary.json").read_text())
 locations = json.loads((DATA / "locations.json").read_text())
 industries_by_slug = {i["slug"]: i for i in site["industries"]}
-env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, industries_by_slug=industries_by_slug)
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
 NUM_WORDS = {15: "Fifteen", 16: "Sixteen", 17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty", 21: "Twenty-one", 22: "Twenty-two"}
 env.globals["product_count"] = len(products)
@@ -612,6 +646,66 @@ def copy_static():
             shutil.copytree(SRC / "static" / sub, OUT / sub, dirs_exist_ok=True)
     for php in (SRC / "php").glob("*.php"):
         shutil.copy2(php, OUT / php.name)
+
+
+def build_llms():
+    """llms.txt (index of every page) and llms-full.txt (plain-text facts), both generated from the site data."""
+    u = site["url"]
+    a = site["address"]
+    addr = f"{a['street']}, {a['locality']}, {a['city']} {a['postal'][:3]} {a['postal'][3:]}, {a['region']}, India"
+    phones = ", ".join(p["display"] for p in site["phones"])
+    head = [
+        f"# {site['name']}", "",
+        f"> {site['name']} (est. {site['founded']}) manufactures compressed air treatment equipment, process chillers, cooling towers and heat exchangers "
+        f"at Arasur, Coimbatore, Tamil Nadu, India, with {site['installations']} installations. Tagline: {site['tagline']}.", "",
+        f"Address: {addr}", f"Phone: {phones}", f"Email: {site['email']}",
+        f"Cities supplied: {', '.join(SERVED_CITIES)}", "",
+    ]
+    idx = head + ["## Product families"]
+    idx += [f"- [{f['name']}]({u}/products/{f['slug']}.html): {f['description']}" for f in families.values()]
+    idx += ["", "## Products"]
+    idx += [f"- [{p['h1']}]({u}{product_url(p['slug'])}): {p['description']}" for fam in families.values() for p in fam["products"]]
+    idx += ["", "## Guides"]
+    idx += [f"- [{b['title']}]({u}{b['url']}): {b['description']}" for b in articles]
+    idx += [f"- [Glossary]({u}/blog/glossary.html): definitions of compressed air and cooling terms"]
+    idx += ["", "## Sizing tools"]
+    idx += [f"- [{t['name']}]({u}{t['url']}): {t['description']}" for t in tools]
+    idx += ["", "## Industries"]
+    idx += [f"- [{i['name']}]({u}/industries/{i['slug']}.html): {i['description']}" for i in industries.values()]
+    idx += ["", "## Locations"]
+    idx += [f"- [{l['h1']}]({u}/locations/{l['slug']}.html): {l['description']}" for l in locations]
+    idx += ["", "## Company and help",
+            f"- [About {site['name']}]({u}/about.html)", f"- [Certifications]({u}/certifications.html)",
+            f"- [Contact and request a quote]({u}/contactus.html)", f"- [Downloads and catalogues]({u}/downloads.html)",
+            f"- [All products]({u}/products/)", f"- [All articles]({u}/blog.html)", f"- [All sizing tools]({u}/engineering-tools/)",
+            f"- [Industries served]({u}/industries/)", f"- [Locations]({u}/locations/)", f"- [Site map]({u}/sitemap.html)",
+            f"- [Full facts in plain text]({u}/llms-full.txt): product ranges, model tables and article answers", ""]
+    (OUT / "llms.txt").write_text("\n".join(idx))
+
+    full = head + [f"Founder: {site['founder']}", f"Quality certification: {site['certification']}", "",
+                   "All figures below are from the Win Equipments catalogues unless marked calculated. Products without a published model table are engineered to order.", ""]
+    for fam in families.values():
+        full += [f"## {fam['name']}", ""]
+        for p in fam["products"]:
+            full += [f"### {p['h1']}", f"URL: {u}{product_url(p['slug'])}", f"Series: {p['series']}", f"Range: {p['range']}", p["description"]]
+            full += [f"- {k['label']}: {k['value']}" for k in (p.get("key_specs") or []) + (p.get("conditions") or [])]
+            spec = p.get("spec")
+            if spec and spec.get("rows"):
+                cols = spec["columns"]
+                full += ["", "Model table (catalogue data):",
+                         " | ".join(c["label"] + (f" ({c['unit']})" if c.get("unit") else "") for c in cols)]
+                full += [" | ".join(str(r.get(c["key"], "")) for c in cols) for r in spec["rows"]]
+            full += [""]
+    full += ["## Guides: short answers and FAQs", ""]
+    for b in articles:
+        full += [f"### {b['title']}", f"URL: {u}{b['url']}"]
+        if b.get("answer"):
+            full += [f"Short answer: {b['answer']}"]
+        for f in b["faqs"]:
+            full += [f"Q: {f['q']}", f"A: {f['a']}"]
+        full += [""]
+    full += ["## Glossary", ""] + [f"- {g['term']}: {g['def']}" for g in glossary] + [""]
+    (OUT / "llms-full.txt").write_text("\n".join(full))
 
 
 def build_chat_knowledge():
@@ -713,6 +807,7 @@ def main():
         render("pages/location.html", f"/locations/{loc['slug']}.html", loc=loc)
     for a in articles:
         render("pages/article.html", a["url"], a=a)
+    render("pages/glossary.html", "/blog/glossary.html")
     for t in tools:
         render("pages/tool.html", t["url"], tool=t)
     render("pages/certifications.html", "/certifications.html")
@@ -720,6 +815,7 @@ def main():
     render("pages/404.html", "/404.html")
 
     build_htaccess()
+    build_llms()
 
     # html sitemap (lists every page by section, titles read back from the output)
     def page_title(u):

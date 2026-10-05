@@ -3,11 +3,12 @@ title: How to size an industrial process chiller (TR calculation)
 seo_title: How to Size a Process Chiller: TR Formula & Example
 description: Work out process chiller capacity in TR from water flow and temperature rise, then correct it for outlet and ambient temperature, with a worked example.
 date: 2026-10-04
-updated: 2026-10-04
+updated: 2026-10-05
 products: industrial-process-chillers, round-cooling-towers
 category: Chillers
 order: 12
 photo: chiller-win-white.jpg | WCP process chiller built at our works
+answer: Work out the heat load as water flow (LPM) × temperature rise (°C) ÷ 50.4 to get TR, then divide by the outlet and ambient correction factors to get the nominal capacity. WCP chillers are rated at 15 °C outlet and 40 °C ambient. Then check the model's water flow suits your process.
 ---
 A chiller is sized from the heat it has to remove from your process water. Get the heat load right, correct it for your site, and the model follows.
 
@@ -62,3 +63,17 @@ The full range of ten models is on the [process chillers page](/products/industr
 ## Do the sum automatically
 
 The [chiller tonnage calculator](/engineering-tools/chiller-tonnage-calculator.html) applies both factors and picks the WCP model. For loads above 20 TR, send us your duty for a larger or multiple-unit solution.
+
+## Frequently asked questions
+
+### How do I calculate chiller tonnage?
+Heat load (TR) = water flow (LPM) × temperature rise (°C) ÷ 50.4. For example, 100 LPM heating up by 5 °C is 9.92 TR. If you know the load in kW, divide by 3.517 to get TR.
+
+### Where does the 50.4 in the chiller formula come from?
+1 TR is 3,024 kcal/hr and water carries 1 kcal per kg per °C, so 3,024 ÷ 60 = 50.4 when flow is in litres per minute.
+
+### Why does chilled water outlet temperature change chiller size?
+A chiller delivers less capacity at colder water. WCP chillers are rated at 15 °C outlet; at 10 °C the factor is 0.75, so a 9.92 TR load needs 13.2 TR nominal (a WCP 150) instead of a WCP 100.
+
+### What capacity range do WCP process chillers cover?
+WCP chillers cover 0.5 to 20 TR in ten models. For loads above 20 TR, send your duty for a larger or multiple-unit solution.

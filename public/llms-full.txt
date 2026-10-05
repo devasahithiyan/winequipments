@@ -1,0 +1,652 @@
+# Win Equipments
+
+> Win Equipments (est. 2008) manufactures compressed air treatment equipment, process chillers, cooling towers and heat exchangers at Arasur, Coimbatore, Tamil Nadu, India, with 1,200+ installations. Tagline: Save Water and Power.
+
+Address: SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407, Tamil Nadu, India
+Phone: +91 95972 28969, +91 95972 28975
+Email: info@winequipments.com
+Cities supplied: Coimbatore, Tiruppur, Erode, Hosur, Chennai, Bengaluru
+
+Founder: Mr. Ramasamy Ananthakumar
+Quality certification: ISO 9001:2015
+
+All figures below are from the Win Equipments catalogues unless marked calculated. Products without a published model table are engineered to order.
+
+## Compressed Air Treatment
+
+### Refrigerated Compressed Air Dryers
+URL: https://winequipments.com/products/refrigerated-air-dryers.html
+Series: WRD Series
+Range: 10–2000 CFM
+Refrigerated compressed air dryer manufacturer in Coimbatore: WRD dryers, 10–2000 CFM, +3°C pressure dew point, 3–16 bar g inlet.
+- Capacity: 10 to 2000 CFM
+- Pressure dew point: +3 °C
+- Inlet air pressure: 3 to 16 bar g
+- Inlet air temperature: 10 to 60 °C
+- Flow rating: ISO 7183, FAD at 20 °C, 1 bar
+- Max. working pressure: 16 bar g
+- Pressure drop: ≤ 0.2 bar g
+- Supply: 180–260 V 1 Ph · 380–420 V 3 Ph
+
+Model table (catalogue data):
+Model | Capacity (CFM) | Capacity (m³/hr) | Refrigeration compressor (kW) | Electrical (V / Ph / Hz) | Dimensions L × W × H (mm) | Condenser | End connections (BSP / NB)
+WRD 20 S | 20 | 34 | 0.13 | 230 / 1 / 50 | 550 × 400 × 600 | Air | ½″
+WRD 40 S | 40 | 68 | 0.21 | 230 / 1 / 50 | 550 × 400 × 600 | Air | ½″
+WRD 50 S | 50 | 85 | 0.28 | 230 / 1 / 50 | 540 × 500 × 600 | Air | ¾″
+WRD 60 S | 60 | 102 | 0.32 | 230 / 1 / 50 | 540 × 500 × 800 | Air | ¾″
+WRD 80 S | 80 | 136 | 0.40 | 230 / 1 / 50 | 540 × 500 × 800 | Air | 1″
+WRD 100 S | 100 | 170 | 0.67 | 230 / 1 / 50 | 700 × 500 × 800 | Air | 1″
+WRD 150 S | 150 | 255 | 0.85 | 230 / 1 / 50 | 700 × 500 × 1000 | Air | 1½″
+WRD 200 S | 200 | 340 | 1.2 | 230 / 1 / 50 | 700 × 750 × 1000 | Air | 1½″
+WRD 250 S | 250 | 425 | 1.35 | 230 / 1 / 50 | 900 × 750 × 1000 | Air | 2″
+WRD 300 T | 300 | 510 | 1.7 | 440 / 3 / 50 | 900 × 750 × 1200 | Air | 2″
+WRD 400 T | 400 | 680 | 2.0 | 440 / 3 / 50 | 950 × 1700 × 1200 | Air | 2½″
+WRD 500 T | 500 | 850 | 2.3 | 440 / 3 / 50 | 1450 × 1700 × 1250 | Air | 2½″
+WRD 600 T | 600 | 1020 | 2.72 | 440 / 3 / 50 | 1450 × 1700 × 2100 | Air / Water | 2½″
+WRD 750 T | 750 | 1275 | 3.3 | 440 / 3 / 50 | 1450 × 1700 × 2100 | Air / Water | 3″ NB flange
+WRD 1000 T | 1000 | 1700 | 4.5 | 440 / 3 / 50 | 1450 × 1700 × 2100 | Air / Water | 4″ NB flange
+WRD 1500 T | 1500 | 2550 | 6.2 | 440 / 3 / 50 | 1450 × 1700 × 2100 | Air / Water | 5″ NB flange
+WRD 2000 T | 2000 | 3400 | 7.8 | 440 / 3 / 50 | 1450 × 1700 × 2100 | Air / Water | 6″ NB flange
+
+### Heatless Desiccant Air Dryers
+URL: https://winequipments.com/products/desiccant-air-dryers.html
+Series: WHD Series
+Range: 300–2000 CFM
+WHD heatless desiccant compressor air dryers, 300–2000 CFM, −20 °C to −40 °C pressure dew point. Win Equipments, Coimbatore.
+- Capacity: 300 to 2000 CFM
+- Pressure dew point: −20 °C (alumina) · −40 °C (molecular sieve)
+- Working pressure: 7 to 12.5 bar g
+- Inlet temperature: 45 °C
+- Dew point rating: At 38 °C inlet and 7 bar g
+- Design pressure: 13.2 bar g
+- Cycle time: 10 min
+- Power supply: 220 V AC ± 5%, 1 Ph, 50 Hz
+
+Model table (catalogue data):
+Model | Flow rate (CFM) | Flow rate (m³/hr) | Desiccant options | Electrical (V / Ph / Hz) | L × W × H (mm) | In / out (NB) | Weight (kg)
+WHD 030 | 300 | 510 | A / M | 220 / 1 / 50 | 1450 × 1100 × 2500 | 1½″ | 450
+WHD 040 | 400 | 680 | A / M | 220 / 1 / 50 | 1450 × 1200 × 2500 | 2″ | 630
+WHD 050 | 500 | 850 | A / M | 220 / 1 / 50 | 1650 × 1250 × 2300 | 3″ | 720
+WHD 060 | 600 | 1020 | A / M | 220 / 1 / 50 | 1650 × 1250 × 2500 | 3″ | 910
+WHD 075 | 750 | 1275 | A / M | 220 / 1 / 50 | 2100 × 1400 × 2300 | 4″ | 1100
+WHD 100 | 1000 | 1700 | A / M | 220 / 1 / 50 | 2100 × 1400 × 2500 | 4″ | 1200
+WHD 125 | 1250 | 2125 | A / M | 220 / 1 / 50 | 2100 × 1400 × 2800 | 6″ | 1500
+WHD 150 | 1500 | 2550 | A / M | 220 / 1 / 50 | 2300 × 1500 × 2300 | 6″ | 2100
+WHD 200 | 2000 | 3400 | A / M | 220 / 1 / 50 | 2300 × 1500 × 2700 | 6″ | 2400
+
+### Compressed Air Filters
+URL: https://winequipments.com/products/compressed-air-filters.html
+Series: WMF Series
+Range: 40–1700 CFM
+WMF coalescing compressed air filters, 40–1700 CFM, GP, ZP, ZO and ZC grades to ISO 8573-1, up to 30 bar g. Win Equipments, Coimbatore.
+- Capacity: 40 to 1700 CFM
+- Grades: GP · ZP · ZO · ZC
+- Finest filtration: 0.01 micron, 0.005 mg/m³ oil
+- Max. operating pressure: 30 bar g
+- Air quality: To ISO 8573-1
+- Max. operating temperature: 80 °C
+- Element change at: 0.7 bar g differential
+- Accessories: Differential pressure gauge · automatic drain valve
+
+Model table (catalogue data):
+Model | Capacity (CFM) | Capacity (m³/hr) | Connection (BSP)
+WMF 004 | 40 | 68.5 | ½″
+WMF 007 | 50 | 80 | ½″
+WMF 010 | 75 | 120 | ¾″
+WMF 018 | 125 | 210 | 1″
+WMF 030 | 200 | 335 | 1½″
+WMF 047 | 310 | 510 | 2″
+WMF 070 | 450 | 750 | 2″
+WMF 094 | 600 | 1000 | 3″
+WMF 150 | 900 | 1500 | 4″
+WMF 175 | 1200 | 2040 | 5″
+WMF 240 | 1700 | 2760 | 6″
+
+### Automatic Condensate Drain Valves
+URL: https://winequipments.com/products/automatic-drain-valves.html
+Series: WDV Series
+Range: Up to 1000 CFM
+Automatic drain valves for air compressors, receivers and dryers: WDV timer, micro-controller and no-air-loss types, up to 1000 CFM. Coimbatore.
+- Types: Electronic timer · micro-controller · no air loss · float
+- System capacity: Up to 1000 CFM
+- Working pressure: Up to 16 kgf/cm² (40 and 70 optional)
+- Condensate temperature: Up to 90 °C
+- Timer range: 1 to 120 min (model dependent)
+- Protection: IP55 or IP65
+- Supply: 230 V AC; 24 V, 48 V, 110 V AC or DC to order
+- Pressure range: 3 to 70 bar g across the range
+
+Model table (catalogue data):
+Model | Type | Capacity (CFM) | Max. operating pressure (kgf/cm²) | Valve interval (min) | Discharge time (s) | Pilot operated (BSP) | Built-in strainer | End connection (BSP) | Material | Supply | Weight (kg)
+WDV M12 | Electronic timer | Up to 50 | 16 | 1–120 | 8 | NA | Yes | ½″ | Cast aluminium | 230 V AC* | 0.9
+WDV H12 | Electronic timer | 51–500 | 16 | 1–136 | 4 | ⅛″ | NA | ½″ | Cast aluminium | 230 V AC* | 1.25
+WDV L40 | Electronic timer | Up to 50 | 40 | 1–120 | 8 | NA | NA | ½″ | Stainless steel | 230 V AC* | 0.9
+WDV H40 | Electronic timer | 51–500 | 40 | 1–136 | 4 | ⅛″ | NA | ½″ | Stainless steel | 230 V AC* | 1.25
+WDV B16 | Electronic timer | 500–1000 | 16 | 1–120 | 4 | ⅛″ | NA | 1″ | Cast aluminium | 230 V AC* | 2.45
+WDV E16 | Micro-controller | Up to 500 | 16 | 0.5–45 | 0.5–10 | NA | Yes | ½″ | Brass | 230 V AC* | 0.5
+WDV ZA16 | Electronic timer | Up to 1000 | 16 | 1–120 | 8 | ⅛″ | NA | ½″ | Cast aluminium | 230 V AC | 3.0
+WDV F16 | No air loss | Up to 1000 | 16 | NA | NA | NA | NA | ½″ | Cast aluminium | Not required | 1.0
+
+### Compressed Air Receiver Tanks
+URL: https://winequipments.com/products/air-receiver-tanks.html
+Series: WRV Series
+Range: 250–10,000 L
+Air receiver tank manufacturer in Coimbatore: WRV receivers, 250–10,000 litres, 7 to 12.5 bar g, hydrostatically tested, ASME VIII on request.
+- Standard models: 250 to 10,000 litres
+- Working pressure: 7 · 10 · 12.5 bar g
+- Designed to requirement: 0.5 to 40 m³, 6 to 30 bar g
+- Inlet air temperature: Up to 100 °C
+- Testing: Every vessel hydrostatically tested
+- Code: ASME VIII on requirement
+- Accessories: Supplied with standard accessories
+- Orientation: Vertical and horizontal
+
+Model table (catalogue data):
+Model | Capacity (litres) | Working pressure options (bar g) | Outer diameter (mm) | Overall height (mm) | End connection (BSP / NB) | Access | Foundation
+WRV 025 | 250 | 7 · 10 · 12.5 | 490 | 1620 | ¾″ BSP | Hand hole | Leg
+WRV 050 | 500 | 7 · 10 · 12.5 | 630 | 2000 | 1″ BSP | Hand hole | Leg
+WRV 100 | 1000 | 7 · 10 · 12.5 | 750 | 2750 | 1½″ BSP | Hand hole | Leg
+WRV 150 | 1500 | 7 · 10 · 12.5 | 980 | 3100 | 2″ BSP | Hand hole | Leg
+WRV 200 | 2000 | 7 · 10 · 12.5 | 980 | 3250 | 2″ NB | Man hole | Skirt / leg
+WRV 300 | 3000 | 7 · 10 · 12.5 | 1250 | 2940 | 4″ NB | Man hole | Skirt / leg
+WRV 500 | 5000 | 7 · 10 · 12.5 | 1500 | 3525 | 6″ NB | Man hole | Skirt / leg
+WRV 1000 | 10000 | 7 · 10 · 12.5 | 2000 | 3450 | 8″ NB | Man hole | Skirt / leg
+
+### Compressed Air Aftercoolers with Moisture Separator
+URL: https://winequipments.com/products/industrial-aftercoolers.html
+Series: Engineered to order
+Range: Engineered to order
+Air-cooled compressed air aftercoolers with moisture separator, built by Win Equipments, Coimbatore. Share compressor capacity and discharge temperature.
+
+### Moisture Separators for Compressed Air
+URL: https://winequipments.com/products/moisture-separators.html
+Series: Engineered to order
+Range: Engineered to order
+Compressed air moisture separators made in Coimbatore, fitted after the aftercooler to remove condensed water. Send flow, pressure and pipe size.
+
+## Process Cooling
+
+### Industrial Process Water Chillers
+URL: https://winequipments.com/products/industrial-process-chillers.html
+Series: WCP Series
+Range: 0.5–20 TR
+WCP industrial process water chillers, 0.5–20 TR, air or water cooled, built-in stainless steel tank and pump. Manufactured by Win Equipments, Coimbatore.
+- Capacity: 0.5 to 20 TR
+- Temperature difference: 5 °C
+- Inlet water pressure: 2 to 4 bar g
+- Inlet water temperature: 5 to 30 °C
+- Water outlet temperature (ideal): 15 °C
+- Ambient temperature (ideal): 40 °C
+- Water ΔT: 5 °C
+- Water inlet pressure: 1 bar g ideal · 2–4 bar g max
+
+Model table (catalogue data):
+Model | Capacity (TR) | Capacity (m³/hr) | Refrigeration compressor (kW) | Electrical (V / Ph / Hz) | Cooling fans (qty) | Condenser | Water flow (LPM) | Water pump (HP) | Water tank (litres) | Tank material | Shipping weight (kg) | End connection (BSP / NB)
+WCP 005 | 0.5 | 0.3 | 0.9 | 230 / 1 / 50 | 1 | Air / Water | 6 | 0.5 | 15 | SS | 125 | ¾″
+WCP 007 | 0.75 | 0.45 | 1.2 | 230 / 1 / 50 | 1 | Air / Water | 8 | 0.5 | 20 | SS | 135 | ¾″
+WCP 010 | 1 | 0.6 | 1.5 | 230 / 1 / 50 | 1 | Air / Water | 10 | 0.5 | 25 | SS | 150 | ¾″
+WCP 020 | 2 | 1.2 | 2.5 | 230 / 1 / 50 | 1 | Air / Water | 21 | 0.75 | 40 | SS | 200 | 1″
+WCP 030 | 3 | 1.8 | 3.4 | 440 / 3 / 50 | 1 | Air / Water | 32 | 1 | 60 | SS | 240 | 1″
+WCP 050 | 5 | 3.0 | 6.0 | 440 / 3 / 50 | 2 | Air / Water | 52 | 1.5 | 80 | SS | 350 | 1½″
+WCP 075 | 7.5 | 4.5 | 9.2 | 440 / 3 / 50 | 3 | Air / Water | 80 | 2 | 140 | SS | 475 | 1½″
+WCP 100 | 10 | 6.0 | 11.5 | 440 / 3 / 50 | 4 | Air / Water | 100 | 2 | 180 | SS / MS | 550 | 2″
+WCP 150 | 15 | 9.0 | 18.0 | 440 / 3 / 50 | 6 | Air / Water | 155 | 2 | 250 | SS / MS | 700 | 2″
+WCP 200 | 20 | 12.0 | 22.5 | 440 / 3 / 50 | 8 | Air / Water | 202 | 2 | 320 | SS / MS | 1000 | 2″
+
+### Medical Scan Chillers for MRI and CT
+URL: https://winequipments.com/products/medical-scan-chillers.html
+Series: Engineered to order
+Range: Engineered to order
+Process chillers for MRI and CT imaging equipment, engineered to order by Win Equipments, Coimbatore. Share your scanner's cooling requirement for sizing.
+
+### Anodizing & Electroplating Chillers
+URL: https://winequipments.com/products/anodizing-chillers.html
+Series: Engineered to order
+Range: Engineered to order
+Chillers for anodizing and electroplating bath cooling, engineered to order by Win Equipments, Coimbatore. Share your bath chemistry and heat load.
+
+### Acid Cooling Chillers
+URL: https://winequipments.com/products/acid-cooling-chillers.html
+Series: Engineered to order
+Range: Engineered to order
+Chillers for acids and corrosive process fluids, engineered to order by Win Equipments, Coimbatore. Share the fluid, concentration and heat load.
+
+### Industrial Ice Flake Machines
+URL: https://winequipments.com/products/ice-flake-machines.html
+Series: Engineered to order
+Range: Engineered to order
+Industrial ice flake machines engineered to order by Win Equipments, Coimbatore. Share your daily ice requirement and application for sizing.
+
+### Shell and Tube Heat Exchangers
+URL: https://winequipments.com/products/shell-and-tube-heat-exchangers.html
+Series: Engineered to order
+Range: Engineered to order
+Shell and tube heat exchanger manufacturer in Coimbatore: engineered to order. Share both fluids, flows and temperatures for sizing and a quotation.
+
+### Milk and Coconut Water Chillers
+URL: https://winequipments.com/products/milk-chillers.html
+Series: Engineered to order
+Range: Engineered to order
+Chillers for milk, coconut water and other liquid foods, engineered to order by Win Equipments, Coimbatore. Share volume and temperatures.
+
+### Soda Chillers for Beverage Plants
+URL: https://winequipments.com/products/soda-chillers.html
+Series: Engineered to order
+Range: Engineered to order
+Soda chillers for carbonated drinks and beverage plants, engineered to order by Win Equipments, Coimbatore. Share output and temperatures.
+
+### Refrigeration Condensing Units
+URL: https://winequipments.com/products/condensing-units.html
+Series: Engineered to order
+Range: Engineered to order
+Refrigeration condensing units with compressor, condenser and controls on one base, assembled to order by Win Equipments, Coimbatore.
+
+## Cooling Towers
+
+### Round FRP Cooling Towers
+URL: https://winequipments.com/products/round-cooling-towers.html
+Series: WCT RL Series
+Range: 10–300 TR
+WCT round FRP bottle-type cooling towers, 10–300 TR, outlet water at wet bulb + 4 °C. Manufactured by Win Equipments, Coimbatore.
+- Capacity: 10 to 300 TR
+- Outlet water: Wet bulb + 4 °C
+- Inlet water temperature: 40 to 100 °C
+- Inlet water pressure: 2 to 3 bar g
+- Fills: L: up to 55 °C inlet · H: 55–85 °C inlet · P: polypropylene rings
+- Motor: TEFC IP55, 415 V / 3 Ph / 50 Hz
+- Working pressure: 2 to 3 bar g
+- Evaporation loss: 0.00085 × 1.8 × flow × ΔT
+
+Model table (catalogue data):
+Model | Capacity (TR) | Water flow (m³/hr) | Motor (HP) | Motor speed (rpm) | Fan diameter (mm) | In / out (NB) | Dia × H (mm) | Shipping weight (kg) | Operating weight (kg)
+WCT 010 RL | 10 | 6 | 0.5 | 1440 | 450 | 1½″ / 1½″ | 930 × 1690 | 80 | 280
+WCT 020 RL | 20 | 12 | 1 | 960 | 750 | 2″ / 2″ | 1380 × 1690 | 100 | 450
+WCT 030 RL | 30 | 18 | 1 | 960 | 750 | 3″ / 3″ | 1660 × 1860 | 175 | 540
+WCT 040 RL | 40 | 24 | 1 | 960 | 850 | 3″ / 3″ | 1780 × 1950 | 205 | 700
+WCT 050 RL | 50 | 30 | 2 | 960 | 900 | 3″ / 3″ | 1990 × 2120 | 260 | 760
+WCT 060 RL | 60 | 36 | 3 | 960 | 1160 | 3″ / 3″ | 1920 × 2720 | 330 | 800
+WCT 080 RL | 80 | 48 | 3 | 960 | 1160 | 4″ / 4″ | 2150 × 2670 | 375 | 890
+WCT 100 RL | 100 | 60 | 5 | 960 | 1400 | 5″ / 5″ | 2895 × 3050 | 615 | 1850
+WCT 125 RL | 125 | 75 | 5 | 960 | 1400 | 5″ / 5″ | 2950 × 3250 | 805 | 2300
+WCT 150 RL | 150 | 90 | 5 | 960 | 1600 | 5″ / 5″ | 3000 × 3950 | 1005 | 2650
+WCT 200 RL | 200 | 120 | 7.5 | 710 | 1800 | 6″ / 6″ | 3300 × 4230 | 1110 | 3050
+WCT 300 RL | 300 | 180 | 12.5 | 600 | 2400 | 8″ / 8″ | 4450 × 3900 | 1950 | 4050
+
+### Square FRP Cooling Towers
+URL: https://winequipments.com/products/square-cooling-towers.html
+Series: WCT SL Series
+Range: 10–300 TR
+WCT square FRP cooling towers, 10–300 TR, spray-nozzle distribution and drift eliminators, outlet at wet bulb + 4 °C. Win Equipments, Coimbatore.
+- Capacity: 10 to 300 TR
+- Outlet water: Wet bulb + 4 °C
+- Inlet water temperature: 40 to 100 °C
+- Inlet water pressure: 2 to 3 bar g
+- Fills: L: up to 55 °C inlet · H: 55–85 °C inlet · P: polypropylene rings
+- Motor: TEFC IP55, 415 V / 3 Ph / 50 Hz
+- Drift eliminator: Rigid PVC, 600 × 600 × 130 mm
+- Evaporation loss: 0.00085 × 1.8 × flow × ΔT
+
+Model table (catalogue data):
+Model | Capacity (TR) | Water flow (m³/hr) | Motor (HP) | Motor speed (rpm) | Fan diameter (mm) | In / out (NB) | L × D × H (mm) | Shipping weight (kg) | Operating weight (kg)
+WCT 010 SL | 10 | 6 | 0.5 | 1440 | 450 | 2″ / 2″ | 825 × 825 × 1500 | 85 | 210
+WCT 020 SL | 20 | 12 | 0.5 | 1440 | 450 | 2″ / 2½″ | 825 × 825 × 1900 | 90 | 225
+WCT 030 SL | 30 | 18 | 1 | 960 | 750 | 2″ / 2½″ | 1000 × 1000 × 2100 | 240 | 750
+WCT 040 SL | 40 | 24 | 1 | 960 | 800 | 2½″ / 2½″ | 1170 × 1170 × 2600 | 320 | 850
+WCT 060 SL | 60 | 36 | 2 | 960 | 1160 | 3″ / 3″ | 1400 × 1400 × 2400 | 350 | 910
+WCT 100 SL | 100 | 60 | 5 | 960 | 1400 | 5″ / 5″ | 1750 × 1750 × 2800 | 525 | 1550
+WCT 150 SL | 150 | 90 | 7.5 | 960 | 1400 | 6″ / 6″ | 2400 × 2400 × 3100 | 700 | 2100
+WCT 200 SL | 200 | 120 | 7.5 | 710 | 1800 | 8″ / 8″ | 2400 × 2400 × 3300 | 775 | 2250
+WCT 250 SL | 250 | 150 | 10 | 710 | 1800 | 8″ / 8″ | 3000 × 3000 × 3200 | 1110 | 3100
+WCT 300 SL | 300 | 180 | 12.5 | 600 | 2200 | 8″ / 8″ | 3000 × 3000 × 3200 | 1250 | 3300
+
+### Coil Cooling Towers (Dry Coolers)
+URL: https://winequipments.com/products/closed-circuit-cooling-towers.html
+Series: WCC Series
+Range: 40–280 TR
+WCC finned-coil dry cooling towers, 40–280 TR, for diesel gensets 150–2000 kVA and closed process loops. Made by Win Equipments, Coimbatore.
+- Capacity: 40 to 280 TR
+- Diesel genset duty: 150 to 2000 kVA
+- Inlet water temperature: 75 to 90 °C
+- Outlet water: Ambient + 4 °C
+- Inlet water pressure: 2 to 3 bar g
+- Pressure drop: 0.5 bar max.
+- Motors: IP55, extended SS shaft
+- Enclosure: Fibre glass / GI panels
+
+Model table (catalogue data):
+Model | Capacity (TR) | Motor power (HP) | Motor speed (rpm) | Motors (qty) | Fan diameter (mm) | L × W × H (mm) | Pressure drop (bar max.) | Water holding (litres) | In / out (NB)
+WCC 40 | 40 | 3 | 960 | 2 | 1060 | 3300 × 1500 × 1400 | 0.5 | 72 | 3″ / 3″
+WCC 60 | 60 | 5 | 960 | 2 | 1060 | 3500 × 1500 × 1400 | 0.5 | 110 | 3″ / 3″
+WCC 80 | 80 | 5 | 960 | 2 | 1200 | 3300 × 1500 × 1700 | 0.5 | 140 | 3″ / 3″
+WCC 100 | 100 | 5 | 960 | 2 | 1200 | 3500 × 1500 × 2750 | 0.5 | 180 | 3″ / 3″
+WCC 120 | 120 | 7.5 | 960 | 2 | 1200 | 3750 × 1500 × 2750 | 0.5 | 220 | 3″ / 3″
+WCC 140 | 140 | 7.5 | 960 | 2 | 1200 | 4300 × 1500 × 2750 | 0.5 | 250 | 3″ / 3″
+WCC 160 | 160 | 7.5 | 960 | 3 | 1200 | 4800 × 1500 × 2750 | 0.5 | 280 | 4″ / 4″
+WCC 180 | 180 | 7.5 | 960 | 3 | 1200 | 5400 × 1500 × 2750 | 0.5 | 325 | 4″ / 4″
+WCC 200 | 200 | 7.5 | 960 | 4 | 1200 | 6000 × 1500 × 2500 | 0.5 | 360 | 4″ / 4″
+WCC 220 | 220 | 7.5 | 960 | 4 | 1200 | 6500 × 1500 × 2500 | 0.5 | 390 | 4″ / 4″
+WCC 240 | 240 | 7.5 | 960 | 4 | 1200 | 7000 × 1500 × 2500 | 0.5 | 430 | 4″ / 4″
+WCC 280 | 280 | 7.5 | 960 | 6 | 1200 | 7000 × 1500 × 2500 | 0.5 | 430 | 4″ / 4″
+
+### Spares for Cooling Towers, Chillers and Air Dryers
+URL: https://winequipments.com/products/spare-parts-consumables.html
+Series: Spares
+Range: Spares
+Spares for cooling towers (fills, drift eliminators, sprinklers, motors, fans) and refrigeration (compressors, condensers, valves, filters).
+
+## Guides: short answers and FAQs
+
+### What is a refrigerated air dryer and how does it work?
+URL: https://winequipments.com/blog/what-is-refrigerated-air-dryer.html
+Short answer: A refrigerated air dryer removes water from compressed air by cooling it until the moisture condenses, draining the condensate, then re-heating the dry air. WRD dryers deliver a +3 °C pressure dew point, so liquid water cannot form in pipework that stays above +3 °C, which covers most Indian plants.
+Q: How does a refrigerated air dryer work?
+A: Hot air is pre-cooled by the outgoing cold air, chilled in the evaporator to the dew point, the condensed water is separated and drained, and the cold dry air is re-heated before it leaves. An expansion valve and hot gas bypass valve match the refrigeration to the air load.
+Q: What is pressure dew point?
+A: The temperature at which water starts to condense from compressed air at line pressure. A +3 °C pressure dew point means liquid water cannot form as long as the pipework stays above +3 °C.
+Q: How much water does a refrigerated dryer remove?
+A: Saturated air at 7 bar g and 45 °C holds about 7.5 g of water vapour per kg of air; at +3 °C it holds about 0.6 g/kg, so roughly 92% has to condense. For a 100 CFM compressor running continuously that is about 34 litres a day (calculated).
+Q: Which industries use refrigerated air dryers?
+A: Most plant air users: automobile, cement, chemical, electronics, food processing, foundry, glass, leather, textile, paper, rice mills, power plants and printing are listed in our catalogue as typical users.
+
+### Refrigerated vs desiccant air dryers: which do you need?
+URL: https://winequipments.com/blog/refrigerated-vs-desiccant.html
+Short answer: Choose by the pressure dew point your process needs. A refrigerated dryer chills the air to a +3 °C dew point and suits most plant air. A heatless desiccant dryer reaches −20 °C or −40 °C and suits cold pipe runs, instrument, pharma, electronics and food packaging air, but uses purge air.
+Q: What is the difference between a refrigerated and a desiccant air dryer?
+A: A refrigerated dryer cools the air and drains the condensate, giving a +3 °C pressure dew point. A heatless desiccant dryer adsorbs water vapour onto activated alumina or molecular sieve, giving −20 °C or −40 °C.
+Q: When do I need a desiccant air dryer?
+A: When air lines run outdoors or through cold areas that can drop below +3 °C, when the process needs very dry air (instrument air, pharmaceutical or electronics work, food packaging or paint lines), or when ISO 8573-1 humidity class 3 or better is specified.
+Q: Which ISO 8573-1 humidity class does each dryer reach?
+A: A refrigerated dryer at +3 °C reaches class 4. A desiccant dryer reaches class 3 at −20 °C (activated alumina) or class 2 at −40 °C (molecular sieve).
+Q: Why does a desiccant dryer cost more to run?
+A: A small flow of dried compressed air is used as purge air to regenerate the off-line tower, and that air comes from your compressor. A refrigerated dryer needs no purge air.
+Q: What filters does a desiccant dryer need?
+A: A pre-filter to remove free water and dust, a zero-oil filter so compressor oil cannot coat the desiccant, and an after-filter to catch desiccant dust.
+
+### How to size a refrigerated air dryer for your compressor
+URL: https://winequipments.com/blog/how-to-choose-dryer.html
+Short answer: Do not match the dryer's CFM to the compressor's. Divide the compressor's actual delivered air by four correction factors for inlet temperature, ambient, pressure and dew point. WRD dryers are rated at 45 °C inlet, 35 °C ambient, 7 bar g and +3 °C. Use your hottest month's conditions.
+Q: How do I size a refrigerated air dryer?
+A: Dryer nominal capacity = compressor actual capacity ÷ (C1 × C2 × C3 × C4), where the factors correct for inlet temperature, ambient temperature, pressure and dew point. Choose the WRD model rated at or above the result.
+Q: Can I use a 250 CFM dryer for a 250 CFM compressor?
+A: Not in hot conditions. At 50 °C inlet and 40 °C ambient, 7 bar g and +3 °C dew point, a 250 CFM compressor needs 323 CFM nominal dryer capacity, so a 250 CFM dryer would be undersized by nearly a quarter.
+Q: What are the rating conditions of a refrigerated air dryer?
+A: WRD dryers are rated per ISO 7183 at 45 °C inlet temperature, 35 °C ambient, 7 bar g inlet pressure and +3 °C pressure dew point. At these conditions every correction factor is 1.0.
+Q: Should I size a dryer on compressor HP or CFM?
+A: Use the compressor's actual free air delivery (FAD) in CFM from the nameplate or datasheet, not the motor rating. About 4 CFM per HP for a screw compressor is a rough guide only.
+
+### ISO 8573-1 compressed air purity classes explained
+URL: https://winequipments.com/blog/iso-8573-1-compressed-air-purity-classes.html
+Short answer: ISO 8573-1 grades compressed air purity on three contaminants, written as particles : water : oil, where lower numbers are cleaner. The dryer sets the humidity class (refrigerated +3 °C is class 4; desiccant −40 °C is class 2) and filters set the particle and oil classes.
+Q: What does ISO 8573-1 [1:4:2] mean?
+A: Particle class 1, humidity class 4 and oil class 2. The three numbers are always written in the order particles : water : oil.
+Q: What pressure dew point is ISO 8573-1 class 4?
+A: Class 4 is a pressure dew point of +3 °C or lower. Class 3 is −20 °C or lower, class 2 is −40 °C or lower, and class 1 is −70 °C or lower.
+Q: Which filter grade reaches oil class 1?
+A: The ZC activated carbon grade, with 0.005 mg/m³ oil carry-over. ZO reaches oil class 2 and ZP oil class 3.
+Q: What treatment gives ISO 8573-1 class [1:4:2] air?
+A: Compressor, receiver, GP pre-filter and a refrigerated dryer, followed by ZP and ZO filters after the dryer.
+
+### Why fit a refrigerated air dryer? Five practical benefits
+URL: https://winequipments.com/blog/key-benefits-refrigerated-air-dryers.html
+Short answer: A refrigerated air dryer stops water condensing in pipework, so pipes and receivers stop corroding, valves and tools last longer, product quality stays consistent and filters need less maintenance. It needs no purge air, and WRD dryers are rated for 0.2 bar g pressure drop or less.
+Q: How much water does a compressor put into the air system?
+A: A 100 CFM compressor working continuously can put around 34 litres of water a day into the system (calculated for saturated air at 45 °C and 7 bar g, dried to +3 °C).
+Q: Does a refrigerated air dryer use purge air?
+A: No. Its running cost is the refrigeration compressor and fan. Desiccant dryers are the type that use purge air.
+Q: Can a refrigerated dryer reach a dew point below freezing?
+A: No. For a dew point below freezing you need a desiccant dryer.
+Q: Does a refrigerated air dryer remove oil?
+A: Not on its own. Oil aerosols and fine particles need compressed air filters. Most plants combine a dryer with a pre-filter and, where air quality matters, finer filters after it.
+
+### Air dryer maintenance in hot, dusty plants
+URL: https://winequipments.com/blog/maintenance-tips-hot-climates.html
+Short answer: Check the drain and controller every shift, clean the condenser and keep the air around the dryer cool every week, check the pre-filter differential and drain strainers every month, and have a technician check refrigerant pressures and the hot gas bypass valve once a year. Always confirm the bypass valve is closed.
+Q: How often should a refrigerated air dryer condenser be cleaned?
+A: Every week in hot, dusty plants. Dust, fibre and oil mist on the condenser fins are the most common cause of high condensing temperature and poor dew point. Blow clean with compressed air from the clean side outwards without bending the fins.
+Q: When should a compressed air pre-filter element be replaced?
+A: When the differential pressure across it reaches 0.7 bar g. Check it monthly.
+Q: Why is my air dryer inlet temperature too high?
+A: WRD dryers accept 10 to 60 °C inlet air. Air arriving hotter usually means the compressor's aftercooler needs attention.
+Q: What should be checked on an air dryer once a year?
+A: A technician should check refrigerant pressures and refrigeration compressor current, deep-clean the condenser, check the hot gas bypass valve, and check electrical connections, contactors and overload settings.
+
+### Troubleshooting a refrigerated air dryer
+URL: https://winequipments.com/blog/troubleshooting-common-problems.html
+Short answer: Most refrigerated air dryer problems are a drain that is not discharging, an open bypass valve or a dirty condenser. Check these first. A high dew point usually means a dirty condenser, hot inlet air or a hot room. Frosting, refrigerant faults and repeated trips need a technician.
+Q: Why is there water downstream of my air dryer?
+A: Usually the drain is not discharging, the bypass valve is open, the pipework was already wet before the dryer was fitted, or the dryer is overloaded for the actual air flow and conditions.
+Q: Why does my air dryer show a high dew point?
+A: Common causes are a dirty condenser or failed condenser fan, inlet air hotter than the dryer accepts (up to 60 °C for WRD), a hot room without cool ventilation, or a refrigerant problem that needs a technician.
+Q: Why is my air dryer freezing or frosting inside?
+A: The hot gas bypass valve keeps the evaporator above 5 °C so condensate cannot freeze. Frosting suggests it needs adjustment or has failed, which is a technician's job.
+Q: Why does my air dryer keep tripping?
+A: Check the supply voltage (180 to 260 V for single-phase WRD models, 380 to 420 V for three-phase). A high-pressure trip usually follows a blocked condenser or a failed fan; clean and check before resetting.
+
+### Compressed air drying in textile, food and plastics plants
+URL: https://winequipments.com/blog/applications-textile-food.html
+Short answer: Textile mills need dry air to protect yarn, valves and air-jet looms; food plants to prevent corrosion and microbial growth in pipework; plastics plants to protect actuators and finished parts. Most use a refrigerated dryer with a pre-filter and automatic drains, adding finer or carbon filters or a desiccant dryer where needed.
+Q: Why do textile mills need compressed air dryers?
+A: Spinning, winding and weaving machines use compressed air for splicing, cleaning and, on air-jet looms, weft insertion. Water in the air can mark yarn and fabric, corrode valves and upset the air jets.
+Q: What air dryer and filters suit a food or dairy plant?
+A: A refrigerated dryer for general plant air with ZP and ZO coalescing filters, plus a ZC activated carbon filter where odour and oil vapour must be removed. Where the air is used in very dry or cold areas, a desiccant dryer gives −20 °C or −40 °C dew point.
+Q: Do plastics and injection moulding plants need dry air?
+A: Yes. Air operates mould actuators, part ejection, blow-off and conveying, and water causes corrosion in actuators and can spot finished parts. A refrigerated dryer with a pre-filter and drains is the typical set-up.
+Q: How should a dryer be sized for a hot plant?
+A: Size it for your hottest conditions, because dryer capacity falls as inlet and ambient temperatures rise. The air dryer sizing calculator applies the correction factors.
+
+### Installing a compressed air dryer: a checklist
+URL: https://winequipments.com/blog/installing-servicing-tamil-nadu.html
+Short answer: Install a refrigerated dryer in cool, ventilated air with room to service it. Pipe it after the air receiver and a GP pre-filter, with finer filters after it. Fit a three-valve bypass and an automatic drain at every condensate point, and power the dryer before opening the air.
+Q: Where should a refrigerated air dryer be installed?
+A: In a well-ventilated place with cool, fresh air, not in a closed room or next to the compressor's hot exhaust. Dryer capacity falls as ambient temperature rises above the 35 °C rating. Leave room to clean the condenser and service the drain and filters.
+Q: What is the correct piping order for a compressed air dryer?
+A: Compressor with aftercooler, then air receiver with automatic drain, then a GP pre-filter with drain, then the refrigerated dryer, then finer filters (ZP, ZO, ZC) as your air quality needs, then the plant header.
+Q: Why does an air dryer need a bypass?
+A: A three-valve bypass (inlet, outlet and bypass valves) lets you isolate the dryer for service without stopping production. Keep the bypass valve closed in normal running.
+Q: What should be checked before starting a new air dryer?
+A: Check the inlet air temperature is within range (10 to 60 °C for WRD dryers), power the dryer before opening the air so it reaches dew point first, and confirm the controller readings and that the drain discharges.
+
+### What decides the cost of an industrial air dryer?
+URL: https://winequipments.com/blog/pricing-in-coimbatore.html
+Short answer: Air dryer price depends on capacity at your actual conditions, the dew point (refrigerated +3 °C versus desiccant −20 or −40 °C), heat exchanger and refrigeration parts, rated pressure drop, controls and drains, and whether filters, bypass, installation and commissioning are included. Compare quotations on the same basis before comparing price.
+Q: Why do two quotations for a 100 CFM dryer differ so much?
+A: They may not be the same machine. Capacity falls in hot plants, so one supplier may have corrected for your conditions while the other quotes the catalogue rating, which can mean the cheaper quote is an undersized dryer.
+Q: Is a desiccant dryer more expensive than a refrigerated dryer?
+A: Yes. A refrigerated dryer at +3 °C dew point costs far less to buy and run than a desiccant dryer at −20 °C or −40 °C, so buy the dew point your process actually needs.
+Q: What should I ask an air dryer supplier before buying?
+A: At what inlet temperature, ambient, pressure and dew point the capacity is quoted; the pressure drop at rated flow; the heat exchanger, refrigeration compressor and refrigerant used; what is included (filters, drains, bypass, installation, commissioning); and who services it and supplies spares.
+Q: What information is needed for an air dryer quotation?
+A: Your compressor capacity, working pressure, inlet and ambient temperatures, and the dew point you need.
+
+### Where wet compressed air costs you money
+URL: https://winequipments.com/blog/save-energy-reduce-costs.html
+Short answer: Wet compressed air raises costs through corroded, leaking pipework, extra pressure drop from blocked filters and scale, faster wear on valves and cylinders, product rejects and drains that vent air. Cool the air with an aftercooler, drain automatically, dry it with a correctly sized dryer, and filter only to the class you need.
+Q: How does pressure drop increase compressed air energy cost?
+A: The compressor must run at a higher pressure to deliver the same pressure at the machines. A commonly used rule of thumb is roughly 7% more compressor power for each extra bar.
+Q: When should compressed air filter elements be changed?
+A: At 0.7 bar g differential pressure, rather than leaving them to block. WMF filters list their clean pressure drop by grade, from 0.03 bar g for GP to 0.12 bar g for ZC.
+Q: Can condensate drains waste compressed air?
+A: Yes. A drain left cracked open, or a timer drain set to open too long, vents compressed air continuously. A no-air-loss drain such as the WDV F16 discharges only condensate.
+Q: What is the right order of compressed air treatment?
+A: Cool the air with an aftercooler, drain the receiver and every filter automatically, dry the air with a correctly sized refrigerated dryer (or a desiccant dryer where the process needs it), and filter to the ISO 8573-1 class your process needs.
+
+### How to size an industrial process chiller (TR calculation)
+URL: https://winequipments.com/blog/how-to-size-a-process-chiller.html
+Short answer: Work out the heat load as water flow (LPM) × temperature rise (°C) ÷ 50.4 to get TR, then divide by the outlet and ambient correction factors to get the nominal capacity. WCP chillers are rated at 15 °C outlet and 40 °C ambient. Then check the model's water flow suits your process.
+Q: How do I calculate chiller tonnage?
+A: Heat load (TR) = water flow (LPM) × temperature rise (°C) ÷ 50.4. For example, 100 LPM heating up by 5 °C is 9.92 TR. If you know the load in kW, divide by 3.517 to get TR.
+Q: Where does the 50.4 in the chiller formula come from?
+A: 1 TR is 3,024 kcal/hr and water carries 1 kcal per kg per °C, so 3,024 ÷ 60 = 50.4 when flow is in litres per minute.
+Q: Why does chilled water outlet temperature change chiller size?
+A: A chiller delivers less capacity at colder water. WCP chillers are rated at 15 °C outlet; at 10 °C the factor is 0.75, so a 9.92 TR load needs 13.2 TR nominal (a WCP 150) instead of a WCP 100.
+Q: What capacity range do WCP process chillers cover?
+A: WCP chillers cover 0.5 to 20 TR in ten models. For loads above 20 TR, send your duty for a larger or multiple-unit solution.
+
+### How an industrial process chiller works
+URL: https://winequipments.com/blog/how-a-process-chiller-works.html
+Short answer: A process chiller has two circuits that meet in one heat exchanger. A pump circulates process water through the evaporator, where boiling refrigerant absorbs its heat. The refrigeration compressor rejects that heat through an air-cooled or water-cooled condenser, and cooled water returns to the process at the set temperature.
+Q: What are the main parts of a process chiller?
+A: A brazed plate heat exchanger (evaporator), refrigeration compressor, condenser and fans, circulating pump, insulated tank, temperature controller, hot gas bypass valve, and pressure gauges and switches.
+Q: What is the difference between an air-cooled and a water-cooled chiller?
+A: An air-cooled chiller rejects heat through finned condensers and fans and needs only power and fresh air. A water-cooled chiller rejects heat into water from a cooling tower and suits plants that already run a tower.
+Q: What does the hot gas bypass valve do in a chiller?
+A: It stops the evaporator dropping below 5 °C at low load, so the water in it cannot freeze.
+Q: Why does a chiller have a closed stainless steel tank?
+A: A closed, insulated tank stops the chilled water gaining heat from the room before it is pumped back to the process.
+
+### Cooling tower basics: range, approach and wet bulb
+URL: https://winequipments.com/blog/cooling-tower-range-approach-wet-bulb.html
+Short answer: Range is hot water in minus cold water out. Wet bulb is the lowest temperature evaporation can reach in local air. Approach is cold water out minus wet bulb. A tower cannot cool below wet bulb; WCT towers deliver wet bulb + 4 °C. Heat load in TR equals flow (m³/hr) × range × 1,000 ÷ 3,024.
+Q: What is cooling tower approach?
+A: Approach is how close the cold water gets to the wet bulb temperature: cold water out minus wet bulb. WCT towers are rated for an approach of 4 °C.
+Q: What is cooling tower range?
+A: Range is how much the tower cools the water: hot water in minus cold water out. WCT towers are rated for 0.6 m³/hr of water per TR, which is a 5 °C range.
+Q: How do you calculate cooling tower capacity in TR?
+A: Heat load (TR) = flow (m³/hr) × range (°C) × 1,000 ÷ 3,024. For example, 30 m³/hr cooled by 5 °C is 49.6 TR, which matches the WCT 050.
+Q: How do you calculate cooling tower evaporation loss?
+A: Evaporation loss = 0.00085 × 1.8 × flow (m³/hr) × range (°C). For 30 m³/hr and a 5 °C range that is about 0.23 m³/hr. Drift and blow-down add to the make-up water needed.
+Q: Can a cooling tower cool water below the wet bulb temperature?
+A: No. The wet bulb is the lowest temperature evaporation can reach in your local air, so it is the limit for any evaporative cooling tower.
+
+### Round vs square FRP cooling towers
+URL: https://winequipments.com/blog/round-vs-square-cooling-towers.html
+Short answer: Round and square FRP cooling towers cover the same 10 to 300 TR range and cool water to wet bulb + 4 °C. Round towers use a rotary sprinkler and suit open plots. Square towers use spray nozzles and drift eliminators and fit tight plots, rooftops, walls and rows of towers.
+Q: What is the difference between round and square cooling towers?
+A: They work on the same evaporative principle and cover the same capacity. A round (bottle-type) tower distributes water with a rotary sprinkler spun by jet recoil; a square tower uses spray nozzles and PVC drift eliminators. The main difference is how they fit your site.
+Q: When should I choose a square cooling tower?
+A: When space is tight: a square tower packs neatly against walls and alongside other towers, so it suits rectangular plots, rooftops and rows of towers for larger loads.
+Q: When is a round cooling tower the better choice?
+A: On an open site with space around a single tower. Its rotary sprinkler spreads water evenly over the fills without separate nozzles.
+Q: Are round and square towers sized differently?
+A: No. Sizing is identical for both shapes and depends on heat load, range, approach and wet bulb temperature. The cooling tower calculator lets you choose either shape.
+
+### Coil cooling towers for diesel gensets
+URL: https://winequipments.com/blog/coil-cooling-towers-for-diesel-gensets.html
+Short answer: A coil cooling tower cools diesel genset jacket water inside a sealed finned copper coil with axial fans, so the water never touches air and there is no evaporation or water loss. It delivers water at ambient + 4 °C. WCC models cover 40 to 280 TR for gensets from 150 to 2000 kVA.
+Q: What is a coil cooling tower?
+A: A cooling tower that cools water inside a finned coil. Axial fans push air across copper tubes with extended fins, so the water stays sealed and is cooled by air alone, with no evaporation or water loss.
+Q: Why use a coil cooling tower for a diesel genset?
+A: Engine jacket water has to stay clean and sealed. A coil tower keeps it inside the coil, so there is no contamination of the circuit, and it handles hot water returning from the engine at 75 to 90 °C.
+Q: What is the difference between a coil cooling tower and an FRP cooling tower?
+A: A coil tower cools sealed water by air across finned tubes and delivers ambient + 4 °C with no water loss. An FRP tower sprays the water into the air and cools by evaporation, reaching colder water at wet bulb + 4 °C, but loses water to evaporation, drift and blow-down.
+Q: What information is needed to select a coil cooling tower?
+A: The genset rating in kVA, the engine maker's heat rejection and water flow, and your site ambient temperature.
+
+### Air-cooled vs water-cooled process chillers
+URL: https://winequipments.com/blog/air-cooled-vs-water-cooled-chiller.html
+Short answer: An air-cooled chiller rejects heat to plant air through finned condensers and fans, needing only power and free air. A water-cooled chiller rejects heat to cooling tower water and can sit indoors, but needs a tower, pump and make-up water. Every WCP chiller from 0.5 to 20 TR is offered either way.
+Q: Which is better, an air-cooled or a water-cooled chiller?
+A: It depends on the site. Choose air-cooled with no spare cooling tower capacity, scarce water, and space for hot air to escape. Choose water-cooled when a tower with spare capacity already serves the plant, or the chiller must sit indoors or in a very hot room.
+Q: How much heat does a chiller condenser reject?
+A: The cooling load plus the compressor input. A WCP 050 rated at 5 TR (about 17.6 kW) with a 6.0 kW compressor at maximum rated power must reject up to about 23.6 kW.
+Q: Does high ambient temperature reduce air-cooled chiller capacity?
+A: Yes. WCP chillers are rated at 40 °C ambient; the factor is 0.9 at 45 °C and 0.8 at 50 °C, so a 10 TR WCP 100 delivers about 9 TR at 45 °C and about 8 TR at 50 °C.
+Q: Can a water-cooled chiller share an existing cooling tower?
+A: Yes, if the tower has spare capacity. Add the chiller's condenser heat (load plus compressor power) to the tower's duty and check it with the cooling tower calculator.
+
+### FRP vs coil cooling towers: open or sealed loop?
+URL: https://winequipments.com/blog/frp-vs-coil-cooling-tower.html
+Short answer: An FRP cooling tower sprays water into the air and cools it by evaporation to wet bulb + 4 °C, but loses water. A coil cooling tower keeps water sealed in finned tubes and cools it by air to ambient + 4 °C with no water loss. Choose FRP for the coldest water, coil for sealed loops like genset jacket water.
+Q: Which cooling tower gives colder water, FRP or coil?
+A: An FRP tower. It is rated at wet bulb + 4 °C, and wet bulb is always at or below ambient, while a coil tower is rated at ambient + 4 °C.
+Q: Does a coil cooling tower lose water?
+A: No. The water stays sealed in the coil and there is no evaporation or drift from the process loop. Once filled it only needs topping up for leaks.
+Q: How much water does an FRP cooling tower evaporate?
+A: Evaporation loss = 0.00085 × 1.8 × flow (m³/hr) × range. At 30 m³/hr and a 5 °C range that is about 0.23 m³/hr, or around 5.5 m³ a day (calculated), plus drift and blow-down.
+Q: When should I choose a coil cooling tower?
+A: When the water must stay sealed and clean, such as diesel genset jacket water returning at 75 to 90 °C, when ambient + 4 °C is cold enough, or when make-up water is scarce. WCC models cover 40 to 280 TR for 150 to 2000 kVA gensets.
+
+### Aftercooler vs air dryer: do you need both?
+URL: https://winequipments.com/blog/aftercooler-vs-air-dryer.html
+Short answer: An aftercooler cools hot compressor discharge air so the bulk of the water condenses and drains, but the air leaves still saturated. A refrigerated dryer then cools it to a +3 °C pressure dew point so no more water condenses downstream. They do different jobs, and most plants need both, aftercooler first.
+Q: Do I need an air dryer if I have an aftercooler?
+A: Usually yes. Air leaving an aftercooler is saturated at its outlet temperature, so it keeps dropping water as it cools further in the plant. Only a dryer brings the dew point below the lowest temperature the pipework will see.
+Q: How much water does an aftercooler remove compared with a dryer?
+A: In the WRD catalogue's example for 4000 CFM, the aftercooler removes about 4220 litres a day and the refrigerated dryer a further 1180 litres a day that would otherwise condense in the network.
+Q: Why does a dryer work better after an aftercooler?
+A: Dryer capacity depends on inlet temperature. The WRD inlet correction factor is 1.0 at 45 °C but 0.7 at 60 °C, so cooler air from an aftercooler lets a given dryer handle more flow, and air above 60 °C is outside the WRD inlet range.
+Q: What is the correct order of aftercooler and dryer?
+A: Air compressor, aftercooler, air receiver, pre-filter, refrigerated air dryer, fine filters, then the dry air receiver.
+
+### Cross flow vs counter flow cooling towers
+URL: https://winequipments.com/blog/cross-flow-vs-counter-flow-cooling-tower.html
+Short answer: Cross flow and counter flow describe only the air direction relative to falling water. In counter flow, air moves up against the water; in cross flow, air moves horizontally across it. Neither is more efficient as a rule. Cold water depends on wet bulb, approach, range, fill and air volume.
+Q: Is counter flow more efficient than cross flow?
+A: Not as a rule. Efficiency depends on the fill, air volume and water loading. Counter flow is often more compact, while cross flow often offers easier access. Compare actual rated duty at your wet bulb.
+Q: Does the airflow direction change the cold water temperature?
+A: Only through how the specific tower is designed. The cold water cannot go below the wet bulb temperature in either arrangement.
+Q: Which type is a Win round tower?
+A: The catalogue describes air drawn up through the fills against falling water, which is a counter flow arrangement.
+
+### Types of cooling tower and which one fits your plant
+URL: https://winequipments.com/blog/types-of-cooling-tower.html
+Short answer: Cooling towers are grouped by how air moves (natural or mechanical draft, counter flow or cross flow), whether the water touches the air (open or closed circuit) and shape. Win builds round and square evaporative FRP towers (10 to 300 TR, wet bulb + 4 °C) and coil cooling towers (40 to 280 TR, ambient + 4 °C).
+Q: Which cooling tower type is cheapest to run?
+A: It depends on the duty. Evaporative towers use water through evaporation; dry coil towers do not, but they cool only to ambient + 4 °C. Compare on your actual load and site.
+Q: Can a cooling tower serve a chiller?
+A: Yes. A water-cooled chiller rejects its condenser heat to a tower. See air-cooled vs water-cooled chillers.
+Q: Do you make induced draft or forced draft towers?
+A: Our catalogue describes WCT towers with an axial fan drawing air through the fills. For the exact air path of a given model, ask us.
+
+### Automatic drain valves for air compressors: types and selection
+URL: https://winequipments.com/blog/automatic-drain-valve-guide.html
+Short answer: An automatic drain valve discharges condensate from receivers, filters, dryers, separators and drop legs without an operator. Timer and micro-controller drains open on a set interval and lose some air; a no-air-loss drain is operated by condensate level and discharges only water. Choose by system CFM, pressure, supply and air loss.
+Q: How often should the valve open?
+A: Set the interval and discharge time so the condensate clears without blowing air for long. Start from the model's range and adjust by watching how much water appears.
+Q: Do I need a drain on every filter and dryer?
+A: Yes. Each collects condensate at its own low point, so each needs its own drain.
+Q: Can a drain valve block with dirt?
+A: The catalogue describes high-velocity discharge without clogging, and a strainer protects the valve. Clean the strainer as part of routine maintenance.
+
+### Compressed air dryers: types, dew point and how to choose
+URL: https://winequipments.com/blog/compressed-air-dryer-guide.html
+Short answer: A compressed air dryer lowers the pressure dew point so water cannot condense in your pipes. Refrigerated dryers chill the air to +3 °C and suit most plant air from 10 to 2000 CFM. Heatless desiccant dryers reach −20 °C or −40 °C for drier duties but use purge air.
+Q: Do I need a dryer if I already have an aftercooler?
+A: Usually yes. An aftercooler leaves the air saturated at a lower temperature, so water can still condense later in the lines.
+Q: Which dryer for a screw compressor?
+A: The type depends on your required dew point, not the compressor kind. Size from the compressor's actual flow and site conditions.
+Q: Is a desiccant dryer always drier than a refrigerated one?
+A: Yes. A WHD gives −20 °C or −40 °C against +3 °C, but it uses purge air, so choose it only where the dryness is needed.
+
+### Moisture separators for air compressors: what they do and where they go
+URL: https://winequipments.com/blog/moisture-separator-guide.html
+Short answer: A moisture separator removes liquid water droplets from compressed air, usually straight after the aftercooler, by changing the air's direction or slowing it so droplets fall out and drain away. It does not remove water vapour, so it is a first stage ahead of the receiver and dryer, not a replacement for a dryer.
+Q: Do I need a moisture separator if I have a dryer?
+A: It is good practice to have one ahead of the dryer. It removes bulk liquid so the dryer is not flooded with water.
+Q: Where exactly should it be installed?
+A: Immediately after the aftercooler, before the air receiver.
+Q: Why is water still in my air after the separator?
+A: Because the air leaves saturated with vapour. Only a dryer lowers the dew point enough to stop condensation in the lines.
+
+### Shell and tube heat exchangers: types, selection and design inputs
+URL: https://winequipments.com/blog/shell-and-tube-heat-exchanger-guide.html
+Short answer: A shell and tube heat exchanger passes one fluid through a bundle of tubes and the other around them inside a shell, with baffles directing the shell-side flow. It suits higher pressures and temperatures and oil coolers. Win builds them to order, sized from both fluids, flows, temperatures, pressures and materials.
+Q: Which heat exchanger type is best for oil cooling?
+A: It depends on pressure, temperature and fouling. Shell and tube is a common choice for oil coolers. Send your oil duty and we will recommend a configuration.
+Q: Why is there no standard model table?
+A: Each unit is engineered around the customer's duty, so we size and quote each one from your requirement.
+Q: Can the same exchanger be used for water and oil?
+A: Yes, if the materials, pressure and temperatures suit both fluids. Tell us both fluids when you enquire.
+
+## Glossary
+
+- Aftercooler: A heat exchanger fitted straight after the compressor that cools the hot discharge air, so the bulk of its water vapour condenses and is drained by a moisture separator. The air leaves cooler but still saturated.
+- Approach: How close a cooling tower's cold water gets to the wet bulb temperature: cold water out minus wet bulb. WCT towers are rated for a 4 °C approach.
+- Blow-down: Water drained from an open cooling tower to limit the dissolved salts that evaporation concentrates. It adds to the make-up water the tower needs.
+- CFM: Cubic feet per minute, the unit used for compressed air flow and for dryer, filter and drain capacity.
+- Coalescing filter: A compressed air filter that removes fine oil and water aerosols by merging tiny droplets into larger ones that drain away. WMF filters come in GP, ZP, ZO and ZC grades.
+- Condensate: Liquid water, often mixed with compressor oil, that condenses out of compressed air as it cools in receivers, filters, dryers and pipework. It is removed by drain valves.
+- Desiccant dryer: A dryer that adsorbs water vapour onto a desiccant bed such as activated alumina or molecular sieve. WHD heatless dryers reach −20 °C or −40 °C pressure dew point and regenerate with purge air.
+- Drift: Water carried out of a cooling tower as droplets in the exhaust air. Drift eliminators and sprinkler design reduce it.
+- Evaporation loss: Water an evaporative cooling tower loses as it cools. From the catalogue: 0.00085 × 1.8 × flow (m³/hr) × range (°C).
+- Fill: The surface inside a cooling tower over which water spreads so air can evaporate part of it. WCT towers use L fills up to 55 °C, H fills for 55 to 85 °C, and P polypropylene rings for hotter or dirty water.
+- Free air delivery (FAD): The actual volume of air a compressor delivers, given on its nameplate or datasheet. Dryers are sized from FAD, not from the motor rating.
+- Hot gas bypass valve: A valve in a dryer or chiller refrigeration circuit that keeps the evaporator above 5 °C at low load, so condensate or water cannot freeze.
+- ISO 8573-1: The international standard for compressed air purity. It grades air on particles, water and oil, written in that order, for example [1:4:2]. Lower numbers are cleaner.
+- Moisture separator: A vessel that removes liquid water droplets from compressed air by changing its direction or slowing it down. It does not remove water vapour.
+- Pressure dew point (PDP): The temperature at which water starts to condense from compressed air at line pressure. With a +3 °C PDP, liquid water cannot form while the pipework stays above +3 °C.
+- Purge air: A small flow of dried compressed air that a heatless desiccant dryer expands through the off-line tower to strip moisture from the desiccant. It is the main running cost of a desiccant dryer.
+- Range: How much a cooling tower cools the water: hot water in minus cold water out. WCT towers are rated for 0.6 m³/hr per TR, which is a 5 °C range.
+- Refrigerated air dryer: A dryer that chills compressed air until its moisture condenses, drains the condensate and re-heats the air. WRD dryers deliver a +3 °C pressure dew point.
+- Ton of refrigeration (TR): A unit of cooling capacity. 1 TR = 3,024 kcal/hr, about 3.517 kW. Chiller load in TR = water flow (LPM) × temperature rise (°C) ÷ 50.4.
+- Wet bulb temperature: The lowest temperature evaporation can reach in the local air. It depends on the weather, and no evaporative cooling tower can cool water below it.

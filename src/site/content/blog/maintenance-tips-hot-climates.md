@@ -3,11 +3,12 @@ title: Air dryer maintenance in hot, dusty plants
 seo_title: Refrigerated Air Dryer Maintenance Checklist | Win
 description: A practical maintenance routine for refrigerated air dryers in hot, dusty plants: drains, condenser cleaning, filters, dew point and bypass valves.
 date: 2026-09-16
-updated: 2026-10-03
+updated: 2026-10-05
 products: refrigerated-air-dryers, automatic-drain-valves, compressed-air-filters
 category: Service
 order: 6
 photo: drain-valve-low-discharge.jpg | Automatic drain valve
+answer: Check the drain and controller every shift, clean the condenser and keep the air around the dryer cool every week, check the pre-filter differential and drain strainers every month, and have a technician check refrigerant pressures and the hot gas bypass valve once a year. Always confirm the bypass valve is closed.
 ---
 A refrigerated dryer rejects the heat it removes from the air through its condenser. Heat and dust are what make that hard, so in Indian plants the routine below matters most in summer.
 
@@ -40,3 +41,17 @@ A refrigerated dryer rejects the heat it removes from the air through its conden
 Most dryers are installed with a three-valve bypass so they can be serviced without stopping production. After any service, make sure the bypass valve is closed and the inlet and outlet valves are open; an open bypass sends wet air straight past the dryer.
 
 If the dew point stays high after these checks, see [troubleshooting common dryer problems](/blog/troubleshooting-common-problems.html) or contact us for service and spares.
+
+## Frequently asked questions
+
+### How often should a refrigerated air dryer condenser be cleaned?
+Every week in hot, dusty plants. Dust, fibre and oil mist on the condenser fins are the most common cause of high condensing temperature and poor dew point. Blow clean with compressed air from the clean side outwards without bending the fins.
+
+### When should a compressed air pre-filter element be replaced?
+When the differential pressure across it reaches 0.7 bar g. Check it monthly.
+
+### Why is my air dryer inlet temperature too high?
+WRD dryers accept 10 to 60 °C inlet air. Air arriving hotter usually means the compressor's aftercooler needs attention.
+
+### What should be checked on an air dryer once a year?
+A technician should check refrigerant pressures and refrigeration compressor current, deep-clean the condenser, check the hot gas bypass valve, and check electrical connections, contactors and overload settings.

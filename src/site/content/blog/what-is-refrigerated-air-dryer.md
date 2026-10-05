@@ -3,10 +3,11 @@ title: What is a refrigerated air dryer and how does it work?
 seo_title: What Is a Refrigerated Air Dryer? How It Works | Win
 description: How a refrigerated air dryer removes water from compressed air: pre-cooling, chilling to a +3 °C dew point, separating condensate and re-heating.
 date: 2026-09-16
-updated: 2026-10-03
+updated: 2026-10-05
 products: refrigerated-air-dryers, automatic-drain-valves, compressed-air-filters
 category: Air dryers
 order: 1
+answer: A refrigerated air dryer removes water from compressed air by cooling it until the moisture condenses, draining the condensate, then re-heating the dry air. WRD dryers deliver a +3 °C pressure dew point, so liquid water cannot form in pipework that stays above +3 °C, which covers most Indian plants.
 ---
 Every air compressor is also a water pump. The air it draws in carries water vapour, and compression concentrates it. When that hot, saturated air cools in the receiver and pipework, the vapour condenses into liquid water that reaches your valves, cylinders, tools and product.
 
@@ -56,3 +57,17 @@ If your process needs air that stays dry below freezing, or a dew point of −20
 ## Sizing
 
 A dryer's rating changes with inlet temperature, ambient temperature, pressure and dew point. Use the [air dryer sizing calculator](/engineering-tools/air-dryer-sizing.html) to apply the catalogue correction factors and find the matching WRD model.
+
+## Frequently asked questions
+
+### How does a refrigerated air dryer work?
+Hot air is pre-cooled by the outgoing cold air, chilled in the evaporator to the dew point, the condensed water is separated and drained, and the cold dry air is re-heated before it leaves. An expansion valve and hot gas bypass valve match the refrigeration to the air load.
+
+### What is pressure dew point?
+The temperature at which water starts to condense from compressed air at line pressure. A +3 °C pressure dew point means liquid water cannot form as long as the pipework stays above +3 °C.
+
+### How much water does a refrigerated dryer remove?
+Saturated air at 7 bar g and 45 °C holds about 7.5 g of water vapour per kg of air; at +3 °C it holds about 0.6 g/kg, so roughly 92% has to condense. For a 100 CFM compressor running continuously that is about 34 litres a day (calculated).
+
+### Which industries use refrigerated air dryers?
+Most plant air users: automobile, cement, chemical, electronics, food processing, foundry, glass, leather, textile, paper, rice mills, power plants and printing are listed in our catalogue as typical users.

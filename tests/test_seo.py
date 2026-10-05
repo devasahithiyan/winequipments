@@ -102,3 +102,60 @@ def test_every_page_linked_from_somewhere():
             linked.add(ref)
     orphans = [url_of(p) for p in INDEXABLE if url_of(p) not in linked and url_of(p) != "/"]
     assert not orphans, orphans
+
+
+ARTICLES = sorted(p for p in (PUBLIC / "blog").glob("*.html") if p.name != "glossary.html")
+
+
+def graph(src):
+    nodes = []
+    for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', src, re.S):
+        d = json.loads(block)
+        nodes += d.get("@graph", [d])
+    return nodes
+
+
+@pytest.mark.parametrize("page", ARTICLES, ids=rel)
+def test_article_answer_and_faq(page):
+    src = page.read_text()
+    m = re.search(r'<div class="art__answer"><p class="art__answer-h">Short answer</p><p>(.*?)</p>', src, re.S)
+    assert m, "short answer box"
+    words = len(html.unescape(re.sub(r"<[^>]+>", "", m.group(1))).split())
+    assert 25 <= words <= 70, f"short answer {words} words"
+    faq = [n for n in graph(src) if n.get("@type") == "FAQPage"]
+    assert faq, "FAQPage schema"
+    qs = [q["name"] for q in faq[0]["mainEntity"]]
+    assert len(qs) >= 3, qs
+    visible = [html.unescape(s).strip() for s in re.findall(r"<summary>(.*?)<svg", src, re.S)]
+    assert set(qs) <= set(visible), set(qs) - set(visible)
+
+
+def test_org_schema_service_area():
+    org = next(n for n in graph((PUBLIC / "index.html").read_text()) if n.get("@id") == SITE + "/#org")
+    cities = {a["name"] for a in org["areaServed"] if a["@type"] == "City"}
+    assert cities == {"Coimbatore", "Tiruppur", "Erode", "Hosur", "Chennai", "Bengaluru"}
+
+
+def test_glossary():
+    nodes = graph((PUBLIC / "blog" / "glossary.html").read_text())
+    terms = next(n for n in nodes if n.get("@type") == "DefinedTermSet")["hasDefinedTerm"]
+    assert len(terms) >= 15
+
+
+def test_llms_files(sitemap_urls):
+    idx = (PUBLIC / "llms.txt").read_text()
+    missing = [u for u in sitemap_urls if u != "/" and SITE + u not in idx]
+    assert not missing, missing
+    full = (PUBLIC / "llms-full.txt").read_text()
+    assert "SF No. 4/195 B, Kallangadu" in full and "+91 95972 28969" in full
+
+
+def test_banned_phone_nowhere():
+    for p in list(ALL) + [PUBLIC / "llms.txt", PUBLIC / "llms-full.txt"]:
+        assert "28978" not in p.read_text(), rel(p)
+
+
+def test_robots_ai_crawlers():
+    txt = (PUBLIC / "robots.txt").read_text()
+    for bot in ("GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"):
+        assert f"User-agent: {bot}" in txt

@@ -8,6 +8,7 @@ products: round-cooling-towers, square-cooling-towers, closed-circuit-cooling-to
 category: Cooling towers
 order: 20
 photo: round-tower.jpg | Round FRP cooling tower
+answer: Cross flow and counter flow describe only the air direction relative to falling water. In counter flow, air moves up against the water; in cross flow, air moves horizontally across it. Neither is more efficient as a rule. Cold water depends on wet bulb, approach, range, fill and air volume.
 ---
 Every evaporative cooling tower brings hot water and air into contact so that a small part of the water evaporates and cools the rest. "Cross flow" and "counter flow" describe only one thing: the direction the air moves relative to the falling water.
 

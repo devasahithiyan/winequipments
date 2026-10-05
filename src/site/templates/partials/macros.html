@@ -16,7 +16,7 @@
   {% for f in items %}
   <details>
     <summary>{{ f.q }}<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
-    <div><p>{{ f.a }}</p></div>
+    <div><p>{{ f.html if f.html is defined else f.a }}</p></div>
   </details>
   {% endfor %}
 </div>

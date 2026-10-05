@@ -8,6 +8,7 @@ products: round-cooling-towers, square-cooling-towers, closed-circuit-cooling-to
 category: Cooling towers
 order: 18
 photo: round-towers-installed.jpg | Round FRP cooling towers installed on site
+answer: An FRP cooling tower sprays water into the air and cools it by evaporation to wet bulb + 4 °C, but loses water. A coil cooling tower keeps water sealed in finned tubes and cools it by air to ambient + 4 °C with no water loss. Choose FRP for the coldest water, coil for sealed loops like genset jacket water.
 ---
 Both an FRP cooling tower and a coil cooling tower take hot water from your equipment and send it back cooler. They do it in opposite ways. An FRP tower sprays the water into the air and lets a small part of it evaporate. A coil tower keeps the water sealed inside finned tubes and blows air across the outside. That one difference decides how cold the water can get, how much water you lose and which duties each one suits.
 
@@ -76,3 +77,17 @@ FRP towers handle hot water by choosing the right fill: L fills for inlet water 
 For FRP towers, work out flow, range and approach with the [cooling tower calculator](/engineering-tools/cooling-tower-calculator.html), and read [range, approach and wet bulb](/blog/cooling-tower-range-approach-wet-bulb.html) and [round vs square cooling towers](/blog/round-vs-square-cooling-towers.html). Model tables are on the [round](/products/round-cooling-towers.html) and [square](/products/square-cooling-towers.html) cooling tower pages.
 
 For gensets, read [coil cooling towers for diesel gensets](/blog/coil-cooling-towers-for-diesel-gensets.html) and see the WCC table on the [coil cooling towers page](/products/closed-circuit-cooling-towers.html). Send us the genset kVA, the engine maker's heat rejection and water flow, and your site ambient.
+
+## Frequently asked questions
+
+### Which cooling tower gives colder water, FRP or coil?
+An FRP tower. It is rated at wet bulb + 4 °C, and wet bulb is always at or below ambient, while a coil tower is rated at ambient + 4 °C.
+
+### Does a coil cooling tower lose water?
+No. The water stays sealed in the coil and there is no evaporation or drift from the process loop. Once filled it only needs topping up for leaks.
+
+### How much water does an FRP cooling tower evaporate?
+Evaporation loss = 0.00085 × 1.8 × flow (m³/hr) × range. At 30 m³/hr and a 5 °C range that is about 0.23 m³/hr, or around 5.5 m³ a day (calculated), plus drift and blow-down.
+
+### When should I choose a coil cooling tower?
+When the water must stay sealed and clean, such as diesel genset jacket water returning at 75 to 90 °C, when ambient + 4 °C is cold enough, or when make-up water is scarce. WCC models cover 40 to 280 TR for 150 to 2000 kVA gensets.

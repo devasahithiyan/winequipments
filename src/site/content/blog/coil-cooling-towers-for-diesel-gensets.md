@@ -3,11 +3,12 @@ title: Coil cooling towers for diesel gensets
 seo_title: Coil Cooling Towers for Diesel Gensets | Win Equipments
 description: How a coil cooling tower (dry cooler) keeps diesel genset jacket water sealed, how it differs from an FRP tower, and which WCC model suits your genset.
 date: 2026-10-04
-updated: 2026-10-04
+updated: 2026-10-05
 products: closed-circuit-cooling-towers, round-cooling-towers
 category: Cooling towers
 order: 16
 photo: coil-cooling-tower.jpg | Coil cooling tower
+answer: A coil cooling tower cools diesel genset jacket water inside a sealed finned copper coil with axial fans, so the water never touches air and there is no evaporation or water loss. It delivers water at ambient + 4 °C. WCC models cover 40 to 280 TR for gensets from 150 to 2000 kVA.
 ---
 A diesel genset's engine jacket water has to stay clean and sealed. A coil cooling tower cools it inside a finned coil, so the water never touches the air.
 
@@ -44,3 +45,17 @@ WCC coil cooling towers cover **40 to 280 TR**, matched to diesel gensets from *
 ## Choosing a model
 
 Send us the genset rating (kVA), the engine maker's heat rejection and water flow, and your site ambient temperature. Our engineers will select the WCC model; the full model table is on the [coil cooling towers page](/products/closed-circuit-cooling-towers.html).
+
+## Frequently asked questions
+
+### What is a coil cooling tower?
+A cooling tower that cools water inside a finned coil. Axial fans push air across copper tubes with extended fins, so the water stays sealed and is cooled by air alone, with no evaporation or water loss.
+
+### Why use a coil cooling tower for a diesel genset?
+Engine jacket water has to stay clean and sealed. A coil tower keeps it inside the coil, so there is no contamination of the circuit, and it handles hot water returning from the engine at 75 to 90 °C.
+
+### What is the difference between a coil cooling tower and an FRP cooling tower?
+A coil tower cools sealed water by air across finned tubes and delivers ambient + 4 °C with no water loss. An FRP tower sprays the water into the air and cools by evaporation, reaching colder water at wet bulb + 4 °C, but loses water to evaporation, drift and blow-down.
+
+### What information is needed to select a coil cooling tower?
+The genset rating in kVA, the engine maker's heat rejection and water flow, and your site ambient temperature.

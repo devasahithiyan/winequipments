@@ -8,6 +8,7 @@ products: shell-and-tube-heat-exchangers, industrial-process-chillers, round-coo
 category: Cooling
 order: 25
 photo: shell-tube-heat-exchanger.jpg | Shell and tube heat exchanger
+answer: A shell and tube heat exchanger passes one fluid through a bundle of tubes and the other around them inside a shell, with baffles directing the shell-side flow. It suits higher pressures and temperatures and oil coolers. Win builds them to order, sized from both fluids, flows, temperatures, pressures and materials.
 ---
 A heat exchanger moves heat from one fluid to another without letting the two mix. It is one of the most common pieces of process equipment. This guide covers the main types in general, then the shell and tube design in detail.
 

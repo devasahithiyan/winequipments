@@ -6,7 +6,7 @@
 {% block og_type %}article{% endblock %}
 {% block og_image %}{% if ph %}{{ image_url('images/works/' ~ ph[0] | trim) }}{% else %}{{ image_url(products[a.products[0]].image) }}{% endif %}{% endblock %}
 {% block description %}{{ a.description }}{% endblock %}
-{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Article", "headline": a.title, "description": a.description, "datePublished": a.date, "dateModified": a.updated, "image": self.og_image(), "author": {"@type": "Organization", "name": site.name, "url": site.url ~ "/"}, "publisher": {"@id": site.url ~ "/#org"}, "mainEntityOfPage": site.url ~ a.url, "articleSection": a.category, "wordCount": a.words, "inLanguage": "en-IN"}]}) }}{% endblock %}
+{% block schema %}{% set a_about = [] %}{% for slug in a.products %}{% set _ = a_about.append({"@id": site.url ~ product_url(slug) ~ "#product"}) %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Article", "headline": a.title, "description": a.description, "datePublished": a.date, "dateModified": a.updated, "image": self.og_image(), "author": {"@type": "Organization", "name": site.name, "url": site.url ~ "/"}, "publisher": {"@id": site.url ~ "/#org"}, "mainEntityOfPage": site.url ~ a.url, "articleSection": a.category, "wordCount": a.words, "inLanguage": "en-IN", "isPartOf": {"@type": "Blog", "name": "Win Equipments articles", "url": site.url ~ "/blog.html"}, "about": a_about}] + ([faq_ld(a.faqs)] if a.faqs else [])}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
 <div class="read-progress" aria-hidden="true"></div>
@@ -15,12 +15,23 @@
     <p class="art__cat">{{ a.category }}</p>
     <h1 data-split>{{ a.title }}</h1>
     <p class="art__meta"><span>By {{ site.name }} engineers</span><span>Updated <time datetime="{{ a.updated }}">{{ a.updated | datefmt }}</time></span><span>{{ (a.words / 200) | round(0, 'ceil') | int }} min read</span></p>
+  {% if a.answer is defined %}
+    <div class="art__answer"><p class="art__answer-h">Short answer</p><p>{{ a.answer }}</p></div>
+    {% endif %}
   </header>
   {% if ph %}
   <figure class="art__hero container">{{ picture('images/works/' ~ ph[0] | trim, ph[1] | trim, sizes='(min-width: 960px) 900px, 100vw', eager=True, max_w=1400) }}<figcaption>{{ ph[1] | trim }}</figcaption></figure>
   {% endif %}
   <div class="container art__grid">
-    <div class="art__body prose">{{ md(a.body) }}</div>
+    <div class="art__body prose">{{ md(a.body) }}
+      {% if a.faqs %}
+      <section class="art__faq" aria-labelledby="faq">
+        <h2 id="faq">Frequently asked questions</h2>
+        {{ m.faq(a.faqs) }}
+      </section>
+      {% endif %}
+      {% if a.after_faq %}{{ md(a.after_faq) }}{% endif %}
+    </div>
     <aside class="art__side" aria-label="Products in this article">
       <p class="art__side-h">Products in this article</p>
       <ul>{% for slug in a.products %}{% set pr = products[slug] %}<li><a href="{{ product_url(slug) }}"><span class="art__side-img">{{ picture(studio(pr.image), '', sizes='64px', max_w=320) }}</span><span><strong>{{ pr.name }}</strong><em>{{ pr.range }}</em></span></a></li>{% endfor %}</ul>

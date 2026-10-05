@@ -3,10 +3,11 @@ title: Where wet compressed air costs you money
 seo_title: The Cost of Wet Compressed Air | Win Equipments
 description: How water in compressed air adds cost through corrosion, leaks, pressure drop, component wear and rejects, and how to get the treatment right.
 date: 2026-09-16
-updated: 2026-10-03
+updated: 2026-10-05
 products: refrigerated-air-dryers, automatic-drain-valves, compressed-air-filters, industrial-aftercoolers
 category: Buying guide
 order: 11
+answer: Wet compressed air raises costs through corroded, leaking pipework, extra pressure drop from blocked filters and scale, faster wear on valves and cylinders, product rejects and drains that vent air. Cool the air with an aftercooler, drain automatically, dry it with a correctly sized dryer, and filter only to the class you need.
 ---
 Compressed air is one of the most expensive utilities in a plant, because most of the compressor's power ends up as heat. Water in that air adds further cost in ways that are easy to overlook.
 
@@ -40,3 +41,17 @@ Condensate must be drained, but a drain left cracked open, or a timer drain set 
 4. Filter to the ISO 8573-1 class your process needs, and no tighter.
 
 Use the [air dryer sizing calculator](/engineering-tools/air-dryer-sizing.html) or ask us to review your system.
+
+## Frequently asked questions
+
+### How does pressure drop increase compressed air energy cost?
+The compressor must run at a higher pressure to deliver the same pressure at the machines. A commonly used rule of thumb is roughly 7% more compressor power for each extra bar.
+
+### When should compressed air filter elements be changed?
+At 0.7 bar g differential pressure, rather than leaving them to block. WMF filters list their clean pressure drop by grade, from 0.03 bar g for GP to 0.12 bar g for ZC.
+
+### Can condensate drains waste compressed air?
+Yes. A drain left cracked open, or a timer drain set to open too long, vents compressed air continuously. A no-air-loss drain such as the WDV F16 discharges only condensate.
+
+### What is the right order of compressed air treatment?
+Cool the air with an aftercooler, drain the receiver and every filter automatically, dry the air with a correctly sized refrigerated dryer (or a desiccant dryer where the process needs it), and filter to the ISO 8573-1 class your process needs.

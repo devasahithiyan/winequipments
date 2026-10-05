@@ -8,6 +8,7 @@ products: moisture-separators, industrial-aftercoolers, automatic-drain-valves, 
 category: Air dryers
 order: 24
 photo: aftercooler-1.jpg | Air-cooled aftercooler with moisture separator and filter regulator
+answer: A moisture separator removes liquid water droplets from compressed air, usually straight after the aftercooler, by changing the air's direction or slowing it so droplets fall out and drain away. It does not remove water vapour, so it is a first stage ahead of the receiver and dryer, not a replacement for a dryer.
 ---
 A moisture separator is a vessel that removes liquid water from compressed air. Hot air leaving a compressor carries most of its water as vapour. Once an aftercooler cools it, much of that vapour condenses into droplets, and the separator catches them so they can be drained away.
 

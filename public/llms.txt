@@ -1,20 +1,106 @@
 # Win Equipments
 
-> Win Equipments (est. 2008) manufactures compressed air treatment equipment, process chillers and FRP cooling towers at Arasur, Coimbatore, Tamil Nadu, India, with 1,200+ installations. Tagline: Save Water and Power.
+> Win Equipments (est. 2008) manufactures compressed air treatment equipment, process chillers, cooling towers and heat exchangers at Arasur, Coimbatore, Tamil Nadu, India, with 1,200+ installations. Tagline: Save Water and Power.
 
 Address: SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407, Tamil Nadu, India
 Phone: +91 95972 28969, +91 95972 28975
 Email: info@winequipments.com
+Cities supplied: Coimbatore, Tiruppur, Erode, Hosur, Chennai, Bengaluru
 
 ## Product families
-- [Compressed air treatment](https://winequipments.com/products/compressed-air-treatment.html): refrigerated and desiccant air dryers, compressed air filters, automatic drain valves, air receiver tanks, aftercoolers
-- [Cooling towers](https://winequipments.com/products/cooling-towers.html): round and square FRP cooling towers, closed-circuit cooling towers
-- [Process cooling](https://winequipments.com/products/process-cooling.html): industrial process chillers and engineered-to-order chillers
-- [All products](https://winequipments.com/products/)
+- [Compressed Air Treatment](https://winequipments.com/products/compressed-air-treatment.html): Refrigerated and desiccant air dryers, compressed air filters, drain valves, air receivers and aftercoolers manufactured by Win Equipments, Coimbatore.
+- [Process Cooling](https://winequipments.com/products/process-cooling.html): Process chillers from 0.5 to 20 TR, engineered chillers, heat exchangers and condensing units, built by Win Equipments in Coimbatore.
+- [Cooling Towers](https://winequipments.com/products/cooling-towers.html): Round and square FRP cooling towers 10–300 TR and coil cooling towers 40–280 TR, plus cooling tower spares. Manufactured by Win Equipments, Coimbatore.
+
+## Products
+- [Refrigerated Compressed Air Dryers](https://winequipments.com/products/refrigerated-air-dryers.html): Refrigerated compressed air dryer manufacturer in Coimbatore: WRD dryers, 10–2000 CFM, +3°C pressure dew point, 3–16 bar g inlet.
+- [Heatless Desiccant Air Dryers](https://winequipments.com/products/desiccant-air-dryers.html): WHD heatless desiccant compressor air dryers, 300–2000 CFM, −20 °C to −40 °C pressure dew point. Win Equipments, Coimbatore.
+- [Compressed Air Filters](https://winequipments.com/products/compressed-air-filters.html): WMF coalescing compressed air filters, 40–1700 CFM, GP, ZP, ZO and ZC grades to ISO 8573-1, up to 30 bar g. Win Equipments, Coimbatore.
+- [Automatic Condensate Drain Valves](https://winequipments.com/products/automatic-drain-valves.html): Automatic drain valves for air compressors, receivers and dryers: WDV timer, micro-controller and no-air-loss types, up to 1000 CFM. Coimbatore.
+- [Compressed Air Receiver Tanks](https://winequipments.com/products/air-receiver-tanks.html): Air receiver tank manufacturer in Coimbatore: WRV receivers, 250–10,000 litres, 7 to 12.5 bar g, hydrostatically tested, ASME VIII on request.
+- [Compressed Air Aftercoolers with Moisture Separator](https://winequipments.com/products/industrial-aftercoolers.html): Air-cooled compressed air aftercoolers with moisture separator, built by Win Equipments, Coimbatore. Share compressor capacity and discharge temperature.
+- [Moisture Separators for Compressed Air](https://winequipments.com/products/moisture-separators.html): Compressed air moisture separators made in Coimbatore, fitted after the aftercooler to remove condensed water. Send flow, pressure and pipe size.
+- [Industrial Process Water Chillers](https://winequipments.com/products/industrial-process-chillers.html): WCP industrial process water chillers, 0.5–20 TR, air or water cooled, built-in stainless steel tank and pump. Manufactured by Win Equipments, Coimbatore.
+- [Medical Scan Chillers for MRI and CT](https://winequipments.com/products/medical-scan-chillers.html): Process chillers for MRI and CT imaging equipment, engineered to order by Win Equipments, Coimbatore. Share your scanner's cooling requirement for sizing.
+- [Anodizing & Electroplating Chillers](https://winequipments.com/products/anodizing-chillers.html): Chillers for anodizing and electroplating bath cooling, engineered to order by Win Equipments, Coimbatore. Share your bath chemistry and heat load.
+- [Acid Cooling Chillers](https://winequipments.com/products/acid-cooling-chillers.html): Chillers for acids and corrosive process fluids, engineered to order by Win Equipments, Coimbatore. Share the fluid, concentration and heat load.
+- [Industrial Ice Flake Machines](https://winequipments.com/products/ice-flake-machines.html): Industrial ice flake machines engineered to order by Win Equipments, Coimbatore. Share your daily ice requirement and application for sizing.
+- [Shell and Tube Heat Exchangers](https://winequipments.com/products/shell-and-tube-heat-exchangers.html): Shell and tube heat exchanger manufacturer in Coimbatore: engineered to order. Share both fluids, flows and temperatures for sizing and a quotation.
+- [Milk and Coconut Water Chillers](https://winequipments.com/products/milk-chillers.html): Chillers for milk, coconut water and other liquid foods, engineered to order by Win Equipments, Coimbatore. Share volume and temperatures.
+- [Soda Chillers for Beverage Plants](https://winequipments.com/products/soda-chillers.html): Soda chillers for carbonated drinks and beverage plants, engineered to order by Win Equipments, Coimbatore. Share output and temperatures.
+- [Refrigeration Condensing Units](https://winequipments.com/products/condensing-units.html): Refrigeration condensing units with compressor, condenser and controls on one base, assembled to order by Win Equipments, Coimbatore.
+- [Round FRP Cooling Towers](https://winequipments.com/products/round-cooling-towers.html): WCT round FRP bottle-type cooling towers, 10–300 TR, outlet water at wet bulb + 4 °C. Manufactured by Win Equipments, Coimbatore.
+- [Square FRP Cooling Towers](https://winequipments.com/products/square-cooling-towers.html): WCT square FRP cooling towers, 10–300 TR, spray-nozzle distribution and drift eliminators, outlet at wet bulb + 4 °C. Win Equipments, Coimbatore.
+- [Coil Cooling Towers (Dry Coolers)](https://winequipments.com/products/closed-circuit-cooling-towers.html): WCC finned-coil dry cooling towers, 40–280 TR, for diesel gensets 150–2000 kVA and closed process loops. Made by Win Equipments, Coimbatore.
+- [Spares for Cooling Towers, Chillers and Air Dryers](https://winequipments.com/products/spare-parts-consumables.html): Spares for cooling towers (fills, drift eliminators, sprinklers, motors, fans) and refrigeration (compressors, condensers, valves, filters).
+
+## Guides
+- [What is a refrigerated air dryer and how does it work?](https://winequipments.com/blog/what-is-refrigerated-air-dryer.html): How a refrigerated air dryer removes water from compressed air: pre-cooling, chilling to a +3 °C dew point, separating condensate and re-heating.
+- [Refrigerated vs desiccant air dryers: which do you need?](https://winequipments.com/blog/refrigerated-vs-desiccant.html): The difference between refrigerated (+3 °C) and heatless desiccant (−20 °C / −40 °C) air dryers, and how to choose for your process.
+- [How to size a refrigerated air dryer for your compressor](https://winequipments.com/blog/how-to-choose-dryer.html): Why a 100 CFM compressor rarely needs just a 100 CFM dryer: how inlet temperature, ambient, pressure and dew point change dryer capacity.
+- [ISO 8573-1 compressed air purity classes explained](https://winequipments.com/blog/iso-8573-1-compressed-air-purity-classes.html): The ISO 8573-1:2010 purity classes for particles, water and oil, and which dryers and filters reach each class.
+- [Why fit a refrigerated air dryer? Five practical benefits](https://winequipments.com/blog/key-benefits-refrigerated-air-dryers.html): What a refrigerated air dryer does for a compressed air system: less corrosion, protected valves and tools, steadier product quality and lower risk.
+- [Air dryer maintenance in hot, dusty plants](https://winequipments.com/blog/maintenance-tips-hot-climates.html): A practical maintenance routine for refrigerated air dryers in hot, dusty plants: drains, condenser cleaning, filters, dew point and bypass valves.
+- [Troubleshooting a refrigerated air dryer](https://winequipments.com/blog/troubleshooting-common-problems.html): Water downstream of the dryer, a high dew point, a drain that won't discharge, freezing or tripping: likely causes and what to check.
+- [Compressed air drying in textile, food and plastics plants](https://winequipments.com/blog/applications-textile-food.html): Why textile mills, food plants and plastics shops need dry compressed air, and which dryer, filters and drains suit each.
+- [Installing a compressed air dryer: a checklist](https://winequipments.com/blog/installing-servicing-tamil-nadu.html): Where to place a refrigerated air dryer, how to pipe it with filters, drains and a bypass, and what to check before commissioning.
+- [What decides the cost of an industrial air dryer?](https://winequipments.com/blog/pricing-in-coimbatore.html): The factors that set the price of a refrigerated or desiccant air dryer, and the questions to ask so quotations compare like for like.
+- [Where wet compressed air costs you money](https://winequipments.com/blog/save-energy-reduce-costs.html): How water in compressed air adds cost through corrosion, leaks, pressure drop, component wear and rejects, and how to get the treatment right.
+- [How to size an industrial process chiller (TR calculation)](https://winequipments.com/blog/how-to-size-a-process-chiller.html): Work out process chiller capacity in TR from water flow and temperature rise, then correct it for outlet and ambient temperature, with a worked example.
+- [How an industrial process chiller works](https://winequipments.com/blog/how-a-process-chiller-works.html): The two circuits inside a process water chiller, what each component does, and how the chiller holds your water at a set temperature.
+- [Cooling tower basics: range, approach and wet bulb](https://winequipments.com/blog/cooling-tower-range-approach-wet-bulb.html): What range, approach and wet bulb mean for a cooling tower, how to calculate heat load in TR, choose the fill and estimate evaporation loss.
+- [Round vs square FRP cooling towers](https://winequipments.com/blog/round-vs-square-cooling-towers.html): How round (bottle) and square FRP cooling towers differ in water distribution, footprint and layout, and how to choose between them.
+- [Coil cooling towers for diesel gensets](https://winequipments.com/blog/coil-cooling-towers-for-diesel-gensets.html): How a coil cooling tower (dry cooler) keeps diesel genset jacket water sealed, how it differs from an FRP tower, and which WCC model suits your genset.
+- [Air-cooled vs water-cooled process chillers](https://winequipments.com/blog/air-cooled-vs-water-cooled-chiller.html): How air-cooled and water-cooled process chillers reject heat, how site ambient, an existing cooling tower, space and water decide which to buy.
+- [FRP vs coil cooling towers: open or sealed loop?](https://winequipments.com/blog/frp-vs-coil-cooling-tower.html): How FRP evaporative towers and finned-coil cooling towers differ in cold water temperature, water loss and duty, and when to choose each one.
+- [Aftercooler vs air dryer: do you need both?](https://winequipments.com/blog/aftercooler-vs-air-dryer.html): What an aftercooler does, what a refrigerated air dryer does, and why most compressed air systems use both in sequence before the air reaches machines.
+- [Cross flow vs counter flow cooling towers](https://winequipments.com/blog/cross-flow-vs-counter-flow-cooling-tower.html): How cross flow and counter flow cooling towers differ in air path, fill, footprint and maintenance access, and what to ask when choosing a tower.
+- [Types of cooling tower and which one fits your plant](https://winequipments.com/blog/types-of-cooling-tower.html): The main cooling tower types, and the three that Win Equipments builds: round and square FRP towers and coil (dry cooler) towers, with how to choose.
+- [Automatic drain valves for air compressors: types and selection](https://winequipments.com/blog/automatic-drain-valve-guide.html): How timer, micro-controller, float and no-air-loss automatic drain valves work, where to fit them on a compressed air system, and how to choose one.
+- [Compressed air dryers: types, dew point and how to choose](https://winequipments.com/blog/compressed-air-dryer-guide.html): A plain guide to compressed air dryers for compressors: refrigerated and desiccant types, pressure dew point, ISO 8573-1 classes and sizing corrections.
+- [Moisture separators for air compressors: what they do and where they go](https://winequipments.com/blog/moisture-separator-guide.html): What a compressed air moisture separator does, why it sits after the aftercooler, how it works, and what to send us to have one engineered.
+- [Shell and tube heat exchangers: types, selection and design inputs](https://winequipments.com/blog/shell-and-tube-heat-exchanger-guide.html): The main heat exchanger types, how a shell and tube heat exchanger works, what design information is needed, and what Win Equipments builds to order.
+- [Glossary](https://winequipments.com/blog/glossary.html): definitions of compressed air and cooling terms
+
+## Sizing tools
+- [Air dryer sizing calculator](https://winequipments.com/engineering-tools/air-dryer-sizing.html): Size a refrigerated air dryer from compressor CFM, inlet and ambient temperature, pressure and dew point, using WRD catalogue correction factors.
+- [Chiller tonnage calculator](https://winequipments.com/engineering-tools/chiller-tonnage-calculator.html): Work out the chiller capacity in TR from water flow and temperature rise, corrected for outlet and ambient temperature, and find the matching WCP model.
+- [Cooling tower calculator](https://winequipments.com/engineering-tools/cooling-tower-calculator.html): Calculate cooling tower heat load in TR, check the approach to wet bulb, choose the fill type and estimate evaporation loss, then find a WCT tower.
+
+## Industries
+- [Plastics & injection moulding](https://winequipments.com/industries/plastic-molding.html): Process chillers and FRP cooling towers for injection moulding, blow moulding and plastic machinery. Built by Win Equipments, Coimbatore.
+- [Textile, spinning & knitting mills](https://winequipments.com/industries/textile-mills.html): Refrigerated air dryers, FRP cooling towers and coil cooling towers for spinning, weaving and knitting mills. Built by Win Equipments, Coimbatore.
+- [Automotive & CNC machine shops](https://winequipments.com/industries/automotive-cnc.html): Refrigerated air dryers, process chillers and cooling towers for automotive plants and CNC machine shops. Built by Win Equipments, Coimbatore.
+- [Food, dairy & beverage](https://winequipments.com/industries/food-dairy-beverage.html): Process chillers, ice flake machines, refrigerated air dryers and cooling towers for food, dairy and beverage plants. Win Equipments, Coimbatore.
+- [Pharma & chemical](https://winequipments.com/industries/pharma-chemical.html): Acid cooling chillers, refrigerated air dryers and cooling towers for pharmaceutical and chemical plants. Built by Win Equipments, Coimbatore.
+- [Hospitals & healthcare](https://winequipments.com/industries/hospitals-healthcare.html): Medical scan chillers for MRI and CT equipment, plus FRP and coil cooling towers for hospitals. Built by Win Equipments, Coimbatore.
+- [Diesel gensets & power](https://winequipments.com/industries/diesel-gensets-power.html): Coil cooling towers for diesel gensets 150–2000 kVA, and FRP cooling towers for power plant duties. Built by Win Equipments, Coimbatore.
+- [Cement, paper & sugar](https://winequipments.com/industries/cement-paper-sugar.html): Compressed air dryers, process chillers and cooling towers for cement, paper and sugar plants. Built by Win Equipments, Coimbatore.
+
+## Locations
+- [Air dryers for Tiruppur textile and garment units](https://winequipments.com/locations/tirupur-textile-air-dryers.html): Refrigerated air dryers, filters and drains for Tiruppur knitting, garment and textile units, built and commissioned from our Arasur works near Coimbatore.
+- [Air dryers and chillers for Hosur machine shops](https://winequipments.com/locations/hosur-cnc-air-dryers.html): Refrigerated air dryers, filters and process chillers for Hosur's automotive and CNC machine shops, built and commissioned by Win Equipments, Coimbatore.
+- [Cooling towers for Erode industries](https://winequipments.com/locations/erode-cooling-towers.html): Round and square FRP cooling towers, 10 to 300 TR, and coil cooling towers for Erode's textile, processing and engineering units. Built in Coimbatore.
+- [Process chillers for Chennai plants](https://winequipments.com/locations/chennai-industrial-chillers.html): WCP process chillers from 0.5 to 20 TR and engineered chillers for Chennai's automotive, plastics and manufacturing plants. Built by Win Equipments.
+- [Compressed air dryers for Bengaluru plants](https://winequipments.com/locations/bangalore-compressed-air-dryers.html): Refrigerated and desiccant air dryers, filters and drains for Bengaluru's engineering, electronics and pharma plants, built by Win Equipments, Coimbatore.
+- [Cooling tower manufacturers in Coimbatore](https://winequipments.com/locations/coimbatore-cooling-towers.html): FRP round and square cooling towers (10–300 TR) and coil cooling towers made at our works in Arasur, Coimbatore. Send your duty for a quotation.
+- [Heat exchanger manufacturers in Coimbatore](https://winequipments.com/locations/coimbatore-heat-exchangers.html): Shell and tube heat exchangers engineered to order at our works in Arasur, Coimbatore. Share fluids, flows and temperatures for sizing and a quote.
+- [Shell and tube heat exchangers for Chennai plants](https://winequipments.com/locations/chennai-heat-exchangers.html): Shell and tube heat exchangers engineered to order, built at Arasur, Coimbatore and supplied to Chennai plants. Share fluids, flows and temperatures.
+- [Industrial chillers for Bengaluru plants](https://winequipments.com/locations/bangalore-industrial-chillers.html): WCP industrial process chillers, 0.5–20 TR, built at Arasur, Coimbatore and supplied to Bengaluru plants. Send your TR and temperature for a quote.
+- [Air dryer manufacturers in Coimbatore](https://winequipments.com/locations/coimbatore-air-dryers.html): Refrigerated (10–2000 CFM) and desiccant (300–2000 CFM) compressed air dryers made at our works in Arasur, Coimbatore, with filters and drains.
+- [Heat exchanger manufacturer in India](https://winequipments.com/locations/india-heat-exchanger-manufacturer.html): Win Equipments, Coimbatore, builds shell and tube heat exchangers to order since 2008. Share fluids, flows and temperatures for sizing and a quotation.
+- [Cooling tower manufacturer in India](https://winequipments.com/locations/india-cooling-tower-manufacturer.html): FRP round and square cooling towers (10–300 TR) and coil cooling towers (40–280 TR) made by Win Equipments, Coimbatore. Send your duty for a quote.
+- [Water chiller manufacturer in India](https://winequipments.com/locations/india-water-chiller-manufacturer.html): WCP industrial water chillers, 0.5–20 TR, air or water cooled, made by Win Equipments, Coimbatore. Send your TR and temperature for a quotation.
 
 ## Company and help
 - [About Win Equipments](https://winequipments.com/about.html)
-- [Engineering tools: sizing calculators](https://winequipments.com/engineering-tools/)
-- [Articles](https://winequipments.com/blog.html)
+- [Certifications](https://winequipments.com/certifications.html)
 - [Contact and request a quote](https://winequipments.com/contactus.html)
-- [Catalogue (PDF)](https://winequipments.com/downloads/win-equipments-catalogue.pdf)
+- [Downloads and catalogues](https://winequipments.com/downloads.html)
+- [All products](https://winequipments.com/products/)
+- [All articles](https://winequipments.com/blog.html)
+- [All sizing tools](https://winequipments.com/engineering-tools/)
+- [Industries served](https://winequipments.com/industries/)
+- [Locations](https://winequipments.com/locations/)
+- [Site map](https://winequipments.com/sitemap.html)
+- [Full facts in plain text](https://winequipments.com/llms-full.txt): product ranges, model tables and article answers

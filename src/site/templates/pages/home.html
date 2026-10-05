@@ -92,13 +92,15 @@
 
 <section class="marquee" aria-label="Plants we supply">
   <p class="marquee__label container">Supplying plants including</p>
+  <div class="marquee__viewport">
   <div class="marquee__track" data-marquee>
     <ul class="marquee__list">
-      {% for c in site.clients %}<li>{{ picture(c.file, c.name, sizes='140px') }}</li>{% endfor %}
+      {% for c in site.clients %}{% set lg = logo_clean(c.file) %}<li style="--h: {{ lg[1] }}px">{{ picture(lg[0], c.name, sizes='140px') }}</li>{% endfor %}
     </ul>
     <ul class="marquee__list" aria-hidden="true">
-      {% for c in site.clients %}<li>{{ picture(c.file, '', sizes='140px') }}</li>{% endfor %}
+      {% for c in site.clients %}{% set lg = logo_clean(c.file) %}<li style="--h: {{ lg[1] }}px">{{ picture(lg[0], '', sizes='140px') }}</li>{% endfor %}
     </ul>
+  </div>
   </div>
 </section>
 

@@ -4,4 +4,17 @@ Disallow: /thank-you.html
 Disallow: /send_rfq.php
 Disallow: /api_chat.php
 
+# AI search and assistant crawlers are welcome to read and cite the site
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
+Allow: /
+Disallow: /thank-you.html
+Disallow: /send_rfq.php
+Disallow: /api_chat.php
+
 Sitemap: https://winequipments.com/sitemap.xml

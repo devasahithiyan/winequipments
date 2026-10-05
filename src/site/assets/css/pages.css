@@ -360,6 +360,11 @@
 .art__head { padding-block: var(--s-6) var(--s-6); max-width: 60rem; }
 .art__head h1 { font-size: clamp(2rem, 1.2rem + 3.2vw, 3.75rem); line-height: 1.03; letter-spacing: -0.02em; font-stretch: 74%; margin-block: var(--s-2) var(--s-4); }
 .art__cat, .blog-list__cat { font-size: var(--fs-small); font-weight: 650; color: var(--green-ink); }
+.art__answer { margin-top: var(--s-6); max-width: 46rem; padding: var(--s-4) var(--s-5); border-left: 4px solid var(--green); background: #eef6ef; border-radius: 0 var(--r-2) var(--r-2) 0; color: var(--ink); }
+.art__answer p { margin: 0; }
+.art__answer-h { font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-ink); margin-bottom: var(--s-1) !important; }
+.art__faq { margin-top: var(--s-12); }
+.art__faq h2 { margin-bottom: var(--s-4); }
 .art__meta { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); font-size: var(--fs-small); color: var(--muted); }
 .art__hero { margin-block: 0 var(--s-8); }
 .art__hero picture, .art__hero img { display: block; width: 100%; }
@@ -391,6 +396,17 @@
 .art__side-img picture, .art__side-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .art__side li span:last-child { display: grid; font-size: 0.9375rem; line-height: 1.3; }
 .art__side em { font-style: normal; color: var(--muted); font-size: var(--fs-small); }
+/* glossary */
+.gloss-index { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-8); }
+.gloss-index a { padding: var(--s-1) var(--s-3); border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); font-size: var(--fs-small); color: var(--ink-2); text-decoration: none; }
+.gloss-index a:hover { border-color: var(--green); color: var(--green-ink); }
+.gloss { display: grid; gap: var(--s-3); max-width: 52rem; }
+.gloss__item { padding: var(--s-4) var(--s-5); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-3); scroll-margin-top: 6rem; }
+.gloss__item:target { border-color: var(--green); }
+.gloss dt { font-weight: 700; font-size: 1.125rem; color: var(--ink); margin-bottom: var(--s-1); }
+.gloss dd { margin: 0; color: var(--ink-2); }
+.gloss dd p + p { margin-top: var(--s-2); }
+.gloss__src { font-size: var(--fs-small); color: var(--muted); }
 .blog-list { list-style: none; display: grid; gap: var(--s-3); }
 @media (min-width: 760px) { .blog-list { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1100px) { .blog-list { grid-template-columns: repeat(3, 1fr); } }

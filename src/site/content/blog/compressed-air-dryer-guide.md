@@ -8,6 +8,7 @@ products: refrigerated-air-dryers, desiccant-air-dryers, compressed-air-filters,
 category: Air dryers
 order: 23
 photo: compact-twin-tower-dryer.jpg | Compact twin-tower desiccant air dryer
+answer: A compressed air dryer lowers the pressure dew point so water cannot condense in your pipes. Refrigerated dryers chill the air to +3 °C and suit most plant air from 10 to 2000 CFM. Heatless desiccant dryers reach −20 °C or −40 °C for drier duties but use purge air.
 ---
 A compressor squeezes moist air into a smaller volume and heats it. As it cools in the pipework the water condenses and reaches your machines. A compressed air dryer for your compressor removes that moisture before it does damage.
 

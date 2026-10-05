@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Articles', '/blog.html'), ('Glossary', '/blog/glossary.html')] %}
+{% set titles = {} %}{% for b in articles %}{% set _ = titles.update({b.url: b.title}) %}{% endfor %}
+{% block title %}Compressed Air & Cooling Glossary | Win Equipments{% endblock %}
+{% block description %}Plain definitions of pressure dew point, FAD, TR, range, approach, wet bulb, ISO 8573-1 and other compressed air and cooling terms.{% endblock %}
+{% block schema %}{% set ns = namespace(items=[]) %}{% for g in glossary %}{% set ns.items = ns.items + [{"@type": "DefinedTerm", "@id": site.url ~ "/blog/glossary.html#" ~ model_id(g.term), "name": g.term, "description": g.def, "url": site.url ~ "/blog/glossary.html#" ~ model_id(g.term), "inDefinedTermSet": {"@id": site.url ~ "/blog/glossary.html#terms"}}] %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "DefinedTermSet", "@id": site.url ~ "/blog/glossary.html#terms", "name": "Compressed air and cooling glossary", "url": site.url ~ "/blog/glossary.html", "publisher": {"@id": site.url ~ "/#org"}, "hasDefinedTerm": ns.items}]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+<section class="page-head">
+  <div class="container">
+    <h1 data-split>Glossary</h1>
+    <p class="lede">Short definitions of the terms used in our articles, catalogues and sizing tools. Each links to the article that explains it in full.</p>
+  </div>
+</section>
+<section class="section section--rule" aria-label="Terms">
+  <div class="container">
+    <nav class="gloss-index" aria-label="Jump to a term">
+      {% for g in glossary %}<a href="#{{ model_id(g.term) }}">{{ g.term }}</a>{% endfor %}
+    </nav>
+    <dl class="gloss">
+      {% for g in glossary %}
+      <div class="gloss__item" id="{{ model_id(g.term) }}">
+        <dt>{{ g.term }}</dt>
+        <dd><p>{{ g.def }}</p><p class="gloss__src">Read more: <a href="{{ g.src }}">{{ titles[g.src] }}</a></p></dd>
+      </div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>
+{% include "partials/enquiry.html" %}
+{% endblock %}

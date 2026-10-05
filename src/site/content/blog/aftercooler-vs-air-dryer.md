@@ -8,6 +8,7 @@ products: industrial-aftercoolers, refrigerated-air-dryers, automatic-drain-valv
 category: Air dryers
 order: 19
 photo: aftercooler-1.jpg | Air-cooled aftercooler with moisture separator and filter regulator
+answer: An aftercooler cools hot compressor discharge air so the bulk of the water condenses and drains, but the air leaves still saturated. A refrigerated dryer then cools it to a +3 °C pressure dew point so no more water condenses downstream. They do different jobs, and most plants need both, aftercooler first.
 ---
 An aftercooler and an air dryer both take water out of compressed air, so they are often confused or treated as alternatives. They are not. They do different jobs at different points in the line, and most plants need both.
 
@@ -92,3 +93,17 @@ For a lower dew point than +3 °C, compare [refrigerated vs desiccant dryers](/b
 ## Next steps
 
 Size the dryer with the [air dryer sizing tool](/engineering-tools/air-dryer-sizing.html), which applies all four correction factors, and see the model table on the [refrigerated air dryers page](/products/refrigerated-air-dryers.html). Aftercoolers are engineered to order: send your compressor CFM and pressure, discharge temperature, air- or water-cooled preference and plant ambient through the [aftercoolers page](/products/industrial-aftercoolers.html). For the full selection walk-through, read [how to choose an air dryer](/blog/how-to-choose-dryer.html).
+
+## Frequently asked questions
+
+### Do I need an air dryer if I have an aftercooler?
+Usually yes. Air leaving an aftercooler is saturated at its outlet temperature, so it keeps dropping water as it cools further in the plant. Only a dryer brings the dew point below the lowest temperature the pipework will see.
+
+### How much water does an aftercooler remove compared with a dryer?
+In the WRD catalogue's example for 4000 CFM, the aftercooler removes about 4220 litres a day and the refrigerated dryer a further 1180 litres a day that would otherwise condense in the network.
+
+### Why does a dryer work better after an aftercooler?
+Dryer capacity depends on inlet temperature. The WRD inlet correction factor is 1.0 at 45 °C but 0.7 at 60 °C, so cooler air from an aftercooler lets a given dryer handle more flow, and air above 60 °C is outside the WRD inlet range.
+
+### What is the correct order of aftercooler and dryer?
+Air compressor, aftercooler, air receiver, pre-filter, refrigerated air dryer, fine filters, then the dry air receiver.

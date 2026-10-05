@@ -3,11 +3,12 @@ title: Refrigerated vs desiccant air dryers: which do you need?
 seo_title: Refrigerated vs Desiccant Air Dryer: Which to Choose
 description: The difference between refrigerated (+3 °C) and heatless desiccant (−20 °C / −40 °C) air dryers, and how to choose for your process.
 date: 2026-09-16
-updated: 2026-10-03
+updated: 2026-10-05
 products: refrigerated-air-dryers, desiccant-air-dryers, compressed-air-filters
 category: Air dryers
 order: 2
 photo: desiccant-dryer-twin-tower.jpg | WHD heatless desiccant air dryer
+answer: Choose by the pressure dew point your process needs. A refrigerated dryer chills the air to a +3 °C dew point and suits most plant air. A heatless desiccant dryer reaches −20 °C or −40 °C and suits cold pipe runs, instrument, pharma, electronics and food packaging air, but uses purge air.
 ---
 The question to ask is not "which dryer is better" but "how dry does my air need to be". That is set by the pressure dew point (PDP) your process can tolerate.
 
@@ -51,3 +52,20 @@ Oil and liquid water ruin desiccant. Fit a pre-filter to remove free water and d
 ## Still not sure?
 
 Use the [air dryer sizing calculator](/engineering-tools/air-dryer-sizing.html): it handles both types. Or send us your process and we will recommend the dryer.
+
+## Frequently asked questions
+
+### What is the difference between a refrigerated and a desiccant air dryer?
+A refrigerated dryer cools the air and drains the condensate, giving a +3 °C pressure dew point. A heatless desiccant dryer adsorbs water vapour onto activated alumina or molecular sieve, giving −20 °C or −40 °C.
+
+### When do I need a desiccant air dryer?
+When air lines run outdoors or through cold areas that can drop below +3 °C, when the process needs very dry air (instrument air, pharmaceutical or electronics work, food packaging or paint lines), or when ISO 8573-1 humidity class 3 or better is specified.
+
+### Which ISO 8573-1 humidity class does each dryer reach?
+A refrigerated dryer at +3 °C reaches class 4. A desiccant dryer reaches class 3 at −20 °C (activated alumina) or class 2 at −40 °C (molecular sieve).
+
+### Why does a desiccant dryer cost more to run?
+A small flow of dried compressed air is used as purge air to regenerate the off-line tower, and that air comes from your compressor. A refrigerated dryer needs no purge air.
+
+### What filters does a desiccant dryer need?
+A pre-filter to remove free water and dust, a zero-oil filter so compressor oil cannot coat the desiccant, and an after-filter to catch desiccant dust.
