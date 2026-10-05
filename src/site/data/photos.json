@@ -38,5 +38,6 @@
   {"file": "shell-tube-heat-exchanger.jpg", "caption": "Shell and tube heat exchanger", "product": "shell-and-tube-heat-exchangers"},
   {"file": "shop-floor-assembly.jpg", "caption": "Assembly floor at our Arasur works", "product": null, "works": 1},
   {"file": "shop-floor-control-panel.jpg", "caption": "Wiring a chiller control panel", "product": null, "works": 2},
-  {"file": "shop-floor-fabrication.jpg", "caption": "Fabrication at the works", "product": null, "works": 3}
+  {"file": "shop-floor-fabrication.jpg", "caption": "Fabrication at the works", "product": null, "works": 3},
+  {"file": "aftercooler-7.jpg", "caption": "Moisture separator and filter regulator fitted to an aftercooler", "product": "moisture-separators"}
 ]

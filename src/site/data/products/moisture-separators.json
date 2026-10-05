@@ -1,0 +1,58 @@
+{
+  "slug": "moisture-separators",
+  "family": "air",
+  "order": 7,
+  "name": "Moisture Separators",
+  "series": "Engineered to order",
+  "h1": "Moisture Separators for Compressed Air",
+  "title": "Moisture Separators for Air Compressors | Win Equipments",
+  "description": "Compressed air moisture separators made in Coimbatore, fitted after the aftercooler to remove condensed water. Send flow, pressure and pipe size.",
+  "card": "Separators that remove condensed water from compressed air after the aftercooler.",
+  "lede": "Cooling compressed air turns most of its water vapour into liquid. A moisture separator takes that liquid out of the air stream so it does not reach the receiver, dryer, filters or your machines. We make moisture separators at our works in Arasur, Coimbatore, on their own or as part of an aftercooler.",
+  "image": "images/Products/aftercooler.png",
+  "engineered": true,
+  "needs": [
+    "Compressor capacity (CFM) and working pressure",
+    "Air temperature at the separator inlet",
+    "Pipe connection size",
+    "Automatic drain type required (see our drain valves)",
+    "Whether it is supplied on its own or with an aftercooler"
+  ],
+  "related": [
+    "industrial-aftercoolers",
+    "automatic-drain-valves",
+    "refrigerated-air-dryers",
+    "compressed-air-filters"
+  ],
+  "industries": [
+    "automotive",
+    "textile"
+  ],
+  "gallery": [],
+  "range": "Engineered to order",
+  "key_specs": [],
+  "spec": null,
+  "faqs": [
+    {
+      "q": "What does a moisture separator do?",
+      "a": "It removes liquid water that has condensed out of compressed air, usually right after the aftercooler. Removing it early reduces the load on the dryer and keeps water out of the receiver and the pipework."
+    },
+    {
+      "q": "Where is a moisture separator fitted in a compressed air system?",
+      "a": "Directly after the aftercooler, before the air receiver. Our aftercoolers are supplied with a moisture separator, and the separator can also be supplied on its own."
+    },
+    {
+      "q": "Does a moisture separator replace an air dryer?",
+      "a": "No. It removes liquid water only. Water vapour still in the air is removed by a refrigerated or desiccant dryer, so a separator is the first step, not the last."
+    },
+    {
+      "q": "How do I get the water out of the separator?",
+      "a": "It needs a drain. An automatic drain valve from our WDV range empties it without a person opening a valve and without wasting compressed air."
+    },
+    {
+      "q": "Why is there no standard model table?",
+      "a": "We size each separator to your compressor capacity and pressure rather than publishing a fixed model list. Send your requirement and our engineers will recommend a configuration."
+    }
+  ],
+  "download": null
+}

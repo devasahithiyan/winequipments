@@ -5,8 +5,8 @@
   "name": "Automatic Drain Valves",
   "series": "WDV Series",
   "h1": "Automatic Condensate Drain Valves",
-  "title": "Automatic Drain Valves, WDV Series | Win Equipments",
-  "description": "WDV automatic condensate drain valves: timer, micro-controller and no-air-loss types, up to 1000 CFM, 16 kgf/cm² standard. Made in Coimbatore.",
+  "title": "Automatic Drain Valves for Air Compressors | Win Equipments",
+  "description": "Automatic drain valves for air compressors, receivers and dryers: WDV timer, micro-controller and no-air-loss types, up to 1000 CFM. Coimbatore.",
   "card": "Timer, micro-controller and no-air-loss drains that clear condensate automatically.",
   "lede": "Even a small compressed air system produces large quantities of condensate laced with oil. WDV automatic drain valves discharge it from receivers, filters, dryers and pipelines without shutting the system down and without wasting compressed air.",
   "image": "images/Products/drainvalve.png",
@@ -323,12 +323,20 @@
     {
       "q": "Can I get a low-voltage version?",
       "a": "Yes. Standard supply is 230 V AC; 24 V, 48 V and 110 V AC or DC versions are available to order."
+    },
+    {
+      "q": "Where is an automatic drain valve fitted on an air compressor system?",
+      "a": "At the low points where condensate collects: the air receiver, the aftercooler's moisture separator, filters, the dryer and pipeline drop legs. A strainer with a manual shut-off valve ahead of the drain lets you isolate it for service."
+    },
+    {
+      "q": "Why use an automatic drain instead of a manual drain cock?",
+      "a": "A manual drain depends on someone remembering to open it. Left undrained, condensate carries over into the air line. An automatic drain empties the point on a timer, controller signal or float level, and the no-air-loss type discharges condensate without venting compressed air."
     }
   ],
   "related": [
+    "moisture-separators",
     "air-receiver-tanks",
-    "compressed-air-filters",
-    "refrigerated-air-dryers"
+    "compressed-air-filters"
   ],
   "industries": [
     "automotive",

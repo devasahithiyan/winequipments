@@ -83,6 +83,10 @@ Note: Vessels outside the standard range (0.5 to 40 m³, 6 to 30 bar g) are desi
 Air leaves the compressor hot and carrying most of its moisture as vapour. An aftercooler with moisture separator cools it immediately after the compressor so the bulk of that water condenses and drains out before the receiver and dryer.
 Engineered to order. To quote we need: Compressor capacity (CFM) and working pressure; Compressor discharge temperature; Air-cooled or water-cooled preference, and cooling water availability; Plant ambient temperature; Pipe connection size
 
+### Moisture Separators (Engineered to order) — range Engineered to order — https://winequipments.com/products/moisture-separators.html
+Cooling compressed air turns most of its water vapour into liquid. A moisture separator takes that liquid out of the air stream so it does not reach the receiver, dryer, filters or your machines. We make moisture separators at our works in Arasur, Coimbatore, on their own or as part of an aftercooler.
+Engineered to order. To quote we need: Compressor capacity (CFM) and working pressure; Air temperature at the separator inlet; Pipe connection size; Automatic drain type required (see our drain valves); Whether it is supplied on its own or with an aftercooler
+
 ## Process Cooling
 ### Industrial Process Chillers (WCP Series) — range 0.5–20 TR — https://winequipments.com/products/industrial-process-chillers.html
 WCP chillers keep process water at a prescribed set temperature using refrigeration. Each unit is self-contained, with a closed stainless steel tank, high-pressure pump and air- or water-cooled condenser, and is factory tested before delivery.
