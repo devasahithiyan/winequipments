@@ -112,3 +112,75 @@ Rankings depend on Google re-crawling the new pages, which has started (119 resu
 ## 9. Raw data
 
 477 candidate searches (from Google autocomplete, volumes not yet known): `Reports/seo/keyword_candidates.txt`.
+
+---
+
+## 10. Update 5 Oct 2026: real volumes from Semrush Pro
+
+Semrush Pro is now enabled. I ran all 473 candidate searches through Bulk Analysis (India database, desktop). **216 have measurable demand (10+ searches a month); the other ~257 show 0 or no data (under 10 a month).** Full list: `Reports/seo/semrush_volumes.csv`. Semrush volumes are rounded estimates built from Google data, so treat them as good to roughly one step either way.
+
+### Real monthly volumes, India
+
+| Search | Searches/mo | Notes |
+|---|---|---|
+| heat exchanger | 12,100 | informational |
+| shell and tube heat exchanger | 8,100 | informational |
+| air dryer | 6,600 | mixed with hair dryers |
+| heat exchanger types | 5,400 | informational |
+| cooling tower types | 3,600 | informational |
+| compressed air dryer | 2,400 | KD 11 (easy) |
+| air dryer for compressor | 2,400 | |
+| water chiller | 2,900 | |
+| compressed air filter | 1,900 | |
+| air dryer machine | 1,900 | |
+| **heat exchanger manufacturers in india** | **1,600** | commercial |
+| **heat exchanger manufacturer** | **1,300** | commercial |
+| **heat exchanger companies in india** | **1,000** | commercial, KD 18 |
+| air receiver tank | 1,000 | |
+| cooling tower fills | 1,000 | |
+| **cooling tower manufacturers** | **720** | commercial |
+| **refrigerated air dryer** | **720** | |
+| **water chiller manufacturers** | **480** | commercial |
+| **cooling tower manufacturers in india** | **390** | commercial |
+| **shell and tube heat exchanger manufacturer in india** | **390** | commercial |
+| **cooling tower manufacturers in coimbatore** | **210** | commercial |
+| industrial chiller manufacturers in bangalore | 140 | KD 5 |
+| air dryer manufacturers in coimbatore | 110 | KD 4 |
+| cooling tower | 18,100 | informational |
+
+Totals: the 216 searches add up to **99,420 searches a month**. The **95 searches with buying intent** (manufacturer, supplier, company, dealer, near me, price) add up to **11,550 a month**. About half of that (5,800) is heat exchangers and half (5,750) is cooling towers, chillers, dryers, filters and receivers.
+
+What this changes versus section 4: the local searches are small (10-210 each), but **national "manufacturers in india" searches are much bigger** (heat exchangers 1,000-1,600, cooling towers 390-720). The 18,100 "cooling tower" figure is informational.
+
+### Your site in Semrush today (India)
+
+| | winequipments.com | gemindia.com | seenucompressor.com | worldcoolingtowers.com |
+|---|---|---|---|---|
+| Authority Score | **2** | 22 | 11 | 13 |
+| Organic traffic / month | **0** | 1,300 | 1,100 | 126 |
+| Organic keywords | **9** | 278 | 19 | 31 |
+| Referring domains | **264** | 473 | 280 | 457 |
+| Backlinks | 436 | 9,100 | 394 | 3,700 |
+
+### What the competitor data shows
+
+- **seenucompressor.com has about the same backlinks as you** (280 referring domains vs 264) **and gets about 1,100 visits a month** from only 19 keywords. Its traffic comes from "air compressor manufacturers/suppliers in coimbatore" (720 searches each, positions 5-6, KD 12-13). So you do not need more backlinks first; you need pages that match the searches. Win Equipments does not make air compressors, so I would not target those words; the point is that local "manufacturers in coimbatore" searches are winnable at KD 12-13.
+- **gemindia.com** gets 1,300 visits a month, partly from brand searches ("gem equipments", 480 a month) and partly from **one page per city** (e.g. a "cooling tower manufacturer in Biknur" page ranks for a 3,600-a-month term at #7). It also ranks #3 for "compressed air dryer" (2,400 a month, KD 11) and #3 for "drain valve" (1,600 a month, KD 11). Those are direct competitors for your products.
+- Difficulty is low on these terms (KD 4 to 32), so ranking is realistic with good pages.
+
+### Updated forecast (calculated: searches × click-through rate)
+
+Using the 95 buying-intent searches (11,550 a month) and the same CTR studies as section 6 (AWR position 3 3.89%, position 1 20.02%; Ahrefs position 3 10.2%, position 1 39.8%; AWR position 10 0.58%):
+
+| If you ranked | Visits per month (all 95 searches) | Of which non-heat-exchanger (5,750 a month) |
+|---|---|---|
+| Position 10 on all | about 67 | about 33 |
+| Position 3 on all | **449 to 1,178** | 224 to 586 |
+| Position 1 on all | **2,312 to 4,597** | 1,151 to 2,288 |
+
+These are ceilings that assume you rank at that position for **every** one of the 95 searches, which will not happen. A realistic read is the position 3 row for the searches you build pages for. Add "compressed air dryer" (2,400), "air dryer for compressor" (2,400), "compressed air filter" (1,900) and "air receiver tank" (1,000), which have buying traffic mixed in, and the upside is higher, but I cannot separate buyers from readers there.
+
+**Enquiries:** unknown until GA4 has data. At 1% of visits, position 3 on the 95 searches would mean about 4 to 12 enquiries a month; at 3%, about 13 to 35. These are arithmetic, not predictions.
+
+### Do heat exchangers belong in the plan?
+Heat exchanger searches are the largest buying-intent group (5,800 a month), and you have a shell-and-tube heat exchanger page. It is the biggest single opportunity in the data, and the page and city pages should be built out first.
