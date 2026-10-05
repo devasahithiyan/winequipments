@@ -1,6 +1,6 @@
 # Win Equipments (winequipments.com): instructions for Claude
 
-Static site for Win Equipments, Arasur, Coimbatore (manufacturer of compressed air treatment equipment, process chillers, cooling towers, heat exchangers). Founded 2008, 1,200+ installations. Full context for the SEO programme is in `Reports/seo/HANDOFF.md` (local, git-ignored; read it first if present) and `Reports/seo/SEO_ACTION_PLAN.md`.
+Static site for Win Equipments, Arasur, Coimbatore (manufacturer of compressed air treatment equipment, process chillers, cooling towers, heat exchangers). Founded 2008, 1,200+ installations. Full context for the SEO programme is in `Reports/seo/HANDOFF.md` (redacted copy; the user supplies real account details in chat) and `Reports/seo/SEO_ACTION_PLAN.md`.
 
 ## Rules
 - **Real facts only.** No invented prices, specs, ratings, certifications, customers or counts. Use catalogue data (`src/site/data/products/*.json`), `src/site/data/site.json`, or owner-confirmed info. See `CONTENT_TODO.md`. Where no datasheet exists, say "engineered to order".
