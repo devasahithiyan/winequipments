@@ -184,3 +184,37 @@ These are ceilings that assume you rank at that position for **every** one of th
 
 ### Do heat exchangers belong in the plan?
 Heat exchanger searches are the largest buying-intent group (5,800 a month), and you have a shell-and-tube heat exchanger page. It is the biggest single opportunity in the data, and the page and city pages should be built out first.
+
+---
+
+## 11. Semrush API (MCP): keyword gap and your current rankings, 5 Oct 2026
+
+Source: Semrush API via MCP, India database. Gap = searches where gemindia.com or worldcoolingtowers.com ranks and winequipments.com does not.
+
+### Your own rankings in Semrush (9 keywords, all page 3 or lower, 0 traffic)
+air receiver (#33, 880/mo, KD 10), cooling tower capacity (#40, 390), tr calculation formula (#37, 210), chiller tr calculation formula (#45, 210), "efficacy tech equipments llp" (#20, 170, home page), cooling tower range (#31, 170), cooling tower approach formula (#30, 140), air reservoir (#36, 140), aftercooler (#30, 110). Semrush still lists some old URLs (`/products/air_receiver.html`), so its data lags the redesign.
+
+### Relevant gap keywords (competitor ranks, you do not)
+
+| Search | Searches/mo | KD | Competitor position |
+|---|---|---|---|
+| types of cooling tower | 2,900 | 19 | GEM #31 |
+| compressed air dryer | 2,400 | 11 | GEM #3 |
+| drain valve | 1,600 | 11 | GEM #3 |
+| adiabatic cooling | 1,000 | 25 | GEM #9 |
+| moisture separator | 880 | 7 | GEM #8 |
+| air compressor automatic drain valve | 720 | 5 | GEM #20 |
+| auto drain valve for air compressor | 720 | 3 | GEM #12 |
+| cooling tower manufacturer | 720 | 25 | World Cooling Towers #11 |
+| desiccant dryer | 590 | 19 | GEM #3 |
+| industrial cooling tower | 590 | 49 | World Cooling Towers #35 |
+| cross flow cooling tower | 480 | 4 | GEM #18, World #46 |
+| moisture separator for air compressor | 480 | 7 | GEM #1 |
+| compressor dryer | 390 | 23 | GEM #30 |
+
+Gaps total about 17,000 searches a month for the products Win Equipments makes. Several have KD 3 to 11, the easiest tier. Pages that match: automatic drain valves (exists; add "auto drain valve for air compressor" wording and FAQ), compressed air dryer comparison, moisture separator (new page, no such product page exists), cross-flow vs counter-flow cooling tower (new article).
+
+### Not useful
+Semrush's "competitors" list for winequipments.com returned directories and company registries (IndiaMART, TradeIndia, Kompass, Zauba) because you share only one keyword with each. The real competitors are the ones named above.
+
+Also: Semrush shows `efficacyllp.in` and `efficacyglobal.com` as 100%-relevant competitors, and "efficacy tech equipments llp" ranks on your home page. Please confirm whether that is your own related company or another business using your name.
