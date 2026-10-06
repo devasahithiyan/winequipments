@@ -4,7 +4,7 @@
    (configured by the data-c3-* attributes below), tower3d.js is the renderer. Regenerate the posters with
    src/site/tools/render_model_posters.py tower after changing the model. No model number or rating is given to the photographed unit.
    tower_phase gates the views while the model is built in phases: 1 closed, 2 cutaway, 3 exploded, 4 how it works. #}
-{% set tower_phase = 1 %}
+{% set tower_phase = 2 %}
 {% set ct = products['round-cooling-towers'] %}
 {% set feat = {} %}{% for f in ct.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
 {# How it works, in five steps from the catalogue principle. a / b are what the water and the air are doing; as / bs their colour keys. #}

@@ -227,6 +227,35 @@ export async function init(opts) {
   }
 
   await pause();
+  /* ---------- inside (illustrations; the inside is not photographed): riser from the inlet, rotary sprinkler, honeycomb PVC fill ---------- */
+  pipe([[-0.41, 0.44, 0.91], [-0.2, 0.46, 0.45], [0, 0.55, 0.05], [0, 0.75, 0], [0, 1.6, 0], [0, 3.0, 0]], 0.07, pvc, riser);
+  cyl(0.1, 0.1, 0.14, zinc, sprinkler, 0, 3.06, 0, 24);
+  const nozzleGeo = new T.SphereGeometry(0.014, 6, 4);
+  for (let k = 0; k < 4; k++) {
+    const a = k * Math.PI / 2, dx = Math.sin(a), dz = Math.cos(a);
+    pipe([[dx * 0.08, 3.06, dz * 0.08], [dx * 1.28, 3.06, dz * 1.28]], 0.032, zinc, sprinkler);
+    mesh(new T.SphereGeometry(0.036, 12, 8), zinc, sprinkler, dx * 1.28, 3.06, dz * 1.28);
+    for (let r = 0.25; r < 1.28; r += 0.14) mesh(nozzleGeo, dark, sprinkler, dx * r, 3.03, dz * r).castShadow = false;   /* the holes the jets leave from */
+  }
+  /* honeycomb fill: one textured block, not thousands of cells, so it stays light */
+  const fillTex = canvasTex(256, 256, (g, w, h) => {
+    g.fillStyle = '#e9ebe4'; g.fillRect(0, 0, w, h);
+    g.strokeStyle = 'rgba(120,135,130,0.75)'; g.lineWidth = 3;
+    const R = 16, dx = R * Math.sqrt(3), dy = R * 1.5;
+    for (let row = -1; row * dy < h + R; row++) for (let col = -1; col * dx < w + dx; col++) {
+      const cx = col * dx + (row % 2 ? dx / 2 : 0), cy = row * dy;
+      g.beginPath(); for (let i = 0; i <= 6; i++) { const ang = Math.PI / 6 + i * Math.PI / 3; g.lineTo(cx + Math.cos(ang) * R, cy + Math.sin(ang) * R); } g.stroke();
+    }
+    g.fillStyle = 'rgba(90,105,100,0.55)'; g.fillRect(0, h / 2 - 2, w, 4);   /* the joint between stacked blocks */
+  });
+  fillTex.wrapS = fillTex.wrapT = T.RepeatWrapping;
+  const fillSide = fillTex.clone(); fillSide.needsUpdate = true; fillSide.repeat.set(14, 2);
+  const fillTop = fillTex.clone(); fillTop.needsUpdate = true; fillTop.repeat.set(4, 4);
+  const fillMat = new T.MeshStandardMaterial({ map: fillSide, roughness: 0.75, metalness: 0 }), fillCap = new T.MeshStandardMaterial({ map: fillTop, roughness: 0.75, metalness: 0 });
+  mesh(new T.CylinderGeometry(1.42, 1.42, 1.16, 64, 1, true), fillMat, fills, 0, 2.2, 0);
+  for (const y of [2.78, 1.62]) mesh(new T.CircleGeometry(1.42, 48), fillCap, fills, 0, y, 0).rotation.x = y > 2 ? -Math.PI / 2 : Math.PI / 2;
+
+  await pause();
   /* ---------- merge static meshes by material: hundreds of draw calls become a few dozen ---------- */
   const bake = (root) => {
     root.updateMatrixWorld(true);
@@ -344,7 +373,7 @@ export async function init(opts) {
     5: anchor(meshBand, [-0.55, 1.13, 1.36], [-0.37, 0, 0.93]),
     6: anchor(basin, [0.75, 0.6, 1.2], [0.5, 0, 0.87])
   };
-  const OPEN = Object.assign({}, CLOSED, { 3: anchor(sprinkler, [0, 3.06, 0.12], [0, 0, 1]), 4: anchor(fills, [0, 2.2, 1.4], [0, 0, 1]) });
+  const OPEN = Object.assign({}, CLOSED, { 2: anchor(casingRear, [0.35, 3.3, -1.36], [0, 0, 1]), 3: anchor(sprinkler, [0, 3.06, 0.12], [0, 0, 1]), 4: anchor(fills, [0, 2.2, 1.4], [0, 0, 1]) });
   const EXPLODED = Object.assign({}, OPEN, { 2: anchor(casingFront, [0, 2.3, 1.52], [0, 0, 1]) });
 
   /* ---------- isolate: the chosen part stays solid, everything else turns to a pale ghost ---------- */
