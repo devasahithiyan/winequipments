@@ -38,7 +38,7 @@
   const setPlaying = (on) => {
     playing = on && !reduce && !!view3d && state === 'ready';
     playBtn.setAttribute('aria-pressed', String(playing));
-    playBtn.textContent = playing ? 'Pause' : 'Auto-rotate';
+    playBtn.title = playing ? 'Stop turning the model' : 'Keep the model turning slowly';   /* the label stays; the dark fill and pause icon show it is on */
   };
   const tweenTo = (tRy, tRx = rx) => {
     cancelAnimationFrame(anim);
@@ -262,6 +262,7 @@
       const on = b.dataset.part === String(n);
       b.setAttribute('aria-expanded', String(on));
       b.parentElement.classList.toggle('is-active', on);
+      if (on) isoBtn.title = 'Show only ' + (b.dataset.name || 'this part') + ' and fade the rest';
       if (on && turn && state === 'ready' && view3d && mode !== 'flow') { touched(); tweenTo(Number(b.dataset.ry), Number(b.dataset.rx)); }
     });
     hotspots.forEach((h) => h.classList.toggle('is-active', h.dataset.hs === String(n)));

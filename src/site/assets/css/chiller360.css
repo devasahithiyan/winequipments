@@ -165,3 +165,26 @@ html:not(.js) .c3__part > ul { display: block; }
   .c3[data-c3-state="loading"] .c3__load svg { animation: none; }
   .c3[data-c3-state="revealing"] .c3__load { transition: none; }
 }
+
+/* ---------- viewer controls: joined icon pairs, labelled toggles (dark when on), a quiet reset ---------- */
+.c3__tools { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-2) var(--s-3); margin-top: var(--s-4); }
+.c3__grp { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--surface); overflow: hidden; }
+.c3__grp .c3__tool { border: 0; border-radius: 0; background: none; }
+.c3__grp .c3__tool + .c3__tool { border-left: 1px solid var(--rule); }
+.c3__tool { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); min-width: 44px; height: 44px; padding: 0 var(--s-4); border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; font-size: var(--fs-small); font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+.c3__tool--icon { padding: 0; width: 46px; }
+.c3__tool svg { flex: none; width: 20px; height: 20px; }
+.c3__tool:hover { color: var(--green-ink); }
+.c3__grp .c3__tool:hover { background: var(--green-wash); }
+.c3__tool:not(.c3__grp .c3__tool):hover { border-color: var(--green); }
+.c3__tool:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; position: relative; z-index: 1; }
+.c3__tool:active { transform: translateY(1px); }
+.c3__tool[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.c3__tool[aria-pressed="true"]:hover { background: var(--ink-2, var(--ink)); color: #fff; }
+.c3__tool .i-pause { display: none; }
+.c3__tool[aria-pressed="true"] .i-play { display: none; }
+.c3__tool[aria-pressed="true"] .i-pause { display: block; }
+.c3__tool--quiet { border-color: transparent; background: none; color: var(--muted); }
+.c3__tool--quiet:hover { border-color: var(--rule-strong); }
+@media (max-width: 480px) { .c3__tool { padding: 0 var(--s-3); } .c3__tool--icon { padding: 0; width: 44px; } }
+@media (prefers-reduced-motion: reduce) { .c3__tool { transition: none; } .c3__tool:active { transform: none; } }

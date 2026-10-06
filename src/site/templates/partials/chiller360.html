@@ -61,15 +61,7 @@
           <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="exploded">Exploded</button>
           <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="flow">How it works</button>
         </div>
-        <div class="c3__controls">
-          <button type="button" class="c3__btn" data-c3-rot="-45" aria-label="Rotate left"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
-          <button type="button" class="c3__btn" data-c3-rot="45" aria-label="Rotate right"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
-          <button type="button" class="c3__btn c3__btn--text" data-c3-zoom="0.12" aria-label="Zoom out">−</button>
-          <button type="button" class="c3__btn c3__btn--text" data-c3-zoom="-0.12" aria-label="Zoom in">+</button>
-          <button type="button" class="c3__btn c3__btn--text" data-c3-isolate aria-pressed="false">Isolate part</button>
-          <button type="button" class="c3__btn c3__btn--text" data-c3-play aria-pressed="false">Auto-rotate</button>
-          <button type="button" class="c3__btn c3__btn--text" data-c3-reset>Reset view</button>
-        </div>
+        {% include "partials/c3_tools.html" %}
         </div>
         <p class="c3__note">Illustrative 3D model built from photographs of a Win process chiller. Proportions and the position of parts are indicative and vary by model; this is not a service drawing.</p>
       </div>
@@ -78,7 +70,7 @@
         <ol class="c3__parts" data-c3-parts>
           {% for p in parts %}
           <li class="c3__part{% if loop.first %} is-active{% endif %}">
-            <button type="button" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="c3p-{{ loop.index }}" data-part="{{ loop.index }}" data-ry="{{ p.ry }}" data-rx="{{ p.rx }}"><span class="c3__n">{{ loop.index }}</span>{{ p.t }}<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <button type="button" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="c3p-{{ loop.index }}" data-part="{{ loop.index }}" data-name="{{ p.t }}" data-ry="{{ p.ry }}" data-rx="{{ p.rx }}"><span class="c3__n">{{ loop.index }}</span>{{ p.t }}<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
             <ul id="c3p-{{ loop.index }}">{% for pt in p.pts %}<li>{{ pt }}</li>{% endfor %}</ul>
           </li>
           {% endfor %}
