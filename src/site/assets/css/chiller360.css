@@ -18,17 +18,21 @@
 .c3__stage.is-3d { cursor: grab; }
 .c3__stage.is-3d:active { cursor: grabbing; }
 .c3__stage:focus-visible { box-shadow: 0 0 0 3px var(--focus); }
-.c3__poster { position: absolute; inset: 4% 12%; display: grid; place-items: center; transition: opacity 0.5s var(--ease-out); }
-.c3__poster picture, .c3__poster img { display: block; max-width: 100%; max-height: 100%; width: auto; height: 100%; object-fit: contain; border-radius: var(--r-2); }
-.c3__stage.is-3d .c3__poster { opacity: 0; pointer-events: none; }
-.c3__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 0.6s var(--ease-out); touch-action: pan-y; }
-.c3__stage.is-3d .c3__canvas { opacity: 1; }
+.c3__poster { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 1; transition: opacity 300ms var(--ease-out); }
+.c3__poster picture, .c3__poster img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.c3__poster--lite { display: none; }
+.c3__stage.is-lite .c3__poster { display: none; }
+.c3__stage.is-lite .c3__poster--lite { display: block; }
+.c3__stage.is-revealing .c3__poster, .c3__stage.is-3d .c3__poster { opacity: 0; }
+.c3__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; touch-action: pan-y; }
+.c3__stage.is-revealing .c3__canvas, .c3__stage.is-3d .c3__canvas { opacity: 1; }
 .c3__stage:not(.is-3d) .c3__hint, .c3__stage:not(.is-3d) .c3__deg { display: none; }
 
 /* hotspots: positioned by chiller3d.js on the parts; hidden until the 3D model runs */
 .c3__hs { display: none; position: absolute; z-index: 2; width: calc(var(--s) * 0.085); height: calc(var(--s) * 0.085); min-width: 24px; min-height: 24px; margin: -12px 0 0 -12px; place-items: center; border-radius: 50%;
   background: #fff; color: var(--ink); font: 700 clamp(0.6875rem, calc(var(--s) * 0.042), 0.875rem) / 1 var(--font); box-shadow: 0 0 0 2px var(--green), 0 4px 10px rgba(0, 0, 0, 0.25); transition: transform 0.3s var(--ease-out), background 0.2s, color 0.2s, opacity 0.2s; }
-.c3__hsl { position: absolute; inset: 0; pointer-events: none; }
+.c3__hsl { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 150ms var(--ease-out); }
+.c3__stage.is-3d .c3__hsl { opacity: 1; }
 .c3__stage:not(.is-3d) .c3__hsl { visibility: hidden; }
 .c3__hsl .c3__hs { display: grid; pointer-events: auto; cursor: pointer; }
 .c3__hsl .c3__hs.is-away { opacity: 0; pointer-events: none; }
@@ -43,7 +47,8 @@
 .c3__load { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); z-index: 3; display: inline-flex; align-items: center; gap: var(--s-2); min-height: 48px; padding: 0 20px 0 16px; border: 0; border-radius: 999px; background: rgba(21, 32, 26, 0.9); color: #fff; font: inherit; font-weight: 600; white-space: nowrap; cursor: pointer; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); transition: background-color 0.2s; }
 .c3__load:hover { background: #15201a; }
 .c3__load:focus-visible { outline: 3px solid var(--focus, #2f8bff); outline-offset: 3px; }
-.c3__load svg { width: 22px; height: 22px; }
+.c3__load { width: 184px; justify-content: center; }
+.c3__load svg { flex: none; width: 22px; height: 22px; }
 .c3__load[disabled] { cursor: progress; opacity: 0.9; }
 .c3__stage.is-3d .c3__load { display: none; }
 .motion .c3__hint svg { animation: c3nudge 1.8s ease-in-out infinite; }
@@ -62,7 +67,6 @@
 .c3__btn--open:hover { background: var(--green-press); border-color: var(--green-press); color: var(--on-green); }
 .c3__btn--open[aria-pressed="true"] { background: var(--surface); color: var(--ink); border-color: var(--ink); }
 .c3__note { margin-top: var(--s-3); text-align: center; font-size: var(--fs-label); color: var(--muted); }
-.c3:not(.has-3d) .c3__note { display: none; }   /* the photo needs no illustration note */
 
 /* component list */
 .c3__info { display: grid; gap: var(--s-5); min-width: 0; }
@@ -141,3 +145,17 @@ html:not(.js) .c3__part > ul { display: block; }
 .c3__btn[data-spin-step="1"] svg { transform: rotate(-90deg); }
 .spin__thumbs { justify-content: safe center; }
 
+
+/* Reserve the entire control area before WebGL loads, including wrapped mobile controls. */
+.c3__toolbar { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 150ms var(--ease-out); }
+.c3[data-c3-state="ready"] .c3__toolbar { visibility: visible; opacity: 1; pointer-events: auto; }
+.c3__status { height: 28px; margin: 0; display: flex; align-items: center; justify-content: center; gap: var(--s-2); color: var(--muted); font-size: var(--fs-small); }
+.c3__status[hidden] { display: flex !important; visibility: hidden; }
+.c3[data-c3-state="ready"] .c3__status { color: transparent; }
+.c3__loading-mark { display: none; width: 14px; height: 14px; border: 2px solid var(--rule); border-top-color: var(--green-ink); border-radius: 50%; }
+.c3[data-c3-state="loading"] .c3__loading-mark { display: block; animation: c3load 800ms linear infinite; }
+@keyframes c3load { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .c3__poster, .c3__toolbar, .c3__hsl { transition: none; }
+  .c3__loading-mark { animation: none !important; }
+}

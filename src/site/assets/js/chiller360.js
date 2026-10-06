@@ -1,4 +1,4 @@
-/* Chiller viewer (partials/chiller360.html): the real photo is the poster; when the viewer comes near, the WebGL model
+/* Chiller viewer (partials/chiller360.html): a matching still is the poster; when the viewer comes near, the WebGL model
    (chiller3d.js) loads and this script drives it.
    Views: Closed, Open, Exploded and How it works (four steps along the water and refrigerant circuits).
    Drag / keys / buttons rotate, zoom by buttons, pinch or ctrl+wheel, the parts list turns the model to each part and
@@ -23,14 +23,15 @@
   let mode = 'closed', scrollP = 0, zoom = 1, isolate = false, selected = 1, step = 1, stepTimer = 0;
   const val = { open: 0, explode: 0, flow: 0 };       /* tweened */
   const tweens = {};
+  let state = 'poster', attempt = 0, controller = null, scrollBaseline = 0;
 
   const openNow = () => Math.max(val.open, mode === 'closed' || mode === 'open' ? scrollP : 0);
   const render = () => {
     deg.textContent = String(Math.round(((ry % 360) + 360) % 360)).padStart(3, '0') + '°';
-    if (view3d) view3d.set(ry, rx, { open: openNow(), explode: val.explode, flow: val.flow, step, zoom, isolate: isolate ? selected : 0 });
+    if (view3d && state === 'ready') view3d.set(ry, rx, { open: openNow(), explode: val.explode, flow: val.flow, step, zoom, isolate: isolate ? selected : 0 });
   };
   const setPlaying = (on) => {
-    playing = on && !reduce && !!view3d;
+    playing = on && !reduce && !!view3d && state === 'ready';
     playBtn.setAttribute('aria-pressed', String(playing));
     playBtn.textContent = playing ? 'Pause' : 'Auto-rotate';
   };
@@ -76,7 +77,7 @@
     flowBox.hidden = mode !== 'flow';
   };
   const setMode = async (next) => {
-    if (!view3d) return;
+    if (!view3d || state !== 'ready') return;
     const run = ++modeRun;
     mode = next; touched(); syncModeUI();
     clearInterval(stepTimer);
@@ -134,13 +135,18 @@
 
   /* ---------- large screens: the viewer pins while you scroll through the section, and the scroll opens the unit ---------- */
   const scrubMQ = matchMedia('(min-width: 1024px) and (min-height: 720px) and (hover: hover) and (prefers-reduced-motion: no-preference)');
-  const scrubbing = () => !!view3d && scrubMQ.matches && !location.search.includes('static');
+  const scrubbing = () => can3d && scrubMQ.matches && !location.search.includes('static');
   let oriented = false;
-  const onScroll = () => {
-    if (!section.classList.contains('is-scrub') || (mode !== 'closed' && mode !== 'open')) return;
+  const scrollPosition = () => {
     const r = scroller.getBoundingClientRect(), top = parseFloat(getComputedStyle(grid).top) || 0;
     const run = scroller.offsetHeight - grid.offsetHeight;
-    const p = Math.min(1, Math.max(0, (top - r.top) / (run * 0.75)));
+    return run > 0 ? Math.min(1, Math.max(0, (top - r.top) / (run * 0.75))) : 0;
+  };
+  const onScroll = () => {
+    if (state !== 'ready' || !section.classList.contains('is-scrub') || (mode !== 'closed' && mode !== 'open')) return;
+    const raw = scrollPosition();
+    if (raw === 0) scrollBaseline = 0;
+    const p = scrollBaseline >= 1 ? 0 : Math.max(0, (raw - scrollBaseline) / (1 - scrollBaseline));
     if (p === scrollP) return;
     const was = openNow();
     scrollP = p;
@@ -175,7 +181,7 @@
   let pinch0 = 0, zoom0 = 1;
   const setZoom = (z) => { zoom = Math.max(0.65, Math.min(1.25, z)); render(); };
   stage.addEventListener('pointerdown', (e) => {
-    if (!view3d || e.target.closest('.c3__hs, .c3__flow')) return;
+    if (!view3d || state !== 'ready' || e.target.closest('.c3__hs, .c3__flow, .c3__load')) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size === 2) {   /* second finger: switch from turning to pinch-zoom */
       dragging = false;
@@ -219,13 +225,13 @@
   window.addEventListener('pointercancel', end);
   /* wheel zooms only with ctrl/cmd held, or once the stage has focus, so page scrolling is never taken over */
   stage.addEventListener('wheel', (e) => {
-    if (!view3d || !(e.ctrlKey || e.metaKey || document.activeElement === stage)) return;
+    if (!view3d || state !== 'ready' || !(e.ctrlKey || e.metaKey || document.activeElement === stage)) return;
     e.preventDefault();
     setZoom(zoom * (1 + Math.max(-0.2, Math.min(0.2, e.deltaY * 0.0015))));
   }, { passive: false });
 
   stage.addEventListener('keydown', (e) => {
-    if (!view3d) return;
+    if (!view3d || state !== 'ready') return;
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); touched(); tweenTo(ry + (e.key === 'ArrowRight' ? 30 : -30)); }
     else if (e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(zoom - 0.1); }
     else if (e.key === '-') { e.preventDefault(); setZoom(zoom + 0.1); }
@@ -251,7 +257,7 @@
       const on = b.dataset.part === String(n);
       b.setAttribute('aria-expanded', String(on));
       b.parentElement.classList.toggle('is-active', on);
-      if (on && turn && view3d && mode !== 'flow') { touched(); tweenTo(Number(b.dataset.ry), Number(b.dataset.rx)); }
+      if (on && turn && state === 'ready' && view3d && mode !== 'flow') { touched(); tweenTo(Number(b.dataset.ry), Number(b.dataset.rx)); }
     });
     hotspots.forEach((h) => h.classList.toggle('is-active', h.dataset.hs === String(n)));
     render();
@@ -262,52 +268,117 @@
   if (hasIO) new IntersectionObserver((en) => { inView = en[0].isIntersecting; }, { threshold: 0.2 }).observe(stage);
   else inView = true;
 
-  /* ---------- load the WebGL model as the viewer approaches; any failure leaves the real photo in place ---------- */
-  const webgl = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } };
-  /* phones, tablets, low-end PCs and data-saver / slow connections keep the photo and load the model only when asked
-     (about 200 KB of script and a second or two of building on a slow phone); capable desktops load it as it comes near */
+  /* ---------- poster -> loading -> revealing -> ready, with recoverable failures ---------- */
+  const webgl = () => {
+    try {
+      const c = document.createElement('canvas'), gl = c.getContext('webgl2');
+      gl?.getExtension('WEBGL_lose_context')?.loseContext();
+      return !!gl;
+    } catch (_) { return false; }
+  };
   const conn = navigator.connection || {};
   const slowNet = !!conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
   const weakDevice = (navigator.hardwareConcurrency || 4) <= 4 || (navigator.deviceMemory || 8) <= 4;
   const handheld = matchMedia('(max-width: 1023px), (hover: none)').matches;
+  const lite = weakDevice || slowNet || matchMedia('(max-width: 767px)').matches;
   const autoLoad = !slowNet && !weakDevice && !handheld;
-  const loadBtn = $('[data-c3-load]', stage);
-  let loading = false;
-  const controls = $$('.c3__controls [hidden], .c3__modes[hidden]', c3);
-  const upgrade = () => {
-    if (loading || view3d || !webgl() || !HTMLScriptElement.supports?.('importmap')) return;
-    loading = true;
-    stage.classList.add('is-loading');
-    import('/js/chiller3d.js' + ver).then((m) => m.init({
-      stage, reduce, hotspots, lite: weakDevice || slowNet,
-      onSelect: (n) => select(n, true),
-      onLost: () => {
-        view3d = null; section.classList.remove('has-3d'); stage.classList.remove('is-3d');
-        controls.forEach((b) => { b.hidden = true; }); flowBox.hidden = true;
-        layout();
-      }
-    })).then((v) => {
-      stage.classList.remove('is-loading');
-      if (!v) { loading = false; return; }
-      view3d = v;
-      if (loadBtn) loadBtn.hidden = true;
-      controls.forEach((b) => { b.hidden = false; });
-      section.classList.add('has-3d');
-      syncModeUI(); render();
-      requestAnimationFrame(() => stage.classList.add('is-3d'));
-      layout();
-    }).catch(() => { loading = false; stage.classList.remove('is-loading'); });
+  const can3d = webgl() && !!HTMLScriptElement.supports?.('importmap') && hasIO && 'ResizeObserver' in window;
+  const loadBtn = $('[data-c3-load]', stage), loadLabel = $('[data-c3-load-label]', stage);
+  const status = $('[data-c3-status]', c3), statusText = $('[data-c3-status-text]', c3);
+  const toolbar = $('[data-c3-toolbar]', c3);
+  const poster = $(lite ? '[data-c3-poster="lite"]' : '[data-c3-poster="standard"]', stage);
+  const posterImg = $('img', poster);
+  stage.classList.toggle('is-lite', lite);
+  const setState = (next) => {
+    state = next;
+    section.dataset.c3State = next;
+    const busy = next === 'loading' || next === 'revealing';
+    stage.setAttribute('aria-busy', String(busy));
+    toolbar.inert = next !== 'ready';
+    stage.classList.toggle('is-revealing', next === 'revealing');
+    stage.classList.toggle('is-3d', next === 'ready');
+    section.classList.toggle('has-3d', next === 'ready');
+    loadBtn.hidden = next === 'ready' || next === 'revealing' || next === 'unavailable' || (next === 'poster' && autoLoad);
+    loadBtn.disabled = busy;
+    loadLabel.textContent = next === 'error' ? 'Retry' : next === 'loading' ? 'Loading 3D…' : 'View in 3D';
   };
-  const can3d = webgl() && HTMLScriptElement.supports?.('importmap');
-  if (!autoLoad) {
-    if (loadBtn && can3d) {
-      loadBtn.hidden = false;
-      loadBtn.addEventListener('click', (e) => { e.stopPropagation(); loadBtn.disabled = true; loadBtn.textContent = 'Loading 3D model…'; upgrade(); });
-    }
-  } else if (hasIO) {
-    const near = new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) { near.disconnect(); upgrade(); } }, { rootMargin: '400px 0px' });
+  const reset = () => {
+    setPlaying(false); clearInterval(stepTimer); cancelAnimationFrame(anim);
+    Object.values(tweens).forEach(cancelAnimationFrame);
+    modeRun++; pointers.clear(); dragging = false; vel = 0;
+    ry = HOME.ry; rx = HOME.rx; zoom = 1; mode = 'closed'; scrollP = 0; isolate = false;
+    val.open = val.explode = val.flow = 0;
+    isoBtn.setAttribute('aria-pressed', 'false');
+    stage.classList.remove('is-touched');
+    oriented = false; syncModeUI();
+  };
+  const fail = (id) => {
+    if (id !== attempt) return;
+    attempt++; controller?.abort(); controller = null;
+    view3d?.destroy(); view3d = null;
+    reset(); setState('error');
+    status.hidden = false; statusText.textContent = 'Couldn’t load the 3D view';
+  };
+  const paint = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  const decodePoster = async () => {
+    posterImg.loading = 'eager';
+    try { await posterImg.decode(); } catch (_) { /* a failed poster must not prevent a usable live view */ }
+  };
+  const upgrade = async () => {
+    if (!can3d || state === 'loading' || state === 'revealing' || state === 'ready') return;
+    const id = ++attempt;
+    controller = new AbortController();
+    reset(); setState('loading'); status.hidden = true;
+    let phase = 'Loading 3D…';
+    const delay = setTimeout(() => {
+      if (id === attempt && state === 'loading') { status.hidden = false; statusText.textContent = phase; }
+    }, 200);
+    const deadline = setTimeout(() => fail(id), 30000);
+    try {
+      /* Browsers cache failed module loads. A retry needs a fresh module URL. */
+      const retry = id > 1 ? (ver ? '&' : '?') + 'retry=' + id : '';
+      const module = await import('/js/chiller3d.js' + ver + retry);
+      if (id !== attempt) return;
+      const v = await module.init({
+        stage, reduce, hotspots, lite, signal: controller.signal,
+        initialView: HOME, deferAnimation: true,
+        onPhase: () => { phase = 'Preparing view…'; if (!status.hidden) statusText.textContent = phase; },
+        onSelect: (n) => { if (state === 'ready') select(n, true); },
+        onLost: () => fail(id)
+      });
+      if (id !== attempt) { v?.destroy(); return; }
+      if (!v) throw new Error('No rendered view');
+      view3d = v;
+      await decodePoster();
+      await paint();
+      if (id !== attempt) return;
+      clearTimeout(deadline); clearTimeout(delay);
+      const hadFocus = document.activeElement === loadBtn;
+      setState('revealing');
+      status.hidden = true;
+      if (!reduce) await new Promise((resolve) => {
+        const done = () => { poster.removeEventListener('transitionend', end); clearTimeout(fallback); resolve(); };
+        const end = (e) => { if (e.target === poster && e.propertyName === 'opacity') done(); };
+        const fallback = setTimeout(done, 350);
+        poster.addEventListener('transitionend', end);
+      });
+      if (id !== attempt) return;
+      scrollBaseline = scrollPosition();
+      setState('ready'); syncModeUI(); render(); view3d.activate();
+      status.hidden = false; statusText.textContent = '3D view ready';
+      if (hadFocus) stage.focus({ preventScroll: true });
+    } catch (_) { fail(id); }
+    finally { clearTimeout(delay); clearTimeout(deadline); }
+  };
+  loadBtn.addEventListener('click', (e) => { e.stopPropagation(); upgrade(); });
+  setState(can3d ? 'poster' : 'unavailable');
+  layout();
+  if (can3d && autoLoad) {
+    const near = new IntersectionObserver((en) => {
+      if (en.some((e) => e.isIntersecting)) { near.disconnect(); upgrade(); }
+    }, { rootMargin: '400px 0px' });
     near.observe(stage);
-  } else upgrade();
+  }
   render();
   requestAnimationFrame(loop);
 })();

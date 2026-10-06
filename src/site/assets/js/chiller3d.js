@@ -23,7 +23,10 @@ const DROP = -0.915;   /* the fan pack and the controls sit lower, on the new li
 
 export async function init(opts) {
   const stage = opts.stage, hotspots = opts.hotspots || [], reduce = !!opts.reduce;
+  const check = () => { if (opts.signal?.aborted) throw new DOMException('Loading cancelled', 'AbortError'); };
+  check();
   try { await document.fonts.load('700 64px Archivo'); } catch (e) { /* Arial fallback */ }
+  check();
 
   const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
   /* phones and small CPUs render at a lower pixel ratio; desktops up to 1.5 (Retina at 2x costs 4x the pixels for little gain) */
@@ -44,11 +47,30 @@ export async function init(opts) {
   cvs.setAttribute('aria-hidden', 'true');
 
   const scene = new T.Scene();
+  let disposed = false;
+  const extras = new Set();
+  const release = () => {
+    if (disposed) return;
+    disposed = true;
+    const resources = new Set(extras);
+    scene.traverse((o) => {
+      if (o.geometry) resources.add(o.geometry);
+      if (o.shadow) o.shadow.dispose();
+      (Array.isArray(o.material) ? o.material : [o.material]).filter(Boolean).forEach((m) => {
+        resources.add(m);
+        Object.values(m).forEach((v) => { if (v?.isTexture) resources.add(v); });
+      });
+    });
+    resources.forEach((r) => r.dispose());
+    cvs.remove(); renderer.dispose();
+  };
+  let cleanup = release;
+  try {
   const camera = new T.PerspectiveCamera(32, 1, 0.1, 60);
   const model = new T.Group(); scene.add(model);
   const geometryCache = new Map();
   /* building the model is split into chunks with a yield between them, so a slow phone keeps scrolling while it builds */
-  const pause = () => new Promise((r) => setTimeout(r, 0));
+  const pause = async () => { await new Promise((r) => setTimeout(r, 0)); check(); };
   const V = (x, y, z) => new T.Vector3(x, y, z);
   const mat = (color, metalness, roughness, extra) => new T.MeshPhysicalMaterial(Object.assign({ color, metalness, roughness }, extra || {}));
 
@@ -517,7 +539,8 @@ export async function init(opts) {
   for (const l of [[-4, 4, 2, 4, 7, Math.PI / 2], [4, 3, 0, 3, 6, -Math.PI / 2], [0, 5, -3, 7, 3, 0]]) {
     const m = new T.Mesh(new T.PlaneGeometry(l[3], l[4]), new T.MeshBasicMaterial({ color: '#fff8e7' })); m.position.set(l[0], l[1], l[2]); m.rotation.y = l[5]; studio.add(m);
   }
-  const pmrem = new T.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(studio, 0.08).texture; scene.environmentIntensity = 0.66; pmrem.dispose();
+  const pmrem = new T.PMREMGenerator(renderer), envTarget = pmrem.fromScene(studio, 0.08); extras.add(envTarget); scene.environment = envTarget.texture; scene.environmentIntensity = 0.66; pmrem.dispose();
+  studio.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); });
   scene.add(new T.HemisphereLight('#e4efee', '#4f5754', 1.45));
   const key = new T.DirectionalLight('#fff2da', 3.4); key.position.set(-3.2, 7.5, 4.2); key.castShadow = true;
   key.shadow.mapSize.set(1024, 1024); Object.assign(key.shadow.camera, { left: -3.6, right: 3.6, top: 4.6, bottom: -2.6, near: 4, far: 16 });
@@ -531,6 +554,7 @@ export async function init(opts) {
   /* ---------- contact shadow: the unit rendered from below into a blurred texture, darker where it touches the floor ---------- */
   const CS = 7, CS_H = 2.4;
   const rtA = new T.WebGLRenderTarget(512, 512), rtB = new T.WebGLRenderTarget(512, 512);
+  extras.add(rtA); extras.add(rtB);
   rtA.texture.generateMipmaps = rtB.texture.generateMipmaps = false;
   const csGeo = new T.PlaneGeometry(CS, CS).rotateX(Math.PI / 2);
   const csPlane = new T.Mesh(csGeo, new T.MeshBasicMaterial({ map: rtA.texture, opacity: 0.8, transparent: true, depthWrite: false }));
@@ -558,6 +582,7 @@ export async function init(opts) {
     });
   };
   const hBlur = blurMat(true), vBlur = blurMat(false);
+  extras.add(depthMat); extras.add(hBlur); extras.add(vBlur);
   const blur = (amount) => {
     blurPlane.visible = true;
     blurPlane.material = hBlur; hBlur.uniforms.tDiffuse.value = rtA.texture; hBlur.uniforms.d.value = amount / 256;
@@ -671,8 +696,10 @@ export async function init(opts) {
   let composer = null, gtao = null, useAO = false, stillFrame = false;
   const frameFor = (w, h) => {
     camera.aspect = w / h;
-    const half = Math.tan(camera.fov * Math.PI / 360);
-    baseDist = Math.max(1.78 / half, 1.65 / (half * camera.aspect)) + 1.25;
+    /* The poster is a 4:5 capture. Match object-fit: contain at every stage size. */
+    const half = Math.tan(32 * Math.PI / 360), referenceAspect = 4 / 5;
+    baseDist = Math.max(1.78 / half, 1.65 / (half * referenceAspect)) + 1.25;
+    camera.fov = 2 * Math.atan(half * Math.max(1, referenceAspect / camera.aspect)) * 180 / Math.PI;
     camera.updateProjectionMatrix();
     if (composer) { composer.setPixelRatio(renderer.getPixelRatio()); composer.setSize(w, h); }
     placeCamera();
@@ -764,6 +791,7 @@ export async function init(opts) {
 
   /* ---------- render loop: on demand; the fan and the flow keep it running while they move ---------- */
   let raf = 0, need = true, inView = true, last = 0, alive = true;
+  let activated = !opts.deferAnimation;
   const spin = !reduce;
   const draw = () => {
     csRig.rotation.y = model.rotation.y;
@@ -793,8 +821,8 @@ export async function init(opts) {
     const raw = last ? t - last : 0;
     const dt = Math.min(50, raw); last = t;
     const wind = clamp01(1 - (t - active - IDLE) / 1500);   /* 1 while in use, easing to 0 once idle */
-    const spinning = spin && inView && fanSpeed * wind > 0.002;
-    const flowing = inView && st.flow > 0.002 && !reduce;
+    const spinning = activated && spin && inView && fanSpeed * wind > 0.002;
+    const flowing = activated && inView && st.flow > 0.002 && !reduce;
     sinceDraw += raw;
     if (spinning) rotor.rotation.y -= dt * 0.006 * fanSpeed * wind;
     if (flowing) flowTime += dt / 1000;
@@ -849,13 +877,17 @@ export async function init(opts) {
   document.addEventListener('visibilitychange', onVis);
 
   const destroy = () => {
+    if (!alive) return;
     alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect();
     document.removeEventListener('visibilitychange', onVis);
+    opts.signal?.removeEventListener('abort', destroy);
     homes.forEach((hm) => { hm.el.removeAttribute('style'); hm.el.classList.remove('is-away'); hm.parent.insertBefore(hm.el, hm.next); });
-    layer.remove(); cvs.remove(); rtA.dispose(); rtB.dispose();
+    layer.remove();
     if (composer) composer.dispose();
-    renderer.dispose();
+    release();
   };
+  cleanup = destroy;
+  opts.signal?.addEventListener('abort', destroy, { once: true });
   cvs.addEventListener('webglcontextlost', (e) => { e.preventDefault(); destroy(); if (opts.onLost) opts.onLost(); });
   layer.addEventListener('click', (e) => { const hs = e.target.closest('.c3__hs'); if (hs && opts.onSelect) opts.onSelect(hs.dataset.hs); });
 
@@ -871,15 +903,23 @@ export async function init(opts) {
       });
     });
   }
-  applyState();
+  const initial = opts.initialView || { ry: 35, rx: -14, zoom: 1 };
+  model.rotation.y = initial.ry * Math.PI / 180;
+  elev = -initial.rx * Math.PI / 180;
+  st.zoom = initial.zoom || 1;
+  rotor.rotation.y = 0;
+  applyState(); placeCamera();
   await pause();
   /* compile every shader before the first frame (in parallel where the browser supports it), so the page does not stall on it */
+  opts.onPhase?.('preparing');
   try { await renderer.compileAsync(scene, camera); } catch (e) { /* compiled on first draw instead */ }
+  check();
   if (!alive) return null;
   draw();
   request();
 
   return {
+    activate() { activated = true; active = performance.now(); request(); },
     /* state: { open, explode, flow (0..1), step (1-4), zoom (0.65-1.25), isolate (0 or part number) } */
     set(ry, rx, s) {
       const rot = ry * Math.PI / 180;
@@ -912,4 +952,5 @@ export async function init(opts) {
     },
     destroy
   };
+  } catch (e) { cleanup(); throw e; }
 }
