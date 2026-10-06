@@ -414,7 +414,7 @@ export async function init(opts) {
   guide(V(0.21, 4.38, 0), V(0.21, 4.38 + EXPLODE.motor, 0));
 
   await pause();
-  /* ---------- how it works (phase 4) ---------- */
+  /* ---------- how it works: water down, air up (an illustration of the catalogue's principle; the pipe runs inside are generic) ---------- */
   const flow = group(); flow.userData.keep = true;
   const flowItems = [];
   const flowMat = (hex, repeat) => new T.ShaderMaterial({
@@ -423,6 +423,60 @@ export async function init(opts) {
     vertexShader: 'varying vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
     fragmentShader: 'uniform float uTime;\nuniform float uOpacity;\nuniform float uRepeat;\nuniform float uSpeed;\nuniform vec3 uColor;\nvarying vec2 vUv;\nvoid main() {\n  float s = fract(vUv.x * uRepeat - uTime * uSpeed);\n  float a = smoothstep(0.0, 0.1, s) * (1.0 - smoothstep(0.55, 0.62, s));\n  vec3 c = mix(uColor * 0.6, uColor * 1.2, s);\n  gl_FragColor = vec4(c, (0.22 + 0.78 * a) * uOpacity);\n  #include <colorspace_fragment>\n}'
   });
+
+  const flowPath = (points, hex, steps) => {
+    const curve = new T.CatmullRomCurve3(points.map((q) => V(q[0], q[1], q[2])), false, 'centripetal');
+    const m = new T.Mesh(new T.TubeGeometry(curve, Math.max(40, points.length * 16), 0.04, 8, false), flowMat(hex, curve.getLength() / 0.22));
+    m.renderOrder = 10; m.userData.flow = true; m.frustumCulled = false;
+    flow.add(m); flowItems.push({ m, steps });
+  };
+  const C = { hot: '#f39a3d', cool: '#2f8bff', air: '#7d9db0' };
+  /* 1 hot water in through the inlet and up the riser */
+  flowPath([[-0.78, 0.44, 1.73], [-0.58, 0.44, 1.28], [-0.41, 0.44, 0.91], [-0.2, 0.46, 0.45], [0, 0.55, 0.05], [0, 0.75, 0], [0, 1.6, 0], [0, 3.0, 0]], C.hot, [1]);
+  /* 2 out along the sprinkler arms */
+  for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2; flowPath([[0, 3.06, 0], [Math.sin(a) * 0.65, 3.06, Math.cos(a) * 0.65], [Math.sin(a) * 1.25, 3.06, Math.cos(a) * 1.25]], C.hot, [2]); }
+  /* 3 down through the fill as a film: hot at the top, cooled by the bottom */
+  for (let k = 0; k < 6; k++) {
+    const a = k * Math.PI / 3 + 0.3, r = k % 2 ? 1.05 : 0.6, x = Math.sin(a) * r, z = Math.cos(a) * r;
+    flowPath([[x, 2.78, z], [x, 2.5, z], [x, 2.2, z]], C.hot, [3]);
+    flowPath([[x, 2.2, z], [x, 1.9, z], [x, 1.62, z]], C.cool, [3]);
+  }
+  /* 4 air: drawn in through the mesh, up through the fill and out past the fan */
+  for (let k = 0; k < 4; k++) {
+    const a = k * Math.PI / 2 + Math.PI / 4, P = (r, y) => [Math.sin(a) * r, y, Math.cos(a) * r];
+    flowPath([P(2.3, 1.05), P(1.7, 1.08), P(1.15, 1.25), P(0.85, 1.8), P(0.7, 2.5), P(0.55, 3.3), P(0.35, 3.84), P(0.25, 4.45), P(0.2, 5.05)], C.air, [3, 4]);
+  }
+  /* 5 cooled water out of the basin through the outlet, back to the equipment */
+  flowPath([[0, 0.6, 0], [0.2, 0.5, 0.45], [0.41, 0.42, 0.91], [0.58, 0.42, 1.31], [0.82, 0.42, 1.86]], C.cool, [5]);
+  /* the film on the fill: a hot-to-cool tint over the block */
+  const filmTex = canvasTex(8, 128, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#f39a3d'); gr.addColorStop(0.5, '#9fb7c9'); gr.addColorStop(1, '#2f8bff'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const film = new T.Mesh(new T.CylinderGeometry(1.43, 1.43, 1.16, 64, 1, true), new T.MeshBasicMaterial({ map: filmTex, transparent: true, opacity: 0, depthWrite: false }));
+  film.position.y = 2.2; film.renderOrder = 9; film.userData.flow = true; flow.add(film);
+  /* droplets: a spray under the arms, and the rain of cooled water from the bottom of the fill into the basin */
+  const dotTex = canvasTex(32, 32, (g, w, h) => { const r = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(0.6, 'rgba(255,255,255,0.8)'); r.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = r; g.fillRect(0, 0, w, h); });
+  const drops = (n, top, bottom, rMax, hex, size, seed) => {
+    const pos = new Float32Array(n * 3), info = [];
+    let sd = seed; const rnd = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+    for (let i = 0; i < n; i++) { const a = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * rMax; info.push({ x: Math.sin(a) * r, z: Math.cos(a) * r, ph: rnd(), sp: 0.8 + rnd() * 0.5 }); }
+    const g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3));
+    const pts = new T.Points(g, new T.PointsMaterial({ map: dotTex, color: hex, size, transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+    pts.renderOrder = 11; pts.frustumCulled = false; pts.userData.flow = true; flow.add(pts);
+    return { pts, info, top, bottom };
+  };
+  const spray = drops(70, 3.0, 2.8, 1.25, '#f39a3d', 0.07, 7), rain = drops(140, 1.6, 0.66, 1.3, '#2f8bff', 0.07, 11);
+  const moveDrops = (d, on) => {
+    const a = d.pts.geometry.attributes.position, span = d.top - d.bottom;
+    d.info.forEach((q, i) => { const u = (flowTime * 0.9 * q.sp + q.ph) % 1; a.setXYZ(i, q.x, d.top - u * span, q.z); });
+    a.needsUpdate = true; d.pts.material.opacity = on * 0.9; d.pts.visible = on > 0.01;
+  };
+  /* warm, moist air leaving above the fan */
+  const softTex = canvasTex(64, 64, (g, w, h) => { const r = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); r.addColorStop(0, 'rgba(255,255,255,0.95)'); r.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = r; g.fillRect(0, 0, w, h); });
+  const puffs = [];
+  for (let k = 0; k < 7; k++) {
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: softTex, color: '#a9c2cf', transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+    sp.visible = false; sp.renderOrder = 12; sp.userData.flow = true; sp.userData.a = k / 7 * Math.PI * 2; sp.userData.ph = k / 7; model.add(sp); puffs.push(sp);
+  }
+  let lastFlowT = 0;
 
   /* ---------- state, camera, layout ---------- */
   const target = V(0, 2.05, 0);
@@ -481,11 +535,25 @@ export async function init(opts) {
     lamp.intensity = 2.4 * phase(st.open, WIN.light) + 1.2 * f;
     fanSpeed = 1 - x;
     flowItems.forEach((it) => { const on = it.steps.indexOf(st.step) >= 0 || (!st.step && it.steps.indexOf(1) >= 0); it.m.material.uniforms.uOpacity.value = f * (on ? 1 : 0.08); });
+    film.material.opacity = f * (st.step === 3 ? 0.5 : st.step === 4 ? 0.25 : 0);
     flow.visible = f > 0.002;
+    if (f <= 0.002) puffs.forEach((sp) => { sp.visible = false; });
     applyIsolate(st.isolate);
     shapeDirty = true;
   };
-  const animateFlow = () => { flowItems.forEach((it) => { it.m.material.uniforms.uTime.value = flowTime; }); };
+  const animateFlow = () => {
+    const f = ease(st.flow), dt = Math.min(0.1, Math.max(0, flowTime - lastFlowT)); lastFlowT = flowTime;
+    flowItems.forEach((it) => { it.m.material.uniforms.uTime.value = flowTime; });
+    /* the sprinkler turns from the recoil of its jets once water reaches it */
+    sprinkler.rotation.y += dt * 1.6 * (st.step === 1 ? 0.15 : 1);
+    moveDrops(spray, f * (st.step === 2 || st.step === 3 ? 1 : 0));
+    moveDrops(rain, f * (st.step >= 3 ? 1 : 0));
+    puffs.forEach((sp) => {
+      const on = f * (st.step === 4 ? 1 : 0), u = (flowTime * 0.4 + sp.userData.ph) % 1, a = sp.userData.a, r = 0.35 + u * 0.35;
+      sp.position.set(Math.sin(a) * r, 4.35 + u * 1.1, Math.cos(a) * r);
+      sp.scale.setScalar(0.3 + u * 0.5); sp.material.opacity = on * Math.sin(Math.PI * u) * 0.7; sp.visible = on > 0.01;
+    });
+  };
 
   const layer = document.createElement('div');
   layer.className = 'c3__hsl';
