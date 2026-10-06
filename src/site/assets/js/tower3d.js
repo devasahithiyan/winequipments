@@ -128,7 +128,7 @@ export async function init(opts) {
   const group = (parent) => { const g = new T.Group(); (parent || model).add(g); return g; };
   const keep = (g) => { g.userData.keep = true; return g; };
   /* every part that moves or isolates stays its own group; the rest is merged by material */
-  const casingRear = keep(group()), casingFront = keep(group()), meshBand = keep(group()), basin = keep(group()), motorG = keep(group());
+  const casingRear = keep(group()), casingFrontL = keep(group()), casingFrontR = keep(group()), meshBand = keep(group()), basin = keep(group()), motorG = keep(group());
   const riser = keep(group()), sprinkler = keep(group()), fills = keep(group());
   const mesh = (geo, material, parent, x, y, z) => { const m = new T.Mesh(geo, material); m.position.set(x || 0, y || 0, z || 0); m.castShadow = true; m.receiveShadow = true; parent.add(m); return m; };
   const box = (w, h, d, material, parent, x, y, z) => mesh(new T.BoxGeometry(w, h, d), material, parent, x, y, z);
@@ -155,18 +155,21 @@ export async function init(opts) {
   const radiusAt = (y) => { for (let i = 1; i < profile.length; i++) if (y <= profile[i].y) { const a = profile[i - 1], b = profile[i], t = (y - a.y) / (b.y - a.y); return a.x + (b.x - a.x) * t; } return profile[profile.length - 1].x; };
   mesh(new T.LatheGeometry(profile, 72, restStart, restLength), frpDS, casingRear);
   mesh(new T.LatheGeometry(inner, 72, restStart, restLength), frpIn, casingRear).castShadow = false;
-  mesh(new T.LatheGeometry(profile, 44, cutStart, cutLength), shellFrp, casingFront);
-  mesh(new T.LatheGeometry(inner, 44, cutStart, cutLength), shellLining, casingFront).castShadow = false;
-  for (const a of [cutStart, cutStart + cutLength]) {   /* the wall thickness, seen at the cut */
+  /* the front sector is two halves, so the exploded view can swing them aside */
+  for (const [half, a0] of [[casingFrontL, cutStart], [casingFrontR, 0]]) {
+    mesh(new T.LatheGeometry(profile, 22, a0, cutLength / 2), shellFrp, half);
+    mesh(new T.LatheGeometry(inner, 22, a0, cutLength / 2), shellLining, half).castShadow = false;
+  }
+  for (const [a, parent] of [[cutStart, casingRear], [cutStart + cutLength, casingRear], [0, casingFrontL], [0, casingFrontR], [cutStart, casingFrontL], [cutStart + cutLength, casingFrontR]]) {   /* the wall thickness, seen at the cuts */
     const vtx = [], idx = [];
     profile.forEach((p, i) => { for (const r of [p.x, Math.max(0.1, p.x - 0.035)]) vtx.push(Math.sin(a) * r, p.y, Math.cos(a) * r); if (i < profile.length - 1) { const v = i * 2; idx.push(v, v + 1, v + 2, v + 1, v + 3, v + 2); } });
     const g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(vtx, 3)); g.setIndex(idx); g.computeVertexNormals();
-    mesh(g, cutFace, casingRear).castShadow = false;
+    mesh(g, cutFace, parent).castShadow = false;
   }
   /* eight raised ribs where the panels join, with bolt heads along them */
   const boltGeo = new T.SphereGeometry(0.022, 8, 6);
   for (let k = 0; k < 8; k++) {
-    const a = (k + 0.5) * Math.PI / 4, parent = Math.cos(a) > Math.cos(Math.PI * 0.38) ? casingFront : casingRear;
+    const a = (k + 0.5) * Math.PI / 4, parent = Math.cos(a) > Math.cos(Math.PI * 0.38) ? (Math.sin(a) < 0 ? casingFrontL : casingFrontR) : casingRear;
     const pts = []; for (let y = 1.45; y <= 3.99; y += 0.12) { const r = radiusAt(y) + 0.02; pts.push([Math.sin(a) * r, y, Math.cos(a) * r]); }
     pipe(pts, 0.042, frp, parent).castShadow = true;
     for (let y = 1.6; y < 3.9; y += 0.42) { const r = radiusAt(y) + 0.062; mesh(boltGeo, zinc, parent, Math.sin(a) * r, y, Math.cos(a) * r).castShadow = false; }
@@ -179,9 +182,9 @@ export async function init(opts) {
     g.fillStyle = '#46b14c'; g.fillRect(w - 170, 22, 140, 140); g.fillStyle = '#fff'; g.font = '700 54px Archivo, Arial, sans-serif'; g.textAlign = 'center'; g.fillText('WIN', w - 100, 92);
     g.fillStyle = '#e36b2c'; g.fillRect(0, h - 70, w, 70); g.fillStyle = '#fff'; g.font = '600 34px Archivo, Arial, sans-serif'; g.textAlign = 'left'; g.fillText('AIR TREATMENT & WATER COOLING SYSTEM', 34, h - 35);
   });
-  wrap(sticker, 1.507, 0.24, 2.55, 1.06, 0.27, casingFront);
+  wrap(sticker, 1.507, 0.37, 2.55, 0.98, 0.25, casingFrontR);
   const plate = canvasTex(160, 210, (g, w, h) => { g.fillStyle = '#d9dee0'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(30,40,50,0.38)'; for (let y = 22; y < h - 12; y += 16) g.fillRect(12, y, w - 24 - (y % 3) * 10, 5); });
-  wrap(plate, 1.507, 0.66, 3.05, 0.3, 0.4, casingFront);
+  wrap(plate, 1.507, 0.84, 3.05, 0.3, 0.4, casingFrontR);
 
   await pause();
   /* ---------- air inlet: green PVC mesh round the bottom of the casing, on posts ---------- */
@@ -289,7 +292,7 @@ export async function init(opts) {
   };
   /* merge each part's static meshes by material, so a few dozen draw calls replace hundreds */
   /* merge each part's static meshes by material, so a few dozen draw calls replace hundreds */
-  [casingRear, casingFront, meshBand, basin, motorG, rotor, riser, sprinkler, fills].forEach(bake);
+  [casingRear, casingFrontL, casingFrontR, meshBand, basin, motorG, rotor, riser, sprinkler, fills].forEach(bake);
   geometryCache.forEach((g) => g.dispose());
   const fades = [shellFrp, shellLining];
 
@@ -374,11 +377,11 @@ export async function init(opts) {
     6: anchor(basin, [0.75, 0.6, 1.2], [0.5, 0, 0.87])
   };
   const OPEN = Object.assign({}, CLOSED, { 2: anchor(casingRear, [0.35, 3.3, -1.36], [0, 0, 1]), 3: anchor(sprinkler, [0, 3.06, 0.12], [0, 0, 1]), 4: anchor(fills, [0, 2.2, 1.4], [0, 0, 1]) });
-  const EXPLODED = Object.assign({}, OPEN, { 2: anchor(casingFront, [0, 2.3, 1.52], [0, 0, 1]) });
+  const EXPLODED = Object.assign({}, OPEN, { 2: anchor(casingFrontR, [0.6, 2.0, 1.39], [0.4, 0, 0.92]) });
 
   /* ---------- isolate: the chosen part stays solid, everything else turns to a pale ghost ---------- */
   const ghost = new T.MeshBasicMaterial({ color: '#a9bccb', transparent: true, opacity: 0.12, depthWrite: false });
-  const PART_GROUPS = { 1: [motorG, rotor], 2: [casingRear, casingFront], 3: [sprinkler, riser], 4: [fills], 5: [meshBand], 6: [basin] };
+  const PART_GROUPS = { 1: [motorG, rotor], 2: [casingRear, casingFrontL, casingFrontR], 3: [sprinkler, riser], 4: [fills], 5: [meshBand], 6: [basin] };
   let isolated = 0;
   const ghosted = [];
   const applyIsolate = (n) => {
@@ -397,9 +400,18 @@ export async function init(opts) {
     });
   };
 
-  /* ---------- exploded view (phase 3) ---------- */
-  const guides = [];
+  /* ---------- exploded view: the front halves swing aside, the fill comes forward, sprinkler, fan and motor lift in turn;
+     dashed guides join each piece to where it sat ---------- */
+  const EXPLODE = { L: [-1.25, 0.1, 0.55, -0.3], R: [1.25, 0.1, 0.55, 0.3], fills: 0.75, sprinkler: 0.8, rotor: 1.15, motor: 1.5 };
   const guideMat = new T.LineDashedMaterial({ color: '#6f8f9e', transparent: true, opacity: 0.5, dashSize: 0.065, gapSize: 0.045 });
+  const guides = [];
+  const guide = (from, to) => { const line = new T.Line(new T.BufferGeometry().setFromPoints([from.clone(), from.clone()]), guideMat); line.visible = false; line.frustumCulled = false; model.add(line); guides.push({ line, from, to }); };
+  guide(V(-0.75, 2.3, 1.3), V(-0.75 + EXPLODE.L[0], 2.3 + EXPLODE.L[1], 1.3 + EXPLODE.L[2]));
+  guide(V(0.75, 2.3, 1.3), V(0.75 + EXPLODE.R[0], 2.3 + EXPLODE.R[1], 1.3 + EXPLODE.R[2]));
+  guide(V(0, 1.62, 1.42), V(0, 1.62, 1.42 + EXPLODE.fills));
+  guide(V(1.28, 3.06, 0), V(1.28, 3.06 + EXPLODE.sprinkler, 0));
+  guide(V(0.95, 3.84, 0), V(0.95, 3.84 + EXPLODE.rotor, 0));
+  guide(V(0.21, 4.38, 0), V(0.21, 4.38 + EXPLODE.motor, 0));
 
   await pause();
   /* ---------- how it works (phase 4) ---------- */
@@ -421,8 +433,8 @@ export async function init(opts) {
     const e = ease(st.open), x = ease(st.explode), f = ease(st.flow);
     /* how it works: the caption card covers the bottom st.inset pixels of the stage, so the model is framed in the space above it */
     const inset = st.still ? 0 : Math.min(st.inset * f, viewH * 0.55);
-    dist = baseDist * (1 - 0.04 * e + 0.2 * x + (st.inset ? 0.04 : st.lift ? 0.24 : 0.08) * f) * st.zoom * (viewH / (viewH - inset));
-    const ty = target.y + 0.1 * x + st.focus - (st.still || !st.lift || st.inset ? 0 : 0.85) * f;   /* how it works: the unit sits above the caption card (not in stills) */
+    dist = baseDist * (1 - 0.04 * e + 0.34 * x + (st.inset ? 0.04 : st.lift ? 0.24 : 0.08) * f) * st.zoom * (viewH / (viewH - inset));
+    const ty = target.y + 0.55 * x + st.focus - (st.still || !st.lift || st.inset ? 0 : 0.85) * f;   /* how it works: the unit sits above the caption card (not in stills) */
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
     if (inset > 0.5) camera.setViewOffset(viewW, viewH, 0, inset / 2, viewW, viewH); else if (camera.view && camera.view.enabled) camera.clearViewOffset();
@@ -450,9 +462,22 @@ export async function init(opts) {
     /* cutaway: the front sector of the casing fades out; the how-it-works view needs the same view of the inside */
     const cut = Math.max(o, f), sOp = 1 - cut * (1 - x);
     fades.forEach((m) => { m.opacity = sOp; const tr = sOp < 0.999; if (m.transparent !== tr) { m.transparent = tr; m.needsUpdate = true; } });
-    casingFront.visible = sOp > 0.01;
     const cast = sOp > 0.5;
-    if (casingFront.userData.castOn !== cast) { casingFront.userData.castOn = cast; casingFront.traverse((q) => { if (!q.isMesh) return; if (q.userData.c0 === undefined) q.userData.c0 = q.castShadow; q.castShadow = cast && q.userData.c0; }); }
+    [casingFrontL, casingFrontR].forEach((half) => {
+      half.visible = sOp > 0.01;
+      if (half.userData.castOn !== cast) { half.userData.castOn = cast; half.traverse((q) => { if (!q.isMesh) return; if (q.userData.c0 === undefined) q.userData.c0 = q.castShadow; q.castShadow = cast && q.userData.c0; }); }
+    });
+    /* exploded */
+    for (const [half, e] of [[casingFrontL, EXPLODE.L], [casingFrontR, EXPLODE.R]]) { half.position.set(e[0] * x, e[1] * x, e[2] * x); half.rotation.y = e[3] * x; }
+    fills.position.z = EXPLODE.fills * x; sprinkler.position.y = EXPLODE.sprinkler * x;
+    rotor.position.y = 3.84 + EXPLODE.rotor * x; motorG.position.y = EXPLODE.motor * x;
+    guideMat.opacity = 0.5 * x;
+    guides.forEach((g) => {
+      g.line.visible = x > 0.02;
+      if (!g.line.visible) return;
+      const pos = g.line.geometry.attributes.position, t = V(0, 0, 0).lerpVectors(g.from, g.to, x);
+      pos.setXYZ(0, g.from.x, g.from.y, g.from.z); pos.setXYZ(1, t.x, t.y, t.z); pos.needsUpdate = true; g.line.computeLineDistances();
+    });
     lamp.intensity = 2.4 * phase(st.open, WIN.light) + 1.2 * f;
     fanSpeed = 1 - x;
     flowItems.forEach((it) => { const on = it.steps.indexOf(st.step) >= 0 || (!st.step && it.steps.indexOf(1) >= 0); it.m.material.uniforms.uOpacity.value = f * (on ? 1 : 0.08); });
