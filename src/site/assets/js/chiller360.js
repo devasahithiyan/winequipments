@@ -303,7 +303,8 @@
     stage.classList.toggle('is-revealing', next === 'revealing');
     stage.classList.toggle('is-3d', next === 'ready');
     section.classList.toggle('has-3d', next === 'ready');
-    loadBtn.hidden = next === 'ready' || next === 'revealing' || next === 'unavailable' || (next === 'poster' && autoLoad);
+    /* the button stays through the reveal and fades with the poster (CSS), then goes */
+    loadBtn.hidden = next === 'ready' || next === 'unavailable' || (next === 'poster' && autoLoad);
     loadBtn.disabled = busy;
     loadLabel.textContent = next === 'error' ? 'Retry' : next === 'loading' ? 'Loading 3D…' : 'View in 3D';
   };
@@ -375,9 +376,29 @@
     } catch (_) { fail(id); }
     finally { clearTimeout(delay); clearTimeout(deadline); }
   };
+  /* Fetch the renderer ahead of the click, so tapping View in 3D only has to build the model. The files are the module, three.js
+     (from the page's import map) and BufferGeometryUtils; they are not run until the visitor asks. Skipped on data-saver and 2g/3g. */
+  let preloaded = false;
+  const preload = () => {
+    if (preloaded || slowNet || !can3d) return;
+    preloaded = true;
+    try {
+      const head = document.head, map = document.querySelector('script[type="importmap"]');
+      if (!head) return;
+      const three = (JSON.parse(map?.textContent || '{}').imports || {}).three || '/js/vendor/three.module.min.js?v=170';
+      for (const href of [MODULE + ver, three, '/js/vendor/BufferGeometryUtils.js?v=170']) {
+        const link = document.createElement('link'); link.rel = 'modulepreload'; link.href = href; head.appendChild(link);
+      }
+    } catch (_) { /* a missing preload only costs time at the click */ }
+  };
+  ['pointerenter', 'focus', 'touchstart'].forEach((ev) => loadBtn.addEventListener(ev, preload, { passive: true }));
   loadBtn.addEventListener('click', (e) => { e.stopPropagation(); upgrade(); });
   setState(can3d ? 'poster' : 'unavailable');
   layout();
+  if (can3d && !autoLoad && !slowNet) {   /* click-to-load: warm the network when the viewer is within a screen or so */
+    const warm = new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) { warm.disconnect(); preload(); } }, { rootMargin: '900px 0px' });
+    warm.observe(stage);
+  }
   if (can3d && autoLoad) {
     const near = new IntersectionObserver((en) => {
       if (en.some((e) => e.isIntersecting)) { near.disconnect(); upgrade(); }

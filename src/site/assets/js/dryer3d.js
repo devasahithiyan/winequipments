@@ -180,6 +180,17 @@ export async function init(opts) {
   const nameTex = (text, big) => canvasTex(512, 128, (g, w, h) => {
     g.fillStyle = big ? '#0b8a3e' : '#1d3a8a'; g.font = '700 ' + (big ? 108 : 58) + 'px Archivo, Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, w / 2, h / 2);
   });
+  /* the Win Equipments logo, redrawn at texture resolution from images/logo.png, wrapped onto the vessel where the WIN lettering is */
+  const logoTex = canvasTex(564, 318, (g, w, h) => {
+    g.fillStyle = '#46b14c'; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#fff'; g.fillRect(10, 168, w - 20, 66);
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = '#fff'; g.font = '700 142px Archivo, Arial, sans-serif';
+    ['W', 'I', 'N'].forEach((ch, i) => g.fillText(ch, w / 2 + (i - 1) * 168, 88));
+    g.fillStyle = '#3a3d3f'; g.font = '600 66px Archivo, Arial, sans-serif'; g.fillText('EQUIPMENTS', w / 2, 203);
+    g.fillStyle = '#fff'; g.font = '600 26px Archivo, Arial, sans-serif'; g.fillText('Save Water & Power', w / 2, 276);
+  });
+  const logoMat = new T.MeshStandardMaterial({ map: logoTex, roughness: 0.5, metalness: 0.05 });
   const lampLabel = canvasTex(512, 128, (g, w, h) => {
     g.fillStyle = '#e6ece8'; g.font = '600 34px Archivo, Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
     g.fillText('POWER ON', w * 0.21, h / 2); g.fillText('DRYER ON', w * 0.735, h / 2);
@@ -224,7 +235,10 @@ export async function init(opts) {
     const gg = group(s); gg.position.set(gx, 2.85, 0.59);
     const body = cyl(0.145, 0.075, zinc, gg); body.rotation.x = Math.PI / 2; torus(0.136, 0.018, zinc, gg, 0, 0, 0.045); decal(gaugeFace, 0.25, 0.25, gg, 0, 0, 0.05);
     decal(nameTex(index ? 'TOWER-1' : 'TOWER-2'), 0.46, 0.115, s, 0, 2.31, 0.589);
-    if (!index) decal(nameTex('WIN', true), 0.46, 0.13, s, 0, 1.96, 0.589);
+    if (!index) {   /* the logo follows the curve of the vessel (radius 0.58), below the frame's top rail so it is not hidden */
+      const lw = 0.56, lh = lw * 318 / 564, patch = new T.CylinderGeometry(0.585, 0.585, lh, 24, 1, true, -lw / 0.585 / 2, lw / 0.585);
+      const logo = mesh(patch, logoMat, s, 0, 1.5, 0); logo.castShadow = false;
+    }
     /* relief fitting and lifting eye on the head, flanges top and bottom */
     const rg = group(v); rg.position.set(0.3, 3.43, 0.08);
     const stem = cyl(0.035, 0.22, brass, rg, 0, 0.08, 0); stem.rotation.z = -0.3; cyl(0.05, 0.055, brass, rg, 0.028, 0.19, 0, 8);
@@ -417,7 +431,7 @@ export async function init(opts) {
   const anchor = (obj, p, n) => ({ obj, p: V(p[0], p[1], p[2]), n: V(n[0], n[1], n[2]).normalize() });
   const CLOSED = {
     1: anchor(cabinet, [0, 0.02, 0.15], [0, 0, 1]),
-    2: anchor(model, [-0.8, 1.55, 0.6], [0, 0, 1]),
+    2: anchor(model, [-1.05, 2.6, 0.36], [-0.5, 0, 1]),
     3: anchor(model, [0.8, 1.95, 0.6], [0.15, 0, 1]),
     4: anchor(manifolds, [0, 4.36, 0.06], [0, 0.5, 1]),
     5: anchor(valves, [-0.8, 0.74, 0.26], [0, 0, 1]),

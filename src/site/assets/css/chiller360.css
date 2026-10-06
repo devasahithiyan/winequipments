@@ -51,6 +51,10 @@
 .c3__load svg { flex: none; width: 22px; height: 22px; }
 .c3__load[disabled] { cursor: progress; opacity: 0.9; }
 .c3__stage.is-3d .c3__load { display: none; }
+/* while loading the cube turns; at the reveal the button fades out with the poster instead of vanishing */
+.c3[data-c3-state="loading"] .c3__load svg { animation: c3spin 1.6s linear infinite; }
+.c3[data-c3-state="revealing"] .c3__load { opacity: 0; pointer-events: none; transition: opacity 200ms var(--ease-out); }
+@keyframes c3spin { to { transform: rotate(360deg); } }
 .motion .c3__hint svg { animation: c3nudge 1.8s ease-in-out infinite; }
 @keyframes c3nudge { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
 .c3__stage.is-touched .c3__hint, .c3__stage.is-open .c3__hint { opacity: 0; transform: translate(-50%, 8px); }
@@ -158,4 +162,6 @@ html:not(.js) .c3__part > ul { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .c3__poster, .c3__toolbar, .c3__hsl { transition: none; }
   .c3__loading-mark { animation: none !important; }
+  .c3[data-c3-state="loading"] .c3__load svg { animation: none; }
+  .c3[data-c3-state="revealing"] .c3__load { transition: none; }
 }
