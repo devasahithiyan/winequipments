@@ -9,7 +9,7 @@
 {% block schema %}
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), product_ld(p), crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
 {% endblock %}
-{% block extra_css %}{% if p.slug == 'industrial-process-chillers' or p.spin is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
+{% block extra_css %}{% if p.slug in ('industrial-process-chillers', 'desiccant-air-dryers') or p.spin is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
 {% block main %}
 <div class="read-progress" aria-hidden="true"></div>
 {{ m.breadcrumb(crumbs) }}
@@ -64,6 +64,7 @@
 </nav>
 
 {% if p.slug == 'industrial-process-chillers' %}{% include "partials/chiller360.html" %}{% endif %}
+{% if p.slug == 'desiccant-air-dryers' %}{% include "partials/dryer360.html" %}{% endif %}
 {% if p.spin is defined %}{% include "partials/photo_spin.html" %}{% endif %}
 
 {% if p_photos %}

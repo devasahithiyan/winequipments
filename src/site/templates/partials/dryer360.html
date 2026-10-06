@@ -1,0 +1,95 @@
+{# Interactive WebGL model of a Win heatless desiccant dryer. The outside follows the photographs images/Products/dessicantdryer.png and
+   images/works/desiccant-dryer-twin-tower.jpg; the bed, screens and air paths are illustrations. A render of the same model, in the same
+   pose, is the poster, so the swap to the live canvas is seamless. chiller360.js drives it (configured by the data-c3-* attributes below),
+   dryer3d.js is the renderer. Regenerate the posters with src/site/tools/render_dryer_posters.py after changing the model. No model number
+   or rating is given to the photographed unit. #}
+{% set dr = products['desiccant-air-dryers'] %}
+{% set feat = {} %}{% for f in dr.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
+{% set flow_steps = [
+  {"t": "Wet air in.", "d": "Compressed air enters at the bottom and rises into the tower that is drying.", "ry": 34, "rx": -12},
+  {"t": "Adsorb.", "d": "The desiccant granules adsorb the water vapour as the air rises. Dry air leaves at the top.", "ry": 14, "rx": -14},
+  {"t": "Purge.", "d": "A small flow of that dry air expands down the other tower, strips the moisture from its bed and leaves through the purge exhaust.", "ry": -18, "rx": -14},
+  {"t": "Switch.", "d": "On a fixed timer the towers swap duties, so one is always drying.", "ry": 14, "rx": -14}
+] %}
+{% set parts = [
+  {"t": "Controls", "ry": 8, "rx": -10, "pts": ["Black control box on the upper rail, with POWER ON and DRYER ON lamps and a switch on its front", "Timer and terminals shown behind the door are an illustration"] + feat['Controls']},
+  {"t": "Towers", "ry": 30, "rx": -12, "pts": ["Two welded steel pressure vessels with dished ends, labelled TOWER-1 and TOWER-2 on the unit", "A pressure gauge on each tower, and a relief fitting on each head", "One tower dries while the other regenerates"]},
+  {"t": "Desiccant bed and screens", "ry": 14, "rx": -14, "pts": ["Inside each tower, so not photographed: the granules and the screens in the model are an illustration"] + feat['Desiccant bed'] + ["Activated alumina or molecular sieve"]},
+  {"t": "Air manifolds", "ry": 20, "rx": -26, "pts": ["Flanged pipework joins the two towers: the arched header on top and the pipe along the base", "In this illustration the top header carries dry air and the base pipe brings wet air in; the piping differs by model"]},
+  {"t": "Valves and mufflers", "ry": 24, "rx": -10, "pts": ["An actuated valve sits in the pipework at the base, as photographed"] + feat['Valves'] + feat['Quiet running']},
+  {"t": "Frame", "ry": 40, "rx": -12, "pts": ["Painted steel frame with cross-members and base plates"] + feat['Frame']},
+  {"t": "Filter housings", "ry": 62, "rx": -12, "pts": ["Two small vessels stand behind the frame on the photographed unit", "Optional factory-mounted pre- and after-filters are listed for the range; what is inside these housings is not visible, so the model shows plain housings"]}
+] %}
+<section class="c3" data-c3-state="poster" data-c3-module="/js/dryer3d.js" data-c3-click data-c3-home="28,-12" data-c3-open-view="20,-14" data-c3-exploded-view="24,-16" id="dryer-360" aria-labelledby="c3-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <p class="c3__eyebrow"><span>3D</span> Heatless desiccant dryer</p>
+      <h2 id="c3-title">Look inside a Win desiccant dryer</h2>
+      <p>Turn the dryer around, cut it open, explode it into its parts, or follow the air through the two towers. Pick a part to see what it does.</p>
+    </div>
+    <div class="c3__scroll" data-c3-scroll>
+    <div class="c3__grid">
+      <div class="c3__viewer" data-c3>
+        <div class="c3__stage" tabindex="0" role="group" aria-roledescription="3D viewer" aria-label="3D model of a Win heatless desiccant dryer. Left and right arrow keys rotate it, plus and minus zoom. Use the view buttons below to cut it open, explode it or follow the air." data-c3-stage>
+          <div class="c3__poster" data-c3-poster="standard" aria-hidden="true">{{ picture('images/dryer-renders/dryer-poster-standard.png', '', sizes='(min-width: 1024px) 34vw, 80vw', max_w=1200) }}</div>
+          <div class="c3__poster c3__poster--lite" data-c3-poster="lite" aria-hidden="true">{{ picture('images/dryer-renders/dryer-poster-lite.png', '', sizes='(min-width: 1024px) 34vw, 80vw', max_w=1200) }}</div>
+          <button type="button" class="c3__load" data-c3-load hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span data-c3-load-label>View in 3D</span></button>
+          {% for p in parts %}<span class="c3__hs" data-hs="{{ loop.index }}">{{ loop.index }}</span>
+          {% endfor %}
+          <p class="c3__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3"/></svg>Drag to rotate</p>
+          <span class="c3__deg" aria-hidden="true" data-c3-deg>028°</span>
+          <div class="c3__flow" data-c3-flow hidden>
+            <p class="c3__flow-n">How it works · step <span data-c3-stepnow>1</span> of {{ flow_steps | length }}</p>
+            <ol class="c3__flow-steps">
+              {% for fs in flow_steps %}<li data-c3-step="{{ loop.index }}" data-ry="{{ fs.ry }}" data-rx="{{ fs.rx }}"{% if not loop.first %} hidden{% endif %}><strong>{{ fs.t }}</strong> {{ fs.d }}</li>{% endfor %}
+            </ol>
+            <div class="c3__flow-bar">
+              <ul class="c3__legend" aria-label="Colours">
+                <li style="--c:#f39a3d">Wet air</li><li style="--c:#2f8bff">Dry air</li><li style="--c:#36d1ff">Purge air</li>
+              </ul>
+              <span class="c3__flow-nav"><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="-1" aria-label="Previous step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="1" aria-label="Next step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button></span>
+            </div>
+          </div>
+        </div>
+        <div class="c3__status" role="status" aria-live="polite" data-c3-status hidden><span class="c3__loading-mark" aria-hidden="true"></span><span data-c3-status-text></span></div>
+        <div class="c3__toolbar" data-c3-toolbar inert>
+        <div class="c3__modes" role="radiogroup" aria-label="View">
+          <button type="button" role="radio" aria-checked="true" data-c3-mode="closed">Closed</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="open">Cutaway</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="exploded">Exploded</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="flow">How it works</button>
+        </div>
+        <div class="c3__controls">
+          <button type="button" class="c3__btn" data-c3-rot="-45" aria-label="Rotate left"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="c3__btn" data-c3-rot="45" aria-label="Rotate right"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-zoom="0.12" aria-label="Zoom out">−</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-zoom="-0.12" aria-label="Zoom in">+</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-isolate aria-pressed="false">Isolate part</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-play aria-pressed="false">Auto-rotate</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-reset>Reset view</button>
+        </div>
+        </div>
+        <p class="c3__note">Illustrative 3D model. The outside follows photographs of a Win heatless dryer; the bed, the screens and the layout behind the control door are illustrations, because the inside is not photographed. Proportions and the position of parts vary by model; this is not a service drawing.</p>
+      </div>
+
+      <div class="c3__info">
+        <ol class="c3__parts" data-c3-parts>
+          {% for p in parts %}
+          <li class="c3__part{% if loop.first %} is-active{% endif %}">
+            <button type="button" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="c3p-{{ loop.index }}" data-part="{{ loop.index }}" data-ry="{{ p.ry }}" data-rx="{{ p.rx }}"><span class="c3__n">{{ loop.index }}</span>{{ p.t }}<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+            <ul id="c3p-{{ loop.index }}">{% for pt in p.pts %}<li>{{ pt }}</li>{% endfor %}</ul>
+          </li>
+          {% endfor %}
+        </ol>
+        <p class="c3__range">Points after the first describe our WHD heatless desiccant dryer range. Models differ in capacity ({{ dr.range }}), pressure and layout.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#quote" data-quote-link>Quote a desiccant dryer</a>
+          <a class="btn btn--secondary" href="#specs">All {{ dr.spec.rows | length }} WHD models</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<script type="importmap">{"imports":{"three":"/js/vendor/three.module.min.js?v=170"}}</script>
+<script src="/js/chiller360.js?v={{ js_ver }}" defer></script>

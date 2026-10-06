@@ -18,7 +18,12 @@
   const modeBtns = $$('[data-c3-mode]', c3);
   const flowBox = $('[data-c3-flow]', c3), steps = $$('[data-c3-step]', c3), stepNow = $('[data-c3-stepnow]', c3);
   const parts = $$('[data-part]', section), hotspots = $$('.c3__hs', stage);
-  const HOME = { ry: 35, rx: -14 }, OPEN_VIEW = { ry: 24, rx: -16 }, EXPLODED_VIEW = { ry: 32, rx: -18 };
+  /* the section configures the viewer: data-c3-module (renderer), data-c3-home / -open-view / -exploded-view ("ry,rx"),
+     data-c3-click (never load until asked). Without them this is the process chiller. */
+  const cfg = section.dataset || {};
+  const viewAt = (v, d) => { const a = String(v || '').split(',').map(Number); return a.length === 2 && a.every(Number.isFinite) ? { ry: a[0], rx: a[1] } : d; };
+  const MODULE = cfg.c3Module || '/js/chiller3d.js';
+  const HOME = viewAt(cfg.c3Home, { ry: 35, rx: -14 }), OPEN_VIEW = viewAt(cfg.c3OpenView, { ry: 24, rx: -16 }), EXPLODED_VIEW = viewAt(cfg.c3ExplodedView, { ry: 32, rx: -18 });
   let ry = HOME.ry, rx = HOME.rx, vel = 0, anim = null, playing = false, inView = false, last = 0, view3d = null;
   let mode = 'closed', scrollP = 0, zoom = 1, isolate = false, selected = 1, step = 1, stepTimer = 0;
   const val = { open: 0, explode: 0, flow: 0 };       /* tweened */
@@ -281,7 +286,7 @@
   const weakDevice = (navigator.hardwareConcurrency || 4) <= 4 || (navigator.deviceMemory || 8) <= 4;
   const handheld = matchMedia('(max-width: 1023px), (hover: none)').matches;
   const lite = weakDevice || slowNet || matchMedia('(max-width: 767px)').matches;
-  const autoLoad = !slowNet && !weakDevice && !handheld;
+  const autoLoad = cfg.c3Click === undefined && !slowNet && !weakDevice && !handheld;
   const can3d = webgl() && !!HTMLScriptElement.supports?.('importmap') && hasIO && 'ResizeObserver' in window;
   const loadBtn = $('[data-c3-load]', stage), loadLabel = $('[data-c3-load-label]', stage);
   const status = $('[data-c3-status]', c3), statusText = $('[data-c3-status-text]', c3);
@@ -337,7 +342,7 @@
     try {
       /* Browsers cache failed module loads. A retry needs a fresh module URL. */
       const retry = id > 1 ? (ver ? '&' : '?') + 'retry=' + id : '';
-      const module = await import('/js/chiller3d.js' + ver + retry);
+      const module = await import(MODULE + ver + retry);
       if (id !== attempt) return;
       const v = await module.init({
         stage, reduce, hotspots, lite, signal: controller.signal,
