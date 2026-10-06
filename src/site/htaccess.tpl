@@ -11,6 +11,16 @@ ErrorDocument 404 /404.html
 
     # Old URLs (301)
 {{REDIRECTS}}
+
+    # /index.html and /folder/index.html -> the folder URL (THE_REQUEST avoids looping on DirectoryIndex)
+    RewriteCond %{THE_REQUEST} \s/((?:[^\s?]*/)?)index\.html[\s?]
+    RewriteRule ^ https://winequipments.com/%1 [L,R=301]
+
+    # Extensionless page URLs -> the .html page when it exists (e.g. /products/refrigerated-air-dryers)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.+?)/?$ https://winequipments.com/$1.html [L,R=301]
 </IfModule>
 
 <IfModule mod_headers.c>

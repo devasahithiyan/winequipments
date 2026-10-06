@@ -604,7 +604,7 @@ env.filters["inr"] = inr
 
 
 def product_ld(p):
-    """ProductGroup with one variant per catalogue model. Offers only where the owner has published an
+    """One Product per page with key specs and the model list. Offers only where the owner has published an
     indicative price (IndiaMART listing, see Reports/seo/indiamart/MAPPING.md); no ratings."""
     url = site["url"] + product_url(p["slug"])
     imgs = [image_url(p["image"])] + [image_url(ph["path"]) for ph in photos if ph.get("product") == p["slug"]][:4]
@@ -620,21 +620,14 @@ def product_ld(p):
     if props:
         base["additionalProperty"] = props
     spec = p.get("spec")
-    if not spec or p["series"] in ("Engineered to order", "Spares"):
-        return dict({"@type": "Product", "@id": url + "#product"}, **base)
-    cols = [c for c in spec["columns"] if c["key"] != "model"]
-    variants = []
-    for r in spec["rows"]:
-        vp = []
-        for c in cols:
-            v = r.get(c["key"])
-            if v in (None, "", "—"):
-                continue
-            name = c["label"] + (f" ({c['unit']})" if c.get("unit") else "")
-            vp.append({"@type": "PropertyValue", "name": name, "value": v})
-        variants.append({"@type": "Product", "name": f"{r['model']} {p['name']}", "mpn": r["model"], "model": r["model"],
-                         "url": f"{url}#{model_id(r['model'])}", "additionalProperty": vp})
-    return dict({"@type": "ProductGroup", "@id": url + "#product", "productGroupID": p["series"], "model": p["series"], "hasVariant": variants}, **base)
+    # One Product per page. Catalogue models are listed as a property, not as hasVariant Products: Google treats a
+    # Product without offers, review or rating as an invalid item (149 Semrush errors on 4 Oct 2026), and
+    # per-model prices are not published.
+    if spec and spec.get("rows") and p["series"] not in ("Engineered to order", "Spares"):
+        base.setdefault("additionalProperty", []).append(
+            {"@type": "PropertyValue", "name": "Models", "value": ", ".join(r["model"] for r in spec["rows"])})
+        base["model"] = p["series"]
+    return dict({"@type": "Product", "@id": url + "#product"}, **base)
 
 
 env.globals["org_schema"] = org_schema
