@@ -14,11 +14,16 @@
 </section>
 <section class="section section--rule" aria-label="Locations">
   <div class="container">
-    <ul class="blog-list">
-      {% for l in locations %}
-      <li data-reveal style="--d:{{ loop.index0 % 3 }}"><a href="/locations/{{ l.slug }}.html"><span class="blog-list__cat">{{ l.city }}{% if l.region %}, {{ l.region }}{% endif %}</span><strong>{{ l.h1 }}</strong><span class="blog-list__desc">{{ l.description }}</span><span class="blog-list__meta">View<svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
-      {% endfor %}
-    </ul>
+    {% for c in location_cities %}
+    <div class="loc-group" id="{{ c.id }}">
+      <h2 class="loc-group__h">{{ c.label }}{% if c.pages[0].region and c.label != 'All India' %} <span>{{ c.pages[0].region }}</span>{% endif %}</h2>
+      <ul class="blog-list">
+        {% for l in c.pages %}
+        <li data-reveal style="--d:{{ loop.index0 % 3 }}"><a href="/locations/{{ l.slug }}.html"><strong>{{ l.h1 }}</strong><span class="blog-list__desc">{{ l.description }}</span><span class="blog-list__meta">View<svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
   </div>
 </section>
 {% include "partials/enquiry.html" %}

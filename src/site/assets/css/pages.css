@@ -592,3 +592,9 @@ a.ct-card--wa:hover .ct-card__ic { background: #fff; color: var(--green); }
   .motion .pcard.is-match a { animation: pmatch 0.5s var(--ease-out); }
   @keyframes pmatch { 40% { transform: scale(1.02); } }
 }
+
+/* areas page: one group per city (the footer links to these anchors) */
+.loc-group { scroll-margin-top: calc(var(--header-h) + 64px); }
+.loc-group + .loc-group { margin-top: var(--s-10); }
+.loc-group__h { margin-bottom: var(--s-4); font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); }
+.loc-group__h span { font-size: var(--fs-small); font-weight: 600; color: var(--muted); letter-spacing: 0; }

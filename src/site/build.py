@@ -645,9 +645,17 @@ def crumbs_ld(items):
 articles = load_articles()
 glossary = json.loads((SRC / "content" / "glossary.json").read_text())
 locations = json.loads((DATA / "locations.json").read_text())
+# one entry per city (several cities have a page per product), in first-seen order, for the footer and the areas page
+location_cities = []
+for l in locations:
+    hit = next((c for c in location_cities if c["city"] == l["city"]), None)
+    if not hit:
+        hit = {"city": l["city"], "label": "All India" if l["city"] == "India" else l["city"], "id": model_id(l["city"]), "pages": []}
+        location_cities.append(hit)
+    hit["pages"].append(l)
 env.globals["reviews"] = json.loads((DATA / "reviews.json").read_text())
 industries_by_slug = {i["slug"]: i for i in site["industries"]}
-env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, industries_by_slug=industries_by_slug)
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, location_cities=location_cities, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
 NUM_WORDS = {15: "Fifteen", 16: "Sixteen", 17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty", 21: "Twenty-one", 22: "Twenty-two", 23: "Twenty-three", 24: "Twenty-four"}
 env.globals["product_count"] = len(products)
