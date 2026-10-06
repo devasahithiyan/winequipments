@@ -2,9 +2,7 @@
    images/works/round-tower-frp-blue.jpg; the fills, sprinkler, riser and fan inside, and the water and air paths, are illustrations.
    A render of the same model, in the same pose, is the poster, so the swap to the live canvas is seamless. chiller360.js drives it
    (configured by the data-c3-* attributes below), tower3d.js is the renderer. Regenerate the posters with
-   src/site/tools/render_model_posters.py tower after changing the model. No model number or rating is given to the photographed unit.
-   tower_phase gates the views while the model is built in phases: 1 closed, 2 cutaway, 3 exploded, 4 how it works. #}
-{% set tower_phase = 4 %}
+   src/site/tools/render_model_posters.py tower after changing the model. No model number or rating is given to the photographed unit. #}
 {% set ct = products['round-cooling-towers'] %}
 {% set feat = {} %}{% for f in ct.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
 {# How it works, in five steps from the catalogue principle. a / b are what the water and the air are doing; as / bs their colour keys. #}
@@ -59,13 +57,13 @@
         </div>
         <div class="c3__status" role="status" aria-live="polite" data-c3-status hidden><span class="c3__loading-mark" aria-hidden="true"></span><span data-c3-status-text></span></div>
         <div class="c3__toolbar" data-c3-toolbar inert>
-        {% if tower_phase >= 2 %}<div class="c3__modes" role="radiogroup" aria-label="View">
+        <div class="c3__modes" role="radiogroup" aria-label="View">
           <button type="button" role="radio" aria-checked="true" data-c3-mode="closed">Closed</button>
           <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="open">Cutaway</button>
-          {% if tower_phase >= 3 %}<button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="exploded">Exploded</button>{% endif %}
-          {% if tower_phase >= 4 %}<button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="flow">How it works</button>{% endif %}
-        </div>{% endif %}
-        {% if tower_phase >= 3 %}<div class="c3__sep" data-c3-sep hidden><div class="c3__sep-row"><label for="c3-sep">Assembly separation</label><output for="c3-sep" data-c3-sep-out>Fully separated</output></div><input type="range" id="c3-sep" data-c3-sep-input min="0" max="100" step="1" value="100" aria-valuetext="Fully separated"><p>Drag to bring the parts together or pull them apart. Dashed lines show where each piece sits when assembled.</p></div>{% endif %}
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="exploded">Exploded</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="flow">How it works</button>
+        </div>
+        <div class="c3__sep" data-c3-sep hidden><div class="c3__sep-row"><label for="c3-sep">Assembly separation</label><output for="c3-sep" data-c3-sep-out>Fully separated</output></div><input type="range" id="c3-sep" data-c3-sep-input min="0" max="100" step="1" value="100" aria-valuetext="Fully separated"><p>Drag to bring the parts together or pull them apart. Dashed lines show where each piece sits when assembled.</p></div>
         {% include "partials/c3_tools.html" %}
         </div>
         <p class="c3__note">Illustrative 3D model. The outside follows photographs of a Win round FRP cooling tower; the fills, sprinkler and fan inside are illustrations, because the inside is not photographed. Proportions and the position of parts vary by model; this is not a service drawing.</p>
