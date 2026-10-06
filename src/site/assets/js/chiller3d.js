@@ -26,9 +26,10 @@ export async function init(opts) {
   try { await document.fonts.load('700 64px Archivo'); } catch (e) { /* Arial fallback */ }
 
   const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
-  /* phones and small CPUs render at a lower pixel ratio; desktops up to 1.75 */
+  /* phones and small CPUs render at a lower pixel ratio; desktops up to 1.5 (Retina at 2x costs 4x the pixels for little gain) */
   const lowEnd = (navigator.hardwareConcurrency || 4) <= 4 || matchMedia('(max-width: 767px)').matches;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowEnd ? 1.35 : 1.75));
+  const maxPR = Math.min(window.devicePixelRatio || 1, lowEnd ? 1.25 : 1.5);
+  renderer.setPixelRatio(maxPR);
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.NeutralToneMapping;   /* photographic roll-off that keeps the paint's saturation */
   renderer.toneMappingExposure = 1.0;
@@ -520,9 +521,11 @@ export async function init(opts) {
   rtA.texture.generateMipmaps = rtB.texture.generateMipmaps = false;
   const csGeo = new T.PlaneGeometry(CS, CS).rotateX(Math.PI / 2);
   const csPlane = new T.Mesh(csGeo, new T.MeshBasicMaterial({ map: rtA.texture, opacity: 0.8, transparent: true, depthWrite: false }));
-  csPlane.renderOrder = 1; csPlane.scale.y = -1; csPlane.position.y = 0.003; scene.add(csPlane);
-  const blurPlane = new T.Mesh(csGeo); blurPlane.visible = false; scene.add(blurPlane);
-  const csCam = new T.OrthographicCamera(-CS / 2, CS / 2, CS / 2, -CS / 2, 0, CS_H); csCam.rotation.x = Math.PI / 2; scene.add(csCam);
+  /* the rig turns with the model, so the baked contact shadow stays valid while the unit is rotated */
+  const csRig = new T.Group(); scene.add(csRig);
+  csPlane.renderOrder = 1; csPlane.scale.y = -1; csPlane.position.y = 0.003; csRig.add(csPlane);
+  const blurPlane = new T.Mesh(csGeo); blurPlane.visible = false; csRig.add(blurPlane);
+  const csCam = new T.OrthographicCamera(-CS / 2, CS / 2, CS / 2, -CS / 2, 0, CS_H); csCam.rotation.x = Math.PI / 2; csRig.add(csCam);
   const depthMat = new T.MeshDepthMaterial(); depthMat.userData.darkness = { value: 1.25 };
   depthMat.onBeforeCompile = (sh) => {
     sh.uniforms.darkness = depthMat.userData.darkness;
@@ -643,7 +646,7 @@ export async function init(opts) {
   /* ---------- state, camera, layout ---------- */
   const target = V(0, 1.4 + PAL, 0);
   const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, isolate: 0, still: false };
-  let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 1, shapeDirty = true, flowTime = 0;
+  let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 1, shapeDirty = true, shadowDirty = true, flowTime = 0;
   const placeCamera = () => {
     const e = ease(st.open), x = ease(st.explode), f = ease(st.flow);
     dist = baseDist * (1 - 0.05 * e + 0.42 * x + 0.16 * f) * st.zoom;
@@ -651,7 +654,7 @@ export async function init(opts) {
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
   };
-  let composer = null, gtao = null, useAO = false;
+  let composer = null, gtao = null, useAO = false, stillFrame = false;
   const frameFor = (w, h) => {
     camera.aspect = w / h;
     const half = Math.tan(camera.fov * Math.PI / 360);
@@ -749,36 +752,50 @@ export async function init(opts) {
   let raf = 0, need = true, inView = true, last = 0, alive = true;
   const spin = !reduce;
   const draw = () => {
-    model.updateMatrixWorld(true);
-    if (shapeDirty) { updateContact(); renderer.shadowMap.needsUpdate = true; shapeDirty = false; }
+    csRig.rotation.y = model.rotation.y;
+    scene.updateMatrixWorld();
+    if (shapeDirty) { updateContact(); shapeDirty = false; shadowDirty = true; }
+    if (shadowDirty) { renderer.shadowMap.needsUpdate = true; shadowDirty = false; }
     placeHotspots();
     if (st.flow > 0.002) animateFlow();
-    /* ambient occlusion only when nothing see-through is on screen (ghosts and flow lines would confuse it) */
-    if (useAO && !st.isolate && st.flow < 0.002) composer.render(); else renderer.render(scene, camera);
+    /* ambient occlusion only for stills, and only when nothing see-through is on screen (ghosts and flow lines would confuse it) */
+    if (useAO && stillFrame && !st.isolate && st.flow < 0.002) composer.render(); else renderer.render(scene, camera);
   };
-  const samples = [];
-  let degraded = false;
+  /* quality steps down (never back up) whenever frames run slow: first pixel ratio, then shadow map size, then the shadow blur */
+  let level = 0, slow = 0, frames = 0;
   const degrade = () => {
-    degraded = true; useAO = false;
-    renderer.setPixelRatio(1);
-    key.shadow.mapSize.set(512, 512); key.shadow.blurSamples = 8;
-    if (key.shadow.map) { key.shadow.map.dispose(); key.shadow.map = null; }
-    fit(); shapeDirty = true; need = true;
+    level++;
+    if (level === 1) renderer.setPixelRatio(Math.min(maxPR, 1));
+    else if (level === 2) { key.shadow.mapSize.set(512, 512); key.shadow.blurSamples = 8; if (key.shadow.map) { key.shadow.map.dispose(); key.shadow.map = null; } }
+    else if (level === 3) { renderer.setPixelRatio(0.75); key.shadow.blurSamples = 4; }
+    fit(); shadowDirty = true; need = true;
   };
+  /* the fan alone is ambient motion: it runs at 30 fps and winds down after 12 s without input, so an idle page does not keep the GPU busy */
+  let active = performance.now(), sinceDraw = 0;
+  const IDLE = 12000;
   const tick = (t) => {
     raf = 0;
     if (!alive) return;
     const raw = last ? t - last : 0;
     const dt = Math.min(50, raw); last = t;
-    if (!degraded && raw > 0 && samples.length < 45) {
-      samples.push(raw);
-      if (samples.length === 45) { const sm = samples.slice(5); if (sm.reduce((a, b) => a + b, 0) / sm.length > 24) degrade(); }
-    }
-    const spinning = spin && inView && fanSpeed > 0.002;
+    const wind = clamp01(1 - (t - active - IDLE) / 1500);   /* 1 while in use, easing to 0 once idle */
+    const spinning = spin && inView && fanSpeed * wind > 0.002;
     const flowing = inView && st.flow > 0.002 && !reduce;
-    if (spinning) { rotor.rotation.y -= dt * 0.006 * fanSpeed; need = true; }
-    if (flowing) { flowTime += dt / 1000; need = true; }
-    if (need) { draw(); need = false; }
+    sinceDraw += raw;
+    if (spinning) rotor.rotation.y -= dt * 0.006 * fanSpeed * wind;
+    if (flowing) flowTime += dt / 1000;
+    const ambientOnly = !need && !flowing;
+    if ((spinning || flowing) && !(ambientOnly && sinceDraw < 30)) need = true;
+    if (need) {
+      const t0 = performance.now();
+      draw(); need = false; sinceDraw = 0;
+      /* slow frames: rAF interval over ~28 ms, or the draw call itself blocking for over 20 ms */
+      if (level < 3 && raw > 0) {
+        frames++;
+        if (raw > 28 || performance.now() - t0 > 20) slow++;
+        if (frames >= 30) { if (slow > 12) degrade(); frames = slow = 0; }
+      }
+    }
     if ((spinning || flowing) && !document.hidden) raf = requestAnimationFrame(tick);
     else last = 0;
   };
@@ -789,13 +806,13 @@ export async function init(opts) {
   hotspots.forEach((el) => layer.appendChild(el));
   fit();
 
-  /* ambient occlusion (GTAO) on capable devices only; loaded after the model is on screen */
-  if (!lowEnd) {
+  /* ambient occlusion (GTAO) is for the rendered stills and video only (opts.ao); in the live viewer it cost too much GPU */
+  if (opts.ao) {
     Promise.all([
       import('/js/vendor/postprocessing/EffectComposer.js'), import('/js/vendor/postprocessing/RenderPass.js'),
       import('/js/vendor/postprocessing/GTAOPass.js'), import('/js/vendor/postprocessing/OutputPass.js')
     ]).then((mods) => {
-      if (!alive || degraded) return;
+      if (!alive) return;
       const w = stage.clientWidth || 800, h = stage.clientHeight || 600;
       composer = new mods[0].EffectComposer(renderer, new T.WebGLRenderTarget(w, h, { type: T.HalfFloatType, samples: 4 }));
       composer.addPass(new mods[1].RenderPass(scene, camera));
@@ -806,13 +823,13 @@ export async function init(opts) {
       gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, radiusExponent: 1, rings: 2, samples: 12 });
       composer.addPass(gtao);
       composer.addPass(new mods[3].OutputPass());
-      useAO = true; fit(); need = true; request();
+      useAO = true; fit();
     }).catch(() => { useAO = false; });
   }
 
   const ro = new ResizeObserver(() => { fit(); need = true; request(); });
   ro.observe(stage);
-  const io = new IntersectionObserver((en) => { inView = en[en.length - 1].isIntersecting; if (inView) { need = true; request(); } }, { threshold: 0.05 });
+  const io = new IntersectionObserver((en) => { inView = en[en.length - 1].isIntersecting; if (inView) { active = performance.now(); need = true; request(); } }, { threshold: 0.05 });
   io.observe(stage);
   const onVis = () => { if (!document.hidden) request(); };
   document.addEventListener('visibilitychange', onVis);
@@ -829,13 +846,18 @@ export async function init(opts) {
   layer.addEventListener('click', (e) => { const hs = e.target.closest('.c3__hs'); if (hs && opts.onSelect) opts.onSelect(hs.dataset.hs); });
 
   applyState();
+  /* compile every shader before the first frame (in parallel where the browser supports it), so the page does not stall on it */
+  try { await renderer.compileAsync(scene, camera); } catch (e) { /* compiled on first draw instead */ }
+  if (!alive) return null;
   draw();
   request();
 
   return {
     /* state: { open, explode, flow (0..1), step (1-4), zoom (0.65-1.25), isolate (0 or part number) } */
     set(ry, rx, s) {
-      model.rotation.y = ry * Math.PI / 180;
+      const rot = ry * Math.PI / 180;
+      if (rot !== model.rotation.y) { model.rotation.y = rot; shadowDirty = true; }
+      active = performance.now();
       elev = -rx * Math.PI / 180;
       s = s || {};
       const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.65, Math.min(1.25, s.zoom || 1)), isolate: s.isolate || 0, still: !!s.still };
@@ -843,7 +865,7 @@ export async function init(opts) {
       Object.assign(st, next);
       if (changed) applyState();
       placeCamera();
-      shapeDirty = true; need = true; request();
+      need = true; request();
     },
     /* a still at a given size (diagram images, video frames), plus where each part's marker falls */
     capture(w, h, background, fanAngle, time) {
@@ -851,7 +873,7 @@ export async function init(opts) {
       if (time !== undefined) flowTime = time;
       const pr = renderer.getPixelRatio();
       renderer.setPixelRatio(1); renderer.setSize(w, h, false); frameFor(w, h);
-      shapeDirty = true; draw();
+      shapeDirty = true; stillFrame = true; draw(); stillFrame = false;
       const out = document.createElement('canvas'); out.width = w; out.height = h;
       const g = out.getContext('2d');
       if (background) { g.fillStyle = background; g.fillRect(0, 0, w, h); }
