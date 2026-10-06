@@ -39,7 +39,7 @@
       const word = pct === 0 ? 'Fully assembled' : pct === 100 ? 'Fully separated' : pct + '% separated';
       sepInput.setAttribute('aria-valuetext', word); if (sepOut) sepOut.textContent = word;
     }
-    if (view3d && state === 'ready') view3d.set(ry, rx, { open: openNow(), explode: val.explode, flow: val.flow, step, zoom, focus: val.focus, lift: !cardBelow(), isolate: isolate ? selected : 0 });
+    if (view3d && state === 'ready') view3d.set(ry, rx, { open: openNow(), explode: val.explode, flow: val.flow, step, zoom, focus: val.focus, lift: !cardBelow(), inset: mode === 'flow' && !cardBelow() ? flowInset : 0, isolate: isolate ? selected : 0 });
   };
   const setPlaying = (on) => {
     playing = on && !reduce && !!view3d && state === 'ready';
@@ -98,13 +98,16 @@
   /* ---------- view modes ---------- */
   const sepBox = $('[data-c3-sep]', c3), sepInput = $('[data-c3-sep-input]', c3), sepOut = $('[data-c3-sep-out]', c3);
   const explodeNeedsOpen = (section.dataset || {}).c3ExplodedOpen !== '0';   /* the chiller must open its panels first; the dryer separates from closed */
+  const flowFoot = $('[data-c3-flow-foot]', c3);
   const cardBelow = () => (section.dataset || {}).c3CardBelow !== undefined && matchMedia('(max-width: 639px)').matches;   /* phones: the caption card sits under the model, not over it */
+  let flowInset = 0;   /* height of the how-it-works card over the stage, so the model can be framed above it */
   let modeRun = 0;
   const syncModeUI = () => {
     const shown = (mode === 'closed' || mode === 'open') ? (openNow() > 0.5 ? 'open' : 'closed') : mode;
     modeBtns.forEach((b) => { const on = b.dataset.c3Mode === shown; b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
     stage.classList.toggle('is-open', openNow() > 0.5);
     flowBox.hidden = mode !== 'flow';
+    if (flowFoot) flowFoot.hidden = mode !== 'flow';
     stage.classList.toggle('is-flow', mode === 'flow');
     if (sepBox) sepBox.hidden = mode !== 'exploded';
   };
@@ -165,7 +168,7 @@
     steps.forEach((li) => { li.hidden = li.dataset.c3Step !== String(n); });
     stepNow.textContent = String(n);
     dots.forEach((d, i) => { d.setAttribute('aria-current', String(i + 1 === n)); d.classList.toggle('is-on', i + 1 === n); d.classList.toggle('is-done', i + 1 < n); });
-    requestAnimationFrame(() => stage.style.setProperty?.('--flow-h', (flowBox.offsetHeight + 16) + 'px'));   /* room under the stage for the card (phones) */
+    requestAnimationFrame(() => { const h = flowBox.offsetHeight; stage.style.setProperty?.('--flow-h', (h + 16) + 'px'); const was = flowInset; flowInset = h + 14; if (was !== flowInset) render(); });   /* room for the card: under the stage on phones, framed above it elsewhere */
     const li = steps[n - 1];
     if (li) {
       tweenTo(Number(li.dataset.ry), Number(li.dataset.rx));

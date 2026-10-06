@@ -45,8 +45,7 @@
           <p class="c3__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3"/></svg>Drag to rotate</p>
           <span class="c3__deg" aria-hidden="true" data-c3-deg>028°</span>
           <div class="c3__flow" data-c3-flow hidden>
-            <div class="c3__duty" aria-live="polite"><span class="c3__tower"><b>Tower A</b> <span data-c3-chip-a data-state="drying">Drying</span></span><span class="c3__tower"><b>Tower B</b> <span data-c3-chip-b data-state="offline">Off line</span></span></div>
-            <p class="c3__flow-n">How it works · step <span data-c3-stepnow>1</span> of {{ flow_steps | length }}</p>
+            <div class="c3__duty" aria-live="polite"><span class="c3__tower"><b>Tower A</b> <span data-c3-chip-a data-state="drying">Drying</span></span><span class="c3__tower"><b>Tower B</b> <span data-c3-chip-b data-state="offline">Off line</span></span><span class="c3__flow-n">Step <span data-c3-stepnow>1</span> of {{ flow_steps | length }}</span></div>
             <ol class="c3__flow-steps">
               {% for fs in flow_steps %}<li data-c3-step="{{ loop.index }}" data-ry="{{ fs.ry }}" data-rx="{{ fs.rx }}" data-zoom="{{ fs.zoom }}" data-focus="{{ fs.focus }}" data-a="{{ fs.a }}" data-b="{{ fs.b }}"{% if not loop.first %} hidden{% endif %}><strong>{{ fs.t }}</strong> {{ fs.d }}</li>{% endfor %}
             </ol>
@@ -54,11 +53,11 @@
               <div class="c3__dots" role="group" aria-label="Go to a step">{% for fs in flow_steps %}<button type="button" class="c3__dot{% if loop.first %} is-on{% endif %}" data-c3-dot="{{ loop.index }}" aria-label="Step {{ loop.index }}: {{ fs.t }}"{% if loop.first %} aria-current="true"{% endif %}></button>{% endfor %}</div>
               <span class="c3__flow-nav"><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="-1" aria-label="Previous step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="c3__btn c3__btn--sm c3__auto" data-c3-auto aria-pressed="true" aria-label="Pause the steps"><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.5-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="1" aria-label="Next step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button></span>
             </div>
-            <ul class="c3__legend" aria-label="Colours">
-              <li style="--c:#f39a3d">Wet air</li><li style="--c:#2f8bff">Dry air</li><li style="--c:#36d1ff">Purge air</li><li style="--c:#5f86a0">Wetted bed</li>
-            </ul>
-            <p class="c3__flow-note">An illustration of the heatless cycle. The sequence and timings of a given Win model are set by its timer.</p>
           </div>
+        </div>
+        <div class="c3__flow-foot" data-c3-flow-foot hidden>
+          <ul class="c3__legend" aria-label="Colours"><li style="--c:#f39a3d">Wet air</li><li style="--c:#2f8bff">Dry air</li><li style="--c:#36d1ff">Purge air</li><li style="--c:#5f86a0">Wetted bed</li></ul>
+          <p class="c3__flow-note">An illustration of the heatless cycle. The sequence and timings of a given Win model are set by its timer.</p>
         </div>
         <div class="c3__status" role="status" aria-live="polite" data-c3-status hidden><span class="c3__loading-mark" aria-hidden="true"></span><span data-c3-status-text></span></div>
         <div class="c3__toolbar" data-c3-toolbar inert>

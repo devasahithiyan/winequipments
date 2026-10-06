@@ -546,17 +546,22 @@ export async function init(opts) {
 
   /* ---------- state, camera, layout ---------- */
   const target = V(0, 2.0, 0);
-  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, focus: 0, lift: true, isolate: 0, still: false };
+  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, focus: 0, lift: true, inset: 0, isolate: 0, still: false };
+  let viewW = 1, viewH = 1;
   let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 0, shapeDirty = true, shadowDirty = true, flowTime = 0;
   const placeCamera = () => {
     const e = ease(st.open), x = ease(st.explode), f = ease(st.flow);
-    dist = baseDist * (1 - 0.04 * e + 0.2 * x + (st.lift ? 0.24 : 0.08) * f) * st.zoom;
-    const ty = target.y + 0.1 * x + st.focus - (st.still || !st.lift ? 0 : 0.85) * f;   /* how it works: the unit sits above the caption card (not in stills) */
+    /* how it works: the caption card covers the bottom st.inset pixels of the stage, so the model is framed in the space above it */
+    const inset = st.still ? 0 : Math.min(st.inset * f, viewH * 0.55);
+    dist = baseDist * (1 - 0.04 * e + 0.2 * x + (st.inset ? 0.04 : st.lift ? 0.24 : 0.08) * f) * st.zoom * (viewH / (viewH - inset));
+    const ty = target.y + 0.1 * x + st.focus - (st.still || !st.lift || st.inset ? 0 : 0.85) * f;   /* how it works: the unit sits above the caption card (not in stills) */
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
+    if (inset > 0.5) camera.setViewOffset(viewW, viewH, 0, inset / 2, viewW, viewH); else if (camera.view && camera.view.enabled) camera.clearViewOffset();
   };
   let composer = null, gtao = null, useAO = false, stillFrame = false;
   const frameFor = (w, h) => {
+    viewW = w; viewH = h;
     camera.aspect = w / h;
     /* The poster is a 4:5 capture. Match object-fit: contain at every stage size. */
     const half = Math.tan(32 * Math.PI / 360), referenceAspect = 4 / 5;
@@ -797,7 +802,7 @@ export async function init(opts) {
       active = performance.now();
       elev = -rx * Math.PI / 180;
       s = s || {};
-      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.5, Math.min(1.25, s.zoom || 1)), focus: Math.max(-1.6, Math.min(1.6, Number(s.focus) || 0)), lift: s.lift !== false, isolate: s.isolate || 0, still: !!s.still };
+      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.5, Math.min(1.25, s.zoom || 1)), focus: Math.max(-1.6, Math.min(1.6, Number(s.focus) || 0)), lift: s.lift !== false, inset: Math.max(0, Number(s.inset) || 0), isolate: s.isolate || 0, still: !!s.still };
       const changed = next.open !== st.open || next.explode !== st.explode || next.flow !== st.flow || next.step !== st.step || next.isolate !== st.isolate;
       Object.assign(st, next);
       if (changed) applyState();

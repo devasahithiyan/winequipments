@@ -229,3 +229,14 @@ html:not(.js) .c3__part > ul { display: block; }
   .c3[data-c3-card-below] .c3__stage.is-flow { margin-bottom: var(--flow-h, 300px); transition: margin-bottom 0.25s var(--ease-out); }
 }
 @media (max-width: 639px) and (prefers-reduced-motion: reduce) { .c3[data-c3-card-below] .c3__stage.is-flow { transition: none; } }
+
+/* the card is as tall as its tallest step, so it never changes height (and the model is not re-framed) between steps */
+.c3__flow-steps { display: grid; }
+.c3__flow-steps li { grid-area: 1 / 1; }
+.c3__flow-steps li[hidden] { display: block; visibility: hidden; animation: none; }
+.c3__duty .c3__flow-n { margin-left: auto; align-self: center; }
+.c3__flow-foot { margin-top: var(--s-2); text-align: center; }
+.c3__flow-foot[hidden] { display: none; }
+.c3__flow-foot .c3__legend { justify-content: center; }
+.c3__flow-foot .c3__flow-note { margin-top: 2px; }
+@media (max-width: 639px) { .c3__flow-foot .c3__legend { display: flex; flex-wrap: wrap; } }
