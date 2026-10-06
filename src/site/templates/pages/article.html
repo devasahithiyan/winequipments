@@ -41,6 +41,7 @@
   </div>
 </article>
 {% if a.viewer is defined and a.viewer == "chiller" %}{% include "partials/chiller360.html" %}{% endif %}
+{% if a.viewer is defined and a.viewer == "dryer" %}{% include "partials/dryer360.html" %}{% endif %}
 {% set ns = namespace(rel=[]) %}{% for b in articles if b.slug != a.slug and (b.category == a.category or (b.products | select('in', a.products) | list)) %}{% if ns.rel | length < 3 %}{% set ns.rel = ns.rel + [b] %}{% endif %}{% endfor %}
 {% if ns.rel %}
 <section class="section section--rule" aria-labelledby="more">

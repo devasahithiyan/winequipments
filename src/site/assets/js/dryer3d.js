@@ -447,8 +447,8 @@ export async function init(opts) {
   });
   const OPEN = Object.assign({}, CLOSED, {
     1: anchor(cabinet, [0, 0.05, 0.02], [0, 0, 1]),
-    2: anchor(vesselA, [0.05, 2.5, -0.4], [0, 0, 1]),
-    3: anchor(bedA, [0, 2.0, 0.45], [0, 0, 1])
+    2: anchor(vesselA, [-0.56, 2.7, 0.1], [-1, 0, 0.35]),
+    3: anchor(bedA, [0, 2.75, 0.45], [0, 0, 1])
   });
 
   /* ---------- isolate: the chosen part stays solid, everything else turns to a pale ghost ---------- */
@@ -530,6 +530,7 @@ export async function init(opts) {
   const WET = new T.Color('#5f86a0');
   const FRONT_TARGET = { 0: [0.5, 0.5], 1: [0.1, 0.85], 2: [0.85, 0.85], 3: [0.85, 0.1], 4: [0.85, 0.1], 5: [0.85, 0.1], 6: [0.1, 0.85] };
   const front = [0.1, 0.85];
+  let frontLock = false;   /* stills and video frames set the wetted zones themselves */
   let lastFlowT = 0, paintedFront = [-1, -1], paintedF = -1, paintClock = 0;
   const paintBeds = (f, force) => {
     if (!force && Math.abs(f - paintedF) < 0.004 && Math.abs(front[0] - paintedFront[0]) < 0.004 && Math.abs(front[1] - paintedFront[1]) < 0.004) return;
@@ -621,7 +622,7 @@ export async function init(opts) {
     flowItems.forEach((it) => { it.m.material.uniforms.uTime.value = flowTime; });
     /* the wetted zones creep towards their targets (at once when motion is reduced) */
     const tg = FRONT_TARGET[st.step] || FRONT_TARGET[0];
-    for (let i = 0; i < 2; i++) front[i] = reduce ? tg[i] : front[i] + Math.max(-0.2 * dt, Math.min(0.2 * dt, tg[i] - front[i]));
+    if (!frontLock) for (let i = 0; i < 2; i++) front[i] = reduce ? tg[i] : front[i] + Math.max(-0.2 * dt, Math.min(0.2 * dt, tg[i] - front[i]));
     paintBeds(f);
     /* damp air out of the purge muffler: B's in step 3, A's in step 6 */
     puffs.forEach((sp) => {
@@ -810,9 +811,10 @@ export async function init(opts) {
       need = true; request();
     },
     /* a still at a given size (diagram images, video frames), plus where each part's marker falls */
-    capture(w, h, background, fanAngle, time) {
+    capture(w, h, background, fanAngle, time, fronts) {
       if (fanAngle !== undefined) rotor.rotation.y = fanAngle;
       if (time !== undefined) flowTime = time;
+      if (fronts) { front[0] = fronts[0]; front[1] = fronts[1]; frontLock = true; lastFlowT = flowTime; }
       const pr = renderer.getPixelRatio();
       renderer.setPixelRatio(1); renderer.setSize(w, h, false); frameFor(w, h);
       shapeDirty = true; stillFrame = true; draw(); stillFrame = false;
@@ -820,7 +822,8 @@ export async function init(opts) {
       const g = out.getContext('2d');
       if (background) { g.fillStyle = background; g.fillRect(0, 0, w, h); }
       g.drawImage(cvs, 0, 0, w, h);
-      const set = ease(st.open) >= 0.5 ? OPEN : CLOSED;
+      frontLock = false;
+      const set = st.explode > 0.3 ? EXPLODED : ease(st.open) >= 0.5 ? OPEN : CLOSED;
       const spots = hotspots.map((el) => { const q = project(set[el.dataset.hs], w, h); return { n: el.dataset.hs, x: q.x, y: q.y, visible: st.explode > 0.98 || q.facing > 0.05 }; });
       renderer.setPixelRatio(pr); fit(); shapeDirty = true; need = true; request();
       return { canvas: out, spots };

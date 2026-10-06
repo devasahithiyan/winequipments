@@ -31,7 +31,7 @@ Air leaving the compressor is saturated with water vapour. A dryer lowers its **
 
 **Desiccant dryers:** the [WHD series](/products/desiccant-air-dryers.html) has twin towers. One dries while the other is regenerated with a small flow of dry purge air, switching on a 10-minute cycle. Dew point is rated at 38 °C inlet and 7 bar g.
 
-For a full comparison read [refrigerated vs desiccant air dryers](/blog/refrigerated-vs-desiccant.html).
+For a full comparison read [refrigerated vs desiccant air dryers](/blog/refrigerated-vs-desiccant.html), or see [how a heatless desiccant dryer works](/blog/how-a-desiccant-air-dryer-works.html) in a labelled 3D diagram.
 
 ## ISO 8573-1 humidity classes
 

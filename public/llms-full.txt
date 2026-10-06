@@ -668,6 +668,20 @@ A: Our refrigerated air dryers range from ₹25,000 for 51–120 CFM to ₹3,50,
 Q: Are these prices final?
 A: No. They are indicative prices from our IndiaMART listings for the models shown. Send your requirement and we will quote for your duty and site.
 
+### How a heatless desiccant air dryer works
+URL: https://winequipments.com/blog/how-a-desiccant-air-dryer-works.html
+Short answer: A heatless desiccant dryer has two towers filled with desiccant. Wet compressed air rises through the tower that is on line, the desiccant adsorbs the water vapour, and dry air leaves at the top. A small part of that dry air is expanded down the other tower to regenerate it. A timer then swaps the towers.
+Q: What does heatless mean?
+A: The off-line tower is regenerated with a small flow of dry purge air instead of a heater, so there is no heater to maintain.
+Q: Why does a desiccant dryer have two towers?
+A: Desiccant can only hold a limited amount of water. One tower dries your air while the other is regenerated, and a timer swaps them, so dry air is always available.
+Q: Alumina or molecular sieve: which do I need?
+A: Activated alumina gives a −20 °C pressure dew point and molecular sieve gives −40 °C, both at 38 °C inlet and 7 bar g. Choose molecular sieve when your process needs the lower dew point.
+Q: Why does a desiccant dryer need filters?
+A: A pre-filter keeps free water and dust off the desiccant, a zero-oil filter stops compressor oil from coating it, and an after-filter catches desiccant dust before it reaches your equipment.
+Q: What working pressure is supported?
+A: Standard WHD dryers work from 7 to 12.5 bar g with a design pressure of 13.2 bar g. Higher pressures can be offered on request.
+
 ## Glossary
 
 - Aftercooler: A heat exchanger fitted straight after the compressor that cools the hot discharge air, so the bulk of its water vapour condenses and is drained by a moisture separator. The air leaves cooler but still saturated.

@@ -41,7 +41,7 @@ Your air lines stay above +3 °C and the process only needs liquid water kept ou
 
 ## How a heatless dryer works
 
-Wet air flows up through the on-line tower and the desiccant adsorbs the water vapour. Meanwhile a small flow of dried air is expanded through the off-line tower and vented through a muffler, stripping the moisture from that bed. A timer switches the towers on a fixed cycle (10 minutes on WHD dryers) so one tower is always drying.
+Wet air flows up through the on-line tower and the desiccant adsorbs the water vapour. Meanwhile a small flow of dried air is expanded through the off-line tower and vented through a muffler, stripping the moisture from that bed. A timer switches the towers on a fixed cycle (10 minutes on WHD dryers) so one tower is always drying. You can follow this in a [labelled 3D diagram of a heatless desiccant dryer](/blog/how-a-desiccant-air-dryer-works.html).
 
 Because the purge air comes from your compressed air, a desiccant dryer has a running cost a refrigerated dryer does not. That is why it makes sense only where the lower dew point is actually needed.
 
