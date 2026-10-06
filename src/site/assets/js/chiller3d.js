@@ -16,7 +16,8 @@ const lin = (p, w) => clamp01((p - w[0]) / (w[1] - w[0]));
 const phase = (p, w) => ease(lin(p, w));
 const backOut = (t) => { const c = 1.4; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };   /* small overshoot, settles at 1 */
 /* cabinet proportions estimated from the photos: a closed folded sheet-metal body, squatter than it is tall-looking in pictures */
-const BODY = { w: 2.3, d: 2.14, plinth: 0.22, top: 2.5, t: 0.035 };
+const BODY = { w: 2.0, d: 2.35, plinth: 0.22, top: 2.5, t: 0.035, fold: 0.05 };   /* control face narrower than the vented sides, as photographed */
+const PAL = 0.14;      /* the wooden pallet it stands on in every photo */
 const K = 0.78;        /* the interior parts (authored at the first model's size) are scaled in to fit this body */
 const DROP = -0.915;   /* the fan pack and the controls sit lower, on the new lid */
 
@@ -29,8 +30,8 @@ export async function init(opts) {
   const lowEnd = (navigator.hardwareConcurrency || 4) <= 4 || matchMedia('(max-width: 767px)').matches;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowEnd ? 1.35 : 1.75));
   renderer.outputColorSpace = T.SRGBColorSpace;
-  renderer.toneMapping = T.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMapping = T.NeutralToneMapping;   /* photographic roll-off that keeps the paint's saturation */
+  renderer.toneMappingExposure = 1.0;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.VSMShadowMap;
   renderer.shadowMap.autoUpdate = false;   /* shadows re-render only when the model moves, not for the spinning fan */
@@ -54,39 +55,55 @@ export async function init(opts) {
   nctx.putImageData(px, 0, 0);
   const grain = new T.CanvasTexture(noise); grain.wrapS = grain.wrapT = T.RepeatWrapping; grain.repeat.set(5, 5);
 
-  /* orange-peel powder coat: random small bumps, blurred, turned into a normal map */
-  const peel = (() => {
+  /* bump textures: random blobs, blurred, turned into a tileable normal map (powder coat, cast iron, foam) */
+  const bumps = (count, rMin, rMax, blur, strength, repeat, seed) => {
     const n = 256, a = document.createElement('canvas'), b = document.createElement('canvas');
     a.width = a.height = b.width = b.height = n;
     const ga = a.getContext('2d'), gb = b.getContext('2d');
     ga.fillStyle = '#808080'; ga.fillRect(0, 0, n, n);
-    let sd = 7;
+    let sd = seed;
     const rnd = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
-    for (let i = 0; i < 1400; i++) {
-      const v = Math.round(95 + rnd() * 70), x = rnd() * n, y = rnd() * n, r = 2 + rnd() * 5;
+    for (let i = 0; i < count; i++) {
+      const v = Math.round(95 + rnd() * 70), x = rnd() * n, y = rnd() * n, r = rMin + rnd() * (rMax - rMin);
       ga.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')';
       for (const ox of [-n, 0, n]) for (const oy of [-n, 0, n]) { ga.beginPath(); ga.arc(x + ox, y + oy, r, 0, Math.PI * 2); ga.fill(); }
     }
-    gb.filter = 'blur(2px)'; gb.drawImage(a, 0, 0);
+    gb.filter = 'blur(' + blur + 'px)'; gb.drawImage(a, 0, 0);
     const src = gb.getImageData(0, 0, n, n).data, out = gb.createImageData(n, n);
     const h = (x, y) => src[((((y + n) % n) * n) + ((x + n) % n)) * 4] / 255;
     for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
-      const dx = (h(x + 1, y) - h(x - 1, y)) * 2.4, dy = (h(x, y + 1) - h(x, y - 1)) * 2.4, l = Math.hypot(dx, dy, 1), i = (y * n + x) * 4;
+      const dx = (h(x + 1, y) - h(x - 1, y)) * strength, dy = (h(x, y + 1) - h(x, y - 1)) * strength, l = Math.hypot(dx, dy, 1), i = (y * n + x) * 4;
       out.data[i] = (-dx / l * 0.5 + 0.5) * 255; out.data[i + 1] = (-dy / l * 0.5 + 0.5) * 255; out.data[i + 2] = (1 / l * 0.5 + 0.5) * 255; out.data[i + 3] = 255;
     }
     gb.putImageData(out, 0, 0);
-    const t = new T.CanvasTexture(b); t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(3, 3);
+    const t = new T.CanvasTexture(b); t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(repeat, repeat);
+    return t;
+  };
+  const peel = bumps(1400, 2, 7, 2, 2.4, 3, 7);       /* orange-peel powder coat */
+  const castTex = bumps(2400, 1, 4, 1, 3.6, 4, 11);   /* sand-cast pump body */
+  const foamTex = bumps(520, 4, 12, 3, 2.2, 2, 23);   /* closed-cell insulation */
+  /* soft, low-frequency roughness variation so no painted surface looks perfectly uniform */
+  const rough = (() => {
+    const n = 128, c = document.createElement('canvas'), d = document.createElement('canvas'); c.width = c.height = d.width = d.height = n;
+    const g = c.getContext('2d'); g.fillStyle = 'rgb(225,225,225)'; g.fillRect(0, 0, n, n);
+    let sd = 5;
+    const rnd = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+    for (let i = 0; i < 60; i++) { const v = Math.round(190 + rnd() * 65), x = rnd() * n, y = rnd() * n, r = 6 + rnd() * 18; g.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; for (const ox of [-n, 0, n]) for (const oy of [-n, 0, n]) { g.beginPath(); g.arc(x + ox, y + oy, r, 0, Math.PI * 2); g.fill(); } }
+    const gd = d.getContext('2d'); gd.filter = 'blur(6px)'; gd.drawImage(c, 0, 0);
+    const t = new T.CanvasTexture(d); t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(1.5, 1.5);
     return t;
   })();
   /* paint colours sampled from the photographs (exterior, rear and pump-side views) */
-  const blue = mat('#0779bd', 0.15, 0.42, { clearcoat: 0.35, clearcoatRoughness: 0.38, normalMap: peel, normalScale: new T.Vector2(0.35, 0.35) });
-  const cream = mat('#ebe5d2', 0.08, 0.46, { clearcoat: 0.25, clearcoatRoughness: 0.45, normalMap: peel, normalScale: new T.Vector2(0.22, 0.22) });
+  const blue = mat('#0779bd', 0.15, 0.42, { clearcoat: 0.45, clearcoatRoughness: 0.3, normalMap: peel, normalScale: new T.Vector2(0.35, 0.35), roughnessMap: rough });
+  const cream = mat('#ebe5d2', 0.08, 0.46, { clearcoat: 0.3, clearcoatRoughness: 0.42, normalMap: peel, normalScale: new T.Vector2(0.22, 0.22), roughnessMap: rough });
   const shellBlue = blue.clone();   /* the cabinet's own paint, so the exploded view can fade it on its own */
-  const black = mat('#101619', 0.35, 0.21, { clearcoat: 0.75, clearcoatRoughness: 0.16 });
+  const black = mat('#101619', 0.35, 0.18, { clearcoat: 0.95, clearcoatRoughness: 0.1 });
   const rubber = mat('#191d1e', 0, 0.9, { bumpMap: grain, bumpScale: 0.014 });
-  const foam = mat('#252827', 0, 0.96, { bumpMap: grain, bumpScale: 0.025 });
-  const chrome = mat('#a6b0b5', 0.95, 0.25), steel = mat('#849297', 0.83, 0.4, { bumpMap: grain, bumpScale: 0.003 });
-  const copper = mat('#bd683f', 0.88, 0.29), red = mat('#d94326', 0.24, 0.26, { clearcoat: 0.45 });
+  const foam = mat('#26292a', 0, 0.97, { normalMap: foamTex, normalScale: new T.Vector2(0.9, 0.9) });
+  const cast = mat('#7e868a', 0.55, 0.62, { normalMap: castTex, normalScale: new T.Vector2(0.7, 0.7) });
+  const lidSteel = mat('#b9bec0', 0.6, 0.34, { roughnessMap: rough });
+  const chrome = mat('#a6b0b5', 0.95, 0.25), steel = mat('#849297', 0.83, 0.4, { bumpMap: grain, bumpScale: 0.003, roughnessMap: rough });
+  const copper = mat('#bd683f', 0.88, 0.29), red = mat('#d94326', 0.24, 0.22, { clearcoat: 0.8, clearcoatRoughness: 0.15 });
   const white = mat('#e6e8df', 0.05, 0.32), dark = mat('#101b1c', 0.12, 0.5), green = mat('#147e56', 0.3, 0.25);
   const brass = mat('#b8994e', 0.86, 0.34), amber = mat('#eeb32b', 0.3, 0.23);
 
@@ -166,12 +183,25 @@ export async function init(opts) {
     g.translate(0, 0, -depth / 2);
     return g;
   };
+  /* window sizes shared by the cabinet faces and the panels that sit in them */
+  const WINF = BODY.w / 2 - 0.16, WINS = BODY.d / 2 - 0.2;
   {
-    const t = BODY.t, hw = BODY.w / 2, hd = BODY.d / 2, yc = (BODY.plinth + BODY.top) / 2, hb = BODY.top - BODY.plinth, rel = (y) => y - yc;
-    mesh(sheet(BODY.w, hb, [[-0.97, rel(0.3), 0.97, rel(1.3)], [-0.98, rel(1.4), 0.98, rel(2.3)]], t), shellBlue, shell, 0, yc, hd - t / 2);
-    mesh(sheet(BODY.w, hb, [[-0.98, rel(0.3), 0.98, rel(2.32)]], t), shellBlue, shell, 0, yc, -hd + t / 2);
-    for (const sx of [-1, 1]) mesh(sheet(BODY.d, hb, [[-0.95, rel(0.3), 0.95, rel(2.32)]], t), shellBlue, shell, sx * (hw - t / 2), yc, 0).rotation.y = Math.PI / 2;
-    mesh(sheet(BODY.w, BODY.d, [], t, 0.62), shellBlue, shell, 0, BODY.top - t / 2, 0).rotation.x = -Math.PI / 2;
+    const t = BODY.t, R = BODY.fold, hw = BODY.w / 2, hd = BODY.d / 2;
+    const yc = (BODY.plinth + BODY.top - R) / 2, hb = BODY.top - R - BODY.plinth, rel = (y) => y - yc;
+    mesh(sheet(BODY.w - 2 * R, hb, [[-WINF, rel(0.3), WINF, rel(1.3)], [-WINF - 0.01, rel(1.4), WINF + 0.01, rel(2.3)]], t), shellBlue, shell, 0, yc, hd - t / 2);
+    mesh(sheet(BODY.w - 2 * R, hb, [[-WINF, rel(0.3), WINF, rel(2.32)]], t), shellBlue, shell, 0, yc, -hd + t / 2);
+    for (const sx of [-1, 1]) mesh(sheet(BODY.d - 2 * R, hb, [[-WINS, rel(0.3), WINS, rel(2.32)]], t), shellBlue, shell, sx * (hw - t / 2), yc, 0).rotation.y = Math.PI / 2;
+    mesh(sheet(BODY.w - 2 * R, BODY.d - 2 * R, [], t, 0.62), shellBlue, shell, 0, BODY.top - t / 2, 0).rotation.x = -Math.PI / 2;
+    /* rounded folds: quarter cylinders on the upright edges and round the lid, quarter spheres in the top corners;
+       their curves catch the bright highlight line the real sheet metal shows */
+    const Q = Math.PI / 2;
+    /* [x side, z side, cylinder theta start, sphere phi start] for each corner */
+    [[1, 1, 0, Q], [1, -1, Q, 2 * Q], [-1, -1, 2 * Q, 3 * Q], [-1, 1, 3 * Q, 0]].forEach((c) => {
+      mesh(new T.CylinderGeometry(R, R, hb, 14, 1, true, c[2], Q), shellBlue, shell, c[0] * (hw - R), yc, c[1] * (hd - R));
+      mesh(new T.SphereGeometry(R, 14, 8, c[3], Q, 0, Q), shellBlue, shell, c[0] * (hw - R), BODY.top - R, c[1] * (hd - R));
+    });
+    for (const sz of [-1, 1]) { const g = new T.CylinderGeometry(R, R, BODY.w - 2 * R, 14, 1, true, sz > 0 ? 0 : Q, Q); g.rotateZ(Math.PI / 2); mesh(g, shellBlue, shell, 0, BODY.top - R, sz * (hd - R)); }
+    for (const sx of [-1, 1]) { const g = new T.CylinderGeometry(R, R, BODY.d - 2 * R, 14, 1, true, sx > 0 ? Q : 2 * Q, Q); g.rotateX(Math.PI / 2); mesh(g, shellBlue, shell, sx * (hw - R), BODY.top - R, 0); }
     box(BODY.w - 0.08, 0.03, BODY.d - 0.08, shellBlue, shell, 0, BODY.plinth + 0.015, 0, 0.006);   /* base tray */
     /* plinth with forklift slots on every side, dark inside */
     const ph = BODY.plinth, slot = (a, b) => [a, -0.05, b, 0.04];
@@ -179,18 +209,38 @@ export async function init(opts) {
     for (const sx of [-1, 1]) mesh(sheet(BODY.d, ph, [slot(-0.72, -0.3), slot(0.3, 0.72)], t), shellBlue, shell, sx * (hw - t / 2), ph / 2, 0).rotation.y = Math.PI / 2;
     box(BODY.w - 0.1, ph - 0.02, BODY.d - 0.1, dark, shell, 0, ph / 2, 0, 0.004);
     /* service bracket behind the lower front panel: carries the service valve and pressure switch */
-    box(1.62, 0.14, 0.06, shellBlue, shell, 0, 0.69, 0.8, 0.008);
+    box(BODY.w - 0.4, 0.14, 0.06, shellBlue, shell, 0, 0.69, 0.74, 0.008);
     /* on the lid: grey funnel fitting on a white stub, and a small blue port (both visible in the photos) */
     const grey = mat('#7f868b', 0.05, 0.5, { side: T.DoubleSide });
-    cyl(0.045, 0.045, 0.12, white, shell, -0.62, BODY.top + 0.06, -0.78, 16);
-    cyl(0.045, 0.045, 0.16, white, shell, -0.7, BODY.top + 0.11, -0.78, 16).rotation.z = Math.PI / 2;
-    const funnel = mesh(new T.LatheGeometry([[0.045, 0], [0.05, 0.08], [0.15, 0.24], [0.155, 0.27], [0.04, 0.1]].map((q) => new T.Vector2(q[0], q[1])), 28), grey, shell, -0.78, BODY.top + 0.11, -0.78);
+    cyl(0.045, 0.045, 0.12, white, shell, -0.5, BODY.top + 0.06, -0.9, 16);
+    cyl(0.045, 0.045, 0.16, white, shell, -0.58, BODY.top + 0.11, -0.9, 16).rotation.z = Math.PI / 2;
+    const funnel = mesh(new T.LatheGeometry([[0.045, 0], [0.05, 0.08], [0.15, 0.24], [0.155, 0.27], [0.04, 0.1]].map((q) => new T.Vector2(q[0], q[1])), 28), grey, shell, -0.66, BODY.top + 0.11, -0.9);
     funnel.rotation.z = Math.PI / 2;
-    cyl(0.065, 0.065, 0.05, shellBlue, shell, -0.88, BODY.top + 0.025, 0.78, 20);
+    cyl(0.065, 0.065, 0.05, shellBlue, shell, -0.72, BODY.top + 0.025, 0.92, 20);
     /* rear: cable gland low on the right, with the supply cable looped on the floor */
-    cyl(0.042, 0.042, 0.07, chrome, shell, 0.86, 0.27, -hd - 0.03, 16).rotation.x = Math.PI / 2;
-    pipe([[0.86, 0.27, -hd - 0.06], [0.86, 0.22, -hd - 0.2], [0.72, 0.03, -hd - 0.3], [0.34, 0.03, -hd - 0.33], [0.22, 0.03, -hd - 0.15], [0.5, 0.03, -hd - 0.08]], 0.016, rubber, shell);
+    cyl(0.042, 0.042, 0.07, chrome, shell, 0.72, 0.27, -hd - 0.03, 16).rotation.x = Math.PI / 2;
+    pipe([[0.72, 0.27, -hd - 0.06], [0.72, 0.1, -hd - 0.09], [0.6, 0.017, -hd - 0.1], [0.2, 0.017, -hd - 0.11], [0.05, 0.017, -hd - 0.05], [0.3, 0.017, -hd - 0.02]], 0.016, rubber, shell);
   }
+
+  /* ---------- wooden pallet: the unit stands on one in every photograph ---------- */
+  {
+    const wood = new T.MeshStandardMaterial({ roughness: 0.86, metalness: 0, map: canvasTex(512, 128, (g, w, h) => {
+      g.fillStyle = '#a77a4c'; g.fillRect(0, 0, w, h);
+      let sd = 3;
+      const rnd = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+      for (let k = 0; k < 70; k++) {
+        const y0 = rnd() * h, amp = 2 + rnd() * 5, ph = rnd() * 6, c = Math.round(110 + rnd() * 50);
+        g.strokeStyle = 'rgba(' + c + ',' + Math.round(c * 0.68) + ',' + Math.round(c * 0.4) + ',' + (0.25 + rnd() * 0.35).toFixed(2) + ')'; g.lineWidth = 1 + rnd() * 2;
+        g.beginPath(); for (let x = 0; x <= w; x += 8) { const y = y0 + Math.sin(x / 60 + ph) * amp; if (x) g.lineTo(x, y); else g.moveTo(x, y); } g.stroke();
+      }
+      g.fillStyle = 'rgba(70,45,25,0.45)'; for (let k = 0; k < 3; k++) { g.beginPath(); g.ellipse(rnd() * w, rnd() * h, 6 + rnd() * 6, 3 + rnd() * 3, 0, 0, Math.PI * 2); g.fill(); }
+    }) });
+    const L = BODY.d + 0.25, X = BODY.w / 2 + 0.08;
+    for (const x of [-X, -X / 2, 0, X / 2, X]) box(0.3, 0.034, L, wood, shell, x, -0.017, 0, 0.006);          /* deck boards */
+    for (const z of [-L / 2 + 0.06, 0, L / 2 - 0.06]) box(2 * X + 0.3, 0.075, 0.1, wood, shell, 0, -0.072, z, 0.006);   /* stringers */
+    for (const x of [-X, 0, X]) box(0.3, 0.03, L, wood, shell, x, -0.125, 0, 0.006);                          /* bottom boards */
+  }
+  model.position.y = PAL;
 
   /* ---------- top condenser pack, axial fan and wire guard ---------- */
   box(1.91, 0.43, 1.8, dark, fan, 0, 3.05, 0);
@@ -214,45 +264,59 @@ export async function init(opts) {
   for (const x of [-0.57, 0.57]) for (const z of [-0.57, 0.57]) { box(0.1, 0.13, 0.11, steel, fan, x, 3.47, z); bolt(fan, x, 3.53, z, 'y'); }
   pipe([[0, 3.8, 0.08], [0.24, 3.77, 0.21], [0.56, 3.54, 0.62], [0.8, 3.42, 0.88]], 0.028, rubber, fan, true);
 
-  /* ---------- control cabinet: fixed hinges and gauge, door on a pivot at its hinge line ---------- */
-  for (const y of [2.45, 3.08]) { box(0.11, 0.16, 0.038, black, cabinet, -0.96, y, 1.119); bolt(cabinet, -0.98, y + 0.04, 1.143); bolt(cabinet, -0.98, y - 0.04, 1.143); }
-  cyl(0.15, 0.15, 0.046, chrome, cabinet, -1.02, 2.16, 1.12, 48).rotation.x = Math.PI / 2;
-  cyl(0.124, 0.124, 0.012, white, cabinet, -1.02, 2.16, 1.154, 48).rotation.x = Math.PI / 2;
+  /* ---------- control cabinet: fixed hinges and gauge, door on a pivot at its hinge line (sized from the front window) ---------- */
+  const HX = -WINF - 0.005, DW = 2 * WINF - 0.01, GX = -WINF - 0.07;
+  for (const y of [2.45, 3.08]) { box(0.1, 0.16, 0.038, black, cabinet, HX + 0.02, y, 1.119); bolt(cabinet, HX, y + 0.04, 1.143); bolt(cabinet, HX, y - 0.04, 1.143); }
+  cyl(0.12, 0.12, 0.046, chrome, cabinet, GX, 2.16, 1.12, 48).rotation.x = Math.PI / 2;
+  cyl(0.1, 0.1, 0.012, white, cabinet, GX, 2.16, 1.154, 48).rotation.x = Math.PI / 2;
   plate(canvasTex(256, 256, (g) => {
     g.fillStyle = '#f0f1e5'; g.fillRect(0, 0, 256, 256); g.translate(128, 128);
     for (let i = 0; i < 33; i++) { const a = (0.75 + i / 32 * 1.5) * Math.PI; g.save(); g.rotate(a); g.strokeStyle = i > 25 ? '#b04634' : '#243c3c'; g.lineWidth = i % 4 === 0 ? 4 : 2; g.beginPath(); g.moveTo(0, -100); g.lineTo(0, i % 4 === 0 ? -82 : -91); g.stroke(); g.restore(); }
     g.strokeStyle = '#212d2c'; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(-49, -57); g.stroke();
     g.font = '20px Arial'; g.fillStyle = '#354d4a'; g.textAlign = 'center'; g.fillText('bar', 0, 52);
-  }), 0.246, 0.246, cabinet, -1.02, 2.16, 1.163);
-  decal('HP GAUGE', 0.31, 0.06, cabinet, -1.02, 2.38, 1.1, '#0b7ec0', '#eaf2f1', 42);
+  }), 0.198, 0.198, cabinet, GX, 2.16, 1.163);
+  decal('HP GAUGE', 0.22, 0.045, cabinet, GX, 2.34, 1.1, '#0779bd', '#eaf2f1', 42);
   /* the electrical box behind the door, with contactors on a rail */
-  box(0.45, 0.74, 0.28, cream, cabinet, 0.55, 2.71, 0.81);
-  box(0.4, 0.03, 0.02, steel, cabinet, 0.55, 2.86, 0.96, 0.004);
-  for (const x of [0.41, 0.55, 0.69]) box(0.1, 0.18, 0.06, x === 0.55 ? dark : steel, cabinet, x, 2.86, 0.98, 0.01);
-  box(0.36, 0.05, 0.04, green, cabinet, 0.55, 2.56, 0.97, 0.008);
-  const doorPivot = group(cabinet); doorPivot.position.set(-0.98, 0, 1.1); doorPivot.userData.keep = true;
-  const door = group(doorPivot); door.position.set(0.98, 0, -1.1);   /* children keep model coordinates */
-  box(1.96, 0.86, 0.048, cream, door, 0, 2.76, 1.075);
-  box(0.28, 0.3, 0.022, black, door, 0.7, 2.79, 1.117);
-  box(0.12, 0.24, 0.045, dark, door, 0.7, 2.79, 1.14);
-  box(0.09, 0.21, 0.018, steel, door, 0.7, 2.79, 1.152);
-  box(0.39, 0.19, 0.037, black, door, -0.06, 2.93, 1.121);
-  decal('15.0', 0.25, 0.1, door, -0.1, 2.93, 1.143, '#111e21', '#7cc88e', 88);   /* illustrative readout, not live */
-  decal('CONTROLLER', 0.4, 0.06, door, -0.06, 2.78, 1.118, '#ecebdc', '#16252d', 44);
-  for (const b of [[-0.23, green, 'POWER ON'], [0.22, amber, 'HP TRIP']]) {
+  const BX = WINF * 0.54;
+  box(0.45, 0.74, 0.28, cream, cabinet, BX, 2.71, 0.81);
+  box(0.4, 0.03, 0.02, steel, cabinet, BX, 2.86, 0.96, 0.004);
+  for (const dx of [-0.14, 0, 0.14]) box(0.1, 0.18, 0.06, dx === 0 ? dark : steel, cabinet, BX + dx, 2.86, 0.98, 0.01);
+  box(0.36, 0.05, 0.04, green, cabinet, BX, 2.56, 0.97, 0.008);
+  const doorPivot = group(cabinet); doorPivot.position.set(HX, 0, 1.1); doorPivot.userData.keep = true;
+  const door = group(doorPivot); door.position.set(-HX, 0, -1.1);   /* children keep model coordinates */
+  box(DW, 0.86, 0.048, cream, door, 0, 2.76, 1.075);
+  const handleX = WINF - 0.27;
+  box(0.24, 0.3, 0.022, black, door, handleX, 2.79, 1.117);
+  box(0.11, 0.24, 0.045, dark, door, handleX, 2.79, 1.14);
+  box(0.08, 0.21, 0.018, steel, door, handleX, 2.79, 1.152);
+  box(0.39, 0.19, 0.037, black, door, -0.08, 2.93, 1.121);
+  decal('15.0', 0.25, 0.1, door, -0.12, 2.93, 1.143, '#111e21', '#7cc88e', 88);   /* illustrative readout, not live */
+  decal('CONTROLLER', 0.4, 0.06, door, -0.08, 2.78, 1.118, '#ecebdc', '#16252d', 44);
+  for (const b of [[-0.27, green, 'POWER ON'], [0.12, amber, 'HP TRIP']]) {
     cyl(0.055, 0.055, 0.022, chrome, door, b[0], 2.57, 1.12).rotation.x = Math.PI / 2;
     cyl(0.043, 0.043, 0.033, b[1], door, b[0], 2.57, 1.145).rotation.x = Math.PI / 2;
-    decal(b[2], 0.37, 0.06, door, b[0], 2.44, 1.112, '#ecebdc', '#16252d', 47);
+    decal(b[2], 0.32, 0.06, door, b[0], 2.44, 1.112, '#ecebdc', '#16252d', 47);
   }
-  for (const y of [2.4, 3.13]) box(0.06, 0.07, 0.035, black, door, 0.92, y, 1.124);
+  for (const y of [2.4, 3.13]) box(0.06, 0.07, 0.035, black, door, WINF - 0.07, y, 1.124);
 
   /* ---------- removable panels with real capsule-shaped openings ---------- */
-  const ventPanel = (w, h, columns, rows, front) => {
+  const capsule = (shape, x, y, sw, sh) => {
+    const r = sh / 2, a = sw / 2 - r, p = new T.Path();
+    p.moveTo(x - a, y + r); p.lineTo(x + a, y + r); p.absarc(x + a, y, r, Math.PI / 2, -Math.PI / 2, true); p.lineTo(x - a, y - r); p.absarc(x - a, y, r, -Math.PI / 2, Math.PI / 2, true);
+    shape.holes.push(p);
+  };
+  /* v: { grid: [columns, rows, yOffset] } or { brick: [rows, blockWidth, centreX, centreY] } */
+  const ventPanel = (w, h, v) => {
     const shape = new T.Shape(); shape.moveTo(-w / 2, -h / 2); shape.lineTo(w / 2, -h / 2); shape.lineTo(w / 2, h / 2); shape.lineTo(-w / 2, h / 2); shape.closePath();
-    const sw = (w - 0.42) / columns * 0.72, sh = 0.072, dx = (w - 0.42) / columns;
-    for (let row = 0; row < rows; row++) for (let col = 0; col < columns; col++) {
-      const x = (col - (columns - 1) / 2) * dx, y = (row - (rows - 1) / 2) * 0.14 - (front ? 0.22 : 0.28), r = sh / 2, a = sw / 2 - r, p = new T.Path();
-      p.moveTo(x - a, y + r); p.lineTo(x + a, y + r); p.absarc(x + a, y, r, Math.PI / 2, -Math.PI / 2, true); p.lineTo(x - a, y - r); p.absarc(x - a, y, r, -Math.PI / 2, Math.PI / 2, true); shape.holes.push(p);
+    if (v.grid) {
+      const [columns, rows, yo] = v.grid, dx = (w - 0.42) / columns, sw = dx * 0.72;
+      for (let row = 0; row < rows; row++) for (let col = 0; col < columns; col++) capsule(shape, (col - (columns - 1) / 2) * dx, (row - (rows - 1) / 2) * 0.14 + yo, sw, 0.072);
+    } else {
+      const [rows, bw, cx, cy] = v.brick, px = 0.235, py = 0.118, sw = 0.168, sh = 0.074, cols = Math.floor(bw / px);
+      for (let row = 0; row < rows; row++) {
+        const odd = row % 2, n = cols - odd;
+        for (let col = 0; col < n; col++) capsule(shape, cx + (col - (n - 1) / 2) * px, cy + (row - (rows - 1) / 2) * py, sw, sh);
+      }
     }
     const g = new T.ExtrudeGeometry(shape, { depth: 0.028, bevelEnabled: true, bevelSize: 0.008, bevelThickness: 0.006, bevelSegments: 1, curveSegments: 5 }); g.translate(0, 0, -0.014);
     return g;
@@ -261,13 +325,13 @@ export async function init(opts) {
   /* corner bolts are one instanced mesh per panel so they can back out before the panel lifts */
   const boltHead = new T.CylinderGeometry(0.028, 0.028, 0.022, 6).rotateX(Math.PI / 2);
   const boltWasher = new T.CylinderGeometry(0.04, 0.04, 0.007, 16).rotateX(Math.PI / 2);
-  const addPanel = (name, w, h, columns, rows, x, y, z, rotation, front) => {
+  const addPanel = (name, w, h, vents, x, y, z, rotation) => {
     const g = group(); g.position.set(x, y, z); g.rotation.order = 'YXZ'; g.rotation.y = rotation;
     g.userData.keep = true;
     const pm = cream.clone(); pm.transparent = true;
     const hm = chrome.clone(); hm.transparent = true;
     const wm = steel.clone(); wm.transparent = true;
-    mesh(ventPanel(w, h, columns, rows, front), pm, g);
+    mesh(ventPanel(w, h, vents), pm, g);
     const spots = [];
     for (const xx of [-w / 2 + 0.045, w / 2 - 0.045]) for (const yy of [-h / 2 + 0.05, h / 2 - 0.05]) spots.push([xx, yy]);
     const heads = new T.InstancedMesh(boltHead, hm, 4), washers = new T.InstancedMesh(boltWasher, wm, 4);
@@ -288,24 +352,25 @@ export async function init(opts) {
     p.heads.instanceMatrix.needsUpdate = p.washers.instanceMatrix.needsUpdate = true;
   };
   const label = (p, tex, w, h, x, y) => { const m = plate(tex, w, h, p.g, x, y, 0.026); m.material.transparent = true; p.fades.push(m.material); };
-  /* panels sit in the cabinet windows: lower front 0.30-1.30, sides and back 0.30-2.32 */
-  label(addPanel('front', 1.92, 0.98, 4, 4, 0, 0.8, BODY.d / 2 + 0.009, 0, true), logoTex, 0.62, 0.35, 0, 0.24);   /* Win Equipments logo, owner's request */
-  const rightPanel = addPanel('right', 1.88, 2.0, 5, 9, BODY.w / 2 + 0.009, 1.31, 0, Math.PI / 2);
-  label(rightPanel, stickerTex, 0.26, 0.36, -0.6, 0.62);
-  label(rightPanel, canvasTex(200, 140, (g, w, h) => { g.fillStyle = '#f4f5ef'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(30,40,35,0.45)'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12); for (let y = 30; y < h - 10; y += 18) { g.beginPath(); g.moveTo(10, y); g.lineTo(w - 10, y); g.stroke(); } }), 0.3, 0.21, 0.62, 0.78);
-  addPanel('left', 1.88, 2.0, 5, 9, -BODY.w / 2 - 0.009, 1.31, 0, -Math.PI / 2);
-  const backPanel = addPanel('back', 1.94, 2.0, 5, 9, 0, 1.31, -BODY.d / 2 - 0.009, Math.PI);
+  /* panels sit 8 mm inside their window edges and 12 mm behind the face, so a thin shadow seam shows all round */
+  const PW = 2 * WINF - 0.016, SW = 2 * WINS - 0.016, PIN = 0.012;
+  label(addPanel('front', PW, 0.984, { grid: [4, 4, -0.22] }, 0, 0.8, BODY.d / 2 - PIN, 0), logoTex, 0.62, 0.35, 0, 0.24);   /* Win Equipments logo, owner's request */
+  const rightPanel = addPanel('right', SW, 2.004, { brick: [11, SW - 0.4, 0.05, -0.18] }, BODY.w / 2 - PIN, 1.31, 0, Math.PI / 2);
+  label(rightPanel, stickerTex, 0.26, 0.36, -0.68, 0.7);
+  label(rightPanel, canvasTex(200, 140, (g, w, h) => { g.fillStyle = '#f4f5ef'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(30,40,35,0.45)'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12); for (let y = 30; y < h - 10; y += 18) { g.beginPath(); g.moveTo(10, y); g.lineTo(w - 10, y); g.stroke(); } }), 0.3, 0.21, 0.68, 0.82);
+  addPanel('left', SW, 2.004, { brick: [11, SW - 0.4, 0, -0.18] }, -BODY.w / 2 + PIN, 1.31, 0, -Math.PI / 2);
+  const backPanel = addPanel('back', PW, 2.004, { brick: [10, PW - 0.62, -0.12, -0.14] }, 0, 1.31, -BODY.d / 2 + PIN, Math.PI);
   /* rear: the level-gauge window on the tank side, and a plain earth-symbol label by the cable gland */
-  label(backPanel, canvasTex(48, 220, (g, w, h) => { g.fillStyle = '#15191b'; g.fillRect(0, 0, w, h); g.fillStyle = '#9fb7ae'; g.fillRect(14, 22, w - 28, h - 44); g.fillStyle = '#c9a85a'; g.fillRect(16, 6, w - 32, 10); g.fillRect(16, h - 16, w - 32, 10); }), 0.09, 0.42, 0.74, 0.22);
-  label(backPanel, canvasTex(96, 96, (g, w, h) => { g.fillStyle = '#f2c018'; g.fillRect(0, 0, w, h); g.strokeStyle = '#111'; g.lineWidth = 6; g.beginPath(); g.moveTo(48, 16); g.lineTo(48, 50); g.moveTo(22, 50); g.lineTo(74, 50); g.moveTo(30, 62); g.lineTo(66, 62); g.moveTo(39, 74); g.lineTo(57, 74); g.stroke(); }), 0.07, 0.07, -0.8, -0.86);
+  label(backPanel, canvasTex(48, 220, (g, w, h) => { g.fillStyle = '#15191b'; g.fillRect(0, 0, w, h); g.fillStyle = '#9fb7ae'; g.fillRect(14, 22, w - 28, h - 44); g.fillStyle = '#c9a85a'; g.fillRect(16, 6, w - 32, 10); g.fillRect(16, h - 16, w - 32, 10); }), 0.09, 0.42, 0.62, 0.22);
+  label(backPanel, canvasTex(96, 96, (g, w, h) => { g.fillStyle = '#f2c018'; g.fillRect(0, 0, w, h); g.strokeStyle = '#111'; g.lineWidth = 6; g.beginPath(); g.moveTo(48, 16); g.lineTo(48, 50); g.moveTo(22, 50); g.lineTo(74, 50); g.moveTo(30, 62); g.lineTo(66, 62); g.moveTo(39, 74); g.lineTo(57, 74); g.stroke(); }), 0.07, 0.07, -0.68, -0.86);
 
   /* ---------- foam-insulated tank with metal lid, seams and sight glass ---------- */
   box(1.26, 1.79, 1.19, foam, tank, -0.15, 1.41, -0.22, 0.035);
   for (const z of [-0.62, 0.12]) box(0.012, 1.74, 0.02, rubber, tank, -0.782, 1.41, z, 0.004);   /* insulation sheet seams */
   box(0.02, 1.74, 0.012, rubber, tank, 0.2, 1.41, 0.382, 0.004);
-  box(1.29, 0.065, 1.22, steel, tank, -0.15, 2.335, -0.22, 0.012);
+  box(1.31, 0.11, 1.24, lidSteel, tank, -0.15, 2.357, -0.22, 0.02);   /* thick bright metal lid, as photographed */
   for (const z of [-0.83, 0.39]) box(1.26, 0.025, 0.026, rubber, tank, -0.15, 0.54, z);
-  for (const x of [-0.72, 0.42]) for (const z of [-0.76, 0.31]) bolt(tank, x, 2.37, z, 'y');
+  for (const x of [-0.72, 0.42]) for (const z of [-0.76, 0.31]) bolt(tank, x, 2.415, z, 'y');
   box(0.16, 0.61, 0.026, black, tank, -0.783, 1.42, -0.14).rotation.y = -Math.PI / 2;
   box(0.065, 0.44, 0.035, mat('#85aca1', 0.1, 0.15, { transmission: 0.35, thickness: 0.1 }), tank, -0.806, 1.42, -0.14).rotation.y = -Math.PI / 2;
   for (const y of [1.14, 1.7]) cyl(0.036, 0.036, 0.035, brass, tank, -0.811, y, -0.14).rotation.z = Math.PI / 2;
@@ -321,24 +386,30 @@ export async function init(opts) {
   pipe([[-0.67, 1.45, 0.62], [-0.67, 1.68, 0.61], [-0.37, 1.79, 0.55], [-0.2, 1.94, 0.41]], 0.064, rubber);
   pipe([[-0.86, 1.31, 0.66], [-0.94, 1.51, 0.66], [-0.94, 2.55, 0.4], [-0.78, 2.85, -0.2]], 0.023, copper);
 
-  /* ---------- pump: finned motor, red end cover, cast body, PVC unions and blue valve ---------- */
-  cyl(0.205, 0.205, 0.62, steel, pump, 0.58, 0.61, 0.2).rotation.x = Math.PI / 2;
-  for (let i = 0; i < 16; i++) { const a = i * Math.PI / 8; box(0.025, 0.045, 0.54, steel, pump, 0.58 + Math.sin(a) * 0.215, 0.61 + Math.cos(a) * 0.215, 0.2, 0.004).rotation.z = -a; }
-  cyl(0.224, 0.224, 0.12, red, pump, 0.58, 0.61, 0.55).rotation.x = Math.PI / 2;
-  cyl(0.155, 0.155, 0.014, black, pump, 0.58, 0.61, 0.617).rotation.x = Math.PI / 2;
-  for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; cyl(0.018, 0.018, 0.017, steel, pump, 0.58 + 0.12 * Math.cos(a), 0.61 + 0.12 * Math.sin(a), 0.635).rotation.x = Math.PI / 2; }
-  box(0.23, 0.11, 0.32, steel, pump, 0.58, 0.39, 0.22);
-  for (const x of [0.43, 0.73]) for (const z of [0.06, 0.39]) bolt(pump, x, 0.44, z, 'y');
-  cyl(0.23, 0.18, 0.23, steel, pump, 0.58, 0.61, -0.21).rotation.x = Math.PI / 2;
-  cyl(0.13, 0.13, 0.22, steel, pump, 0.58, 0.79, -0.24);
-  pipe([[0.58, 0.83, -0.24], [0.58, 0.97, -0.24], [0.9, 1.02, -0.24], [0.91, 1.42, -0.24]], 0.078, white, pump);
-  for (const y of [1.09, 1.3]) cyl(0.105, 0.105, 0.11, white, pump, 0.91, y, -0.24);
-  cyl(0.09, 0.09, 0.15, white, pump, 0.91, 1.52, -0.24);
-  box(0.36, 0.045, 0.095, mat('#2457c9', 0.2, 0.35), pump, 0.91, 1.64, -0.24);
-  pipe([[0.58, 0.61, -0.34], [0.58, 0.61, -0.55], [0.31, 0.61, -0.6], [0.31, 0.61, -0.72]], 0.066, white, pump);
-  box(0.24, 0.15, 0.2, black, pump, 0.58, 0.86, 0.17);
-  plate(canvasTex(256, 96, (g, w, h) => { g.fillStyle = '#dfe3ea'; g.fillRect(0, 0, w, h); g.fillStyle = '#c0392b'; g.fillRect(0, 0, 40, h); g.fillStyle = 'rgba(30,40,60,0.4)'; for (let y = 14; y < h - 8; y += 14) g.fillRect(52, y, w - 64, 5); }), 0.3, 0.11, pump, 0.58, 0.83, 0.42);
-  cyl(0.08, 0.08, 0.13, chrome, pump, 0.88, 0.43, 0.51).rotation.z = Math.PI / 2;
+  /* ---------- pump: finned cast motor, red end cover, cast body, PVC unions and blue valve (built at photo size) ---------- */
+  const pumpBody = group(pump);
+  cyl(0.205, 0.205, 0.62, cast, pumpBody, 0.58, 0.61, 0.2).rotation.x = Math.PI / 2;
+  for (let i = 0; i < 16; i++) { const a = i * Math.PI / 8; box(0.025, 0.045, 0.54, cast, pumpBody, 0.58 + Math.sin(a) * 0.215, 0.61 + Math.cos(a) * 0.215, 0.2, 0.004).rotation.z = -a; }
+  cyl(0.224, 0.224, 0.12, red, pumpBody, 0.58, 0.61, 0.55).rotation.x = Math.PI / 2;
+  cyl(0.155, 0.155, 0.014, black, pumpBody, 0.58, 0.61, 0.617).rotation.x = Math.PI / 2;
+  for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; cyl(0.018, 0.018, 0.017, steel, pumpBody, 0.58 + 0.12 * Math.cos(a), 0.61 + 0.12 * Math.sin(a), 0.635).rotation.x = Math.PI / 2; }
+  plate(canvasTex(128, 64, (g, w, h) => { g.fillStyle = '#f3f1e8'; g.fillRect(0, 0, w, h); g.fillStyle = '#e8b21e'; g.fillRect(0, 0, w, 14); g.fillStyle = 'rgba(40,40,40,0.4)'; for (let y = 22; y < h - 6; y += 10) g.fillRect(8, y, w - 16 - (y % 3) * 10, 4); }), 0.11, 0.055, pumpBody, 0.58, 0.8, 0.614);   /* plain label on the red cover */
+  box(0.23, 0.11, 0.32, cast, pumpBody, 0.58, 0.39, 0.22);
+  for (const x of [0.43, 0.73]) for (const z of [0.06, 0.39]) bolt(pumpBody, x, 0.44, z, 'y');
+  cyl(0.23, 0.18, 0.23, cast, pumpBody, 0.58, 0.61, -0.21).rotation.x = Math.PI / 2;
+  cyl(0.13, 0.13, 0.22, cast, pumpBody, 0.58, 0.79, -0.24);
+  pipe([[0.58, 0.83, -0.24], [0.58, 0.97, -0.24], [0.9, 1.02, -0.24], [0.91, 1.42, -0.24]], 0.1, white, pumpBody);
+  for (const y of [1.09, 1.3]) cyl(0.13, 0.13, 0.12, white, pumpBody, 0.91, y, -0.24);
+  cyl(0.115, 0.115, 0.17, white, pumpBody, 0.91, 1.53, -0.24);
+  cyl(0.02, 0.02, 0.08, steel, pumpBody, 0.91, 1.64, -0.24);
+  box(0.46, 0.055, 0.12, mat('#2457c9', 0.2, 0.3, { clearcoat: 0.6 }), pumpBody, 0.95, 1.69, -0.24);
+  pipe([[0.58, 0.61, -0.34], [0.58, 0.61, -0.55], [0.31, 0.61, -0.6], [0.31, 0.61, -0.72]], 0.086, white, pumpBody);
+  box(0.24, 0.15, 0.2, black, pumpBody, 0.58, 0.86, 0.17);
+  plate(canvasTex(256, 96, (g, w, h) => { g.fillStyle = '#dfe3ea'; g.fillRect(0, 0, w, h); g.fillStyle = '#c0392b'; g.fillRect(0, 0, 40, h); g.fillStyle = 'rgba(30,40,60,0.4)'; for (let y = 14; y < h - 8; y += 14) g.fillRect(52, y, w - 64, 5); }), 0.3, 0.11, pumpBody, 0.58, 0.83, 0.42);
+  cyl(0.08, 0.08, 0.13, chrome, pumpBody, 0.88, 0.43, 0.51).rotation.z = Math.PI / 2;
+  /* the pump in the photos is bigger relative to the cabinet: grow it about its own base so it stays on the floor and on its pipes */
+  const PS = 1.2, PC = V(0.58, 0.335, 0.2);
+  pumpBody.scale.setScalar(PS); pumpBody.position.copy(PC).multiplyScalar(1 - PS);
 
   /* ---------- copper lines, foam insulation and ribbed conduits along the photographed routes ---------- */
   pipe([[-0.91, 0.57, 0.73], [-0.93, 0.56, 0.19], [-0.94, 0.59, -0.55], [-0.79, 2.5, -0.65], [-0.55, 2.88, -0.73]], 0.021, copper);
@@ -357,6 +428,29 @@ export async function init(opts) {
   box(0.1, 0.06, 0.004, white, pipes, 0, 0.62, 0.866, 0.002);
   pipe([[0.15, 0.62, 0.82], [0.25, 0.62, 0.82], [0.31, 0.71, 0.86]], 0.012, copper);
   pipe([[-0.15, 0.62, 0.82], [-0.24, 0.6, 0.85], [-0.29, 0.5, 0.91]], 0.012, copper);
+  /* more of the wiring the photos show: ribbed conduits with cable ties, tight copper bends, a copper coil at the tank lid */
+  const tieGeo = new T.TorusGeometry(0.036, 0.007, 5, 14);
+  const conduit = (pts, ties) => {
+    pipe(pts, 0.028, rubber, pipes, true);
+    const curve = new T.CatmullRomCurve3(pts.map((q) => V(q[0], q[1], q[2])), false, 'centripetal'), o = new T.Object3D(), fwd = V(0, 0, 1);
+    ties.forEach((t) => { const m = mesh(tieGeo, black, pipes, 0, 0, 0); m.position.copy(curve.getPointAt(t)); m.quaternion.setFromUnitVectors(fwd, curve.getTangentAt(t)); m.castShadow = false; });
+  };
+  conduit([[0.55, 2.55, 1.15], [0.2, 2.35, 1.2], [-0.45, 2.15, 1.18], [-1.05, 1.7, 1.1], [-1.1, 0.9, 0.95], [-0.85, 0.45, 0.85]], [0.3, 0.62]);
+  conduit([[0.7, 2.5, 1.15], [1.05, 2.2, 1.1], [1.12, 1.3, 0.75], [1.05, 0.55, 0.35], [0.8, 0.45, 0.1]], [0.4, 0.75]);
+  conduit([[-1.05, 0.42, -0.9], [-0.4, 0.4, -1.15], [0.5, 0.41, -1.1], [1.05, 0.45, -0.6], [1.12, 1.2, -0.95], [0.7, 2.35, -1.05], [0.1, 2.5, -0.8]], [0.2, 0.5, 0.8]);
+  conduit([[-0.95, 2.45, -0.2], [-1.1, 2.0, 0.3], [-1.05, 1.4, 0.6], [-0.8, 1.1, 0.7]], [0.5]);
+  pipe([[0.43, 2.35, 0.05], [0.43, 2.15, 0.05], [0.62, 2.12, 0.05], [0.62, 1.85, 0.1], [0.45, 1.82, 0.1], [0.45, 1.55, 0.15]], 0.012, copper);
+  pipe([[-0.5, 2.42, 0.3], [-0.5, 2.62, 0.3], [-0.3, 2.64, 0.32], [-0.3, 2.42, 0.32]], 0.014, copper);
+  const coil = [];
+  for (let k = 0; k <= 48; k++) { const a = k / 48 * Math.PI * 6; coil.push([-0.35 + 0.07 * Math.cos(a), 2.44 + k * 0.0028, -0.1 + 0.07 * Math.sin(a)]); }
+  pipe(coil, 0.009, copper);
+  /* inner perforated partition on the pump side, behind the valve */
+  {
+    const w = 0.6, h = 1.2, sh = new T.Shape(); sh.moveTo(-w / 2, -h / 2); sh.lineTo(w / 2, -h / 2); sh.lineTo(w / 2, h / 2); sh.lineTo(-w / 2, h / 2); sh.closePath();
+    for (let y = -h / 2 + 0.1; y <= h / 2 - 0.1; y += 0.085) for (let x = -w / 2 + 0.08; x <= w / 2 - 0.08; x += 0.085) { const ph = new T.Path(); ph.absarc(x, y, 0.03, 0, Math.PI * 2, true); sh.holes.push(ph); }
+    const g = new T.ExtrudeGeometry(sh, { depth: 0.012, bevelEnabled: false, curveSegments: 6 }); g.translate(0, 0, -0.006);
+    mesh(g, cream, pipes, 0.7, 1.6, -0.95).rotation.y = Math.PI / 2;
+  }
   /* sight glass on the copper line up the right-hand side */
   cyl(0.032, 0.032, 0.09, brass, pipes, 0.91, 1.8, 0.31, 12);
   cyl(0.02, 0.02, 0.012, mat('#9fc3b8', 0.1, 0.05, { transmission: 0.5, thickness: 0.05 }), pipes, 0.945, 1.8, 0.31, 16).rotation.z = Math.PI / 2;
@@ -393,7 +487,7 @@ export async function init(opts) {
     });
   };
   /* place the groups in the squatter body: fan pack and controls drop onto the lid, interior parts scale in */
-  const BASE = new Map([[fan, V(0, DROP, 0)], [cabinet, V(0, DROP, 0)], [tank, V(0, -0.11, 0)], [compressor, V(0, 0, 0)], [pump, V(0, 0, 0)], [pipes, V(0, 0, 0)]]);
+  const BASE = new Map([[fan, V(0, DROP, 0)], [cabinet, V(0, DROP, BODY.d / 2 - 1.07)], [tank, V(0, -0.11, 0)], [compressor, V(0, 0, 0)], [pump, V(0, 0, 0)], [pipes, V(0, 0, 0)]]);
   BASE.forEach((pos, g) => g.position.copy(pos));
   [tank, compressor, pump, pipes].forEach((g) => g.scale.setScalar(K));
   bake(model);
@@ -410,8 +504,8 @@ export async function init(opts) {
   for (const l of [[-4, 4, 2, 4, 7, Math.PI / 2], [4, 3, 0, 3, 6, -Math.PI / 2], [0, 5, -3, 7, 3, 0]]) {
     const m = new T.Mesh(new T.PlaneGeometry(l[3], l[4]), new T.MeshBasicMaterial({ color: '#fff8e7' })); m.position.set(l[0], l[1], l[2]); m.rotation.y = l[5]; studio.add(m);
   }
-  const pmrem = new T.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(studio, 0.08).texture; scene.environmentIntensity = 0.75; pmrem.dispose();
-  scene.add(new T.HemisphereLight('#e4efee', '#59625f', 1.7));
+  const pmrem = new T.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(studio, 0.08).texture; scene.environmentIntensity = 0.66; pmrem.dispose();
+  scene.add(new T.HemisphereLight('#e4efee', '#4f5754', 1.45));
   const key = new T.DirectionalLight('#fff2da', 3.4); key.position.set(-3.2, 7.5, 4.2); key.castShadow = true;
   key.shadow.mapSize.set(1024, 1024); Object.assign(key.shadow.camera, { left: -3.6, right: 3.6, top: 4.6, bottom: -2.6, near: 4, far: 16 });
   key.shadow.normalBias = 0.02; key.shadow.bias = -0.0004; key.shadow.radius = 9; key.shadow.blurSamples = 16; scene.add(key);
@@ -483,7 +577,7 @@ export async function init(opts) {
     1: doorAnchor, 2: fanAnchor,
     3: anchor(compressor, [-0.67, 0.95, 0.93], [0, 0, 1]),
     4: anchor(tank, [-0.83, 1.6, -0.14], [-1, 0, 0]),
-    5: anchor(pump, [0.8, 0.61, 0.5], [1, 0, 0.3]),   /* side of the red end cover: hidden behind the front bracket from the left */
+    5: anchor(pumpBody, [0.8, 0.61, 0.5], [1, 0, 0.3]),   /* side of the red end cover: hidden behind the front bracket from the left */
     6: anchor(pipes, [0.91, 1.3, -0.12], [1, 0, 0.3])
   };
 
@@ -547,7 +641,7 @@ export async function init(opts) {
   }
 
   /* ---------- state, camera, layout ---------- */
-  const target = V(0, 1.4, 0);
+  const target = V(0, 1.4 + PAL, 0);
   const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, isolate: 0, still: false };
   let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 1, shapeDirty = true, flowTime = 0;
   const placeCamera = () => {
