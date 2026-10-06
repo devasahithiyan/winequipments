@@ -6,24 +6,30 @@
    chiller360.js owns drag / keys / scroll / parts-list state and calls view.set(ry, rx, open).
    No template literals here: the build's minifier mangles them. */
 import * as T from 'three';
+import { mergeGeometries } from '/js/vendor/BufferGeometryUtils.js?v=170';
 
-/* the unit opens in this order (fractions of open 0..1): door, front panel, right, left, back */
-const WIN = { door: [0, 0.4], front: [0.12, 0.55], right: [0.28, 0.72], left: [0.38, 0.82], back: [0.5, 0.95], light: [0.25, 0.75] };
+/* the unit opens in this order (fractions of open 0..1): door, front panel, right, left, back; the fan spins down first */
+const WIN = { fan: [0, 0.3], door: [0.04, 0.42], front: [0.12, 0.58], right: [0.26, 0.72], left: [0.36, 0.82], back: [0.46, 0.94], light: [0.25, 0.75] };
 const clamp01 = (x) => Math.max(0, Math.min(1, x));
 const ease = (t) => t * t * (3 - 2 * t);
-const phase = (p, w) => ease(clamp01((p - w[0]) / (w[1] - w[0])));
+const lin = (p, w) => clamp01((p - w[0]) / (w[1] - w[0]));
+const phase = (p, w) => ease(lin(p, w));
+const backOut = (t) => { const c = 1.4; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };   /* small overshoot, settles at 1 */
 
 export async function init(opts) {
   const stage = opts.stage, hotspots = opts.hotspots || [], reduce = !!opts.reduce;
   try { await document.fonts.load('700 64px Archivo'); } catch (e) { /* Arial fallback */ }
 
   const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+  /* phones and small CPUs render at a lower pixel ratio; desktops up to 1.75 */
+  const lowEnd = (navigator.hardwareConcurrency || 4) <= 4 || matchMedia('(max-width: 767px)').matches;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowEnd ? 1.35 : 1.75));
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.VSMShadowMap;
+  renderer.shadowMap.autoUpdate = false;   /* shadows re-render only when the model moves, not for the spinning fan */
   renderer.setClearColor(0x000000, 0);
   const cvs = renderer.domElement;
   cvs.className = 'c3__canvas';
@@ -63,17 +69,17 @@ export async function init(opts) {
     if (!geo) {
       const r = Math.min(bevel, w / 5, h / 5, d / 5), a = w / 2 - r, b = h / 2 - r, s = new T.Shape();
       s.moveTo(-a, -b); s.lineTo(a, -b); s.lineTo(a, b); s.lineTo(-a, b); s.closePath();
-      geo = new T.ExtrudeGeometry(s, { depth: d - 2 * r, steps: 1, bevelEnabled: true, bevelThickness: r, bevelSize: r, bevelSegments: 3, curveSegments: 2 });
+      geo = new T.ExtrudeGeometry(s, { depth: d - 2 * r, steps: 1, bevelEnabled: true, bevelThickness: r, bevelSize: r, bevelSegments: 2, curveSegments: 2 });
       geo.translate(0, 0, -d / 2 + r); geometryCache.set(key, geo);
     }
     return mesh(geo, material, parent, x, y, z);
   };
-  const cyl = (rt, rb, h, material, parent, x, y, z, seg) => mesh(new T.CylinderGeometry(rt, rb, h, seg || 32), material, parent, x, y, z);
-  const sphere = (r, material, parent, x, y, z, sx, sy, sz) => { const m = mesh(new T.SphereGeometry(r, 32, 16), material, parent, x, y, z); m.scale.set(sx || 1, sy || 1, sz || 1); return m; };
-  const torus = (r, tube, material, parent, x, y, z) => mesh(new T.TorusGeometry(r, tube, 8, 64), material, parent, x, y, z);
+  const cyl = (rt, rb, h, material, parent, x, y, z, seg) => mesh(new T.CylinderGeometry(rt, rb, h, seg || 24), material, parent, x, y, z);
+  const sphere = (r, material, parent, x, y, z, sx, sy, sz) => { const m = mesh(new T.SphereGeometry(r, 24, 12), material, parent, x, y, z); m.scale.set(sx || 1, sy || 1, sz || 1); return m; };
+  const torus = (r, tube, material, parent, x, y, z) => mesh(new T.TorusGeometry(r, tube, 6, 40), material, parent, x, y, z);
   const pipe = (points, r, material, parent, conduit) => {
     const curve = new T.CatmullRomCurve3(points.map((p) => V(p[0], p[1], p[2])), false, 'centripetal');
-    const m = mesh(new T.TubeGeometry(curve, Math.max(24, points.length * 12), r, 10, false), material, parent || pipes);
+    const m = mesh(new T.TubeGeometry(curve, Math.max(20, points.length * 10), r, r < 0.012 ? 5 : 8, false), material, parent || pipes);
     m.castShadow = false;
     if (conduit) {
       const count = Math.ceil(curve.getLength() / 0.04), rings = new T.InstancedMesh(new T.TorusGeometry(r + 0.005, 0.009, 5, 10), rubber, count);
@@ -136,7 +142,7 @@ export async function init(opts) {
   for (const x of [-0.82, 0.82]) pipe([[x, 2.88, -0.78], [x, 2.88, 0.78]], 0.035, copper, fan);
   cyl(0.69, 0.69, 0.08, blue, fan, 0, 3.45, 0, 64);
   cyl(0.65, 0.65, 0.09, dark, fan, 0, 3.49, 0, 64);
-  const rotor = group(fan); rotor.position.set(0, 3.53, 0);
+  const rotor = group(fan); rotor.position.set(0, 3.53, 0); rotor.userData.keep = true;
   for (let j = 0; j < 4; j++) {
     const s = new T.Shape(); s.moveTo(0.1, -0.05); s.bezierCurveTo(0.35, -0.24, 0.58, -0.17, 0.61, 0.08); s.bezierCurveTo(0.44, 0.13, 0.25, 0.2, 0.1, 0.07); s.closePath();
     const blade = mesh(new T.ExtrudeGeometry(s, { depth: 0.012, bevelEnabled: true, bevelSize: 0.01, bevelThickness: 0.006, bevelSegments: 2 }), black, rotor, 0, 0, 0);
@@ -166,7 +172,7 @@ export async function init(opts) {
   box(0.4, 0.03, 0.02, steel, cabinet, 0.55, 2.86, 0.96, 0.004);
   for (const x of [0.41, 0.55, 0.69]) box(0.1, 0.18, 0.06, x === 0.55 ? dark : steel, cabinet, x, 2.86, 0.98, 0.01);
   box(0.36, 0.05, 0.04, green, cabinet, 0.55, 2.56, 0.97, 0.008);
-  const doorPivot = group(cabinet); doorPivot.position.set(-0.98, 0, 1.1);
+  const doorPivot = group(cabinet); doorPivot.position.set(-0.98, 0, 1.1); doorPivot.userData.keep = true;
   const door = group(doorPivot); door.position.set(0.98, 0, -1.1);   /* children keep model coordinates */
   box(1.96, 0.86, 0.048, cream, door, 0, 2.76, 1.075);
   box(0.28, 0.3, 0.022, black, door, 0.7, 2.79, 1.117);
@@ -190,18 +196,38 @@ export async function init(opts) {
       const x = (col - (columns - 1) / 2) * dx, y = (row - (rows - 1) / 2) * 0.14 - (front ? 0.22 : 0.28), r = sh / 2, a = sw / 2 - r, p = new T.Path();
       p.moveTo(x - a, y + r); p.lineTo(x + a, y + r); p.absarc(x + a, y, r, Math.PI / 2, -Math.PI / 2, true); p.lineTo(x - a, y - r); p.absarc(x - a, y, r, -Math.PI / 2, Math.PI / 2, true); shape.holes.push(p);
     }
-    const g = new T.ExtrudeGeometry(shape, { depth: 0.028, bevelEnabled: true, bevelSize: 0.008, bevelThickness: 0.006, bevelSegments: 2, curveSegments: 8 }); g.translate(0, 0, -0.014);
+    const g = new T.ExtrudeGeometry(shape, { depth: 0.028, bevelEnabled: true, bevelSize: 0.008, bevelThickness: 0.006, bevelSegments: 1, curveSegments: 5 }); g.translate(0, 0, -0.014);
     return g;
   };
   const panels = [];
+  /* corner bolts are one instanced mesh per panel so they can back out before the panel lifts */
+  const boltHead = new T.CylinderGeometry(0.028, 0.028, 0.022, 6).rotateX(Math.PI / 2);
+  const boltWasher = new T.CylinderGeometry(0.04, 0.04, 0.007, 16).rotateX(Math.PI / 2);
   const addPanel = (name, w, h, columns, rows, x, y, z, rotation, front) => {
-    const g = group(); g.position.set(x, y, z); g.rotation.y = rotation;
+    const g = group(); g.position.set(x, y, z); g.rotation.order = 'YXZ'; g.rotation.y = rotation;
+    g.userData.keep = true;
     const pm = cream.clone(); pm.transparent = true;
+    const hm = chrome.clone(); hm.transparent = true;
+    const wm = steel.clone(); wm.transparent = true;
     mesh(ventPanel(w, h, columns, rows, front), pm, g);
-    for (const xx of [-w / 2 + 0.045, w / 2 - 0.045]) for (const yy of [-h / 2 + 0.05, h / 2 - 0.05]) bolt(g, xx, yy, 0.025);
-    const fades = [pm];
-    panels.push({ g, origin: g.position.clone(), n: V(Math.sin(rotation), 0, Math.cos(rotation)), fades, win: WIN[name] });
+    const spots = [];
+    for (const xx of [-w / 2 + 0.045, w / 2 - 0.045]) for (const yy of [-h / 2 + 0.05, h / 2 - 0.05]) spots.push([xx, yy]);
+    const heads = new T.InstancedMesh(boltHead, hm, 4), washers = new T.InstancedMesh(boltWasher, wm, 4);
+    heads.castShadow = washers.castShadow = true; heads.frustumCulled = washers.frustumCulled = false;
+    g.add(heads, washers);
+    const fades = [pm, hm, wm];
+    panels.push({ g, origin: g.position.clone(), rot: rotation, n: V(Math.sin(rotation), 0, Math.cos(rotation)), fades, win: WIN[name], spots, heads, washers, last: -1 });
     return { g, fades };
+  };
+  const bo = new T.Object3D();
+  const placeBolts = (p, t) => {   /* t 0..1: unscrew (two turns) and back out 45 mm */
+    p.spots.forEach((s, i) => {
+      bo.position.set(s[0], s[1], 0.025 + 0.045 * t); bo.rotation.set(0, 0, -t * Math.PI * 4); bo.updateMatrix();
+      p.heads.setMatrixAt(i, bo.matrix);
+      bo.position.z = 0.025 + 0.045 * t - 0.012; bo.updateMatrix();
+      p.washers.setMatrixAt(i, bo.matrix);
+    });
+    p.heads.instanceMatrix.needsUpdate = p.washers.instanceMatrix.needsUpdate = true;
   };
   const label = (p, tex, w, h, x, y) => { const m = plate(tex, w, h, p.g, x, y, 0.026); m.material.transparent = true; p.fades.push(m.material); };
   label(addPanel('front', 1.94, 1.77, 4, 5, 0, 1.35, 1.079, 0, true), logoTex, 0.62, 0.35, 0, 0.55);   /* Win Equipments logo, owner's request */
@@ -213,6 +239,8 @@ export async function init(opts) {
 
   /* ---------- foam-insulated tank with metal lid, seams and sight glass ---------- */
   box(1.26, 1.79, 1.19, foam, tank, -0.15, 1.41, -0.22, 0.035);
+  for (const z of [-0.62, 0.12]) box(0.012, 1.74, 0.02, rubber, tank, -0.782, 1.41, z, 0.004);   /* insulation sheet seams */
+  box(0.02, 1.74, 0.012, rubber, tank, 0.2, 1.41, 0.382, 0.004);
   box(1.29, 0.065, 1.22, steel, tank, -0.15, 2.335, -0.22, 0.012);
   for (const z of [-0.83, 0.39]) box(1.26, 0.025, 0.026, rubber, tank, -0.15, 0.54, z);
   for (const x of [-0.72, 0.42]) for (const z of [-0.76, 0.31]) bolt(tank, x, 2.37, z, 'y');
@@ -261,22 +289,112 @@ export async function init(opts) {
   sphere(0.11, red, pipes, -0.29, 0.91, 1.03, 1, 1, 0.25);     /* service valve knob */
   box(0.28, 0.27, 0.16, cream, pipes, 0.36, 0.91, 0.99);       /* pressure switch */
   box(0.12, 0.08, 0.01, mat('#3c4a44', 0.1, 0.3), pipes, 0.36, 0.95, 1.072, 0.003);
+  /* filter drier on the liquid line, with brass flare nuts (black drier visible beside the pump in the photos) */
+  cyl(0.045, 0.045, 0.22, black, pipes, 0, 0.62, 0.82).rotation.z = Math.PI / 2;
+  for (const x of [-0.125, 0.125]) cyl(0.03, 0.03, 0.04, brass, pipes, x, 0.62, 0.82, 6).rotation.z = Math.PI / 2;
+  box(0.1, 0.06, 0.004, white, pipes, 0, 0.62, 0.866, 0.002);
+  pipe([[0.15, 0.62, 0.82], [0.25, 0.62, 0.82], [0.31, 0.71, 0.86]], 0.012, copper);
+  pipe([[-0.15, 0.62, 0.82], [-0.24, 0.6, 0.85], [-0.29, 0.5, 0.91]], 0.012, copper);
+  /* sight glass on the copper line up the right-hand side */
+  cyl(0.032, 0.032, 0.09, brass, pipes, 0.91, 1.8, 0.31, 12);
+  cyl(0.02, 0.02, 0.012, mat('#9fc3b8', 0.1, 0.05, { transmission: 0.5, thickness: 0.05 }), pipes, 0.945, 1.8, 0.31, 16).rotation.z = Math.PI / 2;
 
-  /* ---------- light: studio reflections, key with soft shadow, interior lamp that comes up as it opens ---------- */
+  /* ---------- merge static meshes by material: hundreds of draw calls become a few dozen ---------- */
+  const bake = (root) => {
+    root.updateMatrixWorld(true);
+    const inv = new T.Matrix4().copy(root.matrixWorld).invert(), rel = new T.Matrix4();
+    const buckets = new Map(), drop = [];
+    const visit = (o) => {
+      for (const c of o.children) {
+        if (c.userData.keep) continue;
+        if (c.isMesh && !c.isInstancedMesh) {
+          const k = c.material.uuid + (c.castShadow ? '|s' : '|n');
+          let b = buckets.get(k);
+          if (!b) { b = { mat: c.material, cast: c.castShadow, geos: [] }; buckets.set(k, b); }
+          const g = c.geometry.index ? c.geometry.toNonIndexed() : c.geometry.clone();
+          g.clearGroups();
+          Object.keys(g.attributes).forEach((n) => { if (n !== 'position' && n !== 'normal' && n !== 'uv') g.deleteAttribute(n); });
+          if (!g.attributes.uv) g.setAttribute('uv', new T.BufferAttribute(new Float32Array(g.attributes.position.count * 2), 2));
+          g.applyMatrix4(rel.multiplyMatrices(inv, c.matrixWorld));
+          b.geos.push(g); drop.push(c);
+        }
+        visit(c);
+      }
+    };
+    visit(root);
+    drop.forEach((c) => c.parent.remove(c));
+    buckets.forEach((b) => {
+      const m = new T.Mesh(mergeGeometries(b.geos), b.mat);
+      m.castShadow = b.cast; m.receiveShadow = true;
+      b.geos.forEach((g) => g.dispose());
+      root.add(m);
+    });
+  };
+  bake(model); bake(door); bake(rotor);
+  panels.forEach((p) => { bake(p.g); placeBolts(p, 0); });
+  geometryCache.forEach((g) => g.dispose());
+
+  /* ---------- light: studio reflections, soft key shadow, interior lamp that comes up as it opens ---------- */
   const studio = new T.Scene(); studio.background = new T.Color('#697879');
   studio.add(new T.Mesh(new T.BoxGeometry(14, 12, 14), new T.MeshBasicMaterial({ color: '#5b6666', side: T.BackSide })));
   for (const l of [[-4, 4, 2, 4, 7, Math.PI / 2], [4, 3, 0, 3, 6, -Math.PI / 2], [0, 5, -3, 7, 3, 0]]) {
     const m = new T.Mesh(new T.PlaneGeometry(l[3], l[4]), new T.MeshBasicMaterial({ color: '#fff8e7' })); m.position.set(l[0], l[1], l[2]); m.rotation.y = l[5]; studio.add(m);
   }
-  const pmrem = new T.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(studio, 0.08).texture; scene.environmentIntensity = 0.7; pmrem.dispose();
-  scene.add(new T.HemisphereLight('#e4efee', '#59625f', 1.8));
-  const key = new T.DirectionalLight('#fff2da', 3.6); key.position.set(-3.5, 7, 5); key.castShadow = true;
-  key.shadow.mapSize.set(1024, 1024); Object.assign(key.shadow.camera, { left: -4, right: 4, top: 5, bottom: -3 });
-  key.shadow.normalBias = 0.018; key.shadow.bias = -0.0003; key.shadow.radius = 5; key.shadow.blurSamples = 10; scene.add(key);
-  const fill = new T.DirectionalLight('#c0e3ff', 1.6); fill.position.set(4, 4, -2); scene.add(fill);
-  const frontLight = new T.DirectionalLight('#e1f0de', 1.2); frontLight.position.set(1, 2, 6); scene.add(frontLight);
+  const pmrem = new T.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(studio, 0.08).texture; scene.environmentIntensity = 0.75; pmrem.dispose();
+  scene.add(new T.HemisphereLight('#e4efee', '#59625f', 1.7));
+  const key = new T.DirectionalLight('#fff2da', 3.4); key.position.set(-3.2, 7.5, 4.2); key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024); Object.assign(key.shadow.camera, { left: -3.6, right: 3.6, top: 4.6, bottom: -2.6, near: 4, far: 16 });
+  key.shadow.normalBias = 0.02; key.shadow.bias = -0.0004; key.shadow.radius = 9; key.shadow.blurSamples = 16; scene.add(key);
+  const fill = new T.DirectionalLight('#c0e3ff', 1.5); fill.position.set(4, 4, -2); scene.add(fill);
+  const frontLight = new T.DirectionalLight('#e1f0de', 1.1); frontLight.position.set(1, 2, 6); scene.add(frontLight);
   const lamp = new T.PointLight('#fff1dc', 0, 6, 2); lamp.position.set(0.3, 2.55, 1.6); model.add(lamp);
-  const floor = new T.Mesh(new T.PlaneGeometry(40, 40), new T.ShadowMaterial({ opacity: 0.2 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  const floor = new T.Mesh(new T.PlaneGeometry(40, 40), new T.ShadowMaterial({ opacity: 0.13 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+  /* ---------- contact shadow: the unit rendered from below into a blurred texture, darker where it touches the floor ---------- */
+  const CS = 7, CS_H = 2.4;
+  const rtA = new T.WebGLRenderTarget(512, 512), rtB = new T.WebGLRenderTarget(512, 512);
+  rtA.texture.generateMipmaps = rtB.texture.generateMipmaps = false;
+  const csGeo = new T.PlaneGeometry(CS, CS).rotateX(Math.PI / 2);
+  const csPlane = new T.Mesh(csGeo, new T.MeshBasicMaterial({ map: rtA.texture, opacity: 0.8, transparent: true, depthWrite: false }));
+  csPlane.renderOrder = 1; csPlane.scale.y = -1; csPlane.position.y = 0.003; scene.add(csPlane);
+  const blurPlane = new T.Mesh(csGeo); blurPlane.visible = false; scene.add(blurPlane);
+  const csCam = new T.OrthographicCamera(-CS / 2, CS / 2, CS / 2, -CS / 2, 0, CS_H); csCam.rotation.x = Math.PI / 2; scene.add(csCam);
+  const depthMat = new T.MeshDepthMaterial(); depthMat.userData.darkness = { value: 1.25 };
+  depthMat.onBeforeCompile = (sh) => {
+    sh.uniforms.darkness = depthMat.userData.darkness;
+    sh.fragmentShader = 'uniform float darkness;\n' + sh.fragmentShader.replace('gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );', 'gl_FragColor = vec4( vec3( 0.0 ), ( 1.0 - fragCoordZ ) * darkness );');
+  };
+  depthMat.depthTest = depthMat.depthWrite = false;
+  const blurMat = (horizontal) => {
+    let taps = '';
+    [[-4, 0.051], [-3, 0.0918], [-2, 0.12245], [-1, 0.1531], [0, 0.1633], [1, 0.1531], [2, 0.12245], [3, 0.0918], [4, 0.051]].forEach((tp) => {
+      const o = tp[0].toFixed(1) + ' * d';
+      taps += 's += texture2D(tDiffuse, vUv + vec2(' + (horizontal ? o + ', 0.0' : '0.0, ' + o) + ')) * ' + tp[1] + ';\n';
+    });
+    return new T.ShaderMaterial({
+      uniforms: { tDiffuse: { value: null }, d: { value: 1 / 256 } }, depthTest: false,
+      vertexShader: 'varying vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+      fragmentShader: 'uniform sampler2D tDiffuse;\nuniform float d;\nvarying vec2 vUv;\nvoid main() { vec4 s = vec4(0.0);\n' + taps + 'gl_FragColor = s; }'
+    });
+  };
+  const hBlur = blurMat(true), vBlur = blurMat(false);
+  const blur = (amount) => {
+    blurPlane.visible = true;
+    blurPlane.material = hBlur; hBlur.uniforms.tDiffuse.value = rtA.texture; hBlur.uniforms.d.value = amount / 256;
+    renderer.setRenderTarget(rtB); renderer.render(blurPlane, csCam);
+    blurPlane.material = vBlur; vBlur.uniforms.tDiffuse.value = rtB.texture; vBlur.uniforms.d.value = amount / 256;
+    renderer.setRenderTarget(rtA); renderer.render(blurPlane, csCam);
+    blurPlane.visible = false;
+  };
+  const updateContact = () => {
+    floor.visible = csPlane.visible = false;
+    scene.overrideMaterial = depthMat;
+    renderer.setRenderTarget(rtA); renderer.clear(); renderer.render(scene, csCam);
+    scene.overrideMaterial = null;
+    blur(3.4); blur(1.3);
+    renderer.setRenderTarget(null);
+    floor.visible = csPlane.visible = true;
+  };
 
   /* ---------- hotspot anchors: closed = on the casing, open = on the part ---------- */
   const anchor = (obj, p, n) => ({ obj, p: V(p[0], p[1], p[2]), n: V(n[0], n[1], n[2]).normalize() });
@@ -293,13 +411,13 @@ export async function init(opts) {
     1: doorAnchor, 2: fanAnchor,
     3: anchor(model, [-0.67, 0.95, 0.93], [0, 0, 1]),
     4: anchor(model, [-0.83, 1.6, -0.14], [-1, 0, 0]),
-    5: anchor(model, [0.58, 0.61, 0.64], [0, 0, 1]),
+    5: anchor(model, [0.8, 0.61, 0.5], [1, 0, 0.3]),   /* side of the red end cover: hidden behind the front rail from the left */
     6: anchor(model, [0.91, 1.3, -0.12], [1, 0, 0.3])
   };
 
-  /* ---------- camera, layout, render loop ---------- */
+  /* ---------- camera, layout, opening ---------- */
   const target = V(0, 1.85, 0);
-  let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, open = 0;
+  let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, open = 0, fanSpeed = 1, shapeDirty = true;
   const placeCamera = () => {
     const e = ease(open);
     dist = baseDist * (1 - 0.05 * e);
@@ -307,27 +425,38 @@ export async function init(opts) {
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
   };
-  const fit = () => {
-    const w = stage.clientWidth, h = stage.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false);
+  const frameFor = (w, h) => {
     camera.aspect = w / h;
     const half = Math.tan(camera.fov * Math.PI / 360);
     baseDist = Math.max(2.25 / half, 1.75 / (half * camera.aspect)) + 1.2;
     camera.updateProjectionMatrix();
     placeCamera();
   };
+  const fit = () => {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    frameFor(w, h);
+  };
   const applyOpen = () => {
-    doorPivot.rotation.y = -1.9 * phase(open, WIN.door);
+    const d = lin(open, WIN.door);
+    doorPivot.rotation.y = -1.85 * (d <= 0 ? 0 : backOut(d));
     panels.forEach((p) => {
-      const t = phase(open, p.win), op = 1 - clamp01((t - 0.45) / 0.5);
-      p.g.position.copy(p.origin).addScaledVector(p.n, 0.75 * t);
-      p.g.position.y = p.origin.y + 0.12 * Math.sin(Math.PI * t);
+      const t = lin(open, p.win);
+      const unscrew = ease(clamp01(t / 0.28)), pull = ease(clamp01((t - 0.22) / 0.25)), away = ease(clamp01((t - 0.4) / 0.6));
+      if (t !== p.last) { placeBolts(p, unscrew); p.last = t; }
+      p.g.position.copy(p.origin).addScaledVector(p.n, 0.12 * pull + 0.55 * away);
+      p.g.position.y = p.origin.y + 0.05 * pull - 0.45 * away * away;
+      p.g.rotation.x = 0.22 * away;   /* the top tips outward as the panel comes away */
+      const op = 1 - clamp01((away - 0.35) / 0.55);
       p.fades.forEach((m) => { m.opacity = op; });
       p.g.visible = op > 0.01;
-      p.g.traverse((o) => { if (o.isMesh) o.castShadow = t < 0.1; });
+      const cast = away < 0.3;
+      if (p.cast !== cast) { p.cast = cast; p.g.traverse((o) => { if (o.isMesh) o.castShadow = cast; }); }
     });
     lamp.intensity = 2.6 * phase(open, WIN.light);
+    fanSpeed = 1 - phase(open, WIN.fan);   /* the fan spins down: a unit is opened with the power off */
+    shapeDirty = true;
   };
 
   const layer = document.createElement('div');
@@ -335,33 +464,61 @@ export async function init(opts) {
   layer.setAttribute('aria-hidden', 'true');
   const homes = hotspots.map((el) => ({ el, parent: el.parentNode, next: el.nextSibling }));
   const v = V(0, 0, 0), nW = V(0, 0, 0), toCam = V(0, 0, 0);
+  const project = (a, w, h) => {
+    v.copy(a.p).applyMatrix4(a.obj.matrixWorld);
+    nW.copy(a.n).transformDirection(a.obj.matrixWorld);
+    toCam.copy(camera.position).sub(v).normalize();
+    const facing = nW.dot(toCam);
+    v.project(camera);
+    return { x: (v.x + 1) / 2 * w, y: (1 - v.y) / 2 * h, facing };
+  };
   const placeHotspots = () => {
-    const w = stage.clientWidth, h = stage.clientHeight, sp = ease(open);
-    const set = sp >= 0.5 ? OPEN : CLOSED, fade = Math.abs(sp * 2 - 1);   /* hotspots blink out while the unit changes */
-    hotspots.forEach((el) => {
+    const w = stage.clientWidth, h = stage.clientHeight, sp = ease(open), set = sp >= 0.5 ? OPEN : CLOSED;
+    hotspots.forEach((el, k) => {
       const a = set[el.dataset.hs];
       if (!a) return;
-      v.copy(a.p).applyMatrix4(a.obj.matrixWorld);
-      nW.copy(a.n).transformDirection(a.obj.matrixWorld);
-      toCam.copy(camera.position).sub(v).normalize();
-      const away = nW.dot(toCam) < 0.05 || fade < 0.35;
+      /* closed markers leave as it starts to open; open markers arrive one after another once it is open */
+      const fade = sp >= 0.5 ? clamp01((sp - 0.62 - k * 0.05) / 0.1) : clamp01((0.38 - sp) / 0.1);
+      const q = project(a, w, h), away = q.facing < 0.05 || fade < 0.2;
       el.classList.toggle('is-away', away);
       el.style.opacity = away ? '' : fade.toFixed(2);
-      v.project(camera);
-      el.style.left = ((v.x + 1) / 2 * w).toFixed(1) + 'px';
-      el.style.top = ((1 - v.y) / 2 * h).toFixed(1) + 'px';
+      el.style.left = q.x.toFixed(1) + 'px';
+      el.style.top = q.y.toFixed(1) + 'px';
     });
   };
 
+  /* ---------- render loop: renders only when something changed; the fan keeps it running while it spins ---------- */
   let raf = 0, need = true, inView = true, last = 0, alive = true;
   const spin = !reduce;
+  const draw = () => {
+    model.updateMatrixWorld(true);
+    if (shapeDirty) { updateContact(); renderer.shadowMap.needsUpdate = true; shapeDirty = false; }
+    placeHotspots();
+    renderer.render(scene, camera);
+  };
+  /* slow devices: if the first frames average under ~40 fps, drop once to pixel ratio 1 and a smaller, cheaper shadow */
+  const samples = [];
+  let degraded = false;
+  const degrade = () => {
+    degraded = true;
+    renderer.setPixelRatio(1);
+    key.shadow.mapSize.set(512, 512); key.shadow.blurSamples = 8;
+    if (key.shadow.map) { key.shadow.map.dispose(); key.shadow.map = null; }
+    fit(); shapeDirty = true; need = true;
+  };
   const tick = (t) => {
     raf = 0;
     if (!alive) return;
-    const dt = Math.min(50, t - (last || t)); last = t;
-    if (spin && inView) { rotor.rotation.y -= dt * 0.006; need = true; }
-    if (need) { model.updateMatrixWorld(true); placeHotspots(); renderer.render(scene, camera); need = false; }
-    if (spin && inView && !document.hidden) raf = requestAnimationFrame(tick);
+    const raw = last ? t - last : 0;
+    const dt = Math.min(50, raw); last = t;
+    if (!degraded && raw > 0 && samples.length < 45) {
+      samples.push(raw);
+      if (samples.length === 45) { const s = samples.slice(5); if (s.reduce((a, b) => a + b, 0) / s.length > 24) degrade(); }
+    }
+    const spinning = spin && inView && fanSpeed > 0.002;
+    if (spinning) { rotor.rotation.y -= dt * 0.006 * fanSpeed; need = true; }
+    if (need) { draw(); need = false; }
+    if (spinning && !document.hidden) raf = requestAnimationFrame(tick);
     else last = 0;
   };
   const request = () => { if (!raf && alive) raf = requestAnimationFrame(tick); };
@@ -382,13 +539,13 @@ export async function init(opts) {
     alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect();
     document.removeEventListener('visibilitychange', onVis);
     homes.forEach((hm) => { hm.el.removeAttribute('style'); hm.el.classList.remove('is-away'); hm.parent.insertBefore(hm.el, hm.next); });
-    layer.remove(); cvs.remove(); renderer.dispose();
+    layer.remove(); cvs.remove(); rtA.dispose(); rtB.dispose(); renderer.dispose();
   };
   cvs.addEventListener('webglcontextlost', (e) => { e.preventDefault(); destroy(); if (opts.onLost) opts.onLost(); });
   layer.addEventListener('click', (e) => { const hs = e.target.closest('.c3__hs'); if (hs && opts.onSelect) opts.onSelect(hs.dataset.hs); });
 
   applyOpen();
-  model.updateMatrixWorld(true); placeHotspots(); renderer.render(scene, camera);
+  draw();
   request();
 
   return {
@@ -398,7 +555,22 @@ export async function init(opts) {
       const next = clamp01(o || 0);
       if (next !== open) { open = next; applyOpen(); }
       placeCamera();
-      need = true; request();
+      shapeDirty = true; need = true; request();
+    },
+    /* a still at a given size (for diagram images and video frames), plus where each part's marker falls */
+    capture(w, h, background, fanAngle) {
+      if (fanAngle !== undefined) rotor.rotation.y = fanAngle;
+      const pr = renderer.getPixelRatio();
+      renderer.setPixelRatio(1); renderer.setSize(w, h, false); frameFor(w, h);
+      shapeDirty = true; draw();
+      const out = document.createElement('canvas'); out.width = w; out.height = h;
+      const g = out.getContext('2d');
+      if (background) { g.fillStyle = background; g.fillRect(0, 0, w, h); }
+      g.drawImage(cvs, 0, 0, w, h);
+      const set = ease(open) >= 0.5 ? OPEN : CLOSED;
+      const spots = hotspots.map((el) => { const q = project(set[el.dataset.hs], w, h); return { n: el.dataset.hs, x: q.x, y: q.y, visible: q.facing > 0.05 }; });
+      renderer.setPixelRatio(pr); fit(); shapeDirty = true; need = true; request();
+      return { canvas: out, spots };
     },
     destroy
   };

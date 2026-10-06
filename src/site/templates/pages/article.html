@@ -4,9 +4,10 @@
 {% set ph = a.photo.split('|') if a.photo is defined else none %}
 {% block title %}{{ a.seo_title }}{% endblock %}
 {% block og_type %}article{% endblock %}
+{% block extra_css %}{% if a.viewer is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
 {% block og_image %}{% if ph %}{{ image_url('images/works/' ~ ph[0] | trim) }}{% else %}{{ image_url(products[a.products[0]].image) }}{% endif %}{% endblock %}
 {% block description %}{{ a.description }}{% endblock %}
-{% block schema %}{% set a_about = [] %}{% for slug in a.products %}{% set _ = a_about.append({"@id": site.url ~ product_url(slug) ~ "#product"}) %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Article", "headline": a.title, "description": a.description, "datePublished": a.date, "dateModified": a.updated, "image": self.og_image(), "author": {"@type": "Organization", "name": site.name, "url": site.url ~ "/"}, "publisher": {"@id": site.url ~ "/#org"}, "mainEntityOfPage": site.url ~ a.url, "articleSection": a.category, "wordCount": a.words, "inLanguage": "en-IN", "isPartOf": {"@type": "Blog", "name": "Win Equipments articles", "url": site.url ~ "/blog.html"}, "about": a_about}] + ([faq_ld(a.faqs)] if a.faqs else [])}) }}{% endblock %}
+{% block schema %}{% set a_about = [] %}{% for slug in a.products %}{% set _ = a_about.append({"@id": site.url ~ product_url(slug) ~ "#product"}) %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Article", "headline": a.title, "description": a.description, "datePublished": a.date, "dateModified": a.updated, "image": self.og_image(), "author": {"@type": "Organization", "name": site.name, "url": site.url ~ "/"}, "publisher": {"@id": site.url ~ "/#org"}, "mainEntityOfPage": site.url ~ a.url, "articleSection": a.category, "wordCount": a.words, "inLanguage": "en-IN", "isPartOf": {"@type": "Blog", "name": "Win Equipments articles", "url": site.url ~ "/blog.html"}, "about": a_about}] + ([faq_ld(a.faqs)] if a.faqs else [])}) }}{% if a.video is defined %}{% set vd = a.video.split('|') %}{{ jsonld({"@context": "https://schema.org", "@type": "VideoObject", "name": vd[2] | trim, "description": vd[3] | trim, "thumbnailUrl": [image_url('images/' ~ (vd[1] | trim))], "uploadDate": a.updated ~ "T00:00:00+05:30", "duration": vd[4] | trim, "contentUrl": site.url ~ "/video/" ~ (vd[0] | trim) ~ ".mp4", "publisher": {"@id": site.url ~ "/#org"}}) }}{% endif %}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
 <div class="read-progress" aria-hidden="true"></div>
@@ -39,6 +40,7 @@
     </aside>
   </div>
 </article>
+{% if a.viewer is defined and a.viewer == "chiller" %}{% include "partials/chiller360.html" %}{% endif %}
 {% set ns = namespace(rel=[]) %}{% for b in articles if b.slug != a.slug and (b.category == a.category or (b.products | select('in', a.products) | list)) %}{% if ns.rel | length < 3 %}{% set ns.rel = ns.rel + [b] %}{% endif %}{% endfor %}
 {% if ns.rel %}
 <section class="section section--rule" aria-labelledby="more">

@@ -510,7 +510,7 @@ A: A chiller delivers less capacity at colder water. WCP chillers are rated at 1
 Q: What capacity range do WCP process chillers cover?
 A: WCP chillers cover 0.5 to 20 TR in ten models. For loads above 20 TR, send your duty for a larger or multiple-unit solution.
 
-### How an industrial process chiller works
+### Chiller working principle: how a process chiller works
 URL: https://winequipments.com/blog/how-a-process-chiller-works.html
 Short answer: A process chiller has two circuits that meet in one heat exchanger. A pump circulates process water through the evaporator, where boiling refrigerant absorbs its heat. The refrigeration compressor rejects that heat through an air-cooled or water-cooled condenser, and cooled water returns to the process at the set temperature.
 Q: What are the main parts of a process chiller?

@@ -399,6 +399,7 @@
 .a-note { padding: var(--s-4) var(--s-5); border-left: 4px solid var(--green); background: #eef6ef; border-radius: 0 var(--r-2) var(--r-2) 0; color: var(--ink); font-weight: 600; }
 .a-figure { margin-inline: 0; }
 .a-photo img { width: 100%; border-radius: var(--r-3); }
+.a-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-3); background: #f6f7f3; border: 1px solid var(--rule); }
 .art__side { display: grid; gap: var(--s-4); padding: var(--s-5); border: 1px solid var(--rule); border-radius: var(--r-3); background: var(--surface); }
 .art__side-h { font-weight: 700; }
 .art__side ul { list-style: none; display: grid; gap: var(--s-2); }

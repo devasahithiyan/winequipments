@@ -126,6 +126,12 @@
         <figcaption>Calculated for compressed air at 7 bar g. Chilling saturated air from 45 °C to the +3 °C dew point condenses most of the water vapour, which the separator drains.</figcaption>
       </figure>
       {% endif %}
+      {% if p.slug == 'industrial-process-chillers' %}
+      <figure class="a-figure a-photo" style="margin:var(--s-6) 0 0">
+        {{ picture('images/chiller-renders/chiller-parts-diagram.jpg', 'Labelled 3D diagram of a Win process chiller with its panels removed: controls, condenser and fan, compressor and insulated water tank', sizes='(min-width: 900px) 44vw, 100vw', max_w=960) }}
+        <figcaption>Illustrative 3D model of a Win process chiller. <a href="/blog/how-a-process-chiller-works.html">Chiller working principle, part by part</a>.</figcaption>
+      </figure>
+      {% endif %}
     </div>
     <div>
       <ol class="stages" data-reveal>

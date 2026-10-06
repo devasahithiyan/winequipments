@@ -480,8 +480,16 @@ def md(text):
                 out.append(f'<figure class="chart-plate a-figure">{dew_chart("narrow")}{dew_chart("wide")}<figcaption>Water vapour held by compressed air at 7 bar g. Calculated values.</figcaption></figure>')
             continue
         if st.startswith("@photo"):
+            # "@photo file.jpg | caption" (images/works/) or "@photo folder/file.jpg | caption" (images/folder/)
             flush(); f, _, cap = st[6:].strip().partition("|")
-            out.append(f'<figure class="a-figure a-photo">{picture("images/works/" + f.strip(), cap.strip(), sizes="(min-width: 900px) 760px, 100vw", max_w=1200)}<figcaption>{html_escape(cap.strip())}</figcaption></figure>')
+            path = "images/" + f.strip() if "/" in f else "images/works/" + f.strip()
+            out.append(f'<figure class="a-figure a-photo">{picture(path, cap.strip(), sizes="(min-width: 900px) 760px, 100vw", max_w=1200)}<figcaption>{html_escape(cap.strip())}</figcaption></figure>')
+            continue
+        if st.startswith("@video"):
+            # "@video name | poster image under images/ | caption": static/video/name.mp4, loaded only when played
+            flush(); name, poster, cap = [x.strip() for x in st[6:].split("|")]
+            purl = image_url("images/" + poster).replace(site["url"], "")
+            out.append(f'<figure class="a-figure a-video"><video controls muted playsinline preload="none" width="1280" height="720" poster="{purl}"><source src="/video/{name}.mp4" type="video/mp4"></video><figcaption>{html_escape(cap)}</figcaption></figure>')
             continue
         if st.startswith("> "):
             flush(); out.append(f'<aside class="a-note"><p>{_inline(st[2:])}</p></aside>'); continue
