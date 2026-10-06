@@ -216,12 +216,8 @@ html:not(.js) .c3__part > ul { display: block; }
 .c3__sep output { color: var(--green-ink); }
 .c3__sep input[type="range"] { display: block; width: 100%; height: 32px; margin: 2px 0; accent-color: var(--green); cursor: pointer; }
 .c3__sep p { margin: 0; text-align: center; font-size: var(--fs-label); color: var(--muted); }
-.c3__photo { position: absolute; inset: 0; z-index: 4; margin: 0; background: var(--paper, #f4f5f1); opacity: 0; visibility: hidden; transition: opacity 300ms var(--ease-out), visibility 0s linear 300ms; }
-.c3__stage.is-photo .c3__photo { opacity: 1; visibility: visible; transition-delay: 0s; }
-.c3__photo picture, .c3__photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.c3__photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px var(--s-3); text-align: center; font-size: var(--fs-label); color: var(--ink-2); background: rgba(255, 255, 255, 0.88); }
 @media (max-width: 480px) { .c3__dot { width: 24px; } .c3__flow .c3__legend { font-size: 0.6875rem; } }
-@media (prefers-reduced-motion: reduce) { .c3__photo, .c3__dot::before, .c3__tower [data-state] { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .c3__dot::before, .c3__tower [data-state] { transition: none; } }
 
 /* phones, dryer: the how-it-works card hangs under the model so it never covers it; the stage makes room */
 @media (max-width: 639px) {
@@ -240,3 +236,11 @@ html:not(.js) .c3__part > ul { display: block; }
 .c3__flow-foot .c3__legend { justify-content: center; }
 .c3__flow-foot .c3__flow-note { margin-top: 2px; }
 @media (max-width: 639px) { .c3__flow-foot .c3__legend { display: flex; flex-wrap: wrap; } }
+
+/* circuit status chips (chiller): colour follows what the fluid is doing */
+.c3__tower [data-state="warm"] { background: #f6b768; color: #3a2400; }
+.c3__tower [data-state="cooling"] { background: #cdf1fb; color: #0e2a33; }
+.c3__tower [data-state="chilled"] { background: #1a6fe0; color: #fff; }
+.c3__tower [data-state="evaporating"] { background: #36d1ff; color: #0e2a33; }
+.c3__tower [data-state="compressing"] { background: #f3a08f; color: #3d0f06; }
+.c3__tower [data-state="condensing"] { background: #c9341f; color: #fff; }

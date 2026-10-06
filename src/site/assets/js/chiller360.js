@@ -173,8 +173,8 @@
     if (li) {
       tweenTo(Number(li.dataset.ry), Number(li.dataset.rx));
       if (li.dataset.zoom !== undefined || li.dataset.focus !== undefined) tweenView(Number(li.dataset.zoom) || 1, Number(li.dataset.focus) || 0);
-      if (chipA) { chipA.textContent = li.dataset.a || ''; chipA.dataset.state = String(li.dataset.a || '').toLowerCase().replace(/[^a-z]/g, ''); }
-      if (chipB) { chipB.textContent = li.dataset.b || ''; chipB.dataset.state = String(li.dataset.b || '').toLowerCase().replace(/[^a-z]/g, ''); }
+      if (chipA) { chipA.textContent = li.dataset.a || ''; chipA.dataset.state = li.dataset.as || String(li.dataset.a || '').toLowerCase().replace(/[^a-z]/g, ''); }
+      if (chipB) { chipB.textContent = li.dataset.b || ''; chipB.dataset.state = li.dataset.bs || String(li.dataset.b || '').toLowerCase().replace(/[^a-z]/g, ''); }
     }
     render();
   };
@@ -307,19 +307,6 @@
     isoBtn.setAttribute('aria-pressed', String(isolate));
     render();
   });
-
-  /* ---------- the real photograph, over the model, for comparison (dryer) ---------- */
-  const photoBtn = $('[data-c3-photo-btn]', c3), photoLayer = $('[data-c3-photo]', c3);
-  const setPhoto = (on) => {
-    stage.classList.toggle('is-photo', on);
-    photoBtn.setAttribute('aria-pressed', String(on)); photoLayer.setAttribute('aria-hidden', String(!on));
-    if (on) setPlaying(false);
-    if (statusText) statusText.textContent = on ? 'Showing the real photograph' : '3D view';
-  };
-  if (photoBtn && photoLayer) {
-    photoBtn.addEventListener('click', () => setPhoto(!stage.classList.contains('is-photo')));
-    stage.addEventListener('keydown', (e) => { if (e.key === 'Escape' && stage.classList.contains('is-photo')) setPhoto(false); });
-  }
 
   /* ---------- parts list <-> hotspots: picking a part turns the model to it (and isolates it when that is on) ---------- */
   const select = (n, turn) => {

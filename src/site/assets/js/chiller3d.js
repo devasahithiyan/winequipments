@@ -663,17 +663,17 @@ export async function init(opts) {
     flow.add(m); flowItems.push({ m, steps });
   };
   const C = { warm: '#f39a3d', chilled: '#2f8bff', hot: '#e8402a', liquid: '#f2735a', cold: '#36d1ff' };
-  /* water: warm return from the process into the tank (step 1); chilled water from the tank through the pump back out (step 4) */
-  flowPath([[1.75, 2.1, 0.0], [1.2, 2.1, 0.02], [0.6, 2.25, -0.1], [-0.1, 2.45, -0.2], [-0.15, 1.9, -0.25]], C.warm, [1]);
-  flowPath([[0.31, 0.61, -0.72], [0.58, 0.61, -0.55], [0.58, 0.61, -0.21], [0.58, 0.97, -0.24], [0.9, 1.02, -0.24], [0.91, 1.64, -0.24], [1.3, 1.66, -0.24], [1.8, 1.66, -0.24]], C.chilled, [4]);
-  /* refrigerant: cold vapour from the evaporator to the compressor (step 2); hot gas to the condenser, warm liquid back (step 3) */
-  flowPath([[-0.15, 2.42, 0.3], [-0.2, 1.94, 0.41], [-0.37, 1.79, 0.55], [-0.67, 1.68, 0.61], [-0.67, 1.45, 0.62]], C.cold, [2]);
-  flowPath([[-0.86, 1.31, 0.66], [-0.94, 1.51, 0.66], [-0.94, 2.55, 0.4], [-0.78, 2.85, -0.2], [-0.2, 2.86, -0.4], [0.43, 2.82, 0.05]], C.hot, [3]);
-  flowPath([[0.43, 2.82, 0.05], [0.58, 2.5, 0.07], [0.91, 2.54, 0.22], [0.91, 1.07, 0.4], [0.84, 0.5, 0.5], [0.15, 0.62, 0.82], [-0.1, 0.9, 0.7], [-0.15, 2.42, 0.3]], C.liquid, [3]);
+  /* water: warm return from the process into the tank (steps 1 and 2); chilled water from the tank through the pump back out (step 5) */
+  flowPath([[1.75, 2.1, 0.0], [1.2, 2.1, 0.02], [0.6, 2.25, -0.1], [-0.1, 2.45, -0.2], [-0.15, 1.9, -0.25]], C.warm, [1, 2]);
+  flowPath([[0.31, 0.61, -0.72], [0.58, 0.61, -0.55], [0.58, 0.61, -0.21], [0.58, 0.97, -0.24], [0.9, 1.02, -0.24], [0.91, 1.64, -0.24], [1.3, 1.66, -0.24], [1.8, 1.66, -0.24]], C.chilled, [5]);
+  /* refrigerant: cold vapour from the evaporator to the compressor (steps 2 and 3); hot gas to the condenser (steps 3 and 4); liquid back to the evaporator (step 4) */
+  flowPath([[-0.15, 2.42, 0.3], [-0.2, 1.94, 0.41], [-0.37, 1.79, 0.55], [-0.67, 1.68, 0.61], [-0.67, 1.45, 0.62]], C.cold, [2, 3]);
+  flowPath([[-0.86, 1.31, 0.66], [-0.94, 1.51, 0.66], [-0.94, 2.55, 0.4], [-0.78, 2.85, -0.2], [-0.2, 2.86, -0.4], [0.43, 2.82, 0.05]], C.hot, [3, 4]);
+  flowPath([[0.43, 2.82, 0.05], [0.58, 2.5, 0.07], [0.91, 2.54, 0.22], [0.91, 1.07, 0.4], [0.84, 0.5, 0.5], [0.15, 0.62, 0.82], [-0.1, 0.9, 0.7], [-0.15, 2.42, 0.3]], C.liquid, [4]);
   /* the evaporator point, at the tank connection (type not shown: it is not confirmed for this unit) */
   const evap = new T.Mesh(new T.TorusGeometry(0.16, 0.018, 8, 40), new T.MeshBasicMaterial({ color: C.cold, transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
   evap.rotation.x = Math.PI / 2; evap.position.set(-0.15, 2.45, 0.3); evap.renderOrder = 11; evap.userData.flow = true; flow.add(evap);
-  /* heat leaving through the fan: upward chevrons above the guard (step 3) */
+  /* heat leaving through the fan: upward chevrons above the guard (step 4) */
   const heatTex = canvasTex(128, 128, (g) => { g.strokeStyle = '#ffffff'; g.lineWidth = 16; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(24, 84); g.lineTo(64, 44); g.lineTo(104, 84); g.stroke(); });
   const heat = [];
   for (let k = 0; k < 6; k++) {
@@ -684,17 +684,22 @@ export async function init(opts) {
 
   /* ---------- state, camera, layout ---------- */
   const target = V(0, 1.4 + PAL, 0);
-  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, isolate: 0, still: false };
+  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, lift: true, inset: 0, isolate: 0, still: false };
+  let viewW = 1, viewH = 1;
   let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 1, shapeDirty = true, shadowDirty = true, flowTime = 0;
   const placeCamera = () => {
     const e = ease(st.open), x = ease(st.explode), f = ease(st.flow);
-    dist = baseDist * (1 - 0.05 * e + 0.42 * x + 0.16 * f) * st.zoom;
-    const ty = target.y - 0.06 * e + 0.38 * x - (st.still ? 0 : 0.55) * f;   /* how it works: the unit sits above the caption card (not in stills) */
+    /* how it works: the caption card covers the bottom st.inset pixels of the stage, so the unit is framed in the space above it */
+    const inset = st.still ? 0 : Math.min(st.inset * f, viewH * 0.55);
+    dist = baseDist * (1 - 0.05 * e + 0.42 * x + (st.inset ? 0.03 : st.lift ? 0.16 : 0.05) * f) * st.zoom * (viewH / (viewH - inset));
+    const ty = target.y - 0.06 * e + 0.38 * x - (st.still || !st.lift || st.inset ? 0 : 0.55) * f;   /* how it works: the unit sits above the caption card (not in stills) */
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
+    if (inset > 0.5) camera.setViewOffset(viewW, viewH, 0, inset / 2, viewW, viewH); else if (camera.view && camera.view.enabled) camera.clearViewOffset();
   };
   let composer = null, gtao = null, useAO = false, stillFrame = false;
   const frameFor = (w, h) => {
+    viewW = w; viewH = h;
     camera.aspect = w / h;
     /* The poster is a 4:5 capture. Match object-fit: contain at every stage size. */
     const half = Math.tan(32 * Math.PI / 360), referenceAspect = 4 / 5;
@@ -750,7 +755,7 @@ export async function init(opts) {
     const evapOn = f * (!st.step || st.step === 2 ? 1 : 0.15);
     evap.material.opacity = evapOn * (0.55 + 0.45 * Math.sin(flowTime * 4));
     evap.scale.setScalar(1 + 0.12 * Math.sin(flowTime * 4));
-    const heatOn = f * (!st.step || st.step === 3 ? 1 : 0);
+    const heatOn = f * (!st.step || st.step === 4 ? 1 : 0);
     heat.forEach((sp) => {
       const u = (flowTime * 0.45 + sp.userData.ph) % 1;
       sp.position.set(sp.userData.x, BODY.top + 0.45 + u * 0.75, (sp.userData.ph - 0.5) * 0.5);
@@ -927,7 +932,7 @@ export async function init(opts) {
       active = performance.now();
       elev = -rx * Math.PI / 180;
       s = s || {};
-      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.65, Math.min(1.25, s.zoom || 1)), isolate: s.isolate || 0, still: !!s.still };
+      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.65, Math.min(1.25, s.zoom || 1)), lift: s.lift !== false, inset: Math.max(0, Number(s.inset) || 0), isolate: s.isolate || 0, still: !!s.still };
       const changed = next.open !== st.open || next.explode !== st.explode || next.flow !== st.flow || next.step !== st.step || next.isolate !== st.isolate;
       Object.assign(st, next);
       if (changed) applyState();

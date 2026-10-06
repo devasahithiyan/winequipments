@@ -5,7 +5,6 @@
    or rating is given to the photographed unit. #}
 {% set dr = products['desiccant-air-dryers'] %}
 {% set feat = {} %}{% for f in dr.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
-{% set c3_photo = 'images/works/desiccant-dryer-twin-tower.jpg' %}
 {# The heatless cycle in six steps. a / b are what Tower A and Tower B are doing. Tower A is on line first; the swap is step 5. #}
 {% set flow_steps = [
   {"t": "Wet air in.", "d": "Compressed air enters at the bottom and rises into Tower A, which is on line.", "a": "Drying", "b": "Off line", "ry": 34, "rx": -12, "zoom": 1, "focus": 0},
@@ -38,7 +37,6 @@
         <div class="c3__stage" tabindex="0" role="group" aria-roledescription="3D viewer" aria-label="3D model of a Win heatless desiccant dryer. Left and right arrow keys rotate it, plus and minus zoom. Use the view buttons below to cut it open, explode it or follow the air." data-c3-stage>
           <div class="c3__poster" data-c3-poster="standard" aria-hidden="true">{{ picture('images/dryer-renders/dryer-poster-standard.png', '', sizes='(min-width: 1024px) 34vw, 80vw', max_w=1200) }}</div>
           <div class="c3__poster c3__poster--lite" data-c3-poster="lite" aria-hidden="true">{{ picture('images/dryer-renders/dryer-poster-lite.png', '', sizes='(min-width: 1024px) 34vw, 80vw', max_w=1200) }}</div>
-          <figure class="c3__photo" data-c3-photo aria-hidden="true">{{ picture(c3_photo, 'The photographed Win heatless desiccant dryer: two silver towers on a painted steel frame, with a black control box and the Win name', sizes='(min-width: 1024px) 34vw, 80vw', max_w=900) }}<figcaption>The photographed unit. The model follows it; the inside is not photographed.</figcaption></figure>
           <button type="button" class="c3__load" data-c3-load hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span data-c3-load-label>View in 3D</span></button>
           {% for p in parts %}<span class="c3__hs" data-hs="{{ loop.index }}">{{ loop.index }}</span>
           {% endfor %}

@@ -3,12 +3,15 @@
    The photographed unit is not given a model number or rating. #}
 {% set ch = products['industrial-process-chillers'] %}
 {% set feat = {} %}{% for f in ch.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
+{# The refrigeration cycle in five steps. a / b are what the water and the refrigerant are doing, as and bs their colour keys. #}
 {% set flow_steps = [
-  {"t": "Water in.", "d": "Warm water from your process returns to the chiller's tank.", "ry": -55, "rx": -16},
-  {"t": "Evaporate.", "d": "In the evaporator the refrigerant boils and takes heat from the water.", "ry": 22, "rx": -24},
-  {"t": "Reject heat.", "d": "The compressor pumps that heat to the condenser on top, and the fan carries it into the air.", "ry": 38, "rx": -30},
-  {"t": "Water out.", "d": "The pump sends the chilled water back to your process at the set temperature.", "ry": -45, "rx": -14}
+  {"t": "Water in.", "d": "Warm water from your process returns to the chiller's tank.", "a": "Warm, returning", "as": "warm", "b": "Circulating", "bs": "circulating", "ry": -55, "rx": -16},
+  {"t": "Evaporate.", "d": "In the evaporator the refrigerant boils and takes heat from the water, so the water cools.", "a": "Being cooled", "as": "cooling", "b": "Evaporating", "bs": "evaporating", "ry": 22, "rx": -24},
+  {"t": "Compress.", "d": "The compressor squeezes the cold refrigerant vapour into hot gas and sends it up to the condenser.", "a": "Being cooled", "as": "cooling", "b": "Compressing", "bs": "compressing", "ry": 16, "rx": -14},
+  {"t": "Reject heat.", "d": "In the condenser the gas gives up that heat and the fan carries it into the air. The refrigerant turns back to liquid and returns to the evaporator.", "a": "Being cooled", "as": "cooling", "b": "Condensing", "bs": "condensing", "ry": 38, "rx": -30},
+  {"t": "Water out.", "d": "The pump sends the chilled water back to your process at the set temperature.", "a": "Chilled, going out", "as": "chilled", "b": "Circulating", "bs": "circulating", "ry": -45, "rx": -14}
 ] %}
+
 {% set parts = [
   {"t": "Controls", "ry": 12, "rx": -10, "pts": ["Temperature controller, POWER ON switch and HP TRIP lamp on a hinged door; HP gauge on the frame"] + feat['Controls']},
   {"t": "Condenser and fan", "ry": 30, "rx": -34, "pts": ["Air-cooled condenser with an axial fan behind a wire guard on top", "The compressor sends the heat taken from your water here, and the fan carries it away"]},
@@ -17,7 +20,7 @@
   {"t": "Circulating pump", "ry": -24, "rx": -10, "pts": ["Pump and motor laid flat on the base, with PVC water connections"] + feat['Circulating pump']},
   {"t": "Pipework", "ry": -78, "rx": -12, "pts": ["Copper refrigerant lines, insulated suction line and ribbed cable conduits", "PVC water outlet with a ball valve"]}
 ] %}
-<section class="c3" data-c3-state="poster" id="chiller-360" aria-labelledby="c3-title">
+<section class="c3" data-c3-state="poster" data-c3-card-below id="chiller-360" aria-labelledby="c3-title">
   <div class="container">
     <div class="h-head" data-reveal>
       <p class="c3__eyebrow"><span>3D</span> Process chiller</p>
@@ -41,17 +44,19 @@
           <p class="c3__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3"/></svg>Drag to rotate</p>
           <span class="c3__deg" aria-hidden="true" data-c3-deg>035°</span>
           <div class="c3__flow" data-c3-flow hidden>
-            <p class="c3__flow-n">How it works · step <span data-c3-stepnow>1</span> of {{ flow_steps | length }}</p>
+            <div class="c3__duty" aria-live="polite"><span class="c3__tower"><b>Water</b> <span data-c3-chip-a data-state="warm">Warm, returning</span></span><span class="c3__tower"><b>Refrigerant</b> <span data-c3-chip-b data-state="circulating">Circulating</span></span><span class="c3__flow-n">Step <span data-c3-stepnow>1</span> of {{ flow_steps | length }}</span></div>
             <ol class="c3__flow-steps">
-              {% for fs in flow_steps %}<li data-c3-step="{{ loop.index }}" data-ry="{{ fs.ry }}" data-rx="{{ fs.rx }}"{% if not loop.first %} hidden{% endif %}><strong>{{ fs.t }}</strong> {{ fs.d }}</li>{% endfor %}
+              {% for fs in flow_steps %}<li data-c3-step="{{ loop.index }}" data-ry="{{ fs.ry }}" data-rx="{{ fs.rx }}" data-a="{{ fs.a }}" data-as="{{ fs.as }}" data-b="{{ fs.b }}" data-bs="{{ fs.bs }}"{% if not loop.first %} hidden{% endif %}><strong>{{ fs.t }}</strong> {{ fs.d }}</li>{% endfor %}
             </ol>
             <div class="c3__flow-bar">
-              <ul class="c3__legend" aria-label="Colours">
-                <li style="--c:#f39a3d">Warm water</li><li style="--c:#2f8bff">Chilled water</li><li style="--c:#e8402a">Hot refrigerant</li><li style="--c:#36d1ff">Cold refrigerant</li>
-              </ul>
-              <span class="c3__flow-nav"><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="-1" aria-label="Previous step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="1" aria-label="Next step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button></span>
+              <div class="c3__dots" role="group" aria-label="Go to a step">{% for fs in flow_steps %}<button type="button" class="c3__dot{% if loop.first %} is-on{% endif %}" data-c3-dot="{{ loop.index }}" aria-label="Step {{ loop.index }}: {{ fs.t }}"{% if loop.first %} aria-current="true"{% endif %}></button>{% endfor %}</div>
+              <span class="c3__flow-nav"><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="-1" aria-label="Previous step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="c3__btn c3__btn--sm c3__auto" data-c3-auto aria-pressed="true" aria-label="Pause the steps"><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.5-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="1" aria-label="Next step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button></span>
             </div>
           </div>
+        </div>
+        <div class="c3__flow-foot" data-c3-flow-foot hidden>
+          <ul class="c3__legend" aria-label="Colours"><li style="--c:#f39a3d">Warm water</li><li style="--c:#2f8bff">Chilled water</li><li style="--c:#e8402a">Hot refrigerant</li><li style="--c:#36d1ff">Cold refrigerant</li></ul>
+          <p class="c3__flow-note">An illustration of the refrigeration principle. The evaporator and the pipe runs shown are generic, not a drawing of a specific unit.</p>
         </div>
         <div class="c3__status" role="status" aria-live="polite" data-c3-status hidden><span class="c3__loading-mark" aria-hidden="true"></span><span data-c3-status-text></span></div>
         <div class="c3__toolbar" data-c3-toolbar inert>
