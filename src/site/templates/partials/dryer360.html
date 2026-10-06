@@ -1,7 +1,7 @@
 {# Interactive WebGL model of a Win heatless desiccant dryer. The outside follows the photographs images/Products/dessicantdryer.png and
    images/works/desiccant-dryer-twin-tower.jpg; the bed, screens and air paths are illustrations. A render of the same model, in the same
    pose, is the poster, so the swap to the live canvas is seamless. chiller360.js drives it (configured by the data-c3-* attributes below),
-   dryer3d.js is the renderer. Regenerate the posters with src/site/tools/render_dryer_posters.py after changing the model. No model number
+   dryer3d.js is the renderer. Regenerate the posters with src/site/tools/render_model_posters.py dryer after changing the model. No model number
    or rating is given to the photographed unit. #}
 {% set dr = products['desiccant-air-dryers'] %}
 {% set feat = {} %}{% for f in dr.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}

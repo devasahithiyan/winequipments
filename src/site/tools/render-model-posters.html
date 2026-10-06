@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en">
 <meta charset="utf-8">
-<title>Dryer poster renderer</title>
+<title>3D viewer poster renderer</title>
 <link rel="stylesheet" href="/css/site.css">
 <script type="importmap">{"imports":{"three":"/js/vendor/three.module.min.js?v=170"}}</script>
 <style>
 body { padding: 24px; } #stage { width: 480px; height: 600px; position: relative; background: #e9ece8; }
 canvas { width: 100%; height: 100%; } button, a { display: inline-block; margin: 12px; padding: 12px; }
 </style>
-<h1>Generate matching dryer posters</h1>
+<h1>Generate matching __MODEL__ posters</h1>
 <p>This renders the current model in its initial pose, without animation or ambient occlusion.</p>
 <button id="render">Render both posters</button>
 <p id="status" role="status">Ready to render</p>
 <div id="stage"></div>
 <div id="downloads"></div>
 <script type="module">
-import { init } from '/js/dryer3d.js';
+import { init } from '/js/__JS__';
 const stage = document.getElementById('stage');
 window.__init = init;
 document.getElementById('render').onclick = async () => {
@@ -24,13 +24,13 @@ document.getElementById('render').onclick = async () => {
     for (const lite of [false, true]) {
       const quality = lite ? 'lite' : 'standard';
       document.getElementById('status').textContent = 'Rendering ' + quality;
-      const view = await init({ stage, lite, reduce: true, deferAnimation: true, initialView: { ry: 28, rx: -12, zoom: 1 } });
+      const view = await init({ stage, lite, reduce: true, deferAnimation: true, initialView: { ry: __RY__, rx: __RX__, zoom: 1 } });
       const { canvas } = view.capture(1200, 1500, null, 0, 0);
       const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
       const response = await fetch('/__poster/' + quality, { method: 'POST', headers: { 'Content-Type': 'image/png' }, body: blob });
       if (!response.ok) throw new Error('Could not save ' + quality + ' poster');
       const saved = document.createElement('p');
-      saved.textContent = 'Saved dryer-poster-' + quality + '.png';
+      saved.textContent = 'Saved __MODEL__-poster-' + quality + '.png';
       document.getElementById('downloads').appendChild(saved);
       view.destroy();
     }
