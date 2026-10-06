@@ -188,3 +188,44 @@ html:not(.js) .c3__part > ul { display: block; }
 .c3__tool--quiet:hover { border-color: var(--rule-strong); }
 @media (max-width: 480px) { .c3__tool { padding: 0 var(--s-3); } .c3__tool--icon { padding: 0; width: 44px; } }
 @media (prefers-reduced-motion: reduce) { .c3__tool { transition: none; } .c3__tool:active { transform: none; } }
+
+/* ---------- dryer: tower duties, step dots, play/pause, separation slider, real photograph ---------- */
+.c3__duty { display: flex; flex-wrap: wrap; gap: 2px var(--s-4); margin-bottom: 4px; }
+.c3__tower { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-label); color: var(--ink); }
+.c3__tower [data-state] { padding: 1px 10px; border-radius: 999px; background: var(--rule); color: var(--ink-2); font-weight: 650; transition: background-color 0.3s, color 0.3s; }
+.c3__tower [data-state="drying"] { background: #1a6fe0; color: #fff; }
+.c3__tower [data-state="regenerating"] { background: #36d1ff; color: #0e2a33; }
+.c3__tower [data-state="repressurising"] { background: #cdf1fb; color: #0e2a33; }
+.c3__tower [data-state="switching"] { background: #ffcf6b; color: #3a2a00; }
+.c3__dots { display: inline-flex; }
+.c3__dot { position: relative; width: 26px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer; }
+.c3__dot::before { content: ""; position: absolute; inset: 15px 8px; border-radius: 50%; background: var(--rule-strong); transition: background-color 0.2s, inset 0.2s; }
+.c3__dot.is-done::before { background: var(--green-ink); opacity: 0.45; }
+.c3__dot.is-on::before { inset: 12px 5px; background: var(--green); opacity: 1; }
+.c3__dot:hover::before { background: var(--green); }
+.c3__dot:focus-visible { outline: 3px solid var(--focus); outline-offset: -2px; border-radius: 8px; }
+.c3__auto svg { transform: none; width: 18px; height: 18px; }
+.c3__auto .i-pause { display: none; }
+.c3__auto[aria-pressed="true"] .i-pause { display: block; }
+.c3__auto[aria-pressed="true"] .i-play { display: none; }
+.c3__flow .c3__legend { margin-top: 6px; }
+.c3__flow-note { margin: 4px 0 0; font-size: 0.6875rem; line-height: 1.35; color: var(--muted); }
+.c3__sep { margin: var(--s-3) auto 0; max-width: 440px; }
+.c3__sep[hidden] { display: none; }
+.c3__sep-row { display: flex; justify-content: space-between; gap: var(--s-3); font-size: var(--fs-small); font-weight: 650; }
+.c3__sep output { color: var(--green-ink); }
+.c3__sep input[type="range"] { display: block; width: 100%; height: 32px; margin: 2px 0; accent-color: var(--green); cursor: pointer; }
+.c3__sep p { margin: 0; text-align: center; font-size: var(--fs-label); color: var(--muted); }
+.c3__photo { position: absolute; inset: 0; z-index: 4; margin: 0; background: var(--paper, #f4f5f1); opacity: 0; visibility: hidden; transition: opacity 300ms var(--ease-out), visibility 0s linear 300ms; }
+.c3__stage.is-photo .c3__photo { opacity: 1; visibility: visible; transition-delay: 0s; }
+.c3__photo picture, .c3__photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.c3__photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px var(--s-3); text-align: center; font-size: var(--fs-label); color: var(--ink-2); background: rgba(255, 255, 255, 0.88); }
+@media (max-width: 480px) { .c3__dot { width: 24px; } .c3__flow .c3__legend { font-size: 0.6875rem; } }
+@media (prefers-reduced-motion: reduce) { .c3__photo, .c3__dot::before, .c3__tower [data-state] { transition: none; } }
+
+/* phones, dryer: the how-it-works card hangs under the model so it never covers it; the stage makes room */
+@media (max-width: 639px) {
+  .c3[data-c3-card-below] .c3__flow { top: calc(100% + var(--s-2)); bottom: auto; left: 0; right: 0; }
+  .c3[data-c3-card-below] .c3__stage.is-flow { margin-bottom: var(--flow-h, 300px); transition: margin-bottom 0.25s var(--ease-out); }
+}
+@media (max-width: 639px) and (prefers-reduced-motion: reduce) { .c3[data-c3-card-below] .c3__stage.is-flow { transition: none; } }

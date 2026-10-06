@@ -26,14 +26,20 @@
   const HOME = viewAt(cfg.c3Home, { ry: 35, rx: -14 }), OPEN_VIEW = viewAt(cfg.c3OpenView, { ry: 24, rx: -16 }), EXPLODED_VIEW = viewAt(cfg.c3ExplodedView, { ry: 32, rx: -18 });
   let ry = HOME.ry, rx = HOME.rx, vel = 0, anim = null, playing = false, inView = false, last = 0, view3d = null;
   let mode = 'closed', scrollP = 0, zoom = 1, isolate = false, selected = 1, step = 1, stepTimer = 0;
-  const val = { open: 0, explode: 0, flow: 0 };       /* tweened */
+  const val = { open: 0, explode: 0, flow: 0, focus: 0 };       /* tweened */
   const tweens = {};
   let state = 'poster', attempt = 0, controller = null, scrollBaseline = 0;
 
   const openNow = () => Math.max(val.open, mode === 'closed' || mode === 'open' ? scrollP : 0);
   const render = () => {
     deg.textContent = String(Math.round(((ry % 360) + 360) % 360)).padStart(3, '0') + '°';
-    if (view3d && state === 'ready') view3d.set(ry, rx, { open: openNow(), explode: val.explode, flow: val.flow, step, zoom, isolate: isolate ? selected : 0 });
+    if (sepInput && mode === 'exploded') {
+      const pct = Math.round(val.explode * 100);
+      sepInput.value = String(pct);
+      const word = pct === 0 ? 'Fully assembled' : pct === 100 ? 'Fully separated' : pct + '% separated';
+      sepInput.setAttribute('aria-valuetext', word); if (sepOut) sepOut.textContent = word;
+    }
+    if (view3d && state === 'ready') view3d.set(ry, rx, { open: openNow(), explode: val.explode, flow: val.flow, step, zoom, focus: val.focus, lift: !cardBelow(), isolate: isolate ? selected : 0 });
   };
   const setPlaying = (on) => {
     playing = on && !reduce && !!view3d && state === 'ready';
@@ -73,19 +79,41 @@
     tweens[key] = requestAnimationFrame(stepFn);
   });
 
+  /* a close-up: eases the zoom and the height the camera looks at (a part's centre) together */
+  let zoomAnim = 0;
+  const tweenView = (toZoom, toFocus, dur = 700) => {
+    cancelAnimationFrame(zoomAnim);
+    const z0 = zoom, f0 = val.focus;
+    if (reduce || (z0 === toZoom && f0 === toFocus)) { zoom = toZoom; val.focus = toFocus; return render(); }
+    const t0 = performance.now();
+    const stepFn = (t) => {
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      zoom = z0 + (toZoom - z0) * e; val.focus = f0 + (toFocus - f0) * e;
+      render();
+      if (k < 1) zoomAnim = requestAnimationFrame(stepFn);
+    };
+    zoomAnim = requestAnimationFrame(stepFn);
+  };
+
   /* ---------- view modes ---------- */
+  const sepBox = $('[data-c3-sep]', c3), sepInput = $('[data-c3-sep-input]', c3), sepOut = $('[data-c3-sep-out]', c3);
+  const explodeNeedsOpen = (section.dataset || {}).c3ExplodedOpen !== '0';   /* the chiller must open its panels first; the dryer separates from closed */
+  const cardBelow = () => (section.dataset || {}).c3CardBelow !== undefined && matchMedia('(max-width: 639px)').matches;   /* phones: the caption card sits under the model, not over it */
   let modeRun = 0;
   const syncModeUI = () => {
     const shown = (mode === 'closed' || mode === 'open') ? (openNow() > 0.5 ? 'open' : 'closed') : mode;
     modeBtns.forEach((b) => { const on = b.dataset.c3Mode === shown; b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
     stage.classList.toggle('is-open', openNow() > 0.5);
     flowBox.hidden = mode !== 'flow';
+    stage.classList.toggle('is-flow', mode === 'flow');
+    if (sepBox) sepBox.hidden = mode !== 'exploded';
   };
   const setMode = async (next) => {
     if (!view3d || state !== 'ready') return;
     const run = ++modeRun;
     mode = next; touched(); syncModeUI();
-    clearInterval(stepTimer);
+    setAuto(false);
+    if (next !== 'flow') tweenView(1, 0);
     if (next === 'closed') {
       await Promise.all([tweenVal('explode', 0, 900), tweenVal('flow', 0, 500)]);
       if (run !== modeRun) return;
@@ -98,7 +126,7 @@
       await tweenVal('flow', 0, 500);
       if (run !== modeRun) return;
       tweenTo(EXPLODED_VIEW.ry, EXPLODED_VIEW.rx);
-      await tweenVal('open', 1, 1300);
+      await tweenVal('open', explodeNeedsOpen ? 1 : 0, explodeNeedsOpen ? 1300 : 600);
       if (run !== modeRun) return;
       await tweenVal('explode', 1, 1300);
     } else if (next === 'flow') {
@@ -109,7 +137,7 @@
       showStep(1);
       await tweenVal('flow', 1, 700);
       if (run !== modeRun) return;
-      if (!reduce) stepTimer = setInterval(() => showStep(step % steps.length + 1), 4800);
+      setAuto(true);
     }
     syncModeUI();
   };
@@ -124,16 +152,33 @@
   });
 
   /* ---------- how it works: four steps; the camera turns to each ---------- */
+  const dots = $$('[data-c3-dot]', c3), autoBtn = $('[data-c3-auto]', c3), chipA = $('[data-c3-chip-a]', c3), chipB = $('[data-c3-chip-b]', c3);
+  let auto = false;
+  const setAuto = (on) => {   /* auto-advance through the steps; the button pauses and resumes it */
+    clearInterval(stepTimer);
+    auto = !!on && !reduce;
+    if (auto) stepTimer = setInterval(() => showStep(step % steps.length + 1), 5600);
+    if (autoBtn) { autoBtn.setAttribute('aria-pressed', String(auto)); autoBtn.setAttribute('aria-label', auto ? 'Pause the steps' : 'Play the steps'); }
+  };
   const showStep = (n) => {
     step = n;
     steps.forEach((li) => { li.hidden = li.dataset.c3Step !== String(n); });
     stepNow.textContent = String(n);
+    dots.forEach((d, i) => { d.setAttribute('aria-current', String(i + 1 === n)); d.classList.toggle('is-on', i + 1 === n); d.classList.toggle('is-done', i + 1 < n); });
+    requestAnimationFrame(() => stage.style.setProperty?.('--flow-h', (flowBox.offsetHeight + 16) + 'px'));   /* room under the stage for the card (phones) */
     const li = steps[n - 1];
-    if (li) tweenTo(Number(li.dataset.ry), Number(li.dataset.rx));
+    if (li) {
+      tweenTo(Number(li.dataset.ry), Number(li.dataset.rx));
+      if (li.dataset.zoom !== undefined || li.dataset.focus !== undefined) tweenView(Number(li.dataset.zoom) || 1, Number(li.dataset.focus) || 0);
+      if (chipA) { chipA.textContent = li.dataset.a || ''; chipA.dataset.state = String(li.dataset.a || '').toLowerCase().replace(/[^a-z]/g, ''); }
+      if (chipB) { chipB.textContent = li.dataset.b || ''; chipB.dataset.state = String(li.dataset.b || '').toLowerCase().replace(/[^a-z]/g, ''); }
+    }
     render();
   };
+  dots.forEach((d, i) => d.addEventListener('click', () => { setAuto(false); showStep(i + 1); }));
+  if (autoBtn) autoBtn.addEventListener('click', () => setAuto(!auto));
   $$('[data-c3-stepgo]', c3).forEach((b) => b.addEventListener('click', () => {
-    clearInterval(stepTimer);   /* manual stepping stops the auto-advance */
+    setAuto(false);   /* manual stepping pauses the auto-advance; the play button resumes it */
     const d = Number(b.dataset.c3Stepgo);
     showStep(((step - 1 + d + steps.length) % steps.length) + 1);
   }));
@@ -243,8 +288,13 @@
   });
   $$('[data-c3-rot]', c3).forEach((b) => b.addEventListener('click', () => { touched(); tweenTo(ry + Number(b.dataset.c3Rot)); }));
   $$('[data-c3-zoom]', c3).forEach((b) => b.addEventListener('click', () => setZoom(zoom + Number(b.dataset.c3Zoom))));
+  if (sepInput) sepInput.addEventListener('input', () => {   /* drag the parts apart or back together by hand */
+    cancelAnimationFrame(tweens.explode); modeRun++;
+    val.explode = Math.max(0, Math.min(1, Number(sepInput.value) / 100));
+    touched(); render();
+  });
   $('[data-c3-reset]', c3).addEventListener('click', () => {
-    touched(); zoom = 1;
+    touched(); tweenView(1, 0);
     const v = mode === 'exploded' ? EXPLODED_VIEW : (openNow() > 0.5 ? OPEN_VIEW : HOME);
     tweenTo(v.ry, v.rx);
   });
@@ -255,6 +305,19 @@
     render();
   });
 
+  /* ---------- the real photograph, over the model, for comparison (dryer) ---------- */
+  const photoBtn = $('[data-c3-photo-btn]', c3), photoLayer = $('[data-c3-photo]', c3);
+  const setPhoto = (on) => {
+    stage.classList.toggle('is-photo', on);
+    photoBtn.setAttribute('aria-pressed', String(on)); photoLayer.setAttribute('aria-hidden', String(!on));
+    if (on) setPlaying(false);
+    if (statusText) statusText.textContent = on ? 'Showing the real photograph' : '3D view';
+  };
+  if (photoBtn && photoLayer) {
+    photoBtn.addEventListener('click', () => setPhoto(!stage.classList.contains('is-photo')));
+    stage.addEventListener('keydown', (e) => { if (e.key === 'Escape' && stage.classList.contains('is-photo')) setPhoto(false); });
+  }
+
   /* ---------- parts list <-> hotspots: picking a part turns the model to it (and isolates it when that is on) ---------- */
   const select = (n, turn) => {
     selected = Number(n);
@@ -263,7 +326,10 @@
       b.setAttribute('aria-expanded', String(on));
       b.parentElement.classList.toggle('is-active', on);
       if (on) isoBtn.title = 'Show only ' + (b.dataset.name || 'this part') + ' and fade the rest';
-      if (on && turn && state === 'ready' && view3d && mode !== 'flow') { touched(); tweenTo(Number(b.dataset.ry), Number(b.dataset.rx)); }
+      if (on && turn && state === 'ready' && view3d && mode !== 'flow') {
+        touched(); tweenTo(Number(b.dataset.ry), Number(b.dataset.rx));
+        if (b.dataset.zoom !== undefined || b.dataset.focus !== undefined) tweenView(Number(b.dataset.zoom) || 1, Number(b.dataset.focus) || 0);
+      }
     });
     hotspots.forEach((h) => h.classList.toggle('is-active', h.dataset.hs === String(n)));
     render();
@@ -310,11 +376,11 @@
     loadLabel.textContent = next === 'error' ? 'Retry' : next === 'loading' ? 'Loading 3D…' : 'View in 3D';
   };
   const reset = () => {
-    setPlaying(false); clearInterval(stepTimer); cancelAnimationFrame(anim);
+    setPlaying(false); setAuto(false); cancelAnimationFrame(anim);
     Object.values(tweens).forEach(cancelAnimationFrame);
     modeRun++; pointers.clear(); dragging = false; vel = 0;
     ry = HOME.ry; rx = HOME.rx; zoom = 1; mode = 'closed'; scrollP = 0; isolate = false;
-    val.open = val.explode = val.flow = 0;
+    val.open = val.explode = val.flow = val.focus = 0; cancelAnimationFrame(zoomAnim);
     isoBtn.setAttribute('aria-pressed', 'false');
     stage.classList.remove('is-touched');
     oriented = false; syncModeUI();

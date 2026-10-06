@@ -256,12 +256,15 @@ export async function init(opts) {
       if (px * px + pz * pz < 0.49 * 0.49) packing.push([px, 1.12 + layer * layerPitch, pz]);
     }
     const beads = new T.InstancedMesh(beadGeo, ceramic, packing.length), dummy = new T.Object3D(); let sd = 191 + index;
+    t.beadH = new Float32Array(packing.length); t.beadBase = new Float32Array(packing.length * 3); t.beadCol = new T.Color();
     packing.forEach((p, i) => {
       sd = (1664525 * sd + 1013904223) >>> 0;
       dummy.position.set(p[0], p[1], p[2]); dummy.scale.setScalar(0.94 + (sd % 12) / 100); dummy.rotation.set((sd % 17) * 0.1, (sd % 13) * 0.1, 0); dummy.updateMatrix();
-      beads.setMatrixAt(i, dummy.matrix); beads.setColorAt(i, new T.Color().setHSL(0.105, 0.14 + (sd % 7) / 100, 0.62 + (sd % 14) / 100));
+      t.beadCol.setHSL(0.105, 0.14 + (sd % 7) / 100, 0.62 + (sd % 14) / 100);
+      beads.setMatrixAt(i, dummy.matrix); beads.setColorAt(i, t.beadCol);
+      t.beadH[i] = (p[1] - 1.12) / (2.98 - 1.12); t.beadBase[i * 3] = t.beadCol.r; t.beadBase[i * 3 + 1] = t.beadCol.g; t.beadBase[i * 3 + 2] = t.beadCol.b;
     });
-    beads.receiveShadow = true; t.bed.add(beads);
+    beads.receiveShadow = true; t.bed.add(beads); t.beads = beads;
     /* upper and lower support screens */
     t.screens.position.x = t.x; t.screens.visible = false;
     t.lower = group(t.screens); t.lower.position.y = 1.075; t.upper = group(t.screens); t.upper.position.y = 3.02;
@@ -438,6 +441,10 @@ export async function init(opts) {
     6: anchor(frame, [1.1, 2.05, 0.82], [0, 0, 1]),
     7: anchor(filters, [-1.46, 1.9, -0.3], [-1, 0, 0.5])
   };
+  const EXPLODED = Object.assign({}, CLOSED, {
+    2: anchor(shellA, [0, 3.0, 0.5], [0, 0.3, 1]),
+    3: anchor(bedA, [0, 2.0, 0.5], [0, 0, 1])
+  });
   const OPEN = Object.assign({}, CLOSED, {
     1: anchor(cabinet, [0, 0.05, 0.02], [0, 0, 1]),
     2: anchor(vesselA, [0.05, 2.5, -0.4], [0, 0, 1]),
@@ -485,35 +492,66 @@ export async function init(opts) {
     vertexShader: 'varying vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
     fragmentShader: 'uniform float uTime;\nuniform float uOpacity;\nuniform float uRepeat;\nuniform float uSpeed;\nuniform vec3 uColor;\nvarying vec2 vUv;\nvoid main() {\n  float s = fract(vUv.x * uRepeat - uTime * uSpeed);\n  float a = smoothstep(0.0, 0.1, s) * (1.0 - smoothstep(0.55, 0.62, s));\n  vec3 c = mix(uColor * 0.6, uColor * 1.2, s);\n  gl_FragColor = vec4(c, (0.22 + 0.78 * a) * uOpacity);\n  #include <colorspace_fragment>\n}'
   });
-  const flowPath = (points, hex, steps, base) => {
+  const flowPath = (points, hex, steps, dim) => {
     const curve = new T.CatmullRomCurve3(points.map((q) => V(q[0], q[1], q[2])), false, 'centripetal');
     const m = new T.Mesh(new T.TubeGeometry(curve, Math.max(40, points.length * 16), 0.04, 8, false), flowMat(hex, curve.getLength() / 0.22));
     m.renderOrder = 10; m.userData.flow = true; m.frustumCulled = false;
-    flow.add(m); flowItems.push({ m, steps, base: !!base });
+    flow.add(m); flowItems.push({ m, steps, dim: dim || [] });
   };
   const C = { wet: '#f39a3d', dry: '#2f8bff', purge: '#36d1ff' };
-  /* one tower dries while the other regenerates; step 4 swaps them. sign mirrors the paths across the centre line. */
-  const flowSet = (sign, steps, base) => {
+  /* The cycle, in six steps. Tower A is on line while Tower B is purged, both at the same time; then the towers swap.
+       1 wet air in   2 adsorb   3 purge (B, while A keeps drying)   4 repressurise B   5 switch   6 the same, swapped.
+     sign mirrors the paths across the centre line for the swapped half. */
+  const flowSet = (sign, on, dimOn) => {
     const m = (pts) => pts.map((q) => [q[0] * sign, q[1], q[2]]);
-    /* 1: wet air enters at the bottom and rises into the on-line tower */
-    flowPath(m([[-2.4, 0.43, 0], [-1.7, 0.43, 0], [-0.95, 0.43, 0], [-0.8, 0.56, 0], [-0.8, 1.1, 0]]), C.wet, [steps[0]], base);
-    /* 2: through the desiccant bed; dry air leaves at the top and crosses the header */
-    flowPath(m([[-0.8, 1.1, 0], [-0.8, 2.05, 0], [-0.8, 3.0, 0]]), C.wet, [steps[1]], base);
-    flowPath(m([[-0.8, 3.0, 0], [-0.8, 3.72, 0], [-0.8, 4.05, 0], [-0.6, 4.22, 0], [0, 4.22, 0], [0, 4.22, -0.9]]), C.dry, [steps[1]], base);
-    /* 3: a small part of the dry air goes down the other tower and leaves through the purge exhaust */
-    flowPath(m([[0, 4.22, 0], [0.6, 4.22, 0], [0.8, 4.05, 0], [0.8, 3.72, 0], [0.8, 3.0, 0], [0.8, 1.1, 0], [0.8, 0.56, 0], [1.05, 0.43, -0.05], [1.2, 0.45, -0.28], [1.2, 0.85, -0.28]]), C.purge, [steps[2]], base);
+    flowPath(m([[-2.4, 0.43, 0], [-1.7, 0.43, 0], [-0.95, 0.43, 0], [-0.8, 0.56, 0], [-0.8, 1.1, 0]]), C.wet, on.wetIn, dimOn);      /* wet air enters at the bottom */
+    flowPath(m([[-0.8, 1.1, 0], [-0.8, 2.05, 0], [-0.8, 3.0, 0]]), C.wet, on.bed, dimOn);                                              /* up through the desiccant bed */
+    flowPath(m([[-0.8, 3.0, 0], [-0.8, 3.72, 0], [-0.8, 4.05, 0], [-0.6, 4.22, 0], [0, 4.22, 0], [0, 4.22, -0.9]]), C.dry, on.dry, dimOn);   /* dry air leaves at the top */
+    flowPath(m([[0, 4.22, 0], [0.6, 4.22, 0], [0.8, 4.05, 0], [0.8, 3.72, 0], [0.8, 3.0, 0], [0.8, 1.1, 0], [0.8, 0.56, 0], [1.05, 0.43, -0.05], [1.2, 0.45, -0.28], [1.2, 0.85, -0.28]]), C.purge, on.purge, dimOn);   /* purge down the other tower and out of the muffler */
   };
-  flowSet(1, [1, 2, 3], true);
-  flowSet(-1, [4, 4, 4], false);
+  flowSet(1, { wetIn: [1, 2, 3, 4], bed: [2, 3, 4], dry: [2, 3, 4], purge: [3] }, [5]);
+  flowSet(-1, { wetIn: [6], bed: [6], dry: [6], purge: [6] }, [5]);
+  /* Tower B refills with dry air before the switch (step 4): a short slow path down from the top header */
+  flowPath([[0, 4.22, 0], [0.6, 4.22, 0], [0.8, 4.05, 0], [0.8, 3.72, 0], [0.8, 3.0, 0], [0.8, 2.3, 0]], C.dry, [4]);
+
+  /* soft sprites: damp air leaving the purge mufflers, and a glow where the timer and the valves act at the switch */
+  const softTex = canvasTex(64, 64, (g, w, h) => { const r = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); r.addColorStop(0, 'rgba(255,255,255,0.95)'); r.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = r; g.fillRect(0, 0, w, h); });
+  const puffs = [], glows = [];
+  for (const mx of [-1.2, 1.2]) for (let k = 0; k < 5; k++) {
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: softTex, color: '#cfe4ee', transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+    sp.visible = false; sp.renderOrder = 12; sp.userData.flow = true; sp.userData.x = mx; sp.userData.ph = k / 5; model.add(sp); puffs.push(sp);
+  }
+  for (const gp of [[0, 2.45, 1.0, 1.0], [-0.8, 0.68, 0.3, 0.8], [0.8, 0.68, 0.3, 0.8]]) {
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: softTex, color: '#ffa31a', transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+    sp.position.set(gp[0], gp[1], gp[2]); sp.scale.set(gp[3], gp[3], 1); sp.visible = false; sp.renderOrder = 12; sp.userData.flow = true; model.add(sp); glows.push(sp);
+  }
+  /* The moisture front: the wetted part of each bed. A tower that is drying wets from the bottom up; a purged tower dries from the top down.
+     Heights are fractions of the bed. This is an illustration of the principle, not a measurement. */
+  const WET = new T.Color('#5f86a0');
+  const FRONT_TARGET = { 0: [0.5, 0.5], 1: [0.1, 0.85], 2: [0.85, 0.85], 3: [0.85, 0.1], 4: [0.85, 0.1], 5: [0.85, 0.1], 6: [0.1, 0.85] };
+  const front = [0.1, 0.85];
+  let lastFlowT = 0, paintedFront = [-1, -1], paintedF = -1, paintClock = 0;
+  const paintBeds = (f, force) => {
+    if (!force && Math.abs(f - paintedF) < 0.004 && Math.abs(front[0] - paintedFront[0]) < 0.004 && Math.abs(front[1] - paintedFront[1]) < 0.004) return;
+    paintedF = f; paintedFront = front.slice();
+    towers.forEach((t, i) => {
+      const arr = t.beads.instanceColor.array, n = t.beadH.length;
+      for (let k = 0; k < n; k++) {
+        const wet = clamp01((front[i] - t.beadH[k]) / 0.12 + 0.5) * 0.8 * f, b = k * 3;
+        arr[b] = t.beadBase[b] + (WET.r - t.beadBase[b]) * wet; arr[b + 1] = t.beadBase[b + 1] + (WET.g - t.beadBase[b + 1]) * wet; arr[b + 2] = t.beadBase[b + 2] + (WET.b - t.beadBase[b + 2]) * wet;
+      }
+      t.beads.instanceColor.needsUpdate = true;
+    });
+  };
 
   /* ---------- state, camera, layout ---------- */
   const target = V(0, 2.0, 0);
-  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, isolate: 0, still: false };
+  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, focus: 0, lift: true, isolate: 0, still: false };
   let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 0, shapeDirty = true, shadowDirty = true, flowTime = 0;
   const placeCamera = () => {
     const e = ease(st.open), x = ease(st.explode), f = ease(st.flow);
-    dist = baseDist * (1 - 0.04 * e + 0.2 * x + 0.24 * f) * st.zoom;
-    const ty = target.y + 0.1 * x - (st.still ? 0 : 0.85) * f;   /* how it works: the unit sits above the caption card (not in stills) */
+    dist = baseDist * (1 - 0.04 * e + 0.2 * x + (st.lift ? 0.24 : 0.08) * f) * st.zoom;
+    const ty = target.y + 0.1 * x + st.focus - (st.still || !st.lift ? 0 : 0.85) * f;   /* how it works: the unit sits above the caption card (not in stills) */
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
   };
@@ -567,12 +605,29 @@ export async function init(opts) {
       pos.setXYZ(0, from.x, from.y, from.z); pos.setXYZ(1, to.x, to.y, to.z); pos.needsUpdate = true; g.line.computeLineDistances();
     });
     /* flow: fade the paths in; the current step is bright, the rest dim. Step 0 shows the first set of paths together. */
-    flowItems.forEach((it) => { const on = it.steps.indexOf(st.step) >= 0 || (!st.step && it.base); it.m.material.uniforms.uOpacity.value = f * (on ? 1 : 0.14); });
+    flowItems.forEach((it) => { const on = it.steps.indexOf(st.step) >= 0 || (!st.step && it.steps.indexOf(1) >= 0); it.m.material.uniforms.uOpacity.value = f * (on ? 1 : it.dim.indexOf(st.step) >= 0 ? 0.3 : 0.08); });
+    if (f <= 0.002) paintBeds(0);   /* leaving the air view: the beds go back to plain granules */
     flow.visible = f > 0.002;
     applyIsolate(st.isolate);
     shapeDirty = true;
   };
-  const animateFlow = () => { flowItems.forEach((it) => { it.m.material.uniforms.uTime.value = flowTime; }); };
+  const animateFlow = () => {
+    const f = ease(st.flow), dt = Math.min(0.1, Math.max(0, flowTime - lastFlowT)); lastFlowT = flowTime;
+    flowItems.forEach((it) => { it.m.material.uniforms.uTime.value = flowTime; });
+    /* the wetted zones creep towards their targets (at once when motion is reduced) */
+    const tg = FRONT_TARGET[st.step] || FRONT_TARGET[0];
+    for (let i = 0; i < 2; i++) front[i] = reduce ? tg[i] : front[i] + Math.max(-0.2 * dt, Math.min(0.2 * dt, tg[i] - front[i]));
+    paintBeds(f);
+    /* damp air out of the purge muffler: B's in step 3, A's in step 6 */
+    puffs.forEach((sp) => {
+      const on = f * ((sp.userData.x > 0 && st.step === 3) || (sp.userData.x < 0 && st.step === 6) ? 1 : 0), u = (flowTime * 0.55 + sp.userData.ph) % 1;
+      sp.position.set(sp.userData.x + (sp.userData.ph - 0.5) * 0.14 + Math.sin(u * 6) * 0.03, 0.95 + u * 0.8, -0.28);
+      sp.scale.setScalar(0.2 + u * 0.32); sp.material.opacity = on * Math.sin(Math.PI * u) * 0.75; sp.visible = on > 0.01;
+    });
+    /* the timer and the valves glow at the switch */
+    const pulse = f * (st.step === 5 ? 0.4 + 0.25 * Math.sin(flowTime * 6) : 0);
+    glows.forEach((sp) => { sp.material.opacity = pulse; sp.visible = pulse > 0.01; });
+  };
 
   const layer = document.createElement('div');
   layer.className = 'c3__hsl';
@@ -588,15 +643,15 @@ export async function init(opts) {
     return { x: (v.x + 1) / 2 * w, y: (1 - v.y) / 2 * h, facing };
   };
   const placeHotspots = () => {
-    const w = stage.clientWidth, h = stage.clientHeight, sp = ease(st.open), set = sp >= 0.5 ? OPEN : CLOSED;
-    const exploding = st.explode > 0.02 && st.explode < 0.98, hideAll = st.flow > 0.2 || exploding;
+    const w = stage.clientWidth, h = stage.clientHeight, sp = ease(st.open), set = st.explode > 0.3 ? EXPLODED : sp >= 0.5 ? OPEN : CLOSED;
+    const hideAll = st.flow > 0.2;
     hotspots.forEach((el, k) => {
       const a = set[el.dataset.hs];
       if (!a) return;
       const fade = sp >= 0.5 ? clamp01((sp - 0.55 - k * 0.04) / 0.1) : clamp01((0.38 - sp) / 0.1);
       const q = project(a, w, h);
       /* in the exploded view parts face every way; show every marker */
-      const away = hideAll || (isolated && el.dataset.hs !== String(isolated)) || (st.explode < 0.98 && q.facing < 0.05) || fade < 0.2;
+      const away = hideAll || (isolated && el.dataset.hs !== String(isolated)) || (st.explode < 0.98 && q.facing < 0.05) || fade < 0.2 || q.x < 14 || q.x > w - 14 || q.y < 14 || q.y > h - 14;   /* zoomed in on another part: markers outside the stage go away */
       el.classList.toggle('is-away', away);
       el.style.opacity = away ? '' : fade.toFixed(2);
       el.style.left = q.x.toFixed(1) + 'px';
@@ -742,7 +797,7 @@ export async function init(opts) {
       active = performance.now();
       elev = -rx * Math.PI / 180;
       s = s || {};
-      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.65, Math.min(1.25, s.zoom || 1)), isolate: s.isolate || 0, still: !!s.still };
+      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.5, Math.min(1.25, s.zoom || 1)), focus: Math.max(-1.6, Math.min(1.6, Number(s.focus) || 0)), lift: s.lift !== false, isolate: s.isolate || 0, still: !!s.still };
       const changed = next.open !== st.open || next.explode !== st.explode || next.flow !== st.flow || next.step !== st.step || next.isolate !== st.isolate;
       Object.assign(st, next);
       if (changed) applyState();
