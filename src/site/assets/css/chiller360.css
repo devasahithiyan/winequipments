@@ -76,6 +76,39 @@ html:not(.js) .c3__part > ul { display: block; }
 .c3__range { font-size: var(--fs-label); color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .c3__hint svg, .c3__hs.is-active::before { animation: none !important; } }
 
+/* view modes: segmented control */
+.c3__modes { display: flex; margin: var(--s-3) auto 0; width: fit-content; max-width: 100%; padding: 4px; gap: 2px; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--surface); overflow-x: auto; scrollbar-width: none; }
+.c3__modes[hidden] { display: none; }
+.c3__modes button { flex: none; height: 40px; padding: 0 var(--s-4); border: 0; border-radius: 999px; background: none; color: var(--ink-2); font-weight: 650; font-size: var(--fs-small); cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+.c3__modes button:hover { color: var(--green-ink); }
+.c3__modes button[aria-checked="true"] { background: var(--green); color: var(--on-green); }
+.c3__modes button:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+.c3__btn--sm { min-width: 40px; height: 40px; padding: 0; }
+.c3__btn[data-c3-isolate][aria-pressed="true"] { border-color: var(--green); color: var(--green-ink); background: var(--green-wash); }
+
+/* how it works: caption card over the model */
+.c3__flow { position: absolute; left: var(--s-3); right: var(--s-3); bottom: var(--s-3); z-index: 3; padding: var(--s-3) var(--s-4); border: 1px solid var(--rule); border-radius: var(--r-2); background: rgba(255, 255, 255, 0.94); box-shadow: 0 8px 24px rgba(21, 32, 26, 0.12); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.c3__flow[hidden] { display: none; }
+.c3__flow-n { font-size: var(--fs-label); font-weight: 650; color: var(--green-ink); letter-spacing: 0.02em; }
+.c3__flow-steps { list-style: none; margin: 4px 0 var(--s-2); font-size: 0.9375rem; color: var(--ink-2); line-height: 1.45; }
+.c3__flow-steps strong { color: var(--ink); }
+.c3__flow-steps li { animation: fadeup 0.35s var(--ease-out) both; }
+.c3__flow-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.c3__legend { list-style: none; display: flex; flex-wrap: wrap; gap: 2px var(--s-3); font-size: var(--fs-label); color: var(--muted); }
+.c3__legend li { display: inline-flex; align-items: center; gap: 6px; }
+.c3__legend li::before { content: ""; width: 14px; height: 4px; border-radius: 2px; background: var(--c); }
+.c3__flow-nav { display: inline-flex; gap: var(--s-1); flex: none; }
+.c3__flow-nav [data-c3-stepgo="1"] svg { transform: rotate(-90deg); }
+.c3__stage.is-3d .c3__flow:not([hidden]) ~ .c3__hint { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .c3__flow-steps li { animation: none; } }
+/* phones: a compact caption card and a view selector that fits */
+@media (max-width: 639px) {
+  .c3__flow { left: var(--s-2); right: var(--s-2); bottom: var(--s-2); padding: var(--s-2) var(--s-3); }
+  .c3__flow-steps { font-size: 0.875rem; margin-bottom: 4px; }
+  .c3__legend { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--s-2); font-size: 0.75rem; }
+  .c3__modes button { padding: 0 var(--s-3); font-size: 0.8125rem; height: 38px; }
+}
+
 /* ===== multi-angle photo viewer ===== */
 .spin { padding-block: var(--section); border-top: 1px solid var(--rule); background: linear-gradient(180deg, var(--paper), var(--surface)); }
 .spin__viewer { max-width: 860px; margin-inline: auto; }

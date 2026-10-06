@@ -3,7 +3,7 @@
    built from the October 2026 photographs in images/chiller-reference/. Normalized illustration coordinates,
    not a fabrication drawing. Only labels visible on the real unit are drawn (CONTROLLER, POWER ON, HP TRIP,
    HP GAUGE), plus the Win Equipments logo at the owner's request.
-   chiller360.js owns drag / keys / scroll / parts-list state and calls view.set(ry, rx, open).
+   chiller360.js owns drag / keys / scroll / modes / parts-list state and calls view.set(ry, rx, state).
    No template literals here: the build's minifier mangles them. */
 import * as T from 'three';
 import { mergeGeometries } from '/js/vendor/BufferGeometryUtils.js?v=170';
@@ -15,6 +15,10 @@ const ease = (t) => t * t * (3 - 2 * t);
 const lin = (p, w) => clamp01((p - w[0]) / (w[1] - w[0]));
 const phase = (p, w) => ease(lin(p, w));
 const backOut = (t) => { const c = 1.4; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };   /* small overshoot, settles at 1 */
+/* cabinet proportions estimated from the photos: a closed folded sheet-metal body, squatter than it is tall-looking in pictures */
+const BODY = { w: 2.3, d: 2.14, plinth: 0.22, top: 2.5, t: 0.035 };
+const K = 0.78;        /* the interior parts (authored at the first model's size) are scaled in to fit this body */
+const DROP = -0.915;   /* the fan pack and the controls sit lower, on the new lid */
 
 export async function init(opts) {
   const stage = opts.stage, hotspots = opts.hotspots || [], reduce = !!opts.reduce;
@@ -50,8 +54,34 @@ export async function init(opts) {
   nctx.putImageData(px, 0, 0);
   const grain = new T.CanvasTexture(noise); grain.wrapS = grain.wrapT = T.RepeatWrapping; grain.repeat.set(5, 5);
 
-  const blue = mat('#0b7ec0', 0.4, 0.38, { clearcoat: 0.3, clearcoatRoughness: 0.42, bumpMap: grain, bumpScale: 0.009 });
-  const cream = mat('#ecebdc', 0.2, 0.42, { clearcoat: 0.23, bumpMap: grain, bumpScale: 0.002 });
+  /* orange-peel powder coat: random small bumps, blurred, turned into a normal map */
+  const peel = (() => {
+    const n = 256, a = document.createElement('canvas'), b = document.createElement('canvas');
+    a.width = a.height = b.width = b.height = n;
+    const ga = a.getContext('2d'), gb = b.getContext('2d');
+    ga.fillStyle = '#808080'; ga.fillRect(0, 0, n, n);
+    let sd = 7;
+    const rnd = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+    for (let i = 0; i < 1400; i++) {
+      const v = Math.round(95 + rnd() * 70), x = rnd() * n, y = rnd() * n, r = 2 + rnd() * 5;
+      ga.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')';
+      for (const ox of [-n, 0, n]) for (const oy of [-n, 0, n]) { ga.beginPath(); ga.arc(x + ox, y + oy, r, 0, Math.PI * 2); ga.fill(); }
+    }
+    gb.filter = 'blur(2px)'; gb.drawImage(a, 0, 0);
+    const src = gb.getImageData(0, 0, n, n).data, out = gb.createImageData(n, n);
+    const h = (x, y) => src[((((y + n) % n) * n) + ((x + n) % n)) * 4] / 255;
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const dx = (h(x + 1, y) - h(x - 1, y)) * 2.4, dy = (h(x, y + 1) - h(x, y - 1)) * 2.4, l = Math.hypot(dx, dy, 1), i = (y * n + x) * 4;
+      out.data[i] = (-dx / l * 0.5 + 0.5) * 255; out.data[i + 1] = (-dy / l * 0.5 + 0.5) * 255; out.data[i + 2] = (1 / l * 0.5 + 0.5) * 255; out.data[i + 3] = 255;
+    }
+    gb.putImageData(out, 0, 0);
+    const t = new T.CanvasTexture(b); t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(3, 3);
+    return t;
+  })();
+  /* paint colours sampled from the photographs (exterior, rear and pump-side views) */
+  const blue = mat('#0779bd', 0.15, 0.42, { clearcoat: 0.35, clearcoatRoughness: 0.38, normalMap: peel, normalScale: new T.Vector2(0.35, 0.35) });
+  const cream = mat('#ebe5d2', 0.08, 0.46, { clearcoat: 0.25, clearcoatRoughness: 0.45, normalMap: peel, normalScale: new T.Vector2(0.22, 0.22) });
+  const shellBlue = blue.clone();   /* the cabinet's own paint, so the exploded view can fade it on its own */
   const black = mat('#101619', 0.35, 0.21, { clearcoat: 0.75, clearcoatRoughness: 0.16 });
   const rubber = mat('#191d1e', 0, 0.9, { bumpMap: grain, bumpScale: 0.014 });
   const foam = mat('#252827', 0, 0.96, { bumpMap: grain, bumpScale: 0.025 });
@@ -61,7 +91,8 @@ export async function init(opts) {
   const brass = mat('#b8994e', 0.86, 0.34), amber = mat('#eeb32b', 0.3, 0.23);
 
   const group = (parent) => { const g = new T.Group(); (parent || model).add(g); return g; };
-  const frame = group(), fan = group(), tank = group(), compressor = group(), pump = group(), pipes = group(), cabinet = group();
+  const shell = group(), fan = group(), tank = group(), compressor = group(), pump = group(), pipes = group(), cabinet = group();
+  [fan, tank, compressor, pump, pipes, cabinet].forEach((g) => { g.userData.keep = true; });   /* separate for exploded view and isolate */
   const mesh = (geo, material, parent, x, y, z) => { const m = new T.Mesh(geo, material); m.position.set(x || 0, y || 0, z || 0); m.castShadow = true; m.receiveShadow = true; parent.add(m); return m; };
   const box = (w, h, d, material, parent, x, y, z, bevel) => {
     bevel = bevel === undefined ? 0.015 : bevel;
@@ -121,18 +152,45 @@ export async function init(opts) {
     for (let y = 158; y < 210; y += 12) g.fillRect(12, y, w - 40, 4);
   });
 
-  /* ---------- blue folded steel chassis ---------- */
-  box(2.3, 0.12, 2.14, blue, frame, 0, 0.28, 0);
-  for (const x of [-1.07, 1.07]) for (const z of [-0.99, 0.99]) {
-    box(0.14, 3.32, 0.14, blue, frame, x, 1.7, z);
-    box(0.24, 0.16, 0.26, blue, frame, x, 0.08, z);
-    bolt(frame, x, 3.48, z, 'y');
+  /* ---------- folded sheet-metal cabinet: blue faces with windows for the cream panels, solid lid, slotted plinth ---------- */
+  const rrect = (path, x, y, w, h, r) => {
+    path.moveTo(x + r, y); path.lineTo(x + w - r, y); path.quadraticCurveTo(x + w, y, x + w, y + r); path.lineTo(x + w, y + h - r);
+    path.quadraticCurveTo(x + w, y + h, x + w - r, y + h); path.lineTo(x + r, y + h); path.quadraticCurveTo(x, y + h, x, y + h - r);
+    path.lineTo(x, y + r); path.quadraticCurveTo(x, y, x + r, y);
+  };
+  const sheet = (w, h, holes, depth, round) => {
+    const sh = new T.Shape(); rrect(sh, -w / 2, -h / 2, w, h, 0.035);
+    holes.forEach((q) => { const ph = new T.Path(); rrect(ph, q[0], q[1], q[2] - q[0], q[3] - q[1], 0.025); sh.holes.push(ph); });
+    if (round) { const ph = new T.Path(); ph.absarc(0, 0, round, 0, Math.PI * 2, true); sh.holes.push(ph); }
+    const g = new T.ExtrudeGeometry(sh, { depth, bevelEnabled: true, bevelSize: 0.008, bevelThickness: 0.008, bevelSegments: 2, curveSegments: 6 });
+    g.translate(0, 0, -depth / 2);
+    return g;
+  };
+  {
+    const t = BODY.t, hw = BODY.w / 2, hd = BODY.d / 2, yc = (BODY.plinth + BODY.top) / 2, hb = BODY.top - BODY.plinth, rel = (y) => y - yc;
+    mesh(sheet(BODY.w, hb, [[-0.97, rel(0.3), 0.97, rel(1.3)], [-0.98, rel(1.4), 0.98, rel(2.3)]], t), shellBlue, shell, 0, yc, hd - t / 2);
+    mesh(sheet(BODY.w, hb, [[-0.98, rel(0.3), 0.98, rel(2.32)]], t), shellBlue, shell, 0, yc, -hd + t / 2);
+    for (const sx of [-1, 1]) mesh(sheet(BODY.d, hb, [[-0.95, rel(0.3), 0.95, rel(2.32)]], t), shellBlue, shell, sx * (hw - t / 2), yc, 0).rotation.y = Math.PI / 2;
+    mesh(sheet(BODY.w, BODY.d, [], t, 0.62), shellBlue, shell, 0, BODY.top - t / 2, 0).rotation.x = -Math.PI / 2;
+    box(BODY.w - 0.08, 0.03, BODY.d - 0.08, shellBlue, shell, 0, BODY.plinth + 0.015, 0, 0.006);   /* base tray */
+    /* plinth with forklift slots on every side, dark inside */
+    const ph = BODY.plinth, slot = (a, b) => [a, -0.05, b, 0.04];
+    for (const sz of [-1, 1]) mesh(sheet(BODY.w, ph, [slot(-0.78, -0.36), slot(0.36, 0.78)], t), shellBlue, shell, 0, ph / 2, sz * (hd - t / 2));
+    for (const sx of [-1, 1]) mesh(sheet(BODY.d, ph, [slot(-0.72, -0.3), slot(0.3, 0.72)], t), shellBlue, shell, sx * (hw - t / 2), ph / 2, 0).rotation.y = Math.PI / 2;
+    box(BODY.w - 0.1, ph - 0.02, BODY.d - 0.1, dark, shell, 0, ph / 2, 0, 0.004);
+    /* service bracket behind the lower front panel: carries the service valve and pressure switch */
+    box(1.62, 0.14, 0.06, shellBlue, shell, 0, 0.69, 0.8, 0.008);
+    /* on the lid: grey funnel fitting on a white stub, and a small blue port (both visible in the photos) */
+    const grey = mat('#7f868b', 0.05, 0.5, { side: T.DoubleSide });
+    cyl(0.045, 0.045, 0.12, white, shell, -0.62, BODY.top + 0.06, -0.78, 16);
+    cyl(0.045, 0.045, 0.16, white, shell, -0.7, BODY.top + 0.11, -0.78, 16).rotation.z = Math.PI / 2;
+    const funnel = mesh(new T.LatheGeometry([[0.045, 0], [0.05, 0.08], [0.15, 0.24], [0.155, 0.27], [0.04, 0.1]].map((q) => new T.Vector2(q[0], q[1])), 28), grey, shell, -0.78, BODY.top + 0.11, -0.78);
+    funnel.rotation.z = Math.PI / 2;
+    cyl(0.065, 0.065, 0.05, shellBlue, shell, -0.88, BODY.top + 0.025, 0.78, 20);
+    /* rear: cable gland low on the right, with the supply cable looped on the floor */
+    cyl(0.042, 0.042, 0.07, chrome, shell, 0.86, 0.27, -hd - 0.03, 16).rotation.x = Math.PI / 2;
+    pipe([[0.86, 0.27, -hd - 0.06], [0.86, 0.22, -hd - 0.2], [0.72, 0.03, -hd - 0.3], [0.34, 0.03, -hd - 0.33], [0.22, 0.03, -hd - 0.15], [0.5, 0.03, -hd - 0.08]], 0.016, rubber, shell);
   }
-  box(2.3, 0.13, 2.14, blue, frame, 0, 3.35, 0);
-  for (const z of [-1.03, 1.03]) { box(2.16, 0.11, 0.1, blue, frame, 0, 2.2, z); box(2.16, 0.2, 0.1, blue, frame, 0, 0.43, z); }
-  for (const x of [-1.09, 1.09]) { box(0.1, 0.12, 2, blue, frame, x, 2.73, 0); box(0.1, 0.23, 2, blue, frame, x, 0.43, 0); }
-  /* front service rail with the service valve and pressure switch (seen when the lower panel is off) */
-  box(2.03, 0.18, 0.09, blue, frame, 0, 0.88, 0.91);
 
   /* ---------- top condenser pack, axial fan and wire guard ---------- */
   box(1.91, 0.43, 1.8, dark, fan, 0, 3.05, 0);
@@ -230,12 +288,16 @@ export async function init(opts) {
     p.heads.instanceMatrix.needsUpdate = p.washers.instanceMatrix.needsUpdate = true;
   };
   const label = (p, tex, w, h, x, y) => { const m = plate(tex, w, h, p.g, x, y, 0.026); m.material.transparent = true; p.fades.push(m.material); };
-  label(addPanel('front', 1.94, 1.77, 4, 5, 0, 1.35, 1.079, 0, true), logoTex, 0.62, 0.35, 0, 0.55);   /* Win Equipments logo, owner's request */
-  const rightPanel = addPanel('right', 1.89, 2.82, 5, 9, 1.109, 1.84, 0, Math.PI / 2);
-  label(rightPanel, stickerTex, 0.26, 0.36, -0.6, 1.0);
-  label(rightPanel, canvasTex(200, 140, (g, w, h) => { g.fillStyle = '#f4f5ef'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(30,40,35,0.45)'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12); for (let y = 30; y < h - 10; y += 18) { g.beginPath(); g.moveTo(10, y); g.lineTo(w - 10, y); g.stroke(); } }), 0.3, 0.21, 0.62, 1.12);
-  addPanel('left', 1.89, 2.82, 5, 9, -1.109, 1.84, 0, -Math.PI / 2);
-  addPanel('back', 1.96, 2.82, 5, 9, 0, 1.84, -1.049, Math.PI);
+  /* panels sit in the cabinet windows: lower front 0.30-1.30, sides and back 0.30-2.32 */
+  label(addPanel('front', 1.92, 0.98, 4, 4, 0, 0.8, BODY.d / 2 + 0.009, 0, true), logoTex, 0.62, 0.35, 0, 0.24);   /* Win Equipments logo, owner's request */
+  const rightPanel = addPanel('right', 1.88, 2.0, 5, 9, BODY.w / 2 + 0.009, 1.31, 0, Math.PI / 2);
+  label(rightPanel, stickerTex, 0.26, 0.36, -0.6, 0.62);
+  label(rightPanel, canvasTex(200, 140, (g, w, h) => { g.fillStyle = '#f4f5ef'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(30,40,35,0.45)'; g.lineWidth = 3; g.strokeRect(6, 6, w - 12, h - 12); for (let y = 30; y < h - 10; y += 18) { g.beginPath(); g.moveTo(10, y); g.lineTo(w - 10, y); g.stroke(); } }), 0.3, 0.21, 0.62, 0.78);
+  addPanel('left', 1.88, 2.0, 5, 9, -BODY.w / 2 - 0.009, 1.31, 0, -Math.PI / 2);
+  const backPanel = addPanel('back', 1.94, 2.0, 5, 9, 0, 1.31, -BODY.d / 2 - 0.009, Math.PI);
+  /* rear: the level-gauge window on the tank side, and a plain earth-symbol label by the cable gland */
+  label(backPanel, canvasTex(48, 220, (g, w, h) => { g.fillStyle = '#15191b'; g.fillRect(0, 0, w, h); g.fillStyle = '#9fb7ae'; g.fillRect(14, 22, w - 28, h - 44); g.fillStyle = '#c9a85a'; g.fillRect(16, 6, w - 32, 10); g.fillRect(16, h - 16, w - 32, 10); }), 0.09, 0.42, 0.74, 0.22);
+  label(backPanel, canvasTex(96, 96, (g, w, h) => { g.fillStyle = '#f2c018'; g.fillRect(0, 0, w, h); g.strokeStyle = '#111'; g.lineWidth = 6; g.beginPath(); g.moveTo(48, 16); g.lineTo(48, 50); g.moveTo(22, 50); g.lineTo(74, 50); g.moveTo(30, 62); g.lineTo(66, 62); g.moveTo(39, 74); g.lineTo(57, 74); g.stroke(); }), 0.07, 0.07, -0.8, -0.86);
 
   /* ---------- foam-insulated tank with metal lid, seams and sight glass ---------- */
   box(1.26, 1.79, 1.19, foam, tank, -0.15, 1.41, -0.22, 0.035);
@@ -330,7 +392,15 @@ export async function init(opts) {
       root.add(m);
     });
   };
-  bake(model); bake(door); bake(rotor);
+  /* place the groups in the squatter body: fan pack and controls drop onto the lid, interior parts scale in */
+  const BASE = new Map([[fan, V(0, DROP, 0)], [cabinet, V(0, DROP, 0)], [tank, V(0, -0.11, 0)], [compressor, V(0, 0, 0)], [pump, V(0, 0, 0)], [pipes, V(0, 0, 0)]]);
+  BASE.forEach((pos, g) => g.position.copy(pos));
+  [tank, compressor, pump, pipes].forEach((g) => g.scale.setScalar(K));
+  bake(model);
+  [fan, cabinet, tank, compressor, pump, pipes, door, rotor].forEach(bake);
+  /* the pipework and cabinet get their own material copies so the exploded view can fade just them */
+  const pipeFades = [];
+  pipes.traverse((o) => { if (o.isMesh) { o.material = o.material.clone(); o.material.transparent = true; pipeFades.push(o.material); } });
   panels.forEach((p) => { bake(p.g); placeBolts(p, 0); });
   geometryCache.forEach((g) => g.dispose());
 
@@ -347,7 +417,7 @@ export async function init(opts) {
   key.shadow.normalBias = 0.02; key.shadow.bias = -0.0004; key.shadow.radius = 9; key.shadow.blurSamples = 16; scene.add(key);
   const fill = new T.DirectionalLight('#c0e3ff', 1.5); fill.position.set(4, 4, -2); scene.add(fill);
   const frontLight = new T.DirectionalLight('#e1f0de', 1.1); frontLight.position.set(1, 2, 6); scene.add(frontLight);
-  const lamp = new T.PointLight('#fff1dc', 0, 6, 2); lamp.position.set(0.3, 2.55, 1.6); model.add(lamp);
+  const lamp = new T.PointLight('#fff1dc', 0, 6, 2); lamp.position.set(0.3, 1.7, 1.55); model.add(lamp);
   const floor = new T.Mesh(new T.PlaneGeometry(40, 40), new T.ShadowMaterial({ opacity: 0.13 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
 
   /* ---------- contact shadow: the unit rendered from below into a blurred texture, darker where it touches the floor ---------- */
@@ -387,6 +457,7 @@ export async function init(opts) {
     blurPlane.visible = false;
   };
   const updateContact = () => {
+    ghosted.forEach((o) => { o.visible = false; });   /* only solid parts darken the floor */
     floor.visible = csPlane.visible = false;
     scene.overrideMaterial = depthMat;
     renderer.setRenderTarget(rtA); renderer.clear(); renderer.render(scene, csCam);
@@ -394,42 +465,105 @@ export async function init(opts) {
     blur(3.4); blur(1.3);
     renderer.setRenderTarget(null);
     floor.visible = csPlane.visible = true;
+    ghosted.forEach((o) => { o.visible = true; });
   };
 
-  /* ---------- hotspot anchors: closed = on the casing, open = on the part ---------- */
+  /* ---------- hotspot anchors: closed = on the casing, open = on the part (anchored to the part's group, so they follow it) ---------- */
   const anchor = (obj, p, n) => ({ obj, p: V(p[0], p[1], p[2]), n: V(n[0], n[1], n[2]).normalize() });
   const doorAnchor = anchor(door, [-0.06, 2.93, 1.16], [0, 0, 1]);
-  const fanAnchor = anchor(model, [0, 3.82, 0.1], [0, 1, 0.5]);
+  const fanAnchor = anchor(fan, [0, 3.82, 0.1], [0, 1, 0.5]);
   const CLOSED = {
     1: doorAnchor, 2: fanAnchor,
-    3: anchor(model, [-0.62, 1.0, 1.11], [0, 0, 1]),
-    4: anchor(model, [-1.14, 1.75, -0.2], [-1, 0, 0]),
-    5: anchor(model, [0.58, 0.75, 1.11], [0, 0, 1]),
-    6: anchor(model, [1.14, 1.6, 0.25], [1, 0, 0])
+    3: anchor(model, [-0.55, 0.62, BODY.d / 2 + 0.04], [0, 0, 1]),
+    4: anchor(model, [-BODY.w / 2 - 0.04, 1.3, -0.2], [-1, 0, 0]),
+    5: anchor(model, [0.5, 0.55, BODY.d / 2 + 0.04], [0, 0, 1]),
+    6: anchor(model, [BODY.w / 2 + 0.04, 1.25, 0.25], [1, 0, 0])
   };
   const OPEN = {
     1: doorAnchor, 2: fanAnchor,
-    3: anchor(model, [-0.67, 0.95, 0.93], [0, 0, 1]),
-    4: anchor(model, [-0.83, 1.6, -0.14], [-1, 0, 0]),
-    5: anchor(model, [0.8, 0.61, 0.5], [1, 0, 0.3]),   /* side of the red end cover: hidden behind the front rail from the left */
-    6: anchor(model, [0.91, 1.3, -0.12], [1, 0, 0.3])
+    3: anchor(compressor, [-0.67, 0.95, 0.93], [0, 0, 1]),
+    4: anchor(tank, [-0.83, 1.6, -0.14], [-1, 0, 0]),
+    5: anchor(pump, [0.8, 0.61, 0.5], [1, 0, 0.3]),   /* side of the red end cover: hidden behind the front bracket from the left */
+    6: anchor(pipes, [0.91, 1.3, -0.12], [1, 0, 0.3])
   };
 
-  /* ---------- camera, layout, opening ---------- */
-  const target = V(0, 1.85, 0);
-  let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, open = 0, fanSpeed = 1, shapeDirty = true;
+  /* ---------- exploded view: each part moves out along its own line; pipework and cabinet fade ---------- */
+  const EXPLODE = new Map([[fan, V(0, 0.95, 0)], [cabinet, V(0, 0.32, 0.62)], [compressor, V(-0.68, 0, 0.58)], [pump, V(0.72, 0, 0.62)], [tank, V(0, 0.12, -0.72)], [pipes, V(0, 0, 0)]]);
+
+  /* ---------- isolate: the chosen part stays solid, everything else turns to a pale ghost ---------- */
+  const ghost = new T.MeshBasicMaterial({ color: '#a9bccb', transparent: true, opacity: 0.12, depthWrite: false });
+  const PART_GROUPS = { 1: [cabinet], 2: [fan], 3: [compressor], 4: [tank], 5: [pump], 6: [pipes] };
+  let isolated = 0;
+  const ghosted = [];
+  const applyIsolate = (n) => {
+    if (n === isolated) return;
+    isolated = n;
+    ghosted.length = 0;
+    const keepSet = new Set(PART_GROUPS[n] || []);
+    const inKept = (o) => { for (let q = o; q && q !== model; q = q.parent) if (keepSet.has(q)) return true; return false; };
+    model.traverse((o) => {
+      if (!o.isMesh || o.userData.flow) return;
+      if (!o.userData.mat) { o.userData.mat = o.material; o.userData.cast = o.castShadow; }
+      const solid = !n || inKept(o);
+      o.material = solid ? o.userData.mat : ghost;
+      o.castShadow = solid ? o.userData.cast : false;   /* ghosts cast no shadow */
+      if (!solid) ghosted.push(o);
+    });
+  };
+
+  /* ---------- how it works: dashes flow along both circuits (authored in the interior's coordinates, scaled like the pipes) ---------- */
+  const flow = group(); flow.scale.setScalar(K); flow.userData.keep = true;
+  const flowItems = [];
+  const flowMat = (hex, repeat) => new T.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uColor: { value: new T.Color(hex) }, uOpacity: { value: 0 }, uRepeat: { value: repeat }, uSpeed: { value: reduce ? 0 : 0.9 } },
+    transparent: true, depthTest: false, depthWrite: false,
+    vertexShader: 'varying vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'uniform float uTime;\nuniform float uOpacity;\nuniform float uRepeat;\nuniform float uSpeed;\nuniform vec3 uColor;\nvarying vec2 vUv;\nvoid main() {\n  float s = fract(vUv.x * uRepeat - uTime * uSpeed);\n  float a = smoothstep(0.0, 0.1, s) * (1.0 - smoothstep(0.55, 0.62, s));\n  vec3 c = mix(uColor * 0.6, uColor * 1.2, s);\n  gl_FragColor = vec4(c, (0.22 + 0.78 * a) * uOpacity);\n  #include <colorspace_fragment>\n}'
+  });
+  const flowPath = (points, hex, steps) => {
+    const curve = new T.CatmullRomCurve3(points.map((q) => V(q[0], q[1], q[2])), false, 'centripetal');
+    const m = new T.Mesh(new T.TubeGeometry(curve, Math.max(40, points.length * 16), 0.045, 8, false), flowMat(hex, curve.getLength() / 0.22));
+    m.renderOrder = 10; m.userData.flow = true; m.frustumCulled = false;
+    flow.add(m); flowItems.push({ m, steps });
+  };
+  const C = { warm: '#f39a3d', chilled: '#2f8bff', hot: '#e8402a', liquid: '#f2735a', cold: '#36d1ff' };
+  /* water: warm return from the process into the tank (step 1); chilled water from the tank through the pump back out (step 4) */
+  flowPath([[1.75, 2.1, 0.0], [1.2, 2.1, 0.02], [0.6, 2.25, -0.1], [-0.1, 2.45, -0.2], [-0.15, 1.9, -0.25]], C.warm, [1]);
+  flowPath([[0.31, 0.61, -0.72], [0.58, 0.61, -0.55], [0.58, 0.61, -0.21], [0.58, 0.97, -0.24], [0.9, 1.02, -0.24], [0.91, 1.64, -0.24], [1.3, 1.66, -0.24], [1.8, 1.66, -0.24]], C.chilled, [4]);
+  /* refrigerant: cold vapour from the evaporator to the compressor (step 2); hot gas to the condenser, warm liquid back (step 3) */
+  flowPath([[-0.15, 2.42, 0.3], [-0.2, 1.94, 0.41], [-0.37, 1.79, 0.55], [-0.67, 1.68, 0.61], [-0.67, 1.45, 0.62]], C.cold, [2]);
+  flowPath([[-0.86, 1.31, 0.66], [-0.94, 1.51, 0.66], [-0.94, 2.55, 0.4], [-0.78, 2.85, -0.2], [-0.2, 2.86, -0.4], [0.43, 2.82, 0.05]], C.hot, [3]);
+  flowPath([[0.43, 2.82, 0.05], [0.58, 2.5, 0.07], [0.91, 2.54, 0.22], [0.91, 1.07, 0.4], [0.84, 0.5, 0.5], [0.15, 0.62, 0.82], [-0.1, 0.9, 0.7], [-0.15, 2.42, 0.3]], C.liquid, [3]);
+  /* the evaporator point, at the tank connection (type not shown: it is not confirmed for this unit) */
+  const evap = new T.Mesh(new T.TorusGeometry(0.16, 0.018, 8, 40), new T.MeshBasicMaterial({ color: C.cold, transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+  evap.rotation.x = Math.PI / 2; evap.position.set(-0.15, 2.45, 0.3); evap.renderOrder = 11; evap.userData.flow = true; flow.add(evap);
+  /* heat leaving through the fan: upward chevrons above the guard (step 3) */
+  const heatTex = canvasTex(128, 128, (g) => { g.strokeStyle = '#ffffff'; g.lineWidth = 16; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(24, 84); g.lineTo(64, 44); g.lineTo(104, 84); g.stroke(); });
+  const heat = [];
+  for (let k = 0; k < 6; k++) {
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: heatTex, color: '#ff6a3d', transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
+    sp.scale.set(0.32, 0.32, 1); sp.visible = false; sp.renderOrder = 12; sp.userData.flow = true; sp.userData.x = (k % 3 - 1) * 0.42; sp.userData.ph = k / 6;
+    model.add(sp); heat.push(sp);
+  }
+
+  /* ---------- state, camera, layout ---------- */
+  const target = V(0, 1.4, 0);
+  const st = { open: 0, explode: 0, flow: 0, step: 1, zoom: 1, isolate: 0, still: false };
+  let baseDist = 9, dist = 9, elev = 14 * Math.PI / 180, fanSpeed = 1, shapeDirty = true, flowTime = 0;
   const placeCamera = () => {
-    const e = ease(open);
-    dist = baseDist * (1 - 0.05 * e);
-    const ty = target.y - 0.08 * e;
+    const e = ease(st.open), x = ease(st.explode), f = ease(st.flow);
+    dist = baseDist * (1 - 0.05 * e + 0.42 * x + 0.16 * f) * st.zoom;
+    const ty = target.y - 0.06 * e + 0.38 * x - (st.still ? 0 : 0.55) * f;   /* how it works: the unit sits above the caption card (not in stills) */
     camera.position.set(0, ty + dist * Math.sin(elev), dist * Math.cos(elev));
     camera.lookAt(0, ty, 0);
   };
+  let composer = null, gtao = null, useAO = false;
   const frameFor = (w, h) => {
     camera.aspect = w / h;
     const half = Math.tan(camera.fov * Math.PI / 360);
-    baseDist = Math.max(2.25 / half, 1.75 / (half * camera.aspect)) + 1.2;
+    baseDist = Math.max(1.78 / half, 1.65 / (half * camera.aspect)) + 1.25;
     camera.updateProjectionMatrix();
+    if (composer) { composer.setPixelRatio(renderer.getPixelRatio()); composer.setSize(w, h); }
     placeCamera();
   };
   const fit = () => {
@@ -438,25 +572,53 @@ export async function init(opts) {
     renderer.setSize(w, h, false);
     frameFor(w, h);
   };
-  const applyOpen = () => {
-    const d = lin(open, WIN.door);
-    doorPivot.rotation.y = -1.85 * (d <= 0 ? 0 : backOut(d));
+  const applyState = () => {
+    /* opening: door, bolts, panels, lamp */
+    const d = lin(st.open, WIN.door);
+    doorPivot.rotation.y = -1.85 * (d <= 0 ? 0 : backOut(d)) * (1 - ease(Math.max(st.explode, st.flow)));   /* the door shuts for the exploded and how-it-works views */
     panels.forEach((p) => {
-      const t = lin(open, p.win);
+      const t = lin(st.open, p.win);
       const unscrew = ease(clamp01(t / 0.28)), pull = ease(clamp01((t - 0.22) / 0.25)), away = ease(clamp01((t - 0.4) / 0.6));
       if (t !== p.last) { placeBolts(p, unscrew); p.last = t; }
       p.g.position.copy(p.origin).addScaledVector(p.n, 0.12 * pull + 0.55 * away);
       p.g.position.y = p.origin.y + 0.05 * pull - 0.45 * away * away;
-      p.g.rotation.x = 0.22 * away;   /* the top tips outward as the panel comes away */
+      p.g.rotation.x = 0.22 * away;
       const op = 1 - clamp01((away - 0.35) / 0.55);
       p.fades.forEach((m) => { m.opacity = op; });
       p.g.visible = op > 0.01;
       const cast = away < 0.3;
       if (p.cast !== cast) { p.cast = cast; p.g.traverse((o) => { if (o.isMesh) o.castShadow = cast; }); }
     });
-    lamp.intensity = 2.6 * phase(open, WIN.light);
-    fanSpeed = 1 - phase(open, WIN.fan);   /* the fan spins down: a unit is opened with the power off */
+    lamp.intensity = 2.6 * phase(st.open, WIN.light);
+    /* exploded: parts move out, pipework and cabinet fade */
+    const x = ease(st.explode);
+    EXPLODE.forEach((vec, g) => g.position.copy(BASE.get(g)).addScaledVector(vec, x));
+    pipeFades.forEach((m) => { m.opacity = 1 - 0.85 * x; });
+    shellBlue.opacity = 1 - 0.72 * x;
+    if (shellBlue.transparent !== x > 0.001) { shellBlue.transparent = x > 0.001; shellBlue.needsUpdate = true; }
+    /* flow: fade the circuits in; the current step is bright, the rest dim */
+    const f = ease(st.flow);
+    flowItems.forEach((it) => { it.m.material.uniforms.uOpacity.value = f * (!st.step || it.steps.indexOf(st.step) >= 0 ? 1 : 0.16); });   /* step 0: both circuits at once */
+    flow.visible = f > 0.002;
+    if (f <= 0.002) { heat.forEach((sp) => { sp.visible = false; }); evap.material.opacity = 0; }   /* nothing lingers after leaving the flow view */
+    /* the fan runs while the flow is shown, and spins down as the unit is opened for service */
+    fanSpeed = Math.max(1 - phase(st.open, WIN.fan), f);
+    applyIsolate(st.isolate);
     shapeDirty = true;
+  };
+  const animateFlow = () => {
+    const f = ease(st.flow);
+    flowItems.forEach((it) => { it.m.material.uniforms.uTime.value = flowTime; });
+    const evapOn = f * (!st.step || st.step === 2 ? 1 : 0.15);
+    evap.material.opacity = evapOn * (0.55 + 0.45 * Math.sin(flowTime * 4));
+    evap.scale.setScalar(1 + 0.12 * Math.sin(flowTime * 4));
+    const heatOn = f * (!st.step || st.step === 3 ? 1 : 0);
+    heat.forEach((sp) => {
+      const u = (flowTime * 0.45 + sp.userData.ph) % 1;
+      sp.position.set(sp.userData.x, BODY.top + 0.45 + u * 0.75, (sp.userData.ph - 0.5) * 0.5);
+      sp.material.opacity = heatOn * Math.sin(Math.PI * u) * 0.9;
+      sp.visible = heatOn > 0.01;
+    });
   };
 
   const layer = document.createElement('div');
@@ -473,13 +635,15 @@ export async function init(opts) {
     return { x: (v.x + 1) / 2 * w, y: (1 - v.y) / 2 * h, facing };
   };
   const placeHotspots = () => {
-    const w = stage.clientWidth, h = stage.clientHeight, sp = ease(open), set = sp >= 0.5 ? OPEN : CLOSED;
+    const w = stage.clientWidth, h = stage.clientHeight, sp = ease(st.open), set = sp >= 0.5 ? OPEN : CLOSED;
+    const exploding = st.explode > 0.02 && st.explode < 0.98, hideAll = st.flow > 0.2 || exploding;
     hotspots.forEach((el, k) => {
       const a = set[el.dataset.hs];
       if (!a) return;
-      /* closed markers leave as it starts to open; open markers arrive one after another once it is open */
       const fade = sp >= 0.5 ? clamp01((sp - 0.62 - k * 0.05) / 0.1) : clamp01((0.38 - sp) / 0.1);
-      const q = project(a, w, h), away = q.facing < 0.05 || fade < 0.2;
+      const q = project(a, w, h);
+      /* in the exploded view parts face every way; show every marker */
+      const away = hideAll || (isolated && el.dataset.hs !== String(isolated)) || (st.explode < 0.98 && q.facing < 0.05) || fade < 0.2;
       el.classList.toggle('is-away', away);
       el.style.opacity = away ? '' : fade.toFixed(2);
       el.style.left = q.x.toFixed(1) + 'px';
@@ -487,20 +651,21 @@ export async function init(opts) {
     });
   };
 
-  /* ---------- render loop: renders only when something changed; the fan keeps it running while it spins ---------- */
+  /* ---------- render loop: on demand; the fan and the flow keep it running while they move ---------- */
   let raf = 0, need = true, inView = true, last = 0, alive = true;
   const spin = !reduce;
   const draw = () => {
     model.updateMatrixWorld(true);
     if (shapeDirty) { updateContact(); renderer.shadowMap.needsUpdate = true; shapeDirty = false; }
     placeHotspots();
-    renderer.render(scene, camera);
+    if (st.flow > 0.002) animateFlow();
+    /* ambient occlusion only when nothing see-through is on screen (ghosts and flow lines would confuse it) */
+    if (useAO && !st.isolate && st.flow < 0.002) composer.render(); else renderer.render(scene, camera);
   };
-  /* slow devices: if the first frames average under ~40 fps, drop once to pixel ratio 1 and a smaller, cheaper shadow */
   const samples = [];
   let degraded = false;
   const degrade = () => {
-    degraded = true;
+    degraded = true; useAO = false;
     renderer.setPixelRatio(1);
     key.shadow.mapSize.set(512, 512); key.shadow.blurSamples = 8;
     if (key.shadow.map) { key.shadow.map.dispose(); key.shadow.map = null; }
@@ -513,12 +678,14 @@ export async function init(opts) {
     const dt = Math.min(50, raw); last = t;
     if (!degraded && raw > 0 && samples.length < 45) {
       samples.push(raw);
-      if (samples.length === 45) { const s = samples.slice(5); if (s.reduce((a, b) => a + b, 0) / s.length > 24) degrade(); }
+      if (samples.length === 45) { const sm = samples.slice(5); if (sm.reduce((a, b) => a + b, 0) / sm.length > 24) degrade(); }
     }
     const spinning = spin && inView && fanSpeed > 0.002;
+    const flowing = inView && st.flow > 0.002 && !reduce;
     if (spinning) { rotor.rotation.y -= dt * 0.006 * fanSpeed; need = true; }
+    if (flowing) { flowTime += dt / 1000; need = true; }
     if (need) { draw(); need = false; }
-    if (spinning && !document.hidden) raf = requestAnimationFrame(tick);
+    if ((spinning || flowing) && !document.hidden) raf = requestAnimationFrame(tick);
     else last = 0;
   };
   const request = () => { if (!raf && alive) raf = requestAnimationFrame(tick); };
@@ -527,6 +694,27 @@ export async function init(opts) {
   stage.appendChild(layer);
   hotspots.forEach((el) => layer.appendChild(el));
   fit();
+
+  /* ambient occlusion (GTAO) on capable devices only; loaded after the model is on screen */
+  if (!lowEnd) {
+    Promise.all([
+      import('/js/vendor/postprocessing/EffectComposer.js'), import('/js/vendor/postprocessing/RenderPass.js'),
+      import('/js/vendor/postprocessing/GTAOPass.js'), import('/js/vendor/postprocessing/OutputPass.js')
+    ]).then((mods) => {
+      if (!alive || degraded) return;
+      const w = stage.clientWidth || 800, h = stage.clientHeight || 600;
+      composer = new mods[0].EffectComposer(renderer, new T.WebGLRenderTarget(w, h, { type: T.HalfFloatType, samples: 4 }));
+      composer.addPass(new mods[1].RenderPass(scene, camera));
+      gtao = new mods[2].GTAOPass(scene, camera, w, h);
+      gtao.output = mods[2].GTAOPass.OUTPUT.Default;
+      gtao.blendIntensity = 0.85;
+      gtao.updateGtaoMaterial({ radius: 0.32, distanceExponent: 1.6, thickness: 1.2, scale: 1, samples: 12, distanceFallOff: 1, screenSpaceRadius: false });
+      gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, radiusExponent: 1, rings: 2, samples: 12 });
+      composer.addPass(gtao);
+      composer.addPass(new mods[3].OutputPass());
+      useAO = true; fit(); need = true; request();
+    }).catch(() => { useAO = false; });
+  }
 
   const ro = new ResizeObserver(() => { fit(); need = true; request(); });
   ro.observe(stage);
@@ -539,27 +727,34 @@ export async function init(opts) {
     alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect();
     document.removeEventListener('visibilitychange', onVis);
     homes.forEach((hm) => { hm.el.removeAttribute('style'); hm.el.classList.remove('is-away'); hm.parent.insertBefore(hm.el, hm.next); });
-    layer.remove(); cvs.remove(); rtA.dispose(); rtB.dispose(); renderer.dispose();
+    layer.remove(); cvs.remove(); rtA.dispose(); rtB.dispose();
+    if (composer) composer.dispose();
+    renderer.dispose();
   };
   cvs.addEventListener('webglcontextlost', (e) => { e.preventDefault(); destroy(); if (opts.onLost) opts.onLost(); });
   layer.addEventListener('click', (e) => { const hs = e.target.closest('.c3__hs'); if (hs && opts.onSelect) opts.onSelect(hs.dataset.hs); });
 
-  applyOpen();
+  applyState();
   draw();
   request();
 
   return {
-    set(ry, rx, o) {
+    /* state: { open, explode, flow (0..1), step (1-4), zoom (0.65-1.25), isolate (0 or part number) } */
+    set(ry, rx, s) {
       model.rotation.y = ry * Math.PI / 180;
       elev = -rx * Math.PI / 180;
-      const next = clamp01(o || 0);
-      if (next !== open) { open = next; applyOpen(); }
+      s = s || {};
+      const next = { open: clamp01(s.open || 0), explode: clamp01(s.explode || 0), flow: clamp01(s.flow || 0), step: s.step === undefined ? 1 : s.step, zoom: Math.max(0.65, Math.min(1.25, s.zoom || 1)), isolate: s.isolate || 0, still: !!s.still };
+      const changed = next.open !== st.open || next.explode !== st.explode || next.flow !== st.flow || next.step !== st.step || next.isolate !== st.isolate;
+      Object.assign(st, next);
+      if (changed) applyState();
       placeCamera();
       shapeDirty = true; need = true; request();
     },
-    /* a still at a given size (for diagram images and video frames), plus where each part's marker falls */
-    capture(w, h, background, fanAngle) {
+    /* a still at a given size (diagram images, video frames), plus where each part's marker falls */
+    capture(w, h, background, fanAngle, time) {
       if (fanAngle !== undefined) rotor.rotation.y = fanAngle;
+      if (time !== undefined) flowTime = time;
       const pr = renderer.getPixelRatio();
       renderer.setPixelRatio(1); renderer.setSize(w, h, false); frameFor(w, h);
       shapeDirty = true; draw();
@@ -567,8 +762,8 @@ export async function init(opts) {
       const g = out.getContext('2d');
       if (background) { g.fillStyle = background; g.fillRect(0, 0, w, h); }
       g.drawImage(cvs, 0, 0, w, h);
-      const set = ease(open) >= 0.5 ? OPEN : CLOSED;
-      const spots = hotspots.map((el) => { const q = project(set[el.dataset.hs], w, h); return { n: el.dataset.hs, x: q.x, y: q.y, visible: q.facing > 0.05 }; });
+      const set = ease(st.open) >= 0.5 ? OPEN : CLOSED;
+      const spots = hotspots.map((el) => { const q = project(set[el.dataset.hs], w, h); return { n: el.dataset.hs, x: q.x, y: q.y, visible: st.explode > 0.98 || q.facing > 0.05 }; });
       renderer.setPixelRatio(pr); fit(); shapeDirty = true; need = true; request();
       return { canvas: out, spots };
     },

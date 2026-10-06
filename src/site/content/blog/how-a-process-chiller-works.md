@@ -5,7 +5,7 @@ description: How a process chiller works, with a labelled 3D diagram and video: 
 date: 2026-10-04
 updated: 2026-10-06
 viewer: chiller
-video: chiller-3d-inside | chiller-renders/chiller-3d-video-poster.jpg | Inside a process chiller: 3D animation | A 3D model of a Win process chiller turning, then opening: the control door swings out and the panels come off to show the compressor, insulated tank, circulating pump and pipework. | PT10S
+video: chiller-3d-inside | chiller-renders/chiller-3d-video-poster.jpg | How a process chiller works: 3D animation | A 3D model of a Win process chiller turning and opening, the water and refrigerant circuits flowing through it, then splitting into its parts: compressor, insulated tank, circulating pump, condenser and fan, and controls. | PT16S
 products: industrial-process-chillers, anodizing-chillers, medical-scan-chillers
 category: Chillers
 order: 13
@@ -30,6 +30,8 @@ You can turn this chiller around and open it yourself in the [3D model](#chiller
 3. **Reject heat.** The refrigeration compressor sends that heat to an air-cooled or water-cooled condenser.
 4. **Water out.** Cooled water is pumped from the closed stainless steel tank back to the process at the set temperature.
 
+@photo chiller-renders/chiller-how-it-works.jpg | How a process chiller works, shown on the 3D model: warm water returns from the process and chilled water goes back out, while the refrigerant carries the heat to the condenser and fan on top. Illustrative model; choose "How it works" in the 3D viewer below to step through it.
+
 ## Parts of a chiller, in 3D
 
 The diagrams and animation come from a 3D model built from photographs of a Win process chiller. Numbers match the labels.
@@ -43,7 +45,9 @@ The diagrams and animation come from a 3D model built from photographs of a Win 
 
 @photo chiller-renders/chiller-parts-diagram-pump-side.jpg | The same chiller from the pump side: the circulating pump, its PVC pipework and ball valve, with the compressor behind. Illustrative 3D model.
 
-@video chiller-3d-inside | chiller-renders/chiller-3d-video-poster.jpg | 3D animation: the chiller turns, the fan stops, the control door swings out and the panels come off to show the parts inside.
+@photo chiller-renders/chiller-exploded-view.jpg | Exploded 3D view of a Win process chiller: the condenser and fan lift off the top, and the controls, compressor, insulated tank and circulating pump move apart. Illustrative model.
+
+@video chiller-3d-inside | chiller-renders/chiller-3d-video-poster.jpg | 3D animation: the chiller turns and opens, the water and refrigerant circuits flow through it, then it splits into its parts.
 
 ## What each part does in a WCP chiller
 

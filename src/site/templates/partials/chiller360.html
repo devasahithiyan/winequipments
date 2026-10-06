@@ -3,6 +3,12 @@
    scrolls near. The photographed unit is not given a model number or rating. #}
 {% set ch = products['industrial-process-chillers'] %}
 {% set feat = {} %}{% for f in ch.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
+{% set flow_steps = [
+  {"t": "Water in.", "d": "Warm water from your process returns to the chiller's tank.", "ry": -55, "rx": -16},
+  {"t": "Evaporate.", "d": "In the evaporator the refrigerant boils and takes heat from the water.", "ry": 22, "rx": -24},
+  {"t": "Reject heat.", "d": "The compressor pumps that heat to the condenser on top, and the fan carries it into the air.", "ry": 38, "rx": -30},
+  {"t": "Water out.", "d": "The pump sends the chilled water back to your process at the set temperature.", "ry": -45, "rx": -14}
+] %}
 {% set parts = [
   {"t": "Controls", "ry": 12, "rx": -10, "pts": ["Temperature controller, POWER ON switch and HP TRIP lamp on a hinged door; HP gauge on the frame"] + feat['Controls']},
   {"t": "Condenser and fan", "ry": 30, "rx": -34, "pts": ["Air-cooled condenser with an axial fan behind a wire guard on top", "The compressor sends the heat taken from your water here, and the fan carries it away"]},
@@ -16,13 +22,13 @@
     <div class="h-head" data-reveal>
       <p class="c3__eyebrow"><span>3D</span> Process chiller</p>
       <h2 id="c3-title">Look inside a Win chiller</h2>
-      <p>Turn the chiller around, then open it to see the compressor, tank, pump and pipework. Pick a part to see what it does.</p>
+      <p>Turn the chiller around, open it, explode it into its parts, or watch how the water and refrigerant flow. Pick a part to see what it does.</p>
       {% if url != '/blog/how-a-process-chiller-works.html' %}<p><a class="link-arrow" href="/blog/how-a-process-chiller-works.html">Chiller working principle, with a labelled diagram and video<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>{% endif %}
     </div>
     <div class="c3__scroll" data-c3-scroll>
     <div class="c3__grid">
       <div class="c3__viewer" data-c3>
-        <div class="c3__stage" tabindex="0" role="img" aria-label="3D model of a Win process chiller. Use the left and right arrow keys to rotate it, and the Open button to see inside." data-c3-stage>
+        <div class="c3__stage" tabindex="0" role="group" aria-roledescription="3D viewer" aria-label="3D model of a Win process chiller. Left and right arrow keys rotate it, plus and minus zoom. Use the view buttons below to open it, explode it or see how it works." data-c3-stage>
           <div class="c3__poster" aria-hidden="true">{{ picture('images/chiller-reference/exterior.jpg', '', sizes='(min-width: 1024px) 34vw, 80vw', max_w=640) }}</div>
           <span class="c3__hs" data-hs="1">1</span>
           <span class="c3__hs" data-hs="2">2</span>
@@ -32,11 +38,31 @@
           <span class="c3__hs" data-hs="6">6</span>
           <p class="c3__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3"/></svg>Drag to rotate</p>
           <span class="c3__deg" aria-hidden="true" data-c3-deg>035°</span>
+          <div class="c3__flow" data-c3-flow hidden>
+            <p class="c3__flow-n">How it works · step <span data-c3-stepnow>1</span> of {{ flow_steps | length }}</p>
+            <ol class="c3__flow-steps">
+              {% for fs in flow_steps %}<li data-c3-step="{{ loop.index }}" data-ry="{{ fs.ry }}" data-rx="{{ fs.rx }}"{% if not loop.first %} hidden{% endif %}><strong>{{ fs.t }}</strong> {{ fs.d }}</li>{% endfor %}
+            </ol>
+            <div class="c3__flow-bar">
+              <ul class="c3__legend" aria-label="Colours">
+                <li style="--c:#f39a3d">Warm water</li><li style="--c:#2f8bff">Chilled water</li><li style="--c:#e8402a">Hot refrigerant</li><li style="--c:#36d1ff">Cold refrigerant</li>
+              </ul>
+              <span class="c3__flow-nav"><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="-1" aria-label="Previous step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="c3__btn c3__btn--sm" data-c3-stepgo="1" aria-label="Next step"><svg aria-hidden="true"><use href="#i-chev"/></svg></button></span>
+            </div>
+          </div>
+        </div>
+        <div class="c3__modes" role="radiogroup" aria-label="View" hidden>
+          <button type="button" role="radio" aria-checked="true" data-c3-mode="closed">Closed</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="open">Open</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="exploded">Exploded</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-c3-mode="flow">How it works</button>
         </div>
         <div class="c3__controls">
-          <button type="button" class="c3__btn c3__btn--open" data-c3-open aria-pressed="false" hidden><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 4h10v16H4z"/><path d="m14 4 6 2v12l-6 2"/></svg><span>Open the unit</span></button>
           <button type="button" class="c3__btn" data-c3-rot="-45" aria-label="Rotate left" hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
           <button type="button" class="c3__btn" data-c3-rot="45" aria-label="Rotate right" hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-zoom="0.12" aria-label="Zoom out" hidden>−</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-zoom="-0.12" aria-label="Zoom in" hidden>+</button>
+          <button type="button" class="c3__btn c3__btn--text" data-c3-isolate aria-pressed="false" hidden>Isolate part</button>
           <button type="button" class="c3__btn c3__btn--text" data-c3-play aria-pressed="false" hidden>Auto-rotate</button>
           <button type="button" class="c3__btn c3__btn--text" data-c3-reset hidden>Reset view</button>
         </div>
