@@ -264,14 +264,22 @@
 
   /* ---------- load the WebGL model as the viewer approaches; any failure leaves the real photo in place ---------- */
   const webgl = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (_) { return false; } };
-  const saveData = navigator.connection && navigator.connection.saveData;
+  /* phones, tablets, low-end PCs and data-saver / slow connections keep the photo and load the model only when asked
+     (about 200 KB of script and a second or two of building on a slow phone); capable desktops load it as it comes near */
+  const conn = navigator.connection || {};
+  const slowNet = !!conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
+  const weakDevice = (navigator.hardwareConcurrency || 4) <= 4 || (navigator.deviceMemory || 8) <= 4;
+  const handheld = matchMedia('(max-width: 1023px), (hover: none)').matches;
+  const autoLoad = !slowNet && !weakDevice && !handheld;
+  const loadBtn = $('[data-c3-load]', stage);
   let loading = false;
   const controls = $$('.c3__controls [hidden], .c3__modes[hidden]', c3);
   const upgrade = () => {
-    if (loading || view3d || saveData || !webgl() || !HTMLScriptElement.supports?.('importmap')) return;
+    if (loading || view3d || !webgl() || !HTMLScriptElement.supports?.('importmap')) return;
     loading = true;
+    stage.classList.add('is-loading');
     import('/js/chiller3d.js' + ver).then((m) => m.init({
-      stage, reduce, hotspots,
+      stage, reduce, hotspots, lite: weakDevice || slowNet,
       onSelect: (n) => select(n, true),
       onLost: () => {
         view3d = null; section.classList.remove('has-3d'); stage.classList.remove('is-3d');
@@ -279,15 +287,24 @@
         layout();
       }
     })).then((v) => {
+      stage.classList.remove('is-loading');
+      if (!v) { loading = false; return; }
       view3d = v;
+      if (loadBtn) loadBtn.hidden = true;
       controls.forEach((b) => { b.hidden = false; });
       section.classList.add('has-3d');
       syncModeUI(); render();
       requestAnimationFrame(() => stage.classList.add('is-3d'));
       layout();
-    }).catch(() => { loading = false; });
+    }).catch(() => { loading = false; stage.classList.remove('is-loading'); });
   };
-  if (hasIO) {
+  const can3d = webgl() && HTMLScriptElement.supports?.('importmap');
+  if (!autoLoad) {
+    if (loadBtn && can3d) {
+      loadBtn.hidden = false;
+      loadBtn.addEventListener('click', (e) => { e.stopPropagation(); loadBtn.disabled = true; loadBtn.textContent = 'Loading 3D model…'; upgrade(); });
+    }
+  } else if (hasIO) {
     const near = new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) { near.disconnect(); upgrade(); } }, { rootMargin: '400px 0px' });
     near.observe(stage);
   } else upgrade();

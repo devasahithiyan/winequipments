@@ -40,6 +40,12 @@
 /* overlays */
 .c3__hint { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: var(--s-2); padding: 6px 14px 6px 10px; border-radius: 999px; background: rgba(21, 32, 26, 0.86); color: #fff; font-size: var(--fs-small); font-weight: 600; white-space: nowrap; pointer-events: none; transition: opacity 0.3s, transform 0.3s var(--ease-out); }
 .c3__hint svg { width: 20px; height: 20px; }
+.c3__load { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); z-index: 3; display: inline-flex; align-items: center; gap: var(--s-2); min-height: 48px; padding: 0 20px 0 16px; border: 0; border-radius: 999px; background: rgba(21, 32, 26, 0.9); color: #fff; font: inherit; font-weight: 600; white-space: nowrap; cursor: pointer; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); transition: background-color 0.2s; }
+.c3__load:hover { background: #15201a; }
+.c3__load:focus-visible { outline: 3px solid var(--focus, #2f8bff); outline-offset: 3px; }
+.c3__load svg { width: 22px; height: 22px; }
+.c3__load[disabled] { cursor: progress; opacity: 0.9; }
+.c3__stage.is-3d .c3__load { display: none; }
 .motion .c3__hint svg { animation: c3nudge 1.8s ease-in-out infinite; }
 @keyframes c3nudge { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
 .c3__stage.is-touched .c3__hint, .c3__stage.is-open .c3__hint { opacity: 0; transform: translate(-50%, 8px); }

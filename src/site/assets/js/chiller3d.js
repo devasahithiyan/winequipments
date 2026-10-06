@@ -28,7 +28,9 @@ export async function init(opts) {
   const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
   /* phones and small CPUs render at a lower pixel ratio; desktops up to 1.5 (Retina at 2x costs 4x the pixels for little gain) */
   const lowEnd = (navigator.hardwareConcurrency || 4) <= 4 || matchMedia('(max-width: 767px)').matches;
-  const maxPR = Math.min(window.devicePixelRatio || 1, lowEnd ? 1.25 : 1.5);
+  /* lite (phones, tablets, low-end PCs): no shadow map, no clearcoat or surface maps, pixel ratio 1 */
+  const lite = !!opts.lite || lowEnd;
+  const maxPR = Math.min(window.devicePixelRatio || 1, opts.lite ? 1 : lowEnd ? 1.25 : 1.5);
   renderer.setPixelRatio(maxPR);
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.NeutralToneMapping;   /* photographic roll-off that keeps the paint's saturation */
@@ -45,6 +47,8 @@ export async function init(opts) {
   const camera = new T.PerspectiveCamera(32, 1, 0.1, 60);
   const model = new T.Group(); scene.add(model);
   const geometryCache = new Map();
+  /* building the model is split into chunks with a yield between them, so a slow phone keeps scrolling while it builds */
+  const pause = () => new Promise((r) => setTimeout(r, 0));
   const V = (x, y, z) => new T.Vector3(x, y, z);
   const mat = (color, metalness, roughness, extra) => new T.MeshPhysicalMaterial(Object.assign({ color, metalness, roughness }, extra || {}));
 
@@ -170,6 +174,7 @@ export async function init(opts) {
     for (let y = 158; y < 210; y += 12) g.fillRect(12, y, w - 40, 4);
   });
 
+  await pause();
   /* ---------- folded sheet-metal cabinet: blue faces with windows for the cream panels, solid lid, slotted plinth ---------- */
   const rrect = (path, x, y, w, h, r) => {
     path.moveTo(x + r, y); path.lineTo(x + w - r, y); path.quadraticCurveTo(x + w, y, x + w, y + r); path.lineTo(x + w, y + h - r);
@@ -243,6 +248,7 @@ export async function init(opts) {
   }
   model.position.y = PAL;
 
+  await pause();
   /* ---------- top condenser pack, axial fan and wire guard ---------- */
   box(1.91, 0.43, 1.8, dark, fan, 0, 3.05, 0);
   const fins = new T.InstancedMesh(new T.BoxGeometry(1.82, 0.3, 0.014), steel, 48), fObj = new T.Object3D();
@@ -300,6 +306,7 @@ export async function init(opts) {
   }
   for (const y of [2.4, 3.13]) box(0.06, 0.07, 0.035, black, door, WINF - 0.07, y, 1.124);
 
+  await pause();
   /* ---------- removable panels with real capsule-shaped openings ---------- */
   const capsule = (shape, x, y, sw, sh) => {
     const r = sh / 2, a = sw / 2 - r, p = new T.Path();
@@ -365,6 +372,7 @@ export async function init(opts) {
   label(backPanel, canvasTex(48, 220, (g, w, h) => { g.fillStyle = '#15191b'; g.fillRect(0, 0, w, h); g.fillStyle = '#9fb7ae'; g.fillRect(14, 22, w - 28, h - 44); g.fillStyle = '#c9a85a'; g.fillRect(16, 6, w - 32, 10); g.fillRect(16, h - 16, w - 32, 10); }), 0.09, 0.42, 0.62, 0.22);
   label(backPanel, canvasTex(96, 96, (g, w, h) => { g.fillStyle = '#f2c018'; g.fillRect(0, 0, w, h); g.strokeStyle = '#111'; g.lineWidth = 6; g.beginPath(); g.moveTo(48, 16); g.lineTo(48, 50); g.moveTo(22, 50); g.lineTo(74, 50); g.moveTo(30, 62); g.lineTo(66, 62); g.moveTo(39, 74); g.lineTo(57, 74); g.stroke(); }), 0.07, 0.07, -0.68, -0.86);
 
+  await pause();
   /* ---------- foam-insulated tank with metal lid, seams and sight glass ---------- */
   box(1.26, 1.79, 1.19, foam, tank, -0.15, 1.41, -0.22, 0.035);
   for (const z of [-0.62, 0.12]) box(0.012, 1.74, 0.02, rubber, tank, -0.782, 1.41, z, 0.004);   /* insulation sheet seams */
@@ -412,6 +420,7 @@ export async function init(opts) {
   const PS = 1.2, PC = V(0.58, 0.335, 0.2);
   pumpBody.scale.setScalar(PS); pumpBody.position.copy(PC).multiplyScalar(1 - PS);
 
+  await pause();
   /* ---------- copper lines, foam insulation and ribbed conduits along the photographed routes ---------- */
   pipe([[-0.91, 0.57, 0.73], [-0.93, 0.56, 0.19], [-0.94, 0.59, -0.55], [-0.79, 2.5, -0.65], [-0.55, 2.88, -0.73]], 0.021, copper);
   pipe([[0.43, 2.35, 0.05], [0.58, 2.5, 0.07], [0.91, 2.54, 0.22], [0.91, 1.07, 0.4], [0.84, 0.4, 0.48]], 0.023, copper);
@@ -456,6 +465,7 @@ export async function init(opts) {
   cyl(0.032, 0.032, 0.09, brass, pipes, 0.91, 1.8, 0.31, 12);
   cyl(0.02, 0.02, 0.012, mat('#9fc3b8', 0.1, 0.05, { transmission: 0.5, thickness: 0.05 }), pipes, 0.945, 1.8, 0.31, 16).rotation.z = Math.PI / 2;
 
+  await pause();
   /* ---------- merge static meshes by material: hundreds of draw calls become a few dozen ---------- */
   const bake = (root) => {
     root.updateMatrixWorld(true);
@@ -497,8 +507,10 @@ export async function init(opts) {
   const pipeFades = [];
   pipes.traverse((o) => { if (o.isMesh) { o.material = o.material.clone(); o.material.transparent = true; pipeFades.push(o.material); } });
   panels.forEach((p) => { bake(p.g); placeBolts(p, 0); });
+  await pause();
   geometryCache.forEach((g) => g.dispose());
 
+  await pause();
   /* ---------- light: studio reflections, soft key shadow, interior lamp that comes up as it opens ---------- */
   const studio = new T.Scene(); studio.background = new T.Color('#697879');
   studio.add(new T.Mesh(new T.BoxGeometry(14, 12, 14), new T.MeshBasicMaterial({ color: '#5b6666', side: T.BackSide })));
@@ -515,6 +527,7 @@ export async function init(opts) {
   const lamp = new T.PointLight('#fff1dc', 0, 6, 2); lamp.position.set(0.3, 1.7, 1.55); model.add(lamp);
   const floor = new T.Mesh(new T.PlaneGeometry(40, 40), new T.ShadowMaterial({ opacity: 0.13 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
 
+  await pause();
   /* ---------- contact shadow: the unit rendered from below into a blurred texture, darker where it touches the floor ---------- */
   const CS = 7, CS_H = 2.4;
   const rtA = new T.WebGLRenderTarget(512, 512), rtB = new T.WebGLRenderTarget(512, 512);
@@ -608,6 +621,7 @@ export async function init(opts) {
     });
   };
 
+  await pause();
   /* ---------- how it works: dashes flow along both circuits (authored in the interior's coordinates, scaled like the pipes) ---------- */
   const flow = group(); flow.scale.setScalar(K); flow.userData.keep = true;
   const flowItems = [];
@@ -845,7 +859,20 @@ export async function init(opts) {
   cvs.addEventListener('webglcontextlost', (e) => { e.preventDefault(); destroy(); if (opts.onLost) opts.onLost(); });
   layer.addEventListener('click', (e) => { const hs = e.target.closest('.c3__hs'); if (hs && opts.onSelect) opts.onSelect(hs.dataset.hs); });
 
+  if (lite) {
+    renderer.shadowMap.enabled = false; key.castShadow = false;
+    scene.traverse((o) => {
+      if (!o.isMesh) return;
+      (Array.isArray(o.material) ? o.material : [o.material]).forEach((m) => {
+        if (!m.isMeshStandardMaterial) return;
+        m.normalMap = null; m.roughnessMap = null;
+        if (m.isMeshPhysicalMaterial) m.clearcoat = 0;
+        m.needsUpdate = true;
+      });
+    });
+  }
   applyState();
+  await pause();
   /* compile every shader before the first frame (in parallel where the browser supports it), so the page does not stall on it */
   try { await renderer.compileAsync(scene, camera); } catch (e) { /* compiled on first draw instead */ }
   if (!alive) return null;
