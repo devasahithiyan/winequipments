@@ -55,3 +55,6 @@ Reports/seo/HANDOFF_PRIVATE.md
 # IndiaMART photo downloads (review only, not site assets)
 Reports/seo/indiamart/photos/
 Reports/seo/indiamart/reviews.csv
+
+# IndiaMART leads (buyer names and phones)
+Reports/seo/indiamart/leads/

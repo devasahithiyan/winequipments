@@ -86,3 +86,6 @@ Not used: stock/third-party images (plate HX renders, refrigeration spares, filt
 3. Correct the excluded prices in section 2.
 4. Send real photos and a spec sheet for plate heat exchangers and screw chillers.
 5. Four IndiaMART brochure PDFs exist (refrigerated dryer, industrial chiller, cooling tower, automatic drain valve, "Win Aqua Saver"); OK to download and compare with the site's catalogues?
+
+## 7. Storefront fix plan (6 Oct 2026)
+`INDIAMART_FIX_PLAN.xlsx` (built by `build_fix_plan.py` from `products.csv` and the site catalogue): summary, listing-by-listing fixes, 89 catalogue model listings (15 reuse empty listings), profile fixes, reply templates. `lead_sync.py` pulls enquiries through the IndiaMART CRM Pull API into `leads/` (git-ignored) once the key is saved to `~/.config/seo-keys/indiamart_crm_key`; not yet run against the live API.
