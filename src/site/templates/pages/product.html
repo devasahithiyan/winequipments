@@ -42,6 +42,7 @@
         <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
         {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Catalogue PDF</a>{% endif %}
       </div>
+      {% if fam.id == 'towers' %}<p class="p-hero__local" data-intro style="--d:5">Built at our works in Arasur. See <a href="/locations/cooling-tower-manufacturers-in-coimbatore.html">cooling tower manufacturers in Coimbatore</a> for the full range we make locally.</p>{% endif %}
       <p class="p-hero__trust" data-intro style="--d:5"><span>Made at our Arasur works</span><span>{{ site.certification }}</span><span>{{ site.installations }} installations since {{ site.founded }}</span></p>
     </div>
   </div>

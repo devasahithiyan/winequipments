@@ -3,7 +3,7 @@
     <div class="footer-grid">
       <div class="footer-col footer-brand">
         {% include "partials/logo.html" %}
-        <p>Manufacturer of compressed air dryers, process chillers and FRP cooling towers in Coimbatore since {{ site.founded }}.</p>
+        <p>Manufacturer of compressed air dryers, process chillers and <a href="/locations/cooling-tower-manufacturers-in-coimbatore.html">FRP cooling towers in Coimbatore</a> since {{ site.founded }}.</p>
         <address class="footer-contact">
           <span>{{ site.address_lines | join(', ') }}</span>
           {% for ph in site.phones %}<a href="tel:{{ ph.tel }}" data-track="call_click">{{ ph.display }}</a>{% endfor %}

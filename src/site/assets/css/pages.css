@@ -163,6 +163,7 @@
 .p-hero__lede { color: var(--ink-2); font-size: var(--fs-lede); line-height: 1.5; }
 .p-hero__price { margin-top: var(--s-4); font-size: var(--fs-small); color: var(--muted); }
 .p-hero__price strong { display: block; font-size: var(--fs-body, 1rem); color: var(--ink, inherit); }
+.p-hero__local { margin-top: var(--s-3); font-size: var(--fs-small); color: var(--muted); }
 .p-hero__trust { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); margin-top: var(--s-4); font-size: var(--fs-small); color: var(--muted); }
 .p-hero__trust span { display: inline-flex; align-items: center; gap: var(--s-2); }
 .p-hero__trust span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }

@@ -311,5 +311,17 @@
       "the Philippines",
       "Pakistan"
     ]
+  },
+  "hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "08:00",
+    "closes": "20:00"
   }
 }

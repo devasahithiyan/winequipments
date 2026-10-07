@@ -582,6 +582,7 @@ def org_schema():
         "slogan": site["tagline"],
         "founder": {"@type": "Person", "honorificPrefix": "Mr.", "name": site["founder"].removeprefix("Mr. ")},
         "hasMap": site["maps"],
+        "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": site["hours"]["days"], "opens": site["hours"]["opens"], "closes": site["hours"]["closes"]},
         "areaServed": [{"@type": "Country", "name": "India"}] + [{"@type": "City", "name": c} for c in SERVED_CITIES],
         "knowsLanguage": ["en", "ta"],
         "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": ph["tel"], "email": site["email"], "areaServed": "IN", "availableLanguage": ["en", "ta"]} for ph in site["phones"]],
