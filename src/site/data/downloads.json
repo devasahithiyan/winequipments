@@ -1,0 +1,102 @@
+[
+  {
+    "id": "refrigerated-air-dryers",
+    "family": "air",
+    "title": "Refrigerated air dryers",
+    "series": "WRD series",
+    "path": "/downloads/refrigerated-air-dryers.pdf",
+    "products": ["refrigerated-air-dryers"],
+    "purpose": "Compare dryer models and adjust the selection for your compressor and plant conditions.",
+    "includes": "Model table, installation layout and sizing correction factors",
+    "contents": [{"label": "Working principle and installation", "page": 2}, {"label": "Construction features", "page": 3}, {"label": "Models and rating conditions", "page": 4}, {"label": "Sizing correction factors", "page": 5}]
+  },
+  {
+    "id": "desiccant-air-dryers",
+    "family": "air",
+    "title": "Heatless desiccant air dryers",
+    "series": "WHD series",
+    "path": "/downloads/desiccant-air-dryers.pdf",
+    "products": ["desiccant-air-dryers"],
+    "purpose": "Compare twin-tower dryer models and the dew points available with each desiccant option.",
+    "includes": "Model table, desiccant options and installation layout",
+    "contents": [{"label": "Working principle, installation and features", "page": 2}, {"label": "Models and dew-point rating conditions", "page": 3}, {"label": "Applications and selection questions", "page": 4}]
+  },
+  {
+    "id": "compressed-air-filters",
+    "family": "air",
+    "title": "Compressed air filters",
+    "series": "WMF series",
+    "path": "/downloads/compressed-air-filters.pdf",
+    "products": ["compressed-air-filters"],
+    "purpose": "Find a filter housing and compare the filtration grades for your required air quality.",
+    "includes": "Housing models, filter grades and installation layout",
+    "contents": [{"label": "Filter stages, installation and features", "page": 2}, {"label": "Housing models and rating conditions", "page": 3}, {"label": "Filter grades and selection questions", "page": 4}]
+  },
+  {
+    "id": "automatic-drain-valves",
+    "family": "air",
+    "title": "Automatic condensate drain valves",
+    "series": "WDV series",
+    "path": "/downloads/automatic-drain-valves.pdf",
+    "products": ["automatic-drain-valves"],
+    "purpose": "Compare timer, micro-controller and no-air-loss options for condensate removal.",
+    "includes": "Valve types, model table, pressure and connection details",
+    "contents": [{"label": "Working principle, installation and valve types", "page": 2}, {"label": "Models, pressures and connections", "page": 3}, {"label": "Applications and selection questions", "page": 4}]
+  },
+  {
+    "id": "air-receiver-tanks",
+    "family": "air",
+    "title": "Compressed air receiver tanks",
+    "series": "WRV series",
+    "path": "/downloads/air-receiver-tanks.pdf",
+    "products": ["air-receiver-tanks"],
+    "purpose": "Compare standard vessel sizes, pressure options and connections before discussing your requirement.",
+    "includes": "Standard model table, pressure options and construction details",
+    "contents": [{"label": "Working principle, installation and construction", "page": 2}, {"label": "Standard models and pressure options", "page": 3}, {"label": "Applications and custom-vessel questions", "page": 4}]
+  },
+  {
+    "id": "industrial-process-chillers",
+    "family": "cooling",
+    "title": "Industrial process chillers",
+    "series": "WCP series",
+    "path": "/downloads/industrial-process-chillers.pdf",
+    "products": ["industrial-process-chillers"],
+    "purpose": "Compare standard chiller models and check how operating temperatures affect the selection.",
+    "includes": "Model table, rating conditions and selection factors",
+    "contents": [{"label": "Working principle and construction", "page": 2}, {"label": "Models and rating conditions", "page": 3}, {"label": "Selection factors and applications", "page": 4}]
+  },
+  {
+    "id": "frp-cooling-towers",
+    "family": "towers",
+    "title": "Round and square FRP cooling towers",
+    "series": "WCT RL / WCT SL series",
+    "path": "/downloads/frp-cooling-towers.pdf",
+    "products": ["round-cooling-towers", "square-cooling-towers"],
+    "purpose": "Compare round and square evaporative towers, with separate model tables for each shape.",
+    "includes": "Both tower shapes, model tables and selection factors",
+    "contents": [{"label": "Working principle and construction", "page": 2}, {"label": "Round tower models", "page": 3}, {"label": "Square tower models", "page": 4}, {"label": "Selection factors for both shapes", "page": 5}, {"label": "Photos and selection questions", "page": 6}]
+  },
+  {
+    "id": "closed-circuit-cooling-towers",
+    "family": "towers",
+    "title": "Coil cooling towers / dry coolers",
+    "series": "WCC series",
+    "path": "/downloads/closed-circuit-cooling-towers.pdf",
+    "products": ["closed-circuit-cooling-towers"],
+    "purpose": "Compare finned-coil dry coolers for closed water loops, including diesel genset cooling.",
+    "includes": "Model table, genset duty and operating conditions",
+    "contents": [{"label": "Working principle and construction", "page": 2}, {"label": "Models and operating conditions", "page": 3}, {"label": "Applications and dry-cooler questions", "page": 4}]
+  },
+  {
+    "id": "win-equipments-catalogue",
+    "family": null,
+    "title": "Company and product overview",
+    "coverage_note": "This edition covers 19 product lines.",
+    "series": "Win Equipments",
+    "path": "/downloads/win-equipments-catalogue.pdf",
+    "products": [],
+    "purpose": "A company introduction with equipment summaries and application notes to share with your team.",
+    "includes": "Company profile, product summaries and industry applications",
+    "contents": [{"label": "Company profile", "page": 2}, {"label": "Compressed air treatment", "page": 3}, {"label": "Process cooling", "page": 5}, {"label": "Cooling towers", "page": 8}, {"label": "Spares", "page": 9}, {"label": "Industry applications", "page": 10}]
+  }
+]

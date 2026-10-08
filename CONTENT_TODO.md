@@ -15,7 +15,9 @@ The previous site's spec tables and the `catlogue/*.pdf` files regenerated on 20
 | FRP cooling tower range | 10–1,500 TR | 10–300 TR (WCT) |
 | Coil cooling tower | "evaporative closed circuit" | Finned-coil dry cooler, 150–2000 kVA gensets |
 
-New spec data lives in `src/site/data/products/*.json`, transcribed from the original catalogues. Downloads now serve the original catalogues (`/downloads/*.pdf`). **Please confirm these are current, or send newer datasheets.**
+New spec data lives in `src/site/data/products/*.json`, transcribed from the original catalogues. Downloads serve regenerated brochures built from that data (`/downloads/*.pdf`); original scans are archived in `src/site/catalogue/originals/`. **Please confirm the engineering data is current, or send newer datasheets.**
+
+Downloads review (8 Oct 2026): the master PDF covers 19 product lines while the website has 23. It is labelled as a range overview with a coverage note until revised. Brochure corrections and technical-review questions are recorded in `Reports/ux/downloads-review-and-plan.md`; the new library does not mark the existing PDFs as newly approved or technically reviewed.
 
 Values to double-check in the original catalogues:
 - WRD 400 T dimensions printed as 950 × 1700 × 1200 mm (width looks unusual).

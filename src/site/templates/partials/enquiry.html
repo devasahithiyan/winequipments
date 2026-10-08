@@ -1,5 +1,6 @@
 {# expects optional: prod (product dict), heading, intro #}
 {% set prod = prod if prod is defined else none %}
+{% set is_document_request = document_request | default(false) %}
 <section class="enquiry section" id="quote" aria-labelledby="quote-title">
   <div class="container enquiry__grid">
     <div>
@@ -14,16 +15,17 @@
       </ol>
       {% else %}
       <div class="enquiry__direct">
-        <a href="{{ whatsapp('Hello Win Equipments, I need a quote' ~ (' for ' ~ prod.name if prod else '') ~ '.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp {{ site.phones[0].display }}</a>
+        <a href="{{ whatsapp('Hello Win Equipments, I need a technical document. Product/model: ' if is_document_request else 'Hello Win Equipments, I need a quote' ~ (' for ' ~ prod.name if prod else '') ~ '.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp {{ site.phones[0].display }}</a>
         {% for ph in site.phones %}<a href="tel:{{ ph.tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call {{ ph.display }}</a>{% endfor %}
         <a href="mailto:{{ site.email }}" data-track="email_click"><svg aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a>
       </div>
       {% endif %}
     </div>
     <div class="form-panel">
-      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq>
+      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq{% if is_document_request %} data-document-request{% endif %}>
         <input type="hidden" name="return_url" value="/thank-you.html">
         <input type="hidden" name="form_source" value="{{ url }}">
+        {% if is_document_request %}<input type="hidden" name="request_type" value="Technical document">{% endif %}
         <div class="hp-field" aria-hidden="true"><label>Website <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off"></label></div>
         <div class="form-grid form-grid--2">
           <div class="field">
@@ -57,15 +59,21 @@
             {% endfor %}
           </select>
         </div>
+        {% if is_document_request %}
+        <div class="form-grid form-grid--2">
+          <div class="field"><label for="f-document">Document needed</label><select class="select" id="f-document" name="document_type"><option>Model-specific datasheet</option><option>General arrangement (GA) drawing</option><option>Other technical information</option></select></div>
+          <div class="field"><label for="f-model">Model <span class="opt">(if known)</span></label><input class="input" id="f-model" name="selected_model" type="text" placeholder="e.g. WCP 050"></div>
+        </div>
+        {% endif %}
         <div class="field">
-          <label for="f-req">Requirement</label>
-          <textarea class="textarea" id="f-req" name="operating_parameters" rows="4" placeholder="{{ 'e.g. 300 CFM compressor at 7 bar, plant at 40 °C' if (prod and prod.family == 'air') or not prod else ('e.g. 5 TR, water at 15 °C, injection moulding' if prod.family == 'cooling' else 'e.g. 60 m³/hr, hot water 40 °C, wet bulb 28 °C') }}"></textarea>
+          <label for="f-req">{{ 'Details of your request' if is_document_request else 'Requirement' }}</label>
+          <textarea class="textarea" id="f-req" name="operating_parameters" rows="4" placeholder="{{ 'e.g. I need dimensions and connection locations for an installation layout.' if is_document_request else ('e.g. 300 CFM compressor at 7 bar, plant at 40 °C' if (prod and prod.family == 'air') or not prod else ('e.g. 5 TR, water at 15 °C, injection moulding' if prod.family == 'cooling' else 'e.g. 60 m³/hr, hot water 40 °C, wet bulb 28 °C')) }}"></textarea>
         </div>
         <details class="form-more"{% if prod and prod.spec %} data-model-open{% endif %}>
-          <summary>Add model, pressure or a drawing <svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <summary>{{ 'Add operating details or a photo' if is_document_request else 'Add model, pressure or a drawing' }} <svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
           <div>
             <div class="form-grid form-grid--2">
-              <div class="field">
+              {% if not is_document_request %}<div class="field">
                 <label for="f-model">Model <span class="opt">(optional)</span></label>
                 {% if prod and prod.spec %}
                 <select class="select" id="f-model" name="selected_model">
@@ -75,7 +83,7 @@
                 {% else %}
                 <input class="input" id="f-model" name="selected_model" type="text">
                 {% endif %}
-              </div>
+              </div>{% endif %}
               <div class="field">
                 <label for="f-pressure">Operating pressure / location <span class="opt">(optional)</span></label>
                 <input class="input" id="f-pressure" name="operating_pressure" type="text" placeholder="e.g. 7 bar g, Hosur">
@@ -85,23 +93,27 @@
               <label for="f-file">Drawing or photo <span class="opt">(optional, up to 10 MB)</span></label>
               <input class="input" id="f-file" name="drawing_file" type="file" accept=".pdf,.dwg,.dxf,.step,.stp,.png,.jpg,.jpeg,.doc,.docx,.zip">
             </div>
-            <label class="check"><input type="checkbox" name="cad_drawings_requested" value="yes"> Send me a GA drawing with the quotation</label>
+            {% if not is_document_request %}<label class="check"><input type="checkbox" name="cad_drawings_requested" value="yes"> Send me a GA drawing with the quotation</label>{% endif %}
           </div>
         </details>
         <p class="form-status" role="alert" data-status></p>
-        <button class="btn btn--primary btn--block" type="submit">Send enquiry</button>
-        <p class="form-legal">We use your details only to reply to this enquiry.</p>
+        <button class="btn btn--primary btn--block" type="submit">{{ 'Send document request' if is_document_request else 'Send enquiry' }}</button>
+        <p class="form-legal">We use your details only to reply to this {{ 'request' if is_document_request else 'enquiry' }}.</p>
       </form>
       <div class="form-success" role="status" tabindex="-1">
         <span class="form-success__tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-        <h3>Thank you, we have your enquiry</h3>
+        <h3>{{ 'Thank you, we have your document request' if is_document_request else 'Thank you, we have your enquiry' }}</h3>
         <p>Reference <strong data-ref>—</strong>. An engineer from our Arasur works will contact you on the number you gave.</p>
         <ol class="form-success__next">
-          <li>We review your requirement and size the equipment.</li>
+          {% if is_document_request %}
+          <li>We check your product, model and the documents available.</li>
+          <li>We contact you if we need any operating or installation details.</li>
+          <li>We reply with the available information or the next step.</li>
+          {% else %}<li>We review your requirement and size the equipment.</li>
           <li>We call or WhatsApp you if we need any details.</li>
-          <li>You receive a recommended model and quotation.</li>
+          <li>You receive a recommended model and quotation.</li>{% endif %}
         </ol>
-        <p class="form-success__fast">Want to speed it up? Send photos of your nameplate, site or drawings on WhatsApp.</p>
+        <p class="form-success__fast">{{ 'Have a nameplate photo or installation layout? Share it on WhatsApp to help us identify your equipment.' if is_document_request else 'Want to speed it up? Send photos of your nameplate, site or drawings on WhatsApp.' }}</p>
         <div class="btn-row">
           <a class="btn btn--primary" href="{{ whatsapp('Hello Win Equipments, I just sent an enquiry from the website.') }}" data-wa-follow data-track="whatsapp_followup"><svg aria-hidden="true"><use href="#i-wa"/></svg>Continue on WhatsApp</a>
           <a class="btn btn--secondary" href="tel:{{ site.phones[0].tel }}" data-track="call_click">Call {{ site.phones[0].display }}</a>

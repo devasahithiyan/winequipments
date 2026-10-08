@@ -19,7 +19,7 @@
     </nav>
     <div class="header-actions">
       <a class="btn btn--ghost btn--icon header-call" href="tel:{{ site.phones[0].tel }}" data-track="call_click" aria-label="Call {{ site.phones[0].display }}"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="btn__label">{{ site.phones[0].display }}</span></a>
-      <a class="btn btn--primary header-quote" href="#quote" data-quote-link>Request a quote</a>
+      <a class="btn btn--primary header-quote" href="#quote" data-quote-link>{{ 'Request a document' if document_request | default(false) else 'Request a quote' }}</a>
       <button class="btn btn--secondary menu-toggle" type="button" aria-expanded="false" aria-controls="menu-sheet"><svg aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
     </div>
   </div>
@@ -87,7 +87,7 @@
     </div>
   </div>
   <div class="menu-sheet__foot">
-    <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
+    <a class="btn btn--primary" href="#quote" data-quote-link>{{ 'Request a document' if document_request | default(false) else 'Request a quote' }}</a>
     <a class="btn btn--secondary btn--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
   </div>
 </div>

@@ -40,7 +40,7 @@
       <div class="btn-row" data-intro style="--d:4">
         <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
         <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Catalogue PDF</a>{% endif %}
+        {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}" download data-track="catalogue_download" data-document-id="{{ downloads_by_product[p.slug].id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download brochure (PDF · {{ downloads_by_product[p.slug].size }})</a>{% endif %}
       </div>
       {% if fam.id == 'towers' %}<p class="p-hero__local" data-intro style="--d:5">Built at our works in Arasur. See <a href="/locations/cooling-tower-manufacturers-in-coimbatore.html">cooling tower manufacturers in Coimbatore</a> for the full range we make locally.</p>{% endif %}
       <p class="p-hero__trust" data-intro style="--d:5"><span>Made at our Arasur works</span><span>{{ site.certification }}</span><span>{{ site.installations }} installations since {{ site.founded }}</span></p>
@@ -88,7 +88,7 @@
     <div class="section-head" data-reveal>
       <h2 id="specs">{{ p.series }} specifications</h2>
       <p>{{ p.spec.rows | length }} standard models{% if p.capacity.unit in ('CFM','TR','litres') %}. Enter your requirement to find the model that covers it{% endif %}.<span class="only-mobile"> Tap a model to see every value.</span></p>
-      {% if p.download %}<a class="link-arrow" href="{{ p.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download the {{ p.series }} catalogue (PDF)</a>{% endif %}
+      {% if p.download %}<a class="link-arrow" href="{{ p.download }}" download data-track="catalogue_download" data-document-id="{{ downloads_by_product[p.slug].id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download the {{ p.series }} brochure (PDF · {{ downloads_by_product[p.slug].pages }} pages · {{ downloads_by_product[p.slug].size }})</a>{% endif %}
     </div>
     {% if p.conditions is defined %}
     <div class="conditions" style="margin-bottom:var(--s-6)">

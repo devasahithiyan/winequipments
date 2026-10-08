@@ -1,28 +1,78 @@
 {% extends "base.html" %}
 {% import "partials/macros.html" as m %}
 {% set crumbs = [('Home', '/'), ('Downloads', '/downloads.html')] %}
-{% block title %}Catalogues &amp; Datasheets | Win Equipments{% endblock %}
-{% block description %}Download Win Equipments product catalogues: refrigerated and desiccant air dryers, filters, drain valves, air receivers, chillers and cooling towers (PDF).{% endblock %}
+{% set document_request = true %}
+{% block title %}Catalogues &amp; Technical Documents | Win Equipments{% endblock %}
+{% block description %}Find product brochures, model tables and selection guidance for Win Equipments. Read specifications online, download PDFs or request a technical document.{% endblock %}
+{% block body_class %}has-action-bar downloads-page{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/css/downloads.css?v={{ css_ver }}">{% endblock %}
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
+
+{% macro document_entry(doc, overview=false) %}
+<article class="doc-entry{% if overview %} doc-entry--overview{% endif %}" aria-labelledby="doc-{{ doc.id }}" data-document="{{ doc.id }}">
+  <img class="doc-entry__cover" src="{{ doc.preview }}" width="{{ doc.width }}" height="{{ doc.height }}" alt="" loading="lazy" decoding="async">
+  <div class="doc-entry__body">
+    <h3 id="doc-{{ doc.id }}">{{ doc.title }}</h3>
+    <p class="doc-entry__series">{{ doc.series }} · {{ 'Range overview' if overview else 'Product brochure' }}</p>
+    <p class="doc-entry__purpose">{{ doc.purpose }}</p>
+    <p class="doc-entry__includes"><strong>Includes:</strong> {{ doc.includes }}</p>
+    {% if overview %}<p class="doc-entry__caveat">{{ doc.coverage_note }} <a href="/products/">Browse the complete current range</a> for newer additions.</p>{% endif %}
+  </div>
+  <div class="doc-entry__actions">
+    {% if overview %}
+    <a class="doc-entry__spec" href="/products/" data-track="document_specs" data-document-id="{{ doc.id }}">Explore products<svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
+    {% else %}
+    {% for pr in doc.related_products %}
+    <a class="doc-entry__spec" href="{{ product_url(pr.slug) }}#specs" data-track="document_specs" data-document-id="{{ doc.id }}">{{ ('Round tower specifications' if pr.slug == 'round-cooling-towers' else 'Square tower specifications') if doc.related_products | length > 1 else 'View specifications' }}<span class="visually-hidden"> — {{ pr.name }}</span><svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
+    {% endfor %}
+    {% endif %}
+    <a class="btn btn--secondary doc-entry__download" href="{{ doc.path }}" download data-track="catalogue_download" data-document-id="{{ doc.id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download PDF<span class="visually-hidden"> — {{ doc.title }}</span></a>
+    <p class="doc-entry__meta">PDF · {{ doc.pages }} pages · {{ doc.size }}</p>
+  </div>
+  <details class="doc-entry__contents">
+    <summary>Contents &amp; PDF preview<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+    <div class="doc-entry__contents-body">
+      <ul>{% for item in doc.contents %}<li><span>{{ item.label }}</span><span>Page {{ item.page }}</span></li>{% endfor %}</ul>
+      <div class="doc-entry__preview">
+        <a href="{{ doc.path }}" target="_blank" rel="noopener" data-track="document_preview" data-document-id="{{ doc.id }}">Open PDF in a new tab<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
+        {% if doc.related_products %}<a href="#quote" data-document-product="{{ doc.related_products[0].name }}" data-document-id="{{ doc.id }}">Need a document for a specific model?</a>{% endif %}
+      </div>
+    </div>
+  </details>
+</article>
+{% endmacro %}
+
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="page-head doc-head">
   <div class="container">
-    <h1 data-split>Catalogues and datasheets</h1>
-    <p class="lede">Product catalogues with model tables, working principles and selection charts. Need a GA drawing or a datasheet for a specific model? Ask in the enquiry form.</p>
+    <h1>Catalogues &amp; technical documents</h1>
+    <p class="lede">Find model tables, rating conditions and selection guidance. Read the specifications online, or save a brochure to share with your team.</p>
+    <p class="doc-head__help">Need a drawing or a datasheet for a specific model? <a href="#quote">Request a document</a>.</p>
+    <nav class="doc-nav" aria-label="Document categories">
+      {% for fam in families.values() %}<a href="#documents-{{ fam.id }}">{{ fam.name }}<svg aria-hidden="true"><use href="#i-chev"/></svg></a>{% endfor %}
+      <a href="#company-overview">Company overview<svg aria-hidden="true"><use href="#i-chev"/></svg></a>
+    </nav>
   </div>
 </section>
-<section class="section section--rule" style="padding-top:var(--s-8)">
-  <div class="container">
-    <ul class="downloads">
-      <li><a href="/downloads/win-equipments-catalogue.pdf" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><strong>Win Equipments product catalogue</strong><span>All product lines · PDF, {{ pdf_size('/downloads/win-equipments-catalogue.pdf') }}</span></span></a></li>
-      {% set seen = [] %}
-      {% for fam in families.values() %}{% for pr in fam.products %}{% if pr.download and pr.download not in seen %}{% set _ = seen.append(pr.download) %}
-      <li><a href="{{ pr.download }}" data-track="catalogue_download"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><strong>{{ 'WCT FRP cooling towers (round and square)' if 'frp-cooling' in pr.download else pr.series ~ ' ' ~ pr.name }}</strong><span>{{ fam.name }} · PDF, {{ pdf_size(pr.download) }}</span></span></a></li>
-      {% endif %}{% endfor %}{% endfor %}
-    </ul>
-  </div>
-</section>
-{% set heading = 'Need a drawing or a specific datasheet?' %}
+<div class="container doc-library">
+  {% set descriptions = {'air': 'Drying, filtration, condensate removal and compressed air storage.', 'cooling': 'Standard process chillers, their rating conditions and selection factors.', 'towers': 'Evaporative FRP towers and closed-loop coil cooling equipment.'} %}
+  {% for fam in families.values() %}
+  <section class="doc-group" id="documents-{{ fam.id }}" aria-labelledby="documents-{{ fam.id }}-title">
+    <div class="doc-group__heading"><h2 id="documents-{{ fam.id }}-title">{{ fam.name }}</h2><p>{{ descriptions[fam.id] }}</p></div>
+    <div class="doc-group__list">{% for doc in downloads if doc.family == fam.id %}{{ document_entry(doc) }}{% endfor %}</div>
+  </section>
+  {% endfor %}
+  <section class="doc-group" id="company-overview" aria-labelledby="company-overview-title">
+    <div class="doc-group__heading"><h2 id="company-overview-title">Company overview</h2><p>A shareable introduction. For detailed model tables, use the product brochures above.</p></div>
+    {% for doc in downloads if doc.family == none %}{{ document_entry(doc, true) }}{% endfor %}
+  </section>
+  <section class="doc-help" aria-labelledby="doc-help-title">
+    <div><h2 id="doc-help-title">Can’t find the document you need?</h2><p>These brochures cover product ranges. Model-specific datasheets, general arrangement (GA) drawings and information for custom equipment need to be checked against your requirement.</p><a class="link-arrow" href="#quote">Request a technical document<svg aria-hidden="true"><use href="#i-chev-r"/></svg></a></div>
+    <details class="doc-help__products"><summary>Products without a downloadable brochure<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><div><p>Choose any of these products in the request form. We’ll confirm what information is available.</p><ul>{% for fam in families.values() %}{% for pr in fam.products if not pr.download %}<li><a href="{{ product_url(pr.slug) }}">{{ pr.name }}</a></li>{% endfor %}{% endfor %}</ul></div></details>
+  </section>
+</div>
+{% set heading = 'Request a drawing or datasheet' %}
+{% set intro = 'Tell us the product, the model if you know it, and the information you need. Our team will check the available documents and contact you if we need more details.' %}
 {% include "partials/enquiry.html" %}
 {% endblock %}

@@ -10,7 +10,7 @@
   /* analytics hooks */
   document.addEventListener('click', (e) => {
     const t = e.target.closest('[data-track]');
-    if (t) track(t.dataset.track, { href: t.getAttribute('href') });
+    if (t) track(t.dataset.track, { href: t.getAttribute('href'), ...(t.dataset.documentId ? { document_id: t.dataset.documentId } : {}) });
   });
 
   /* mobile menu sheet */
@@ -94,12 +94,19 @@
     quote.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     const first = form && $('#f-name', form);
     if (first) setTimeout(() => first.focus({ preventScroll: true }), 450);
-    track('quote_intent', { model: model || '' });
+    track(form && form.hasAttribute('data-document-request') ? 'document_request_intent' : 'quote_intent', { model: model || '' });
   };
   document.addEventListener('click', (e) => {
+    const d = e.target.closest('[data-document-product]');
     const m = e.target.closest('[data-quote-model]');
     const l = e.target.closest('[data-quote-link]');
-    if (m) { e.preventDefault(); goQuote(m.dataset.quoteModel); }
+    if (d && quote) {
+      e.preventDefault();
+      const product = $('[name="equipment_type"]', quote);
+      if (product && !product.dataset.edited) product.value = d.dataset.documentProduct;
+      goQuote();
+    }
+    else if (m) { e.preventDefault(); goQuote(m.dataset.quoteModel); }
     else if (l && quote) { e.preventDefault(); goQuote(); }
   });
   if (location.hash && quote) {
@@ -204,6 +211,9 @@
 
   /* forms */
   $$('form[data-rfq]').forEach((form) => {
+    const isDocumentRequest = form.hasAttribute('data-document-request');
+    const productField = $('[name="equipment_type"]', form);
+    if (isDocumentRequest && productField) productField.addEventListener('change', () => { productField.dataset.edited = 'true'; });
     const status = $('[data-status]', form);
     const success = form.nextElementSibling;
     const validate = (el) => {
@@ -231,29 +241,30 @@
         bad[0].focus(); return;
       }
       const btn = $('button[type="submit"]', form);
+      const submitLabel = btn.textContent;
       btn.setAttribute('aria-busy', 'true'); btn.disabled = true; btn.textContent = 'Sending…';
       status.className = 'form-status';
       try {
         const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' } });
         const data = await r.json().catch(() => ({}));
         if (!r.ok || data.success === false) throw new Error(data.message || 'send failed');
-        const ref = data.ref || data.reference || data.refId || '';
+        const ref = data.ref_id || data.ref || data.reference || data.refId || '';
         const refEl = success && $('[data-ref]', success);
         if (refEl) refEl.textContent = ref || 'received';
         const follow = success && $('[data-wa-follow]', success);
         if (follow) {
           const product = (form.equipment_type || {}).value || '';
           /* plain strings, not nested template literals: the minifier drops their leading spaces */
-          const msg = 'Hello Win Equipments, I just sent an enquiry from the website' + (ref ? ' (reference ' + ref + ')' : '') + (product && !/^Not sure/.test(product) ? ' for ' + product : '') + '. Sharing photos and details here.';
+          const msg = 'Hello Win Equipments, I just sent ' + (isDocumentRequest ? 'a document request' : 'an enquiry') + ' from the website' + (ref ? ' (reference ' + ref + ')' : '') + (product && !/^Not sure/.test(product) ? ' for ' + product : '') + '. Sharing photos and details here.';
           follow.href = `https://wa.me/919597228969?text=${encodeURIComponent(msg)}`;
         }
         form.classList.add('is-sent');
         if (success) success.focus();
-        track('quote_submit', { product: (form.equipment_type || {}).value || '', variant: (form.form_variant || {}).value || 'full' });
+        track(isDocumentRequest ? 'document_request_submit' : 'quote_submit', { product: (form.equipment_type || {}).value || '', variant: (form.form_variant || {}).value || 'full' });
       } catch (err) {
         status.className = 'form-status is-error';
-        status.innerHTML = 'We could not send your enquiry. Please WhatsApp or call +91 95972 28969, or email info@winequipments.com.';
-        btn.removeAttribute('aria-busy'); btn.disabled = false; btn.textContent = 'Send enquiry';
+        status.textContent = 'We could not send your ' + (isDocumentRequest ? 'document request' : 'enquiry') + '. Please try again, WhatsApp or call +91 95972 28969, or email info@winequipments.com.';
+        btn.removeAttribute('aria-busy'); btn.disabled = false; btn.textContent = submitLabel;
       }
     });
   });

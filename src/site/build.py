@@ -15,6 +15,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from markupsafe import Markup
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 import numpy as np
+from download_library import load_downloads
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent.parent
@@ -665,6 +666,8 @@ env.tests["contains"] = lambda seq, item: item in seq
 env.filters["datefmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%-d %B %Y")
 env.filters["monthfmt"] = lambda d: __import__("datetime").date.fromisoformat(d).strftime("%B %Y")
 env.globals["pdf_size"] = lambda href: f"{(SRC / 'static' / href.lstrip('/')).stat().st_size / 1048576:.1f} MB"
+downloads, downloads_by_product = load_downloads(SRC, products, families)
+env.globals.update(downloads=downloads, downloads_by_product=downloads_by_product)
 env.globals["fam_urls"] = lambda fam: [{"@type": "WebPage", "name": p["h1"], "url": site["url"] + product_url(p["slug"])} for p in fam["products"]]
 env.globals["industry_count"] = lambda i: sum(1 for p in products.values() if i in p.get("industries", []))
 
@@ -789,6 +792,7 @@ CSS_BUNDLES = {
     "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "sections.css", "chat.css", "motion.css", "print.css"],
     "home.css": ["home.css"],
     "viewer.css": ["chiller360.css"],
+    "downloads.css": ["downloads.css"],
 }
 
 
