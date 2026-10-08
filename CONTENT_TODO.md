@@ -17,7 +17,7 @@ The previous site's spec tables and the `catlogue/*.pdf` files regenerated on 20
 
 New spec data lives in `src/site/data/products/*.json`, transcribed from the original catalogues. Downloads serve regenerated brochures built from that data (`/downloads/*.pdf`); original scans are archived in `src/site/catalogue/originals/`. **Please confirm the engineering data is current, or send newer datasheets.**
 
-Downloads review (8 Oct 2026): the master PDF covers 19 product lines while the website has 23. It is labelled as a range overview with a coverage note until revised. Brochure corrections and technical-review questions are recorded in `Reports/ux/downloads-review-and-plan.md`; the new library does not mark the existing PDFs as newly approved or technically reviewed.
+Catalogue redesign (8 Oct 2026): all nine published PDFs now use A4 portrait pages. The master includes all 23 current product entries. Model tables retain the source JSON values; WRD range, WCP tank-material summaries and WDV behavior are qualified against those tables. The layout edition does not indicate engineering approval. Remaining technical-review questions are recorded below and in the historical audit `Reports/ux/downloads-review-and-plan.md`.
 
 Values to double-check in the original catalogues:
 - WRD 400 T dimensions printed as 950 × 1700 × 1200 mm (width looks unusual).
@@ -46,7 +46,7 @@ These pages now say **engineered to order** and list what the customer should se
 ## 4. Contact details
 
 - Phones used: +91 95972 28969 (primary) and +91 95972 28975 (secondary). Owner confirmed +91 95972 28978 is not to be used anywhere.
-- Address used: SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407 (from the E-catalogue). Older catalogues show #106 B, S.N.R College Road, K.R. Puram — the PDFs still carry the old address.
+- Address used: SF No. 4/195 B, Kallangadu, Nadu Arasur, Arasur Post, Coimbatore 641 407 (from the E-catalogue). Older archived catalogues show #106 B, S.N.R College Road, K.R. Puram; regenerated customer PDFs use the Arasur address above.
 - Memberships shown on catalogues: TAPMA, IndiaMART TrustSEAL. Add to the About page?
 
 ## 5. Assets needed

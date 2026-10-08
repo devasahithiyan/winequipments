@@ -1,154 +1,37 @@
 {% macro head(title) %}
 <!doctype html><html lang="en-IN"><head><meta charset="utf-8"><title>{{ title }}</title>
-<style>
-@font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; src: url("{{ font }}") format("woff2"); }
-{{ chart_css }}
-{{ css }}
-</style></head><body>
+<style>@font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; src: url("{{ font }}") format("woff2"); }{{ chart_css }}{{ css }}</style></head><body>
 {% endmacro %}
-
-{% macro cover(items, label, title, series, lede, specs, url) %}
-<section class="cover">
-  <div class="cover__top">
-    <img class="cover__logo" src="{{ logo }}" alt="Win Equipments">
-    <p class="cover__label">{{ label }}<span>Manufactured at Arasur, Coimbatore · since {{ site.founded }}</span></p>
-  </div>
-  <div class="cover__stage"><div class="cover__imgs cover__imgs--{{ items | length }}">{% for p in items %}<img src="{{ cutout(p.image, 1000 if items | length == 1 else 700) }}" alt="">{% endfor %}</div></div>
-  <div class="cover__floor"></div>
-  <div class="cover__body">
-    <p class="cover__series">{{ series }}</p>
-    <h1 class="cover__title">{{ title }}</h1>
-    <p class="cover__lede">{{ lede }}</p>
-    {% if specs %}<dl class="readout">{% for k in specs[:4] %}<div><dt>{{ k.label }}</dt><dd>{{ k.value }}</dd></div>{% endfor %}</dl>{% endif %}
-  </div>
-  <div class="cover__foot">
-    <div><strong>Win Equipments</strong><br>{{ site.address_lines | join(', ') }}<br>{{ site.phones | map(attribute='display') | join(' · ') }} · {{ site.email }}</div>
-    <div class="cover__marks">{% for m in marks %}<img src="{{ m }}" alt="">{% endfor %}</div>
-    <div class="cover__qr"><span>Full model range,<br>photos and sizing tools</span>{{ qr(url) }}</div>
-  </div>
+{% macro brand(doc) %}<header class="brand"><img src="{{ logo }}" alt="Win Equipments"><p><strong>{{ doc.series }}</strong>{{ doc.code }} · {{ 'Product range catalogue' if doc.products else 'Company & product catalogue' }}</p></header>{% endmacro %}
+{% macro cover(doc, items, title, lede, specs, pages, url) %}
+<section class="sheet" id="cover">
+{{ brand(doc) }}
+<h1>{{ title }}</h1><p class="series">{{ doc.series }}</p><p class="lede">{{ lede }}</p>
+<div class="cover-art cover-art--{{ items | length }}">{% for p in items %}<img src="{{ cutout(p.image, 1000 if items | length == 1 else 700) }}" alt="{{ p.name }}">{% endfor %}</div>
+<dl class="key-specs">{% for spec in specs[:4] %}<div><dt>{{ spec.label }}</dt><dd>{{ spec.value }}</dd></div>{% endfor %}</dl>
+<div class="contents"><h3>Inside this catalogue</h3><nav>{% for page in pages %}<a href="#{{ page.id }}">{{ page.title }}<span>{{ loop.index + 1 }}</span></a>{% endfor %}</nav><aside>{{ qr(url) }}<a href="{{ url }}">Specifications online</a></aside></div>
+<p class="publication">Layout edition {{ layout_edition }} · Product-range information. Confirm the selected model and duty with Win Equipments before ordering.</p>
 </section>
 {% endmacro %}
-
-{% macro flow(p) %}
-{% if p.principle is defined and p.principle %}
-<div class="block">
-  <p class="kicker">Working principle</p>
-  <h2>How it works</h2>
-  {% if p.principle.intro %}<p style="margin-bottom:4mm;max-width:170mm">{{ p.principle.intro }}</p>{% endif %}
-  <ol class="flow" style="--n:{{ [p.principle.stages | length, 5] | min }}">{% for s in p.principle.stages %}<li><strong>{{ s.name }}</strong>{{ s.text }}</li>{% endfor %}</ol>
-</div>
-{% endif %}
+{% macro conditions(p) %}{% if p.conditions %}<h3>Rating conditions</h3><dl class="conditions">{% for c in p.conditions %}<div><dt>{{ c.label }}</dt><dd>{{ c.value }}</dd></div>{% endfor %}</dl>{% endif %}{% endmacro %}
+{% macro model_table(p, group) %}
+<div class="table-block"><h3>{{ group.title }}</h3><table class="spec"><thead><tr>{% for c in group.columns %}<th scope="col">{{ c.label }}{% if c.unit %}<small>{{ c.unit }}</small>{% endif %}</th>{% endfor %}</tr></thead>
+<tbody>{% for row in p.spec.rows %}<tr>{% for c in group.columns %}{% if loop.first %}<th scope="row">{{ row[c.key] }}</th>{% else %}<td>{{ row.get(c.key) | fmt }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody></table></div>
 {% endmacro %}
-
+{% macro flow(p) %}{% if p.principle %}<h3>How it works{% if p.slug in ['round-cooling-towers', 'square-cooling-towers'] %} · {{ p.name }}{% endif %}</h3><p class="section-intro">{{ p.principle.intro }}</p><ol class="flow">{% for stage in p.principle.stages %}<li><strong>{{ stage.name }}</strong>{{ stage.text }}</li>{% endfor %}</ol>{% endif %}{% endmacro %}
 {% macro install(active) %}
-{# typical compressed air installation; the product on this datasheet is highlighted #}
-{% set boxes = [("compressor", "Air compressor", 0), ("aftercooler", "Aftercooler", 1), ("receiver", "Air receiver", 2), ("prefilter", "Pre-filter (GP)", 3), ("dryer", "Air dryer", 4), ("finefilter", "Fine filters (ZP/ZO/ZC)", 5), ("plant", "To the plant", 6)] %}
-{% set drains = ["aftercooler", "receiver", "prefilter", "dryer", "finefilter"] %}
-<div class="block">
-  <p class="kicker">Typical installation</p>
-  <svg class="install" viewBox="0 0 700 120" role="img" aria-label="Typical compressed air installation">
-    <line x1="40" y1="42" x2="660" y2="42" stroke="#15201a" stroke-width="2"/>
-    {% for key, label, i in boxes %}{% set x = 10 + i * 100 %}{% set on = key in active %}
-    <rect x="{{ x }}" y="18" width="80" height="48" rx="6" fill="{{ '#0a7d20' if on else '#ffffff' }}" stroke="{{ '#0a7d20' if on else '#15201a' }}" stroke-width="1.4"/>
-    {% for line in label.split(' (') %}<text x="{{ x + 40 }}" y="{{ 40 + loop.index0 * 12 }}" text-anchor="middle" font-size="{{ 10 if loop.first else 8 }}" font-weight="{{ 700 if loop.first else 400 }}" fill="{{ '#ffffff' if on else '#15201a' }}">{{ line if loop.first else '(' ~ line }}</text>{% endfor %}
-    {% if key in drains %}
-    <line x1="{{ x + 40 }}" y1="66" x2="{{ x + 40 }}" y2="86" stroke="#69746d" stroke-width="1.2"/>
-    <rect x="{{ x + 26 }}" y="86" width="28" height="14" rx="3" fill="{{ '#0a7d20' if 'drain' in active else '#e9f4ea' }}" stroke="#0a7d20" stroke-width="1"/>
-    <text x="{{ x + 40 }}" y="96" text-anchor="middle" font-size="7" font-weight="700" fill="{{ '#ffffff' if 'drain' in active else '#00700d' }}">DRAIN</text>
-    {% endif %}
-    {% endfor %}
-    <text x="10" y="116" font-size="8" fill="#69746d">Automatic drain valves discharge condensate from the aftercooler, receiver, filters and dryer.</text>
-  </svg>
-</div>
+<div class="block"><h3>Typical compressed air installation</h3>
+<svg class="install" viewBox="0 0 700 120" role="img" aria-label="Compressor, aftercooler, receiver, pre-filter, dryer, fine filters, plant; drains at the condensate points.">
+{% set boxes = [('compressor','Air compressor'),('aftercooler','Aftercooler'),('receiver','Air receiver'),('prefilter','Pre-filter'),('dryer','Air dryer'),('finefilter','Fine filters'),('plant','To the plant')] %}
+<line x1="40" y1="42" x2="660" y2="42" stroke="#15201a" stroke-width="2"/>
+{% for key,label in boxes %}{% set x = 10 + loop.index0 * 100 %}{% set on = key in active %}<rect x="{{ x }}" y="18" width="80" height="48" rx="3" fill="{{ '#008810' if on else '#fff' }}" stroke="#15201a" stroke-width="1.4"/><text x="{{ x + 40 }}" y="44" text-anchor="middle" font-size="10" font-weight="650" fill="{{ '#fff' if on else '#15201a' }}">{{ label }}</text>{% if key not in ['compressor','plant'] %}<line x1="{{ x + 40 }}" y1="66" x2="{{ x + 40 }}" y2="86" stroke="#56625b"/><rect x="{{ x + 24 }}" y="86" width="32" height="16" rx="2" fill="{{ '#008810' if 'drain' in active else '#fff' }}" stroke="#008810"/><text x="{{ x + 40 }}" y="97" text-anchor="middle" font-size="8" fill="{{ '#fff' if 'drain' in active else '#00700d' }}">DRAIN</text>{% endif %}{% endfor %}
+<text x="10" y="118" font-size="9" fill="#56625b">Typical arrangement only. Confirm filtration sequence and condensate handling for your application.</text></svg></div>
 {% endmacro %}
-
-{% macro features(p) %}
-{% if p.features %}
-<div class="block">
-  <p class="kicker">Construction</p>
-  <h2>Features</h2>
-  <div class="features">{% for f in p.features %}<div><h3>{{ f.title }}</h3><ul>{% for pt in f.points %}<li>{{ pt }}</li>{% endfor %}</ul></div>{% endfor %}</div>
-</div>
-{% endif %}
-{% endmacro %}
-
-{% macro conditions(p) %}
-{% if p.conditions is defined and p.conditions %}
-<div class="block"><h3>Rating conditions</h3><dl class="conds">{% for c in p.conditions %}<div><dt>{{ c.label }}</dt><dd>{{ c.value }}</dd></div>{% endfor %}</dl></div>
-{% endif %}
-{% endmacro %}
-
-{% macro spec_table(p, title=None) %}
-{% set cols = p.spec.columns %}
-<section class="{{ 'wide page' if cols | length > 9 else 'page' }}">
-  <p class="kicker">Technical specifications</p>
-  <h2>{{ title or (p.series ~ ' models') }}</h2>
-  {{ conditions(p) }}
-  <table class="spec">
-    <thead><tr>{% for c in cols %}<th scope="col">{{ c.label }}{% if c.unit %}<small>{{ c.unit }}</small>{% endif %}</th>{% endfor %}</tr></thead>
-    <tbody>{% for r in p.spec.rows %}<tr>{% for c in cols %}{% if loop.first %}<th scope="row">{{ r[c.key] }}</th>{% else %}<td{% if c.primary is defined and c.primary %} class="primary"{% endif %}>{{ r.get(c.key) | fmt }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody>
-  </table>
-  {% if p.spec.notes %}<ul class="notes">{% for n in p.spec.notes %}<li>{{ n }}</li>{% endfor %}</ul>{% endif %}
-</section>
-{% endmacro %}
-
-{% macro selection(p) %}
-{% set s = p.selection if p.selection is defined else none %}
-{% if s %}
-<div class="block">
-  <p class="kicker">Selection{% if p.series %} · {{ p.series }}{% endif %}</p>
-  <h2>{{ 'Selection factors: ' ~ p.name if (s.kind is defined and s.kind == 'approach') else 'Sizing for your conditions' }}</h2>
-  {% if s.kind is defined and s.kind == 'approach' %}
-  <p style="margin-bottom:3mm">{{ s.intro }}</p>
-  <table class="mini" style="max-width:150mm"><thead><tr><th>ΔT °C \ approach °C</th>{% for a in s.approaches %}<th>{{ a }}</th>{% endfor %}</tr></thead>
-    <tbody>{% for d in s.deltas %}<tr><th>{{ d }}</th>{% for v in s.grid[loop.index0] %}<td>{{ v }}</td>{% endfor %}</tr>{% endfor %}</tbody></table>
-  <p class="formula" style="margin-top:4mm">{{ s.formula }}</p>
-  {% else %}
-  <p class="formula">{{ s.formula }}</p>
-  <div class="factors">
-    {% for t in s.tables %}
-    <table class="mini"><caption>{{ t.name }}</caption>
-      <tr><th>{{ t.unit }}</th>{% for pt in t.points %}<td>{{ pt[0] }}</td>{% endfor %}</tr>
-      <tr><th>Factor</th>{% for pt in t.points %}<td>{{ pt[1] }}</td>{% endfor %}</tr></table>
-    {% endfor %}
-  </div>
-  {% endif %}
-</div>
-{% endif %}
-{% if p.grades is defined and p.grades %}
-<div class="block">
-  <p class="kicker">Filter grades</p>
-  <h2>Choose the grade for your air quality</h2>
-  <table class="spec"><thead><tr><th>Grade</th><th>Particles</th><th>Oil carry-over</th><th>Clean pressure drop</th><th>Media</th><th>Efficiency</th><th>ISO 8573-1</th></tr></thead>
-    <tbody>{% for g in p.grades %}<tr><th scope="row">{{ g.code }}</th><td>{{ g.particle }}</td><td>{{ g.oil }}</td><td>{{ g.dp }}</td><td style="white-space:normal">{{ g.media }}</td><td>{{ g.efficiency }}</td><td style="white-space:normal">{{ g['class'] }}</td></tr>{% endfor %}</tbody></table>
-</div>
-{% endif %}
-{% endmacro %}
-
-{% macro applications(p) %}
-{% if p.applications %}
-<div class="block"><p class="kicker">Applications</p><ul class="tags">{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul></div>
-{% endif %}
-{% endmacro %}
-
-{% macro gallery(slugs) %}
-{% set ns = namespace(r=[]) %}{% for ph in photos %}{% if ph.product in slugs and ns.r | length < 4 %}{% set ns.r = ns.r + [ph] %}{% endif %}{% endfor %}
-{% if ns.r %}
-<div class="block"><p class="kicker">From our works</p><div class="photos">{% for ph in ns.r %}<figure><img src="{{ img(ph.path, 700) }}" alt=""><figcaption>{{ ph.caption }}</figcaption></figure>{% endfor %}</div></div>
-{% endif %}
-{% endmacro %}
-
-{% macro faq(p) %}
-{% if p.faqs %}
-<div class="block"><p class="kicker">Questions</p><dl class="faq">{% for f in p.faqs[:6] %}<div><dt>{{ f.q }}</dt><dd>{{ f.a | replace('The sizing tool on this page does the calculation for you.', 'The sizing calculator on winequipments.com does the calculation for you.') | replace('on this page', 'on our website') }}</dd></div>{% endfor %}</dl></div>
-{% endif %}
-{% endmacro %}
-
-{% macro contact(url) %}
-<div class="contact">
-  <div><h3>Talk to an engineer</h3>Send your compressor capacity, heat load or water flow, operating pressure, temperatures and site conditions. We reply with a recommended model and quotation.</div>
-  <div><strong>Win Equipments</strong><br>{{ site.address_lines | join('<br>' | safe) }}<br><strong>{{ site.phones | map(attribute='display') | join(' · ') }}</strong><br>WhatsApp +91 95972 28969<br>{{ site.email }} · winequipments.com</div>
-  {{ qr(url) }}
-</div>
-<p class="disclaimer">{{ site.certification }} certified. Specifications are as per our catalogue and are subject to change without notice; confirm the selection with our engineers before ordering. Issued {{ today.strftime('%B %Y') }}.</p>
-{% endmacro %}
+{% macro features(p, shared=false) %}<h3>{{ p.name ~ ': construction' if shared else 'Construction & features' }}</h3><div class="features">{% for feature in p.features %}<div><h3>{{ feature.title }}</h3><ul>{% for point in feature.points %}<li>{{ point }}</li>{% endfor %}</ul></div>{% endfor %}</div>{% endmacro %}
+{% macro selection(p) %}{% if p.selection %}{% set s = p.selection %}<div class="block"><h3>{{ 'Selection factors · ' ~ p.name if s.kind is defined else 'Sizing for your conditions' }}</h3>
+{% if s.kind is defined and s.kind == 'approach' %}<p>{{ s.intro }}</p><table style="margin-top:3mm"><thead><tr><th scope="col">Range ΔT (°C) / approach (°C)</th>{% for a in s.approaches %}<th scope="col">{{ a }}</th>{% endfor %}</tr></thead><tbody>{% for d in s.deltas %}<tr><th scope="row">{{ d }}</th>{% for v in s.grid[loop.index0] %}<td>{{ v }}</td>{% endfor %}</tr>{% endfor %}</tbody></table><p class="formula">{{ s.formula }}</p>
+{% else %}<p class="formula">{{ s.formula }}</p><div class="factor-grid">{% for t in s.tables %}<table><caption>{{ t.name }}</caption><thead><tr><th scope="col">{{ t.unit }}</th><th scope="col">Factor</th></tr></thead><tbody>{% for point in t.points %}<tr><th scope="row">{{ point[0] }}</th><td>{{ point[1] }}</td></tr>{% endfor %}</tbody></table>{% endfor %}</div>{% endif %}</div>{% endif %}{% endmacro %}
+{% macro grades(p) %}{% if p.grades %}<div class="table-block"><h3>Filter grades</h3><table><thead><tr><th>Grade</th><th>Particles</th><th>Oil carry-over</th><th>Clean pressure drop</th><th>Media</th><th>Efficiency</th><th>ISO 8573-1</th></tr></thead><tbody>{% for g in p.grades %}<tr><th scope="row">{{ g.code }}</th><td>{{ g.particle }}</td><td>{{ g.oil }}</td><td>{{ g.dp }}</td><td>{{ g.media }}</td><td>{{ g.efficiency }}</td><td>{{ g['class'] }}</td></tr>{% endfor %}</tbody></table></div>{% endif %}{% endmacro %}
+{% macro applications(p) %}{% if p.applications %}<p class="applications"><strong>Applications:</strong> {{ p.applications | join(' · ') }}</p>{% endif %}{% endmacro %}
+{% macro faq(p) %}<dl class="faq">{% for f in p.faqs %}<div><dt>{{ f.q }}</dt><dd>{{ f.a | replace('The sizing tool on this page does the calculation for you.', 'Use the sizing calculator on winequipments.com.') | replace('on this page', 'on our website') }}</dd></div>{% endfor %}</dl>{% endmacro %}
+{% macro contact(url) %}<div class="contact"><div><h3>Confirm your selection</h3>Send the model, required capacity, operating temperatures, pressure and site conditions. For a model-specific datasheet or GA drawing, include your installation requirement.</div><div><strong>Win Equipments</strong><br>{{ site.address_lines | join(', ') }}<br><a href="tel:+919597228969">+91 95972 28969</a> · <a href="tel:+919597228975">+91 95972 28975</a><br><a href="mailto:{{ site.email }}">{{ site.email }}</a><br><a href="{{ url }}">winequipments.com</a></div></div><p class="disclaimer">Catalogue values are for product selection. Confirm duty, materials, connections and final dimensions with Win Equipments before ordering. Layout edition {{ layout_edition }}.</p>{% endmacro %}

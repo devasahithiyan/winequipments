@@ -5,10 +5,34 @@
     "title": "Refrigerated air dryers",
     "series": "WRD series",
     "path": "/downloads/refrigerated-air-dryers.pdf",
-    "products": ["refrigerated-air-dryers"],
+    "products": [
+      "refrigerated-air-dryers"
+    ],
     "purpose": "Compare dryer models and adjust the selection for your compressor and plant conditions.",
     "includes": "Model table, installation layout and sizing correction factors",
-    "contents": [{"label": "Working principle and installation", "page": 2}, {"label": "Construction features", "page": 3}, {"label": "Models and rating conditions", "page": 4}, {"label": "Sizing correction factors", "page": 5}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "Dimensions & connections",
+        "page": 3
+      },
+      {
+        "label": "Working principle & installation",
+        "page": 4
+      },
+      {
+        "label": "Construction & selection questions",
+        "page": 5
+      },
+      {
+        "label": "Selection & applications",
+        "page": 6
+      }
+    ],
+    "code": "WIN-WRD-CAT"
   },
   {
     "id": "desiccant-air-dryers",
@@ -16,10 +40,26 @@
     "title": "Heatless desiccant air dryers",
     "series": "WHD series",
     "path": "/downloads/desiccant-air-dryers.pdf",
-    "products": ["desiccant-air-dryers"],
+    "products": [
+      "desiccant-air-dryers"
+    ],
     "purpose": "Compare twin-tower dryer models and the dew points available with each desiccant option.",
     "includes": "Model table, desiccant options and installation layout",
-    "contents": [{"label": "Working principle, installation and features", "page": 2}, {"label": "Models and dew-point rating conditions", "page": 3}, {"label": "Applications and selection questions", "page": 4}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "How it works & construction",
+        "page": 3
+      },
+      {
+        "label": "Selection & applications",
+        "page": 4
+      }
+    ],
+    "code": "WIN-WHD-CAT"
   },
   {
     "id": "compressed-air-filters",
@@ -27,10 +67,26 @@
     "title": "Compressed air filters",
     "series": "WMF series",
     "path": "/downloads/compressed-air-filters.pdf",
-    "products": ["compressed-air-filters"],
+    "products": [
+      "compressed-air-filters"
+    ],
     "purpose": "Find a filter housing and compare the filtration grades for your required air quality.",
     "includes": "Housing models, filter grades and installation layout",
-    "contents": [{"label": "Filter stages, installation and features", "page": 2}, {"label": "Housing models and rating conditions", "page": 3}, {"label": "Filter grades and selection questions", "page": 4}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "How it works & construction",
+        "page": 3
+      },
+      {
+        "label": "Selection & applications",
+        "page": 4
+      }
+    ],
+    "code": "WIN-WMF-CAT"
   },
   {
     "id": "automatic-drain-valves",
@@ -38,10 +94,26 @@
     "title": "Automatic condensate drain valves",
     "series": "WDV series",
     "path": "/downloads/automatic-drain-valves.pdf",
-    "products": ["automatic-drain-valves"],
+    "products": [
+      "automatic-drain-valves"
+    ],
     "purpose": "Compare timer, micro-controller and no-air-loss options for condensate removal.",
     "includes": "Valve types, model table, pressure and connection details",
-    "contents": [{"label": "Working principle, installation and valve types", "page": 2}, {"label": "Models, pressures and connections", "page": 3}, {"label": "Applications and selection questions", "page": 4}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "How it works & construction",
+        "page": 3
+      },
+      {
+        "label": "Selection & applications",
+        "page": 4
+      }
+    ],
+    "code": "WIN-WDV-CAT"
   },
   {
     "id": "air-receiver-tanks",
@@ -49,10 +121,26 @@
     "title": "Compressed air receiver tanks",
     "series": "WRV series",
     "path": "/downloads/air-receiver-tanks.pdf",
-    "products": ["air-receiver-tanks"],
+    "products": [
+      "air-receiver-tanks"
+    ],
     "purpose": "Compare standard vessel sizes, pressure options and connections before discussing your requirement.",
     "includes": "Standard model table, pressure options and construction details",
-    "contents": [{"label": "Working principle, installation and construction", "page": 2}, {"label": "Standard models and pressure options", "page": 3}, {"label": "Applications and custom-vessel questions", "page": 4}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "How it works & construction",
+        "page": 3
+      },
+      {
+        "label": "Selection & applications",
+        "page": 4
+      }
+    ],
+    "code": "WIN-WRV-CAT"
   },
   {
     "id": "industrial-process-chillers",
@@ -60,10 +148,26 @@
     "title": "Industrial process chillers",
     "series": "WCP series",
     "path": "/downloads/industrial-process-chillers.pdf",
-    "products": ["industrial-process-chillers"],
+    "products": [
+      "industrial-process-chillers"
+    ],
     "purpose": "Compare standard chiller models and check how operating temperatures affect the selection.",
     "includes": "Model table, rating conditions and selection factors",
-    "contents": [{"label": "Working principle and construction", "page": 2}, {"label": "Models and rating conditions", "page": 3}, {"label": "Selection factors and applications", "page": 4}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "How it works & construction",
+        "page": 3
+      },
+      {
+        "label": "Selection & applications",
+        "page": 4
+      }
+    ],
+    "code": "WIN-WCP-CAT"
   },
   {
     "id": "frp-cooling-towers",
@@ -71,10 +175,35 @@
     "title": "Round and square FRP cooling towers",
     "series": "WCT RL / WCT SL series",
     "path": "/downloads/frp-cooling-towers.pdf",
-    "products": ["round-cooling-towers", "square-cooling-towers"],
+    "products": [
+      "round-cooling-towers",
+      "square-cooling-towers"
+    ],
     "purpose": "Compare round and square evaporative towers, with separate model tables for each shape.",
     "includes": "Both tower shapes, model tables and selection factors",
-    "contents": [{"label": "Working principle and construction", "page": 2}, {"label": "Round tower models", "page": 3}, {"label": "Square tower models", "page": 4}, {"label": "Selection factors for both shapes", "page": 5}, {"label": "Photos and selection questions", "page": 6}]
+    "contents": [
+      {
+        "label": "Round FRP Cooling Towers models",
+        "page": 2
+      },
+      {
+        "label": "Square FRP Cooling Towers models",
+        "page": 3
+      },
+      {
+        "label": "How it works & construction",
+        "page": 4
+      },
+      {
+        "label": "Selection factors",
+        "page": 5
+      },
+      {
+        "label": "Applications & selection questions",
+        "page": 6
+      }
+    ],
+    "code": "WIN-WCT-CAT"
   },
   {
     "id": "closed-circuit-cooling-towers",
@@ -82,21 +211,83 @@
     "title": "Coil cooling towers / dry coolers",
     "series": "WCC series",
     "path": "/downloads/closed-circuit-cooling-towers.pdf",
-    "products": ["closed-circuit-cooling-towers"],
+    "products": [
+      "closed-circuit-cooling-towers"
+    ],
     "purpose": "Compare finned-coil dry coolers for closed water loops, including diesel genset cooling.",
     "includes": "Model table, genset duty and operating conditions",
-    "contents": [{"label": "Working principle and construction", "page": 2}, {"label": "Models and operating conditions", "page": 3}, {"label": "Applications and dry-cooler questions", "page": 4}]
+    "contents": [
+      {
+        "label": "Models & rating conditions",
+        "page": 2
+      },
+      {
+        "label": "How it works & construction",
+        "page": 3
+      },
+      {
+        "label": "Selection & applications",
+        "page": 4
+      }
+    ],
+    "code": "WIN-WCC-CAT"
   },
   {
     "id": "win-equipments-catalogue",
     "family": null,
     "title": "Company and product overview",
-    "coverage_note": "This edition covers 19 product lines.",
+    "coverage_note": "This edition covers all 23 current product lines.",
     "series": "Win Equipments",
     "path": "/downloads/win-equipments-catalogue.pdf",
     "products": [],
     "purpose": "A company introduction with equipment summaries and application notes to share with your team.",
     "includes": "Company profile, product summaries and industry applications",
-    "contents": [{"label": "Company profile", "page": 2}, {"label": "Compressed air treatment", "page": 3}, {"label": "Process cooling", "page": 5}, {"label": "Cooling towers", "page": 8}, {"label": "Spares", "page": 9}, {"label": "Industry applications", "page": 10}]
+    "contents": [
+      {
+        "label": "Company & product index",
+        "page": 2
+      },
+      {
+        "label": "Compressed Air Treatment · 1",
+        "page": 3
+      },
+      {
+        "label": "Compressed Air Treatment · 2",
+        "page": 4
+      },
+      {
+        "label": "Compressed Air Treatment · 3",
+        "page": 5
+      },
+      {
+        "label": "Process Cooling · 1",
+        "page": 6
+      },
+      {
+        "label": "Process Cooling · 2",
+        "page": 7
+      },
+      {
+        "label": "Process Cooling · 3",
+        "page": 8
+      },
+      {
+        "label": "Process Cooling · 4",
+        "page": 9
+      },
+      {
+        "label": "Cooling Towers · 1",
+        "page": 10
+      },
+      {
+        "label": "Cooling Towers · 2",
+        "page": 11
+      },
+      {
+        "label": "Applications & project enquiries",
+        "page": 12
+      }
+    ],
+    "code": "WIN-RANGE-CAT"
   }
 ]

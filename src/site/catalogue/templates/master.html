@@ -1,51 +1,15 @@
-{% import "_parts.html" as x %}
-{% set url = site.url ~ "/products/" %}
-{% set lineup = [products['refrigerated-air-dryers'], products['industrial-process-chillers'], products['round-cooling-towers']] %}
-{{ x.head("Win Equipments product catalogue") }}
-{{ x.cover(lineup, "Product catalogue", "Air dryers, chillers and cooling towers", "Compressed air treatment · Process cooling · Heat rejection",
-   "Win Equipments designs, builds and commissions compressed air treatment equipment, process chillers and cooling towers at its works in Arasur, Coimbatore. " ~ product_count_word ~ " product lines in three families.",
-   [{"label": "Established", "value": site.founded | string}, {"label": "Installations", "value": site.installations}, {"label": "Product lines", "value": product_count | string}, {"label": "Quality system", "value": site.certification}], url) }}
-
-<section class="page">
-  <p class="kicker">About us</p>
-  <h2 style="font-size:24pt;font-stretch:72%">Manufacturer, supplier and project partner since {{ site.founded }}</h2>
-  <div class="about-grid">
-    <div>
-      <p>Win Equipments was established in {{ site.founded }} by {{ site.founder }} as a manufacturer of compressed air and water cooling systems. We make the equipment, and we also take on project consultancy: designing, planning and commissioning the system around it.</p>
-      <p>Our equipment is fabricated and assembled at our works in Arasur, Coimbatore. After commissioning we support each installation with service and spares.</p>
-    </div>
-    <img class="about-photo" src="{{ img('images/about_us_2.jpg', 1100) }}" alt="">
-  </div>
-  <div class="numbers"><div><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div><div><strong>{{ site.installations }}</strong><span>Installations across industry</span></div><div><strong>{{ product_count }}</strong><span>Product lines</span></div><div><strong>ISO 9001</strong><span>2015 certified quality system</span></div></div>
-  <div class="block"><h3 style="margin-bottom:3mm">From enquiry to commissioning</h3><ol class="steps">{% for t, d in site.process %}<li><strong>{{ t }}</strong>{{ d }}</li>{% endfor %}</ol></div>
-  <div class="block"><h3 style="margin-bottom:3mm">Contents</h3>
-    <ol class="toc">{% for fam in families.values() %}{% for p in fam.products %}<li>{{ p.name }}<span>{{ p.range }}</span></li>{% endfor %}{% endfor %}</ol></div>
-</section>
-
-{% for fam in families.values() %}
-<section class="page">
-  <div class="fam-head"><div><p class="kicker">{{ fam.products | length }} product lines</p><h2>{{ fam.name }}</h2></div><p>{{ fam.lede if fam.lede is defined else fam.summary }}</p></div>
-  {% for p in fam.products %}
-  <div class="prod">
-    <div class="prod__img"><img src="{{ cutout(p.image, 420) }}" alt=""></div>
-    <div>
-      <p class="series">{{ p.series }}</p>
-      <h3>{{ p.h1 }}</h3>
-      <p>{{ p.lede }}</p>
-      {% if p.key_specs %}<dl class="readout">{% for k in p.key_specs[:4] %}<div><dt>{{ k.label }}</dt><dd>{{ k.value }}</dd></div>{% endfor %}</dl>{% endif %}
-      {% if p.spec %}<p class="models"><strong>Standard models:</strong> {{ p.spec.rows | map(attribute='model') | join(' · ') }}</p>
-      {% elif p.needs is defined %}<p class="models"><strong>Engineered to order.</strong> To quote we need:</p><ol class="needs">{% for n in p.needs %}<li>{{ n }}</li>{% endfor %}</ol>{% endif %}
-      <p class="link">Full specifications: winequipments.com{{ product_url(p.slug) }}{% if p.download %} · datasheet {{ p.download.split('/')[-1] }}{% endif %}</p>
-    </div>
-  </div>
-  {% endfor %}
-</section>
-{% endfor %}
-
-<section class="page">
-  <p class="kicker">Industries</p>
-  <h2>Where our equipment runs</h2>
-  <table class="ind-table">{% for i in industries %}<tr><th>{{ i.name }}</th><td>{{ i.intro }}<br><strong>{% for slug in i.products %}{{ products[slug].name }}{% if not loop.last %} · {% endif %}{% endfor %}</strong></td></tr>{% endfor %}</table>
-  {{ x.contact(url) }}
-</section>
-</body></html>
+{% import '_parts.html' as x %}
+{{ x.head('Company & product catalogue | Win Equipments') }}
+{{ x.cover(doc, [products['refrigerated-air-dryers'],products['industrial-process-chillers'],products['round-cooling-towers']], 'Air treatment, process cooling & cooling towers', 'Equipment manufactured in Arasur, Coimbatore, with model ranges, applications and custom-equipment options across all ' ~ product_count ~ ' current product lines.', [{'label':'Established','value':site.founded},{'label':'Product lines','value':product_count},{'label':'Location','value':'Arasur, Coimbatore'},{'label':'Support','value':'Service & spares'}], pages, url) }}
+{% for page in pages %}<section class="sheet" id="{{ page.id }}">{{ x.brand(doc) }}<h2>{{ page.title }}</h2>
+{% if page.kind == 'company' %}
+<p class="lede">Win Equipments was established in {{ site.founded }} by {{ site.founder }}. We manufacture compressed air and cooling equipment and support projects from selection through commissioning, service and spares.</p>
+<div class="about-grid"><div><h3>Manufacturing & project support</h3><p>Our equipment is fabricated and assembled at our works in Arasur, Coimbatore. We supply plants across India and design equipment to suit the specified operating conditions.</p><p>{{ site.installations }} installations across industry. Model selection and custom equipment are confirmed against your requirement.</p></div><img src="{{ img('images/about_us_2.jpg', 900) }}" alt="Win Equipments manufacturing works"></div>
+<h3>From enquiry to commissioning</h3><div class="process">{% for title, detail in site.process %}<div><strong>{{ title }}</strong>{{ detail }}</div>{% endfor %}</div>
+<h3>Find a product</h3><div class="range-index">{% for family in families.values() %}<div><h3>{{ family.name }}</h3>{% for product in family.products %}<a href="#{{ product_pages[product.slug].id }}">{{ product.name }}<span>{{ product_pages[product.slug].number }}</span></a>{% endfor %}</div>{% endfor %}</div>
+{% elif page.kind == 'range' %}
+<p class="section-intro">{{ page.family.summary }}</p>
+{% for p in page["items"] %}<article class="product-row" id="{{ p.slug }}"><img src="{{ cutout(p.image, 500) }}" alt="{{ p.name }}"><div><h3>{{ p.name }}</h3><p class="series">{{ p.series }}</p><p>{{ p.lede }}</p><dl>{% for spec in p.key_specs[:4] %}<div><dt>{{ spec.label }}</dt><dd>{{ spec.value }}</dd></div>{% endfor %}</dl>{% if not p.spec and p.needs %}<p class="needs"><strong>Engineered to order.</strong> Send: {{ p.needs | join('; ') }}.</p>{% endif %}<p><a href="{{ site.url ~ product_url(p.slug) }}">View specifications: winequipments.com{{ product_url(p.slug) }}</a></p></div></article>{% endfor %}
+{% elif page.kind == 'industries' %}
+<p class="lede">Select equipment around the plant duty, the required air quality and the operating conditions.</p><table class="industry-table"><tbody>{% for industry in industries %}<tr><th scope="row">{{ industry.name }}</th><td>{{ industry.intro }}<br><strong>{% for slug in industry.products %}{{ products[slug].name }}{{ ' · ' if not loop.last }}{% endfor %}</strong></td></tr>{% endfor %}</tbody></table>{{ x.contact(url) }}
+{% endif %}</section>{% endfor %}</body></html>

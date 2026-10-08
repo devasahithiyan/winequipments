@@ -1,32 +1,23 @@
-{% import "_parts.html" as x %}
-{% set p = items[0] %}
-{% set url = site.url ~ product_url(p.slug) %}
-{% if items | length > 1 %}
-  {% set title = "FRP cooling towers, round and square" %}{% set series = items | map(attribute='series') | join(' · ') %}
-{% else %}
-  {% set title = p.h1 %}{% set series = p.series %}
-{% endif %}
-{% set active = {"refrigerated-air-dryers": ["dryer"], "desiccant-air-dryers": ["dryer"], "compressed-air-filters": ["prefilter", "finefilter"], "automatic-drain-valves": ["drain"], "air-receiver-tanks": ["receiver"]} %}
-{{ x.head(title ~ " | Win Equipments") }}
-{{ x.cover(items, "Product datasheet", title, series, p.lede, p.key_specs, url) }}
-
-<section class="page">
+{% import '_parts.html' as x %}{% set p = items[0] %}
+{{ x.head(doc.title ~ ' | Win Equipments') }}
+{{ x.cover(doc, items, doc.title, p.lede if items | length == 1 else doc.purpose, p.key_specs, pages, url) }}
+{% for page in pages %}<section class="sheet" id="{{ page.id }}">{{ x.brand(doc) }}<h2>{{ page.title }}</h2>
+{% if page.kind == 'models' %}
+  {{ x.conditions(page.product) }}
+  {% for group in page.groups %}{{ x.model_table(page.product, group) }}{% endfor %}
+  {% if page.notes %}<ul class="notes">{% for note in page.product.spec.notes %}<li>{{ note }}</li>{% endfor %}</ul>{% endif %}
+  {% if page.product.grades %}{{ x.grades(page.product) }}{% endif %}
+{% elif page.kind in ['principle', 'working'] %}
   {{ x.flow(p) }}
   {% if kind == 'air' %}{{ x.install(active.get(p.slug, [])) }}{% endif %}
-  {% if p.slug == 'refrigerated-air-dryers' %}
-  <div class="block chart-wrap"><p class="kicker">Why dry the air</p><h3>Water held by compressed air at 7 bar g</h3>
-    <figure class="chart-plate">{{ dew_chart('wide') }}<figcaption>Saturated air at 45 °C holds about 7.5 g of water per kg; at a +3 °C pressure dew point only about 0.6 g/kg, so about 92% must condense and drain. Calculated values.</figcaption></figure></div>
-  {% endif %}
-  {{ x.features(p) }}
-</section>
-
-{% for it in items %}{% if it.spec %}{{ x.spec_table(it, (it.series ~ ' · ' ~ it.name) if items | length > 1 else none) }}{% endif %}{% endfor %}
-
-<section class="page">
-  {% for it in items %}{{ x.selection(it) }}{% endfor %}
-  {{ x.applications(p) }}
-  {{ x.gallery(items | map(attribute='slug') | list) }}
-  {{ x.faq(p) }}
-  {{ x.contact(url) }}
-</section>
-</body></html>
+  {% if page.kind != 'working' %}{% for item in items %}{{ x.features(item, items | length > 1) }}{% endfor %}{% endif %}
+  {% if p.slug == 'refrigerated-air-dryers' %}<figure class="chart-wrap"><h3>Water in compressed air at 7 bar g</h3>{{ dew_chart('wide') }}<figcaption>Saturated air at 45 °C holds about 7.5 g of water per kg; at +3 °C pressure dew point, about 0.6 g/kg. About 92% must condense and drain. Calculated values.</figcaption></figure>{% endif %}
+{% elif page.kind == 'details' %}
+  {{ x.features(p) }}{{ x.applications(p) }}{{ x.faq(p) }}
+{% elif page.kind == 'selection' %}
+  {% for item in items %}{{ x.selection(item) }}{% endfor %}
+  {% if items | length == 1 %}{% if p.slug != 'refrigerated-air-dryers' %}{{ x.applications(p) }}{{ x.faq(p) }}{% endif %}{{ x.contact(url) }}{% endif %}
+{% elif page.kind == 'questions' %}
+  {% for item in items %}<h3>{{ item.name }}</h3>{{ x.applications(item) }}{{ x.faq(item) }}{% endfor %}{{ x.contact(url) }}
+{% endif %}
+</section>{% endfor %}</body></html>

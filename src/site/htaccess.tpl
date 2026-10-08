@@ -44,6 +44,7 @@ ErrorDocument 404 /404.html
 <IfModule mod_mime.c>
     # llms.txt and other .txt files carry degree signs and dashes; without this they are served with no charset
     AddDefaultCharset UTF-8
+    AddType application/javascript .mjs
     AddType image/avif .avif
     AddType font/woff2 .woff2
     AddType video/mp4 .mp4

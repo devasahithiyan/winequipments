@@ -2,7 +2,7 @@
 
 Reviewed 8 October 2026.
 
-Implementation status: the grouped downloads page, document records, validated PDF metadata/cover previews, specification/download links and focused document-request flow are implemented locally. Product-page download links share the same metadata. The existing PDF contents have not been regenerated; document corrections and engineering review remain the next phase. No deployment performed.
+Current status (8 October 2026): the library and request flow are implemented. A subsequent user-requested redesign has regenerated all nine PDFs as uniform A4 portrait documents, expanded the master to all 23 product entries, and replaced image quick look with an actual PDF reader. See `downloads-validation.md` and `catalogue-redesign-brief.md`. The findings and proposed exclusions below describe the earlier audit, not the current implementation; the user subsequently authorized PDF and reader replacement. Engineering currency still needs company confirmation. No deployment performed.
 
 ## Recommendation
 

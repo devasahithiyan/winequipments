@@ -1,99 +1,266 @@
-/* PDF quick look: actual pages, loaded on demand; original links work without JS. */
+/* Local PDF.js reader. The normal PDF links remain the no-script fallback. */
 (() => {
   const dialog = document.querySelector('.pdf-look');
   const data = document.getElementById('pdf-preview-data');
   if (!dialog || !data || typeof dialog.showModal !== 'function') return;
   const documents = new Map(JSON.parse(data.textContent).map(doc => [doc.id, doc]));
   const title = dialog.querySelector('h2');
+  const description = dialog.querySelector('[data-pdf-description]');
   const pageSelect = dialog.querySelector('#pdf-page');
-  const total = dialog.querySelector('[data-pdf-total]');
+  const zoom = dialog.querySelector('#pdf-zoom');
   const previous = dialog.querySelector('[data-pdf-prev]');
   const next = dialog.querySelector('[data-pdf-next]');
-  const zoom = dialog.querySelector('[data-pdf-zoom]');
   const viewport = dialog.querySelector('.pdf-look__viewport');
-  const image = dialog.querySelector('img');
+  const pages = dialog.querySelector('.pdf-look__pages');
   const status = dialog.querySelector('[role="status"]');
+  const retry = dialog.querySelector('[data-pdf-retry]');
   const caption = dialog.querySelector('[data-pdf-caption]');
   const download = dialog.querySelector('[data-pdf-download]');
   const original = dialog.querySelector('[data-pdf-open]');
-  let doc, page = 1, opener, revision = 0, timer;
+  const sidebar = dialog.querySelector('.pdf-look__sidebar');
+  const contents = dialog.querySelector('[data-pdf-contents]');
+  const outline = dialog.querySelector('[data-pdf-outline]');
+  const thumbnails = dialog.querySelector('[data-pdf-thumbnails]');
+  const helperUrl = new URL('./download-reader-layout.mjs', document.currentScript.src);
+  helperUrl.search = new URL(document.currentScript.src).search;
+  let layoutHelpers;
+  let libraryPromise, library, documentTask, pdf, doc, opener, page = 1;
+  let generation = 0, scaleRevision = 0, boxes = [], observer, timeout, resizeTimer, scrollFrame;
+  const tasks = new Map();
+  const renders = new Map();
+  const visible = new Set();
+  const small = () => matchMedia('(max-width: 767px)').matches;
 
-  function showPage(number) {
-    if (!doc || number < 1 || number > doc.pages) return;
-    page = number;
-    const request = ++revision;
-    clearTimeout(timer);
-    pageSelect.value = String(page);
-    previous.disabled = page === 1;
-    next.disabled = page === doc.pages;
-    caption.textContent = `Page ${page} of ${doc.pages}`;
-    image.hidden = true;
-    viewport.setAttribute('aria-busy', 'true');
-    viewport.scrollTop = viewport.scrollLeft = 0;
-    status.textContent = `Loading page ${page}…`;
-    original.href = `${doc.path}#page=${page}`;
-    const pending = new Image();
-    const failed = () => {
-      if (request !== revision || !dialog.open) return;
-      clearTimeout(timer);
-      viewport.setAttribute('aria-busy', 'false');
-      status.textContent = 'Couldn’t load this page. Choose another page or open the original PDF below.';
-    };
-    pending.onload = () => {
-      if (request !== revision || !dialog.open) return;
-      clearTimeout(timer);
-      image.src = pending.src;
-      image.alt = `${doc.title}, PDF page ${page} of ${doc.pages}. For accessible text, open the original PDF.`;
-      image.hidden = false;
-      status.textContent = '';
-      viewport.setAttribute('aria-busy', 'false');
-    };
-    pending.onerror = failed;
-    timer = setTimeout(() => { failed(); if (request === revision) revision++; }, 15000);
-    pending.src = doc.preview_pages[page - 1];
+  function loadLibrary() {
+    if (!libraryPromise) {
+      libraryPromise = Promise.all([import('/js/vendor/pdfjs/pdf.mjs?v=6.4.299'), import(helperUrl.href)]).then(([module, helpers]) => {
+        layoutHelpers = helpers;
+        module.GlobalWorkerOptions.workerSrc = '/js/vendor/pdfjs/pdf.worker.mjs?v=6.4.299';
+        return module;
+      }).catch(error => { libraryPromise = null; throw error; });
+    }
+    return libraryPromise;
   }
-
+  function stop() {
+    generation++;
+    scaleRevision++;
+    clearTimeout(timeout);
+    clearTimeout(resizeTimer);
+    cancelAnimationFrame(scrollFrame);
+    observer?.disconnect();
+    for (const task of tasks.values()) { task.canvas?.cancel(); task.text?.cancel(); }
+    tasks.clear(); renders.clear(); visible.clear();
+    const old = documentTask;
+    documentTask = null; pdf = null;
+    old?.destroy().catch(() => {});
+    boxes = [];
+    pages.replaceChildren();
+  }
+  function errorMessage(message) {
+    status.textContent = message;
+    retry.hidden = false;
+    viewport.setAttribute('aria-busy', 'false');
+  }
+  function setPage(number) {
+    page = Math.max(1, Math.min(doc.pages, number));
+    pageSelect.value = String(page);
+    previous.disabled = page <= 1;
+    next.disabled = page >= doc.pages;
+    caption.textContent = `Page ${page} of ${doc.pages}`;
+    original.href = `${doc.path}#page=${page}`;
+    thumbnails.querySelectorAll('button').forEach((button, index) => {
+      if (index + 1 === page) button.setAttribute('aria-current', 'page');
+      else button.removeAttribute('aria-current');
+    });
+  }
+  function jump(number) {
+    if (!boxes.length || number < 1 || number > boxes.length) return;
+    setPage(number);
+    const box = boxes[number - 1];
+    viewport.scrollTop += box.getBoundingClientRect().top - viewport.getBoundingClientRect().top - 16;
+    renderPage(number - 1);
+    if (small()) {
+      const fromContents = sidebar.contains(document.activeElement);
+      toggleContents(false);
+      if (fromContents) viewport.focus({preventScroll: true});
+    }
+  }
+  function toggleContents(open) {
+    sidebar.hidden = !open;
+    contents.setAttribute('aria-expanded', String(open));
+  }
+  function buildContents() {
+    outline.replaceChildren(); thumbnails.replaceChildren();
+    [{label: 'Cover', page: 1}, ...doc.contents].forEach(item => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      const text = document.createElement('span'); text.textContent = item.label;
+      const number = document.createElement('span'); number.textContent = String(item.page);
+      button.append(text, number);
+      button.addEventListener('click', () => jump(item.page));
+      outline.append(button);
+    });
+    for (let index = 0; index < doc.pages; index++) {
+      const button = document.createElement('button'); button.type = 'button';
+      button.setAttribute('aria-label', `Go to page ${index + 1}`);
+      const image = document.createElement('img');
+      image.src = doc.preview_pages[index]; image.alt = ''; image.loading = 'lazy'; image.decoding = 'async';
+      image.width = 70; image.height = 99;
+      const label = document.createElement('span'); label.textContent = `Page ${index + 1}`;
+      button.append(image, label);
+      button.addEventListener('click', () => jump(index + 1));
+      thumbnails.append(button);
+    }
+  }
+  function release(index) {
+    const task = tasks.get(index);
+    task?.canvas?.cancel(); task?.text?.cancel(); tasks.delete(index); renders.delete(index);
+    const box = boxes[index];
+    if (!box) return;
+    const canvas = box.querySelector('canvas');
+    if (canvas) canvas.width = canvas.height = 0;
+    box.replaceChildren(); box.removeAttribute('data-rendered');
+  }
+  async function renderPage(index) {
+    if (!pdf || !boxes[index] || tasks.has(index) || renders.get(index) === scaleRevision) return;
+    const currentGeneration = generation, revision = scaleRevision, source = pdf, box = boxes[index];
+    const task = {}; tasks.set(index, task);
+    try {
+      const pdfPage = await source.getPage(index + 1);
+      if (generation !== currentGeneration || revision !== scaleRevision || !dialog.open || tasks.get(index) !== task) return;
+      const base = pdfPage.getViewport({scale: 1});
+      const view = pdfPage.getViewport({scale: box.clientWidth / base.width});
+      const maxPixels = small() ? 2000000 : 4000000;
+      const ratio = Math.min(devicePixelRatio || 1, 2, Math.sqrt(maxPixels / (view.width * view.height)));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.floor(view.width * ratio); canvas.height = Math.floor(view.height * ratio);
+      canvas.style.width = `${view.width}px`; canvas.style.height = `${view.height}px`;
+      canvas.setAttribute('aria-hidden', 'true');
+      const text = document.createElement('div'); text.className = 'textLayer';
+      box.replaceChildren(canvas, text);
+      box.style.setProperty('--total-scale-factor', String(view.scale));
+      task.canvas = pdfPage.render({canvasContext: canvas.getContext('2d'), viewport: view, transform: ratio === 1 ? null : [ratio, 0, 0, ratio, 0, 0]});
+      await task.canvas.promise;
+      if (generation !== currentGeneration || revision !== scaleRevision || tasks.get(index) !== task) return;
+      task.text = new library.TextLayer({textContentSource: pdfPage.streamTextContent(), container: text, viewport: view});
+      await task.text.render();
+      if (generation !== currentGeneration || revision !== scaleRevision || tasks.get(index) !== task) return;
+      renders.set(index, revision); box.dataset.rendered = 'true';
+    } catch (error) {
+      if (generation !== currentGeneration || revision !== scaleRevision || error.name === 'RenderingCancelledException' || error.name === 'AbortException') return;
+      const message = document.createElement('p'); message.className = 'pdf-look__page-error';
+      message.textContent = `Page ${index + 1} couldn’t load. `;
+      const button = document.createElement('button'); button.type = 'button'; button.textContent = 'Retry page';
+      button.addEventListener('click', () => renderPage(index));
+      message.append(button); box.replaceChildren(message);
+    } finally { if (tasks.get(index) === task) tasks.delete(index); }
+  }
+  function layout(keepPosition = true) {
+    if (!boxes.length) return;
+    const current = boxes[page - 1];
+    const fraction = keepPosition ? (viewport.getBoundingClientRect().top - current.getBoundingClientRect().top) / current.offsetHeight : 0;
+    scaleRevision++;
+    boxes.forEach((_, index) => release(index));
+    const baseWidth = Number(pages.dataset.width), baseHeight = Number(pages.dataset.height);
+    const available = viewport.clientWidth - (small() ? 24 : 48);
+    const width = zoom.value === 'width' ? available : zoom.value === 'page' ? Math.min(available, (viewport.clientHeight - 32) * baseWidth / baseHeight) : baseWidth * Number(zoom.value);
+    boxes.forEach(box => { box.style.width = `${Math.max(100, width)}px`; box.style.height = `${Math.max(100, width) * baseHeight / baseWidth}px`; });
+    pages.style.minWidth = `${Math.max(100, width)}px`;
+    viewport.scrollTop += current.getBoundingClientRect().top - viewport.getBoundingClientRect().top + (keepPosition ? fraction * current.offsetHeight : -16);
+    observer?.disconnect(); visible.clear();
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const index = Number(entry.target.dataset.page) - 1;
+        if (entry.isIntersecting) { visible.add(index); renderPage(index); }
+        else visible.delete(index);
+      });
+      boxes.forEach((_, index) => { if (!visible.has(index) && Math.abs(index + 1 - page) > 2) release(index); });
+    }, {root: viewport, rootMargin: '400px 0px'});
+    boxes.forEach(box => observer.observe(box));
+    renderPage(page - 1);
+  }
+  async function openDocument() {
+    stop();
+    const attempt = generation;
+    viewport.setAttribute('aria-busy', 'true');
+    status.textContent = 'Loading PDF…'; retry.hidden = true;
+    pageSelect.disabled = zoom.disabled = previous.disabled = next.disabled = true;
+    timeout = setTimeout(() => {
+      if (attempt !== generation || !dialog.open) return;
+      stop(); errorMessage('The PDF is taking too long to load. Retry, download it, or open it in a new tab.');
+    }, 30000);
+    try {
+      library = await loadLibrary();
+      if (attempt !== generation || !dialog.open) return;
+      status.textContent = 'Preparing PDF…';
+      const url = new URL(doc.path, location.href);
+      url.searchParams.set('v', doc.preview_pages[0].split('.')[1]);
+      documentTask = library.getDocument({url: url.href, isEvalSupported: false});
+      const loaded = await documentTask.promise;
+      if (attempt !== generation || !dialog.open) return;
+      pdf = loaded;
+      if (pdf.numPages !== doc.pages) throw new Error('PDF metadata mismatch');
+      const first = await pdf.getPage(1);
+      if (attempt !== generation || !dialog.open) return;
+      const base = first.getViewport({scale: 1});
+      pages.dataset.width = String(base.width); pages.dataset.height = String(base.height);
+      boxes = Array.from({length: pdf.numPages}, (_, index) => {
+        const box = document.createElement('section'); box.className = 'pdf-look__sheet'; box.dataset.page = String(index + 1);
+        box.setAttribute('aria-label', `${doc.title}, page ${index + 1}`); pages.append(box); return box;
+      });
+      pageSelect.disabled = zoom.disabled = false;
+      status.textContent = ''; viewport.setAttribute('aria-busy', 'false'); clearTimeout(timeout);
+      setPage(1); layout(false);
+    } catch (error) {
+      if (attempt !== generation || !dialog.open) return;
+      stop(); errorMessage('Couldn’t load the PDF preview. Retry, download it, or open it in a new tab.');
+    }
+  }
   document.addEventListener('click', event => {
     const link = event.target.closest('[data-pdf-preview]');
     if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const selected = documents.get(link.dataset.pdfPreview);
     if (!selected) return;
-    event.preventDefault();
-    opener = link;
-    doc = selected;
+    event.preventDefault(); opener = link; doc = selected; page = 1;
     title.textContent = doc.title;
-    total.textContent = `of ${doc.pages}`;
+    description.textContent = `${doc.series} · PDF · ${doc.pages} pages · ${doc.size} · A4 portrait`;
     pageSelect.replaceChildren(...Array.from({length: doc.pages}, (_, index) => new Option(String(index + 1), String(index + 1))));
-    download.href = doc.path;
-    download.dataset.documentId = doc.id;
-    zoom.setAttribute('aria-pressed', 'false');
-    zoom.textContent = 'Zoom in';
-    viewport.classList.remove('is-zoomed');
-    dialog.showModal();
+    dialog.querySelector('[data-pdf-total]').textContent = `of ${doc.pages}`;
+    download.href = doc.path; download.dataset.documentId = doc.id; original.href = doc.path;
+    zoom.value = 'width'; buildContents(); setPage(1);
+    toggleContents(!small()); dialog.showModal();
     document.documentElement.classList.add('pdf-look-open');
-    showPage(1);
+    openDocument();
   });
-  previous.addEventListener('click', () => showPage(page - 1));
-  next.addEventListener('click', () => showPage(page + 1));
-  pageSelect.addEventListener('change', () => showPage(Number(pageSelect.value)));
-  zoom.addEventListener('click', () => {
-    const enlarged = viewport.classList.toggle('is-zoomed');
-    zoom.setAttribute('aria-pressed', String(enlarged));
-    zoom.textContent = enlarged ? 'Fit page' : 'Zoom in';
+  viewport.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(() => {
+      if (!boxes.length) return;
+      const current = layoutHelpers.mostVisiblePage(boxes.map(box => box.getBoundingClientRect()), viewport.getBoundingClientRect(), page);
+      if (current !== page) setPage(current);
+    });
+  }, {passive: true});
+  previous.addEventListener('click', () => jump(page - 1));
+  next.addEventListener('click', () => jump(page + 1));
+  pageSelect.addEventListener('change', () => jump(Number(pageSelect.value)));
+  zoom.addEventListener('change', () => layout());
+  contents.addEventListener('click', () => toggleContents(sidebar.hidden));
+  retry.addEventListener('click', openDocument);
+  matchMedia('(max-width: 767px)').addEventListener('change', event => {
+    if (dialog.open) toggleContents(!event.matches);
   });
+  new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+    if (dialog.open) resizeTimer = setTimeout(() => layout(), 100);
+  }).observe(viewport);
   dialog.querySelector('.pdf-look__close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   dialog.addEventListener('keydown', event => {
-    if (event.target === pageSelect || (event.target === viewport && viewport.classList.contains('is-zoomed'))) return;
+    if (['SELECT', 'INPUT', 'TEXTAREA'].includes(event.target.tagName)) return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault();
-      showPage(page + (event.key === 'ArrowLeft' ? -1 : 1));
+      if (event.target === viewport && viewport.scrollWidth > viewport.clientWidth) return;
+      event.preventDefault(); jump(page + (event.key === 'ArrowLeft' ? -1 : 1));
     }
   });
-  dialog.addEventListener('close', () => {
-    revision++;
-    clearTimeout(timer);
-    document.documentElement.classList.remove('pdf-look-open');
-    opener?.focus({preventScroll: true});
-  });
+  dialog.addEventListener('close', () => { stop(); document.documentElement.classList.remove('pdf-look-open'); opener?.focus({preventScroll: true}); });
 })();
