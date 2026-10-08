@@ -25,6 +25,10 @@ def load_downloads(src, products, families):
         preview = meta.get("preview", "")
         if not re.fullmatch(r"/downloads/previews/[a-z0-9-]+\.[a-f0-9]{12}\.webp", preview) or not (src / "static" / preview.lstrip("/")).is_file():
             raise ValueError(f"Missing or invalid cover preview for {doc_id}")
+        preview_pages = meta.get("preview_pages", [])
+        expected_pages = [f"/downloads/previews/{doc_id}.{meta['sha256'][:12]}.page-{n}.webp" for n in range(1, meta["pages"] + 1)]
+        if preview_pages != expected_pages or any(not (src / "static" / page.lstrip("/")).is_file() for page in preview_pages):
+            raise ValueError(f"Missing or invalid PDF page previews for {doc_id}; run python3 src/site/catalogue/prepare_downloads.py")
         if any(not isinstance(item["page"], int) or not 1 <= item["page"] <= meta["pages"] for item in doc["contents"]):
             raise ValueError(f"Contents page outside PDF range for {doc_id}")
         if doc["family"] is not None and doc["family"] not in families:

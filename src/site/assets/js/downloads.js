@@ -1,0 +1,99 @@
+/* PDF quick look: actual pages, loaded on demand; original links work without JS. */
+(() => {
+  const dialog = document.querySelector('.pdf-look');
+  const data = document.getElementById('pdf-preview-data');
+  if (!dialog || !data || typeof dialog.showModal !== 'function') return;
+  const documents = new Map(JSON.parse(data.textContent).map(doc => [doc.id, doc]));
+  const title = dialog.querySelector('h2');
+  const pageSelect = dialog.querySelector('#pdf-page');
+  const total = dialog.querySelector('[data-pdf-total]');
+  const previous = dialog.querySelector('[data-pdf-prev]');
+  const next = dialog.querySelector('[data-pdf-next]');
+  const zoom = dialog.querySelector('[data-pdf-zoom]');
+  const viewport = dialog.querySelector('.pdf-look__viewport');
+  const image = dialog.querySelector('img');
+  const status = dialog.querySelector('[role="status"]');
+  const caption = dialog.querySelector('[data-pdf-caption]');
+  const download = dialog.querySelector('[data-pdf-download]');
+  const original = dialog.querySelector('[data-pdf-open]');
+  let doc, page = 1, opener, revision = 0, timer;
+
+  function showPage(number) {
+    if (!doc || number < 1 || number > doc.pages) return;
+    page = number;
+    const request = ++revision;
+    clearTimeout(timer);
+    pageSelect.value = String(page);
+    previous.disabled = page === 1;
+    next.disabled = page === doc.pages;
+    caption.textContent = `Page ${page} of ${doc.pages}`;
+    image.hidden = true;
+    viewport.setAttribute('aria-busy', 'true');
+    viewport.scrollTop = viewport.scrollLeft = 0;
+    status.textContent = `Loading page ${page}…`;
+    original.href = `${doc.path}#page=${page}`;
+    const pending = new Image();
+    const failed = () => {
+      if (request !== revision || !dialog.open) return;
+      clearTimeout(timer);
+      viewport.setAttribute('aria-busy', 'false');
+      status.textContent = 'Couldn’t load this page. Choose another page or open the original PDF below.';
+    };
+    pending.onload = () => {
+      if (request !== revision || !dialog.open) return;
+      clearTimeout(timer);
+      image.src = pending.src;
+      image.alt = `${doc.title}, PDF page ${page} of ${doc.pages}. For accessible text, open the original PDF.`;
+      image.hidden = false;
+      status.textContent = '';
+      viewport.setAttribute('aria-busy', 'false');
+    };
+    pending.onerror = failed;
+    timer = setTimeout(() => { failed(); if (request === revision) revision++; }, 15000);
+    pending.src = doc.preview_pages[page - 1];
+  }
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('[data-pdf-preview]');
+    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const selected = documents.get(link.dataset.pdfPreview);
+    if (!selected) return;
+    event.preventDefault();
+    opener = link;
+    doc = selected;
+    title.textContent = doc.title;
+    total.textContent = `of ${doc.pages}`;
+    pageSelect.replaceChildren(...Array.from({length: doc.pages}, (_, index) => new Option(String(index + 1), String(index + 1))));
+    download.href = doc.path;
+    download.dataset.documentId = doc.id;
+    zoom.setAttribute('aria-pressed', 'false');
+    zoom.textContent = 'Zoom in';
+    viewport.classList.remove('is-zoomed');
+    dialog.showModal();
+    document.documentElement.classList.add('pdf-look-open');
+    showPage(1);
+  });
+  previous.addEventListener('click', () => showPage(page - 1));
+  next.addEventListener('click', () => showPage(page + 1));
+  pageSelect.addEventListener('change', () => showPage(Number(pageSelect.value)));
+  zoom.addEventListener('click', () => {
+    const enlarged = viewport.classList.toggle('is-zoomed');
+    zoom.setAttribute('aria-pressed', String(enlarged));
+    zoom.textContent = enlarged ? 'Fit page' : 'Zoom in';
+  });
+  dialog.querySelector('.pdf-look__close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener('keydown', event => {
+    if (event.target === pageSelect || (event.target === viewport && viewport.classList.contains('is-zoomed'))) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showPage(page + (event.key === 'ArrowLeft' ? -1 : 1));
+    }
+  });
+  dialog.addEventListener('close', () => {
+    revision++;
+    clearTimeout(timer);
+    document.documentElement.classList.remove('pdf-look-open');
+    opener?.focus({preventScroll: true});
+  });
+})();

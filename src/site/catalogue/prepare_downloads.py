@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh page counts and small cover previews after changing catalogue PDFs.
+"""Refresh page counts and cover and full-page previews after changing catalogue PDFs.
 
 Requires Poppler (pdfinfo, pdftoppm) and Pillow on the preparation machine.
 The ordinary site build uses the committed metadata and does not need Poppler.
@@ -35,7 +35,17 @@ def main():
                     im.convert("RGB").save(cover, "WEBP", quality=82, method=6)
         with Image.open(cover) as im:
             width, height = im.size
-        metadata[doc["id"]] = {"sha256": digest, "pages": pages, "preview": "/downloads/previews/" + cover.name, "width": width, "height": height}
+        preview_pages = []
+        for page in range(1, pages + 1):
+            rendered = dest / f"{doc['id']}.{digest[:12]}.page-{page}.webp"
+            if not rendered.exists():
+                with tempfile.TemporaryDirectory() as tmp:
+                    prefix = Path(tmp) / "page"
+                    subprocess.run(["pdftoppm", "-f", str(page), "-l", str(page), "-singlefile", "-scale-to", "1800", "-png", str(pdf), str(prefix)], check=True, capture_output=True)
+                    with Image.open(prefix.with_suffix(".png")) as im:
+                        im.convert("RGB").save(rendered, "WEBP", quality=88, method=6)
+            preview_pages.append("/downloads/previews/" + rendered.name)
+        metadata[doc["id"]] = {"sha256": digest, "pages": pages, "preview": "/downloads/previews/" + cover.name, "width": width, "height": height, "preview_pages": preview_pages}
         print(f"{doc['id']}: {pages} pages, cover {cover.stat().st_size // 1024} KB")
     (SRC / "data/download_metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
 

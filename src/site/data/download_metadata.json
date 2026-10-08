@@ -4,62 +4,125 @@
     "pages": 5,
     "preview": "/downloads/previews/refrigerated-air-dryers.914ba73dc21f.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/refrigerated-air-dryers.914ba73dc21f.page-1.webp",
+      "/downloads/previews/refrigerated-air-dryers.914ba73dc21f.page-2.webp",
+      "/downloads/previews/refrigerated-air-dryers.914ba73dc21f.page-3.webp",
+      "/downloads/previews/refrigerated-air-dryers.914ba73dc21f.page-4.webp",
+      "/downloads/previews/refrigerated-air-dryers.914ba73dc21f.page-5.webp"
+    ]
   },
   "desiccant-air-dryers": {
     "sha256": "e7efcd3639b2023e734d044ddc8b10bd2c574b600d90d8ead3807dc7923bc2ea",
     "pages": 4,
     "preview": "/downloads/previews/desiccant-air-dryers.e7efcd3639b2.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/desiccant-air-dryers.e7efcd3639b2.page-1.webp",
+      "/downloads/previews/desiccant-air-dryers.e7efcd3639b2.page-2.webp",
+      "/downloads/previews/desiccant-air-dryers.e7efcd3639b2.page-3.webp",
+      "/downloads/previews/desiccant-air-dryers.e7efcd3639b2.page-4.webp"
+    ]
   },
   "compressed-air-filters": {
     "sha256": "e2240761ba52e48911559d04f1d1b84013d0b869486c6886f2ee3f711170583c",
     "pages": 4,
     "preview": "/downloads/previews/compressed-air-filters.e2240761ba52.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/compressed-air-filters.e2240761ba52.page-1.webp",
+      "/downloads/previews/compressed-air-filters.e2240761ba52.page-2.webp",
+      "/downloads/previews/compressed-air-filters.e2240761ba52.page-3.webp",
+      "/downloads/previews/compressed-air-filters.e2240761ba52.page-4.webp"
+    ]
   },
   "automatic-drain-valves": {
     "sha256": "6ab8d127bc7084d565587faac4ecce3e2a03ed0142deb0103bab6d86f457a0b8",
     "pages": 4,
     "preview": "/downloads/previews/automatic-drain-valves.6ab8d127bc70.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/automatic-drain-valves.6ab8d127bc70.page-1.webp",
+      "/downloads/previews/automatic-drain-valves.6ab8d127bc70.page-2.webp",
+      "/downloads/previews/automatic-drain-valves.6ab8d127bc70.page-3.webp",
+      "/downloads/previews/automatic-drain-valves.6ab8d127bc70.page-4.webp"
+    ]
   },
   "air-receiver-tanks": {
     "sha256": "b4ad55f90ec0c37249f7ad91eead189f69fbff64582e0b99ad94ea14efa02f6e",
     "pages": 4,
     "preview": "/downloads/previews/air-receiver-tanks.b4ad55f90ec0.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/air-receiver-tanks.b4ad55f90ec0.page-1.webp",
+      "/downloads/previews/air-receiver-tanks.b4ad55f90ec0.page-2.webp",
+      "/downloads/previews/air-receiver-tanks.b4ad55f90ec0.page-3.webp",
+      "/downloads/previews/air-receiver-tanks.b4ad55f90ec0.page-4.webp"
+    ]
   },
   "industrial-process-chillers": {
     "sha256": "46de84daa40c91380f5850cace04c0c8ec30a1b638e485cf8bc266faba97d891",
     "pages": 4,
     "preview": "/downloads/previews/industrial-process-chillers.46de84daa40c.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/industrial-process-chillers.46de84daa40c.page-1.webp",
+      "/downloads/previews/industrial-process-chillers.46de84daa40c.page-2.webp",
+      "/downloads/previews/industrial-process-chillers.46de84daa40c.page-3.webp",
+      "/downloads/previews/industrial-process-chillers.46de84daa40c.page-4.webp"
+    ]
   },
   "frp-cooling-towers": {
     "sha256": "d4f5a465bb7b0d9329aa58fd65e38e5b8b19945494162a535ec7b267cee00ee3",
     "pages": 6,
     "preview": "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.page-1.webp",
+      "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.page-2.webp",
+      "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.page-3.webp",
+      "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.page-4.webp",
+      "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.page-5.webp",
+      "/downloads/previews/frp-cooling-towers.d4f5a465bb7b.page-6.webp"
+    ]
   },
   "closed-circuit-cooling-towers": {
     "sha256": "a76fd488a6135db075a8ae23f4b6a4327f92d5bda6b0acd752cf88ceded91054",
     "pages": 4,
     "preview": "/downloads/previews/closed-circuit-cooling-towers.a76fd488a613.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/closed-circuit-cooling-towers.a76fd488a613.page-1.webp",
+      "/downloads/previews/closed-circuit-cooling-towers.a76fd488a613.page-2.webp",
+      "/downloads/previews/closed-circuit-cooling-towers.a76fd488a613.page-3.webp",
+      "/downloads/previews/closed-circuit-cooling-towers.a76fd488a613.page-4.webp"
+    ]
   },
   "win-equipments-catalogue": {
     "sha256": "a4053e40cf7d24c7934b0feed8e1e3876f0d7f0f270237bf03cb8b9c78623b34",
     "pages": 10,
     "preview": "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.webp",
     "width": 297,
-    "height": 420
+    "height": 420,
+    "preview_pages": [
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-1.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-2.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-3.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-4.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-5.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-6.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-7.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-8.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-9.webp",
+      "/downloads/previews/win-equipments-catalogue.a4053e40cf7d.page-10.webp"
+    ]
   }
 }

@@ -79,15 +79,39 @@ def test_generated_library_specs_and_contents_resolve():
                 self.links.append(a)
 
     page = Page((ROOT / "public/downloads.html").read_text())
-    downloads = [a for a in page.links if a.get("data-track") == "catalogue_download"]
+    downloads = [a for a in page.links if a.get("data-track") == "catalogue_download" and a.get("href")]
     previews = [a for a in page.links if a.get("data-track") == "document_preview"]
     assert len(downloads) == len(previews) == len(json.loads((SRC / "data/downloads.json").read_text()))
     assert all("download" in a and not a.get("target") for a in downloads)
     assert all(a.get("target") == "_blank" and a.get("rel") == "noopener" for a in previews)
     for a in page.links:
-        href = a["href"]
+        href = a.get("href", "")
         if href.startswith("#"):
             assert href[1:] in page.ids, href
         if a.get("data-track") == "document_specs" and "#" in href:
             path, fragment = href.split("#")
             assert fragment in Page((ROOT / "public" / path.lstrip("/")).read_text()).ids
+
+
+def test_preview_requires_every_page_in_order(fixture_src):
+    change(fixture_src, "download_metadata.json", lambda data: data["refrigerated-air-dryers"]["preview_pages"].pop())
+    with pytest.raises(ValueError, match="PDF page previews"):
+        library.load_downloads(fixture_src, PRODUCTS, FAMILIES)
+
+
+def test_preview_rejects_missing_page_assets(fixture_src):
+    change(fixture_src, "download_metadata.json", lambda data: data["refrigerated-air-dryers"]["preview_pages"].__setitem__(0, "/downloads/previews/missing.webp"))
+    with pytest.raises(ValueError, match="PDF page previews"):
+        library.load_downloads(fixture_src, PRODUCTS, FAMILIES)
+
+
+def test_quick_look_data_includes_all_real_pages():
+    import re
+    html = (ROOT / "public/downloads.html").read_text()
+    payload = re.search(r'<script id="pdf-preview-data" type="application/json">(.*?)</script>', html, re.S).group(1)
+    docs = json.loads(payload)
+    assert len(docs) == 9
+    for doc in docs:
+        assert len(doc["preview_pages"]) == doc["pages"]
+        for preview in doc["preview_pages"]:
+            assert (ROOT / "public" / preview.lstrip("/")).is_file()

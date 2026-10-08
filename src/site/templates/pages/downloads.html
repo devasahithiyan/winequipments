@@ -10,15 +10,22 @@
 
 {% macro document_entry(doc, overview=false) %}
 <article class="doc-entry{% if overview %} doc-entry--overview{% endif %}" aria-labelledby="doc-{{ doc.id }}" data-document="{{ doc.id }}">
-  <img class="doc-entry__cover" src="{{ doc.preview }}" width="{{ doc.width }}" height="{{ doc.height }}" alt="" loading="lazy" decoding="async">
+  <a class="doc-entry__file" href="{{ doc.path }}" target="_blank" rel="noopener" data-pdf-preview="{{ doc.id }}" aria-label="Preview PDF — {{ doc.title }}">
+    <span class="doc-entry__badge"><svg aria-hidden="true"><use href="#i-doc"/></svg>PDF</span>
+    <img class="doc-entry__cover" src="{{ doc.preview }}" width="{{ doc.width }}" height="{{ doc.height }}" alt="" loading="lazy" decoding="async">
+    <span class="doc-entry__file-label">Preview PDF</span>
+  </a>
   <div class="doc-entry__body">
     <h3 id="doc-{{ doc.id }}">{{ doc.title }}</h3>
+    <p class="doc-entry__format"><strong>PDF document</strong><span>{{ doc.pages }} pages · {{ doc.size }}</span></p>
     <p class="doc-entry__series">{{ doc.series }} · {{ 'Range overview' if overview else 'Product brochure' }}</p>
     <p class="doc-entry__purpose">{{ doc.purpose }}</p>
     <p class="doc-entry__includes"><strong>Includes:</strong> {{ doc.includes }}</p>
     {% if overview %}<p class="doc-entry__caveat">{{ doc.coverage_note }} <a href="/products/">Browse the complete current range</a> for newer additions.</p>{% endif %}
   </div>
   <div class="doc-entry__actions">
+    <a class="btn btn--secondary doc-entry__quicklook" href="{{ doc.path }}" target="_blank" rel="noopener" data-pdf-preview="{{ doc.id }}" data-track="document_preview" data-document-id="{{ doc.id }}">Preview PDF<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
+    <a class="btn btn--secondary doc-entry__download" href="{{ doc.path }}" download data-track="catalogue_download" data-document-id="{{ doc.id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download PDF<span class="visually-hidden"> — {{ doc.title }}</span></a>
     {% if overview %}
     <a class="doc-entry__spec" href="/products/" data-track="document_specs" data-document-id="{{ doc.id }}">Explore products<svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
     {% else %}
@@ -26,15 +33,14 @@
     <a class="doc-entry__spec" href="{{ product_url(pr.slug) }}#specs" data-track="document_specs" data-document-id="{{ doc.id }}">{{ ('Round tower specifications' if pr.slug == 'round-cooling-towers' else 'Square tower specifications') if doc.related_products | length > 1 else 'View specifications' }}<span class="visually-hidden"> — {{ pr.name }}</span><svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
     {% endfor %}
     {% endif %}
-    <a class="btn btn--secondary doc-entry__download" href="{{ doc.path }}" download data-track="catalogue_download" data-document-id="{{ doc.id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download PDF<span class="visually-hidden"> — {{ doc.title }}</span></a>
-    <p class="doc-entry__meta">PDF · {{ doc.pages }} pages · {{ doc.size }}</p>
+
   </div>
   <details class="doc-entry__contents">
-    <summary>Contents &amp; PDF preview<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+    <summary>What’s in this PDF?<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
     <div class="doc-entry__contents-body">
       <ul>{% for item in doc.contents %}<li><span>{{ item.label }}</span><span>Page {{ item.page }}</span></li>{% endfor %}</ul>
       <div class="doc-entry__preview">
-        <a href="{{ doc.path }}" target="_blank" rel="noopener" data-track="document_preview" data-document-id="{{ doc.id }}">Open PDF in a new tab<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
+        <a href="{{ doc.path }}" target="_blank" rel="noopener" data-track="document_open" data-document-id="{{ doc.id }}">Open PDF in a new tab<span class="visually-hidden"> — {{ doc.title }}</span><svg aria-hidden="true"><use href="#i-chev-r"/></svg></a>
         {% if doc.related_products %}<a href="#quote" data-document-product="{{ doc.related_products[0].name }}" data-document-id="{{ doc.id }}">Need a document for a specific model?</a>{% endif %}
       </div>
     </div>
@@ -47,7 +53,7 @@
 <section class="page-head doc-head">
   <div class="container">
     <h1>Catalogues &amp; technical documents</h1>
-    <p class="lede">Find model tables, rating conditions and selection guidance. Read the specifications online, or save a brochure to share with your team.</p>
+    <p class="lede">Find model tables, rating conditions and selection guidance. Preview any PDF here, download a copy to share with your team, or read the specifications online.</p>
     <p class="doc-head__help">Need a drawing or a datasheet for a specific model? <a href="#quote">Request a document</a>.</p>
     <nav class="doc-nav" aria-label="Document categories">
       {% for fam in families.values() %}<a href="#documents-{{ fam.id }}">{{ fam.name }}<svg aria-hidden="true"><use href="#i-chev"/></svg></a>{% endfor %}
@@ -75,4 +81,27 @@
 {% set heading = 'Request a drawing or datasheet' %}
 {% set intro = 'Tell us the product, the model if you know it, and the information you need. Our team will check the available documents and contact you if we need more details.' %}
 {% include "partials/enquiry.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script id="pdf-preview-data" type="application/json">[{% for doc in downloads %}{{ {'id': doc.id, 'title': doc.title, 'path': doc.path, 'pages': doc.pages, 'preview_pages': doc.preview_pages} | tojson }}{{ ',' if not loop.last }}{% endfor %}]</script>
+<script src="/js/downloads.js?v={{ js_ver }}" defer></script>
+<dialog class="pdf-look" aria-labelledby="pdf-look-title" aria-describedby="pdf-look-note">
+  <div class="pdf-look__layout">
+    <header class="pdf-look__header">
+      <div><h2 id="pdf-look-title"></h2><p id="pdf-look-note">PDF preview · Use the original PDF for searchable text and printing.</p></div>
+      <button type="button" class="pdf-look__close" aria-label="Close PDF preview" autofocus><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="pdf-look__toolbar">
+      <div class="pdf-look__paging"><button type="button" data-pdf-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chev-r"/></svg></button><label for="pdf-page">Page</label><select id="pdf-page" aria-label="PDF page"></select><span data-pdf-total></span><button type="button" data-pdf-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chev-r"/></svg></button></div>
+      <button type="button" data-pdf-zoom aria-pressed="false">Zoom in</button>
+      <a class="btn btn--secondary" data-pdf-download download data-track="catalogue_download">Download PDF</a>
+    </div>
+    <div class="pdf-look__viewport" tabindex="0" aria-label="PDF page preview. Scroll to read the page.">
+      <p class="pdf-look__status" role="status"></p>
+      <img class="pdf-look__page" alt="" hidden>
+    </div>
+    <footer class="pdf-look__footer"><span data-pdf-caption aria-live="polite"></span><a data-pdf-open target="_blank" rel="noopener">Open original PDF in a new tab</a></footer>
+  </div>
+</dialog>
 {% endblock %}
