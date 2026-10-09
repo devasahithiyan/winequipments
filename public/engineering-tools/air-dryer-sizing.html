@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://winequipments.com/engineering-tools/air-dryer-sizing.html">
 <meta name="theme-color" content="#f6f7f3">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=f4298a1d">
+<link rel="stylesheet" href="/css/site.css?v=0b3ddccd">
 <link rel="icon" href="/logo.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Win Equipments">
@@ -303,32 +303,38 @@
   <div class="container t-grid">
     <form class="t-form" data-tool="dryer" novalidate>
       <h2 id="calc" class="visually-hidden">Calculator</h2>
-      <div class="field"><label for="t-cfm">Compressor actual capacity (FAD)</label><div class="unit-input"><input id="t-cfm" name="cfm" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 250"><span>CFM</span></div>
-        <p class="hint">Don't know the CFM? <label class="t-inline" for="t-hp">Enter compressor HP</label> <span class="unit-input unit-input--sm"><input id="t-hp" name="hp" type="number" inputmode="decimal" min="0" step="any" placeholder="HP"><span>HP</span></span> <span class="hint">(about 4 CFM per HP; the nameplate FAD is more accurate)</span></p></div>
-      <div class="form-grid form-grid--2">
+      <fieldset class="t-radio"><legend>Compressor capacity</legend><label><input type="radio" name="flowMode" value="cfm" checked> I know the CFM (FAD)</label><label><input type="radio" name="flowMode" value="hp"> Estimate from compressor HP</label></fieldset>
+      <div data-input-mode="flowMode:cfm"><div class="field"><label for="t-cfm">Compressor actual capacity (FAD)</label><div class="unit-input"><input id="t-cfm" name="cfm" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 250"><span>CFM</span></div>
+      </div></div>
+      <div data-input-mode="flowMode:hp" hidden><div class="field"><label for="t-hp">Compressor power</label><div class="unit-input"><input id="t-hp" name="hp" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 30"><span>HP</span></div><p class="hint">About 4 CFM per HP. This estimates flow; the nameplate FAD is needed to select a model.</p></div></div>
+      <div class="form-grid form-grid--2" data-dryer-conditions="refrigerated">
         <div class="field"><label for="t-inlet">Inlet temperature</label>
           <select class="select" id="t-inlet" name="inlet">
-<option value="1.2">30 °C</option><option value="1.15">35 °C</option><option value="1.05">40 °C</option><option value="1.0" selected>45 °C</option><option value="0.85">50 °C</option><option value="0.8">55 °C</option><option value="0.7">60 °C</option>          </select></div>
+<option value="30">30 °C</option><option value="35">35 °C</option><option value="40">40 °C</option><option value="45" selected>45 °C</option><option value="50">50 °C</option><option value="55">55 °C</option><option value="60">60 °C</option>          </select></div>
         <div class="field"><label for="t-ambient">Ambient temperature</label>
           <select class="select" id="t-ambient" name="ambient">
-<option value="1.2">25 °C</option><option value="1.15">30 °C</option><option value="1.0" selected>35 °C</option><option value="0.91">40 °C</option><option value="0.87">45 °C</option><option value="0.78">50 °C</option>          </select></div>
+<option value="25">25 °C</option><option value="30">30 °C</option><option value="35" selected>35 °C</option><option value="40">40 °C</option><option value="45">45 °C</option><option value="50">50 °C</option>          </select></div>
         <div class="field"><label for="t-pressure">Inlet pressure</label>
           <select class="select" id="t-pressure" name="pressure">
-<option value="0.75">4 bar g</option><option value="0.85">5 bar g</option><option value="0.93">6 bar g</option><option value="1.0" selected>7 bar g</option><option value="1.06">8 bar g</option><option value="1.11">9 bar g</option><option value="1.15">10.5 bar g</option><option value="1.18">11 bar g</option><option value="1.2">12 bar g</option><option value="1.22">13 bar g</option><option value="1.23">14 bar g</option><option value="1.25">15 bar g</option>          </select></div>
+<option value="4">4 bar g</option><option value="5">5 bar g</option><option value="6">6 bar g</option><option value="7" selected>7 bar g</option><option value="8">8 bar g</option><option value="9">9 bar g</option><option value="10.5">10.5 bar g</option><option value="11">11 bar g</option><option value="12">12 bar g</option><option value="13">13 bar g</option><option value="14">14 bar g</option><option value="15">15 bar g</option>          </select></div>
         <div class="field"><label for="t-dew">Dew point</label>
           <select class="select" id="t-dew" name="dew">
-<option value="1.0" selected>3 °C PDP</option><option value="1.09">5 °C PDP</option><option value="1.15">7 °C PDP</option><option value="1.18">8 °C PDP</option><option value="1.3">10 °C PDP</option>          </select></div>
+<option value="3" selected>3 °C PDP</option><option value="5">5 °C PDP</option><option value="7">7 °C PDP</option><option value="8">8 °C PDP</option><option value="10">10 °C PDP</option>          </select></div>
       </div>
       <fieldset class="t-radio"><legend>Need a lower dew point?</legend>
         <label><input type="radio" name="dry" value="ref" checked> No, +3 to +10 °C is fine</label>
         <label><input type="radio" name="dry" value="A"> −20 °C (activated alumina)</label>
         <label><input type="radio" name="dry" value="M"> −40 °C (molecular sieve)</label>
       </fieldset>
+      <div class="form-grid form-grid--2" data-dryer-conditions="desiccant" hidden>
+        <div class="field"><label for="t-des-inlet">Desiccant dryer inlet temperature</label><div class="unit-input"><input id="t-des-inlet" name="desInlet" type="number" step="any" value="38"><span>°C</span></div></div>
+        <div class="field"><label for="t-des-pressure">Desiccant dryer inlet pressure</label><div class="unit-input"><input id="t-des-pressure" name="desPressure" type="number" min="0" step="any" value="7"><span>bar g</span></div></div>
+      </div>
       <noscript><p class="hint">This calculator needs JavaScript. You can also send us your figures and we will size the equipment.</p></noscript>
     </form>
     <div class="t-result" aria-live="polite" data-tool-out>
       <p class="t-result__label">Result</p>
-      <p class="t-result__empty">Enter your figures to see the matching model.</p>
+      <p class="t-result__empty">Enter your figures for a preliminary selection. An engineer confirms the final duty.</p>
     </div>
   </div>
 </section>
@@ -375,15 +381,22 @@
       <h2 id="quote-title">Tell us your requirement</h2>
       <p class="lede" style="margin-top:var(--s-4)">Share your capacity, operating conditions or a drawing. An engineer from our Arasur works will reply with a recommended model and quotation.</p>
       <div class="enquiry__direct">
-        <a href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20I%20need%20a%20quote." data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp +91 95972 28969</a>
+        <a href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20I%20need%20a%20quote%20for%20Refrigerated%20Air%20Dryers." data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp +91 95972 28969</a>
 <a href="tel:+919597228969" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call +91 95972 28969</a><a href="tel:+919597228975" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call +91 95972 28975</a>        <a href="mailto:info@winequipments.com" data-track="email_click"><svg aria-hidden="true"><use href="#i-mail"/></svg>info@winequipments.com</a>
       </div>
     </div>
     <div class="form-panel">
-      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq>
+      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq data-product-slug="refrigerated-air-dryers">
         <input type="hidden" name="return_url" value="/thank-you.html">
         <input type="hidden" name="form_source" value="/engineering-tools/air-dryer-sizing.html">
         <div class="hp-field" aria-hidden="true"><label>Website <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off"></label></div>
+        <section class="selection-summary" data-selection-summary hidden aria-labelledby="selection-heading">
+          <h3 id="selection-heading">Your selection details</h3>
+          <p>Check or edit the details below before sending. An engineer confirms the final selection.</p>
+          <div class="field"><label for="f-selection">Include with your enquiry</label><textarea class="textarea" id="f-selection" name="selection_details" rows="7" maxlength="4000" data-selection-text disabled></textarea></div>
+          <div class="selection-summary__actions"><button class="btn btn--ghost" type="button" data-selection-remove>Remove selection details</button><a class="link-arrow" data-selection-wa href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20please%20review%20my%20duty." data-track="whatsapp_click">Share these details on WhatsApp<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </section>
+        <p class="visually-hidden" role="status" data-selection-status></p>
         <div class="form-grid form-grid--2">
           <div class="field">
             <label for="f-name">Your name</label>
@@ -410,7 +423,7 @@
           <select class="select" id="f-product" name="equipment_type">
             <option value="Not sure / need advice">Not sure, please advise</option>
             <optgroup label="Compressed Air Treatment">
-<option value="Refrigerated Air Dryers">Refrigerated Air Dryers</option><option value="Heatless Desiccant Air Dryers">Heatless Desiccant Air Dryers</option><option value="Compressed Air Filters">Compressed Air Filters</option><option value="Automatic Drain Valves">Automatic Drain Valves</option><option value="Air Receiver Tanks">Air Receiver Tanks</option><option value="Aftercoolers">Aftercoolers</option><option value="Moisture Separators">Moisture Separators</option>            </optgroup>
+<option value="Refrigerated Air Dryers" selected>Refrigerated Air Dryers</option><option value="Heatless Desiccant Air Dryers">Heatless Desiccant Air Dryers</option><option value="Compressed Air Filters">Compressed Air Filters</option><option value="Automatic Drain Valves">Automatic Drain Valves</option><option value="Air Receiver Tanks">Air Receiver Tanks</option><option value="Aftercoolers">Aftercoolers</option><option value="Moisture Separators">Moisture Separators</option>            </optgroup>
             <optgroup label="Process Cooling">
 <option value="Industrial Process Chillers">Industrial Process Chillers</option><option value="Medical Scan Chillers">Medical Scan Chillers</option><option value="Anodizing Chillers">Anodizing Chillers</option><option value="Acid Cooling Chillers">Acid Cooling Chillers</option><option value="Ice Flake Machines">Ice Flake Machines</option><option value="Shell &amp; Tube Heat Exchangers">Shell &amp; Tube Heat Exchangers</option><option value="Milk &amp; Coconut Water Chillers">Milk &amp; Coconut Water Chillers</option><option value="Soda Chillers">Soda Chillers</option><option value="Condensing Units">Condensing Units</option><option value="Air-Cooled Chillers">Air-Cooled Chillers</option>            </optgroup>
             <optgroup label="Cooling Towers">
@@ -421,13 +434,15 @@
           <label for="f-req">Requirement</label>
           <textarea class="textarea" id="f-req" name="operating_parameters" rows="4" placeholder="e.g. 300 CFM compressor at 7 bar, plant at 40 °C"></textarea>
         </div>
-        <details class="form-more">
+        <details class="form-more" data-model-open>
           <summary>Add model, pressure or a drawing <svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
           <div>
             <div class="form-grid form-grid--2">
 <div class="field">
                 <label for="f-model">Model <span class="opt">(optional)</span></label>
-                <input class="input" id="f-model" name="selected_model" type="text">
+                <select class="select" id="f-model" name="selected_model">
+                  <option value="">Not selected</option>
+<option value="WRD 20 S">WRD 20 S</option><option value="WRD 40 S">WRD 40 S</option><option value="WRD 50 S">WRD 50 S</option><option value="WRD 60 S">WRD 60 S</option><option value="WRD 80 S">WRD 80 S</option><option value="WRD 100 S">WRD 100 S</option><option value="WRD 150 S">WRD 150 S</option><option value="WRD 200 S">WRD 200 S</option><option value="WRD 250 S">WRD 250 S</option><option value="WRD 300 T">WRD 300 T</option><option value="WRD 400 T">WRD 400 T</option><option value="WRD 500 T">WRD 500 T</option><option value="WRD 600 T">WRD 600 T</option><option value="WRD 750 T">WRD 750 T</option><option value="WRD 1000 T">WRD 1000 T</option><option value="WRD 1500 T">WRD 1500 T</option><option value="WRD 2000 T">WRD 2000 T</option>                </select>
               </div>              <div class="field">
                 <label for="f-pressure">Operating pressure / location <span class="opt">(optional)</span></label>
                 <input class="input" id="f-pressure" name="operating_pressure" type="text" placeholder="e.g. 7 bar g, Hosur">
@@ -459,7 +474,7 @@
       </div>
     </div>
   </div>
-</section><script type="application/json" id="tool-data">{"whd": [{"cfm": 300, "model": "WHD 030"}, {"cfm": 400, "model": "WHD 040"}, {"cfm": 500, "model": "WHD 050"}, {"cfm": 600, "model": "WHD 060"}, {"cfm": 750, "model": "WHD 075"}, {"cfm": 1000, "model": "WHD 100"}, {"cfm": 1250, "model": "WHD 125"}, {"cfm": 1500, "model": "WHD 150"}, {"cfm": 2000, "model": "WHD 200"}], "whd_url": "/products/desiccant-air-dryers.html", "wrd": [{"cfm": 20, "model": "WRD 20 S"}, {"cfm": 40, "model": "WRD 40 S"}, {"cfm": 50, "model": "WRD 50 S"}, {"cfm": 60, "model": "WRD 60 S"}, {"cfm": 80, "model": "WRD 80 S"}, {"cfm": 100, "model": "WRD 100 S"}, {"cfm": 150, "model": "WRD 150 S"}, {"cfm": 200, "model": "WRD 200 S"}, {"cfm": 250, "model": "WRD 250 S"}, {"cfm": 300, "model": "WRD 300 T"}, {"cfm": 400, "model": "WRD 400 T"}, {"cfm": 500, "model": "WRD 500 T"}, {"cfm": 600, "model": "WRD 600 T"}, {"cfm": 750, "model": "WRD 750 T"}, {"cfm": 1000, "model": "WRD 1000 T"}, {"cfm": 1500, "model": "WRD 1500 T"}, {"cfm": 2000, "model": "WRD 2000 T"}], "wrd_url": "/products/refrigerated-air-dryers.html"}</script>
+</section><script type="application/json" id="tool-data">{"factors": [[[30, 1.2], [35, 1.15], [40, 1.05], [45, 1.0], [50, 0.85], [55, 0.8], [60, 0.7]], [[25, 1.2], [30, 1.15], [35, 1.0], [40, 0.91], [45, 0.87], [50, 0.78]], [[4, 0.75], [5, 0.85], [6, 0.93], [7, 1.0], [8, 1.06], [9, 1.11], [10.5, 1.15], [11, 1.18], [12, 1.2], [13, 1.22], [14, 1.23], [15, 1.25]], [[3, 1.0], [5, 1.09], [7, 1.15], [8, 1.18], [10, 1.3]]], "whd": [{"cfm": 300, "model": "WHD 030"}, {"cfm": 400, "model": "WHD 040"}, {"cfm": 500, "model": "WHD 050"}, {"cfm": 600, "model": "WHD 060"}, {"cfm": 750, "model": "WHD 075"}, {"cfm": 1000, "model": "WHD 100"}, {"cfm": 1250, "model": "WHD 125"}, {"cfm": 1500, "model": "WHD 150"}, {"cfm": 2000, "model": "WHD 200"}], "whd_url": "/products/desiccant-air-dryers.html", "wrd": [{"cfm": 20, "model": "WRD 20 S"}, {"cfm": 40, "model": "WRD 40 S"}, {"cfm": 50, "model": "WRD 50 S"}, {"cfm": 60, "model": "WRD 60 S"}, {"cfm": 80, "model": "WRD 80 S"}, {"cfm": 100, "model": "WRD 100 S"}, {"cfm": 150, "model": "WRD 150 S"}, {"cfm": 200, "model": "WRD 200 S"}, {"cfm": 250, "model": "WRD 250 S"}, {"cfm": 300, "model": "WRD 300 T"}, {"cfm": 400, "model": "WRD 400 T"}, {"cfm": 500, "model": "WRD 500 T"}, {"cfm": 600, "model": "WRD 600 T"}, {"cfm": 750, "model": "WRD 750 T"}, {"cfm": 1000, "model": "WRD 1000 T"}, {"cfm": 1500, "model": "WRD 1500 T"}, {"cfm": 2000, "model": "WRD 2000 T"}], "wrd_url": "/products/refrigerated-air-dryers.html"}</script>
 </main>
 <footer class="site-footer">
   <div class="container">
@@ -495,13 +510,15 @@
       <span><a href="/about.html">About</a> · <a href="/certifications.html">Certifications</a> · <a href="/engineering-tools/">Sizing tools</a> · <a href="/blog.html">Articles</a> · <a href="/blog/glossary.html">Glossary</a> · <a href="/downloads.html">Downloads</a> · <a href="/sitemap.html">Sitemap</a></span>
     </div>
   </div>
-</footer><button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v=2ad9ab7e"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
+</footer><button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v=ce4acb3e"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
 <div class="action-bar" id="action-bar">
   <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
   <a class="btn btn--secondary btn--icon btn--wa" href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20I%20have%20an%20enquiry." data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
   <a class="btn btn--secondary btn--icon" href="tel:+919597228969" data-track="call_click" aria-label="Call +91 95972 28969"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
   <button class="btn btn--secondary btn--icon action-bar__ai" type="button" data-chat-proxy aria-label="Ask our AI assistant"><svg aria-hidden="true"><use href="#i-spark"/></svg></button>
 </div><button class="to-top" type="button" aria-label="Back to top" data-to-top hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
-<script src="/js/site.js?v=2ad9ab7e" defer></script>
-<script src="/js/tools.js?v=2ad9ab7e" defer></script></body>
+<script src="/js/site.js?v=ce4acb3e" defer></script>
+<script type="application/json" id="selection-products-data">{"acid-cooling-chillers": {"models": [], "name": "Acid Cooling Chillers", "url": "/products/acid-cooling-chillers.html"}, "air-cooled-chillers": {"models": [], "name": "Air-Cooled Chillers", "url": "/products/air-cooled-chillers.html"}, "air-receiver-tanks": {"models": ["WRV 025", "WRV 050", "WRV 100", "WRV 150", "WRV 200", "WRV 300", "WRV 500", "WRV 1000"], "name": "Air Receiver Tanks", "url": "/products/air-receiver-tanks.html"}, "anodizing-chillers": {"models": [], "name": "Anodizing Chillers", "url": "/products/anodizing-chillers.html"}, "automatic-drain-valves": {"models": ["WDV M12", "WDV H12", "WDV L40", "WDV H40", "WDV B16", "WDV E16", "WDV ZA16", "WDV F16"], "name": "Automatic Drain Valves", "url": "/products/automatic-drain-valves.html"}, "closed-circuit-cooling-towers": {"models": ["WCC 40", "WCC 60", "WCC 80", "WCC 100", "WCC 120", "WCC 140", "WCC 160", "WCC 180", "WCC 200", "WCC 220", "WCC 240", "WCC 280"], "name": "Coil Cooling Towers", "url": "/products/closed-circuit-cooling-towers.html"}, "compressed-air-filters": {"models": ["WMF 004", "WMF 007", "WMF 010", "WMF 018", "WMF 030", "WMF 047", "WMF 070", "WMF 094", "WMF 150", "WMF 175", "WMF 240"], "name": "Compressed Air Filters", "url": "/products/compressed-air-filters.html"}, "condensing-units": {"models": [], "name": "Condensing Units", "url": "/products/condensing-units.html"}, "cooling-tower-fills": {"models": [], "name": "Cooling Tower Fills", "url": "/products/cooling-tower-fills.html"}, "desiccant-air-dryers": {"models": ["WHD 030", "WHD 040", "WHD 050", "WHD 060", "WHD 075", "WHD 100", "WHD 125", "WHD 150", "WHD 200", "WHD 030 A", "WHD 030 M", "WHD 040 A", "WHD 040 M", "WHD 050 A", "WHD 050 M", "WHD 060 A", "WHD 060 M", "WHD 075 A", "WHD 075 M", "WHD 100 A", "WHD 100 M", "WHD 125 A", "WHD 125 M", "WHD 150 A", "WHD 150 M", "WHD 200 A", "WHD 200 M"], "name": "Heatless Desiccant Air Dryers", "url": "/products/desiccant-air-dryers.html"}, "fanless-cooling-towers": {"models": [], "name": "Fanless Cooling Towers", "url": "/products/fanless-cooling-towers.html"}, "ice-flake-machines": {"models": [], "name": "Ice Flake Machines", "url": "/products/ice-flake-machines.html"}, "industrial-aftercoolers": {"models": [], "name": "Aftercoolers", "url": "/products/industrial-aftercoolers.html"}, "industrial-process-chillers": {"models": ["WCP 005", "WCP 007", "WCP 010", "WCP 020", "WCP 030", "WCP 050", "WCP 075", "WCP 100", "WCP 150", "WCP 200"], "name": "Industrial Process Chillers", "url": "/products/industrial-process-chillers.html"}, "medical-scan-chillers": {"models": [], "name": "Medical Scan Chillers", "url": "/products/medical-scan-chillers.html"}, "milk-chillers": {"models": [], "name": "Milk \u0026 Coconut Water Chillers", "url": "/products/milk-chillers.html"}, "moisture-separators": {"models": [], "name": "Moisture Separators", "url": "/products/moisture-separators.html"}, "refrigerated-air-dryers": {"models": ["WRD 20 S", "WRD 40 S", "WRD 50 S", "WRD 60 S", "WRD 80 S", "WRD 100 S", "WRD 150 S", "WRD 200 S", "WRD 250 S", "WRD 300 T", "WRD 400 T", "WRD 500 T", "WRD 600 T", "WRD 750 T", "WRD 1000 T", "WRD 1500 T", "WRD 2000 T"], "name": "Refrigerated Air Dryers", "url": "/products/refrigerated-air-dryers.html"}, "round-cooling-towers": {"models": ["WCT 010 RL", "WCT 020 RL", "WCT 030 RL", "WCT 040 RL", "WCT 050 RL", "WCT 060 RL", "WCT 080 RL", "WCT 100 RL", "WCT 125 RL", "WCT 150 RL", "WCT 200 RL", "WCT 300 RL"], "name": "Round FRP Cooling Towers", "url": "/products/round-cooling-towers.html"}, "shell-and-tube-heat-exchangers": {"models": [], "name": "Shell \u0026 Tube Heat Exchangers", "url": "/products/shell-and-tube-heat-exchangers.html"}, "soda-chillers": {"models": [], "name": "Soda Chillers", "url": "/products/soda-chillers.html"}, "spare-parts-consumables": {"models": [], "name": "Spares \u0026 Consumables", "url": "/products/spare-parts-consumables.html"}, "square-cooling-towers": {"models": ["WCT 010 SL", "WCT 020 SL", "WCT 030 SL", "WCT 040 SL", "WCT 060 SL", "WCT 100 SL", "WCT 150 SL", "WCT 200 SL", "WCT 250 SL", "WCT 300 SL"], "name": "Square FRP Cooling Towers", "url": "/products/square-cooling-towers.html"}}</script>
+<script type="module" src="/js/selection.js?v=ce4acb3e"></script>
+<script type="module" src="/js/tools.js?v=ce4acb3e" defer></script></body>
 </html>

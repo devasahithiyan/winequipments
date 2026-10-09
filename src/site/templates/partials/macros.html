@@ -40,7 +40,7 @@
 {% endmacro %}
 
 {% macro product_card(pr, heading='h3', d=0) %}
-<li class="pcard" data-reveal style="--d:{{ d }}"{% if pr.cap_max is defined %} data-cap-max="{{ pr.cap_max }}" data-cap-unit="{{ pr.cap_unit }}"{% elif pr.engineered is defined or not pr.spec %} data-eto{% endif %}>
+<li class="pcard" data-product-slug="{{ pr.slug }}" data-reveal style="--d:{{ d }}"{% if pr.cap_max is defined %} data-cap-max="{{ pr.cap_max }}" data-cap-unit="{{ pr.cap_unit }}"{% elif pr.engineered is defined or not pr.spec %} data-eto{% endif %}>
   <a href="{{ product_url(pr.slug) }}">
     <span class="pcard__stage">{{ picture(studio(pr.image), pr.h1, sizes='(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw', max_w=720) }}</span>
     <span class="pcard__body">

@@ -401,7 +401,7 @@ tools = [
      "lede": "Enter the process water flow and how much it heats up. The calculator works out the heat load, applies the WCP catalogue factors for outlet and ambient temperature, and picks a model.",
      "method": ["Heat load (TR) = water flow (LPM) × ΔT (°C) ÷ 50.4, because 1 TR = 3,024 kcal/hr and water carries 1 kcal per kg per °C. A known load in kW converts at 1 TR = 3.517 kW.",
                 "WCP chillers are rated at 15 °C water outlet and 40 °C ambient. Required nominal capacity = heat load ÷ (outlet factor × ambient factor), using the factors from our catalogue.",
-                "Each WCP model also has a rated water flow; the calculator flags when your flow is above it."],
+                "Each WCP model also has a rated water flow; a duty exceeding the heat-load candidate’s flow requires engineering review instead of an automatic model recommendation."],
      "faqs": [{"q": "How do I calculate chiller tonnage?", "a": "Multiply the water flow in litres per minute by the temperature rise in °C and divide by 50.4. For example 100 LPM with a 5 °C rise is about 9.9 TR."},
               {"q": "Why does a lower outlet temperature need a bigger chiller?", "a": "A chiller delivers less capacity at colder water. At 10 °C outlet the catalogue factor is 0.75 and at 5 °C it is 0.6, so the nominal capacity must be higher."},
               {"q": "What if I need more than 20 TR?", "a": "WCP standard models go up to 20 TR. Send us your duty and our engineers will propose a larger or multiple-unit solution."}]},
@@ -412,7 +412,7 @@ tools = [
      "h1": "Cooling tower calculator",
      "lede": "Enter the water flow, hot and cold water temperatures and your site wet bulb. The calculator gives the heat load, checks it against our WCT ratings and estimates the water lost to evaporation.",
      "method": ["Heat load (TR) = flow (m³/hr) × range (°C) × 1,000 ÷ 3,024, where range is hot minus cold water temperature.",
-                "WCT towers are rated for cold water at wet bulb + 4 °C, with 0.6 m³/hr of water per TR (a 5 °C range). The calculator picks the smallest tower whose rated TR and water flow both cover your duty.",
+                "WCT towers are rated for cold water at wet bulb + 4 °C, with 0.6 m³/hr of water per TR (a 5 °C range). A preliminary match is shown only for a 5 °C range, at least 4 °C approach and L-fill inlet temperatures up to 55 °C. Other duties retain the heat-load estimate and require engineering selection; the calculator does not extrapolate correction tables.",
                 "Fill type follows the hot water temperature: L fills up to 55 °C, H fills from 55 to 85 °C, polypropylene rings (P) above that. Evaporation loss = 0.00085 × 1.8 × flow (m³/hr) × range (°C)."],
      "faqs": [{"q": "How cold can a cooling tower make the water?", "a": "WCT towers are rated to deliver water at the wet bulb temperature plus 4 °C. A colder target needs a special selection, so ask our engineers."},
               {"q": "How much make-up water does a cooling tower need?", "a": "Evaporation alone is about 0.00085 × 1.8 × flow × range. For 30 m³/hr and a 5 °C range that is about 0.23 m³/hr, before drift and blow-down."},
@@ -426,12 +426,22 @@ def tool_data(tid):
         wrd = products["refrigerated-air-dryers"]["spec"]["rows"]
         whd = products["desiccant-air-dryers"]["spec"]["rows"]
         return {"wrd": [{"model": r["model"], "cfm": r["cfm"]} for r in wrd], "whd": [{"model": r["model"], "cfm": r["cfm"]} for r in whd],
-                "wrd_url": product_url("refrigerated-air-dryers"), "whd_url": product_url("desiccant-air-dryers")}
+                "wrd_url": product_url("refrigerated-air-dryers"), "whd_url": product_url("desiccant-air-dryers"), "factors": [t["points"] for t in products["refrigerated-air-dryers"]["selection"]["tables"]]}
     if tid == "chiller":
         return {"wcp": [{"model": r["model"], "tr": r["tr"], "lpm": r["lpm"]} for r in products["industrial-process-chillers"]["spec"]["rows"]],
-                "url": product_url("industrial-process-chillers")}
+                "url": product_url("industrial-process-chillers"), "factors": [t["points"] for t in products["industrial-process-chillers"]["selection"]["tables"]]}
     return {s: [{"model": r["model"], "tr": r["tr"], "m3hr": r["m3hr"]} for r in products[f"{s}-cooling-towers"]["spec"]["rows"]] for s in ("round", "square")} | {
         "round_url": product_url("round-cooling-towers"), "square_url": product_url("square-cooling-towers")}
+
+
+def selection_products():
+    result = {}
+    for slug, product in products.items():
+        models = [row["model"] for row in (product.get("spec") or {}).get("rows", [])]
+        if slug == "desiccant-air-dryers":
+            models += [model + " " + variant for model in list(models) for variant in ("A", "M")]
+        result[slug] = {"name": product["name"], "url": product_url(slug), "models": models}
+    return result
 
 
 # ---------------------------------------------------------------- blog (tiny markdown)
@@ -657,7 +667,7 @@ for l in locations:
     hit["pages"].append(l)
 env.globals["reviews"] = json.loads((DATA / "reviews.json").read_text())
 industries_by_slug = {i["slug"]: i for i in site["industries"]}
-env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, articles=articles, md=md, locations=locations, location_cities=location_cities, industries_by_slug=industries_by_slug)
+env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, selection_products=selection_products, articles=articles, md=md, locations=locations, location_cities=location_cities, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
 NUM_WORDS = {15: "Fifteen", 16: "Sixteen", 17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty", 21: "Twenty-one", 22: "Twenty-two", 23: "Twenty-three", 24: "Twenty-four"}
 env.globals["product_count"] = len(products)
@@ -787,7 +797,7 @@ def _min_css(css):
 
 
 CSS_BUNDLES = {
-    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "sections.css", "chat.css", "motion.css", "print.css"],
+    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "selection.css", "sections.css", "chat.css", "motion.css", "print.css"],
     "home.css": ["home.css"],
     "viewer.css": ["chiller360.css"],
     "downloads.css": ["downloads.css"],

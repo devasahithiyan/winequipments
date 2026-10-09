@@ -12,8 +12,25 @@
     <p class="lede">{{ product_count_word }} product lines in three families, all manufactured at our works in Arasur, Coimbatore.</p>
   </div>
 </section>
+<section class="product-discovery container" aria-labelledby="find-product">
+  <h2 id="find-product">Find equipment for your plant</h2>
+  <div data-discovery-controls hidden>
+    <div class="discovery-search field"><label for="product-search">Search products, models or applications</label><input class="input" type="search" id="product-search" placeholder="e.g. WCP 050, air dryer, injection moulding" autocomplete="off" aria-controls="product-results"></div>
+    <details class="discovery-guide"><summary>Not sure where to start?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+      <div class="discovery-guide__body"><p>Choose the job and your industry to explore relevant ranges. We confirm the equipment and sizing before quoting.</p>
+        <div class="form-grid form-grid--2"><div class="field"><label for="discovery-task">What do you need to do?</label><select class="select" id="discovery-task"><option value="">Not sure yet</option><option value="air">Treat or store compressed air</option><option value="cooling">Cool a process or fluid</option><option value="towers">Reject heat with a cooling tower</option></select></div>
+        <div class="field"><label for="discovery-industry">Your industry (optional)</label><select class="select" id="discovery-industry"><option value="">All industries</option>{% for i in site.industries %}<option value="{{ i.slug }}">{{ i.name }}</option>{% endfor %}</select></div></div>
+        <button type="button" class="btn btn--secondary" data-discovery-guide>Show relevant products</button>
+      </div>
+    </details>
+  </div>
+  <nav class="discovery-families" aria-label="Product families"><a href="/products/" data-family="" aria-current="true">All products</a>{% for fam in families.values() %}<a href="#f-{{ fam.id }}" data-family="{{ fam.id }}">{{ fam.name }}</a>{% endfor %}</nav>
+  <div class="discovery-feedback" data-discovery-feedback hidden><p role="status" data-discovery-count></p><button type="button" class="btn btn--ghost" data-discovery-reset>Clear filters</button></div>
+  <div class="discovery-empty" data-discovery-empty hidden><h3>No products match these filters</h3><p>Try a product name or model number, or clear the filters to browse every range. A missing match does not mean we cannot help with your duty.</p><a class="link-arrow" href="#quote" data-quote-link>Describe your requirement to an engineer<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+</section>
+<div id="product-results">
 {% for fam in families.values() %}
-<section class="section section--rule" aria-labelledby="f-{{ fam.id }}">
+<section data-product-family="{{ fam.id }}" class="section section--rule" aria-labelledby="f-{{ fam.id }}">
   <div class="container">
     <div class="section-head" data-reveal>
       <h2 id="f-{{ fam.id }}"><a href="/products/{{ fam.slug }}.html" style="color:inherit">{{ fam.name }}</a></h2>
@@ -23,5 +40,11 @@
   </div>
 </section>
 {% endfor %}
+</div>
+<script type="application/json" id="product-search-data">[
+{% for pr in products.values() %}{"slug":{{ pr.slug|tojson }},"family":{{ pr.family|tojson }},"search":{{ (pr.name ~ ' ' ~ pr.h1 ~ ' ' ~ pr.series ~ ' ' ~ pr.card ~ ' ' ~ (pr.applications|default([])|join(' ')) ~ ' ' ~ ((pr.spec.rows|map(attribute='model')|list|join(' ')) if pr.spec else ''))|tojson }},"industries":{{ (site.industries|selectattr('products', 'contains', pr.slug)|map(attribute='slug')|list)|tojson }}}{% if not loop.last %},{% endif %}
+{% endfor %}]</script>
 {% include "partials/enquiry.html" %}
 {% endblock %}
+
+{% block scripts %}<script type="module" src="/js/product-discovery.js?v={{ js_ver }}"></script>{% endblock %}

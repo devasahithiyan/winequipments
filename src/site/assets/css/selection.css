@@ -1,0 +1,70 @@
+/* Selection tools inherit Archivo, the green/ink palette and native controls. */
+.product-discovery {padding-block:var(--s-6) var(--s-8)}
+.product-discovery h2 {font-size:var(--fs-h3);margin-bottom:var(--s-5)}
+.discovery-search {max-width:48rem}
+.discovery-families {display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-6)}
+.discovery-families a {padding:.65rem 1rem;border:1px solid var(--rule-strong);border-radius:var(--r-btn, 6px);text-decoration:none;color:var(--ink-2);font-weight:600}
+.discovery-families a:hover {background:var(--paper-2)}
+.discovery-families a[aria-current] {background:var(--green-ink);color:var(--on-green);border-color:var(--green-ink)}
+.discovery-guide {max-width:48rem;margin-top:var(--s-5);border-block:1px solid var(--rule)}
+.discovery-guide summary,.model-compare summary {cursor:pointer;display:flex;align-items:center;gap:var(--s-3);padding:var(--s-4) 0;font-weight:650;list-style:none}
+.discovery-guide summary::-webkit-details-marker,.model-compare summary::-webkit-details-marker {display:none}
+.discovery-guide summary svg,.model-compare summary svg {width:1rem;height:1rem;margin-left:auto;flex:none}
+.discovery-guide[open] summary svg,.model-compare[open] summary svg {transform:rotate(180deg)}
+.discovery-guide__body {padding-bottom:var(--s-5)}
+.discovery-guide__body>p {margin-bottom:var(--s-5);max-width:65ch;color:var(--ink-2)}
+.discovery-guide__body>.btn {margin-top:var(--s-4)}
+.discovery-feedback {display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);margin-top:var(--s-4);color:var(--ink-2)}
+.discovery-feedback p {overflow-wrap:anywhere}
+.discovery-feedback button {flex:none}
+.discovery-empty {padding-block:var(--s-8);max-width:65ch}
+.discovery-empty h3 {margin-bottom:var(--s-3)}
+.discovery-empty p {margin-bottom:var(--s-5)}
+#product-results [data-reveal] {opacity:1;transform:none}
+.p-selection-link {margin-top:var(--s-5)}
+.model-compare {border-block:1px solid var(--rule-strong);margin-block:var(--s-6)}
+.model-compare summary span {font-size:var(--fs-small);font-weight:400;color:var(--muted)}
+.model-compare__body {padding-bottom:var(--s-6)}
+.model-compare__body>p {max-width:70ch;color:var(--ink-2);margin-bottom:var(--s-4)}
+.comparison-choices {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-4);margin-block:var(--s-5)}
+.comparison-scroll {overflow:auto;overscroll-behavior-inline:contain;scrollbar-color:var(--rule-strong) var(--paper);margin-top:var(--s-4)}
+.selection-comparison {width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:var(--fs-small)}
+.selection-comparison caption {text-align:left;font-weight:650;padding-block:var(--s-3)}
+.selection-comparison th,.selection-comparison td {text-align:left;vertical-align:top;padding:var(--s-3);border-bottom:1px solid var(--rule);min-width:7.5rem;overflow-wrap:anywhere}
+.selection-comparison th:first-child {min-width:10rem}
+.selection-comparison thead {background:var(--paper-2)}
+.selection-comparison tbody th {font-weight:500;color:var(--ink-2)}
+.selection-comparison a {display:inline-block;padding-block:.5rem;color:var(--green-ink)}
+.selection-summary {background:var(--paper-2);padding:var(--s-5);margin-bottom:var(--s-6);border-radius:12px}
+.selection-summary h3 {font-size:var(--fs-h3);margin-bottom:var(--s-3)}
+.selection-summary>p {margin-bottom:var(--s-4);color:var(--ink-2)}
+.selection-summary__actions {display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3);margin-top:var(--s-3)}
+.selection-summary textarea {font-size:1rem;line-height:1.5}
+.selection-recap {padding:var(--s-4);background:var(--green-wash);color:var(--ink);margin-bottom:var(--s-5)}
+.selection-recap p {margin-bottom:var(--s-2)}
+.t-result__heading {color:inherit;font-size:var(--fs-h3);margin-bottom:var(--s-5)}
+.t-result__qualification {margin-block:var(--s-5);max-width:65ch;color:inherit}
+.t-result[data-state="invalid"] {background:var(--error-wash);color:var(--ink)}
+.t-result[data-state="review"] .t-result__heading {color:#f3dd9b}
+.t-form [data-input-mode] {margin-bottom:var(--s-5)}
+@media(max-width:600px) {
+  .comparison-choices {grid-template-columns:1fr}
+  .model-compare summary {flex-wrap:wrap}
+  .model-compare summary span {flex-basis:calc(100% - 2rem);order:3}
+  .discovery-feedback {align-items:flex-start;flex-direction:column;gap:var(--s-2)}
+  .selection-summary {padding:var(--s-4)}
+}
+
+@media(max-width:600px) {
+  .selection-comparison,.selection-comparison thead,.selection-comparison tbody {display:block}
+  .selection-comparison tr {display:grid;grid-template-columns:repeat(var(--comparison-count),minmax(0,1fr));border-bottom:1px solid var(--rule)}
+  .selection-comparison th,.selection-comparison td,.selection-comparison th:first-child {min-width:0;border:0;padding:.65rem .4rem}
+  .selection-comparison tr>th:first-child {grid-column:1/-1;padding-bottom:.1rem;font-weight:650}
+}
+
+/* Long brochure labels wrap rather than widening a narrow product page. */
+.p-hero .btn-row .btn {max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.selection-comparison caption {display:block}
+@media(max-width:600px) {
+  .selection-comparison td::before {content:attr(data-model);display:block;color:var(--muted);font-size:.75rem;margin-bottom:.2rem}
+}

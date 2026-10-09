@@ -1,0 +1,46 @@
+const core = new URL('./product-search.mjs', import.meta.url);
+core.search = new URL(import.meta.url).search;
+const {matchesProduct} = await import(core.href);
+const products = JSON.parse(document.getElementById('product-search-data').textContent);
+const search = document.getElementById('product-search');
+const task = document.getElementById('discovery-task');
+const industry = document.getElementById('discovery-industry');
+const links = [...document.querySelectorAll('[data-family]')];
+const groups = [...document.querySelectorAll('[data-product-family]')];
+let family = '', application = '';
+function run(update = true) {
+  const matches = products.filter(p => matchesProduct(p, search.value, family, application));
+  const slugs = new Set(matches.map(p => p.slug));
+  groups.forEach(group => {
+    let visible = 0;
+    group.querySelectorAll('[data-product-slug]').forEach(card => { card.hidden = !slugs.has(card.dataset.productSlug); if (!card.hidden) visible++; });
+    group.hidden = !visible;
+  });
+  links.forEach(link => { if (link.dataset.family === family) link.setAttribute('aria-current', 'true'); else link.removeAttribute('aria-current'); });
+  document.querySelector('[data-discovery-empty]').hidden = matches.length !== 0;
+  const industryName = application ? industry.querySelector('option[value="' + application + '"]')?.textContent : '';
+  document.querySelector('[data-discovery-count]').textContent = matches.length + (matches.length === 1 ? ' product range' : ' product ranges') + (industryName ? ' for ' + industryName : '') + (search.value.trim() ? ' matching “' + search.value.trim() + '”' : '') + '.';
+  document.querySelector('[data-discovery-reset]').hidden = !search.value && !family && !application;
+  task.value = family; industry.value = application;
+  if (update) {
+    const url = new URL(location.href);
+    for (const [key, value] of [['q', search.value.trim()], ['family', family], ['industry', application]]) { if (value) url.searchParams.set(key, value); else url.searchParams.delete(key); }
+    history.replaceState(null, '', url);
+  }
+}
+function restore() {
+  const query = new URLSearchParams(location.search);
+  search.value = (query.get('q') || '').slice(0, 120);
+  family = links.some(link => link.dataset.family === query.get('family')) ? query.get('family') : '';
+  application = [...industry.options].some(option => option.value === query.get('industry')) ? query.get('industry') : '';
+  run(false);
+}
+search.maxLength = 120;
+search.addEventListener('input', () => run());
+links.forEach(link => link.addEventListener('click', event => { event.preventDefault(); family = link.dataset.family; application = ''; run(); }));
+document.querySelector('[data-discovery-guide]').addEventListener('click', () => { family = task.value; application = industry.value; search.value = ''; run(); document.querySelector('[data-discovery-count]').scrollIntoView({block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); });
+document.querySelector('[data-discovery-reset]').addEventListener('click', () => { search.value = ''; family = ''; application = ''; run(); search.focus({preventScroll: true}); });
+document.querySelector('[data-discovery-controls]').hidden = false;
+document.querySelector('[data-discovery-feedback]').hidden = false;
+window.addEventListener('popstate', restore);
+restore();

@@ -89,7 +89,7 @@
       const sel = $('[name="selected_model"]', form);
       if (sel) { sel.value = model; $('.form-more', form).open = true; }
       const req = $('[name="operating_parameters"]', form);
-      if (req && !req.value) req.value = `Quotation for ${model}`;
+      if (req && (!req.value || /^Quotation for [^\n]+$/.test(req.value))) req.value = `Quotation for ${model}`;
     }
     quote.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     const first = form && $('#f-name', form);
@@ -126,8 +126,8 @@
       const v = parseFloat(input.value);
       rows.forEach((r) => r.classList.remove('is-match'));
       trs.forEach((r) => r.classList.remove('is-match'));
-      if (!v || v <= 0) { out.textContent = out.dataset.default || out.textContent; return; }
-      const hit = rows.find((r) => parseFloat(r.dataset.cap) >= v);
+      if (!Number.isFinite(v) || v <= 0) { out.textContent = input.value ? 'Enter a requirement greater than zero.' : out.dataset.default; return; }
+      const hit = rows.find((r) => parseFloat(r.dataset.cap) + 1e-7 >= v);
       if (!hit) {
         out.innerHTML = `${v} ${unit} is above our standard range. <a href="#quote" data-quote-link>Ask our engineers</a> for a larger or multiple-unit solution.`;
         return;
@@ -136,11 +136,11 @@
       hit.classList.add('is-match');
       const tr = trs[rows.indexOf(hit)];
       if (tr) tr.classList.add('is-match');
-      out.innerHTML = `<strong>${model}</strong> covers ${v} ${unit} (rated ${hit.dataset.cap} ${unit}). <a href="#${hit.id}" data-jump>View model</a> · <a href="#quote" data-quote-model="${model}">Quote ${model}</a>`;
+      out.innerHTML = `Catalogue candidate: <strong>${model}</strong>, rated ${hit.dataset.cap} ${unit}, for ${v} ${unit} nominal requirement. Confirm conditions with an engineer. <a href="#${hit.id}" data-jump>View model</a> · <a href="#quote" data-quote-model="${model}">Quote ${model}</a>`;
       track('duty_finder', { value: v, model });
     };
     out.dataset.default = out.textContent;
-    input.addEventListener('input', run);
+    input.addEventListener('input', (event) => { if (event.isTrusted) delete input.dataset.corrected; run(); });
     out.addEventListener('click', (e) => {
       const j = e.target.closest('[data-jump]');
       if (!j) return;
@@ -199,11 +199,16 @@
     const duty = $('[data-duty]');
     const calc = () => {
       const q = parseFloat(flow.value);
-      if (!q) return;
-      const f = $$('[data-c-factor]', corr).reduce((acc, s) => acc * parseFloat(s.value), 1);
-      const nominal = Math.ceil(q / f);
+      const selects = $$('[data-c-factor]', corr);
+      const f = selects.reduce((acc, s) => acc * Number(s.value), 1);
+      if (!Number.isFinite(q) || q <= 0 || !Number.isFinite(f) || f <= 0 || selects.some(s => !s.selectedOptions.length || !Number(s.value))) {
+        res.textContent = flow.value ? 'Enter a positive compressor flow and choose the listed conditions.' : 'Enter the compressor capacity to calculate the dryer nominal capacity.';
+        if (duty) { duty.value = ''; delete duty.dataset.corrected; duty.dispatchEvent(new Event('input')); }
+        return;
+      }
+      const nominal = Number((q / f).toFixed(6));
       res.innerHTML = `Dryer nominal capacity needed: <strong>${nominal} CFM</strong> (${q} ÷ ${f.toFixed(3)}).`;
-      if (duty) { duty.value = nominal; duty.dispatchEvent(new Event('input')); const m = $('.model.is-match'); if (m) res.innerHTML += ` Selected: <a href="#specs">${m.dataset.model}</a>.`; }
+      if (duty) { duty.dataset.corrected = 'true'; duty.value = nominal; duty.dispatchEvent(new Event('input')); const m = $('.model.is-match'); if (m) res.innerHTML += ` Selected: <a href="#specs">${m.dataset.model}</a>.`; }
     };
     corr.addEventListener('input', calc);
     corr.addEventListener('change', calc);

@@ -22,11 +22,20 @@
       {% endif %}
     </div>
     <div class="form-panel">
-      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq{% if is_document_request %} data-document-request{% endif %}>
+      <form class="form" action="/send_rfq.php" method="post" enctype="multipart/form-data" novalidate data-rfq{% if prod %} data-product-slug="{{ prod.slug }}"{% endif %}{% if is_document_request %} data-document-request{% endif %}>
         <input type="hidden" name="return_url" value="/thank-you.html">
         <input type="hidden" name="form_source" value="{{ url }}">
         {% if is_document_request %}<input type="hidden" name="request_type" value="Technical document">{% endif %}
         <div class="hp-field" aria-hidden="true"><label>Website <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off"></label></div>
+        {% if p is defined or tool is defined %}
+        <section class="selection-summary" data-selection-summary hidden aria-labelledby="selection-heading">
+          <h3 id="selection-heading">Your selection details</h3>
+          <p>Check or edit the details below before sending. An engineer confirms the final selection.</p>
+          <div class="field"><label for="f-selection">Include with your enquiry</label><textarea class="textarea" id="f-selection" name="selection_details" rows="7" maxlength="4000" data-selection-text disabled></textarea></div>
+          <div class="selection-summary__actions"><button class="btn btn--ghost" type="button" data-selection-remove>Remove selection details</button><a class="link-arrow" data-selection-wa href="{{ whatsapp('Hello Win Equipments, please review my duty.') }}" data-track="whatsapp_click">Share these details on WhatsApp<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </section>
+        <p class="visually-hidden" role="status" data-selection-status></p>
+        {% endif %}
         <div class="form-grid form-grid--2">
           <div class="field">
             <label for="f-name">Your name</label>

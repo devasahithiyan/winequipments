@@ -39,6 +39,10 @@
 {% endblock %}
 <button class="to-top" type="button" aria-label="Back to top" data-to-top hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
 <script src="/js/site.js?v={{ js_ver }}" defer></script>
+{% if p is defined or tool is defined %}
+<script type="application/json" id="selection-products-data">{{ selection_products() | tojson }}</script>
+<script type="module" src="/js/selection.js?v={{ js_ver }}"></script>
+{% endif %}
 {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -14,11 +14,21 @@
         <div class="unit-input"><input id="duty-{{ p.slug }}" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. {{ p.spec.rows[(p.spec.rows | length) // 2][capkey] }}" data-duty><span>{{ p.capacity.unit }}</span></div>
       </div>
     </div>
-    <p class="finder__result" aria-live="polite" data-finder-result>Enter your {{ p.capacity.label | lower }} to find the model that covers it.</p>
+    <p class="finder__result" aria-live="polite" data-finder-result>Enter the nominal {{ p.capacity.label | lower }} needed at the rating conditions above. This is a catalogue comparison; an engineer confirms suitability.</p>
     {% if p.slug == 'refrigerated-air-dryers' %}<p class="finder__note">Rated at 45 °C inlet, 35 °C ambient, 7 bar g and +3 °C dew point. For other conditions use the correction factors below.</p>{% endif %}
   </div>
   {% endif %}
 
+  <details class="model-compare" data-model-compare hidden>
+    <summary>Compare models <span>Choose two or three from this range</span><svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+    <div class="model-compare__body">
+      <p>Compare catalogue specifications at the rating conditions above. Your operating duty still needs confirmation.</p>
+      <div class="comparison-choices">{% for n in range(1, 4) %}<div class="field"><label for="compare-{{ n }}">Model {{ n }}{{ ' (optional)' if n == 3 else '' }}</label><select class="select" id="compare-{{ n }}" data-compare-choice><option value="">Choose a model</option>{% for row in p.spec.rows %}<option value="{{ row.model }}">{{ row.model }}</option>{% endfor %}</select></div>{% endfor %}</div>
+      <p data-compare-status role="status">Choose two models to see their specifications side by side.</p>
+      <div data-compare-output></div>
+      <script type="application/json" data-comparison-data>{{ p.spec | tojson }}</script>
+    </div>
+  </details>
   <ol class="model-list" aria-label="{{ p.spec.caption }}">
     {% for row in p.spec.rows %}
     <li class="model" id="{{ model_id(row.model) }}" data-cap="{{ row[capkey] if row[capkey] is number else '' }}" data-model="{{ row.model }}">

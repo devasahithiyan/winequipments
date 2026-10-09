@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://winequipments.com/products/">
 <meta name="theme-color" content="#f6f7f3">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=f4298a1d">
+<link rel="stylesheet" href="/css/site.css?v=0b3ddccd">
 <link rel="icon" href="/logo.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Win Equipments">
@@ -297,13 +297,30 @@
     <p class="lede">Twenty-three product lines in three families, all manufactured at our works in Arasur, Coimbatore.</p>
   </div>
 </section>
-<section class="section section--rule" aria-labelledby="f-air">
+<section class="product-discovery container" aria-labelledby="find-product">
+  <h2 id="find-product">Find equipment for your plant</h2>
+  <div data-discovery-controls hidden>
+    <div class="discovery-search field"><label for="product-search">Search products, models or applications</label><input class="input" type="search" id="product-search" placeholder="e.g. WCP 050, air dryer, injection moulding" autocomplete="off" aria-controls="product-results"></div>
+    <details class="discovery-guide"><summary>Not sure where to start?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+      <div class="discovery-guide__body"><p>Choose the job and your industry to explore relevant ranges. We confirm the equipment and sizing before quoting.</p>
+        <div class="form-grid form-grid--2"><div class="field"><label for="discovery-task">What do you need to do?</label><select class="select" id="discovery-task"><option value="">Not sure yet</option><option value="air">Treat or store compressed air</option><option value="cooling">Cool a process or fluid</option><option value="towers">Reject heat with a cooling tower</option></select></div>
+        <div class="field"><label for="discovery-industry">Your industry (optional)</label><select class="select" id="discovery-industry"><option value="">All industries</option><option value="plastic-molding">Plastics &amp; injection moulding</option><option value="textile-mills">Textile, spinning &amp; knitting mills</option><option value="automotive-cnc">Automotive &amp; CNC machine shops</option><option value="food-dairy-beverage">Food, dairy &amp; beverage</option><option value="pharma-chemical">Pharma &amp; chemical</option><option value="hospitals-healthcare">Hospitals &amp; healthcare</option><option value="diesel-gensets-power">Diesel gensets &amp; power</option><option value="cement-paper-sugar">Cement, paper &amp; sugar</option></select></div></div>
+        <button type="button" class="btn btn--secondary" data-discovery-guide>Show relevant products</button>
+      </div>
+    </details>
+  </div>
+  <nav class="discovery-families" aria-label="Product families"><a href="/products/" data-family="" aria-current="true">All products</a><a href="#f-air" data-family="air">Compressed Air Treatment</a><a href="#f-cooling" data-family="cooling">Process Cooling</a><a href="#f-towers" data-family="towers">Cooling Towers</a></nav>
+  <div class="discovery-feedback" data-discovery-feedback hidden><p role="status" data-discovery-count></p><button type="button" class="btn btn--ghost" data-discovery-reset>Clear filters</button></div>
+  <div class="discovery-empty" data-discovery-empty hidden><h3>No products match these filters</h3><p>Try a product name or model number, or clear the filters to browse every range. A missing match does not mean we cannot help with your duty.</p><a class="link-arrow" href="#quote" data-quote-link>Describe your requirement to an engineer<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+</section>
+<div id="product-results">
+<section data-product-family="air" class="section section--rule" aria-labelledby="f-air">
   <div class="container">
     <div class="section-head" data-reveal>
       <h2 id="f-air"><a href="/products/compressed-air-treatment.html" style="color:inherit">Compressed Air Treatment</a></h2>
       <p>Dryers, filters, drains and receivers for dry, clean compressed air.</p>
     </div>
-    <ul class="pcards"><li class="pcard" data-reveal style="--d:0" data-cap-max="2000.0" data-cap-unit="CFM">
+    <ul class="pcards"><li class="pcard" data-product-slug="refrigerated-air-dryers" data-reveal style="--d:0" data-cap-max="2000.0" data-cap-unit="CFM">
   <a href="/products/refrigerated-air-dryers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/refrigiratedairdryer1-studio-320.avif 320w, /img/refrigiratedairdryer1-studio-480.avif 480w, /img/refrigiratedairdryer1-studio-488.avif 488w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/refrigiratedairdryer1-studio-320.webp 320w, /img/refrigiratedairdryer1-studio-480.webp 480w, /img/refrigiratedairdryer1-studio-488.webp 488w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/refrigiratedairdryer1-studio-488.png" srcset="/img/refrigiratedairdryer1-studio-320.png 320w, /img/refrigiratedairdryer1-studio-480.png 480w, /img/refrigiratedairdryer1-studio-488.png 488w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="488" height="605" alt="Refrigerated Compressed Air Dryers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -314,7 +331,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-cap-max="2000.0" data-cap-unit="CFM">
+<li class="pcard" data-product-slug="desiccant-air-dryers" data-reveal style="--d:1" data-cap-max="2000.0" data-cap-unit="CFM">
   <a href="/products/desiccant-air-dryers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/dessicantdryer-studio-320.avif 320w, /img/dessicantdryer-studio-445.avif 445w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/dessicantdryer-studio-320.webp 320w, /img/dessicantdryer-studio-445.webp 445w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/dessicantdryer-studio-445.png" srcset="/img/dessicantdryer-studio-320.png 320w, /img/dessicantdryer-studio-445.png 445w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="445" height="672" alt="Heatless Desiccant Air Dryers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -325,7 +342,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-cap-max="1700.0" data-cap-unit="CFM">
+<li class="pcard" data-product-slug="compressed-air-filters" data-reveal style="--d:2" data-cap-max="1700.0" data-cap-unit="CFM">
   <a href="/products/compressed-air-filters.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/compressedairfilters-studio-320.avif 320w, /img/compressedairfilters-studio-480.avif 480w, /img/compressedairfilters-studio-528.avif 528w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/compressedairfilters-studio-320.webp 320w, /img/compressedairfilters-studio-480.webp 480w, /img/compressedairfilters-studio-528.webp 528w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/compressedairfilters-studio-528.png" srcset="/img/compressedairfilters-studio-320.png 320w, /img/compressedairfilters-studio-480.png 480w, /img/compressedairfilters-studio-528.png 528w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="528" height="442" alt="Compressed Air Filters" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -336,7 +353,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:0" data-cap-max="1000.0" data-cap-unit="CFM">
+<li class="pcard" data-product-slug="automatic-drain-valves" data-reveal style="--d:0" data-cap-max="1000.0" data-cap-unit="CFM">
   <a href="/products/automatic-drain-valves.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/drainvalve-studio-320.avif 320w, /img/drainvalve-studio-480.avif 480w, /img/drainvalve-studio-640.avif 640w, /img/drainvalve-studio-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/drainvalve-studio-320.webp 320w, /img/drainvalve-studio-480.webp 480w, /img/drainvalve-studio-640.webp 640w, /img/drainvalve-studio-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/drainvalve-studio-720.png" srcset="/img/drainvalve-studio-320.png 320w, /img/drainvalve-studio-480.png 480w, /img/drainvalve-studio-640.png 640w, /img/drainvalve-studio-720.png 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="827" alt="Automatic Condensate Drain Valves" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -347,7 +364,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-cap-max="10000.0" data-cap-unit="litres">
+<li class="pcard" data-product-slug="air-receiver-tanks" data-reveal style="--d:1" data-cap-max="10000.0" data-cap-unit="litres">
   <a href="/products/air-receiver-tanks.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/airreciever-studio-320.avif 320w, /img/airreciever-studio-402.avif 402w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/airreciever-studio-320.webp 320w, /img/airreciever-studio-402.webp 402w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/airreciever-studio-402.png" srcset="/img/airreciever-studio-320.png 320w, /img/airreciever-studio-402.png 402w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="402" height="793" alt="Compressed Air Receiver Tanks" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -358,7 +375,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-eto>
+<li class="pcard" data-product-slug="industrial-aftercoolers" data-reveal style="--d:2" data-eto>
   <a href="/products/industrial-aftercoolers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/aftercooler-studio-320.avif 320w, /img/aftercooler-studio-480.avif 480w, /img/aftercooler-studio-576.avif 576w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/aftercooler-studio-320.webp 320w, /img/aftercooler-studio-480.webp 480w, /img/aftercooler-studio-576.webp 576w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/aftercooler-studio-576.png" srcset="/img/aftercooler-studio-320.png 320w, /img/aftercooler-studio-480.png 480w, /img/aftercooler-studio-576.png 576w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="576" height="552" alt="Compressed Air Aftercoolers with Moisture Separator" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -369,7 +386,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:0" data-eto>
+<li class="pcard" data-product-slug="moisture-separators" data-reveal style="--d:0" data-eto>
   <a href="/products/moisture-separators.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/aftercooler-studio-320.avif 320w, /img/aftercooler-studio-480.avif 480w, /img/aftercooler-studio-576.avif 576w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/aftercooler-studio-320.webp 320w, /img/aftercooler-studio-480.webp 480w, /img/aftercooler-studio-576.webp 576w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/aftercooler-studio-576.png" srcset="/img/aftercooler-studio-320.png 320w, /img/aftercooler-studio-480.png 480w, /img/aftercooler-studio-576.png 576w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="576" height="552" alt="Moisture Separators for Compressed Air" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -383,13 +400,13 @@
 </ul>
   </div>
 </section>
-<section class="section section--rule" aria-labelledby="f-cooling">
+<section data-product-family="cooling" class="section section--rule" aria-labelledby="f-cooling">
   <div class="container">
     <div class="section-head" data-reveal>
       <h2 id="f-cooling"><a href="/products/process-cooling.html" style="color:inherit">Process Cooling</a></h2>
       <p>Chillers that hold process water at a set temperature.</p>
     </div>
-    <ul class="pcards"><li class="pcard" data-reveal style="--d:0" data-cap-max="20.0" data-cap-unit="TR">
+    <ul class="pcards"><li class="pcard" data-product-slug="industrial-process-chillers" data-reveal style="--d:0" data-cap-max="20.0" data-cap-unit="TR">
   <a href="/products/industrial-process-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/chiller-studio-320.avif 320w, /img/chiller-studio-480.avif 480w, /img/chiller-studio-640.avif 640w, /img/chiller-studio-686.avif 686w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/chiller-studio-320.webp 320w, /img/chiller-studio-480.webp 480w, /img/chiller-studio-640.webp 640w, /img/chiller-studio-686.webp 686w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/chiller-studio-686.png" srcset="/img/chiller-studio-320.png 320w, /img/chiller-studio-480.png 480w, /img/chiller-studio-640.png 640w, /img/chiller-studio-686.png 686w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="686" height="751" alt="Industrial Process Water Chillers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -400,7 +417,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-eto>
+<li class="pcard" data-product-slug="medical-scan-chillers" data-reveal style="--d:1" data-eto>
   <a href="/products/medical-scan-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/medicalchiller-studio-320.avif 320w, /img/medicalchiller-studio-480.avif 480w, /img/medicalchiller-studio-640.avif 640w, /img/medicalchiller-studio-641.avif 641w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/medicalchiller-studio-320.webp 320w, /img/medicalchiller-studio-480.webp 480w, /img/medicalchiller-studio-640.webp 640w, /img/medicalchiller-studio-641.webp 641w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/medicalchiller-studio-641.png" srcset="/img/medicalchiller-studio-320.png 320w, /img/medicalchiller-studio-480.png 480w, /img/medicalchiller-studio-640.png 640w, /img/medicalchiller-studio-641.png 641w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="641" height="479" alt="Medical Scan Chillers for MRI and CT" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -411,7 +428,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-eto>
+<li class="pcard" data-product-slug="anodizing-chillers" data-reveal style="--d:2" data-eto>
   <a href="/products/anodizing-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/electroplatingchiller-studio-320.avif 320w, /img/electroplatingchiller-studio-480.avif 480w, /img/electroplatingchiller-studio-534.avif 534w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/electroplatingchiller-studio-320.webp 320w, /img/electroplatingchiller-studio-480.webp 480w, /img/electroplatingchiller-studio-534.webp 534w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/electroplatingchiller-studio-534.png" srcset="/img/electroplatingchiller-studio-320.png 320w, /img/electroplatingchiller-studio-480.png 480w, /img/electroplatingchiller-studio-534.png 534w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="534" height="559" alt="Anodizing & Electroplating Chillers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -422,7 +439,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:0" data-eto>
+<li class="pcard" data-product-slug="acid-cooling-chillers" data-reveal style="--d:0" data-eto>
   <a href="/products/acid-cooling-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/chiller-studio-320.avif 320w, /img/chiller-studio-480.avif 480w, /img/chiller-studio-640.avif 640w, /img/chiller-studio-686.avif 686w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/chiller-studio-320.webp 320w, /img/chiller-studio-480.webp 480w, /img/chiller-studio-640.webp 640w, /img/chiller-studio-686.webp 686w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/chiller-studio-686.png" srcset="/img/chiller-studio-320.png 320w, /img/chiller-studio-480.png 480w, /img/chiller-studio-640.png 640w, /img/chiller-studio-686.png 686w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="686" height="751" alt="Acid Cooling Chillers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -433,7 +450,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-eto>
+<li class="pcard" data-product-slug="ice-flake-machines" data-reveal style="--d:1" data-eto>
   <a href="/products/ice-flake-machines.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/ice-flake-machine-320.avif 320w, /img/ice-flake-machine-480.avif 480w, /img/ice-flake-machine-640.avif 640w, /img/ice-flake-machine-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/ice-flake-machine-320.webp 320w, /img/ice-flake-machine-480.webp 480w, /img/ice-flake-machine-640.webp 640w, /img/ice-flake-machine-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/ice-flake-machine-720.jpg" srcset="/img/ice-flake-machine-320.jpg 320w, /img/ice-flake-machine-480.jpg 480w, /img/ice-flake-machine-640.jpg 640w, /img/ice-flake-machine-720.jpg 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="406" alt="Industrial Ice Flake Machines" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -444,7 +461,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-eto>
+<li class="pcard" data-product-slug="shell-and-tube-heat-exchangers" data-reveal style="--d:2" data-eto>
   <a href="/products/shell-and-tube-heat-exchangers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/heat-exchanger-studio-320.avif 320w, /img/heat-exchanger-studio-480.avif 480w, /img/heat-exchanger-studio-640.avif 640w, /img/heat-exchanger-studio-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/heat-exchanger-studio-320.webp 320w, /img/heat-exchanger-studio-480.webp 480w, /img/heat-exchanger-studio-640.webp 640w, /img/heat-exchanger-studio-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/heat-exchanger-studio-720.png" srcset="/img/heat-exchanger-studio-320.png 320w, /img/heat-exchanger-studio-480.png 480w, /img/heat-exchanger-studio-640.png 640w, /img/heat-exchanger-studio-720.png 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="420" alt="Shell and Tube Heat Exchangers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -455,7 +472,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:0" data-eto>
+<li class="pcard" data-product-slug="milk-chillers" data-reveal style="--d:0" data-eto>
   <a href="/products/milk-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/milk-coconut-chiller-320.avif 320w, /img/milk-coconut-chiller-480.avif 480w, /img/milk-coconut-chiller-640.avif 640w, /img/milk-coconut-chiller-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/milk-coconut-chiller-320.webp 320w, /img/milk-coconut-chiller-480.webp 480w, /img/milk-coconut-chiller-640.webp 640w, /img/milk-coconut-chiller-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/milk-coconut-chiller-720.jpg" srcset="/img/milk-coconut-chiller-320.jpg 320w, /img/milk-coconut-chiller-480.jpg 480w, /img/milk-coconut-chiller-640.jpg 640w, /img/milk-coconut-chiller-720.jpg 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="705" alt="Milk and Coconut Water Chillers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -466,7 +483,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-eto>
+<li class="pcard" data-product-slug="soda-chillers" data-reveal style="--d:1" data-eto>
   <a href="/products/soda-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/sodachiller-studio-320.avif 320w, /img/sodachiller-studio-480.avif 480w, /img/sodachiller-studio-545.avif 545w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/sodachiller-studio-320.webp 320w, /img/sodachiller-studio-480.webp 480w, /img/sodachiller-studio-545.webp 545w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/sodachiller-studio-545.png" srcset="/img/sodachiller-studio-320.png 320w, /img/sodachiller-studio-480.png 480w, /img/sodachiller-studio-545.png 545w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="545" height="570" alt="Soda Chillers for Beverage Plants" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -477,7 +494,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-eto>
+<li class="pcard" data-product-slug="condensing-units" data-reveal style="--d:2" data-eto>
   <a href="/products/condensing-units.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/condensing-unit-320.avif 320w, /img/condensing-unit-480.avif 480w, /img/condensing-unit-640.avif 640w, /img/condensing-unit-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/condensing-unit-320.webp 320w, /img/condensing-unit-480.webp 480w, /img/condensing-unit-640.webp 640w, /img/condensing-unit-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/condensing-unit-720.jpg" srcset="/img/condensing-unit-320.jpg 320w, /img/condensing-unit-480.jpg 480w, /img/condensing-unit-640.jpg 640w, /img/condensing-unit-720.jpg 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="852" alt="Refrigeration Condensing Units" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -488,7 +505,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:0" data-eto>
+<li class="pcard" data-product-slug="air-cooled-chillers" data-reveal style="--d:0" data-eto>
   <a href="/products/air-cooled-chillers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/air-cooled-chiller-large-320.avif 320w, /img/air-cooled-chiller-large-480.avif 480w, /img/air-cooled-chiller-large-640.avif 640w, /img/air-cooled-chiller-large-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/air-cooled-chiller-large-320.webp 320w, /img/air-cooled-chiller-large-480.webp 480w, /img/air-cooled-chiller-large-640.webp 640w, /img/air-cooled-chiller-large-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/air-cooled-chiller-large-720.jpg" srcset="/img/air-cooled-chiller-large-320.jpg 320w, /img/air-cooled-chiller-large-480.jpg 480w, /img/air-cooled-chiller-large-640.jpg 640w, /img/air-cooled-chiller-large-720.jpg 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="960" alt="Air-Cooled Water Chillers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -502,13 +519,13 @@
 </ul>
   </div>
 </section>
-<section class="section section--rule" aria-labelledby="f-towers">
+<section data-product-family="towers" class="section section--rule" aria-labelledby="f-towers">
   <div class="container">
     <div class="section-head" data-reveal>
       <h2 id="f-towers"><a href="/products/cooling-towers.html" style="color:inherit">Cooling Towers</a></h2>
       <p>FRP and coil towers that reject process heat to atmosphere.</p>
     </div>
-    <ul class="pcards"><li class="pcard" data-reveal style="--d:0" data-cap-max="300.0" data-cap-unit="TR">
+    <ul class="pcards"><li class="pcard" data-product-slug="round-cooling-towers" data-reveal style="--d:0" data-cap-max="300.0" data-cap-unit="TR">
   <a href="/products/round-cooling-towers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/coolingtower-studio-320.avif 320w, /img/coolingtower-studio-476.avif 476w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/coolingtower-studio-320.webp 320w, /img/coolingtower-studio-476.webp 476w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/coolingtower-studio-476.png" srcset="/img/coolingtower-studio-320.png 320w, /img/coolingtower-studio-476.png 476w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="476" height="619" alt="Round FRP Cooling Towers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -519,7 +536,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-cap-max="300.0" data-cap-unit="TR">
+<li class="pcard" data-product-slug="square-cooling-towers" data-reveal style="--d:1" data-cap-max="300.0" data-cap-unit="TR">
   <a href="/products/square-cooling-towers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/squarecoolingtower1-studio-320.avif 320w, /img/squarecoolingtower1-studio-473.avif 473w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/squarecoolingtower1-studio-320.webp 320w, /img/squarecoolingtower1-studio-473.webp 473w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/squarecoolingtower1-studio-473.png" srcset="/img/squarecoolingtower1-studio-320.png 320w, /img/squarecoolingtower1-studio-473.png 473w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="473" height="555" alt="Square FRP Cooling Towers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -530,7 +547,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-cap-max="280.0" data-cap-unit="TR">
+<li class="pcard" data-product-slug="closed-circuit-cooling-towers" data-reveal style="--d:2" data-cap-max="280.0" data-cap-unit="TR">
   <a href="/products/closed-circuit-cooling-towers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/coilcooling-studio-320.avif 320w, /img/coilcooling-studio-480.avif 480w, /img/coilcooling-studio-583.avif 583w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/coilcooling-studio-320.webp 320w, /img/coilcooling-studio-480.webp 480w, /img/coilcooling-studio-583.webp 583w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/coilcooling-studio-583.png" srcset="/img/coilcooling-studio-320.png 320w, /img/coilcooling-studio-480.png 480w, /img/coilcooling-studio-583.png 583w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="583" height="534" alt="Coil Cooling Towers (Dry Coolers)" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -541,7 +558,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:0" data-eto>
+<li class="pcard" data-product-slug="spare-parts-consumables" data-reveal style="--d:0" data-eto>
   <a href="/products/spare-parts-consumables.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/coolingtower3-studio-320.avif 320w, /img/coolingtower3-studio-424.avif 424w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/coolingtower3-studio-320.webp 320w, /img/coolingtower3-studio-424.webp 424w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/coolingtower3-studio-424.png" srcset="/img/coolingtower3-studio-320.png 320w, /img/coolingtower3-studio-424.png 424w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="424" height="660" alt="Spares for Cooling Towers, Chillers and Air Dryers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -552,7 +569,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:1" data-eto>
+<li class="pcard" data-product-slug="cooling-tower-fills" data-reveal style="--d:1" data-eto>
   <a href="/products/cooling-tower-fills.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/pvc-fills-blue-320.avif 320w, /img/pvc-fills-blue-480.avif 480w, /img/pvc-fills-blue-640.avif 640w, /img/pvc-fills-blue-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/pvc-fills-blue-320.webp 320w, /img/pvc-fills-blue-480.webp 480w, /img/pvc-fills-blue-640.webp 640w, /img/pvc-fills-blue-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/pvc-fills-blue-720.jpg" srcset="/img/pvc-fills-blue-320.jpg 320w, /img/pvc-fills-blue-480.jpg 480w, /img/pvc-fills-blue-640.jpg 640w, /img/pvc-fills-blue-720.jpg 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="426" alt="Cooling Tower PVC Fills, Drift Eliminators and Fans" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -563,7 +580,7 @@
     </span>
   </a>
 </li>
-<li class="pcard" data-reveal style="--d:2" data-eto>
+<li class="pcard" data-product-slug="fanless-cooling-towers" data-reveal style="--d:2" data-eto>
   <a href="/products/fanless-cooling-towers.html">
     <span class="pcard__stage"><picture class=""><source type="image/avif" srcset="/img/fanless-cooling-tower-installed-320.avif 320w, /img/fanless-cooling-tower-installed-480.avif 480w, /img/fanless-cooling-tower-installed-640.avif 640w, /img/fanless-cooling-tower-installed-720.avif 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><source type="image/webp" srcset="/img/fanless-cooling-tower-installed-320.webp 320w, /img/fanless-cooling-tower-installed-480.webp 480w, /img/fanless-cooling-tower-installed-640.webp 640w, /img/fanless-cooling-tower-installed-720.webp 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"><img src="/img/fanless-cooling-tower-installed-720.jpg" srcset="/img/fanless-cooling-tower-installed-320.jpg 320w, /img/fanless-cooling-tower-installed-480.jpg 480w, /img/fanless-cooling-tower-installed-640.jpg 640w, /img/fanless-cooling-tower-installed-720.jpg 720w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" width="720" height="540" alt="Fanless Natural Draft Cooling Towers" loading="lazy" decoding="async"></picture></span>
     <span class="pcard__body">
@@ -577,6 +594,9 @@
 </ul>
   </div>
 </section>
+</div>
+<script type="application/json" id="product-search-data">[
+{"slug":"acid-cooling-chillers","family":"cooling","search":"Acid Cooling Chillers Acid Cooling Chillers Engineered to order Chillers engineered to order for acids and corrosive process fluids.  ","industries":["pharma-chemical"]},{"slug":"air-cooled-chillers","family":"cooling","search":"Air-Cooled Chillers Air-Cooled Water Chillers Engineered to order Packaged chillers that reject heat to air through condenser fans, so no cooling tower is needed. Injection moulding and plastic machines Hydraulic presses and oil cooling Compressor cooling Food, milk and beverage cooling Sites with poor water supply or no space for a cooling tower ","industries":[]},{"slug":"air-receiver-tanks","family":"air","search":"Air Receiver Tanks Compressed Air Receiver Tanks WRV Series Hydro-tested pressure vessels that store air and settle condensate. Compressed air plants of all sizes Wet receiver after the compressor Dry receiver after the dryer and filters WRV 025 WRV 050 WRV 100 WRV 150 WRV 200 WRV 300 WRV 500 WRV 1000","industries":[]},{"slug":"anodizing-chillers","family":"cooling","search":"Anodizing Chillers Anodizing \u0026 Electroplating Chillers Engineered to order Bath chillers engineered to order for anodizing and electroplating lines.  ","industries":[]},{"slug":"automatic-drain-valves","family":"air","search":"Automatic Drain Valves Automatic Condensate Drain Valves WDV Series Timer, micro-controller and no-air-loss drains that clear condensate automatically. Air receivers Compressed air filters Refrigerated air dryers Compressed air lines Moisture separators WDV M12 WDV H12 WDV L40 WDV H40 WDV B16 WDV E16 WDV ZA16 WDV F16","industries":[]},{"slug":"closed-circuit-cooling-towers","family":"towers","search":"Coil Cooling Towers Coil Cooling Towers (Dry Coolers) WCC Series Finned copper-coil dry coolers that keep process water sealed from the air. Diesel genset cooling Automobile Chemical Electronics Food \u0026 beverage Glass Pharmaceutical Textile Cement Distilleries \u0026 breweries Health care \u0026 hospitals WCC 40 WCC 60 WCC 80 WCC 100 WCC 120 WCC 140 WCC 160 WCC 180 WCC 200 WCC 220 WCC 240 WCC 280","industries":["textile-mills", "automotive-cnc", "food-dairy-beverage", "pharma-chemical", "hospitals-healthcare", "diesel-gensets-power", "cement-paper-sugar"]},{"slug":"compressed-air-filters","family":"air","search":"Compressed Air Filters Compressed Air Filters WMF Series Coalescing filters in four grades that remove oil, dirt, odour and water. Instrument air Paint shops Food \u0026 beverage Pharmaceutical Electronics Textile General plant air WMF 004 WMF 007 WMF 010 WMF 018 WMF 030 WMF 047 WMF 070 WMF 094 WMF 150 WMF 175 WMF 240","industries":[]},{"slug":"condensing-units","family":"cooling","search":"Condensing Units Refrigeration Condensing Units Engineered to order Compressor, condenser and controls on one base, assembled to order for your evaporator. Cold rooms and cold storage Process cooling with a separate evaporator Air handling and coil cooling ","industries":[]},{"slug":"cooling-tower-fills","family":"towers","search":"Cooling Tower Fills Cooling Tower PVC Fills, Drift Eliminators and Fans Spares PVC fill packs, drift eliminators, nozzles, PP rings and fan blades for FRP cooling towers. Replacing clogged or broken fills in FRP round and square towers Reducing drift loss on square towers Restoring water distribution with new nozzles Scrubber and high-temperature packing (PP rings) ","industries":[]},{"slug":"desiccant-air-dryers","family":"air","search":"Heatless Desiccant Air Dryers Heatless Desiccant Air Dryers WHD Series Twin-tower dryers that adsorb moisture for \u221220 \u00b0C to \u221240 \u00b0C pressure dew points. Pharmaceutical Electronics Instrument air Food packaging Paint lines Outdoor air lines in cold conditions WHD 030 WHD 040 WHD 050 WHD 060 WHD 075 WHD 100 WHD 125 WHD 150 WHD 200","industries":[]},{"slug":"fanless-cooling-towers","family":"towers","search":"Fanless Cooling Towers Fanless Natural Draft Cooling Towers Engineered to order Natural draft towers with no fan, for hot water from gensets, furnaces and compressors. Diesel generator jacket water Foundries and induction furnaces Air compressor cooling Refrigeration systems ","industries":[]},{"slug":"ice-flake-machines","family":"cooling","search":"Ice Flake Machines Industrial Ice Flake Machines Engineered to order Flake ice machines sized to your daily ice requirement.  ","industries":["food-dairy-beverage"]},{"slug":"industrial-aftercoolers","family":"air","search":"Aftercoolers Compressed Air Aftercoolers with Moisture Separator Engineered to order Aftercoolers with moisture separator that cool compressor discharge air.  ","industries":[]},{"slug":"industrial-process-chillers","family":"cooling","search":"Industrial Process Chillers Industrial Process Water Chillers WCP Series Holds process water at a set temperature with a closed stainless steel tank and pump. Automobile Injection moulding \u0026 plastics Hydraulic presses \u0026 drives Compressor cooling Milk, dairy \u0026 pasteurising Food products Lubricant \u0026 oil cooling Pulp \u0026 paper Printing ink \u0026 paper waxing Sugar Footwear WCP 005 WCP 007 WCP 010 WCP 020 WCP 030 WCP 050 WCP 075 WCP 100 WCP 150 WCP 200","industries":["plastic-molding", "automotive-cnc", "food-dairy-beverage", "cement-paper-sugar"]},{"slug":"medical-scan-chillers","family":"cooling","search":"Medical Scan Chillers Medical Scan Chillers for MRI and CT Engineered to order Chillers engineered to order for the cooling circuits of MRI and CT scanners.  ","industries":["hospitals-healthcare"]},{"slug":"milk-chillers","family":"cooling","search":"Milk \u0026 Coconut Water Chillers Milk and Coconut Water Chillers Engineered to order Chillers built to order to cool milk, coconut water and other liquid foods. Milk collection and processing Coconut water processing Beverage and liquid food plants ","industries":["food-dairy-beverage"]},{"slug":"moisture-separators","family":"air","search":"Moisture Separators Moisture Separators for Compressed Air Engineered to order Separators that remove condensed water from compressed air after the aftercooler.  ","industries":[]},{"slug":"refrigerated-air-dryers","family":"air","search":"Refrigerated Air Dryers Refrigerated Compressed Air Dryers WRD Series Removes moisture from compressed air by chilling it to a +3\u00b0C pressure dew point. Automobile Cement Chemical CNC machine shops Electronics Food processing Foundry Glass Leather Textile Paper mills Rice mills Power plants Printing WRD 20 S WRD 40 S WRD 50 S WRD 60 S WRD 80 S WRD 100 S WRD 150 S WRD 200 S WRD 250 S WRD 300 T WRD 400 T WRD 500 T WRD 600 T WRD 750 T WRD 1000 T WRD 1500 T WRD 2000 T","industries":["textile-mills", "automotive-cnc", "food-dairy-beverage", "pharma-chemical", "cement-paper-sugar"]},{"slug":"round-cooling-towers","family":"towers","search":"Round FRP Cooling Towers Round FRP Cooling Towers WCT RL Series Round bottle-type FRP towers that reject process heat by evaporation. Automobile Cement Chemical processing Diesel generators Distilleries \u0026 breweries Soft drinks Electronics Food \u0026 beverage Glass Health care \u0026 hospitals Induction furnaces Paper mills Plastic machinery PET bottle machines Spinning, knitting \u0026 hosiery Sugar WCT 010 RL WCT 020 RL WCT 030 RL WCT 040 RL WCT 050 RL WCT 060 RL WCT 080 RL WCT 100 RL WCT 125 RL WCT 150 RL WCT 200 RL WCT 300 RL","industries":["plastic-molding", "textile-mills", "automotive-cnc", "food-dairy-beverage", "pharma-chemical", "hospitals-healthcare", "diesel-gensets-power", "cement-paper-sugar"]},{"slug":"shell-and-tube-heat-exchangers","family":"cooling","search":"Shell \u0026 Tube Heat Exchangers Shell and Tube Heat Exchangers Engineered to order Heat exchangers built to order to transfer heat between two fluids without mixing them. Hydraulic and lubricating oil cooling Process water and fluid cooling Heat transfer between process streams ","industries":[]},{"slug":"soda-chillers","family":"cooling","search":"Soda Chillers Soda Chillers for Beverage Plants Engineered to order Chillers built to order to cool water and drinks for soda and beverage production. Soda and carbonated drink production Beverage filling lines Chilled drinking water ","industries":["food-dairy-beverage"]},{"slug":"spare-parts-consumables","family":"towers","search":"Spares \u0026 Consumables Spares for Cooling Towers, Chillers and Air Dryers Spares Fills, fans, motors, sprinklers, compressors, valves and filter elements.  ","industries":[]},{"slug":"square-cooling-towers","family":"towers","search":"Square FRP Cooling Towers Square FRP Cooling Towers WCT SL Series Square-footprint FRP towers with spray nozzles and drift eliminators. Automobile Cement Chemical processing Diesel generators Food \u0026 beverage Glass Hospitals Induction furnaces Paper mills Plastic machinery PET bottle machines Textile mills Sugar WCT 010 SL WCT 020 SL WCT 030 SL WCT 040 SL WCT 060 SL WCT 100 SL WCT 150 SL WCT 200 SL WCT 250 SL WCT 300 SL","industries":["plastic-molding", "textile-mills", "automotive-cnc", "diesel-gensets-power", "cement-paper-sugar"]}]</script>
 <section class="enquiry section" id="quote" aria-labelledby="quote-title">
   <div class="container enquiry__grid">
     <div>
@@ -702,13 +722,13 @@
       <span><a href="/about.html">About</a> · <a href="/certifications.html">Certifications</a> · <a href="/engineering-tools/">Sizing tools</a> · <a href="/blog.html">Articles</a> · <a href="/blog/glossary.html">Glossary</a> · <a href="/downloads.html">Downloads</a> · <a href="/sitemap.html">Sitemap</a></span>
     </div>
   </div>
-</footer><button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v=2ad9ab7e"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
+</footer><button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v=ce4acb3e"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
 <div class="action-bar" id="action-bar">
   <a class="btn btn--primary" href="#quote" data-quote-link>Request a quote</a>
   <a class="btn btn--secondary btn--icon btn--wa" href="https://wa.me/919597228969?text=Hello%20Win%20Equipments%2C%20I%20have%20an%20enquiry." data-track="whatsapp_click" aria-label="WhatsApp us"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
   <a class="btn btn--secondary btn--icon" href="tel:+919597228969" data-track="call_click" aria-label="Call +91 95972 28969"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
   <button class="btn btn--secondary btn--icon action-bar__ai" type="button" data-chat-proxy aria-label="Ask our AI assistant"><svg aria-hidden="true"><use href="#i-spark"/></svg></button>
 </div><button class="to-top" type="button" aria-label="Back to top" data-to-top hidden><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
-<script src="/js/site.js?v=2ad9ab7e" defer></script>
-</body>
+<script src="/js/site.js?v=ce4acb3e" defer></script>
+<script type="module" src="/js/product-discovery.js?v=ce4acb3e"></script></body>
 </html>
