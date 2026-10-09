@@ -4,7 +4,7 @@ seo_title: How to Size a Process Chiller: Worked Example
 description: Work out process chiller capacity in TR from water flow and temperature rise, then correct it for outlet and ambient temperature, with a worked example.
 date: 2026-10-04
 updated: 2026-10-05
-products: industrial-process-chillers, round-cooling-towers
+products: industrial-process-chillers, round-cooling-towers, acid-cooling-chillers, anodizing-chillers, medical-scan-chillers, milk-chillers
 category: Chillers
 order: 12
 photo: chiller-win-white.jpg | WCP process chiller built at our works

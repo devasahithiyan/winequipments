@@ -682,6 +682,18 @@ A: A pre-filter keeps free water and dust off the desiccant, a zero-oil filter s
 Q: What working pressure is supported?
 A: Standard WHD dryers work from 7 to 12.5 bar g with a design pressure of 13.2 bar g. Higher pressures can be offered on request.
 
+### Chiller prices in India (2026): water and process chillers
+URL: https://winequipments.com/blog/chiller-price-guide.html
+Short answer: Our indicative chiller prices, from our IndiaMART store as of 5 October 2026, start at ₹45,000 for a portable single-phase mini chiller and reach ₹3,50,000 for a 10 TR water chiller. The price depends on capacity, compressor, controls and whether a tank and pump are included, so send your duty for a quote.
+Q: Do you make a mini chiller?
+A: Yes. A portable single-phase mini chiller is listed on our IndiaMART store at ₹45,000 as of 5 October 2026. For a packaged air-cooled unit from 0.5 TR, see the air-cooled chillers page.
+Q: How much does a 10 TR chiller cost?
+A: Our 10 TR online water chiller is listed at ₹3,50,000 on our IndiaMART store as of 5 October 2026. Send your duty for a quote that matches your temperatures and site conditions.
+Q: Why is the 2 TR price different from the 1 TR price?
+A: The 2 TR unit is a separate model, a chiller for injection moulding, with its own specification and listed price of ₹85,000. Prices are not a straight line by capacity.
+Q: Are these prices final?
+A: No. They are indicative prices from our IndiaMART listings for the models shown. Send your requirement and we will quote for your duty and site.
+
 ## Glossary
 
 - Aftercooler: A heat exchanger fitted straight after the compressor that cools the hot discharge air, so the bulk of its water vapour condenses and is drained by a moisture separator. The air leaves cooler but still saturated.

@@ -65,6 +65,7 @@ Supplied across India. City pages: Coimbatore, Tiruppur, Erode, Hosur, Chennai, 
 - [Shell and tube heat exchangers: types, selection and design inputs](https://winequipments.com/blog/shell-and-tube-heat-exchanger-guide.html): The main heat exchanger types, how a shell and tube heat exchanger works, what design information is needed, and what Win Equipments builds to order.
 - [Chiller, cooling tower and air dryer prices in India (2026)](https://winequipments.com/blog/industrial-equipment-prices-india.html): Indicative 2026 prices for process chillers, FRP cooling towers, dry coolers, air dryers and receivers from Win Equipments, and what moves the price.
 - [How a heatless desiccant air dryer works](https://winequipments.com/blog/how-a-desiccant-air-dryer-works.html): How a heatless desiccant air dryer works, with a labelled 3D diagram and video: twin towers, adsorption, purge, repressurise and the timer swap.
+- [Chiller prices in India (2026): water and process chillers](https://winequipments.com/blog/chiller-price-guide.html): Indicative 2026 prices for water and process chillers from a portable mini chiller to 10 TR, what changes the price, and how to get an exact quote.
 - [Glossary](https://winequipments.com/blog/glossary.html): definitions of compressed air and cooling terms
 
 ## Sizing tools

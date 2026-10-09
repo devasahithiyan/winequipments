@@ -1256,6 +1256,10 @@
         "a": "Heat load (TR) = flow (LPM) × temperature rise (°C) ÷ 50.4, corrected for outlet and ambient temperature. The chiller tonnage calculator does both."
       },
       {
+        "q": "How do I get a chiller quote in Coimbatore?",
+        "a": "Send your water flow, the outlet temperature you need, the site ambient temperature and whether you need air or water cooling. Our engineers at our Arasur works will reply with a sized model. Indicative prices for standard WCP chillers are in our chiller price guide."
+      },
+      {
         "q": "Do you service chillers in Coimbatore?",
         "a": "We supply spares and service for our equipment. Send the model and the problem, or call or WhatsApp us."
       }

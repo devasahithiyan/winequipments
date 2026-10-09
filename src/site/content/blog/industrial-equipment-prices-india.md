@@ -14,17 +14,7 @@ These are the prices we list for our own equipment on our IndiaMART store, read 
 
 ## Process chillers
 
-| Chiller | Indicative price |
-|---|---|
-| Portable mini chiller, single phase | ₹45,000 |
-| 1 TR (3,000 kcal/hr) WCP chiller | ₹55,000 – ₹78,000 |
-| 2 TR (6,200 kcal/hr) chiller for injection moulding | ₹85,000 |
-| 3 TR online water chiller | ₹1,40,000 |
-| 5 TR online chiller | ₹2,30,000 |
-| 10 TR online water chiller | ₹3,50,000 |
-| Soda chiller unit | ₹1,20,000 |
-
-Price rises with capacity, but not in a straight line: the refrigeration compressor, condenser and controls are a large share of a small chiller. See [how to size a process chiller](/blog/how-to-size-a-process-chiller.html) before comparing quotes, because an undersized chiller is always the cheapest one.
+Chiller prices, with the 1 TR to 10 TR range and what changes the price, are in the [chiller price guide](/blog/chiller-price-guide.html). Those prices are the same IndiaMART listings, dated 5 October 2026.
 
 ## FRP cooling towers
 
