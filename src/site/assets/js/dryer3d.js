@@ -218,7 +218,10 @@ export async function init(opts) {
     const g = new T.ExtrudeGeometry(shape, { depth: 0.025, bevelEnabled: false, curveSegments: 8 }); g.rotateX(Math.PI / 2); return g;
   })();
   const rimGeo = new T.TorusGeometry(0.525, 0.016, 6, 48).rotateX(Math.PI / 2);
-  const beadGeo = new T.IcosahedronGeometry(0.054, 0);
+  /* desiccant: tiny loose spheres, poured in at random from screen to screen (a few thousand per tower: only the layer you can see is
+     modelled as separate beads, over a darker core that fills the middle). Beads are smaller on phones and low-end devices. */
+  const BEAD = lite ? 0.024 : 0.016, BED_LO = 1.12, BED_HI = 2.98, BED_R = 0.535, SKIN = lite ? 0.07 : 0.075;
+  const beadGeo = new T.IcosahedronGeometry(BEAD, 0);
   const towers = [{ x: -0.8, vessel: vesselA, shell: shellA, bed: bedA, screens: screensA, id: 'A' }, { x: 0.8, vessel: vesselB, shell: shellB, bed: bedB, screens: screensB, id: 'B' }];
   const fades = [shellPaint, shellLining];
   towers.forEach((t, index) => {
@@ -248,23 +251,32 @@ export async function init(opts) {
       for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2; cyl(0.027, 0.08, zinc, v, Math.sin(a) * 0.205, y + 0.055, Math.cos(a) * 0.205, 6); }
     }
     box(0.18, 0.08, 0.12, paint, v, -0.42, 1.1, 0); box(0.18, 0.08, 0.12, paint, v, 0.42, 1.1, 0);
-    /* illustrative packed bed: hexagonal layers of granules, instanced */
+    /* illustrative bed: loosely poured beads, jittered off a grid so no rows or layers show, filling the tower from screen to screen */
     t.bed.position.x = t.x; t.bed.visible = false;
-    const packing = [], pitch = 0.108, rowPitch = pitch * Math.sqrt(3) / 2, layerPitch = pitch * Math.sqrt(2 / 3);
-    for (let layer = 0; 1.12 + layer * layerPitch < 2.98; layer++) for (let row = -5; row <= 5; row++) for (let col = -5; col <= 5; col++) {
-      const px = col * pitch + (Math.abs(row) % 2) * pitch / 2 + (layer % 2) * pitch / 2, pz = row * rowPitch + (layer % 2) * rowPitch / 3;
-      if (px * px + pz * pz < 0.49 * 0.49) packing.push([px, 1.12 + layer * layerPitch, pz]);
+    const packing = [], pitch = BEAD * 2.08, r0 = BED_R - SKIN; let sd = 191 + index * 7919;
+    const rnd = () => (sd = (1664525 * sd + 1013904223) >>> 0) / 4294967296;
+    const nx = Math.ceil(BED_R / pitch);
+    for (let y = BED_LO + BEAD; y <= BED_HI; y += pitch) for (let row = -nx, ox = rnd(), oz = rnd(); row <= nx; row++) for (let col = -nx; col <= nx; col++) {
+      const px = (col + ox + (rnd() - 0.5) * 0.8) * pitch, pz = (row + oz + (rnd() - 0.5) * 0.8) * pitch, py = y + (rnd() - 0.5) * pitch * 0.7, rr = Math.hypot(px, pz);
+      if (rr >= r0 && rr <= BED_R && py >= BED_LO && py <= BED_HI + BEAD * 0.4) packing.push([px, py, pz]);
     }
-    const beads = new T.InstancedMesh(beadGeo, ceramic, packing.length), dummy = new T.Object3D(); let sd = 191 + index;
+    const beads = new T.InstancedMesh(beadGeo, ceramic, packing.length), dummy = new T.Object3D();
     t.beadH = new Float32Array(packing.length); t.beadBase = new Float32Array(packing.length * 3); t.beadCol = new T.Color();
     packing.forEach((p, i) => {
-      sd = (1664525 * sd + 1013904223) >>> 0;
-      dummy.position.set(p[0], p[1], p[2]); dummy.scale.setScalar(0.94 + (sd % 12) / 100); dummy.rotation.set((sd % 17) * 0.1, (sd % 13) * 0.1, 0); dummy.updateMatrix();
-      t.beadCol.setHSL(0.105, 0.14 + (sd % 7) / 100, 0.62 + (sd % 14) / 100);
+      dummy.position.set(p[0], p[1], p[2]); dummy.scale.setScalar(0.82 + rnd() * 0.3); dummy.rotation.set(rnd() * 6.28, rnd() * 6.28, 0); dummy.updateMatrix();
+      t.beadCol.setHSL(0.11 + rnd() * 0.012, 0.12 + rnd() * 0.1, 0.6 + rnd() * 0.16);
       beads.setMatrixAt(i, dummy.matrix); beads.setColorAt(i, t.beadCol);
-      t.beadH[i] = (p[1] - 1.12) / (2.98 - 1.12); t.beadBase[i * 3] = t.beadCol.r; t.beadBase[i * 3 + 1] = t.beadCol.g; t.beadBase[i * 3 + 2] = t.beadCol.b;
+      t.beadH[i] = (p[1] - BED_LO) / (BED_HI - BED_LO); t.beadBase[i * 3] = t.beadCol.r; t.beadBase[i * 3 + 1] = t.beadCol.g; t.beadBase[i * 3 + 2] = t.beadCol.b;
     });
     beads.receiveShadow = true; t.bed.add(beads); t.beads = beads;
+    /* the core under the visible beads: a darker tube whose vertex colours follow the same moisture front */
+    const coreGeo = new T.CylinderGeometry(r0 + BEAD * 0.6, r0 + BEAD * 0.6, BED_HI - BED_LO, 28, 40, true);
+    const cp = coreGeo.attributes.position, cc = new Float32Array(cp.count * 3);
+    t.coreH = new Float32Array(cp.count); t.coreCol = cc;
+    for (let i = 0; i < cp.count; i++) { t.coreH[i] = cp.getY(i) / (BED_HI - BED_LO) + 0.5; cc[i * 3] = 0.43; cc[i * 3 + 1] = 0.38; cc[i * 3 + 2] = 0.29; }
+    coreGeo.setAttribute('color', new T.BufferAttribute(cc, 3));
+    t.core = new T.Mesh(coreGeo, new T.MeshStandardMaterial({ vertexColors: true, roughness: 1, metalness: 0 }));
+    t.core.position.y = (BED_LO + BED_HI) / 2; t.bed.add(t.core);
     /* upper and lower support screens */
     t.screens.position.x = t.x; t.screens.visible = false;
     t.lower = group(t.screens); t.lower.position.y = 1.075; t.upper = group(t.screens); t.upper.position.y = 3.02;
@@ -542,6 +554,12 @@ export async function init(opts) {
         arr[b] = t.beadBase[b] + (WET.r - t.beadBase[b]) * wet; arr[b + 1] = t.beadBase[b + 1] + (WET.g - t.beadBase[b + 1]) * wet; arr[b + 2] = t.beadBase[b + 2] + (WET.b - t.beadBase[b + 2]) * wet;
       }
       t.beads.instanceColor.needsUpdate = true;
+      const cc = t.coreCol;
+      for (let k = 0; k < t.coreH.length; k++) {
+        const wet = clamp01((front[i] - t.coreH[k]) / 0.12 + 0.5) * 0.8 * f, b = k * 3;
+        cc[b] = 0.43 + (WET.r * 0.6 - 0.43) * wet; cc[b + 1] = 0.38 + (WET.g * 0.6 - 0.38) * wet; cc[b + 2] = 0.29 + (WET.b * 0.6 - 0.29) * wet;
+      }
+      t.core.geometry.attributes.color.needsUpdate = true;
     });
   };
 
