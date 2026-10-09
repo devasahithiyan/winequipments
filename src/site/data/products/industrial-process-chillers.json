@@ -472,5 +472,6 @@
     "food-beverage",
     "automotive"
   ],
-  "download": "/downloads/industrial-process-chillers.pdf"
+  "download": "/downloads/industrial-process-chillers.pdf",
+  "show_rating": true
 }

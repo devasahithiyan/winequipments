@@ -50,5 +50,6 @@
       "q": "Why is there no standard model table?",
       "a": "These units are engineered to order around your duty, so we size and quote each one from your requirement rather than publishing a fixed model list. Send your requirement and our engineers will reply with a recommended configuration."
     }
-  ]
+  ],
+  "show_rating": true
 }

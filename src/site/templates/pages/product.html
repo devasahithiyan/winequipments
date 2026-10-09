@@ -44,7 +44,7 @@
       </div>
       {% if fam.id == 'towers' %}<p class="p-hero__local" data-intro style="--d:5">Built at our works in Arasur. See <a href="/locations/cooling-tower-manufacturers-in-coimbatore.html">cooling tower manufacturers in Coimbatore</a> for the full range we make locally.</p>{% endif %}
       <p class="p-selection-link" data-intro style="--d:5"><a class="link-arrow" href="{{ '#specs' if p.spec else ('#sizing-needs' if p.needs is defined else '#applications') }}">{{ 'Check conditions and compare models' if p.spec else 'Check what we need to size your equipment' }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-      <p class="p-hero__trust" data-intro style="--d:5"><span>Made at our Arasur works</span><span>{{ site.certification }}</span><span>{{ site.installations }} installations since {{ site.founded }}</span></p>
+      <p class="p-hero__trust" data-intro style="--d:5"><span>Made at our Arasur works</span><span>{{ site.certification }}</span><span>{{ site.installations }} installations since {{ site.founded }}</span>{% if p.show_rating is defined and p.show_rating %}<span>IndiaMART rating {{ site.indiamart_rating.value }} from {{ site.indiamart_rating.count }} ratings</span>{% endif %}</p>
     </div>
   </div>
 </section>
