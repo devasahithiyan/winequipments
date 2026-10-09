@@ -694,6 +694,26 @@ A: The 2 TR unit is a separate model, a chiller for injection moulding, with its
 Q: Are these prices final?
 A: No. They are indicative prices from our IndiaMART listings for the models shown. Send your requirement and we will quote for your duty and site.
 
+### How to choose a chiller: duty, cooling type and site checks
+URL: https://winequipments.com/blog/how-to-choose-a-chiller.html
+Short answer: Choose a chiller from its heat load first, then correct that load for the outlet and ambient temperatures you actually have, then decide air or water cooling from your site. Send us the water flow, outlet temperature and site ambient and we will reply with a sized model.
+Q: What range of chillers do you make?
+A: The WCP water chillers cover 0.5 to 20 TR. The packaged air-cooled range covers 0.5 to 15 TR.
+Q: Do you size chillers above 20 TR?
+A: Send us your duty. For loads above 20 TR our engineers will propose a larger or multiple-unit solution.
+Q: Can I check the size myself first?
+A: Yes. Use the chiller tonnage calculator for the TR, then send the result with your temperatures for a quote.
+
+### Which chiller for your industry: plastics, food, dairy, oil and more
+URL: https://winequipments.com/blog/which-chiller-for-your-industry.html
+Short answer: Injection moulding, plastics, hydraulic presses, oil cooling, food and dairy, and many other process industries use our WCP water chillers from 0.5 to 20 TR, air-cooled or water-cooled. Soda, milk and coconut water, acid, anodizing and medical scan duties have their own chiller pages.
+Q: Which chiller suits an injection moulding shop?
+A: An air-cooled chiller suits a moulding shop with no cooling tower or poor water supply. A WCP process chiller covers larger or water-cooled duties. Send the water flow and the temperature the mould needs, with the site ambient, for a sized model.
+Q: Do you make chillers for milk and dairy?
+A: Yes. Our milk and coconut water chillers are built to order. Send the volume and the temperatures you need.
+Q: Are soda chillers standard models?
+A: Soda chillers are listed on our IndiaMART store. The soda chiller unit is listed at ₹1,20,000 as of 5 October 2026; send your filling line and beverage volumes for a quote.
+
 ## Glossary
 
 - Aftercooler: A heat exchanger fitted straight after the compressor that cools the hot discharge air, so the bulk of its water vapour condenses and is drained by a moisture separator. The air leaves cooler but still saturated.
