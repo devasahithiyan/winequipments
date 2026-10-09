@@ -7,20 +7,20 @@
 {% set feat = {} %}{% for f in dr.features %}{% set _ = feat.update({f.title: f.points}) %}{% endfor %}
 {# The heatless cycle in six steps. a / b are what Tower A and Tower B are doing. Tower A is on line first; the swap is step 5. #}
 {% set flow_steps = [
-  {"t": "Wet air in.", "d": "Compressed air enters at the bottom and rises into Tower A, which is on line.", "a": "Drying", "b": "Off line", "ry": 34, "rx": -12, "zoom": 1, "focus": 0},
+  {"t": "Wet air in.", "d": "Wet compressed air enters through the main inlet at the front. The inlet valve on Tower A opens and the one on Tower B stays shut, so the air goes up Tower A.", "a": "Drying", "b": "Off line", "ry": 34, "rx": -12, "zoom": 1, "focus": 0},
   {"t": "Adsorb.", "d": "The desiccant granules pick up the water vapour as the air rises, so the wet zone (blue-grey) creeps up the bed. Dry air leaves at the top and goes on to your plant.", "a": "Drying", "b": "Off line", "ry": 12, "rx": -14, "zoom": 0.95, "focus": 0.1},
-  {"t": "Purge.", "d": "At the same time, a small part of that dry air expands down Tower B. It carries the moisture out of B's bed and leaves through the purge exhaust.", "a": "Drying", "b": "Regenerating", "ry": -28, "rx": -14, "zoom": 0.95, "focus": 0},
-  {"t": "Repressurise.", "d": "Before the swap, the purge exhaust closes and Tower B refills with dry air, so the change-over does not disturb the air going to your plant.", "a": "Drying", "b": "Repressurising", "ry": -10, "rx": -14, "zoom": 0.95, "focus": 0},
-  {"t": "Switch.", "d": "The timer operates the valves and the towers swap duties. One tower is always on line.", "a": "Switching", "b": "Switching", "ry": 14, "rx": -12, "zoom": 0.85, "focus": -0.4},
-  {"t": "Swapped.", "d": "Now Tower B dries the air while Tower A is purged. Then the cycle repeats.", "a": "Regenerating", "b": "Drying", "ry": 42, "rx": -14, "zoom": 0.95, "focus": 0}
+  {"t": "Purge.", "d": "At the same time, the exhaust valve on Tower B opens and a small part of the dry air expands down Tower B, from the top. It carries the moisture out of B's bed and leaves through the purge muffler.", "a": "Drying", "b": "Regenerating", "ry": -28, "rx": -14, "zoom": 0.95, "focus": 0},
+  {"t": "Repressurise.", "d": "Before the swap, B's exhaust valve closes and Tower B refills with dry air, so the change-over does not disturb the air going to your plant.", "a": "Drying", "b": "Repressurising", "ry": -10, "rx": -14, "zoom": 0.95, "focus": 0},
+  {"t": "Switch.", "d": "The timer changes the valves over: the inlet valve on A starts to close as the one on B opens. One tower is always on line.", "a": "Switching", "b": "Switching", "ry": 14, "rx": -12, "zoom": 0.85, "focus": -0.4},
+  {"t": "Swapped.", "d": "Now the main inlet feeds Tower B, which dries the air, while Tower A is purged downwards. Then the cycle repeats.", "a": "Regenerating", "b": "Drying", "ry": 42, "rx": -14, "zoom": 0.95, "focus": 0}
 ] %}
 
 {% set parts = [
   {"t": "Controls", "ry": 8, "rx": -10, "zoom": 0.6, "focus": 0.4, "pts": ["Black control box on the upper rail, with POWER ON and DRYER ON lamps and a switch on its front", "Timer and terminals shown behind the door are an illustration"] + feat['Controls']},
   {"t": "Towers", "ry": 30, "rx": -12, "zoom": 0.85, "focus": 0.2, "pts": ["Two welded steel pressure vessels with dished ends, labelled TOWER-1 and TOWER-2 on the unit", "A pressure gauge on each tower, and a relief fitting on each head", "One tower dries while the other regenerates"]},
   {"t": "Desiccant bed and screens", "ry": 14, "rx": -14, "zoom": 0.75, "focus": 0.1, "pts": ["Inside each tower, so not photographed: the granules and the screens in the model are an illustration"] + feat['Desiccant bed'] + ["Activated alumina or molecular sieve"]},
-  {"t": "Air manifolds", "ry": 20, "rx": -26, "zoom": 0.65, "focus": 1.6, "pts": ["Flanged pipework joins the two towers: the arched header on top and the pipe along the base", "In this illustration the top header carries dry air and the base pipe brings wet air in; the piping differs by model"]},
-  {"t": "Valves and mufflers", "ry": 24, "rx": -10, "zoom": 0.65, "focus": -1.4, "pts": ["An actuated valve sits in the pipework at the base, as photographed"] + feat['Valves'] + feat['Quiet running']},
+  {"t": "Air manifolds", "ry": 20, "rx": -26, "zoom": 0.65, "focus": 1.6, "pts": ["Flanged pipework joins the two towers: the arched header on top and the pipe along the base", "In this illustration the main inlet comes in at the front and splits at a tee in the base pipe, and the dry air leaves through an outlet from the top header; the piping differs by model"]},
+  {"t": "Valves and mufflers", "ry": 24, "rx": -10, "zoom": 0.65, "focus": -1.4, "pts": ["An actuated valve sits in the pipework at the base, as photographed", "In the air view, an inlet valve on each side of the main inlet sends the air to one tower at a time, and an exhaust valve opens on the tower being purged; green lamps show open valves (an illustration)"] + feat['Valves'] + feat['Quiet running']},
   {"t": "Frame", "ry": 40, "rx": -12, "zoom": 1, "focus": -0.2, "pts": ["Painted steel frame with cross-members and base plates"] + feat['Frame']},
   {"t": "Filter housings", "ry": 62, "rx": -12, "zoom": 0.8, "focus": -0.1, "pts": ["Two small vessels stand behind the frame on the photographed unit", "Optional factory-mounted pre- and after-filters are listed for the range; what is inside these housings is not visible, so the model shows plain housings"]}
 ] %}

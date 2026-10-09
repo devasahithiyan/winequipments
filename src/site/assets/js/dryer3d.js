@@ -304,6 +304,28 @@ export async function init(opts) {
     for (let i = 0; i < 8; i++) torus(0.073, 0.006, dark, purge, x, 0.53 + i * 0.036, -0.28).rotation.x = Math.PI / 2;
     pipe([[x, 0.48, -0.28], [x, 0.43, -0.08]], 0.035, brass, purge);
   }
+  /* main inlet comes in at the front, centre, and meets the base pipe at a tee; an inlet valve on each side sends it to one tower. The dry outlet
+     leaves from the middle of the top header. Valve positions are an illustration of the principle, not the piping of a particular model. */
+  const flangeZ = (z, y, x, parent, r) => { const f = cyl(r || 0.21, 0.06, paint, parent, x, y, z, 36); f.rotation.x = Math.PI / 2; for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2, b = cyl(0.022, 0.085, zinc, parent, x + Math.cos(a) * ((r || 0.21) - 0.04), y + Math.sin(a) * ((r || 0.21) - 0.04), z, 6); b.rotation.x = Math.PI / 2; } };
+  pipe([[0, 0.43, 0], [0, 0.43, 0.7], [0, 0.43, 1.42]], 0.13, paint, manifolds);
+  flangeZ(1.44, 0.43, 0, manifolds); flangeZ(0.55, 0.43, 0, manifolds, 0.19);
+  const hub = mesh(new T.SphereGeometry(0.15, 24, 16), paint, manifolds, 0, 0.43, 0);
+  for (const x of [-1.72, 1.72]) { const cap = cyl(0.17, 0.045, paint, manifolds, x, 0.43, 0, 32); cap.rotation.z = Math.PI / 2; }
+  pipe([[0, 4.22, 0], [0, 4.22, 0.55], [0, 4.22, 1.0]], 0.13, paint, manifolds);
+  flangeZ(1.02, 4.22, 0, manifolds);
+  const leverMat = mat('#c9a227', 0.5, 0.35), VALVE = [];   /* [inlet A, inlet B, exhaust A, exhaust B] */
+  for (const [kind, x, size] of [['in', -0.4, 1.4], ['in', 0.4, 1.4], ['ex', -1.02, 1], ['ex', 1.02, 1]]) {
+    box(0.17 * size, 0.27 * size, 0.27 * size, dark, valves, x, 0.43, 0);
+    for (const dx of [-1, 1]) { const f = cyl(0.17 * size, 0.025, paint, valves, x + dx * 0.1 * size, 0.43, 0, 28); f.rotation.z = Math.PI / 2; }
+    cyl(0.05 * size, 0.15 * size, cutMetal, valves, x, 0.43 + 0.2 * size, 0, 16);
+    const lever = keep(group(valves)); lever.position.set(x, 0.43 + 0.3 * size, 0);
+    const bar = new T.Mesh(new T.BoxGeometry(0.26 * size, 0.026, 0.045), leverMat); bar.castShadow = true; lever.add(bar);
+    const knob = new T.Mesh(new T.SphereGeometry(0.03, 12, 8), leverMat); knob.position.x = 0.13 * size; lever.add(knob);
+    const lampMat = new T.MeshBasicMaterial({ color: '#7a2a22' });
+    const lamp = keep(group(valves)); const lm = new T.Mesh(new T.CylinderGeometry(0.036 * size, 0.036 * size, 0.024, 16), lampMat); lm.rotation.x = Math.PI / 2; lamp.add(lm); lamp.position.set(x, 0.43 - 0.03 * size, 0.138 * size);
+    VALVE.push({ lever, lampMat, cur: 0, tgt: 0, kind });
+  }
+
   /* the two small vessels behind the frame: one past the left end and one between the towers, under the control box */
   for (const x of [-1.46, 0.02]) {
     cyl(0.15, 1.45, paint, filters, x, 1.55, -0.45, 32);
@@ -516,11 +538,12 @@ export async function init(opts) {
      sign mirrors the paths across the centre line for the swapped half. */
   const flowSet = (sign, on, dimOn) => {
     const m = (pts) => pts.map((q) => [q[0] * sign, q[1], q[2]]);
-    flowPath(m([[-2.4, 0.43, 0], [-1.7, 0.43, 0], [-0.95, 0.43, 0], [-0.8, 0.56, 0], [-0.8, 1.1, 0]]), C.wet, on.wetIn, dimOn);      /* wet air enters at the bottom */
+    flowPath(m([[0, 0.43, 0], [-0.4, 0.43, 0], [-0.78, 0.43, 0], [-0.8, 0.6, 0], [-0.8, 1.1, 0]]), C.wet, on.wetIn, dimOn);      /* through the inlet valve and into the bottom of the tower */
     flowPath(m([[-0.8, 1.1, 0], [-0.8, 2.05, 0], [-0.8, 3.0, 0]]), C.wet, on.bed, dimOn);                                              /* up through the desiccant bed */
-    flowPath(m([[-0.8, 3.0, 0], [-0.8, 3.72, 0], [-0.8, 4.05, 0], [-0.6, 4.22, 0], [0, 4.22, 0], [0, 4.22, -0.9]]), C.dry, on.dry, dimOn);   /* dry air leaves at the top */
+    flowPath(m([[-0.8, 3.0, 0], [-0.8, 3.72, 0], [-0.8, 4.05, 0], [-0.6, 4.22, 0], [0, 4.22, 0], [0, 4.22, 0.5], [0, 4.22, 1.0]]), C.dry, on.dry, dimOn);   /* dry air leaves through the top outlet */
     flowPath(m([[0, 4.22, 0], [0.6, 4.22, 0], [0.8, 4.05, 0], [0.8, 3.72, 0], [0.8, 3.0, 0], [0.8, 1.1, 0], [0.8, 0.56, 0], [1.05, 0.43, -0.05], [1.2, 0.45, -0.28], [1.2, 0.85, -0.28]]), C.purge, on.purge, dimOn);   /* purge down the other tower and out of the muffler */
   };
+  flowPath([[0, 0.43, 1.45], [0, 0.43, 0.7], [0, 0.43, 0]], C.wet, [1, 2, 3, 4, 6], [5]);   /* the main inlet, at the front, feeds whichever tower is on line */
   flowSet(1, { wetIn: [1, 2, 3, 4], bed: [2, 3, 4], dry: [2, 3, 4], purge: [3] }, [5]);
   flowSet(-1, { wetIn: [6], bed: [6], dry: [6], purge: [6] }, [5]);
   /* Tower B refills with dry air before the switch (step 4): a short slow path down from the top header */
@@ -537,6 +560,18 @@ export async function init(opts) {
     const sp = new T.Sprite(new T.SpriteMaterial({ map: softTex, color: '#ffa31a', transparent: true, opacity: 0, depthTest: false, depthWrite: false }));
     sp.position.set(gp[0], gp[1], gp[2]); sp.scale.set(gp[3], gp[3], 1); sp.visible = false; sp.renderOrder = 12; sp.userData.flow = true; model.add(sp); glows.push(sp);
   }
+  /* Valves per step: [inlet A, inlet B, exhaust A, exhaust B], 1 = open. Tower A is on line in steps 1 to 4, Tower B in step 6. */
+  const VS = { 0: [1, 0, 0, 0], 1: [1, 0, 0, 0], 2: [1, 0, 0, 0], 3: [1, 0, 0, 1], 4: [1, 0, 0, 0], 5: [0.5, 0.5, 0, 0], 6: [0, 1, 1, 0] };
+  const OPEN_C = new T.Color('#3fd16b'), MID_C = new T.Color('#f0a81c'), SHUT_C = new T.Color('#7a2a22');
+  const paintValves = () => VALVE.forEach((vv) => {
+    vv.lever.rotation.y = (1 - vv.cur) * Math.PI / 2;
+    if (vv.cur > 0.5) vv.lampMat.color.copy(MID_C).lerp(OPEN_C, (vv.cur - 0.5) * 2); else vv.lampMat.color.copy(SHUT_C).lerp(MID_C, vv.cur * 2);
+  });
+  const setValves = (instant) => {
+    const set = VS[st.step] || VS[0], on = ease(st.flow) > 0.002;
+    VALVE.forEach((vv, i) => { vv.tgt = on ? set[i] : VS[0][i]; if (instant || !on || reduce) vv.cur = vv.tgt; });
+    paintValves();
+  };
   /* The moisture front: the wetted part of each bed. A tower that is drying wets from the bottom up; a purged tower dries from the top down.
      Heights are fractions of the bed. This is an illustration of the principle, not a measurement. */
   const WET = new T.Color('#5f86a0');
@@ -630,6 +665,7 @@ export async function init(opts) {
     });
     /* flow: fade the paths in; the current step is bright, the rest dim. Step 0 shows the first set of paths together. */
     flowItems.forEach((it) => { const on = it.steps.indexOf(st.step) >= 0 || (!st.step && it.steps.indexOf(1) >= 0); it.m.material.uniforms.uOpacity.value = f * (on ? 1 : it.dim.indexOf(st.step) >= 0 ? 0.3 : 0.08); });
+    setValves(false);
     if (f <= 0.002) paintBeds(0);   /* leaving the air view: the beds go back to plain granules */
     flow.visible = f > 0.002;
     applyIsolate(st.isolate);
@@ -642,6 +678,7 @@ export async function init(opts) {
     const tg = FRONT_TARGET[st.step] || FRONT_TARGET[0];
     if (!frontLock) for (let i = 0; i < 2; i++) front[i] = reduce ? tg[i] : front[i] + Math.max(-0.2 * dt, Math.min(0.2 * dt, tg[i] - front[i]));
     paintBeds(f);
+    VALVE.forEach((vv) => { vv.cur += Math.max(-3 * dt, Math.min(3 * dt, vv.tgt - vv.cur)); }); paintValves();
     /* damp air out of the purge muffler: B's in step 3, A's in step 6 */
     puffs.forEach((sp) => {
       const on = f * ((sp.userData.x > 0 && st.step === 3) || (sp.userData.x < 0 && st.step === 6) ? 1 : 0), u = (flowTime * 0.55 + sp.userData.ph) % 1;
@@ -832,7 +869,7 @@ export async function init(opts) {
     capture(w, h, background, fanAngle, time, fronts) {
       if (fanAngle !== undefined) rotor.rotation.y = fanAngle;
       if (time !== undefined) flowTime = time;
-      if (fronts) { front[0] = fronts[0]; front[1] = fronts[1]; frontLock = true; lastFlowT = flowTime; }
+      if (fronts) { front[0] = fronts[0]; front[1] = fronts[1]; frontLock = true; lastFlowT = flowTime; setValves(true); }
       const pr = renderer.getPixelRatio();
       renderer.setPixelRatio(1); renderer.setSize(w, h, false); frameFor(w, h);
       shapeDirty = true; stillFrame = true; draw(); stillFrame = false;
