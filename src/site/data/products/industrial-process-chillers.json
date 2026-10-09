@@ -454,6 +454,10 @@
     {
       "q": "How does ambient temperature affect capacity?",
       "a": "Capacity is rated at 40 °C ambient. At 45 °C apply a factor of 0.9, at 50 °C 0.8."
+    },
+    {
+      "q": "What is a water chiller machine?",
+      "a": "A water chiller removes heat from process water and returns it to the process at a set outlet temperature. WCP industrial process water chillers cover 0.5 to 20 TR, air or water cooled, with a built-in tank and pump. Up to WCP 075 the tank is stainless steel."
     }
   ],
   "related": [
