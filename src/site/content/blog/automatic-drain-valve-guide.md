@@ -1,7 +1,7 @@
 ---
 title: Automatic drain valves for air compressors: types and selection
-seo_title: Automatic Drain Valve for Air Compressor: Types & Choice
-description: How timer, micro-controller, float and no-air-loss automatic drain valves work, where to fit them on a compressed air system, and how to choose one.
+seo_title: Automatic Drain Valve for Air Compressor: How to Choose
+description: Automatic drain valve for an air compressor: timer, micro-controller, float and no-air-loss types, where to fit one, and how to choose.
 date: 2026-10-05
 updated: 2026-10-05
 products: automatic-drain-valves, air-receiver-tanks, compressed-air-filters, refrigerated-air-dryers
