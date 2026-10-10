@@ -20,6 +20,7 @@
     <div class="art__answer"><p class="art__answer-h">Short answer</p><p>{{ a.answer }}</p></div>
     {% endif %}
   </header>
+  {% if a.price_guide is defined %}{% set pg = price_guides[a.price_guide] %}{% include "partials/price_guide.html" %}{% endif %}
   {% if ph %}
   <figure class="art__hero container">{{ picture('images/works/' ~ ph[0] | trim, ph[1] | trim, sizes='(min-width: 960px) 900px, 100vw', eager=True, max_w=1400) }}<figcaption>{{ ph[1] | trim }}</figcaption></figure>
   {% endif %}

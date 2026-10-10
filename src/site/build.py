@@ -666,6 +666,30 @@ for l in locations:
         location_cities.append(hit)
     hit["pages"].append(l)
 env.globals["reviews"] = json.loads((DATA / "reviews.json").read_text())
+
+def load_price_guides():
+    """Owner-listed prices by size. Per-TR figures and bar widths are calculated here, once, so the page, table and tests agree."""
+    guides = {}
+    for f in sorted((DATA / "price_guides").glob("*.json")):
+        g = json.loads(f.read_text())
+        for r in g["sizes"]:
+            lo = r.get("low", r.get("price"))
+            hi = r.get("high", lo)
+            r["lo"], r["hi"] = lo, hi
+            r["price_text"] = "₹" + inr(lo) + (("–₹" + inr(hi)) if hi != lo else "")
+            if r.get("tr"):
+                r["per_lo"], r["per_hi"] = round(lo / r["tr"]), round(hi / r["tr"])
+                r["per_text"] = "₹" + inr(r["per_lo"]) + (("–₹" + inr(r["per_hi"])) if r["per_hi"] != r["per_lo"] else "")
+        top = max(r["per_hi"] for r in g["sizes"] if r.get("tr"))
+        for r in g["sizes"]:
+            if r.get("tr"):
+                r["bar_lo"], r["bar_hi"] = round(100 * r["per_lo"] / top, 1), round(100 * r["per_hi"] / top, 1)
+        guides[f.stem] = g
+    return guides
+
+
+env.globals["price_guides"] = load_price_guides()
+
 industries_by_slug = {i["slug"]: i for i in site["industries"]}
 env.globals.update(faq_ld=faq_ld, crumbs_ld=crumbs_ld, glossary=glossary, tools=tools, tool_data=tool_data, selection_products=selection_products, articles=articles, md=md, locations=locations, location_cities=location_cities, industries_by_slug=industries_by_slug)
 env.filters["pname"] = lambda slug: products[slug]["name"]
@@ -797,7 +821,7 @@ def _min_css(css):
 
 
 CSS_BUNDLES = {
-    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "selection.css", "sections.css", "chat.css", "motion.css", "print.css"],
+    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "price-guide.css", "selection.css", "sections.css", "chat.css", "motion.css", "print.css"],
     "home.css": ["home.css"],
     "viewer.css": ["chiller360.css"],
     "downloads.css": ["downloads.css"],

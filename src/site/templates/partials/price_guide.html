@@ -1,0 +1,69 @@
+<section class="pg" aria-labelledby="pg-h">
+  <div class="container">
+    <div class="pg__top">
+      <h2 id="pg-h">{{ pg.title }}</h2>
+      <p class="pg__src">Indicative prices from our IndiaMART store, checked <time datetime="{{ pg.as_of }}">{{ pg.as_of | datefmt }}</time>. Not a quotation.</p>
+    </div>
+
+    <nav class="pg__chips" aria-label="Jump to a chiller size">
+      <ul>{% for r in pg.sizes %}<li><a href="#pg-{{ r.id }}">{{ r.label }}</a></li>{% endfor %}</ul>
+    </nav>
+
+    <ul class="pg__cards">
+      {% for r in pg.sizes %}
+      <li class="pg__card" id="pg-{{ r.id }}">
+        <h3 class="pg__title">{{ r.heading }}</h3>
+        <p class="pg__cap">{{ r.cap }}</p>
+        <p class="pg__price">{{ r.price_text }}</p>
+        {% if r.per_text is defined %}<p class="pg__per"><strong>{{ r.per_text }}</strong> per TR <span class="pg__tag">calculated</span></p>{% endif %}
+        <p class="pg__use">{{ r.use }}</p>
+        <div class="pg__actions">
+          <a class="btn btn--primary" href="#quote" data-quote-model="{{ r.quote }}">Get a quote for {{ r.short }}</a>
+          <a class="link-arrow" href="{{ r.link }}">{{ r.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <figure class="pg__chart" aria-labelledby="pg-chart-h">
+      <h3 id="pg-chart-h">Price per TR falls as the chiller gets bigger</h3>
+      <ul class="pg__bars">
+        {% for r in pg.sizes if r.tr is defined %}
+        <li>
+          <span class="pg__bl">{{ r.label }}</span>
+          <span class="pg__track" aria-hidden="true"><span class="pg__bar pg__bar--hi" style="width:{{ r.bar_hi }}%"></span><span class="pg__bar pg__bar--lo" style="width:{{ r.bar_lo }}%"></span></span>
+          <span class="pg__bv">{{ r.per_text }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      <figcaption>Each figure is the listed price divided by the capacity in TR. A lighter bar extension marks a price range. The compressor, condenser and controls are a large share of a small chiller's price.</figcaption>
+    </figure>
+
+    <div class="pg__tablewrap" role="region" aria-labelledby="pg-table-h" tabindex="0">
+      <table class="pg__table">
+        <caption id="pg-table-h">All sizes at a glance</caption>
+        <thead>
+          <tr><th scope="col">Size</th><th scope="col">Capacity</th><th scope="col">Indicative price</th><th scope="col">Per TR (calculated)</th><th scope="col">Typical use</th></tr>
+        </thead>
+        <tbody>
+          {% for r in pg.sizes %}
+          <tr><th scope="row"><a href="#pg-{{ r.id }}">{{ r.label }}</a></th><td>{{ r.cap }}</td><td class="pg__num">{{ r.price_text }}</td><td class="pg__num">{{ r.per_text if r.per_text is defined else '–' }}</td><td>{{ r.use }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pg__notes">
+      <h3>Read these prices carefully</h3>
+      <ul>
+        <li><strong>Source and date.</strong> Our IndiaMART store, {{ pg.as_of | datefmt }}. Prices change with the configuration.</li>
+        <li><strong>What is included.</strong> The listings do not all say. Confirm the tank, pump, controls, GST, freight and installation in your quote.</li>
+        <li><strong>Your duty sets the price.</strong> Send the water flow, the outlet temperature you need and the site ambient temperature.</li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#quote" data-quote-link>Get a quote for my duty</a>
+        <a class="btn btn--secondary" href="/engineering-tools/chiller-tonnage-calculator.html">Find my size with the TR calculator</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+{
+  "title": "Chiller price by size",
+  "source": "https://www.indiamart.com/winequipments/",
+  "as_of": "2026-10-05",
+  "note": "Owner-published prices from the IndiaMART store. Indicative, not a quotation. Per-TR figures are calculated as listed price divided by capacity in TR.",
+  "sizes": [
+    {"id": "mini", "label": "Mini", "heading": "Portable mini chiller price", "cap": "Portable, single phase", "price": 45000,
+     "use": "Portable single-phase mini chiller.", "quote": "Portable mini chiller", "short": "a mini chiller",
+     "link": "/products/air-cooled-chillers.html", "link_label": "See air-cooled chillers"},
+    {"id": "1-tr", "label": "1 TR", "heading": "1 TR chiller price", "cap": "1 TR, 3,000 kcal/hr", "tr": 1, "low": 55000, "high": 78000,
+     "use": "WCP chiller. The price depends on the compressor, controls and whether a tank and pump are included.", "quote": "1 TR chiller", "short": "1 TR",
+     "link": "/products/air-cooled-chillers.html", "link_label": "See air-cooled chillers"},
+    {"id": "2-tr", "label": "2 TR", "heading": "2 TR chiller price", "cap": "2 TR, 6,200 kcal/hr", "tr": 2, "price": 85000,
+     "use": "Chiller for injection moulding (WCP020).", "quote": "2 TR chiller for injection moulding", "short": "2 TR",
+     "link": "/products/air-cooled-chillers.html", "link_label": "See air-cooled chillers"},
+    {"id": "3-tr", "label": "3 TR", "heading": "3 TR chiller price", "cap": "3 TR", "tr": 3, "price": 140000,
+     "use": "Online water chiller.", "quote": "3 TR water chiller", "short": "3 TR",
+     "link": "/products/industrial-process-chillers.html", "link_label": "See process chillers"},
+    {"id": "5-tr", "label": "5 TR", "heading": "5 TR chiller price", "cap": "5 TR", "tr": 5, "price": 230000,
+     "use": "Online chiller.", "quote": "5 TR chiller", "short": "5 TR",
+     "link": "/products/industrial-process-chillers.html", "link_label": "See process chillers"},
+    {"id": "10-tr", "label": "10 TR", "heading": "10 TR chiller price", "cap": "10 TR", "tr": 10, "price": 350000,
+     "use": "Online water chiller.", "quote": "10 TR water chiller", "short": "10 TR",
+     "link": "/products/industrial-process-chillers.html", "link_label": "See process chillers"},
+    {"id": "soda", "label": "Soda", "heading": "Soda chiller price", "cap": "Soda chiller unit", "price": 120000,
+     "use": "Soda chiller unit for beverage plants.", "quote": "Soda chiller", "short": "a soda chiller",
+     "link": "/products/soda-chillers.html", "link_label": "See soda chillers"}
+  ]
+}

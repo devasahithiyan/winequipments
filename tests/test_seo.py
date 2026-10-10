@@ -207,3 +207,34 @@ def test_no_rating_schema_or_reviewer_names():
         assert '"AggregateRating"' not in src and '"Review"' not in src, rel(page)
         for n in names:
             assert n not in src, f"{n} on {rel(page)}"
+
+
+def _inr(n):
+    s = str(int(n))
+    if len(s) <= 3:
+        return s
+    head, tail = s[:-3], s[-3:]
+    return ",".join([head[max(0, i - 2):i] for i in range(len(head), 0, -2)][::-1]) + "," + tail
+
+
+def test_chiller_price_guide_matches_data():
+    """The price guide is built from one data file: every price, per-TR figure, source and date on the page matches it."""
+    g = json.loads((DATA / "price_guides" / "chillers.json").read_text())
+    assert g["source"].startswith("https://www.indiamart.com/winequipments/") and g["as_of"]
+    src = (PUBLIC / "blog" / "chiller-price-guide.html").read_text()
+    text = html.unescape(re.sub(r"<[^>]+>", " ", src))
+    ids = [r["id"] for r in g["sizes"]]
+    assert len(ids) == len(set(ids))
+    for r in g["sizes"]:
+        lo = r.get("low", r.get("price"))
+        hi = r.get("high", lo)
+        assert lo > 0 and hi >= lo, r["id"]
+        assert f'id="pg-{r["id"]}"' in src, r["id"]
+        assert f"₹{_inr(lo)}" in text, r["id"]
+        if hi != lo:
+            assert f"₹{_inr(hi)}" in text, r["id"]
+        if r.get("tr"):
+            assert f"₹{_inr(round(lo / r['tr']))}" in text, r["id"]
+        assert f'data-quote-model="{r["quote"]}"' in src, r["id"]
+    assert "pg__table" in src and "<caption" in src and 'scope="col"' in src
+    assert "Not a quotation" in text and "checked" in text
