@@ -597,6 +597,10 @@
     "desiccant-air-dryers",
     "industrial-aftercoolers"
   ],
+  "air_line": {
+    "heading": "Complete the air line",
+    "text": "A dryer does its job best when the air arrives already cooled and drained. The aftercooler removes most of the water before the receiver and dryer, and automatic drain valves clear condensate from the receiver, filters and dryer so it does not carry over into the line."
+  },
   "industries": [
     "textile",
     "automotive",

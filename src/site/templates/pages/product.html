@@ -295,7 +295,7 @@
 
 <section class="p-section" aria-labelledby="related">
   <div class="container">
-    <div class="section-head" data-reveal><h2 id="related">Works with</h2></div>
+    <div class="section-head" data-reveal><h2 id="related">{{ p.air_line.heading if p.air_line is defined else 'Works with' }}</h2>{% if p.air_line is defined %}<p>{{ p.air_line.text }}</p>{% endif %}</div>
     <ul class="product-rows related">
       {% for slug in p.related %}{% if slug in products %}{{ m.product_row(products[slug]) }}{% endif %}{% endfor %}
     </ul>

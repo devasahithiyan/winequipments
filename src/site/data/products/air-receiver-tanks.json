@@ -275,6 +275,10 @@
     "desiccant-air-dryers",
     "industrial-aftercoolers"
   ],
+  "air_line": {
+    "heading": "Complete the air line",
+    "text": "A receiver works best when the air is already cooled and drained before it arrives. An aftercooler removes most of the water upstream, and automatic drain valves at the receiver's bottom clear the condensate that settles there, so it does not travel down the line."
+  },
   "industries": [
     "automotive",
     "textile",

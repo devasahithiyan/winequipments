@@ -330,6 +330,10 @@
     "automatic-drain-valves",
     "industrial-aftercoolers"
   ],
+  "air_line": {
+    "heading": "Complete the air line",
+    "text": "A heatless desiccant dryer does its job best when the air arrives already cooled and drained. An aftercooler removes most of the water first, so the desiccant bed has less moisture to take up. Automatic drain valves clear condensate from the receiver and filters ahead of the dryer."
+  },
   "industries": [
     "pharma",
     "food-beverage",
