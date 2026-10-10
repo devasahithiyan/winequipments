@@ -1,0 +1,198 @@
+phrase,volume_india,cpc_usd,intent_code,difficulty_index,bucket
+cooling tower,18100,0.1,1,32,product/head term
+chiller,12100,0.29,1,49,product/head term
+shell and tube heat exchanger,8100,0.38,1,28,product/head term
+chiller plant,5400,0.33,1,16,product/head term
+air cooled chiller,2900,0.33,1,37,product/head term
+chiller machine,2900,0.24,1,36,product/head term
+water chiller,2900,0.16,0,24,product/head term
+compressed air dryer,2400,0.44,1,19,product/head term
+water cooled chiller,1600,0.26,"1,0",41,product/head term
+chiller working principle,1300,0.31,1,30,learn/spec
+water chiller machine,1300,0.09,0,4,product/head term
+heat exchanger manufacturers,1300,0.47,1,15,supplier
+cooling tower fills,1000,0.09,1,16,product/head term
+air receiver tank,1000,0.3,"1,0",3,product/head term
+cooling tower working principle,880,0.34,1,32,learn/spec
+moisture separator,880,0.7,1,8,product/head term
+chiller unit,720,0.32,1,42,product/head term
+industrial chiller,720,0.36,0,14,product/head term
+cooling tower manufacturers,720,0.41,3,23,supplier
+frp cooling tower,720,0.35,1,9,product/head term
+refrigerated air dryer,720,0.49,1,11,product/head term
+chiller price,590,0.14,3,4,price
+chiller prices,590,0.14,3,4,price
+milk chiller plant,590,0.18,1,7,product/head term
+chiller manufacturers,480,0.42,1,20,supplier
+chiller system,480,0.27,1,30,product/head term
+water chiller manufacturers,480,0.37,0,22,supplier
+water chiller system,480,0.21,1,23,product/head term
+ice flake machine,480,0.24,"1,3",10,product/head term
+milk chiller,390,0.08,"1,0",10,product/head term
+cooling tower capacity,390,0.39,1,10,learn/spec
+chiller machine price,320,0.19,3,16,price
+cooling tower price,320,0.11,3,8,price
+chiller plant working,260,0.36,1,16,learn/spec
+chiller working,260,0,1,30,learn/spec
+mini chiller,260,0.07,"1,0",10,product/head term
+chiller hsn code,210,0,1,12,compliance
+chiller plant price,210,0.26,3,3,price
+industrial chiller manufacturers,210,0.49,0,11,supplier
+milk chiller machine,210,0.09,1,3,product/head term
+water chiller plant,210,0.29,1,4,product/head term
+water cooled chiller system,210,0.29,1,25,product/head term
+air cooled chiller working principle,170,0.26,1,27,learn/spec
+chiller repair,170,0.35,1,21,service
+water cooled chiller working principle,170,0,1,33,learn/spec
+cooling tower near me,170,0.25,3,43,service
+automatic drain valve,170,0,1,4,product/head term
+chiller 2 ton,140,0.24,1,2,size/application
+chiller capacity,140,0,1,20,learn/spec
+chiller near me,140,0,3,30,service
+chiller plant manufacturer,140,0.45,0,9,supplier
+chiller plant manufacturers,140,0.45,0,9,supplier
+process chiller,140,0.39,1,12,product/head term
+cooling tower suppliers,140,0.52,0,26,supplier
+frp cooling tower manufacturer,140,0.46,1,4,supplier
+frp cooling tower manufacturers,140,0.46,1,4,supplier
+air dryer price,140,0.1,3,2,price
+air receiver tank manufacturers,140,0.38,0,4,supplier
+air receiver tank supplier,140,0.38,0,5,supplier
+air receiver tank suppliers,140,0.38,0,5,supplier
+compressed air dryer price,140,0.36,3,8,price
+shell and tube heat exchanger supplier,140,0.4,1,4,supplier
+chiller 5 ton,110,0.29,,0,size/application
+chiller for injection moulding machine,110,0.28,,0,size/application
+chiller plant working principle,110,0,1,46,learn/spec
+chiller service,110,0.25,1,12,service
+water chiller hsn code,110,0,,0,compliance
+water chiller price,110,0.2,3,10,price
+cooling tower companies,110,0.38,0,22,supplier
+cooling tower company,110,0.38,0,22,supplier
+water chiller 2 ton,90,0.17,,0,size/application
+air dryer manufacturers,90,0.79,,0,supplier
+refrigerated air dryer for compressor,90,0.39,,0,product/head term
+refrigerated air dryer manufacturers,90,1.18,,0,supplier
+shell and tube heat exchanger manufacturer,90,0.6,,0,supplier
+shell and tube heat exchanger manufacturers,90,0.6,,0,supplier
+water chiller 5 ton,70,0.26,,0,size/application
+ice flake machine price,50,0.12,,0,price
+best chiller manufacturers,40,0.48,,0,supplier
+chiller price list,40,0,,0,price
+soda chiller machine,40,0,,0,product/head term
+cooling tower in pune,40,0.23,,0,local
+cooling tower service,40,0.11,,0,service
+best water chiller,30,0,,0,product/head term
+brine chiller manufacturers,30,0.38,,0,supplier
+buy water chiller,30,0,,0,price
+cheap water chiller,30,0,,0,price
+chiller amc,30,0,,0,service
+chiller plant maintenance,30,0,,0,service
+chiller unit price,30,0.23,,0,price
+industrial chiller plant,30,0.3,,0,product/head term
+industrial chiller system,30,0.3,,0,product/head term
+soda chiller,30,0,,0,product/head term
+water chiller 3 ton,30,0.19,,0,size/application
+water chiller supplier,30,0.69,,0,supplier
+water chiller suppliers,30,0.69,,0,supplier
+water cooled chiller plant,30,0.27,,0,product/head term
+water cooled chiller working,30,0,,0,learn/spec
+best cooling towers,30,0.11,,0,product/head term
+buy cooling tower,30,0,,0,price
+cooling tower in coimbatore,30,0.25,,0,local
+frp cooling tower price,30,0.3,,0,price
+desiccant air dryer price,30,0.39,,0,price
+air cooled chiller maintenance,20,0,,0,service
+air cooled chiller manufacturers,20,0.51,,0,supplier
+air cooled chiller repair,20,0,,0,service
+air cooled chiller service,20,0,,0,service
+air cooled chiller specification,20,0,,0,learn/spec
+air cooled chiller system,20,0.27,,0,product/head term
+air cooled chiller unit,20,0,,0,product/head term
+best chiller,20,0,,0,product/head term
+buy chiller,20,0.09,,0,price
+cheap chiller,20,0,,0,price
+chiller 10 ton,20,0.29,,0,size/application
+chiller 3 ton,20,0.24,,0,size/application
+chiller cost,20,0.12,,0,price
+chiller machine hsn code,20,0,,0,compliance
+chiller machine maintenance,20,0,,0,service
+chiller machine manufacturers,20,0.36,,0,supplier
+chiller manufacturing company,20,0.36,,0,supplier
+chiller plant capacity,20,0,,0,learn/spec
+chiller plant cost,20,0.19,,0,price
+chiller plant service,20,0.22,,0,service
+chiller specification,20,0,,0,learn/spec
+chiller specifications,20,0,,0,learn/spec
+chiller supplier,20,0.7,,0,supplier
+chiller unit hsn code,20,0,,0,compliance
+chiller unit manufacturers,20,0,,0,supplier
+chiller unit specifications,20,0,,0,learn/spec
+chiller unit supplier,20,0.33,,0,supplier
+chiller unit working,20,0,,0,learn/spec
+chiller unit working principle,20,0,,0,learn/spec
+chillers in hyderabad,20,0,,0,local
+industrial chiller price,20,0.26,,0,price
+industrial chiller service,20,0,,0,service
+milk chiller cost,20,0,,0,price
+milk chiller machine price,20,0.05,,0,price
+milk chiller manufacturers,20,0,,0,supplier
+milk chiller price,20,0,,0,price
+mini chiller plant,20,0,,0,product/head term
+mini chiller system,20,0,,0,product/head term
+mini chiller unit,20,0,,0,product/head term
+top chiller manufacturers,20,0,,0,supplier
+water chiller machine manufacturers,20,0.09,,0,supplier
+water chiller machine price,20,0.07,,0,price
+water chiller service,20,0,,0,service
+water chiller specifications,20,0,,0,learn/spec
+water chiller unit price,20,0,,0,price
+water chiller working principle,20,0,,0,learn/spec
+water cooled chiller maintenance,20,0,,0,service
+water cooled chiller manufacturers,20,0.46,,0,supplier
+water cooled chiller price,20,0.25,,0,price
+water cooled chiller repair,20,0,,0,service
+water cooled chiller supplier,20,0.46,,0,supplier
+cooling tower cost,20,0.31,,0,price
+cooling tower in chennai,20,0.3,,0,local
+cooling tower in delhi,20,0.36,,0,local
+cooling tower in mumbai,20,0.29,,0,local
+cooling tower price list,20,0.28,,0,price
+top cooling tower manufacturers,20,0,,0,supplier
+air receiver tank price,20,0,,0,price
+moisture separator price,20,0,,0,price
+refrigerated air dryer price,20,0.49,,0,price
+shell and tube heat exchanger cost,20,0,,0,price
+shell and tube heat exchanger price,20,0.25,,0,price
+air cooled chiller plant,10,0,,0,product/head term
+air cooled chiller price,10,0.24,,0,price
+air cooled chiller working,10,0,,0,learn/spec
+brine chiller plant working principle,10,0,,0,learn/spec
+glycol chiller manufacturers,10,0,,0,supplier
+industrial chiller repair,10,0,,0,service
+industrial chiller specifications,10,0,,0,learn/spec
+industrial chiller unit,10,0.31,,0,product/head term
+milk chiller plant price,10,0.06,,0,price
+milk chiller unit,10,0,,0,product/head term
+mini chiller price,10,0,,0,price
+process chiller manufacturers,10,0.42,,0,supplier
+water chiller in delhi,10,0,,0,local
+water chiller plant price,10,0.23,,0,price
+water chiller repair,10,0,,0,service
+water chiller unit,10,0.26,,0,product/head term
+water chiller working,10,0,,0,learn/spec
+water cooled chiller service,10,0,,0,service
+water cooled chiller system working principle,10,0,,0,learn/spec
+cooling tower in ahmedabad,10,0.3,,0,local
+frp cooling tower supplier,10,0,,0,supplier
+compressed air dryer manufacturers,10,0.44,,0,supplier
+air cooled chiller price list,0,0,,0,price
+chiller for dairy,0,0,,0,size/application
+chiller machine cost,0,0,,0,price
+chiller plant hsn code,0,0,,0,compliance
+chiller plant specification,0,0,,0,learn/spec
+chiller system manufacturers,0,0,,0,supplier
+process chiller service,0,0,,0,service
+top chiller companies,0,0,,0,supplier
+water chiller plant cost,0,0,,0,price
+water cooled chiller machine,0,0,,0,product/head term

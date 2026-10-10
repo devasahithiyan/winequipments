@@ -59,6 +59,9 @@ Win Equipments (winequipments.com, Arasur, Coimbatore) makes compressed air trea
 - `keyword_planner_volumes.csv`: earlier Google Keyword Planner volumes (the Google Ads account is closed, so these are old).
 - `keyword_candidates.txt`: 477 candidate search phrases from Google autocomplete, before volumes.
 - `KEYWORD_RESEARCH_AND_FORECAST.md`: earlier research notes and forecast.
+- `google_autosuggest_raw_2026-10-10.csv` and `google_autosuggest_relevant_2026-10-10.csv`: 6,933 Google autocomplete suggestions for India (4,794 relevant, tagged by intent and city), collected on 10 Oct with `google_autosuggest_expand.py`.
+- `semrush_buyer_phrase_volumes_2026-10-10.csv` and `semrush_component_volumes_2026-10-10.csv`: Semrush volumes and difficulty for the clean buyer phrases and for fans, drain valves, dry coolers and spares.
+- The findings are written up in `plans_and_reports/CUSTOMER_SEARCH_RESEARCH_2026-10-10.md`.
 - Caveat: difficulty numbers come from two different Semrush scales. Use the "difficulty index" from 9 Oct only. Volumes move by 10–25% between reads.
 
 ### site_audit/
@@ -75,6 +78,7 @@ Win Equipments (winequipments.com, Arasur, Coimbatore) makes compressed air trea
 - `CHILLER_MASTER_PLAN_2026-10-09.md`, `CHILLER_STRATEGY_2026-10-09.md`: the market research and chiller plan.
 - `NICHE_DEEP_ANALYSIS_2026-10-09.md`: priority niche analysis.
 - `SEO_PROGRESS_2026-10-09.md`: progress notes for 9 Oct.
+- `CUSTOMER_SEARCH_RESEARCH_2026-10-10.md`: what buyers search for, what they see on Google, real enquiry data and a prioritised page plan.
 - `SEO_AUDIT_2026-10-06.md`, `IMPROVEMENT_PLAN_OCT2026.md`, `INDEXING_QUEUE.md`: earlier audit, improvement plan and indexing queue.
 - `JUSTDIAL_CATALOGUE_FIX.md`: the Justdial catalogue fix sheet (not yet acted on).
 - `chiller_check.py`: repeatable Search Console check. Usage: `python3 chiller_check.py START END LABEL`. It needs the service-account key in `~/.config/seo-keys/`, which is not in this folder.
