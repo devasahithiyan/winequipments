@@ -1,0 +1,39 @@
+event,channel,event_count,users
+page_view,Direct,618,104
+page_view,Organic Search,232,47
+user_engagement,Direct,327,27
+user_engagement,Organic Search,189,33
+session_start,Direct,146,104
+session_start,Organic Search,79,47
+first_visit,Direct,106,104
+first_visit,Organic Search,44,44
+scroll,Direct,49,15
+scroll,Organic Search,26,14
+quote_intent,Direct,28,5
+quote_intent,Organic Search,3,3
+form_start,Direct,16,6
+form_start,Organic Search,11,4
+duty_finder,Direct,13,2
+duty_finder,Organic Search,4,1
+file_download,Direct,12,3
+file_download,Organic Search,7,4
+catalogue_download,Direct,7,2
+catalogue_download,Organic Search,5,4
+document_preview,Direct,11,1
+document_preview,Organic Search,2,1
+family_finder,Direct,9,2
+family_finder,Unassigned,8,1
+equipment_family_select,Direct,8,2
+click,Organic Search,4,3
+click,Direct,1,1
+call_click,Direct,2,1
+call_click,Organic Search,2,1
+quote_submit,Direct,2,1
+quote_submit,Organic Search,1,1
+document_request_intent,Direct,2,1
+document_request_submit,Direct,1,1
+document_specs,Direct,1,1
+document_specs,Organic Search,1,1
+whatsapp_click,Direct,1,1
+whatsapp_click,Organic Search,1,1
+view_search_results,Direct,1,1
