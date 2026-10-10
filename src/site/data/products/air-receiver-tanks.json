@@ -272,7 +272,8 @@
     "refrigerated-air-dryers",
     "automatic-drain-valves",
     "compressed-air-filters",
-    "desiccant-air-dryers"
+    "desiccant-air-dryers",
+    "industrial-aftercoolers"
   ],
   "industries": [
     "automotive",

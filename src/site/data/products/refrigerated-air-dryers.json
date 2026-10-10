@@ -594,7 +594,8 @@
     "compressed-air-filters",
     "automatic-drain-valves",
     "air-receiver-tanks",
-    "desiccant-air-dryers"
+    "desiccant-air-dryers",
+    "industrial-aftercoolers"
   ],
   "industries": [
     "textile",

@@ -327,7 +327,8 @@
     "compressed-air-filters",
     "refrigerated-air-dryers",
     "air-receiver-tanks",
-    "automatic-drain-valves"
+    "automatic-drain-valves",
+    "industrial-aftercoolers"
   ],
   "industries": [
     "pharma",
