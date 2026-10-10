@@ -1,5 +1,5 @@
 ---
-title: Spares price list: cooling tower, dryer and filter spares
+title: Spares price list for cooling towers, dryers and filters
 seo_title: Spares Price List: Cooling Tower, Dryer and Filter Spares
 description: Listed prices for cooling tower fans, drift eliminators, dryer valves and fans, pressure switches, filter driers, refrigerant and filter elements.
 date: 2026-10-10

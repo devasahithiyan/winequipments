@@ -36,5 +36,6 @@
     }
   ],
   "download": null,
-  "show_rating": true
+  "show_rating": true,
+  "local_link": true
 }

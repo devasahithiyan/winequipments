@@ -371,3 +371,6 @@ body.menu-open .to-top, body.chat-open .to-top { display: none; }
 .copy-btn.is-done { opacity: 1; border-color: #8fe0a0; color: #8fe0a0; }
 .toast { position: fixed; left: 50%; bottom: var(--s-8); z-index: 90; padding: var(--s-2) var(--s-4); border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: var(--fs-small); box-shadow: 0 10px 28px rgba(21, 32, 26, 0.25); transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.3s var(--ease-out); }
 .toast.is-shown { opacity: 1; transform: translate(-50%, 0); }
+
+.h-chillerlink { margin: var(--s-6) 0; max-width: 62ch; font-size: var(--fs-small); color: var(--muted); }
+.h-chillerlink a { color: var(--green-ink); text-decoration: underline; text-underline-offset: 3px; }

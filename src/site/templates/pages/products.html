@@ -12,6 +12,13 @@
     <p class="lede">{{ product_count_word }} product lines in three families, all manufactured at our works in Arasur, Coimbatore.</p>
   </div>
 </section>
+<section class="section" style="padding-block:var(--s-6)" aria-labelledby="fam-intro">
+  <div class="container">
+    <h2 id="fam-intro">Three product families</h2>
+    <p class="lede">Every range is manufactured at our works in Arasur, Coimbatore. Open a family for its full range, or search and filter below.</p>
+    <ul class="stack">{% for fam in families.values() %}<li><a href="/products/{{ fam.slug }}.html"><strong>{{ fam.name }}</strong></a>: {{ fam.summary }}</li>{% endfor %}</ul>
+  </div>
+</section>
 <section class="product-discovery container" aria-labelledby="find-product">
   <h2 id="find-product">Find equipment for your plant</h2>
   <div data-discovery-controls hidden>

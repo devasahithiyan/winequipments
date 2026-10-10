@@ -76,5 +76,22 @@
       "aftercooler-1.jpg",
       "Front left, moisture separator"
     ]
-  ]
+  ],
+  "principle": {
+    "intro": "Air leaves the compressor hot and carrying most of its moisture as vapour. The aftercooler with moisture separator treats it first, before the receiver and the dryer.",
+    "stages": [
+      {
+        "name": "Cool",
+        "text": "The aftercooler cools the compressed air immediately after the compressor."
+      },
+      {
+        "name": "Condense",
+        "text": "As the air cools, the bulk of the water vapour condenses into liquid."
+      },
+      {
+        "name": "Separate and drain",
+        "text": "The moisture separator takes that water out and drains it, before the air reaches the receiver and the dryer."
+      }
+    ]
+  }
 }

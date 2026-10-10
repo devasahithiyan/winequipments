@@ -4,7 +4,7 @@ seo_title: How to Choose a Chiller: Duty, Cooling and Site Checks
 description: How to choose a water or process chiller: heat load, outlet and ambient correction, air or water cooling, the water side and what to send for a quote.
 date: 2026-10-09
 updated: 2026-10-09
-products: industrial-process-chillers, air-cooled-chillers
+products: industrial-process-chillers, air-cooled-chillers, acid-cooling-chillers, anodizing-chillers, medical-scan-chillers, milk-chillers
 category: Chillers
 order: 29
 photo: chiller-win-white.jpg | WCP process chiller built at our works
