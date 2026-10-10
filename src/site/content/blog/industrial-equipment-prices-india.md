@@ -23,7 +23,7 @@ Chiller prices, with the 1 TR to 10 TR range and what changes the price, are in 
 | 50 TR FRP round (bottle) tower | ₹65,000 – ₹80,000 |
 | 100 TR FRP round tower | ₹1,05,000 – ₹1,25,000 |
 | 150 TR FRP round tower | ₹1,50,000 |
-| FRP square tower, 50–500 TR range | from ₹1,00,000 |
+| FRP square tower, listed from | ₹1,00,000 |
 | 100 TR square tower | ₹1,50,000 |
 
 A cooling tower's price follows the heat it has to reject at your wet bulb temperature, not only the TR on the nameplate. A tower sized for a 4 °C approach costs more than one sized for 6 °C; see [range, approach and wet bulb](/blog/cooling-tower-range-approach-wet-bulb.html).
