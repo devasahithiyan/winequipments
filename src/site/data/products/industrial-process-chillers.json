@@ -473,5 +473,6 @@
     "automotive"
   ],
   "download": "/downloads/industrial-process-chillers.pdf",
-  "show_rating": true
+  "show_rating": true,
+  "local_link": true
 }

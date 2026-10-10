@@ -89,5 +89,6 @@
       "a": "Yes. Our packaged air-cooled range starts at 0.5 TR. A portable single-phase mini chiller is listed on our IndiaMART store at ₹45,000 as of 5 October 2026. Send your duty for the right model."
     }
   ],
-  "show_rating": true
+  "show_rating": true,
+  "local_link": true
 }
