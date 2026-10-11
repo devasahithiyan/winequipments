@@ -87,7 +87,7 @@
     {% if p.conditions is defined %}
     <div class="conditions" style="margin-bottom:var(--s-6)">
       <h3>Rating conditions</h3>
-      <dl>{% for c in p.conditions %}<div><dt>{{ c.label }}</dt><dd>{{ c.value }}</dd></div>{% endfor %}</dl>
+      <dl>{% for c in p.conditions %}<div{% if c.value | length > 22 %} class="is-wide"{% endif %}><dt>{{ c.label }}</dt><dd>{{ c.value }}</dd></div>{% endfor %}</dl>
     </div>
     {% endif %}
     <div class="selection-recap" data-selection-recap hidden><p data-selection-recap-text></p><a href="#quote" data-quote-link>Review your enquiry details</a></div>
@@ -271,7 +271,8 @@
     <div class="stack">
       <ul class="tags" data-reveal>{% for a in p.applications %}<li>{{ a }}</li>{% endfor %}</ul>
       {% set used = site.industries | selectattr('products', 'contains', p.slug) | list %}
-      {% if used %}<div class="used-in"><p>Used in these industries</p><ul>{% for i in used %}<li><a href="/industries/{{ i.slug }}.html">{{ i.name }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>{% endfor %}</ul></div>{% endif %}
+      {% if used %}<div class="used-in"><p>Used in these industries</p><ul>{% for i in used[:5] %}<li><a href="/industries/{{ i.slug }}.html">{{ i.name }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>{% endfor %}</ul>
+        {% if used | length > 5 %}<details class="m-collapse m-more" data-m-collapse><summary class="m-collapse__sum">{{ used | length - 5 }} more industries<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><ul>{% for i in used[5:] %}<li><a href="/industries/{{ i.slug }}.html">{{ i.name }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>{% endfor %}</ul></details>{% endif %}</div>{% endif %}
     </div>
   </div>
 </section>

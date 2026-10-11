@@ -35,7 +35,7 @@
 
 {% macro readout(specs, cls='') %}
 <dl class="readout {{ cls }}">
-  {% for s in specs %}<div><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>{% endfor %}
+  {% for s in specs %}<div{% if s.value | length > 22 %} class="is-wide"{% endif %}><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>{% endfor %}
 </dl>
 {% endmacro %}
 

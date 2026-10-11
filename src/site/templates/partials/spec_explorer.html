@@ -35,7 +35,7 @@
       <details>
         <summary>
           <span><span class="model__name">{{ row.model }}</span>{% if capcol %}<span class="model__cap">{{ cell(row, capkey) }} {{ capcol.get('unit', '') }}</span>{% endif %}</span>
-          {% if kpi %}<span class="model__kpi">{{ cell(row, kpi.key) }}<small>{{ kpi.get('unit') or kpi.label }}</small></span>{% else %}<span></span>{% endif %}
+          {% if kpi %}<span class="model__kpi{% if (cell(row, kpi.key) | string | length) > 10 %} is-long{% endif %}">{{ cell(row, kpi.key) }}<small>{{ kpi.get('unit') or kpi.label }}</small></span>{% else %}<span></span>{% endif %}
           <svg aria-hidden="true"><use href="#i-chev"/></svg>
         </summary>
         <div class="model__body">
