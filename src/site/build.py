@@ -616,8 +616,11 @@ env.filters["inr"] = inr
 
 
 def product_ld(p):
-    """One Product per page with key specs and the model list. Offers only where the owner has published an
-    indicative price (IndiaMART listing, see Reports/seo/indiamart/MAPPING.md); no ratings."""
+    """One Product per page with key specs and the model list, only where the owner has published an indicative
+    price (IndiaMART listing, see Reports/seo/indiamart/MAPPING.md). No ratings. Google reports a Product with no
+    offer, review or rating as an invalid item, so unpriced products get no Product node."""
+    if not p.get("price"):
+        return None
     url = site["url"] + product_url(p["slug"])
     imgs = [image_url(p["image"])] + [image_url(ph["path"]) for ph in photos if ph.get("product") == p["slug"]][:4]
     base = {"name": p["h1"], "description": p["description"], "image": imgs, "url": url,

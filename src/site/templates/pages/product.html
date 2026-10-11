@@ -7,7 +7,8 @@
 {% block og_type %}product{% endblock %}
 {% block og_image %}{{ image_url(p.image) }}{% endblock %}
 {% block schema %}
-{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), product_ld(p), crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
+{% set pld = product_ld(p) %}
+{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema()] + ([pld] if pld else []) + [crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
 {% endblock %}
 {% block extra_css %}{% if p.slug in ('industrial-process-chillers', 'desiccant-air-dryers', 'round-cooling-towers') or p.spin is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
 {% block main %}
