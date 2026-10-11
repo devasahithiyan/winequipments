@@ -195,7 +195,8 @@
 .m-collapse[open] > .m-collapse__sum svg { transform: rotate(180deg); }
 @media (min-width: 900px) { .m-collapse__sum { display: none; } }
 @media (min-width: 900px) { .p-section { padding-block: var(--s-16); } }
-.p-section > .container > h2, .p-section .section-head h2 { scroll-margin-top: calc(var(--header-h) + 60px); }
+/* anchor jumps clear the header and the section tabs (html scroll-padding below); headings carry no extra offset */
+.p-section h2[id] { scroll-margin-top: 0; }
 .two-col { display: grid; gap: var(--s-8); }
 @media (min-width: 900px) { .two-col { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-12); } }
 .related { list-style: none; display: grid; gap: 0; border-top: 1px solid var(--ink); }
@@ -599,3 +600,73 @@ a.ct-card--wa:hover .ct-card__ic { background: #fff; color: var(--green); }
 .loc-group + .loc-group { margin-top: var(--s-10); }
 .loc-group__h { margin-bottom: var(--s-4); font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); }
 .loc-group__h span { font-size: var(--fs-small); font-weight: 600; color: var(--muted); letter-spacing: 0; }
+
+
+/* ---------- product pages on phones: clearer top of page, anchors that clear the pinned bars, bigger tap targets ---------- */
+:root { --subnav-h: 44px; }
+@media (min-width: 900px) { :root { --subnav-h: 48px; } }
+html:has(.subnav) { scroll-padding-top: calc(var(--header-h) + var(--subnav-h) + var(--s-4)); }
+.subnav a { min-height: var(--subnav-h); }
+@media (max-width: 639px) {
+  .subnav a { padding: 0 var(--s-3); }
+  .subnav__more { display: none; }
+}
+
+/* hero: buttons first, then price, then links, then proof */
+.p-hero .p-hero__cta { margin-top: var(--s-5); }
+.p-hero__price { margin-top: var(--s-5); padding: var(--s-4); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-2); }
+.p-hero__price-h { display: grid; gap: 2px; font-size: var(--fs-small); color: var(--muted); }
+.p-hero__price-h span { font-size: var(--fs-label); font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-ink); }
+.p-hero__price-h strong { font-size: 1.375rem; line-height: 1.2; font-stretch: 92%; color: var(--ink); }
+.p-hero__price-more { margin-top: var(--s-3); }
+.p-hero__price-more > p { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.6; }
+.p-hero__price-more .m-collapse__sum { min-height: 44px; font-size: var(--fs-small); background: transparent; }
+.p-hero__price-more[open] > .m-collapse__sum { margin-bottom: var(--s-3); }
+.p-hero__links { list-style: none; margin-top: var(--s-4); border-top: 1px solid var(--rule); }
+.p-hero__links li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--s-3); border-bottom: 1px solid var(--rule); }
+.p-hero__links .link-arrow { min-height: 52px; display: inline-flex; align-items: center; }
+.p-hero__links li > span { font-size: var(--fs-label); color: var(--muted); padding-bottom: var(--s-2); flex-basis: 100%; margin-top: -10px; }
+.p-hero__trust { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-4); font-size: var(--fs-label); line-height: 1.35; }
+.p-hero__trust span { align-items: flex-start; }
+.p-hero__trust span::before { margin-top: 0.4em; flex: none; }
+.narrow-only { display: none; }
+@media (max-width: 639px) { .narrow-only { display: inline; } }
+.p-hero__brochure small { display: block; font-size: var(--fs-label); font-weight: 500; color: var(--muted); }
+.p-hero__brochure > span { text-align: left; line-height: 1.2; }
+@media (max-width: 639px) {
+  .p-hero .p-hero__cta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); }
+  .p-hero .p-hero__cta .btn--primary { grid-column: 1 / -1; }
+  .p-hero .p-hero__cta .btn { width: 100%; justify-content: center; }
+  .p-hero .p-hero__cta .btn--lg { padding-inline: var(--s-3); }
+  .wide-only { display: none; }
+  .p-hero__cta:not(:has(.p-hero__brochure)) .btn--wa { grid-column: 1 / -1; }
+}
+@media (min-width: 640px) { .p-hero__trust { grid-template-columns: repeat(auto-fit, minmax(14rem, max-content)); } }
+@media (min-width: 900px) { .p-hero__price-more > .m-collapse__sum { display: none; } .p-hero__price-more { margin-top: var(--s-2); } }
+
+/* conditions card and guide cards: two columns of short values, three-line summaries */
+@media (max-width: 639px) {
+  .conditions dl { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); }
+  .t-cards span { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+}
+
+/* tap targets (touch screens): 44 px minimum for stand-alone links */
+@media (pointer: coarse), (max-width: 1023px) {
+  .breadcrumb a { padding-block: 0; line-height: 44px; }
+  .link-arrow.link-arrow { min-height: 44px; display: inline-flex; align-items: center; }
+  .used-in a { min-height: 44px; }
+  .social a { width: 44px; height: 44px; }
+  .footer-contact a, .footer-review { min-height: 44px; display: inline-flex; align-items: center; }
+  .footer-areas { line-height: 1.2; }
+  .footer-areas a, .footer-base a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 2px; }
+  .compare tbody th a { display: inline-block; padding-block: var(--s-3); }
+  .check { padding-block: var(--s-3); }
+}
+
+/* back-to-top: on phones it appears only while scrolling up, so it never sits over what you are reading */
+@media (max-width: 1023px) { .to-top:not(.is-shown) { pointer-events: none; } }
+
+/* footer link rows: spaced links instead of dot separators that wrap onto the start of a line */
+.footer-areas__list, .footer-links { display: inline-flex; flex-wrap: wrap; gap: 0 var(--s-4); vertical-align: top; }
+.footer-areas__list { margin-left: var(--s-2); }
+@media (max-width: 639px) { .footer-areas { line-height: 1.3; } .footer-areas > a:first-child { display: inline-flex; align-items: center; min-height: 44px; } .footer-areas__list { display: flex; margin: 0; } }

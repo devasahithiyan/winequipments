@@ -201,6 +201,10 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
   .footer-grid .footer-col:not(.footer-brand) h2 a::after { content: "→"; color: #8fe0a0; }
   .footer-grid { row-gap: var(--s-2); }
 }
+/* a slimmer bar leaves more of the screen for the page */
+.action-bar { padding-block: 6px calc(6px + env(safe-area-inset-bottom)); gap: 6px; }
+.action-bar .btn { min-height: 44px; height: 44px; }
+.action-bar .btn--icon { width: 48px; min-width: 48px; padding: 0; }
 .action-bar .btn--primary { min-width: 0; padding-inline: var(--s-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* breadcrumb never wider than the screen: middle crumbs shrink with an ellipsis too */
 .breadcrumb ol { overflow: hidden; }

@@ -547,12 +547,15 @@ if ('serviceWorker' in navigator) {
 (() => {
   const btn = document.querySelector('[data-to-top]');
   if (!btn) return;
-  let ticking = false;
+  let ticking = false, lastY = scrollY, up = false;
   const update = () => {
     ticking = false;
     const long = document.documentElement.scrollHeight > innerHeight * 3;
+    if (scrollY < lastY - 6) up = true; else if (scrollY > lastY + 6) up = false;
+    lastY = scrollY;
     btn.hidden = !long;
-    btn.classList.toggle('is-shown', long && scrollY > innerHeight * 1.5);
+    /* phones: only while scrolling back up, so it never covers the page you are reading */
+    btn.classList.toggle('is-shown', long && scrollY > innerHeight * 1.5 && (innerWidth >= 1024 || up));
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   addEventListener('resize', update);

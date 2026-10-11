@@ -36,15 +36,25 @@
     <div class="p-hero__body">
       <p class="p-hero__lede" data-intro style="--d:2">{{ p.lede }}</p>
       {% if p.key_specs %}<div data-intro style="--d:3">{{ m.readout(p.key_specs) }}</div>{% endif %}
-      {% if p.price is defined %}<p class="p-hero__price" data-intro style="--d:3"><strong>Indicative price: ₹{{ p.price.low | inr }}{% if p.price.high is defined %} – ₹{{ p.price.high | inr }}{% endif %} {{ p.price.unit }}</strong>{{ p.price.detail }} Prices as listed on <a href="{{ p.price.source }}" rel="noopener" target="_blank">our IndiaMART store</a> ({{ p.price.as_of | datefmt }}); your price depends on the specification, so ask for a quote.</p>{% endif %}
-      <div class="btn-row" data-intro style="--d:4">
+      <div class="btn-row p-hero__cta" data-intro style="--d:4">
         <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
         <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        {% if p.download %}<a class="btn btn--ghost" href="{{ p.download }}?v={{ downloads_by_product[p.slug].sha256[:12] }}" download data-track="catalogue_download" data-document-id="{{ downloads_by_product[p.slug].id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg>Download brochure (PDF · {{ downloads_by_product[p.slug].size }})</a>{% endif %}
+        {% if p.download %}<a class="btn btn--secondary btn--lg p-hero__brochure" href="{{ p.download }}?v={{ downloads_by_product[p.slug].sha256[:12] }}" download data-track="catalogue_download" data-document-id="{{ downloads_by_product[p.slug].id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><span class="wide-only">Download brochure</span><span class="narrow-only">Brochure</span><small>PDF · {{ downloads_by_product[p.slug].size }}</small></span></a>{% endif %}
       </div>
-      {% if p.local_link is defined and p.local_link %}<p class="p-hero__local" data-intro style="--d:5">Built at our Arasur works. See <a href="/locations/coimbatore-industrial-chillers.html">chiller manufacturers in Coimbatore</a> for the chillers we make locally.</p>{% endif %}
-      {% if fam.id == 'towers' %}<p class="p-hero__local" data-intro style="--d:5">Built at our works in Arasur. See <a href="/locations/cooling-tower-manufacturers-in-coimbatore.html">cooling tower manufacturers in Coimbatore</a> for the full range we make locally.</p>{% endif %}
-      <p class="p-selection-link" data-intro style="--d:5"><a class="link-arrow" href="{{ '#specs' if p.spec else ('#sizing-needs' if p.needs is defined else '#applications') }}">{{ 'Check conditions and compare models' if p.spec else 'Check what we need to size your equipment' }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      {% if p.price is defined %}
+      <div class="p-hero__price" data-intro style="--d:4">
+        <p class="p-hero__price-h"><span>Indicative price</span><strong>₹{{ p.price.low | inr }}{% if p.price.high is defined %} – ₹{{ p.price.high | inr }}{% endif %}</strong> {{ p.price.unit }}</p>
+        <details class="m-collapse p-hero__price-more" data-m-collapse open>
+          <summary class="m-collapse__sum">Price by size and source<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <p>{{ p.price.detail }} Prices as listed on <a href="{{ p.price.source }}" rel="noopener" target="_blank">our IndiaMART store</a> ({{ p.price.as_of | datefmt }}); your price depends on the specification, so ask for a quote.</p>
+        </details>
+      </div>
+      {% endif %}
+      <ul class="p-hero__links" data-intro style="--d:5">
+        <li><a class="link-arrow" href="{{ '#specs' if p.spec else ('#sizing-needs' if p.needs is defined else '#applications') }}">{{ 'Check conditions and compare models' if p.spec else 'Check what we need to size your equipment' }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        {% if p.local_link is defined and p.local_link %}<li><a class="link-arrow" href="/locations/coimbatore-industrial-chillers.html">Chiller manufacturers in Coimbatore<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><span>Built at our Arasur works</span></li>{% endif %}
+        {% if fam.id == 'towers' %}<li><a class="link-arrow" href="/locations/cooling-tower-manufacturers-in-coimbatore.html">Cooling tower manufacturers in Coimbatore<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><span>Built at our works in Arasur</span></li>{% endif %}
+      </ul>
       <p class="p-hero__trust" data-intro style="--d:5"><span>Made at our Arasur works</span><span>{{ site.certification }}</span><span>{{ site.installations }} installations since {{ site.founded }}</span>{% if p.show_rating is defined and p.show_rating %}<span>IndiaMART rating {{ site.indiamart_rating.value }} from {{ site.indiamart_rating.count }} ratings</span>{% endif %}</p>
     </div>
   </div>
@@ -54,7 +64,7 @@
 <nav class="subnav" aria-label="On this page">
   <div class="container">
     <ul>
-      {% if p.spec %}<li><a href="#specs">Models &amp; conditions</a></li>{% endif %}
+      {% if p.spec %}<li><a href="#specs">Models<span class="subnav__more"> &amp; conditions</span></a></li>{% endif %}
       {% if p.selection is defined %}<li><a href="#sizing">Sizing</a></li>{% endif %}
       {% if p.needs is defined %}<li><a href="#sizing-needs">What we need</a></li>{% endif %}
       {% if p.principle is defined %}<li><a href="#how">How it works</a></li>{% endif %}
