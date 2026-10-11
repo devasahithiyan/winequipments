@@ -302,8 +302,10 @@
   const folds = $$('[data-m-collapse]');
   if (folds.length) {
     const wide = matchMedia('(min-width: 900px)');
-    const sync = () => folds.forEach((d) => { d.open = wide.matches; });
+    const sync = () => folds.forEach((d) => { d.open = wide.matches || d.hasAttribute('data-m-keep'); });
     sync();
+    /* from 900px the groups are always open: their headings are plain headings, not toggles */
+    folds.forEach((d) => { const sm = d.querySelector(':scope > summary'); if (sm && d.classList.contains('feature')) sm.addEventListener('click', (e) => { if (wide.matches) e.preventDefault(); }); });
     wide.addEventListener('change', sync);
   }
 

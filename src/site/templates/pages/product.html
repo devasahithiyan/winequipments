@@ -223,14 +223,11 @@
 <section class="p-section" aria-labelledby="build">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="build">What goes into it</h2></div>
-    <details class="m-collapse" data-m-collapse open>
-    <summary class="m-collapse__sum">Show all {{ p.features | length }} build details<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
     <div class="feature-list" data-reveal>
       {% for f in p.features %}
-      <div class="feature"><h3>{{ f.title }}</h3><ul>{% for pt in f.points %}<li>{{ pt }}</li>{% endfor %}</ul></div>
+      <details class="feature" data-m-collapse{% if loop.first %} data-m-keep{% endif %} open><summary><h3>{{ f.title }}</h3><svg aria-hidden="true"><use href="#i-chev"/></svg></summary><ul>{% for pt in f.points %}<li>{{ pt }}</li>{% endfor %}</ul></details>
       {% endfor %}
     </div>
-    </details>
   </div>
 </section>
 {% endif %}
@@ -239,12 +236,9 @@
 <section class="p-section" aria-labelledby="spares">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="spares">Spares we supply</h2></div>
-    <details class="m-collapse" data-m-collapse open>
-    <summary class="m-collapse__sum">Show all {{ p.spare_groups | length }} spares groups<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
     <div class="feature-list" data-reveal>
-      {% for g in p.spare_groups %}<div class="feature"><h3>{{ g.name }}</h3><ul>{% for i in g['items'] %}<li>{{ i }}</li>{% endfor %}</ul></div>{% endfor %}
+      {% for g in p.spare_groups %}<details class="feature" data-m-collapse{% if loop.first %} data-m-keep{% endif %} open><summary><h3>{{ g.name }}</h3><svg aria-hidden="true"><use href="#i-chev"/></svg></summary><ul>{% for i in g['items'] %}<li>{{ i }}</li>{% endfor %}</ul></details>{% endfor %}
     </div>
-    </details>
   </div>
 </section>
 {% endif %}
@@ -298,7 +292,11 @@
 <section class="p-section" aria-labelledby="guides">
   <div class="container">
     <h2 id="guides" class="t-more__h">Guides for {{ p.name | lower }}</h2>
-    <ul class="t-cards">{% for b in p_arts %}<li><a href="{{ b.url }}"><strong>{{ b.title }}</strong><span>{{ b.description }}</span></a></li>{% endfor %}</ul>
+    <ul class="t-cards">{% for b in p_arts[:3] %}<li><a href="{{ b.url }}"><strong>{{ b.title }}</strong><span>{{ b.description }}</span></a></li>{% endfor %}</ul>
+    {% if p_arts | length > 3 %}<details class="m-collapse m-more" data-m-collapse>
+      <summary class="m-collapse__sum">{{ p_arts | length - 3 }} more guides<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+      <ul class="t-cards">{% for b in p_arts[3:] %}<li><a href="{{ b.url }}"><strong>{{ b.title }}</strong><span>{{ b.description }}</span></a></li>{% endfor %}</ul>
+    </details>{% endif %}
   </div>
 </section>
 {% endif %}
@@ -306,9 +304,14 @@
 <section class="p-section" aria-labelledby="related">
   <div class="container">
     <div class="section-head" data-reveal><h2 id="related">{{ p.air_line.heading if p.air_line is defined else 'Works with' }}</h2>{% if p.air_line is defined %}<p>{{ p.air_line.text }}</p>{% endif %}</div>
+    {% set rel = p.related | select('in', products) | list %}
     <ul class="product-rows related">
-      {% for slug in p.related %}{% if slug in products %}{{ m.product_row(products[slug]) }}{% endif %}{% endfor %}
+      {% for slug in rel[:4] %}{{ m.product_row(products[slug]) }}{% endfor %}
     </ul>
+    {% if rel | length > 4 %}<details class="m-collapse m-more" data-m-collapse>
+      <summary class="m-collapse__sum">{{ rel | length - 4 }} more products<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
+      <ul class="product-rows related">{% for slug in rel[4:] %}{{ m.product_row(products[slug]) }}{% endfor %}</ul>
+    </details>{% endif %}
   </div>
 </section>
 {% endif %}
