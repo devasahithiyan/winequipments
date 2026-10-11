@@ -738,3 +738,35 @@ html:has(.subnav) { scroll-padding-top: calc(var(--header-h) + var(--subnav-h) +
 .used-in .m-more { margin-top: var(--s-3); }
 .used-in .m-more > ul { margin-top: var(--s-2); }
 @media (min-width: 900px) { .used-in .m-more { margin-top: 0; } .used-in .m-more > ul { margin-top: var(--s-2); } }
+
+
+/* ---------- the remaining product pages on phones ---------- */
+/* filter grades: each grade a card with the values two across */
+@media (max-width: 719px) {
+  .compare--grades tbody { display: grid; gap: var(--s-3); }
+  .compare--grades tr { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: var(--s-3) 0; border: 1px solid var(--rule); border-top: 3px solid var(--green); background: var(--surface); }
+  .compare--grades tbody th { grid-column: 1 / -1; font-size: 1.125rem; padding-bottom: var(--s-2); }
+  .compare--grades td { padding: var(--s-2) var(--s-3); }
+  .compare--grades td[data-label="ISO 8573-1"] { grid-column: 1 / -1; order: 7; }
+  .compare--grades td[data-label="Media"] { grid-column: 1 / -1; order: 8; }
+}
+/* made-to-order pages: the requirement list as divided rows, the button after it */
+.need-cta--end { display: none; }
+@media (max-width: 899px) {
+  .need-cta--top { display: none; }
+  .need-cta--end { display: inline-flex; margin-top: var(--s-5); width: 100%; justify-content: center; }
+  .need-list { gap: 0; border-top: 1px solid var(--rule); }
+  .need-list li { padding: var(--s-3) 0 var(--s-3) var(--s-8); border-bottom: 1px solid var(--rule); }
+  .need-list li::before { top: calc(var(--s-3) + 0.1rem); }
+}
+/* guide cards: a little tighter on phones */
+@media (max-width: 639px) {
+  .t-cards { gap: var(--s-2); }
+  .t-cards a { padding: var(--s-3) var(--s-4); }
+  .t-cards span { -webkit-line-clamp: 2; line-clamp: 2; }
+}
+/* enquiry: the direct contacts as divided rows */
+@media (max-width: 959px) {
+  .enquiry__direct { gap: 0; border-top: 1px solid rgba(255, 255, 255, 0.28); }
+  .enquiry__direct a { min-height: 52px; border-bottom: 1px solid rgba(255, 255, 255, 0.28); }
+}

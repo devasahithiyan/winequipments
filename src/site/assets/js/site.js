@@ -91,7 +91,9 @@
       const req = $('[name="operating_parameters"]', form);
       if (req && (!req.value || /^Quotation for [^\n]+$/.test(req.value))) req.value = `Quotation for ${model}`;
     }
-    quote.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    /* land on the form itself: on phones the section opens with the heading, text and call buttons above it */
+    const panel = (form && form.closest('.form-panel')) || quote;
+    panel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     const first = form && $('#f-name', form);
     if (first) setTimeout(() => first.focus({ preventScroll: true }), 450);
     track(form && form.hasAttribute('data-document-request') ? 'document_request_intent' : 'quote_intent', { model: model || '' });
