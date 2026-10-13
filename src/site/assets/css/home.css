@@ -235,13 +235,14 @@
 .h-about__head { display: grid; gap: var(--s-5); align-items: end; }
 .h-about__kicker { font-size: var(--fs-label); font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-ink); margin-bottom: var(--s-3); }
 .h-about__head h2 { font-size: clamp(2.1rem, 1.2rem + 3.2vw, 3.8rem); line-height: 1; font-stretch: 74%; letter-spacing: -0.02em; text-wrap: balance; }
-.h-about__sign { display: grid; gap: 4px; padding-left: var(--s-5); border-left: 2px solid var(--green); color: var(--ink-2); font-size: var(--fs-small); }
+.h-about__sign { display: grid; gap: 4px; max-width: 26rem; padding-left: var(--s-5); border-left: 2px solid var(--green); color: var(--ink-2); font-size: var(--fs-small); }
 .h-about__founder { font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.6rem); font-weight: 800; color: var(--ink); line-height: 1.2; }
 .h-about__feature { display: grid; gap: var(--s-6); margin-top: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
 .h-about__photo { margin: 0; position: relative; }
 .h-about__photo picture { display: block; overflow: hidden; border-radius: var(--r-3); aspect-ratio: 16 / 10; box-shadow: var(--shadow-2); }
 .h-about__photo img { width: 100%; height: 100%; object-fit: cover; }
-.h-about__photo figcaption { margin-top: var(--s-2); font-size: var(--fs-label); color: var(--muted); }
+.h-about__photo figcaption { margin-top: var(--s-3); display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-3); font-size: var(--fs-label); color: var(--muted); }
+.h-about__chip { display: inline-flex; align-items: center; height: 26px; padding: 0 var(--s-3); border-radius: 999px; background: var(--green-wash); color: var(--green-ink); font-weight: 650; letter-spacing: 0.02em; }
 .h-about__facts { display: grid; gap: var(--s-5); align-content: start; }
 .h-about__facts > p { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); line-height: 1.6; color: var(--ink-2); }
 .h-about__facts dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); }
@@ -256,7 +257,9 @@
 .h-about__step-img picture { display: block; overflow: hidden; border-radius: var(--r-2); aspect-ratio: 4 / 3; background: var(--paper-2); }
 .h-about__step-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
 .h-about__step:hover .h-about__step-img img { transform: scale(1.04); }
-.h-about__num { margin-top: var(--s-2); font-family: ui-monospace, Menlo, monospace; font-size: var(--fs-label); font-weight: 600; color: var(--green-ink); }
+.h-about__num { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-2); font-family: ui-monospace, Menlo, monospace; font-size: var(--fs-label); font-weight: 600; color: var(--green-ink); }
+.h-about__num i { flex: 1; height: 1px; background: var(--rule); transform-origin: left; transition: background-color .3s, transform .6s var(--ease-out); }
+.h-about__step:hover .h-about__num i { background: var(--green); }
 .h-about__step h3 { font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.4rem); line-height: 1.15; font-stretch: 76%; letter-spacing: -0.01em; }
 .h-about__step p { font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); padding-bottom: var(--s-2); }
 .h-about__foot { margin-top: var(--s-6); }

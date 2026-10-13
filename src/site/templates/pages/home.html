@@ -103,7 +103,7 @@
     <div class="h-about__feature">
       <figure class="h-about__photo" data-reveal>
         {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 58vw, 100vw', max_w=1280) }}
-        <figcaption>The team at our Arasur works, Coimbatore</figcaption>
+        <figcaption><span class="h-about__chip">Arasur, Coimbatore</span> The team at our works</figcaption>
       </figure>
       <div class="h-about__facts" data-reveal style="--d:1">
         <p>Win Equipments designs, builds and commissions compressed air dryers, process chillers and FRP cooling towers. The work happens in one place, so the same team sizes, fabricates, tests and supports each unit.</p>
@@ -121,7 +121,7 @@
       {% for title, text in steps[1:5] %}
       <li class="h-about__step" data-reveal style="--d:{{ loop.index0 }}">
         <div class="h-about__step-img">{{ picture(step_photos[loop.index0], '', sizes='(min-width: 960px) 24vw, 50vw', max_w=640) }}</div>
-        <span class="h-about__num">0{{ loop.index }}</span>
+        <span class="h-about__num"><span>0{{ loop.index }}</span><i aria-hidden="true"></i></span>
         <h3>{{ title }}</h3>
         <p>{{ text }}</p>
       </li>
