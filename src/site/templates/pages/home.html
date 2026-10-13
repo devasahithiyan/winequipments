@@ -91,18 +91,30 @@
 </div>
 
 <section class="h-about" aria-labelledby="about-title">
-  <div class="container h-about__grid">
-    <div class="h-about__copy" data-reveal>
+  <div class="container">
+    <div class="h-about__top" data-reveal>
       <p class="h-about__kicker">About us</p>
       <h2 id="about-title">Made and tested at our own works</h2>
-      <p class="h-about__lede">Win Equipments was started in {{ site.founded }} by <strong class="h-about__founder">{{ site.founder }}</strong> to build compressed air and water cooling equipment in Coimbatore.</p>
-      <p>Today we design, fabricate and commission air dryers, process chillers and FRP cooling towers at our works in Arasur, and look after them with our own service team and spares. With {{ site.installations }} installations behind us, one team still handles each job from enquiry to commissioning.</p>
+      <p class="h-about__lede">Win Equipments was started in {{ site.founded }} by <strong class="h-about__founder">{{ site.founder }}</strong> to build compressed air and water cooling equipment in Coimbatore. With {{ site.installations }} installations behind us, one team still handles each job from enquiry to commissioning.</p>
+    </div>
+    <div class="h-about__body">
+      <figure class="h-about__photo" data-reveal>
+        {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 40vw, 100vw', max_w=1100) }}
+        <figcaption>The team at our Arasur works</figcaption>
+      </figure>
+      <ol class="h-about__cards">
+        {% for title, text in steps[1:5] %}
+        <li class="h-about__card" data-reveal style="--d:{{ loop.index0 }}">
+          <span class="h-about__num">0{{ loop.index }}</span>
+          <h3>{{ title }}</h3>
+          <p>{{ text }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="h-about__foot" data-reveal>
       <a class="link-arrow" href="/about.html">Read our story<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <figure class="h-about__photo" data-reveal style="--d:1">
-      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 52vw, 100vw', max_w=1100) }}
-      <figcaption>The team at our Arasur works</figcaption>
-    </figure>
   </div>
 </section>
 
