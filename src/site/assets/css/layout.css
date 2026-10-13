@@ -222,4 +222,3 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
 
 /* footer slogan under the logo */
 .footer-slogan { display: inline-flex; align-items: center; gap: 4px; margin: calc(var(--s-2) * -1) 0 var(--s-4); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--save-on-dark); }
-.footer-slogan svg { width: 16px; height: 16px; }

@@ -267,7 +267,6 @@
   .h-about__steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
-/* "Save Water and Power": drop + bolt, in the logo green */
+/* "Save Water and Power" in the logo green */
 .cine__kicker { flex-wrap: wrap; }
 .cine__kicker .slogan { display: inline-flex; align-items: center; gap: 4px; color: var(--save-on-dark); font-weight: 700; }
-.cine__kicker .slogan svg { width: 16px; height: 16px; }
