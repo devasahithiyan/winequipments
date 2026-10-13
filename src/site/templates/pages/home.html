@@ -92,28 +92,23 @@
 
 <section class="h-about" aria-labelledby="about-title">
   <div class="container">
-    <header class="h-about__head" data-reveal>
-      <div>
-        <p class="h-about__kicker">About us</p>
-        <h2 id="about-title">Made and tested at our own works</h2>
-      </div>
-      <p class="h-about__sign"><span>Founded {{ site.founded }} by</span><strong class="h-about__founder">{{ site.founder }}</strong></p>
-    </header>
+    <div class="h-head h-about__head" data-reveal>
+      <p class="h-about__kicker">About us</p>
+      <h2 id="about-title">Made and tested at our own works</h2>
+      <p>Win Equipments was founded in {{ site.founded }} by <strong class="h-about__founder">{{ site.founder }}</strong> to build compressed air and water cooling equipment in Coimbatore. We design, fabricate, test and support our own units, so one team stays with each job from enquiry to commissioning.</p>
+    </div>
 
     <div class="h-about__feature">
       <figure class="h-about__photo" data-reveal>
         {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 58vw, 100vw', max_w=1280) }}
-        <figcaption><span class="h-about__chip">Arasur, Coimbatore</span> The team at our works</figcaption>
+        <figcaption><span class="h-about__chip">Arasur, Coimbatore</span>The team at our works</figcaption>
       </figure>
-      <div class="h-about__facts" data-reveal style="--d:1">
-        <p>Win Equipments designs, builds and commissions compressed air dryers, process chillers and FRP cooling towers. The work happens in one place, so the same team sizes, fabricates, tests and supports each unit.</p>
-        <dl>
-          <div><dt>Established</dt><dd>{{ site.founded }}</dd></div>
-          <div><dt>Installations</dt><dd>{{ site.installations }}</dd></div>
-          <div><dt>Product lines</dt><dd>{{ product_count }}</dd></div>
-          <div><dt>Quality system</dt><dd>{{ site.certification }}</dd></div>
-        </dl>
-      </div>
+      <dl class="h-about__facts" data-reveal style="--d:1">
+        <div><dt>Established</dt><dd>{{ site.founded }}</dd></div>
+        <div><dt>Installations</dt><dd>{{ site.installations }}</dd></div>
+        <div><dt>Product lines</dt><dd>{{ product_count }}</dd></div>
+        <div><dt>Quality system</dt><dd>{{ site.certification }}</dd></div>
+      </dl>
     </div>
 
     <ol class="h-about__steps">
