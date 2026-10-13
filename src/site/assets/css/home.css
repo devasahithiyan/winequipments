@@ -147,6 +147,9 @@
 .h-works__copy { display: grid; gap: var(--s-4); align-content: center; }
 .h-works__copy h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem); line-height: 1.02; font-stretch: 74%; letter-spacing: -0.02em; }
 .h-works__copy p { color: var(--ink-2); }
+.h-works__copy .h-works__kicker { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-small); font-weight: 650; letter-spacing: 0.04em; text-transform: uppercase; color: var(--green-ink); }
+.h-works__kicker span { width: 24px; height: 2px; background: var(--green); }
+.h-works__founder { font-weight: 800; color: var(--ink); }
 @media (min-width: 960px) { .h-works__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-12); } }
 
 /* industries */
