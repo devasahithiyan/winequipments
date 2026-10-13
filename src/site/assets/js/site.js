@@ -327,7 +327,8 @@
   if (title && !reduce) {
     const text = title.textContent.trim();
     title.setAttribute('aria-label', text);
-    title.innerHTML = text.split(/\s+/).map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>`).join(' ');
+    const breaks = (title.dataset.break || '').split(',').filter(Boolean).map(Number);
+    title.innerHTML = text.split(/\s+/).map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}">${w}</span>${breaks.includes(i) ? '<br>' : ''}`).join(' ');
   }
 
   if (!reduce && hasIO) {

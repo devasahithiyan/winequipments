@@ -18,12 +18,38 @@
     const $ = (s, r = document) => r.querySelector(s);
     const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-    /* hero: as you scroll past, the photo drifts slower than the copy and the copy eases away */
+    /* hero: as you scroll past, the backdrop drifts slower than the copy, the stage sinks back and the copy eases away */
     const reel = $('.cine__reel', hero);
     const copy = $('.cine__copy', hero);
+    const machines = $('.cine__machines', hero);
+    const grid = $('.cine__grid', hero);
     const opts = { target: hero, offset: ['start start', 'end start'] };
     if (reel) scroll(animate(reel, { y: [0, 90], scale: [1, 1.06] }, { ease: 'linear' }), opts);
     if (copy) scroll(animate(copy, { y: [0, -50], opacity: [1, 0.15] }, { ease: 'linear' }), opts);
+    if (machines) scroll(animate(machines, { y: [0, 40], scale: [1, 0.94] }, { ease: 'linear' }), opts);
+
+    /* hero: on a desktop the stage and blueprint grid lean gently toward the pointer */
+    if (machines && grid && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      const ring = $('.cine__ring', hero);
+      let raf = 0;
+      hero.addEventListener('pointermove', (e) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const r = hero.getBoundingClientRect();
+          const dx = (e.clientX - r.left) / r.width - 0.5;
+          const dy = (e.clientY - r.top) / r.height - 0.5;
+          animate(machines, { x: dx * 18, rotateY: dx * 6 }, { type: spring, stiffness: 120, damping: 20 });
+          animate(grid, { x: dx * -14, y: dy * -10 }, { type: spring, stiffness: 90, damping: 22 });
+          if (ring) animate(ring, { x: dx * 10, y: dy * 8 }, { type: spring, stiffness: 90, damping: 22 });
+        });
+      });
+      hero.addEventListener('pointerleave', () => {
+        animate(machines, { x: 0, rotateY: 0 }, { type: spring, stiffness: 120, damping: 22 });
+        animate(grid, { x: 0, y: 0 }, { type: spring, stiffness: 90, damping: 22 });
+        if (ring) animate(ring, { x: 0, y: 0 }, { type: spring, stiffness: 90, damping: 22 });
+      });
+    }
 
     /* product range: each cut-out rises onto its stage and settles as it reaches the middle of the screen */
     $$('.h-range__fig picture').forEach((pic) => {
