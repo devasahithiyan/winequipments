@@ -230,35 +230,17 @@
 @media (min-width: 640px) { .h-quick__panel { padding: var(--s-8); } }
 .h-quick__panel .form-success { border: 0; padding: 0; }
 
-/* about us: photo collage, founder card, what we do */
-.h-about { padding-block: var(--section); background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%); }
-.h-about__grid { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 5rem); align-items: center; }
-.h-about__media { position: relative; padding-bottom: 18%; }
-.h-about__main, .h-about__inset { margin: 0; overflow: hidden; border-radius: var(--r-3); }
-.h-about__main { aspect-ratio: 4 / 3; box-shadow: var(--shadow-2); }
-.h-about__main picture, .h-about__inset picture { display: block; height: 100%; }
-.h-about__main img, .h-about__inset img { width: 100%; height: 100%; object-fit: cover; }
-.h-about__inset { position: absolute; right: -2%; bottom: 0; width: 48%; aspect-ratio: 16 / 10; border: 6px solid var(--surface); box-shadow: var(--shadow-2); }
-.h-about__badge { position: absolute; left: var(--s-4); bottom: 6%; display: flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-4); border-radius: var(--r-2); background: var(--green); color: #fff; box-shadow: var(--shadow-2); }
-.h-about__badge strong { font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem); line-height: 1; font-stretch: 74%; letter-spacing: -0.02em; }
-.h-about__badge span { font-size: 0.8125rem; line-height: 1.25; color: rgba(255, 255, 255, 0.88); }
-.h-about__copy { display: grid; gap: var(--s-5); }
-.h-about__kicker { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-small); font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-ink); }
-.h-about__kicker span { width: 28px; height: 2px; background: var(--green); }
+/* about us: plain editorial block */
+.h-about { padding-block: var(--section); border-top: 1px solid var(--rule); }
+.h-about__grid { display: grid; gap: var(--s-8); align-items: center; }
+.h-about__copy { display: grid; gap: var(--s-4); max-width: 34rem; }
+.h-about__kicker { font-size: var(--fs-small); font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-ink); }
 .h-about__copy h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem); line-height: 1.02; font-stretch: 74%; letter-spacing: -0.02em; text-wrap: balance; }
-.h-about__lede { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); line-height: 1.6; color: var(--ink-2); max-width: 36rem; }
-.h-about__founder { display: grid; gap: 2px; padding: var(--s-4) var(--s-5); border-left: 4px solid var(--green); border-radius: 0 var(--r-2) var(--r-2) 0; background: var(--surface); box-shadow: var(--shadow-1); }
-.h-about__founder-label, .h-about__founder-note { font-size: var(--fs-small); color: var(--ink-2); }
-.h-about__founder-label { font-weight: 650; letter-spacing: 0.04em; text-transform: uppercase; color: var(--green-ink); }
-.h-about__founder strong { font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
-.h-about__pillars { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
-.h-about__pillars li { display: grid; gap: var(--s-1); align-content: start; padding: var(--s-4); border: 1px solid var(--rule); border-radius: var(--r-2); background: var(--surface); transition: border-color .2s, transform .2s; }
-.h-about__pillars li:hover { border-color: var(--green); transform: translateY(-2px); }
-.h-about__pillars strong { font-size: 1.0625rem; color: var(--ink); }
-.h-about__pillars span:last-child { font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); }
-.h-about__ic { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: var(--s-1); border-radius: var(--r-2); background: var(--green-wash); color: var(--green-ink); }
-.h-about__ic svg { width: 20px; height: 20px; }
-@media (min-width: 960px) {
-  .h-about__grid { grid-template-columns: minmax(0, 11fr) minmax(0, 10fr); }
-}
-@media (max-width: 479px) { .h-about__pillars li { padding: var(--s-3); } .h-about__badge { left: var(--s-2); } }
+.h-about__copy p { color: var(--ink-2); line-height: 1.65; }
+.h-about__lede { font-size: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem); }
+.h-about__founder { font-weight: 800; color: var(--ink); }
+.h-about__photo { margin: 0; }
+.h-about__photo picture { display: block; overflow: hidden; border-radius: var(--r-2); aspect-ratio: 3 / 2; }
+.h-about__photo img { width: 100%; height: 100%; object-fit: cover; }
+.h-about__photo figcaption { margin-top: var(--s-2); font-size: var(--fs-small); color: var(--ink-2); }
+@media (min-width: 960px) { .h-about__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-12); } }
