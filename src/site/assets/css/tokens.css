@@ -18,35 +18,44 @@
 }
 
 :root {
-  /* ground and ink */
-  --paper: #f6f7f3;
-  --paper-2: #eef0ea;
+  /* ground and ink: cool, water-toned neutrals */
+  --paper: #f5f8fa;
+  --paper-2: #ebf0f4;
   --surface: #ffffff;
-  --ink: #15201a;
-  --ink-2: #33403a;
-  --muted: #56625b;
-  --rule: #d3d9d4;
-  --rule-strong: #9aa59e;
-  --chart-minor: #e2e7e2;
-  --chart-major: #c5cec7;
+  --ink: #122030;
+  --ink-2: #2f3e4e;
+  --muted: #526273;
+  --rule: #d2dbe3;
+  --rule-strong: #96a5b4;
+  --chart-minor: #e1e8ee;
+  --chart-major: #c3cfda;
 
-  /* brand */
-  --green: #008810;
-  --green-press: #006a0c;
-  --green-ink: #00700d;
-  --green-wash: #e5f1e3;
-  --on-green: #ffffff;
-  --on-green-2: #ffffff;
+  /* brand: the blue our machines are painted */
+  --brand: #1f6aa8;
+  --brand-press: #17558a;
+  --brand-ink: #165084;
+  --brand-wash: #e8f1f9;
+  --brand-tint: #f1f6fb;
+  --brand-on-dark: #8cc6f2;
+  --on-brand: #ffffff;
+  --on-brand-2: #ffffff;
   --blue: #1d4e89;
   --blue-wash: #e6edf5;
   --hot: #b4432a;
+
+  /* save: the logo green, kept for "Save Water and Power" and success */
+  --save: #008810;
+  --save-ink: #00700d;
+  --save-wash: #e5f1e3;
+  --save-on-dark: #8fe0a0;
+  --flow: linear-gradient(90deg, var(--brand) 0%, #2a9ac9 50%, var(--save) 100%);
 
   /* status */
   --error: #b42318;
   --error-wash: #fdeceb;
   --warning: #8a5a00;
-  --success: var(--green-ink);
-  --focus: #1d4e89;
+  --success: var(--save-ink);
+  --focus: #0f3d66;
 
   /* type */
   --font: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -87,8 +96,8 @@
   --r-1: 4px;
   --r-2: 8px;
   --r-3: 12px;
-  --shadow-1: 0 1px 2px rgba(21, 32, 26, 0.06), 0 2px 8px rgba(21, 32, 26, 0.06);
-  --shadow-2: 0 8px 28px rgba(21, 32, 26, 0.16);
+  --shadow-1: 0 1px 2px rgba(18, 32, 48, 0.06), 0 2px 8px rgba(18, 32, 48, 0.06);
+  --shadow-2: 0 8px 28px rgba(18, 32, 48, 0.16);
   --header-h: 60px;
   --bar-h: 57px;
   --tap: 48px;

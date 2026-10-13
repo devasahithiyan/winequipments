@@ -30,17 +30,17 @@ h4 { font-size: var(--fs-h4); font-stretch: 100%; }
 p { margin: 0; text-wrap: pretty; }
 p + p { margin-top: var(--s-4); }
 ul, ol { margin: 0; padding: 0; }
-a { color: var(--green-ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-a:hover { color: var(--green-press); text-decoration-thickness: 2px; }
+a { color: var(--brand-ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--brand-press); text-decoration-thickness: 2px; }
 strong { font-weight: 650; }
 small { font-size: var(--fs-small); }
 abbr[title] { text-decoration: none; }
 table { border-collapse: collapse; }
 button, input, select, textarea { font: inherit; color: inherit; }
-::selection { background: var(--green); color: var(--on-green); }
+::selection { background: var(--brand); color: var(--on-brand); }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
 html { scrollbar-color: var(--rule-strong) var(--paper); }
-input, textarea { caret-color: var(--green); }
+input, textarea { caret-color: var(--brand); }
 hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 .visually-hidden {

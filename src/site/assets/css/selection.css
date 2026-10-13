@@ -5,7 +5,7 @@
 .discovery-families {display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-6)}
 .discovery-families a {padding:.65rem 1rem;border:1px solid var(--rule-strong);border-radius:var(--r-btn, 6px);text-decoration:none;color:var(--ink-2);font-weight:600}
 .discovery-families a:hover {background:var(--paper-2)}
-.discovery-families a[aria-current] {background:var(--green-ink);color:var(--on-green);border-color:var(--green-ink)}
+.discovery-families a[aria-current] {background:var(--brand-ink);color:var(--on-brand);border-color:var(--brand-ink)}
 .discovery-guide {max-width:48rem;margin-top:var(--s-5);border-block:1px solid var(--rule)}
 .discovery-guide summary,.model-compare summary {cursor:pointer;display:flex;align-items:center;gap:var(--s-3);padding:var(--s-4) 0;font-weight:650;list-style:none}
 .discovery-guide summary::-webkit-details-marker,.model-compare summary::-webkit-details-marker {display:none}
@@ -34,13 +34,13 @@
 .selection-comparison th:first-child {min-width:10rem}
 .selection-comparison thead {background:var(--paper-2)}
 .selection-comparison tbody th {font-weight:500;color:var(--ink-2)}
-.selection-comparison a {display:inline-block;padding-block:.5rem;color:var(--green-ink)}
+.selection-comparison a {display:inline-block;padding-block:.5rem;color:var(--brand-ink)}
 .selection-summary {background:var(--paper-2);padding:var(--s-5);margin-bottom:var(--s-6);border-radius:12px}
 .selection-summary h3 {font-size:var(--fs-h3);margin-bottom:var(--s-3)}
 .selection-summary>p {margin-bottom:var(--s-4);color:var(--ink-2)}
 .selection-summary__actions {display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3);margin-top:var(--s-3)}
 .selection-summary textarea {font-size:1rem;line-height:1.5}
-.selection-recap {padding:var(--s-4);background:var(--green-wash);color:var(--ink);margin-bottom:var(--s-5)}
+.selection-recap {padding:var(--s-4);background:var(--brand-wash);color:var(--ink);margin-bottom:var(--s-5)}
 .selection-recap p {margin-bottom:var(--s-2)}
 .t-result__heading {color:inherit;font-size:var(--fs-h3);margin-bottom:var(--s-5)}
 .t-result__qualification {margin-block:var(--s-5);max-width:65ch;color:inherit}
