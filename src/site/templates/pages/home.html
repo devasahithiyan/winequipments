@@ -92,26 +92,42 @@
 
 <section class="h-about" aria-labelledby="about-title">
   <div class="container">
-    <div class="h-about__top" data-reveal>
-      <p class="h-about__kicker">About us</p>
-      <h2 id="about-title">Made and tested at our own works</h2>
-      <p class="h-about__lede">Win Equipments was started in {{ site.founded }} by <strong class="h-about__founder">{{ site.founder }}</strong> to build compressed air and water cooling equipment in Coimbatore. With {{ site.installations }} installations behind us, one team still handles each job from enquiry to commissioning.</p>
-    </div>
-    <div class="h-about__body">
+    <header class="h-about__head" data-reveal>
+      <div>
+        <p class="h-about__kicker">About us</p>
+        <h2 id="about-title">Made and tested at our own works</h2>
+      </div>
+      <p class="h-about__sign"><span>Founded {{ site.founded }} by</span><strong class="h-about__founder">{{ site.founder }}</strong></p>
+    </header>
+
+    <div class="h-about__feature">
       <figure class="h-about__photo" data-reveal>
-        {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 40vw, 100vw', max_w=1100) }}
-        <figcaption>The team at our Arasur works</figcaption>
+        {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 58vw, 100vw', max_w=1280) }}
+        <figcaption>The team at our Arasur works, Coimbatore</figcaption>
       </figure>
-      <ol class="h-about__cards">
-        {% for title, text in steps[1:5] %}
-        <li class="h-about__card" data-reveal style="--d:{{ loop.index0 }}">
-          <span class="h-about__num">0{{ loop.index }}</span>
-          <h3>{{ title }}</h3>
-          <p>{{ text }}</p>
-        </li>
-        {% endfor %}
-      </ol>
+      <div class="h-about__facts" data-reveal style="--d:1">
+        <p>Win Equipments designs, builds and commissions compressed air dryers, process chillers and FRP cooling towers. The work happens in one place, so the same team sizes, fabricates, tests and supports each unit.</p>
+        <dl>
+          <div><dt>Established</dt><dd>{{ site.founded }}</dd></div>
+          <div><dt>Installations</dt><dd>{{ site.installations }}</dd></div>
+          <div><dt>Product lines</dt><dd>{{ product_count }}</dd></div>
+          <div><dt>Quality system</dt><dd>{{ site.certification }}</dd></div>
+        </dl>
+      </div>
     </div>
+
+    <ol class="h-about__steps">
+      {% set step_photos = ['images/works/desiccant-dryer-twin-tower.jpg', 'images/works/chiller-blue-frame-large-left.jpg', 'images/works/air-receivers-group.jpg', 'images/works/round-towers-installed.jpg'] %}
+      {% for title, text in steps[1:5] %}
+      <li class="h-about__step" data-reveal style="--d:{{ loop.index0 }}">
+        <div class="h-about__step-img">{{ picture(step_photos[loop.index0], '', sizes='(min-width: 960px) 24vw, 50vw', max_w=640) }}</div>
+        <span class="h-about__num">0{{ loop.index }}</span>
+        <h3>{{ title }}</h3>
+        <p>{{ text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+
     <div class="h-about__foot" data-reveal>
       <a class="link-arrow" href="/about.html">Read our story<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
