@@ -90,6 +90,35 @@
   </nav>
 </div>
 
+<section class="h-about" aria-labelledby="about-title">
+  <div class="container h-about__grid">
+    <div class="h-about__media" data-reveal>
+      <figure class="h-about__main">{{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 46vw, 100vw', max_w=1100) }}</figure>
+      <figure class="h-about__inset">{{ picture('images/about_us.jpg', 'Win Equipments staff outside the Arasur fabrication shed', sizes='(min-width: 960px) 20vw, 45vw', max_w=640) }}</figure>
+      <p class="h-about__badge"><strong>{{ site.founded }}</strong><span>Established<br>in Coimbatore</span></p>
+    </div>
+    <div class="h-about__copy">
+      <p class="h-about__kicker" data-reveal><span></span>About us</p>
+      <h2 id="about-title" data-reveal>Made and tested at our own works</h2>
+      <p class="h-about__lede" data-reveal>Win Equipments designs, builds and commissions compressed air dryers, process chillers and FRP cooling towers at Arasur, Coimbatore, with {{ site.installations }} installations across industry and an {{ site.certification }} certified quality system.</p>
+      <div class="h-about__founder" data-reveal>
+        <span class="h-about__founder-label">Founded {{ site.founded }} by</span>
+        <strong>{{ site.founder }}</strong>
+        <span class="h-about__founder-note">Founder, Win Equipments</span>
+      </div>
+      <ul class="h-about__pillars">
+        {% for ic, t, d in [('i-ruler', 'Design', 'Sized from catalogue ratings and your site conditions'), ('i-cog', 'Manufacture', 'Fabricated and assembled at our Arasur works'), ('i-plug', 'Commission', 'Installed and started up by our own team'), ('i-wrench', 'Service', 'After-sales service and spares')] %}
+        <li data-reveal style="--d:{{ loop.index0 }}"><span class="h-about__ic"><svg aria-hidden="true"><use href="#{{ ic }}"/></svg></span><strong>{{ t }}</strong><span>{{ d }}</span></li>
+        {% endfor %}
+      </ul>
+      <div class="btn-row" data-reveal>
+        <a class="btn btn--primary" href="/about.html">Our story</a>
+        <a class="btn btn--secondary" href="/about.html#visit">Visit the works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="marquee" aria-label="Plants we supply">
   <p class="marquee__label container">Supplying plants including</p>
   <div class="marquee__viewport">
@@ -183,19 +212,7 @@
   </div>
 </section>
 
-<section class="h-works" aria-labelledby="works-title">
-  <div class="container h-works__grid">
-    <figure class="h-works__main" data-parallax>
-      {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 900px) 62vw, 100vw', max_w=960) }}
-    </figure>
-    <div class="h-works__copy" data-reveal>
-      <p class="h-works__kicker"><span></span>About us</p>
-      <h2 id="works-title">Made and tested at our own works</h2>
-      <p>Win Equipments was founded in {{ site.founded }} by <strong class="h-works__founder">{{ site.founder }}</strong> as a manufacturer of compressed air and water cooling systems at Arasur, Coimbatore.</p>
-      <p>We design, build and commission refrigerated air dryers, process chillers and FRP cooling towers, with {{ site.installations }} installations across industry and an {{ site.certification }} certified quality system. We also take on project consultancy: designing, planning and commissioning the system around the equipment.</p>
-      <a class="link-arrow" href="/about.html">About Win Equipments<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
+<section class="h-works h-works--rail" aria-label="Recent builds">
   <div class="container h-works__rail">
     <h3 class="h-works__sub">Recent builds</h3>
     {% set rail = home_photos %}{% set rail_id = 'home' %}{% set show_product = True %}
