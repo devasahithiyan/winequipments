@@ -112,41 +112,72 @@
   </nav>
 </div>
 
+{% set rating = site.indiamart_rating %}
+{% set years = year - site.founded %}
 <section class="h-about" aria-labelledby="about-title">
   <div class="container">
-    <div class="h-head h-about__head" data-reveal>
-      <p class="h-about__kicker">About us</p>
-      <h2 id="about-title">Made and tested at our own works</h2>
-      <p>Win Equipments was founded in {{ site.founded }} by <strong class="h-about__founder">{{ site.founder }}</strong> to build compressed air and water cooling equipment in Coimbatore. We design, fabricate, test and support our own units, so one team stays with each job from enquiry to commissioning.</p>
+    <div class="h-about__top">
+      <div class="h-about__intro" data-reveal>
+        <p class="h-about__kicker"><span aria-hidden="true"></span>About us</p>
+        <h2 id="about-title">One team. One works.<br><em>Since {{ site.founded }}.</em></h2>
+        <p class="h-about__lede">Win Equipments builds compressed air and water cooling equipment at its own works in Arasur, Coimbatore. We design, fabricate, test and support every unit ourselves, so the team that sizes your equipment is the team that commissions it.</p>
+        <div class="h-about__founder">
+          <span class="h-about__mono" aria-hidden="true">{% for w in site.founder.split() if w != 'Mr.' %}{{ w[0] }}{% endfor %}</span>
+          <span><b>{{ site.founder }}</b>Founder, Win Equipments</span>
+        </div>
+        <div class="h-about__links">
+          <a class="btn btn--secondary" href="/about.html">Read our story<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="h-about__visit" href="{{ site.maps }}" rel="noopener" target="_blank"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Visit our works<small>Mon–Sat, {{ site.hours.opens }}–{{ site.hours.closes }}</small></span></a>
+        </div>
+      </div>
+
+      <div class="h-about__mosaic" data-reveal style="--d:1">
+        <figure class="h-about__tile h-about__tile--main">
+          {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 52vw, 100vw', max_w=960) }}
+          <figcaption>Our team at the Arasur works</figcaption>
+        </figure>
+        <figure class="h-about__tile">
+          {{ picture('images/works/hero-shop-floor-fabrication.jpg', 'Fabricating a frame on the shop floor', sizes='(min-width: 960px) 26vw, 50vw', max_w=800) }}
+          <figcaption>Fabrication</figcaption>
+        </figure>
+        <figure class="h-about__tile">
+          {{ picture('images/works/hero-shop-floor-control-panel.jpg', 'Wiring a chiller control panel', sizes='(min-width: 960px) 26vw, 50vw', max_w=800) }}
+          <figcaption>Panel wiring</figcaption>
+        </figure>
+        <a class="h-about__badge h-about__badge--rating" href="{{ rating.url }}" rel="noopener" target="_blank" aria-label="Rated {{ rating.value }} out of 5 on IndiaMART from {{ rating.count }} reviews">
+          <b>{{ rating.value }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg></b>
+          <span>IndiaMART rating<small>{{ rating.count }} buyer reviews</small></span>
+        </a>
+        <div class="h-about__badge h-about__badge--iso">
+          <b>ISO</b><span>9001:2015<small>Quality system</small></span>
+        </div>
+      </div>
     </div>
 
-    <div class="h-about__feature">
-      <figure class="h-about__photo" data-reveal>
-        {{ picture('images/about_us_2.jpg', 'The Win Equipments team at the Arasur works, Coimbatore', sizes='(min-width: 960px) 58vw, 100vw', max_w=1280) }}
-        <figcaption><span class="h-about__chip">Arasur, Coimbatore</span>The team at our works</figcaption>
-      </figure>
-      <dl class="h-about__facts" data-reveal style="--d:1">
-        <div><dt>Established</dt><dd>{{ site.founded }}</dd></div>
-        <div><dt>Installations</dt><dd>{{ site.installations }}</dd></div>
-        <div><dt>Product lines</dt><dd>{{ product_count }}</dd></div>
-        <div><dt>Quality system</dt><dd>{{ site.certification }}</dd></div>
-      </dl>
-    </div>
+    <dl class="h-about__stats" data-reveal>
+      <div><dt>Installations</dt><dd data-tick="1200" data-suffix="+">{{ site.installations }}</dd><p>Plants running our equipment</p></div>
+      <div><dt>Years building</dt><dd data-tick="{{ years }}">{{ years }}</dd><p>Since {{ site.founded }}, in Coimbatore</p></div>
+      <div><dt>Product lines</dt><dd data-tick="{{ product_count }}">{{ product_count }}</dd><p>Air treatment, chillers, towers</p></div>
+      <div><dt>Buyer rating</dt><dd data-tick="{{ rating.value }}" data-decimals="1">{{ rating.value }}</dd><p>Out of 5, {{ rating.count }} IndiaMART reviews</p></div>
+    </dl>
 
-    <ol class="h-about__steps">
-      {% set step_photos = ['images/works/desiccant-dryer-twin-tower.jpg', 'images/works/chiller-blue-frame-large-left.jpg', 'images/works/air-receivers-group.jpg', 'images/works/round-towers-installed.jpg'] %}
-      {% for title, text in steps[1:5] %}
-      <li class="h-about__step" data-reveal style="--d:{{ loop.index0 }}">
-        <div class="h-about__step-img">{{ picture(step_photos[loop.index0], '', sizes='(min-width: 960px) 24vw, 50vw', max_w=640) }}</div>
-        <span class="h-about__num"><span>0{{ loop.index }}</span><i aria-hidden="true"></i></span>
-        <h3>{{ title }}</h3>
-        <p>{{ text }}</p>
-      </li>
-      {% endfor %}
-    </ol>
-
-    <div class="h-about__foot" data-reveal>
-      <a class="link-arrow" href="/about.html">Read our story<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <div class="h-about__flow">
+      <div class="h-about__flow-head" data-reveal>
+        <h3 id="process-title">From enquiry to commissioning</h3>
+        <p>Every job follows the same five steps, with one team from start to finish.</p>
+      </div>
+      {% set step_photos = ['images/about_us.jpg', 'images/works/chiller-twin-circuit-open.jpg', 'images/works/hero-shop-floor-assembly.jpg', 'images/works/air-receivers-group.jpg', 'images/works/multi-cell-towers-installed.jpg'] %}
+      {% set step_alts = ['The Win Equipments office team', 'A twin-circuit process chiller with its panel open', 'Assembly floor at the Arasur works', 'Air receivers at the Arasur works', 'Multi-cell cooling towers installed at a plant'] %}
+      <ol class="h-about__tl" data-reveal>
+        {% for title, text in steps[:5] %}
+        <li style="--i:{{ loop.index0 }}">
+          <div class="h-about__tl-img">{{ picture(step_photos[loop.index0], step_alts[loop.index0], sizes='(min-width: 960px) 18vw, 40vw', max_w=560) }}</div>
+          <span class="h-about__tl-mark" aria-hidden="true"><span class="h-about__tl-node">{{ loop.index }}</span><i></i></span>
+          <h4>{{ title }}</h4>
+          <p>{{ text }}</p>
+        </li>
+        {% endfor %}
+      </ol>
     </div>
   </div>
 </section>
@@ -203,15 +234,6 @@
 {% include "partials/chiller360.html" %}
 <div class="container"><p class="h-chillerlink">Process chillers from 0.5 to 20 TR are built at our Arasur works: see our <a href="/locations/coimbatore-industrial-chillers.html">chiller manufacturers in Coimbatore</a> page.</p></div>
 
-<section class="h-numbers" aria-label="Win Equipments in numbers">
-  <div class="container h-numbers__row">
-    <div data-reveal><strong>{{ site.founded }}</strong><span>Established in Coimbatore</span></div>
-    <div data-reveal style="--d:1"><strong><span data-count="1200">1,200</span>+</strong><span>Installations across industry</span></div>
-    <div data-reveal style="--d:2"><strong><span data-count="{{ product_count }}">{{ product_count }}</span></strong><span>Product lines</span></div>
-    <div data-reveal style="--d:3"><strong>ISO 9001</strong><span>2015 certified quality system</span></div>
-  </div>
-</section>
-
 <section class="h-eng" aria-labelledby="eng-title">
   <div class="container h-eng__grid">
     <div class="h-eng__copy" data-reveal>
@@ -227,20 +249,6 @@
       {{ dew_chart('narrow') }}{{ dew_chart('wide') }}
       <figcaption>Water vapour held by compressed air at 7 bar g. Calculated values.</figcaption>
     </figure>
-  </div>
-</section>
-
-<section class="h-process" aria-labelledby="process-title">
-  <div class="container">
-    <div class="h-head" data-reveal>
-      <h2 id="process-title">From enquiry to commissioning</h2>
-      <p>One team at our Arasur works handles the job end to end.</p>
-    </div>
-    <ol class="h-steps" data-steps>
-      {% for title, text in steps %}
-      <li class="h-step" data-reveal style="--d:{{ loop.index0 }}"><span class="h-step__n">{{ loop.index }}</span><h3>{{ title }}</h3><p>{{ text }}</p></li>
-      {% endfor %}
-    </ol>
   </div>
 </section>
 

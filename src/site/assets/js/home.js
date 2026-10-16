@@ -89,6 +89,20 @@
     }
   }
 
+  /* about: the numbers in the stats band count up once when it arrives; the final text is the real value */
+  const counts = $$('.h-about [data-tick]');
+  if (counts.length && !reduce && hasIO) {
+    const fmt = (v, d) => v.toLocaleString('en-IN', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const cio = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target, end = parseFloat(el.dataset.tick), d = +(el.dataset.decimals || 0), suf = el.dataset.suffix || '', final = el.textContent, t0 = performance.now();
+      const step = (t) => { const k = Math.min(1, (t - t0) / 1400); el.textContent = k < 1 ? fmt(end * (1 - Math.pow(1 - k, 3)), d) + suf : final; if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }), { threshold: 0.6 });
+    counts.forEach((el) => cio.observe(el));
+  }
+
   /* range showcase: pinned text follows the figure in view (desktop) */
   const figs = $$('[data-range-fig]');
   const texts = $$('[data-range-text]');
