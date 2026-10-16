@@ -229,6 +229,40 @@
   </div>
 </section>
 
+<section class="h-svc" aria-labelledby="svc-title">
+  <div class="container h-svc__grid">
+    <div class="h-svc__copy" data-reveal>
+      <p class="h-svc__kicker"><span aria-hidden="true"></span>Service &amp; repair</p>
+      <h2 id="svc-title">We also service and repair your chillers and cooling towers</h2>
+      <p>Breakdowns, routine servicing, fill replacement and spares, from the team that builds this equipment at our Arasur works. Tell us what you see and we will tell you what it needs.</p>
+      <ul class="h-svc__signs" aria-label="Common reasons customers call us">
+        <li>Chiller tripping on high pressure</li>
+        <li>Cooling tower water running warm</li>
+        <li>Water in compressed air lines</li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/services.html">Service &amp; repair<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn h-svc__wa" href="{{ whatsapp('Hello Win Equipments, I need service or repair. Equipment, model and fault: ') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>Send a photo of the fault</a>
+      </div>
+    </div>
+    <ul class="h-svc__list">
+      {% set svc = [
+        ('/services.html#chillers', 'images/works/chiller-twin-circuit-open.jpg', 'Process chillers', 'Breakdown repair, refrigerant checks and gas charging, condenser cleaning, compressor and pump replacement'),
+        ('/services.html#towers', 'images/works/pvc-fills-blue.jpg', 'Cooling towers', 'Fill and drift eliminator replacement, sprinkler and nozzle repair, fan and motor work, basin cleaning'),
+        ('/services.html#air', 'images/works/drain-valve-low-discharge.jpg', 'Air dryers', 'Dew point problems, drain valve repair, filter elements and refrigerant checks for the dryers we supply'),
+        ('/services.html#spares', 'images/works/cooling-tower-fan-blades.jpg', 'Spares', 'Fills, nozzles, fans, motors, compressors, expansion valves, filter dryers and refrigerant gases')
+      ] %}
+      {% for href, img, t, d in svc %}
+      <li data-reveal style="--d:{{ loop.index }}"><a href="{{ href }}">
+        <span class="h-svc__thumb">{{ picture(img, '', sizes='96px', max_w=320) }}</span>
+        <span class="h-svc__txt"><strong>{{ t }}</strong><span>{{ d }}</span></span>
+        <svg class="h-svc__go" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
 {% include "partials/quick_enquiry.html" %}
 
 {% include "partials/chiller360.html" %}

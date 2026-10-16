@@ -770,3 +770,12 @@ html:has(.subnav) { scroll-padding-top: calc(var(--header-h) + var(--subnav-h) +
   .enquiry__direct { gap: 0; border-top: 1px solid rgba(255, 255, 255, 0.28); }
   .enquiry__direct a { min-height: 52px; border-bottom: 1px solid rgba(255, 255, 255, 0.28); }
 }
+
+/* product pages: service and repair callout above the enquiry form */
+.p-svc { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-6); margin-block: var(--s-8); padding: var(--s-5) var(--s-6); border-radius: var(--r-3); background: var(--brand-wash); border: 1px solid var(--rule); }
+.p-svc.container { width: calc(100% - 2 * var(--gutter)); max-width: calc(var(--container) - 2 * var(--gutter)); }
+.p-svc p { color: var(--ink-2); max-width: 48rem; }
+.p-svc strong { color: var(--ink); }
+.p-svc a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; font-weight: 700; color: var(--brand-ink); text-decoration: none; }
+.p-svc a svg { width: 18px; height: 18px; transition: transform 0.3s var(--ease-out); }
+.p-svc a:hover svg { transform: translateX(3px); }

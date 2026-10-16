@@ -321,6 +321,13 @@
 </section>
 {% endif %}
 
+{% if p.slug != 'spare-parts-consumables' %}
+<aside class="p-svc container" aria-label="Service and repair">
+  <p><strong>Service and repair.</strong> We service, repair and supply spares for {{ 'cooling towers' if p.family == 'towers' else ('chillers' if p.family == 'cooling' else 'air dryers and compressed air equipment') }}{{ ' and chillers' if p.family == 'towers' else (' and cooling towers' if p.family == 'cooling' else '') }}.</p>
+  <a href="/services.html{{ '#towers' if p.family == 'towers' else ('#chillers' if p.family == 'cooling' else '#air') }}">See service &amp; repair<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+</aside>
+{% endif %}
+
 {% set heading = 'Need help selecting ' ~ ('a ' ~ p.name.rstrip('s') | lower if not p.spare_groups is defined else 'a spare') ~ '?' %}
 {% set intro = 'Tell us your requirement and an engineer will recommend the model and send a quotation. You can also attach a drawing or nameplate photo.' %}
 {% set prod = p %}

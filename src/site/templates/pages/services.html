@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% set crumbs = [('Home', '/'), ('Service & repair', '/services.html')] %}
+{% set spares = products['spare-parts-consumables'] %}
+{% set svc_faqs = [
+  {"q": "Do you repair and service industrial chillers and cooling towers?", "a": "Yes. Our service team at the Arasur works in Coimbatore diagnoses breakdowns, repairs and services process chillers and cooling towers, and supplies the spares for them. We also commission and support the air dryers and compressed air equipment we supply."},
+  {"q": "How do I book a service visit?", "a": "Call or WhatsApp " ~ site.phones[0].display ~ ", email " ~ site.email ~ " or use the form on this page. Send the equipment type, make and model, a photo of the nameplate, what you see (alarm, trip, temperature or leak) and your site location, and we will confirm the visit."},
+  {"q": "Do you service equipment made by other companies?", "a": "Send us the make, model, a photo of the nameplate and a description of the fault. Our engineers will tell you what we can do and quote for the visit and parts."},
+  {"q": "Where is your service team based?", "a": "Our service team works from our works at " ~ site.address.street ~ ", " ~ site.address.locality ~ ", " ~ site.address.city ~ " " ~ site.address.postal ~ ". Send your site location when you contact us and we will confirm the visit."},
+  {"q": "Which spare parts do you supply?", "a": "For cooling towers: PVC fills, drift eliminators, PP rings, sprinklers, spray nozzles, fans, motors and FRP body parts. For chillers and dryers: refrigeration compressors, condensers, filter dryers, cooling fans, expansion valves, pressure switches, refrigerant gases and filter elements. Send the part name, model or a photo and we will confirm the replacement."},
+  {"q": "When should cooling tower fills be replaced?", "a": "When the tower stops reaching its design outlet temperature, water channels through in streams instead of spreading, or the fill packs are visibly scaled, sagging or broken. Our standard PVC fill pack is 600 × 300 × 150 mm; send a photo and the tower details and we will confirm the right fill."},
+  {"q": "Why does a chiller or air dryer keep tripping on high pressure?", "a": "A high-pressure trip usually follows a blocked or dirty condenser or a failed condenser fan. Clean the condenser and check the fan before resetting. If it trips again, or if refrigerant pressures need checking, call us for a technician."},
+  {"q": "Can you take on regular maintenance of our units?", "a": "Yes. Tell us how many chillers, cooling towers or dryers you run and where, and we will propose a visit plan and quote for it."}
+] %}
+{% block title %}Chiller & Cooling Tower Service and Repair | Win{% endblock %}
+{% block og_image %}{{ image_url('images/works/hero-shop-floor-control-panel.jpg') }}{% endblock %}
+{% block description %}Breakdown repair, servicing and spares for industrial chillers, cooling towers and air dryers, from our works in Arasur, Coimbatore. Book a visit.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/css/services.css?v={{ css_ver }}">{% endblock %}
+{% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {
+  "@type": "Service", "@id": site.url ~ "/services.html#service", "url": site.url ~ "/services.html",
+  "name": "Chiller and cooling tower service and repair",
+  "serviceType": "Industrial chiller, cooling tower and air dryer service and repair",
+  "provider": {"@id": site.url ~ "/#org"},
+  "description": "Breakdown diagnosis, repair, servicing and spare parts for industrial process chillers, FRP and coil cooling towers, and compressed air dryers.",
+  "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Service and repair", "itemListElement": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Industrial chiller repair and service"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cooling tower repair, fill replacement and service"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Compressed air dryer service"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Spare parts for chillers, cooling towers and dryers"}}
+  ]}
+}, faq_ld(svc_faqs)]}) }}{% endblock %}
+{% block main %}
+{{ m.breadcrumb(crumbs) }}
+
+<section class="sv-hero" aria-labelledby="sv-title">
+  <div class="sv-hero__glow" aria-hidden="true"></div>
+  <div class="container sv-hero__grid">
+    <div class="sv-hero__copy">
+      <p class="sv-kicker" data-intro><span aria-hidden="true"></span>Service &amp; repair · Arasur, Coimbatore</p>
+      <h1 id="sv-title" data-split>Service and repair for chillers and cooling towers</h1>
+      <p class="sv-hero__lede" data-intro style="--d:2">Breakdowns, routine servicing, fill replacement and spares, from the team that designs and builds this equipment at our own works. Tell us what you see and we will tell you what it needs.</p>
+      <div class="btn-row" data-intro style="--d:3">
+        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Book a service visit</a>
+        <a class="btn btn--lg sv-ghost" href="{{ whatsapp('Hello Win Equipments, I need service or repair. Equipment, model and fault: ') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>Send a photo of the fault</a>
+      </div>
+      <ul class="sv-hero__chips" data-intro style="--d:4">
+        <li><a href="#chillers">Process chillers</a></li>
+        <li><a href="#towers">Cooling towers</a></li>
+        <li><a href="#air">Air dryers</a></li>
+        <li><a href="#spares">Spares</a></li>
+      </ul>
+    </div>
+    <div class="sv-hero__media" data-intro style="--d:1">
+      <div class="sv-hero__photo">{{ picture('images/works/hero-shop-floor-control-panel.jpg', 'A Win Equipments technician working on a chiller control panel', sizes='(min-width: 960px) 46vw, 100vw', eager=True, max_w=1280) }}</div>
+      <div class="sv-hero__card">
+        <p class="sv-hero__card-title"><svg aria-hidden="true"><use href="#i-wrench"/></svg>To book a visit, send us</p>
+        <ol>
+          <li>Equipment type, make and model</li>
+          <li>A photo of the nameplate</li>
+          <li>What you see: alarm, trip, temperature or leak</li>
+          <li>Your site location</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sv-section" aria-labelledby="what-title">
+  <div class="container">
+    <div class="sv-head" data-reveal>
+      <p class="sv-eyebrow">What we service</p>
+      <h2 id="what-title">One team for the equipment that keeps your plant cool and dry</h2>
+    </div>
+    <div class="sv-cards">
+      <article class="sv-card" id="chillers" data-reveal>
+        <div class="sv-card__img">{{ picture('images/works/chiller-twin-circuit-open.jpg', 'A twin-circuit process chiller with its panel open', sizes='(min-width: 960px) 30vw, 100vw', max_w=760) }}<span class="sv-card__tag">Process chillers</span></div>
+        <div class="sv-card__body">
+          <h3>Chiller repair and service</h3>
+          <p>Air-cooled and water-cooled process chillers, including <a href="{{ product_url('industrial-process-chillers') }}">WCP chillers from 0.5 to 20 TR</a> and special-duty units.</p>
+          <ul class="sv-list">
+            <li>Breakdown diagnosis: trips, alarms, poor cooling</li>
+            <li>Refrigerant pressure checks and gas charging</li>
+            <li>Condenser cleaning, air-cooled and water-cooled</li>
+            <li>Compressor, fan, pump and mechanical seal replacement</li>
+            <li>Controller, contactor and overload checks</li>
+            <li>Tank and water circuit cleaning</li>
+          </ul>
+        </div>
+      </article>
+      <article class="sv-card" id="towers" data-reveal style="--d:1">
+        <div class="sv-card__img">{{ picture('images/works/pvc-fills-blue.jpg', 'Blue PVC honeycomb cooling tower fills', sizes='(min-width: 960px) 30vw, 100vw', max_w=760) }}<span class="sv-card__tag">Cooling towers</span></div>
+        <div class="sv-card__body">
+          <h3>Cooling tower repair and service</h3>
+          <p>Round and square FRP towers and coil cooling towers, rated for outlet water at wet bulb + 4 °C on our <a href="{{ product_url('round-cooling-towers') }}">WCT towers</a>.</p>
+          <ul class="sv-list">
+            <li><a href="{{ product_url('cooling-tower-fills') }}">Fill replacement</a>: PVC fills and PP rings</li>
+            <li>Drift eliminator replacement</li>
+            <li>Rotary sprinkler and spray nozzle repair</li>
+            <li>Fan and motor repair or replacement</li>
+            <li>Basin cleaning and FRP body repair</li>
+            <li>Performance check against design outlet temperature</li>
+          </ul>
+        </div>
+      </article>
+      <article class="sv-card" id="air" data-reveal style="--d:2">
+        <div class="sv-card__img">{{ picture('images/works/drain-valve-low-discharge.jpg', 'An automatic drain valve on a compressed air line', sizes='(min-width: 960px) 30vw, 100vw', max_w=760) }}<span class="sv-card__tag">Compressed air</span></div>
+        <div class="sv-card__body">
+          <h3>Air dryer and compressed air service</h3>
+          <p>Commissioning and after-sales service for the <a href="{{ product_url('refrigerated-air-dryers') }}">air dryers</a>, filters and drains we supply.</p>
+          <ul class="sv-list">
+            <li>High dew point and water-in-line diagnosis</li>
+            <li>Condenser deep clean and refrigerant checks</li>
+            <li>Hot gas bypass valve check and adjustment</li>
+            <li>Drain valve and strainer repair</li>
+            <li>Filter elements, replaced at 0.7 bar differential</li>
+            <li>Bypass valve setting after service</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sv-signs" aria-labelledby="signs-title">
+  <div class="container">
+    <div class="sv-head sv-head--dark" data-reveal>
+      <p class="sv-eyebrow">When to call us</p>
+      <h2 id="signs-title">Signs your equipment needs a service</h2>
+      <p>What operators usually notice first, and what it most often points to.</p>
+    </div>
+    <ul class="sv-signs__grid">
+      <li data-reveal><span class="sv-signs__k">Chiller</span><strong>Trips on high pressure</strong><p>Usually a blocked or dirty condenser, or a failed condenser fan.</p></li>
+      <li data-reveal style="--d:1"><span class="sv-signs__k">Chiller</span><strong>Water not reaching set temperature</strong><p>Condenser fouling, a refrigerant problem, or a heat load above the chiller's rating.</p></li>
+      <li data-reveal style="--d:2"><span class="sv-signs__k sv-signs__k--tower">Cooling tower</span><strong>Outlet water too warm</strong><p>Scaled or broken fills, blocked nozzles or a slow fan: the tower no longer reaches its design outlet temperature.</p></li>
+      <li data-reveal style="--d:3"><span class="sv-signs__k sv-signs__k--tower">Cooling tower</span><strong>Water channelling or drifting out</strong><p>Water running through in streams points to damaged fills; spray carried out with the air points to drift eliminators.</p></li>
+      <li data-reveal style="--d:4"><span class="sv-signs__k sv-signs__k--air">Air dryer</span><strong>Water downstream of the dryer</strong><p>A drain not discharging, an open bypass valve, or a dryer overloaded for the actual air flow.</p></li>
+      <li data-reveal style="--d:5"><span class="sv-signs__k sv-signs__k--air">Air dryer</span><strong>High dew point or frosting</strong><p>A dirty condenser, hot inlet air, or a hot gas bypass valve that needs adjustment.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sv-section" aria-labelledby="how-title">
+  <div class="container">
+    <div class="sv-head" data-reveal>
+      <p class="sv-eyebrow">How a service job works</p>
+      <h2 id="how-title">From your first message to a running unit</h2>
+    </div>
+    <ol class="sv-steps">
+      <li data-reveal><span class="sv-steps__n">01</span><h3>Send the details</h3><p>Equipment, make and model, a nameplate photo, the fault and your site location, by WhatsApp, phone, email or the form.</p></li>
+      <li data-reveal style="--d:1"><span class="sv-steps__n">02</span><h3>We diagnose and quote</h3><p>Our engineers review the details, tell you what is likely wrong and quote for the visit and any parts.</p></li>
+      <li data-reveal style="--d:2"><span class="sv-steps__n">03</span><h3>Service visit</h3><p>Our technicians carry out the repair or service, with spares from our works in Arasur, Coimbatore.</p></li>
+      <li data-reveal style="--d:3"><span class="sv-steps__n">04</span><h3>Back to running</h3><p>We run the unit, check its readings and tell you what we found and replaced.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sv-spares" id="spares" aria-labelledby="spares-title">
+  <div class="container sv-spares__grid">
+    <div class="sv-spares__copy" data-reveal>
+      <p class="sv-eyebrow">Spares</p>
+      <h2 id="spares-title">Spare parts we supply</h2>
+      <p>{{ spares.lede }}</p>
+      <div class="btn-row">
+        <a class="btn btn--secondary" href="{{ product_url('spare-parts-consumables') }}">All spares<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--secondary" href="{{ product_url('cooling-tower-fills') }}">Cooling tower fills<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="sv-spares__groups">
+      {% for g in spares.spare_groups %}
+      <div class="sv-spares__group" data-reveal style="--d:{{ loop.index }}">
+        <h3>{{ g.name }}</h3>
+        <ul>{% for it in g['items'] %}<li>{{ it }}</li>{% endfor %}</ul>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="sv-spares__photos" aria-hidden="true">
+      {{ picture('images/works/drift-eliminator-pvc.jpg', '', sizes='(min-width: 960px) 16vw, 33vw', max_w=480) }}
+      {{ picture('images/works/cooling-tower-fan-blades.jpg', '', sizes='(min-width: 960px) 16vw, 33vw', max_w=480) }}
+      {{ picture('images/works/air-filters-pre-moisture.jpg', '', sizes='(min-width: 960px) 16vw, 33vw', max_w=480) }}
+    </div>
+  </div>
+</section>
+
+<section class="sv-section" aria-labelledby="guides-title">
+  <div class="container">
+    <div class="sv-head" data-reveal>
+      <p class="sv-eyebrow">Before you call</p>
+      <h2 id="guides-title">Maintenance and troubleshooting guides</h2>
+    </div>
+    <ul class="sv-guides">
+      <li data-reveal><a href="/blog/troubleshooting-common-problems.html"><span>Air dryers</span><strong>Troubleshooting a refrigerated air dryer</strong><em>Water in lines, high dew point, tripping</em><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li data-reveal style="--d:1"><a href="/blog/maintenance-tips-hot-climates.html"><span>Air dryers</span><strong>Air dryer maintenance in hot, dusty plants</strong><em>Every shift, week, month and year</em><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li data-reveal style="--d:2"><a href="{{ product_url('cooling-tower-fills') }}"><span>Cooling towers</span><strong>Cooling tower fills and drift eliminators</strong><em>Sizes, types and when to replace</em><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li data-reveal style="--d:3"><a href="/blog/installing-servicing-tamil-nadu.html"><span>Air dryers</span><strong>Installing a compressed air dryer</strong><em>Placement, piping, bypass and drains</em><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sv-section sv-section--faq" aria-labelledby="faq-title">
+  <div class="container sv-faq">
+    <div class="sv-head" data-reveal>
+      <p class="sv-eyebrow">Questions</p>
+      <h2 id="faq-title">Service and repair FAQs</h2>
+    </div>
+    {{ m.faq(svc_faqs) }}
+  </div>
+</section>
+
+{% set heading = 'Book a service visit' %}
+{% set intro = 'Tell us the equipment, the model and what you see. Attach a nameplate photo if you can, and an engineer from our Arasur works will reply.' %}
+{% include "partials/enquiry.html" %}
+{% endblock %}

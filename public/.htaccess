@@ -64,6 +64,7 @@ ErrorDocument 404 /404.html
     RewriteRule "^case\-studies$" /about.html [R=301,L]
     RewriteRule "^locations/coimbatore\-cooling\-towers$" /locations/cooling-tower-manufacturers-in-coimbatore.html [R=301,L]
     RewriteRule "^about$" /about.html [R=301,L]
+    RewriteRule "^services$" /services.html [R=301,L]
     RewriteRule "^certifications$" /certifications.html [R=301,L]
     RewriteRule "^contactus$" /contactus.html [R=301,L]
     RewriteRule "^blog$" /blog.html [R=301,L]

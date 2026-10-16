@@ -388,5 +388,37 @@
   .h-about__tl-node, .h-about__tl-mark i::after, .h-about__tile img, .h-about__tl-img img { transition: none; }
 }
 
+/* service & repair band: dark, copy on the left and four service rows on the right */
+.h-svc { position: relative; overflow: hidden; padding-block: var(--section); color: #fff;
+  background: radial-gradient(ellipse 50% 70% at 100% 0%, rgba(31, 106, 168, 0.4) 0%, rgba(31, 106, 168, 0) 70%), linear-gradient(rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(90deg, rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(135deg, #06111d 0%, #0d2740 100%); }
+.h-svc__grid { display: grid; gap: clamp(2rem, 1.5rem + 3vw, 4rem); align-items: center; }
+.h-svc__kicker { display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-on-dark); }
+.h-svc__kicker span { width: 28px; height: 2px; background: var(--flow); }
+.h-svc__copy h2 { margin-top: var(--s-4); font-size: clamp(2.1rem, 1.2rem + 3vw, 3.75rem); line-height: 0.98; letter-spacing: -0.025em; font-stretch: 68%; color: #fff; text-wrap: balance; }
+.h-svc__copy > p { margin-top: var(--s-5); max-width: 32rem; font-size: var(--fs-lede); line-height: 1.6; color: rgba(255, 255, 255, 0.76); }
+.h-svc__signs { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.h-svc__signs li { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 0 var(--s-3); border-radius: 999px; border: 1px solid rgba(140, 198, 242, 0.28); font-size: var(--fs-small); color: #dbe9f5; }
+.h-svc__signs li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #f0b44c; }
+.h-svc__copy .btn-row { margin-top: var(--s-8); }
+.h-svc__copy .btn svg { width: 18px; height: 18px; }
+.h-svc__copy .btn--primary svg { transition: transform 0.3s var(--ease-out); }
+.h-svc__copy .btn--primary:hover svg { transform: translateX(3px); }
+.h-svc__wa { display: inline-flex; align-items: center; gap: var(--s-2); color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.4); }
+.h-svc__wa:hover { background: rgba(255, 255, 255, 0.16); border-color: #fff; color: #fff; }
+.h-svc__wa svg { color: var(--save-on-dark); }
+.h-svc__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+.h-svc__list a { display: grid; grid-template-columns: 76px minmax(0, 1fr) 24px; align-items: center; gap: var(--s-4); padding: var(--s-3); border-radius: var(--r-3); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(140, 198, 242, 0.16); color: #fff; text-decoration: none; transition: background-color 0.25s, border-color 0.25s, transform 0.35s var(--ease-out); }
+.h-svc__list a:hover { background: rgba(255, 255, 255, 0.09); border-color: rgba(140, 198, 242, 0.4); transform: translateX(4px); }
+.h-svc__thumb picture { display: block; overflow: hidden; border-radius: var(--r-2); aspect-ratio: 1; }
+.h-svc__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.h-svc__txt { display: grid; gap: 4px; }
+.h-svc__txt strong { font-size: 1.125rem; font-stretch: 80%; line-height: 1.2; }
+.h-svc__txt span { font-size: var(--fs-small); line-height: 1.45; color: rgba(255, 255, 255, 0.68); }
+.h-svc__go { width: 20px; height: 20px; color: var(--brand-on-dark); transition: transform 0.3s var(--ease-out); }
+.h-svc__list a:hover .h-svc__go { transform: translateX(3px); }
+@media (min-width: 960px) { .h-svc__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (max-width: 479px) { .h-svc__list a { grid-template-columns: 60px minmax(0, 1fr); } .h-svc__go { display: none; } }
+@media (prefers-reduced-motion: reduce) { .h-svc__list a, .h-svc__go { transition: none; } }
+
 /* "Save Water and Power" in the logo green */
 .cine__kicker .slogan { display: inline-flex; align-items: center; gap: 4px; color: var(--save-on-dark); font-weight: 700; }

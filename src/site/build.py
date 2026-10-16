@@ -551,7 +551,7 @@ def build_htaccess():
     pairs = [tuple(p) for p in json.loads((DATA / "redirects.json").read_text())]
     # The old site also served clean URLs, and Google still lists them
     pairs += [(s[:-5], d) for s, d in pairs if s.endswith(".html") and not d.startswith("http")]
-    pairs += [(p, f"/{p}.html") for p in ("about", "certifications", "contactus", "blog", "downloads")]
+    pairs += [(p, f"/{p}.html") for p in ("about", "services", "certifications", "contactus", "blog", "downloads")]
     for src, dst in pairs:
         pat = "^" + re.escape(src).replace("\\ ", " ") + "$"
         flags = "R=302,L,NE" if dst.startswith("http") else ("R=301,L,NE" if "#" in dst else "R=301,L")
@@ -755,7 +755,7 @@ def build_llms():
     idx += ["", "## Locations"]
     idx += [f"- [{l['h1']}]({u}/locations/{l['slug']}.html): {l['description']}" for l in locations]
     idx += ["", "## Company and help",
-            f"- [About {site['name']}]({u}/about.html)", f"- [Certifications]({u}/certifications.html)",
+            f"- [About {site['name']}]({u}/about.html)", f"- [Service and repair]({u}/services.html): breakdown repair, servicing and spares for chillers, cooling towers and air dryers", f"- [Certifications]({u}/certifications.html)",
             f"- [Contact and request a quote]({u}/contactus.html)", f"- [Downloads and catalogues]({u}/downloads.html)",
             f"- [All products]({u}/products/)", f"- [All articles]({u}/blog.html)", f"- [All sizing tools]({u}/engineering-tools/)",
             f"- [Industries served]({u}/industries/)", f"- [Locations]({u}/locations/)", f"- [Site map]({u}/sitemap.html)",
@@ -828,6 +828,7 @@ CSS_BUNDLES = {
     "home.css": ["home.css"],
     "viewer.css": ["chiller360.css"],
     "downloads.css": ["downloads.css"],
+    "services.css": ["services.css"],
 }
 
 
@@ -883,6 +884,7 @@ def main():
     render("pages/downloads.html", "/downloads.html")
     render("pages/contact.html", "/contactus.html")
     render("pages/about.html", "/about.html")
+    render("pages/services.html", "/services.html")
     render("pages/tools.html", "/engineering-tools/")
     render("pages/blog.html", "/blog.html")
     render("pages/locations.html", "/locations/")
