@@ -34,17 +34,16 @@
 ] %}
 <section class="cine" aria-labelledby="hero-title" data-cine>
   <video class="cine__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-cine-video
-    data-src-wide-webm="/video/works-1280.webm" data-src-wide="/video/works-1280.mp4" data-src-tall="/video/works-portrait.mp4"></video>
+    data-src-wide-webm="/video/works-bg-960.webm" data-src-wide="/video/works-bg-960.mp4" data-src-tall="/video/works-bg-portrait.mp4"></video>
   <div class="cine__reel" aria-hidden="true">
     {% for f, pos in reel %}
     <div class="cine__shot{% if loop.first %} is-active{% endif %}" style="--pos:{{ pos }}" data-cine-shot>
-      {{ picture('images/works/hero-' ~ f, '', sizes='100vw', max_w=1600) }}
+      {{ picture('images/works/hero-' ~ f, '', sizes='100vw', max_w=1600, gray=True) }}
     </div>
     {% endfor %}
   </div>
   <div class="cine__shade" aria-hidden="true"></div>
   <div class="cine__grid" aria-hidden="true"></div>
-  <div class="cine__grain" aria-hidden="true"></div>
   <div class="container cine__inner">
     <div class="cine__copy">
       <p class="cine__kicker" data-intro><span></span><b class="slogan">{{ site.tagline }}</b><i class="cine__where">· Arasur, Coimbatore</i></p>

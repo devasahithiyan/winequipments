@@ -78,7 +78,12 @@
     }
     if (!reduce) {
       setTimeout(() => shots.forEach((s) => { const im = s.querySelector('img'); if (im) im.loading = 'eager'; }), 1500);
-      if (hasIO) new IntersectionObserver((en) => { en[0].isIntersecting ? play() : stop(); }, { threshold: 0.2 }).observe(cine);
+      if (hasIO) new IntersectionObserver((en) => {
+        const on = en[0].isIntersecting;
+        cine.classList.toggle('is-off', !on);
+        if (video && cine.classList.contains('has-video')) { on ? video.play().catch(() => {}) : video.pause(); }
+        on ? play() : stop();
+      }, { threshold: 0.05 }).observe(cine);
       else play();
       document.addEventListener('visibilitychange', () => { document.hidden ? stop() : play(); });
     }

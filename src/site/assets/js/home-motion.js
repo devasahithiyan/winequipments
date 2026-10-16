@@ -28,27 +28,23 @@
     if (copy) scroll(animate(copy, { y: [0, -50], opacity: [1, 0.15] }, { ease: 'linear' }), opts);
     if (machines) scroll(animate(machines, { y: [0, 40], scale: [1, 0.94] }, { ease: 'linear' }), opts);
 
-    /* hero: on a desktop the stage and blueprint grid lean gently toward the pointer */
+    /* hero: on a desktop the machines and blueprint grid lean gently toward the pointer.
+       One rAF loop eases toward the pointer and writes the individual `translate` property, so it never fights the scroll-linked transforms and never creates animations per move */
     if (machines && grid && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      const ring = $('.cine__ring', hero);
-      let raf = 0;
+      let tx = 0, cx = 0, raf = 0;
+      const tick = () => {
+        cx += (tx - cx) * 0.08;
+        if (Math.abs(tx - cx) < 0.05) cx = tx;
+        machines.style.translate = `${cx.toFixed(2)}px 0`;
+        grid.style.translate = `${(-cx * 0.7).toFixed(2)}px 0`;
+        raf = cx === tx ? 0 : requestAnimationFrame(tick);
+      };
+      const go = (x) => { tx = x; if (!raf && !hero.classList.contains('is-off')) raf = requestAnimationFrame(tick); };
       hero.addEventListener('pointermove', (e) => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          const r = hero.getBoundingClientRect();
-          const dx = (e.clientX - r.left) / r.width - 0.5;
-          const dy = (e.clientY - r.top) / r.height - 0.5;
-          animate(machines, { x: dx * 18, rotateY: dx * 6 }, { type: spring, stiffness: 120, damping: 20 });
-          animate(grid, { x: dx * -14, y: dy * -10 }, { type: spring, stiffness: 90, damping: 22 });
-          if (ring) animate(ring, { x: dx * 10, y: dy * 8 }, { type: spring, stiffness: 90, damping: 22 });
-        });
-      });
-      hero.addEventListener('pointerleave', () => {
-        animate(machines, { x: 0, rotateY: 0 }, { type: spring, stiffness: 120, damping: 22 });
-        animate(grid, { x: 0, y: 0 }, { type: spring, stiffness: 90, damping: 22 });
-        if (ring) animate(ring, { x: 0, y: 0 }, { type: spring, stiffness: 90, damping: 22 });
-      });
+        const r = hero.getBoundingClientRect();
+        go(((e.clientX - r.left) / r.width - 0.5) * 18);
+      }, { passive: true });
+      hero.addEventListener('pointerleave', () => go(0));
     }
 
     /* product range: each cut-out rises onto its stage and settles as it reaches the middle of the screen */
