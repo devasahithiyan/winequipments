@@ -4,6 +4,7 @@
 <section class="enquiry section" id="quote" aria-labelledby="quote-title">
   <div class="container enquiry__grid">
     <div>
+      {% if eyebrow is defined %}<p class="sh-eyebrow">{{ eyebrow }}</p>{% endif %}
       <h2 id="quote-title">{{ heading if heading is defined else 'Tell us your requirement' }}</h2>
       <p class="lede" style="margin-top:var(--s-4)">{{ intro if intro is defined else 'Share your capacity, operating conditions or a drawing. An engineer from our Arasur works will reply with a recommended model and quotation.' }}</p>
       {% if checklist is defined %}

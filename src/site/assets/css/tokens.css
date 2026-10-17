@@ -49,6 +49,8 @@
   --save-wash: #e5f1e3;
   --save-on-dark: #8fe0a0;
   --flow: linear-gradient(90deg, var(--brand) 0%, #2a9ac9 50%, var(--save) 100%);
+  /* the one dark band used across the home page: navy gradient under a faint blueprint grid */
+  --band-dark: linear-gradient(rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(90deg, rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(135deg, #06111d 0%, #0d2740 100%);
 
   /* status */
   --error: #b42318;

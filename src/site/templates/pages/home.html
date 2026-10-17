@@ -75,15 +75,6 @@
         </div>
       </div>
     </div>
-    <div class="cine__foot" data-intro style="--d:5">
-      <dl class="cine__trust">
-        <div><dt>Installations</dt><dd>{{ site.installations }}</dd></div>
-        <div><dt>Since</dt><dd>{{ site.founded }}</dd></div>
-        <div><dt>Quality system</dt><dd>ISO 9001:2015</dd></div>
-        <div><dt>Made at</dt><dd>Arasur, Coimbatore</dd></div>
-      </dl>
-      <span class="cine__flow" aria-hidden="true"></span>
-    </div>
   </div>
 </section>
 
@@ -92,25 +83,70 @@
   ("Cold process water", "Process chillers 0.5–20 TR and chillers built for special duties", families.cooling, products['industrial-process-chillers'], "0.5–20 TR"),
   ("Rejecting process heat", "Round and square FRP towers, coil towers for gensets, and spares", families.towers, products['round-cooling-towers'], "10–300 TR")
 ] %}
-<div class="container">
-  <nav class="needs" aria-label="What does your plant need?">
-    <p class="needs__q">What does your plant need?</p>
-    <ul>
-      {% for t, d, fam, pr, rng in needs %}
-      <li style="--n:{{ loop.index0 }}"><a href="/products/{{ fam.slug }}.html">
-        <span class="needs__head"><span class="needs__num">0{{ loop.index }}</span><span class="needs__fam">{{ fam.short }}</span></span>
-        <strong>{{ t }}</strong>
-        <span class="needs__desc">{{ d }}</span>
-        <span class="needs__row">
-          <span class="needs__fig"><em>{{ rng }}</em><span>{{ fam.products | length }} product lines</span></span>
-          <span class="needs__img">{{ picture(studio(pr.image), '', sizes='(min-width: 1024px) 10vw, 28vw', max_w=480) }}</span>
-        </span>
-        <span class="needs__go">Explore<svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+
+<section class="h-fam" id="products" aria-labelledby="range-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+      <p class="sh-eyebrow">Products</p>
+      <h2 id="range-title">{{ product_count_word }} product lines. Three families. One works.</h2>
+      <p>Designed, fabricated and tested at our works in Arasur, Coimbatore.</p>
+    </div>
+    <ul class="h-fam__grid">
+      {% for s in shows %}{% set nd = needs[loop.index0] %}
+      <li class="h-fam__card" data-reveal style="--d:{{ loop.index0 }}">
+        <a class="h-fam__stage" href="/products/{{ s.fam.slug }}.html" tabindex="-1" aria-hidden="true">{{ picture(studio(s.img), '', sizes='(min-width: 960px) 26vw, 90vw', max_w=700) }}<span class="h-fam__range">{{ nd[4] }}</span></a>
+        <div class="h-fam__body">
+          <p class="h-fam__kicker"><span>0{{ loop.index }}</span>{{ s.fam.short }}</p>
+          <h3><a href="/products/{{ s.fam.slug }}.html">{{ nd[0] }}</a></h3>
+          <p class="h-fam__desc">{{ nd[1] }}</p>
+          <ul class="h-fam__list">
+            {% for slug in s.feature %}{% set pr = products[slug] %}
+            <li><a href="{{ product_url(pr.slug) }}"><span>{{ pr.name }}</span><span>{{ pr.range }}</span></a></li>
+            {% endfor %}
+          </ul>
+          <a class="h-fam__more" href="/products/{{ s.fam.slug }}.html">All {{ s.fam.products | length }} {{ s.fam.short | lower }} products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="h-svc band-dark" aria-labelledby="svc-title">
+  <div class="container h-svc__grid">
+    <div class="h-svc__copy" data-reveal>
+      <div class="h-head h-head--dark">
+        <p class="sh-eyebrow">Service &amp; repair</p>
+        <h2 id="svc-title">We also service and repair your chillers and cooling towers</h2>
+        <p>Breakdowns, routine servicing, fill replacement and spares, from the team that builds this equipment at our Arasur works. Tell us what you see and we will tell you what it needs.</p>
+      </div>
+      <ul class="h-svc__signs" aria-label="Common reasons customers call us">
+        <li>Chiller tripping on high pressure</li>
+        <li>Cooling tower water running warm</li>
+        <li>Water in compressed air lines</li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/services.html">Service &amp; repair<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn h-svc__wa" href="{{ whatsapp('Hello Win Equipments, I need service or repair. Equipment, model and fault: ') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>Send a photo of the fault</a>
+      </div>
+    </div>
+    <ul class="h-svc__list">
+      {% set svc = [
+        ('/services.html#chillers', 'images/works/chiller-twin-circuit-open.jpg', 'Process chillers', 'Breakdown repair, refrigerant checks and gas charging, condenser cleaning, compressor and pump replacement'),
+        ('/services.html#towers', 'images/works/pvc-fills-blue.jpg', 'Cooling towers', 'Fill and drift eliminator replacement, sprinkler and nozzle repair, fan and motor work, basin cleaning'),
+        ('/services.html#air', 'images/works/drain-valve-low-discharge.jpg', 'Air dryers', 'Dew point problems, drain valve repair, filter elements and refrigerant checks for the dryers we supply'),
+        ('/services.html#spares', 'images/works/cooling-tower-fan-blades.jpg', 'Spares', 'Fills, nozzles, fans, motors, compressors, expansion valves, filter dryers and refrigerant gases')
+      ] %}
+      {% for href, img, t, d in svc %}
+      <li data-reveal style="--d:{{ loop.index }}"><a href="{{ href }}">
+        <span class="h-svc__thumb">{{ picture(img, '', sizes='96px', max_w=320) }}</span>
+        <span class="h-svc__txt"><strong>{{ t }}</strong><span>{{ d }}</span></span>
+        <svg class="h-svc__go" aria-hidden="true"><use href="#i-arrow"/></svg>
       </a></li>
       {% endfor %}
     </ul>
-  </nav>
-</div>
+  </div>
+</section>
 
 {% set rating = site.indiamart_rating %}
 {% set years = year - site.founded %}
@@ -118,9 +154,11 @@
   <div class="container">
     <div class="h-about__top">
       <div class="h-about__intro" data-reveal>
-        <p class="h-about__kicker"><span aria-hidden="true"></span>About us</p>
+        <div class="h-head">
+        <p class="sh-eyebrow">About us</p>
         <h2 id="about-title">One team. One works.<br><em>Since {{ site.founded }}.</em></h2>
         <p class="h-about__lede">Win Equipments builds compressed air and water cooling equipment at its own works in Arasur, Coimbatore. We design, fabricate, test and support every unit ourselves, so the team that sizes your equipment is the team that commissions it.</p>
+        </div>
         <div class="h-about__founder">
           <span class="h-about__mono" aria-hidden="true">{% for w in site.founder.split() if w != 'Mr.' %}{{ w[0] }}{% endfor %}</span>
           <span><b>{{ site.founder }}</b>Founder, Win Equipments</span>
@@ -144,10 +182,6 @@
           {{ picture('images/works/hero-shop-floor-control-panel.jpg', 'Wiring a chiller control panel', sizes='(min-width: 960px) 26vw, 50vw', max_w=800) }}
           <figcaption>Panel wiring</figcaption>
         </figure>
-        <a class="h-about__badge h-about__badge--rating" href="{{ rating.url }}" rel="noopener" target="_blank" aria-label="Rated {{ rating.value }} out of 5 on IndiaMART from {{ rating.count }} reviews">
-          <b>{{ rating.value }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg></b>
-          <span>IndiaMART rating<small>{{ rating.count }} buyer reviews</small></span>
-        </a>
         <div class="h-about__badge h-about__badge--iso">
           <b>ISO</b><span>9001:2015<small>Quality system</small></span>
         </div>
@@ -183,7 +217,7 @@
 </section>
 
 <section class="marquee" aria-label="Plants we supply">
-  <p class="marquee__label container">Supplying plants including</p>
+  <p class="marquee__label container"><span class="sh-eyebrow">Supplying plants including</span></p>
   <div class="marquee__viewport">
   <div class="marquee__track" data-marquee>
     <ul class="marquee__list">
@@ -196,81 +230,13 @@
   </div>
 </section>
 
-<section class="h-range" id="products" aria-labelledby="range-title">
-  <div class="container">
-    <div class="h-head" data-reveal>
-      <h2 id="range-title">{{ product_count_word }} product lines.<br>Three families. One works.</h2>
-    </div>
-    <div class="h-range__grid">
-      <div class="h-range__pin">
-        {% for s in shows %}
-        <div class="h-range__text{% if loop.first %} is-active{% endif %}" data-range-text="{{ loop.index0 }}">
-          <p class="h-range__count">{{ s.fam.products | length }} products</p>
-          <h3><a href="/products/{{ s.fam.slug }}.html">{{ s.fam.name }}</a></h3>
-          <p class="h-range__lede">{{ s.fam.lede }}</p>
-          <ul class="h-range__list">
-            {% for slug in s.feature %}{% set pr = products[slug] %}
-            <li><a href="{{ product_url(pr.slug) }}"><span>{{ pr.name }}</span><span>{{ pr.range }}</span></a></li>
-            {% endfor %}
-          </ul>
-          <a class="btn btn--secondary" href="/products/{{ s.fam.slug }}.html">Explore {{ s.fam.short | lower }}</a>
-        </div>
-        {% endfor %}
-      </div>
-      <div class="h-range__media">
-        {% for s in shows %}
-        <figure class="h-range__fig" data-range-fig="{{ loop.index0 }}">
-          <a href="/products/{{ s.fam.slug }}.html" tabindex="-1" aria-hidden="true">{{ picture(studio(s.img), s.alt, sizes='(min-width: 900px) 52vw, 80vw', max_w=900) }}</a>
-          <figcaption><strong>{{ s.fam.name }}</strong>{{ s.fam.summary }}</figcaption>
-        </figure>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
+{% set c3_noscrub = true %}{% include "partials/chiller360.html" %}
+<div class="h-chillerlink-wrap"><div class="container"><p class="h-chillerlink">Process chillers from 0.5 to 20 TR are built at our Arasur works: see our <a href="/locations/coimbatore-industrial-chillers.html">chiller manufacturers in Coimbatore</a> page.</p></div></div>
 
-<section class="h-svc" aria-labelledby="svc-title">
-  <div class="container h-svc__grid">
-    <div class="h-svc__copy" data-reveal>
-      <p class="h-svc__kicker"><span aria-hidden="true"></span>Service &amp; repair</p>
-      <h2 id="svc-title">We also service and repair your chillers and cooling towers</h2>
-      <p>Breakdowns, routine servicing, fill replacement and spares, from the team that builds this equipment at our Arasur works. Tell us what you see and we will tell you what it needs.</p>
-      <ul class="h-svc__signs" aria-label="Common reasons customers call us">
-        <li>Chiller tripping on high pressure</li>
-        <li>Cooling tower water running warm</li>
-        <li>Water in compressed air lines</li>
-      </ul>
-      <div class="btn-row">
-        <a class="btn btn--primary" href="/services.html">Service &amp; repair<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn h-svc__wa" href="{{ whatsapp('Hello Win Equipments, I need service or repair. Equipment, model and fault: ') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>Send a photo of the fault</a>
-      </div>
-    </div>
-    <ul class="h-svc__list">
-      {% set svc = [
-        ('/services.html#chillers', 'images/works/chiller-twin-circuit-open.jpg', 'Process chillers', 'Breakdown repair, refrigerant checks and gas charging, condenser cleaning, compressor and pump replacement'),
-        ('/services.html#towers', 'images/works/pvc-fills-blue.jpg', 'Cooling towers', 'Fill and drift eliminator replacement, sprinkler and nozzle repair, fan and motor work, basin cleaning'),
-        ('/services.html#air', 'images/works/drain-valve-low-discharge.jpg', 'Air dryers', 'Dew point problems, drain valve repair, filter elements and refrigerant checks for the dryers we supply'),
-        ('/services.html#spares', 'images/works/cooling-tower-fan-blades.jpg', 'Spares', 'Fills, nozzles, fans, motors, compressors, expansion valves, filter dryers and refrigerant gases')
-      ] %}
-      {% for href, img, t, d in svc %}
-      <li data-reveal style="--d:{{ loop.index }}"><a href="{{ href }}">
-        <span class="h-svc__thumb">{{ picture(img, '', sizes='96px', max_w=320) }}</span>
-        <span class="h-svc__txt"><strong>{{ t }}</strong><span>{{ d }}</span></span>
-        <svg class="h-svc__go" aria-hidden="true"><use href="#i-arrow"/></svg>
-      </a></li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-{% include "partials/quick_enquiry.html" %}
-
-{% include "partials/chiller360.html" %}
-<div class="container"><p class="h-chillerlink">Process chillers from 0.5 to 20 TR are built at our Arasur works: see our <a href="/locations/coimbatore-industrial-chillers.html">chiller manufacturers in Coimbatore</a> page.</p></div>
-
-<section class="h-eng" aria-labelledby="eng-title">
+<section class="h-eng band-dark" aria-labelledby="eng-title">
   <div class="container h-eng__grid">
     <div class="h-eng__copy" data-reveal>
+      <p class="sh-eyebrow">Engineering data</p>
       <h2 id="eng-title">Sized from real engineering data</h2>
       <p class="lede">Compressed air leaves the compressor saturated. A WRD dryer chills it from 45 °C to a +3 °C pressure dew point, and 92% of the water vapour condenses and drains away.</p>
       <p>Every product page carries the full model table, rating conditions and correction factors from our catalogues.</p>
@@ -286,9 +252,12 @@
   </div>
 </section>
 
-<section class="h-works h-works--rail" aria-label="Recent builds">
+<section class="h-works h-works--rail" aria-labelledby="works-title">
   <div class="container h-works__rail">
-    <h3 class="h-works__sub">Recent builds</h3>
+    <div class="h-head" data-reveal>
+      <p class="sh-eyebrow">From our works</p>
+      <h2 id="works-title">Recent builds</h2>
+    </div>
     {% set rail = home_photos %}{% set rail_id = 'home' %}{% set show_product = True %}
     {% include "partials/photo_rail.html" %}
   </div>
@@ -297,6 +266,7 @@
 <section class="h-ind" id="industries" aria-labelledby="ind-title">
   <div class="container">
     <div class="h-head" data-reveal>
+      <p class="sh-eyebrow">Industries</p>
       <h2 id="ind-title">Where our equipment runs</h2>
       <p>Choose your industry to see the equipment it uses.</p>
     </div>
@@ -315,7 +285,8 @@
 
 <section class="h-faq" aria-labelledby="faq-title">
   <div class="container h-faq__grid">
-    <div data-reveal>
+    <div class="h-head" data-reveal>
+      <p class="sh-eyebrow">Questions</p>
       <h2 id="faq-title">Common questions</h2>
       <p>Can't find your answer? <a href="{{ whatsapp('Hello Win Equipments, I have a question.') }}">Ask us on WhatsApp</a>.</p>
     </div>
@@ -323,6 +294,6 @@
   </div>
 </section>
 
-{% include "partials/enquiry.html" %}
+{% set eyebrow = 'Get a quote' %}{% include "partials/enquiry.html" %}
 {% endblock %}
 {% block scripts %}<script src="/js/home.js?v={{ js_ver }}" defer></script><script src="/js/home-motion.js?v={{ js_ver }}" defer></script>{% endblock %}

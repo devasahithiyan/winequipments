@@ -188,7 +188,7 @@
 
   /* ---------- large screens: the viewer pins while you scroll through the section, and the scroll opens the unit ---------- */
   const scrubMQ = matchMedia('(min-width: 1024px) and (min-height: 720px) and (hover: hover) and (prefers-reduced-motion: no-preference)');
-  const scrubbing = () => can3d && scrubMQ.matches && !location.search.includes('static');
+  const scrubbing = () => can3d && scrubMQ.matches && !location.search.includes('static') && !section.hasAttribute('data-c3-noscrub');
   let oriented = false;
   const scrollPosition = () => {
     const r = scroller.getBoundingClientRect(), top = parseFloat(getComputedStyle(grid).top) || 0;

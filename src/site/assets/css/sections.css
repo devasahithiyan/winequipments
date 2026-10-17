@@ -4,6 +4,17 @@
 .h-head { display: grid; gap: var(--s-3); max-width: 48rem; margin-bottom: clamp(2rem, 1.2rem + 3vw, 4rem); }
 .h-head h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem); line-height: 1.02; letter-spacing: -0.02em; font-stretch: 74%; }
 .h-head p { color: var(--ink-2); font-size: var(--fs-lede); }
+/* section label: short line in the brand flow colours + uppercase text; the same on every section */
+.sh-eyebrow { display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-ink); }
+.sh-eyebrow::before { content: ""; width: 28px; height: 2px; flex: none; background: var(--flow); }
+.h-head p.sh-eyebrow { font-size: var(--fs-label); color: var(--brand-ink); }
+/* dark band: white text, light labels, outline buttons that read on navy */
+.band-dark { color: #fff; background: var(--band-dark); }
+.band-dark .sh-eyebrow, .h-head--dark p.sh-eyebrow { color: var(--brand-on-dark); }
+.band-dark h2, .h-head--dark h2 { color: #fff; }
+.band-dark .h-head p:not(.sh-eyebrow), .h-head--dark p:not(.sh-eyebrow) { color: rgba(255, 255, 255, 0.74); }
+.band-dark .btn--secondary { color: #fff; background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.45); }
+.band-dark .btn--secondary:hover { background: rgba(255, 255, 255, 0.16); border-color: #fff; color: #fff; }
 .page-home section h2 { scroll-margin-top: calc(var(--header-h) + 24px); }
 
 /* numbers */

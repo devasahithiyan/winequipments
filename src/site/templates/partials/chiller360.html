@@ -20,10 +20,10 @@
   {"t": "Circulating pump", "ry": -24, "rx": -10, "pts": ["Pump and motor laid flat on the base, with PVC water connections"] + feat['Circulating pump']},
   {"t": "Pipework", "ry": -78, "rx": -12, "pts": ["Copper refrigerant lines, insulated suction line and ribbed cable conduits", "PVC water outlet with a ball valve"]}
 ] %}
-<section class="c3" data-c3-state="poster" data-c3-card-below id="chiller-360" aria-labelledby="c3-title">
+<section class="c3" data-c3-state="poster" data-c3-card-below{% if c3_noscrub is defined and c3_noscrub %} data-c3-noscrub{% endif %} id="chiller-360" aria-labelledby="c3-title">
   <div class="container">
     <div class="h-head" data-reveal>
-      <p class="c3__eyebrow"><span>3D</span> Process chiller</p>
+      <p class="sh-eyebrow">3D model · Process chiller</p>
       <h2 id="c3-title">Look inside a Win chiller</h2>
       <p>Turn the chiller around, open it, explode it into its parts, or watch how the water and refrigerant flow. Pick a part to see what it does.</p>
       {% if url != '/blog/how-a-process-chiller-works.html' %}<p><a class="link-arrow" href="/blog/how-a-process-chiller-works.html">Chiller working principle, with a labelled diagram and video<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>{% endif %}
