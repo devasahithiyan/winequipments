@@ -2,11 +2,14 @@
 .btn--lg { min-height: 56px; padding: 0 var(--s-6); font-size: 1.0625rem; }
 .btn--lg.btn--wa { padding: 0 var(--s-5); }
 .h-head { display: grid; gap: var(--s-3); max-width: 48rem; margin-bottom: clamp(2rem, 1.2rem + 3vw, 4rem); }
-.h-head h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem); line-height: 1.02; letter-spacing: -0.02em; font-stretch: 74%; }
+.h-head h2 { font-size: var(--fs-section); line-height: 1.02; letter-spacing: -0.02em; font-stretch: var(--wdth-display); }
 .h-head p { color: var(--ink-2); font-size: var(--fs-lede); }
 /* section label: short line in the brand flow colours + uppercase text; the same on every section */
 .sh-eyebrow { display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-ink); }
 .sh-eyebrow::before { content: ""; width: 28px; height: 2px; flex: none; background: var(--flow); }
+/* on navy: light label and a light rule (decorative, but kept above 3:1 for consistency) */
+.sh-eyebrow--dark, .band-dark .sh-eyebrow, .sv-head--dark .sh-eyebrow, .sv-signs .sh-eyebrow { color: var(--brand-on-dark); }
+.sh-eyebrow--dark::before, .band-dark .sh-eyebrow::before, .sv-head--dark .sh-eyebrow::before, .sv-signs .sh-eyebrow::before { background: var(--brand-on-dark); }
 .h-head p.sh-eyebrow { font-size: var(--fs-label); color: var(--brand-ink); }
 /* dark band: white text, light labels, outline buttons that read on navy */
 .band-dark { color: #fff; background: var(--band-dark); }
@@ -22,7 +25,7 @@
 .h-numbers__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8) var(--s-6); }
 @media (min-width: 900px) { .h-numbers__row { grid-template-columns: repeat(4, 1fr); } }
 .h-numbers__row > div { display: grid; gap: var(--s-1); padding-top: var(--s-4); border-top: 1px solid #344457; }
-.h-numbers__row strong { color: #fff; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); font-stretch: 72%; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.h-numbers__row strong { color: #fff; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); font-stretch: var(--wdth-display); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 .h-numbers__row > div > span { font-size: var(--fs-small); }
 
 /* process */
@@ -33,7 +36,7 @@
 .h-step { display: grid; grid-template-columns: 3rem 1fr; column-gap: var(--s-4); padding-bottom: var(--s-8); position: relative; z-index: 1; }
 .h-step:last-child { padding-bottom: 0; }
 .h-step__n { grid-row: 1 / 3; width: 3rem; height: 3rem; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink); display: grid; place-items: center; font-weight: 700; font-size: 1.125rem; }
-.h-step h3 { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); font-stretch: 85%; line-height: 3rem; }
+.h-step h3 { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); font-stretch: var(--wdth-head); line-height: 3rem; }
 .h-step p { color: var(--ink-2); }
 @media (min-width: 900px) {
   .h-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-6); }
@@ -47,7 +50,7 @@
 /* faq */
 .h-faq { padding-block: var(--section); background: var(--surface); border-top: 1px solid var(--rule); }
 .h-faq__grid { display: grid; gap: var(--s-8); }
-.h-faq__grid h2 { font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem); line-height: 1.02; font-stretch: 74%; letter-spacing: -0.02em; margin-bottom: var(--s-3); }
+.h-faq__grid h2 { font-size: var(--fs-section); line-height: 1.02; font-stretch: var(--wdth-display); letter-spacing: -0.02em; margin-bottom: var(--s-3); }
 .h-faq__grid p { color: var(--ink-2); }
 @media (min-width: 960px) { .h-faq__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-12); } }
 

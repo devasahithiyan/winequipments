@@ -78,6 +78,30 @@
   </div>
 </section>
 
+<section class="h-help" aria-labelledby="help-title">
+  <div class="container">
+    <h2 class="h-help__title" id="help-title">How can we help?</h2>
+    <ul class="h-help__grid">
+      <li><a href="#quote" data-quote-link>
+        <span class="h-help__ic" aria-hidden="true"><svg><use href="#i-doc"/></svg></span>
+        <span class="h-help__txt"><strong>Get a quotation</strong><span>Send your capacity, conditions or a drawing. An engineer replies with a model and quote.</span></span>
+        <svg class="h-help__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a href="/engineering-tools/">
+        <span class="h-help__ic" aria-hidden="true"><svg><use href="#i-ruler"/></svg></span>
+        <span class="h-help__txt"><strong>Size your equipment</strong><span>Free calculators for air dryers, chillers and cooling towers.</span></span>
+        <svg class="h-help__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a href="/services.html">
+        <span class="h-help__ic" aria-hidden="true"><svg><use href="#i-wrench"/></svg></span>
+        <span class="h-help__txt"><strong>Service &amp; repair</strong><span>Breakdowns, servicing, fills and spares for chillers and cooling towers.</span></span>
+        <svg class="h-help__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a href="/downloads.html">
+        <span class="h-help__ic" aria-hidden="true"><svg><use href="#i-copy"/></svg></span>
+        <span class="h-help__txt"><strong>Download catalogues</strong><span>Model tables and ratings as PDF. No sign-up needed.</span></span>
+        <svg class="h-help__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
 {% set needs = [
   ("Dry, clean compressed air", "Air dryers, filters, drain valves, receivers and aftercoolers", families.air, products['refrigerated-air-dryers'], "10–2000 CFM"),
   ("Cold process water", "Process chillers 0.5–20 TR and chillers built for special duties", families.cooling, products['industrial-process-chillers'], "0.5–20 TR"),
@@ -109,6 +133,20 @@
       </li>
       {% endfor %}
     </ul>
+  </div>
+</section>
+
+<section class="marquee" aria-label="Plants we supply">
+  <p class="marquee__label container"><span class="sh-eyebrow">Supplying plants including</span></p>
+  <div class="marquee__viewport">
+  <div class="marquee__track" data-marquee>
+    <ul class="marquee__list">
+      {% for c in site.clients %}{% set lg = logo_clean(c.file) %}<li style="--h: {{ lg[1] }}px">{{ picture(lg[0], c.name, sizes='140px') }}</li>{% endfor %}
+    </ul>
+    <ul class="marquee__list" aria-hidden="true">
+      {% for c in site.clients %}{% set lg = logo_clean(c.file) %}<li style="--h: {{ lg[1] }}px">{{ picture(lg[0], '', sizes='140px') }}</li>{% endfor %}
+    </ul>
+  </div>
   </div>
 </section>
 
@@ -216,24 +254,11 @@
   </div>
 </section>
 
-<section class="marquee" aria-label="Plants we supply">
-  <p class="marquee__label container"><span class="sh-eyebrow">Supplying plants including</span></p>
-  <div class="marquee__viewport">
-  <div class="marquee__track" data-marquee>
-    <ul class="marquee__list">
-      {% for c in site.clients %}{% set lg = logo_clean(c.file) %}<li style="--h: {{ lg[1] }}px">{{ picture(lg[0], c.name, sizes='140px') }}</li>{% endfor %}
-    </ul>
-    <ul class="marquee__list" aria-hidden="true">
-      {% for c in site.clients %}{% set lg = logo_clean(c.file) %}<li style="--h: {{ lg[1] }}px">{{ picture(lg[0], '', sizes='140px') }}</li>{% endfor %}
-    </ul>
-  </div>
-  </div>
-</section>
 
 {% set c3_noscrub = true %}{% include "partials/chiller360.html" %}
 <div class="h-chillerlink-wrap"><div class="container"><p class="h-chillerlink">Process chillers from 0.5 to 20 TR are built at our Arasur works: see our <a href="/locations/coimbatore-industrial-chillers.html">chiller manufacturers in Coimbatore</a> page.</p></div></div>
 
-<section class="h-eng band-dark" aria-labelledby="eng-title">
+<section class="h-eng" aria-labelledby="eng-title">
   <div class="container h-eng__grid">
     <div class="h-eng__copy" data-reveal>
       <p class="sh-eyebrow">Engineering data</p>

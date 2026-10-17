@@ -28,11 +28,11 @@
 .site-header__bar { display: flex; align-items: center; gap: var(--s-3); height: var(--header-h); }
 .brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; color: var(--ink); margin-right: auto; min-height: var(--tap); }
 .brand .logo { width: 72px; height: auto; flex: none; }
-.brand__text { display: none; font-size: var(--fs-small); line-height: 1.25; color: var(--muted); font-stretch: 90%; }
-@media (min-width: 1520px) { .brand__text { display: block; white-space: nowrap; } }
+.brand__text { display: none; font-size: var(--fs-small); line-height: 1.25; color: var(--muted); font-stretch: var(--wdth-head); }
+@media (min-width: 1280px) { .brand__text { display: block; white-space: nowrap; } }
 @media (min-width: 1360px) { .brand .logo { width: 84px; } }
 /* 1024-1279: seven nav items fit only with tighter links and an icon-only call button */
-@media (min-width: 1024px) and (max-width: 1279px) { .nav-desktop .nav-link { padding-inline: var(--s-2); } .header-call .btn__label { display: none; } }
+@media (min-width: 1024px) and (max-width: 1279px) { .nav-desktop .nav-link { padding-inline: var(--s-2); } }
 
 .nav-desktop { display: none; }
 .header-actions { display: flex; align-items: center; gap: var(--s-2); }
@@ -63,7 +63,7 @@
 }
 .mega[hidden] { display: none; }
 .mega__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.9fr); gap: var(--s-6); }
-.mega__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-2); margin-bottom: var(--s-2); padding-bottom: var(--s-2); border-bottom: 1px solid var(--rule); font-weight: 700; font-stretch: 90%; font-size: 1.0625rem; }
+.mega__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-2); margin-bottom: var(--s-2); padding-bottom: var(--s-2); border-bottom: 1px solid var(--rule); font-weight: 700; font-stretch: var(--wdth-head); font-size: 1.0625rem; }
 .mega__head a { color: var(--ink); text-decoration: none; }
 .mega__head a:hover { color: var(--brand-ink); }
 .mega__head span:not(.mega__aside-h) { font-size: var(--fs-label); font-weight: 650; color: var(--muted); background: var(--paper); border-radius: 999px; padding: 2px 8px; }
@@ -116,7 +116,7 @@
 .menu-group { border-bottom: 1px solid var(--rule); }
 .menu-group > summary, .menu-link {
   display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
-  min-height: 56px; font-size: 1.125rem; font-weight: 650; font-stretch: 90%;
+  min-height: 56px; font-size: 1.125rem; font-weight: 650; font-stretch: var(--wdth-head);
   color: var(--ink); text-decoration: none; cursor: pointer; list-style: none;
 }
 .menu-group > summary::-webkit-details-marker { display: none; }
@@ -225,3 +225,25 @@ body.has-action-bar { padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bo
 
 /* footer slogan under the logo */
 .footer-slogan { display: inline-flex; align-items: center; gap: 4px; margin: calc(var(--s-2) * -1) 0 var(--s-4); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--save-on-dark); }
+
+
+/* utility bar (desktop): company facts left, direct contact routes right; scrolls away above the sticky header */
+.util-bar { display: none; background: var(--navy); color: #c9d6e2; font-size: 0.8125rem; }
+.util-bar__row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-6); min-height: 36px; }
+.util-bar__facts { display: flex; gap: var(--s-4); margin: 0; }
+.util-bar__facts span + span::before { content: "·"; margin-right: var(--s-4); color: #6f8296; }
+.util-bar__links { list-style: none; display: flex; align-items: center; gap: var(--s-5); margin: 0; padding: 0; }
+.util-bar__links a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; color: #e8eff5; text-decoration: none; font-weight: 550; }
+.util-bar__links a:hover, .util-bar__links a[aria-current="page"] { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.util-bar__links svg { width: 14px; height: 14px; color: var(--brand-on-dark); }
+@media (min-width: 1024px) {
+  .util-bar { display: block; }
+  /* the phone lives in the utility bar on desktop, so the header keeps only the one primary action */
+  .header-actions .header-call { display: none; }
+}
+
+/* phones and tablets: the bottom action bar is the only floating layer (its AI button opens the assistant) */
+@media (max-width: 1023px) {
+  body.has-action-bar .chat-launcher:not([aria-expanded="true"]) { display: none; }
+  body.has-action-bar .to-top { display: none; }
+}

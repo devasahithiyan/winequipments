@@ -1,4 +1,17 @@
 {% set section = url.split('/')[1] if url != '/' else '' %}
+{# desktop utility bar: the real organisation and every direct contact route, so the main nav can stay short #}
+<div class="util-bar" aria-label="Contact and company">
+  <div class="container util-bar__row">
+    <p class="util-bar__facts"><span>{{ site.certification }} certified</span><span>Since {{ site.founded }}</span><span>Arasur, Coimbatore</span></p>
+    <ul class="util-bar__links">
+      <li><a href="tel:{{ site.phones[0].tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phones[0].display }}</a></li>
+      <li><a href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a></li>
+      <li><a href="mailto:{{ site.email }}" data-track="email_click"><svg aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a></li>
+      <li><a href="/downloads.html"{% if url == '/downloads.html' %} aria-current="page"{% endif %}>Downloads</a></li>
+      <li><a href="/certifications.html"{% if url == '/certifications.html' %} aria-current="page"{% endif %}>Certifications</a></li>
+    </ul>
+  </div>
+</div>
 <header class="site-header">
   <div class="container site-header__bar">
     <a class="brand" href="/" aria-label="Win Equipments home">
@@ -13,7 +26,6 @@
         <li><a class="nav-link" href="/services.html"{% if url == '/services.html' %} aria-current="page"{% endif %}>Services</a></li>
         <li><a class="nav-link" href="/industries/"{% if section == 'industries' %} aria-current="page"{% endif %}>Industries</a></li>
         <li><a class="nav-link" href="/engineering-tools/"{% if section == 'engineering-tools' %} aria-current="page"{% endif %}>Sizing tools</a></li>
-        <li><a class="nav-link" href="/downloads.html"{% if url == '/downloads.html' %} aria-current="page"{% endif %}>Downloads</a></li>
         <li><a class="nav-link" href="/about.html"{% if url == '/about.html' %} aria-current="page"{% endif %}>About</a></li>
         <li><a class="nav-link" href="/contactus.html"{% if url == '/contactus.html' %} aria-current="page"{% endif %}>Contact</a></li>
       </ul>

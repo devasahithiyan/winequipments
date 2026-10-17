@@ -35,26 +35,28 @@
       }, reduce ? 0 : 260);
       const bar = t.querySelector('i');
       if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
-      if (!cine.classList.contains('has-video') && shots.length) {
-        shot = (shot + 1) % shots.length;
-        shots.forEach((s, k) => s.classList.toggle('is-active', k === shot));
-      }
+    };
+    /* the machines change only when the visitor asks (tab or swipe): auto-advancing carousels get ignored and
+       take control away. Only the ambient photo backdrop keeps a slow crossfade until the works film plays. */
+    const nextShot = () => {
+      if (cine.classList.contains('has-video') || !shots.length) return;
+      shot = (shot + 1) % shots.length;
+      shots.forEach((s, k) => s.classList.toggle('is-active', k === shot));
     };
     const play = () => {
       if (reduce || hold) return;
       clearTimeout(timer);
-      cine.classList.add('is-playing');
-      timer = setTimeout(() => { show(i + 1); play(); }, DUR);
+      timer = setTimeout(() => { nextShot(); play(); }, DUR);
     };
-    const stop = () => { clearTimeout(timer); cine.classList.remove('is-playing'); };
-    tabs.forEach((t, k) => t.addEventListener('click', () => { show(k); play(); }));
+    const stop = () => { clearTimeout(timer); };
+    tabs.forEach((t, k) => t.addEventListener('click', () => show(k)));
     /* swipe the stage on touch screens */
     let x0 = null;
     stage.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') x0 = e.clientX; });
     stage.addEventListener('pointerup', (e) => {
       if (x0 === null) return;
       const dx = e.clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) { show(i + (dx < 0 ? 1 : -1)); play(); }
+      if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
     });
     /* pause while someone is looking at or tabbing through the stage */
     stage.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hold = true; stop(); } });

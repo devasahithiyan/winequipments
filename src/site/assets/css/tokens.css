@@ -48,9 +48,13 @@
   --save-ink: #00700d;
   --save-wash: #e5f1e3;
   --save-on-dark: #8fe0a0;
-  --flow: linear-gradient(90deg, var(--brand) 0%, #2a9ac9 50%, var(--save) 100%);
+  /* one accent: Win Blue. The old blue-to-green gradient is retired; --flow now resolves to the solid accent */
+  --flow: var(--brand);
+  --navy: #0b1b2c;
+  --navy-2: #12304d;
+  --star: #e8a317;
   /* the one dark band used across the home page: navy gradient under a faint blueprint grid */
-  --band-dark: linear-gradient(rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(90deg, rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(135deg, #06111d 0%, #0d2740 100%);
+  --band-dark: linear-gradient(rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(90deg, rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
 
   /* status */
   --error: #b42318;
@@ -61,7 +65,9 @@
 
   /* type */
   --font: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --fs-display: clamp(2.125rem, 1.2rem + 3.6vw, 4.25rem);
+  --fs-display: clamp(2.25rem, 1.3rem + 3.4vw, 4.25rem);
+  --fs-page: clamp(2rem, 1.3rem + 2.6vw, 3.5rem);
+  --fs-section: clamp(1.75rem, 1.2rem + 2vw, 3rem);
   --fs-h1: clamp(1.875rem, 1.35rem + 2.2vw, 2.875rem);
   --fs-h2: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
   --fs-h3: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem);
@@ -74,8 +80,8 @@
   --lh-tight: 1.08;
   --lh-head: 1.18;
   --lh-body: 1.6;
-  --wdth-display: 72%;
-  --wdth-head: 80%;
+  --wdth-display: 82%;
+  --wdth-head: 88%;
 
   /* space: 4px base */
   --s-1: 0.25rem;
