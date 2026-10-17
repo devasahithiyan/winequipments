@@ -17,16 +17,16 @@
 .chat-launcher[aria-busy="true"] { opacity: 0.7; }
 .chat-launcher[aria-expanded="true"] { transform: scale(0.9); opacity: 0; pointer-events: none; }
 body.has-action-bar .chat-launcher { bottom: calc(var(--bar-h) + var(--s-3) + env(safe-area-inset-bottom)); }
-body:has(.action-bar.is-hidden) .chat-launcher, body:has(.action-bar:not(.is-ready)) .chat-launcher { bottom: calc(var(--s-4) + env(safe-area-inset-bottom)); }
+body.bar-hidden .chat-launcher, body.has-action-bar:not(.bar-ready) .chat-launcher { bottom: calc(var(--s-4) + env(safe-area-inset-bottom)); }
 @media (max-width: 1023px) {
   .chat-launcher { height: 48px; padding: 0 var(--s-4) 0 var(--s-3); gap: 6px; }
   .chat-launcher__long { display: none; }
   .chat-launcher__short { display: inline; font-size: 0.9375rem; letter-spacing: 0.04em; }
-  body:has(.action-bar.is-hidden) .chat-launcher:not([aria-expanded="true"]), body:has(.action-bar:not(.is-ready)) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; }
+  body.bar-hidden .chat-launcher:not([aria-expanded="true"]), body.has-action-bar:not(.bar-ready) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; }
 }
 @media (min-width: 1024px) { body.has-action-bar .chat-launcher { bottom: var(--s-6); } }
 /* phones: the assistant lives in the action bar, so the floating pill never covers the page */
-@media (max-width: 1023px) { body.has-action-bar:has(.action-bar) .chat-launcher:not([aria-expanded="true"]) { display: none; } }
+@media (max-width: 1023px) { body.has-action-bar .chat-launcher:not([aria-expanded="true"]) { display: none; } }
 .action-bar__ai svg { color: var(--brand); }
 body.menu-open .chat-launcher { display: none; }
 @media (prefers-reduced-motion: reduce) { .chat-launcher { animation: none; } }
@@ -103,5 +103,5 @@ body.chat-open { overflow: hidden; }
 .chat__note { margin-top: var(--s-2); font-size: 0.75rem; line-height: 1.4; color: var(--muted); text-align: center; }
 @media (prefers-reduced-motion: reduce) { .chat__shimmer, .chat__dots i, .chat__avatar.is-busy svg, .chat__msg.is-streaming > :last-child::after { animation: none; } .chat__shimmer { color: var(--muted); background: none; } }
 /* homepage: keep the launcher off the cinematic hero; it arrives once the hero actions scroll away */
-body.page-home:has(.action-bar.is-hidden) .chat-launcher:not([aria-expanded="true"]),
-body.page-home:has(.action-bar:not(.is-ready)) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; }
+body.page-home.bar-hidden .chat-launcher:not([aria-expanded="true"]),
+body.page-home.has-action-bar:not(.bar-ready) .chat-launcher:not([aria-expanded="true"]) { opacity: 0; transform: translateY(12px); pointer-events: none; }

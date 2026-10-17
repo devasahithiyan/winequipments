@@ -361,7 +361,7 @@ body.lb-open { overflow: hidden; }
 @media (max-width: 1023px) {
   body.has-action-bar .to-top { bottom: calc(var(--bar-h) + var(--s-3) + env(safe-area-inset-bottom)); }
   /* the bar steps aside for forms and the footer; so does this button, so it never sits on a field */
-  body:has(.action-bar.is-hidden) .to-top { opacity: 0; visibility: hidden; pointer-events: none; }
+  body.bar-hidden .to-top { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 @media (min-width: 1024px) { .to-top { bottom: calc(var(--s-6) + 52px + var(--s-3)); } }
 body.menu-open .to-top, body.chat-open .to-top { display: none; }

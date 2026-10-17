@@ -457,10 +457,20 @@
     warm.observe(stage);
   }
   if (can3d && autoLoad) {
-    const near = new IntersectionObserver((en) => {
-      if (en.some((e) => e.isIntersecting)) { near.disconnect(); upgrade(); }
-    }, { rootMargin: '400px 0px' });
+    /* Building the model takes the main thread for a few hundred ms. Doing it mid-scroll made product pages stutter,
+       so fetch the files early, then build only when the viewer is on screen and the visitor has paused scrolling. */
+    const warm = new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) { warm.disconnect(); preload(); } }, { rootMargin: '900px 0px' });
+    warm.observe(stage);
+    let visible = false, started = false, idleT = 0;
+    const go = () => { if (started || !visible) return; started = true; near.disconnect(); removeEventListener('scroll', arm); upgrade(); };
+    const arm = () => {
+      clearTimeout(idleT);
+      if (!visible || started) return;
+      idleT = setTimeout(() => (window.requestIdleCallback ? requestIdleCallback(go, { timeout: 1500 }) : go()), 450);
+    };
+    const near = new IntersectionObserver((en) => { visible = en.some((e) => e.isIntersecting); if (visible) arm(); else clearTimeout(idleT); }, { threshold: 0.25 });
     near.observe(stage);
+    addEventListener('scroll', arm, { passive: true });
   }
   render();
   requestAnimationFrame(loop);

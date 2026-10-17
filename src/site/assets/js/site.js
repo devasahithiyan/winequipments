@@ -278,11 +278,13 @@
 
   /* action bar: hide while the enquiry form is on screen or a field has focus */
   const bar = $('#action-bar');
-  if (bar && !('IntersectionObserver' in window)) bar.classList.add('is-ready');
+  if (bar && !('IntersectionObserver' in window)) { bar.classList.toggle('is-ready', true); document.body.classList.toggle('bar-ready', true); }
   if (bar && 'IntersectionObserver' in window) {
     const vis = {};
     let typing = false;
-    const update = () => { bar.classList.toggle('is-hidden', typing || Object.values(vis).some(Boolean)); bar.classList.add('is-ready'); };
+    /* toggle(name, force) leaves the attribute alone when nothing changes; add()/remove() always rewrite it,
+       and a rewritten <body> class restyles the whole page */
+    const update = () => { const hide = typing || Object.values(vis).some(Boolean); bar.classList.toggle('is-hidden', hide); bar.classList.toggle('is-ready', true); document.body.classList.toggle('bar-hidden', hide); document.body.classList.toggle('bar-ready', true); };
     $$('#quote, .h-quick, .site-footer').forEach((el, i) => new IntersectionObserver((en) => { vis[i] = en[en.length - 1].isIntersecting; update(); }, { threshold: 0.02 }).observe(el));
     const heroCta = $('.cine__ctas, .h-hero__ctas, .hero .btn-row, .p-hero .btn-row, .hub-hero .btn-row');
     if (heroCta) new IntersectionObserver((en) => { const e = en[en.length - 1]; vis.hero = e.isIntersecting; update(); }).observe(heroCta);
@@ -386,16 +388,20 @@
   if (header) {
     const narrow = matchMedia('(max-width: 899px)');
     let lastY = scrollY;
+    /* once per frame, and classes only change when their state does: classList.remove() on <body> rewrites the
+       attribute even when the class is absent, which restyled the whole page on every scroll event */
+    let ticking = false;
     const onScroll = () => {
+      ticking = false;
       const y = scrollY;
       header.classList.toggle('is-scrolled', y > 24);
       /* phones: tuck the header away while scrolling down, bring it back on any scroll up */
       const busy = document.body.matches('.menu-open, .chat-open') || header.contains(document.activeElement);
-      if (!narrow.matches || busy || y < 200) document.body.classList.remove('hdr-hide');
+      if (!narrow.matches || busy || y < 200) document.body.classList.toggle('hdr-hide', false);
       else if (Math.abs(y - lastY) > 6) document.body.classList.toggle('hdr-hide', y > lastY);
       lastY = y;
     };
-    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
     onScroll();
   }
 })();
@@ -558,7 +564,7 @@ if ('serviceWorker' in navigator) {
     const long = document.documentElement.scrollHeight > innerHeight * 3;
     if (scrollY < lastY - 6) up = true; else if (scrollY > lastY + 6) up = false;
     lastY = scrollY;
-    btn.hidden = !long;
+    if (btn.hidden === long) btn.hidden = !long;
     /* phones: only while scrolling back up, so it never covers the page you are reading */
     btn.classList.toggle('is-shown', long && scrollY > innerHeight * 1.5 && (innerWidth >= 1024 || up));
   };

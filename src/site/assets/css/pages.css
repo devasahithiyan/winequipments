@@ -605,7 +605,7 @@ a.ct-card--wa:hover .ct-card__ic { background: #fff; color: var(--brand); }
 /* ---------- product pages on phones: clearer top of page, anchors that clear the pinned bars, bigger tap targets ---------- */
 :root { --subnav-h: 44px; }
 @media (min-width: 900px) { :root { --subnav-h: 48px; } }
-html:has(.subnav) { scroll-padding-top: calc(var(--header-h) + var(--subnav-h) + var(--s-4)); }
+html.has-subnav { scroll-padding-top: calc(var(--header-h) + var(--subnav-h) + var(--s-4)); }
 .subnav a { min-height: var(--subnav-h); }
 @media (max-width: 639px) {
   .subnav a { padding: 0 var(--s-3); }
@@ -639,7 +639,7 @@ html:has(.subnav) { scroll-padding-top: calc(var(--header-h) + var(--subnav-h) +
   .p-hero .p-hero__cta .btn { width: 100%; justify-content: center; }
   .p-hero .p-hero__cta .btn--lg { padding-inline: var(--s-3); }
   .wide-only { display: none; }
-  .p-hero__cta:not(:has(.p-hero__brochure)) .btn--wa { grid-column: 1 / -1; }
+  .p-hero__cta--nobrochure .btn--wa { grid-column: 1 / -1; }
 }
 @media (min-width: 640px) { .p-hero__trust { grid-template-columns: repeat(auto-fit, minmax(14rem, max-content)); } }
 @media (min-width: 900px) { .p-hero__price-more > .m-collapse__sum { display: none; } .p-hero__price-more { margin-top: var(--s-2); } }

@@ -11,6 +11,7 @@
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema()] + ([pld] if pld else []) + [crumbs_ld(crumbs), faq_ld(p.faqs)]}) }}
 {% endblock %}
 {% block extra_css %}{% if p.slug in ('industrial-process-chillers', 'desiccant-air-dryers', 'round-cooling-towers') or p.spin is defined %}<link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endif %}{% endblock %}
+{% block html_attrs %} class="has-subnav"{% endblock %}
 {% block main %}
 <div class="read-progress" aria-hidden="true"></div>
 {{ m.breadcrumb(crumbs) }}
@@ -37,7 +38,7 @@
     <div class="p-hero__body">
       <p class="p-hero__lede" data-intro style="--d:2">{{ p.lede }}</p>
       {% if p.key_specs %}<div data-intro style="--d:3">{{ m.readout(p.key_specs) }}</div>{% endif %}
-      <div class="btn-row p-hero__cta" data-intro style="--d:4">
+      <div class="btn-row p-hero__cta{% if not p.download %} p-hero__cta--nobrochure{% endif %}" data-intro style="--d:4">
         <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
         <a class="btn btn--secondary btn--lg btn--wa" href="{{ whatsapp(wa_text) }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
         {% if p.download %}<a class="btn btn--secondary btn--lg p-hero__brochure" href="{{ p.download }}?v={{ downloads_by_product[p.slug].sha256[:12] }}" download data-track="catalogue_download" data-document-id="{{ downloads_by_product[p.slug].id }}"><svg aria-hidden="true"><use href="#i-doc"/></svg><span><span class="wide-only">Download brochure</span><span class="narrow-only">Brochure</span><small>PDF · {{ downloads_by_product[p.slug].size }}</small></span></a>{% endif %}

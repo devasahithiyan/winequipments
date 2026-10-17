@@ -8,6 +8,7 @@
 {% block schema %}
 {{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "CollectionPage", "name": fam.name, "url": site.url ~ "/products/" ~ fam.slug ~ ".html", "hasPart": fam_urls(fam)}]}) }}
 {% endblock %}
+{% block html_attrs %} class="has-subnav"{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
 <section class="f-hero">
