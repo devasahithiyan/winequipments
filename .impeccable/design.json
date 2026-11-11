@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T02:27:58Z",
+  "title": "Design System: Win Equipments",
+  "extensions": {
+    "colorMeta": {
+      "brand": {
+        "role": "primary",
+        "displayName": "Win Blue",
+        "tonalRamp": [
+          "oklch(15% 0.121 248.3)",
+          "oklch(26% 0.121 248.3)",
+          "oklch(38% 0.121 248.3)",
+          "oklch(49% 0.121 248.3)",
+          "oklch(61% 0.121 248.3)",
+          "oklch(72% 0.121 248.3)",
+          "oklch(84% 0.121 248.3)",
+          "oklch(95% 0.121 248.3)"
+        ]
+      },
+      "brand-press": {
+        "role": "primary",
+        "displayName": "Press Blue",
+        "tonalRamp": [
+          "oklch(15% 0.107 249.1)",
+          "oklch(26% 0.107 249.1)",
+          "oklch(38% 0.107 249.1)",
+          "oklch(49% 0.107 249.1)",
+          "oklch(61% 0.107 249.1)",
+          "oklch(72% 0.107 249.1)",
+          "oklch(84% 0.107 249.1)",
+          "oklch(95% 0.107 249.1)"
+        ]
+      },
+      "brand-ink": {
+        "role": "primary",
+        "displayName": "Blue Ink",
+        "tonalRamp": [
+          "oklch(15% 0.104 250.0)",
+          "oklch(26% 0.104 250.0)",
+          "oklch(38% 0.104 250.0)",
+          "oklch(49% 0.104 250.0)",
+          "oklch(61% 0.104 250.0)",
+          "oklch(72% 0.104 250.0)",
+          "oklch(84% 0.104 250.0)",
+          "oklch(95% 0.104 250.0)"
+        ]
+      },
+      "brand-wash": {
+        "role": "primary",
+        "displayName": "Blue Wash",
+        "tonalRamp": [
+          "oklch(15% 0.014 244.7)",
+          "oklch(26% 0.014 244.7)",
+          "oklch(38% 0.014 244.7)",
+          "oklch(49% 0.014 244.7)",
+          "oklch(61% 0.014 244.7)",
+          "oklch(72% 0.014 244.7)",
+          "oklch(84% 0.014 244.7)",
+          "oklch(95% 0.014 244.7)"
+        ]
+      },
+      "brand-on-dark": {
+        "role": "primary",
+        "displayName": "Light Win Blue",
+        "tonalRamp": [
+          "oklch(15% 0.087 241.9)",
+          "oklch(26% 0.087 241.9)",
+          "oklch(38% 0.087 241.9)",
+          "oklch(49% 0.087 241.9)",
+          "oklch(61% 0.087 241.9)",
+          "oklch(72% 0.087 241.9)",
+          "oklch(84% 0.087 241.9)",
+          "oklch(95% 0.087 241.9)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus Blue",
+        "tonalRamp": [
+          "oklch(15% 0.086 249.8)",
+          "oklch(26% 0.086 249.8)",
+          "oklch(38% 0.086 249.8)",
+          "oklch(49% 0.086 249.8)",
+          "oklch(61% 0.086 249.8)",
+          "oklch(72% 0.086 249.8)",
+          "oklch(84% 0.086 249.8)",
+          "oklch(95% 0.086 249.8)"
+        ]
+      },
+      "save": {
+        "role": "secondary",
+        "displayName": "Win Green",
+        "tonalRamp": [
+          "oklch(15% 0.180 143.3)",
+          "oklch(26% 0.180 143.3)",
+          "oklch(38% 0.180 143.3)",
+          "oklch(49% 0.180 143.3)",
+          "oklch(61% 0.180 143.3)",
+          "oklch(72% 0.180 143.3)",
+          "oklch(84% 0.180 143.3)",
+          "oklch(95% 0.180 143.3)"
+        ]
+      },
+      "save-ink": {
+        "role": "secondary",
+        "displayName": "Deep Green",
+        "tonalRamp": [
+          "oklch(15% 0.156 143.4)",
+          "oklch(26% 0.156 143.4)",
+          "oklch(38% 0.156 143.4)",
+          "oklch(49% 0.156 143.4)",
+          "oklch(61% 0.156 143.4)",
+          "oklch(72% 0.156 143.4)",
+          "oklch(84% 0.156 143.4)",
+          "oklch(95% 0.156 143.4)"
+        ]
+      },
+      "error": {
+        "role": "tertiary",
+        "displayName": "Error",
+        "tonalRamp": [
+          "oklch(15% 0.182 29.5)",
+          "oklch(26% 0.182 29.5)",
+          "oklch(38% 0.182 29.5)",
+          "oklch(49% 0.182 29.5)",
+          "oklch(61% 0.182 29.5)",
+          "oklch(72% 0.182 29.5)",
+          "oklch(84% 0.182 29.5)",
+          "oklch(95% 0.182 29.5)"
+        ]
+      },
+      "error-wash": {
+        "role": "tertiary",
+        "displayName": "Error Wash",
+        "tonalRamp": [
+          "oklch(15% 0.019 21.6)",
+          "oklch(26% 0.019 21.6)",
+          "oklch(38% 0.019 21.6)",
+          "oklch(49% 0.019 21.6)",
+          "oklch(61% 0.019 21.6)",
+          "oklch(72% 0.019 21.6)",
+          "oklch(84% 0.019 21.6)",
+          "oklch(95% 0.019 21.6)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "tonalRamp": [
+          "oklch(15% 0.004 236.5)",
+          "oklch(26% 0.004 236.5)",
+          "oklch(38% 0.004 236.5)",
+          "oklch(49% 0.004 236.5)",
+          "oklch(61% 0.004 236.5)",
+          "oklch(72% 0.004 236.5)",
+          "oklch(84% 0.004 236.5)",
+          "oklch(95% 0.004 236.5)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.000 0.0)",
+          "oklch(26% 0.000 0.0)",
+          "oklch(38% 0.000 0.0)",
+          "oklch(49% 0.000 0.0)",
+          "oklch(61% 0.000 0.0)",
+          "oklch(72% 0.000 0.0)",
+          "oklch(84% 0.000 0.0)",
+          "oklch(95% 0.000 0.0)"
+        ]
+      },
+      "catalogue-stage": {
+        "role": "neutral",
+        "displayName": "Equipment Plate",
+        "tonalRamp": [
+          "oklch(15% 0.011 243.7)",
+          "oklch(26% 0.011 243.7)",
+          "oklch(38% 0.011 243.7)",
+          "oklch(49% 0.011 243.7)",
+          "oklch(61% 0.011 243.7)",
+          "oklch(72% 0.011 243.7)",
+          "oklch(84% 0.011 243.7)",
+          "oklch(95% 0.011 243.7)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.037 252.6)",
+          "oklch(26% 0.037 252.6)",
+          "oklch(38% 0.037 252.6)",
+          "oklch(49% 0.037 252.6)",
+          "oklch(61% 0.037 252.6)",
+          "oklch(72% 0.037 252.6)",
+          "oklch(84% 0.037 252.6)",
+          "oklch(95% 0.037 252.6)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "tonalRamp": [
+          "oklch(15% 0.034 250.4)",
+          "oklch(26% 0.034 250.4)",
+          "oklch(38% 0.034 250.4)",
+          "oklch(49% 0.034 250.4)",
+          "oklch(61% 0.034 250.4)",
+          "oklch(72% 0.034 250.4)",
+          "oklch(84% 0.034 250.4)",
+          "oklch(95% 0.034 250.4)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "tonalRamp": [
+          "oklch(15% 0.034 250.1)",
+          "oklch(26% 0.034 250.1)",
+          "oklch(38% 0.034 250.1)",
+          "oklch(49% 0.034 250.1)",
+          "oklch(61% 0.034 250.1)",
+          "oklch(72% 0.034 250.1)",
+          "oklch(84% 0.034 250.1)",
+          "oklch(95% 0.034 250.1)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15% 0.015 244.7)",
+          "oklch(26% 0.015 244.7)",
+          "oklch(38% 0.015 244.7)",
+          "oklch(49% 0.015 244.7)",
+          "oklch(61% 0.015 244.7)",
+          "oklch(72% 0.015 244.7)",
+          "oklch(84% 0.015 244.7)",
+          "oklch(95% 0.015 244.7)"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "tonalRamp": [
+          "oklch(15% 0.028 248.2)",
+          "oklch(26% 0.028 248.2)",
+          "oklch(38% 0.028 248.2)",
+          "oklch(49% 0.028 248.2)",
+          "oklch(61% 0.028 248.2)",
+          "oklch(72% 0.028 248.2)",
+          "oklch(84% 0.028 248.2)",
+          "oklch(95% 0.028 248.2)"
+        ]
+      },
+      "navy": {
+        "role": "neutral",
+        "displayName": "Navy",
+        "tonalRamp": [
+          "oklch(15% 0.040 251.4)",
+          "oklch(26% 0.040 251.4)",
+          "oklch(38% 0.040 251.4)",
+          "oklch(49% 0.040 251.4)",
+          "oklch(61% 0.040 251.4)",
+          "oklch(72% 0.040 251.4)",
+          "oklch(84% 0.040 251.4)",
+          "oklch(95% 0.040 251.4)"
+        ]
+      },
+      "navy-2": {
+        "role": "neutral",
+        "displayName": "Navy Step",
+        "tonalRamp": [
+          "oklch(15% 0.064 250.1)",
+          "oklch(26% 0.064 250.1)",
+          "oklch(38% 0.064 250.1)",
+          "oklch(49% 0.064 250.1)",
+          "oklch(61% 0.064 250.1)",
+          "oklch(72% 0.064 250.1)",
+          "oklch(84% 0.064 250.1)",
+          "oklch(95% 0.064 250.1)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Shared masthead title in 82% Archivo."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Prominent section heading in 82% Archivo."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Component and subsection heading in 88% Archivo."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Short opening explanation."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Main reading text at normal width with tabular numerals."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Compact metadata and short labels."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Primary and supporting actions."
+      },
+      "nav": {
+        "displayName": "Nav",
+        "purpose": "Desktop main links."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-1",
+        "value": "0 1px 2px rgba(18, 32, 48, 0.06), 0 2px 8px rgba(18, 32, 48, 0.06)",
+        "purpose": "Subtle elevation for interactive feedback."
+      },
+      {
+        "name": "shadow-2",
+        "value": "0 8px 28px rgba(18, 32, 48, 0.16)",
+        "purpose": "Floating panels and overlays."
+      },
+      {
+        "name": "action-bar",
+        "value": "0 -4px 16px rgba(18, 32, 48, 0.08)",
+        "purpose": "Separates the fixed action bar from page content."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Standard easing for state changes."
+      },
+      {
+        "name": "button-color",
+        "value": "150ms",
+        "purpose": "Background, border and text color transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "form-columns",
+        "value": "640px"
+      },
+      {
+        "name": "equipment-links",
+        "value": "800px"
+      },
+      {
+        "name": "product-and-table-layout",
+        "value": "900px"
+      },
+      {
+        "name": "desktop-navigation",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Leads an enquiry or equipment browsing task.",
+      "html": "<button class=\"ds-button ds-primary\" type=\"button\">Request a quote</button>",
+      "css": ".ds-button { display:inline-flex; align-items:center; justify-content:center; gap:var(--s-2, 0.5rem); min-height:var(--tap, 48px); padding:0 var(--s-5, 1.25rem); border:1px solid transparent; border-radius:var(--r-1, 4px); font:650 1rem/1.2 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); text-decoration:none; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s,transform .25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),box-shadow .25s; }\n@media (prefers-reduced-motion:reduce) { .ds-button { transition:none; } }\n.ds-button:focus-visible { outline:3px solid var(--focus, #0f3d66); outline-offset:2px; }\n.ds-primary { background:var(--brand, #1f6aa8); color:var(--surface, #ffffff); }\n.ds-primary:hover { background:var(--brand-press, #17558a); }\n@media (hover:hover) and (prefers-reduced-motion:no-preference) { .ds-primary:hover { transform:translateY(-1px); box-shadow:0 6px 16px rgba(31,106,168,.25); } }\n.ds-primary:active { background:#0f4470; transform:none; box-shadow:none; }"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supports a related action.",
+      "html": "<button class=\"ds-button ds-secondary\" type=\"button\">Download brochure</button>",
+      "css": ".ds-button { display:inline-flex; align-items:center; justify-content:center; gap:var(--s-2, 0.5rem); min-height:var(--tap, 48px); padding:0 var(--s-5, 1.25rem); border:1px solid transparent; border-radius:var(--r-1, 4px); font:650 1rem/1.2 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); text-decoration:none; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s,transform .25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),box-shadow .25s; }\n@media (prefers-reduced-motion:reduce) { .ds-button { transition:none; } }\n.ds-button:focus-visible { outline:3px solid var(--focus, #0f3d66); outline-offset:2px; }\n.ds-secondary { background:var(--surface, #ffffff); color:var(--ink, #122030); border-color:var(--rule-strong, #96a5b4); }\n.ds-secondary:hover { border-color:var(--ink, #122030); }\n@media (hover:hover) and (prefers-reduced-motion:no-preference) { .ds-secondary:hover { transform:translateY(-1px); } }\n.ds-secondary:active { transform:none; }"
+    },
+    {
+      "name": "Ghost button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "A low-emphasis control, such as the mobile header call.",
+      "html": "<button class=\"ds-button ds-ghost\" aria-label=\"Call Win Equipments\" type=\"button\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2\"/></svg></button>",
+      "css": ".ds-button { display:inline-flex; align-items:center; justify-content:center; gap:var(--s-2, 0.5rem); min-height:var(--tap, 48px); padding:0 var(--s-5, 1.25rem); border:1px solid transparent; border-radius:var(--r-1, 4px); font:650 1rem/1.2 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); text-decoration:none; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s,transform .25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),box-shadow .25s; }\n@media (prefers-reduced-motion:reduce) { .ds-button { transition:none; } }\n.ds-button:focus-visible { outline:3px solid var(--focus, #0f3d66); outline-offset:2px; }\n.ds-ghost { width:var(--tap, 48px); padding:0; background:transparent; color:var(--ink, #122030); }\n.ds-ghost:hover { color:var(--brand-ink, #165084); }\n.ds-ghost svg { width:20px; height:20px; }"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A labelled field for equipment search and enquiries.",
+      "html": "<label class=\"ds-field\">Search products, models or applications<input class=\"ds-input\" type=\"search\" placeholder=\"e.g. WCP-050, air dryer, injection moulding\"></label>",
+      "css": ".ds-field { display:grid; gap:var(--s-1, 0.25rem); color:var(--ink, #122030); font:600 .9375rem/1.6 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); }\n.ds-input { box-sizing:border-box; width:100%; min-height:var(--tap, 48px); padding:var(--s-3, 0.75rem); border:1px solid var(--rule-strong, #96a5b4); border-radius:var(--r-1, 4px); background:var(--surface, #ffffff); color:var(--ink, #122030); font:400 1rem/1.4 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); caret-color:var(--brand, #1f6aa8); }\n.ds-input:hover { border-color:var(--ink-2, #2f3e4e); }\n.ds-input:focus { outline:3px solid var(--focus, #0f3d66); outline-offset:1px; border-color:var(--ink, #122030); }\n.ds-input[aria-invalid=true] { border-color:var(--error, #b42318); background:var(--error-wash, #fdeceb); }"
+    },
+    {
+      "name": "Catalogue match tag",
+      "kind": "chip",
+      "refersTo": "product-tag",
+      "description": "Marks a matching product range in catalogue search.",
+      "html": "<span class=\"ds-tag\">Matches your search</span>",
+      "css": ".ds-tag { display:inline-block; padding:2px var(--s-2, 0.5rem); border-radius:999px; background:var(--brand-wash, #e8f1f9); color:var(--brand-ink, #165084); font:650 var(--fs-label, 0.8125rem)/1.6 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); }"
+    },
+    {
+      "name": "Shared navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Main destinations and the current section state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a class=\"ds-nav-link\" href=\"/products/\" aria-current=\"location\">Products</a><a class=\"ds-nav-link\" href=\"/industries/\">Industries</a><a class=\"ds-nav-link\" href=\"/engineering-tools/\">Sizing tools</a><a class=\"ds-nav-link\" href=\"/downloads.html\">Downloads</a><a class=\"ds-nav-link\" href=\"/services.html\">Service &amp; repair</a><a class=\"ds-nav-link\" href=\"/about.html\">About</a></nav>",
+      "css": ".ds-nav { display:flex; flex-wrap:wrap; gap:var(--s-1, 0.25rem); background:var(--surface, #ffffff); border-bottom:1px solid var(--rule, #d2dbe3); }\n.ds-nav-link { box-sizing:border-box; display:inline-flex; min-height:72px; align-items:center; padding:0 var(--s-3, 0.75rem); border-bottom:2px solid transparent; color:var(--ink, #122030); font:550 .9375rem/1.6 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); text-decoration:none; white-space:nowrap; }\n.ds-nav-link:hover,.ds-nav-link[aria-current=page],.ds-nav-link[aria-current=location] { border-bottom-color:var(--brand, #1f6aa8); }\n.ds-nav-link[aria-current=location] { color:var(--brand-ink, #165084); }\n.ds-nav-link:focus-visible { outline:3px solid var(--focus, #0f3d66); outline-offset:-3px; }"
+    },
+    {
+      "name": "Contact channel card",
+      "kind": "card",
+      "refersTo": "contact-card",
+      "description": "Shows a direct contact channel and what to send.",
+      "html": "<a class=\"ds-contact\" href=\"https://wa.me/919597228969\"><span class=\"ds-contact-icon\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5.1 5.2-1.4A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.1.8.83-3-.2-.31a8.2 8.2 0 1 1 6.97 3.84Zm4.5-6.15c-.25-.12-1.46-.72-1.69-.8-.22-.08-.39-.12-.55.13-.16.24-.63.8-.78.96-.14.17-.29.19-.53.06a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.42l-.75-1.82c-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.73 2.73 0 0 0-.85 2.03 4.74 4.74 0 0 0 1 2.52 10.85 10.85 0 0 0 4.16 3.67c1.55.67 2.15.73 2.93.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.06-.11-.22-.17-.47-.29Z\"/></svg></span><span class=\"ds-contact-label\">WhatsApp</span><strong>+91 95972 28969</strong><span class=\"ds-contact-note\">Send photos, nameplates or drawings</span><span class=\"ds-contact-go\">Start a chat<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a>",
+      "css": ".ds-contact { display:grid; gap:4px; align-content:start; padding:var(--s-5, 1.25rem); border:1px solid var(--rule, #d2dbe3); border-radius:16px; background:var(--surface, #ffffff); color:var(--ink, #122030); font:400 1rem/1.6 var(--font, \"Archivo\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); text-decoration:none; transition:transform .4s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); }\n.ds-contact-icon { width:46px; height:46px; display:grid; place-items:center; margin-bottom:var(--s-3, 0.75rem); border-radius:var(--r-3, 12px); background:var(--brand-wash, #e8f1f9); color:var(--brand-ink, #165084); }\n.ds-contact-icon svg { width:22px; height:22px; }\n.ds-contact strong { font-size:1.1875rem; font-weight:700; font-stretch:88%; line-height:1.3; }\n.ds-contact-label { color:var(--brand-ink, #165084); font-size:var(--fs-label, 0.8125rem); font-weight:650; letter-spacing:.05em; text-transform:uppercase; }\n.ds-contact-note { color:var(--brand-ink, #165084); font-size:var(--fs-small, 0.875rem); }\n.ds-contact-go { display:inline-flex; align-items:center; gap:6px; margin-top:var(--s-3, 0.75rem); color:var(--brand-ink, #165084); font-size:var(--fs-small, 0.875rem); font-weight:650; }\n.ds-contact-go svg { width:16px; height:16px; }\n.ds-contact:hover { border-color:var(--brand, #1f6aa8); }\n@media (hover:hover) and (prefers-reduced-motion:no-preference) { .ds-contact:hover { transform:translateY(-4px); } }\n.ds-contact:focus-visible { outline:3px solid var(--focus, #0f3d66); outline-offset:2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "One engineering catalogue, from the equipment name to the enquiry.",
+    "overview": "Win Equipments opens with recognizable machinery and clear names. Cool paper, white panels and left-aligned Archivo give operating conditions, model codes and documentation space to be read. The catalogue and the support pages share the same title rhythm, navigation and controls.\n\nEquipment photography and technical data carry the detail. Win Blue identifies actions, the green Win logo identifies the manufacturer, and plain navy bands group related information.",
+    "keyCharacteristics": [
+      "Catalogue names and real equipment lead each product page.",
+      "Light mastheads, cool equipment plates and fine rules connect the route types.",
+      "Shared navigation order and direct contact actions keep the catalogue usable across screen sizes."
+    ],
+    "rules": [
+      {
+        "name": "The Action Color Rule",
+        "body": "Use filled Win Blue for the leading action in each group. Use an outline or a text link for supporting actions.",
+        "section": "colors"
+      },
+      {
+        "name": "The Catalogue Name Rule",
+        "body": "Use the catalogue product name as the product H1. Put the series, application and other qualifiers in the supporting copy, series label or readouts.",
+        "section": "typography"
+      },
+      {
+        "name": "The Surface Rule",
+        "body": "Separate adjacent content with a change in surface or a fine rule. Use elevation when an element sits above the page or responds to interaction.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use real Win equipment cut-outs and factory photography.",
+      "**Do** present catalogue values with units and their operating or rating conditions.",
+      "**Do** preserve the shared navigation order, visible focus and direct paths to sizing, documents and enquiry.",
+      "**Do** check the narrow layouts with real product names, tables and enquiry controls."
+    ],
+    "donts": [
+      "**Don't** add rotating hero panels, decorative grid effects or background video to the catalogue entrance.",
+      "**Don't** substitute stock or generated factory and equipment imagery for authentic assets.",
+      "**Don't** put the equipment assistant in the fixed action bar."
+    ]
+  }
+}

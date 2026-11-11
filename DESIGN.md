@@ -1,121 +1,255 @@
-# Win Equipments design system
+---
+name: Win Equipments
+description: An engineering catalogue built around real equipment, catalogue data and direct access to the manufacturer.
+colors:
+  brand: "#1f6aa8"
+  brand-press: "#17558a"
+  brand-ink: "#165084"
+  brand-wash: "#e8f1f9"
+  brand-on-dark: "#8cc6f2"
+  focus: "#0f3d66"
+  save: "#008810"
+  save-ink: "#00700d"
+  error: "#b42318"
+  error-wash: "#fdeceb"
+  paper: "#f5f8fa"
+  surface: "#ffffff"
+  catalogue-stage: "#e8eff5"
+  ink: "#122030"
+  ink-2: "#2f3e4e"
+  muted: "#526273"
+  rule: "#d2dbe3"
+  rule-strong: "#96a5b4"
+  navy: "#0b1b2c"
+  navy-2: "#12304d"
+typography:
+  display:
+    fontFamily: 'Archivo, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+    fontSize: "clamp(2.25rem, 1.3rem + 3.4vw, 4.25rem)"
+    fontWeight: 700
+    lineHeight: 1.03
+    letterSpacing: "-0.025em"
+  headline:
+    fontSize: "clamp(1.75rem, 1.2rem + 2vw, 3rem)"
+    fontWeight: 700
+    lineHeight: 1.02
+    letterSpacing: "-0.02em"
+  title:
+    fontSize: "clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem)"
+    fontWeight: 700
+    lineHeight: 1.18
+    letterSpacing: "-0.01em"
+  lede:
+    fontSize: "clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)"
+    lineHeight: 1.55
+  body:
+    fontFamily: 'Archivo, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+    fontSize: "clamp(1rem, 0.96rem + 0.18vw, 1.0625rem)"
+    fontWeight: 400
+    lineHeight: 1.6
+  label:
+    fontSize: "0.8125rem"
+    fontWeight: 650
+    letterSpacing: "0.05em"
+  button:
+    fontSize: "1rem"
+    fontWeight: 650
+    lineHeight: 1.2
+  nav:
+    fontSize: "0.9375rem"
+    fontWeight: 550
+rounded:
+  r-1: "4px"
+  r-2: "8px"
+  r-3: "12px"
+  contact-card: "16px"
+  pill: "999px"
+spacing:
+  s-1: "0.25rem"
+  s-2: "0.5rem"
+  s-3: "0.75rem"
+  s-4: "1rem"
+  s-5: "1.25rem"
+  s-6: "1.5rem"
+  s-8: "2rem"
+  s-10: "2.5rem"
+  s-12: "3rem"
+  s-16: "4rem"
+  s-20: "5rem"
+  gutter: "clamp(1rem, 0.6rem + 1.8vw, 2rem)"
+  section: "clamp(2.75rem, 2.1rem + 3vw, 5rem)"
+  masthead: "clamp(1.5rem, 1.1rem + 2vw, 3.25rem)"
+  container: "76rem"
+  measure: "68ch"
+  tap: "48px"
+components:
+  button-primary:
+    backgroundColor: "{colors.brand}"
+    textColor: "{colors.surface}"
+    typography: "{typography.button}"
+    rounded: "{rounded.r-1}"
+    padding: "0 1.25rem"
+  button-primary-hover:
+    backgroundColor: "{colors.brand-press}"
+    textColor: "{colors.surface}"
+  button-secondary:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.r-1}"
+    padding: "0 1.25rem"
+  button-ghost:
+    backgroundColor: "transparent"
+    textColor: "{colors.ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.r-1}"
+    padding: "0 0.75rem"
+  input:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.r-1}"
+    padding: "{spacing.s-3}"
+  product-tag:
+    backgroundColor: "{colors.brand-wash}"
+    textColor: "{colors.brand-ink}"
+    rounded: "{rounded.pill}"
+    padding: "2px 0.5rem"
+  navigation:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    typography: "{typography.nav}"
+    height: "72px"
+  navigation-current:
+    textColor: "{colors.ink}"
+  navigation-parent:
+    textColor: "{colors.brand-ink}"
+  masthead:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    typography: "{typography.display}"
+  equipment-plate:
+    backgroundColor: "{colors.catalogue-stage}"
+    rounded: "{rounded.r-3}"
+  product-card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.r-3}"
+  contact-card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.contact-card}"
+    padding: "{spacing.s-5}"
+  equipment-routes:
+    backgroundColor: "{colors.navy}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.r-3}"
+  action-bar:
+    backgroundColor: "{colors.surface}"
+    height: "57px"
+---
 
-**Direction:** a calm, credible industrial look built around the equipment itself.
-- Neutral paper and white, navy for dark bands, and one action colour: Win Blue, the paint on our machines.
-- Real product cut-outs and real factory photos. No stock imagery and no AI imagery.
-- Engineering data (charts, tables, ratings) presented as a feature, not hidden.
+# Design System for Win Equipments
 
-Tokens live in `src/site/assets/css/tokens.css`. Change a value there, never a hard-coded copy.
+## Overview
 
-## Why it looks this way (principles → rules, Oct 2026)
-These rules come from established usability research, not from copying any one company's site.
-| Principle | Rule |
-| --- | --- |
-| Aesthetic-usability effect; Stanford web-credibility research (design look is the top credibility cue; show the real organisation) | One type scale, one palette, one card style; address, phone, ISO and founder always visible (utility bar, footer) |
-| Jakob's law | Conventional layout: logo left, nav, quote button right, footer sitemap, bottom action bar on phones |
-| Hick's law | Main nav of six items; a four-goal "How can we help?" row; product lists capped before "All products" |
-| Von Restorff effect | Filled Win Blue only on the primary action; one primary button per view |
-| Serial position effect | Pages open with what we make and the quote action, and close with the enquiry form |
-| F-pattern / layer-cake scanning (NN/g) | Left-aligned, descriptive headings with front-loaded words; short ledes; no centred paragraphs |
-| Gestalt proximity and common region | Light sections alternate paper and white; related items share a card |
-| Chunking / progressive disclosure | Groups of three or four; long lists collapse on phones |
-| Fitts's law / thumb zone | 48 px targets; main actions in the bottom bar on phones; full-width buttons on phones |
-| 60-30-10 colour balance | Mostly neutral, navy and ink for structure, Win Blue as the small accent |
-| Carousel research | Nothing auto-advances; the hero machines change only on tap or swipe |
-| WCAG 2.2 AA | Every text pair is at least 4.5:1 (checked: lowest is Win Green on white at 4.64:1) |
+**Creative North Star: "One engineering catalogue, from the equipment name to the enquiry."**
 
-## Principles
-1. **Facts are the design.** Every figure on a page comes from the catalogue data (`src/site/data`). If a number isn't real, the layout has no slot for it.
-2. **One primary action per view.** Filled Win Blue buttons are reserved for quote and recommendation actions. Everything else is secondary (outlined) or a text link.
-3. **Mobile first.** Design at 360 px, then widen. There is no horizontal page scroll at any width from 320 to 1440 px; wide tables scroll inside their own box.
-4. **Product on a stage.** Cut-outs sit on a soft white radial "stage" with a faint chart-paper grid and a floor shadow (`studio()` in `build.py` cleans the cut-outs).
-5. **Motion explains, then gets out of the way.** Reveal on scroll, small hover lifts, and nothing that loops loudly. All ambient motion is off under `prefers-reduced-motion`. Most motion is plain CSS (`motion.css`) and `site.js`. The homepage adds scroll-linked hero depth and spring entrances with [Motion](https://motion.dev) (`assets/js/home-motion.js`). Motion itself is vendored at `assets/js/vendor/motion.min.js` and loaded only after the page is idle, so it never delays first paint. Use it only where CSS can't do the job.
+Win Equipments opens with recognizable machinery and clear names. Cool paper, white panels and left-aligned Archivo give operating conditions, model codes and documentation space to be read. The catalogue and the support pages share the same title rhythm, navigation and controls.
 
-## Colour
-| Token | Value | Use |
-| --- | --- | --- |
-| `--paper` / `--surface` | #f5f8fa / #ffffff | Page background / cards and alternate light bands |
-| `--ink` / `--ink-2` | #122030 / #2f3e4e | Headings / body text |
-| `--muted` | #526273 | Captions, metadata |
-| `--rule` / `--rule-strong` | #d2dbe3 / #96a5b4 | Hairlines, borders |
-| `--brand` (Win Blue) | #1f6aa8 | The only action colour: filled buttons, links, active states |
-| `--brand-ink` / `--brand-wash` | #165084 / #e8f1f9 | Blue text on light / icon tiles, hover tints |
-| `--navy` / `--navy-2` | #0b1b2c / #12304d | Dark bands (`--band-dark`), utility bar, hero shade |
-| `--brand-on-dark` | #8cc6f2 | Labels and accents on navy |
-| `--save` (Win Green) | #008810 | Logo and the "Save Water and Power" slogan only |
-| `--star` | #e8a317 | The rating star only |
-| `--hot` | #b4432a | Chart hot points only |
+Equipment photography and technical data carry the detail. Win Blue identifies actions, the green Win logo identifies the manufacturer, and plain navy bands group related information.
 
-`--flow` is kept for old references and now resolves to solid Win Blue; the blue-to-green gradient is retired. Dark bands are limited to the hero, one feature band and the enquiry form.
+**Key Characteristics:**
 
-## Type
-- **Archivo** (variable, self-hosted in `assets/fonts`), using two widths only:
-  - `--wdth-display` (82%) for hero, page and section headings, line height about 1.02;
-  - `--wdth-head` (88%) for card and component titles;
-  - body at 100% width, 1.6 line height, max `--measure` (68ch).
-- **Scale (tokens, not per-section clamps):** `--fs-display` hero and page H1; `--fs-section` every section H2; `--fs-h3` card titles; body 1–1.0625rem; small 0.875rem; label 0.8125rem.
-- **Section label:** `.sh-eyebrow` (13 px uppercase, Win Blue, 28 px solid rule); add `.sh-eyebrow--dark` on navy.
-- Numbers use `font-variant-numeric: tabular-nums` in tables and readouts.
+- Catalogue names and real equipment lead each product page.
+- Light mastheads, cool equipment plates and fine rules connect the route types.
+- Shared navigation order and direct contact actions keep the catalogue usable across screen sizes.
 
-## Space, shape, depth
-- **Spacing:** 4 px scale `--s-1`…`--s-20`. Vertical rhythm between sections is `--section`, and the side gutter is `--gutter`.
-- **Radii:** `--r-2` (8 px) for controls and thumbnails, `--r-3` (12 px) for cards and panels, and pills (999px) for tags and chips.
-- **Shadows:** `--shadow-1` for hover and resting cards, `--shadow-2` for floating badges and panels. No heavy drop shadows.
-- **Tap targets:** at least 44–48 px.
+## Colors
+
+### Primary
+
+- **Win Blue** (`brand`) fills the main task button. Press blue (`brand-press`) marks hover, blue ink (`brand-ink`) identifies links and active states on light surfaces, and blue wash (`brand-wash`) marks selected or supporting details.
+- **Light Win Blue** (`brand-on-dark`) identifies labels, arrows and selected focus treatments against navy.
+
+### Secondary
+
+- **Win Green** (`save`) belongs to the logo, the “Save Water and Power” identity and success feedback. Deep green (`save-ink`) serves success text. The WhatsApp control retains its own green icon treatment where applicable.
+
+### Neutral
+
+- **Cool Paper** (`paper`) grounds the page, **White** (`surface`) separates cards and fields, and the **Equipment Plate** (`catalogue-stage`) gives product cut-outs a consistent cool backdrop.
+- **Ink**, **Secondary Ink** and **Muted Ink** (`ink`, `ink-2`, `muted`) step down from titles to supporting copy and metadata.
+- **Rule** (`rule`) divides sections and panels. **Strong Rule** (`rule-strong`) defines outlined controls. **Navy** and **Navy Step** (`navy`, `navy-2`) ground information bands and define divisions and hover states within them.
+- **Focus Blue** (`focus`) marks keyboard focus on light surfaces. **Error** and **Error Wash** pair with a visible message for invalid fields.
+
+**The Action Color Rule.** Use filled Win Blue for the leading action in each group. Use an outline or a text link for supporting actions.
+
+## Typography
+
+Self-hosted variable Archivo is used across the site. Use condensed display width (82%) for mastheads and section titles, narrower title width (88%) for component headings, and normal width for body copy. Figures use tabular numerals so ranges and ratings align.
+
+- **Display** (700, line height 1.03) introduces the page. The static home hero has its own display size (`clamp(2.25rem, 1.2rem + 3.5vw, 4.5rem)`) and line height (1.02).
+- **Headline** (700, line height 1.02) introduces prominent sections. **Title** (700, line height 1.18) identifies cards and subsections.
+- **Lede** (line height 1.55) explains the page or equipment in a short paragraph. **Body** (400, line height 1.6) uses the reading measure (68ch) for longer copy.
+- **Label** (650, 0.8125rem) serves compact metadata and short labels. Apply uppercase and 0.05em tracking where the component calls for it.
+
+**The Catalogue Name Rule.** Use the catalogue product name as the product H1. Put the series, application and other qualifiers in the supporting copy, series label or readouts.
 
 ## Layout
-- The container is 76rem, and grids use `minmax(0, 1fr)` so content can never blow out the width.
-- **Utility bar (desktop):** navy strip above the header with ISO, founding year, location, phone, WhatsApp, email, Downloads and Certifications. It scrolls away; the header stays.
-- **Header:** sticky; it turns solid after scrolling. Six nav items plus Request a quote. The Products mega menu has thumbnails, family counts and a sizing-tools panel.
-- **Mobile:** the action bar (Quote · WhatsApp · Call · AI) is the only floating layer below 1024 px; the separate AI pill and back-to-top button are hidden there.
 
-## Components (where to find them)
-| Component | Template / CSS |
-| --- | --- |
-| Buttons (`.btn--primary`, `--secondary`, `--lg`) | `components.css` |
-| Section heading (`.h-head`, `.section-head`) | `sections.css`, `pages.css` |
-| Product card (`.pcard`) | `macros.html` → `pages.css` |
-| Readout (key specs) | `macros.html` |
-| Spec explorer (mobile list + desktop table + finder) | `partials/spec_explorer.html` |
-| Photo rail + lightbox | `partials/photo_rail.html`, `components.css`, `site.js` |
-| 360° chiller (CSS 3D) | `partials/chiller360.html`, `chiller360.css`, `chiller360.js` |
-| Photo walk-around | `partials/photo_spin.html`, `spin.js` |
-| Dew-point and tower charts (SVG, computed) | `dew_chart()` etc. in `build.py`, `chart.css` |
-| FAQ (details/summary) | `macros.html` |
-| Enquiry form | `partials/enquiry.html` |
-| AI chat | `assets/js/chat.js`, `chat.css`, `php/api_chat.php` |
-| Calculators | `pages/tool.html`, `assets/js/tools.js` |
+Use the shared container (76rem), fluid gutters (1–2rem) and the 4px spacing base. Section padding follows the catalogue rhythm (2.75–5rem). Share the title block through `.masthead` in `src/site/assets/css/catalogue.css`. It supplies the heading treatment and default vertical padding (1.5–3.25rem), with local adjustments such as the compact Downloads jump links on mobile.
 
-## CSS bundles
-- `site.css`, on every page:
-  - tokens, base, layout, components, chart, pages, sections, chat and motion.
-- `home.css`: homepage only.
-- `viewer.css`: pages with the 3D chiller or the photo walk-around.
+Stack content by reading order on narrow screens and use shrinkable grid tracks where content sits side by side. The home hero places the introduction and equipment plate side by side at 800px, with the three permanent equipment links across the row below. On narrow screens the links follow the introduction, then the plate. Product detail keeps the catalogue heading, lede and link to rating conditions together, followed by the machine and key specifications on mobile. Tables with many columns scroll inside their own container.
 
-Files are cache-busted by a content hash (`css_ver`, `js_ver`).
+The main navigation switches at 1024px. Below it, the bottom bar accounts for the safe area and reserves space below the page content. Use the same destination order on desktop and mobile. The viewport review covered nine route types at 1440px and 390px, plus home, product and Downloads at 320px. Those 21 samples had zero page-level horizontal overflow. WCAG AA remains the product requirement. Conformance requires a separate assessment.
 
-## Motion
-| Pattern | Rule |
-| --- | --- |
-| Reveal | `[data-reveal]` fades and rises 28 px once in view; `--d` staggers by 90 ms |
-| Intro | `[data-intro]` on hero elements; `[data-split]` raises headline words in sequence |
-| Hover | Buttons lift 1 px, cards 3 px, thumbnails scale 1.03–1.06, arrows slide 3–4 px |
-| Menus | Mega menu slides down 8 px; columns stagger by 50 ms |
-| Ambient | Slow photo crossfade behind the hero until the works film plays; nothing else loops. The hero machines never auto-advance |
-| Progress | Article reading line (scroll timeline); tool and chat states |
-| Easing | `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`), 0.2–0.9 s |
+## Elevation & Depth
 
-`.motion` is added to `<html>` only when JavaScript runs, motion isn't reduced and the URL has no `?static`. Use `?static=1` for screenshots.
+Cool surfaces, rules and simple borders define the catalogue layers. Keep equipment plates, contact cards and the sticky header flat. Use solid navy for information bands, including the home equipment links and enquiry section. Product cards mark hover with a blue border. Save the small shadow for interactive feedback and the larger shadow for overlays. The fixed action bar has a shallow upward shadow to separate it from the page.
 
-## Imagery
-- **Product cut-outs:** `images/Products/*.png`, cleaned by `studio()`.
-- **Real photos:** `images/works/`, captioned in `data/photos.json`. Use real photos only, cropped and never staged.
-- **Client logos:** greyscale until hover.
-- **Never use:** AI-generated images, stock factories, or holograms.
+Use the standard ease-out curve for short state changes. Keep the home introduction static. User-operated model and photo viewers can show motion in response to input, and nonessential transitions honor reduced-motion preferences.
 
-## Accessibility
-- Text contrast is AA or better for every token pair used for text. Small green text uses `--save-ink`.
-- Visible focus: a 3 px `--focus` outline.
-- One H1 per page; headings stay in order.
-- Every image has alt text; decorative images use `alt=""`.
-- Interactive widgets (tabs, 360, walk-around, lightbox) support the keyboard and set ARIA states.
+**The Surface Rule.** Separate adjacent content with a change in surface or a fine rule. Use elevation when an element sits above the page or responds to interaction.
+
+## Shapes
+
+Use compact corners (4px) on buttons and inputs, medium corners (8px) on small media and outlined service shortcuts, and panel corners (12px) on equipment plates and product cards. The contact channel cards use 16px corners. Use pill geometry for small tags. Give equipment imagery enough room to show the full machine. Product and family plates hold contained cut-outs. Service photographs use an intentional crop.
+
+## Components
+
+### Buttons and fields
+
+The filled primary button uses Win Blue with white text and a darker blue on hover or press. The secondary button uses white, ink and a strong outline. The ghost variant gives low-emphasis controls a transparent surface. Standard buttons and inputs have a 48px minimum height. Inputs use a white surface, a 1px outline, a persistent label and an adjacent error message when validation fails. Use the 3px focus outline, adapting its color on navy so the focus remains visible.
+
+### Navigation and contact
+
+The sticky white header has a fine bottom rule. Products, Industries, Sizing tools, Downloads, Service & repair and About appear in the same order on desktop and in the mobile menu. Desktop has a contextual primary action beside those links. Mobile has a call icon and Menu button in the header, with product search and equipment-family lists in the sheet. A blue underline identifies the current desktop route or parent section. The menu marks the same state in blue type.
+
+The mobile bottom bar contains a flexible primary quote, document or service action and two 48px-wide, 44px-high WhatsApp and call controls with accessible names. It gives way to the enquiry, footer and active fields. The equipment assistant opens from a footer control. Contact uses white cards for the actual channels, including WhatsApp.
+
+### Equipment plates, product cards and tags
+
+Use the authentic machine cut-out on the cool plate and keep the range or series text close to the image. The home figure has a white caption strip with a direct product link and the catalogue range. Product cards combine the plate, product name, range and descriptive link text in one panel. Match tags use blue ink on blue wash. Search and family filters lead the equipment index. Sizing, model comparison, rating conditions and downloadable references remain easy to reach from equipment routes.
+
+### Static hero, equipment links and service
+
+The home hero names air dryers, chillers and cooling towers in the heading, gives Browse equipment the filled action and keeps the real WCP chiller in view. The navy strip presents three permanent links by equipment and job. Each row has a descriptive title, short duty line and arrow. It changes from stacked rows to three columns at 800px.
+
+The service masthead stays light, pairing the request action with the option to send a fault photo. A real service photo and a white checklist sit together in the media column. Downloads, articles and calculators share the title rhythm while retaining the layouts their tasks require.
+
+## Do's and Don'ts
+
+### Do
+
+- **Do** use real Win equipment cut-outs and factory photography.
+- **Do** present catalogue values with units and their operating or rating conditions.
+- **Do** preserve the shared navigation order, visible focus and direct paths to sizing, documents and enquiry.
+- **Do** check the narrow layouts with real product names, tables and enquiry controls.
+
+### Don't
+
+- **Don't** add rotating hero panels, decorative grid effects or background video to the catalogue entrance.
+- **Don't** substitute stock or generated factory and equipment imagery for authentic assets.
+- **Don't** put the equipment assistant in the fixed action bar.
+
+Implementation sources are `src/site/assets/css/tokens.css` for shared primitives, `src/site/assets/css/catalogue.css` for catalogue overrides, and `src/site/templates/` for the component markup. `Reports/ux/beta-redesign.md` records the Beta verification.
