@@ -139,10 +139,6 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.contact-card}"
     padding: "{spacing.s-5}"
-  equipment-routes:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.surface}"
-    rounded: "{rounded.r-3}"
   action-bar:
     backgroundColor: "{colors.surface}"
     height: "57px"
@@ -188,7 +184,7 @@ Equipment photography and technical data carry the detail. Win Blue identifies a
 
 Self-hosted variable Archivo is used across the site. Use condensed display width (82%) for mastheads and section titles, narrower title width (88%) for component headings, and normal width for body copy. Figures use tabular numerals so ranges and ratings align.
 
-- **Display** (700, line height 1.03) introduces the page. The static home hero has its own display size (`clamp(2.25rem, 1.2rem + 3.5vw, 4.5rem)`) and line height (1.02).
+- **Display** (700, line height 1.03) introduces the page. The full-width homepage banner uses a larger display scale and a tight line height over a shaded reading area.
 - **Headline** (700, line height 1.02) introduces prominent sections. **Title** (700, line height 1.18) identifies cards and subsections.
 - **Lede** (line height 1.55) explains the page or equipment in a short paragraph. **Body** (400, line height 1.6) uses the reading measure (68ch) for longer copy.
 - **Label** (650, 0.8125rem) serves compact metadata and short labels. Apply uppercase and 0.05em tracking where the component calls for it.
@@ -199,13 +195,13 @@ Self-hosted variable Archivo is used across the site. Use condensed display widt
 
 Use the shared container (76rem), fluid gutters (1–2rem) and the 4px spacing base. Section padding follows the catalogue rhythm (2.75–5rem). Share the title block through `.masthead` in `src/site/assets/css/catalogue.css`. It supplies the heading treatment and default vertical padding (1.5–3.25rem), with local adjustments such as the compact Downloads jump links on mobile.
 
-Stack content by reading order on narrow screens and use shrinkable grid tracks where content sits side by side. The home hero places the introduction and equipment plate side by side at 800px, with the three permanent equipment links across the row below. On narrow screens the links follow the introduction, then the plate. Product detail keeps the catalogue heading, lede and link to rating conditions together, followed by the machine and key specifications on mobile. Tables with many columns scroll inside their own container.
+Stack content by reading order on narrow screens and use shrinkable grid tracks where content sits side by side. The homepage banner is full width. The factory photo is visible beside the copy on desktop and above the copy on mobile. The three named product families follow the credentials strip. Product detail keeps the catalogue heading, lede and link to rating conditions together, followed by the machine and key specifications on mobile. Tables with many columns scroll inside their own container.
 
 The main navigation switches at 1024px. Below it, the bottom bar accounts for the safe area and reserves space below the page content. Use the same destination order on desktop and mobile. The viewport review covered nine route types at 1440px and 390px, plus home, product and Downloads at 320px. Those 21 samples had zero page-level horizontal overflow. WCAG AA remains the product requirement. Conformance requires a separate assessment.
 
 ## Elevation & Depth
 
-Cool surfaces, rules and simple borders define the catalogue layers. Keep equipment plates, contact cards and the sticky header flat. Use solid navy for information bands, including the home equipment links and enquiry section. Product cards mark hover with a blue border. Save the small shadow for interactive feedback and the larger shadow for overlays. The fixed action bar has a shallow upward shadow to separate it from the page.
+Cool surfaces, rules and simple borders define the catalogue layers. Keep equipment plates, contact cards and the sticky header flat. Use solid navy for information bands, including the homepage credentials strip and enquiry section. Product cards mark hover with a blue border. Save the small shadow for interactive feedback and the larger shadow for overlays. The fixed action bar has a shallow upward shadow to separate it from the page.
 
 Use the standard ease-out curve for short state changes. Keep the home introduction static. User-operated model and photo viewers can show motion in response to input, and nonessential transitions honor reduced-motion preferences.
 
@@ -229,11 +225,11 @@ The mobile bottom bar contains a flexible primary quote, document or service act
 
 ### Equipment plates, product cards and tags
 
-Use the authentic machine cut-out on the cool plate and keep the range or series text close to the image. The home figure has a white caption strip with a direct product link and the catalogue range. Product cards combine the plate, product name, range and descriptive link text in one panel. Match tags use blue ink on blue wash. Search and family filters lead the equipment index. Sizing, model comparison, rating conditions and downloadable references remain easy to reach from equipment routes.
+Use the authentic machine cut-out on the cool plate and keep the range or series text close to the image. Product cards combine the plate, product name, range and descriptive link text in one panel. Match tags use blue ink on blue wash. Search and family filters lead the equipment index. Sizing, model comparison, rating conditions and downloadable references remain easy to reach from equipment routes.
 
-### Static hero, equipment links and service
+### Homepage banner and service
 
-The home hero names air dryers, chillers and cooling towers in the heading, gives Browse equipment the filled action and keeps the real WCP chiller in view. The navy strip presents three permanent links by equipment and job. Each row has a descriptive title, short duty line and arrow. It changes from stacked rows to three columns at 800px.
+The homepage opens with a full-width photograph of the Arasur assembly floor. A navy shade protects the product headline and buttons while the photo remains visible. The filled action jumps directly to the three illustrated equipment families; the outlined action leads to the enquiry. The proof strip carries the founding year, certification and installation count.
 
 The service masthead stays light, pairing the request action with the option to send a fault photo. A real service photo and a white checklist sit together in the media column. Downloads, articles and calculators share the title rhythm while retaining the layouts their tasks require.
 

@@ -21,34 +21,62 @@
 {% endblock %}
 {% block extra_css %}<link rel="stylesheet" href="/css/home.css?v={{ css_ver }}"><link rel="stylesheet" href="/css/viewer.css?v={{ css_ver }}">{% endblock %}
 {% block main %}
-<section class="catalogue-hero" aria-labelledby="hero-title">
-  <div class="container catalogue-hero__grid">
-    <div class="catalogue-hero__copy">
-      <h1 id="hero-title">Industrial air dryers, chillers &amp; cooling towers</h1>
-      <p class="lede">Win Equipments designs, builds and services compressed air and process cooling equipment at our works in Arasur, Coimbatore.</p>
+<section class="works-banner" aria-labelledby="hero-title">
+  <div class="works-banner__photo">
+    {{ picture('images/works/hero-shop-floor-assembly.jpg', 'Win Equipments chillers being assembled on the shop floor in Arasur, Coimbatore', sizes='(max-width: 550px) 550px, 100vw', eager=True, max_w=1920) }}
+  </div>
+  <div class="container works-banner__inner">
+    <div class="works-banner__copy">
+      <h1 id="hero-title">Industrial <span>air dryers</span>, chillers &amp; <span>cooling towers</span></h1>
+      <p>Built at our works in Coimbatore. Sized for your plant and supported by the team that makes them.</p>
       <div class="btn-row">
-        <a class="btn btn--primary btn--lg" href="/products/">Browse equipment <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn--secondary btn--lg hero-contact" href="#quote" data-quote-link>Talk to an engineer</a>
+        <a class="btn btn--primary btn--lg" href="#products">Explore our equipment <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--secondary btn--lg works-banner__contact" href="#quote" data-quote-link>Talk to an engineer</a>
       </div>
-      <ul class="catalogue-hero__proof" aria-label="Manufacturer credentials">
-        <li>Since {{ site.founded }}</li><li>{{ site.certification }} certified</li><li>{{ site.installations }} installations</li>
-      </ul>
     </div>
-<nav class="equipment-routes" aria-label="Browse equipment by task">
-  <ul class="equipment-routes__list">
-    {% for family, title, task in [(families.air, 'Air dryers & air treatment', 'Remove moisture and contaminants'), (families.cooling, 'Process chillers', 'Cool water, fluids and machinery'), (families.towers, 'Cooling towers', 'Reject heat from process water')] %}
-    <li><a href="/products/{{ family.slug }}.html"><span><strong>{{ title }}</strong><small>{{ task }}</small></span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    {% endfor %}
-  </ul>
-</nav>
-    {% set feature = products['industrial-process-chillers'] %}
-    <figure class="equipment-plate">
-      <div class="equipment-plate__image">{{ picture(studio(feature.image), 'Win Equipments industrial process chiller', sizes='(min-width: 900px) 42vw, 90vw', eager=True, max_w=1000) }}</div>
-      <figcaption><a href="{{ product_url(feature.slug) }}">{{ feature.series }} process chillers <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><span>{{ feature.range }}</span></figcaption>
-    </figure>
   </div>
 </section>
+<div class="works-proof">
+  <ul class="container" aria-label="Manufacturer credentials">
+    <li>Manufacturing since {{ site.founded }}</li>
+    <li><a href="/certifications.html">{{ site.certification }} certified</a></li>
+    <li>{{ site.installations }} installations</li>
+  </ul>
+</div>
 
+{% set needs = [
+  ("Air dryers & air treatment", "Air dryers, filters, drain valves, receivers and aftercoolers", families.air, products['refrigerated-air-dryers'], "10–2000 CFM"),
+  ("Industrial process chillers", "Process chillers 0.5–20 TR and chillers built for special duties", families.cooling, products['industrial-process-chillers'], "0.5–20 TR"),
+  ("Cooling towers", "Round and square FRP towers, coil towers for gensets, and spares", families.towers, products['round-cooling-towers'], "10–300 TR")
+] %}
+
+<section class="h-fam" id="products" aria-labelledby="range-title">
+  <div class="container">
+    <div class="h-head" data-reveal>
+
+      <h2 id="range-title">Explore our equipment</h2>
+      <p>Browse each range for models, operating conditions and catalogues.</p>
+    </div>
+    <ul class="h-fam__grid">
+      {% for s in shows %}{% set nd = needs[loop.index0] %}
+      <li class="h-fam__card" data-reveal style="--d:{{ loop.index0 }}">
+        <a class="h-fam__stage" href="/products/{{ s.fam.slug }}.html" tabindex="-1" aria-hidden="true">{{ picture(studio(s.img), '', sizes='(min-width: 960px) 26vw, 90vw', max_w=700) }}<span class="h-fam__range">{{ nd[4] }}</span></a>
+        <div class="h-fam__body">
+
+          <h3><a href="/products/{{ s.fam.slug }}.html">{{ nd[0] }}</a></h3>
+          <p class="h-fam__desc">{{ nd[1] }}</p>
+          <ul class="h-fam__list">
+            {% for slug in s.feature[:2] %}{% set pr = products[slug] %}
+            <li><a href="{{ product_url(pr.slug) }}"><span>{{ pr.name }}</span><span>{{ pr.range }}</span></a></li>
+            {% endfor %}
+          </ul>
+          <a class="h-fam__more" href="/products/{{ s.fam.slug }}.html">All {{ s.fam.products | length }} {{ s.fam.short | lower }} products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
 
 <section class="h-help" aria-labelledby="help-title">
   <div class="container">
@@ -70,40 +98,6 @@
         <span class="h-help__ic" aria-hidden="true"><svg><use href="#i-copy"/></svg></span>
         <span class="h-help__txt"><strong>Download catalogues</strong><span>Model tables and ratings as PDF. No sign-up needed.</span></span>
         <svg class="h-help__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-    </ul>
-  </div>
-</section>
-
-{% set needs = [
-  ("Dry, clean compressed air", "Air dryers, filters, drain valves, receivers and aftercoolers", families.air, products['refrigerated-air-dryers'], "10–2000 CFM"),
-  ("Cold process water", "Process chillers 0.5–20 TR and chillers built for special duties", families.cooling, products['industrial-process-chillers'], "0.5–20 TR"),
-  ("Rejecting process heat", "Round and square FRP towers, coil towers for gensets, and spares", families.towers, products['round-cooling-towers'], "10–300 TR")
-] %}
-
-<section class="h-fam" id="products" aria-labelledby="range-title">
-  <div class="container">
-    <div class="h-head" data-reveal>
-
-      <h2 id="range-title">Equipment ranges</h2>
-      <p>Designed, fabricated and tested at our works in Arasur, Coimbatore.</p>
-    </div>
-    <ul class="h-fam__grid">
-      {% for s in shows %}{% set nd = needs[loop.index0] %}
-      <li class="h-fam__card" data-reveal style="--d:{{ loop.index0 }}">
-        <a class="h-fam__stage" href="/products/{{ s.fam.slug }}.html" tabindex="-1" aria-hidden="true">{{ picture(studio(s.img), '', sizes='(min-width: 960px) 26vw, 90vw', max_w=700) }}<span class="h-fam__range">{{ nd[4] }}</span></a>
-        <div class="h-fam__body">
-
-          <h3><a href="/products/{{ s.fam.slug }}.html">{{ nd[0] }}</a></h3>
-          <p class="h-fam__desc">{{ nd[1] }}</p>
-          <ul class="h-fam__list">
-            {% for slug in s.feature %}{% set pr = products[slug] %}
-            <li><a href="{{ product_url(pr.slug) }}"><span>{{ pr.name }}</span><span>{{ pr.range }}</span></a></li>
-            {% endfor %}
-          </ul>
-          <a class="h-fam__more" href="/products/{{ s.fam.slug }}.html">All {{ s.fam.products | length }} {{ s.fam.short | lower }} products<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-      </li>
-      {% endfor %}
     </ul>
   </div>
 </section>

@@ -388,3 +388,37 @@
   .cine__stage { min-height: 320px; }
   .h-fam__list li:nth-child(n+4) { display: none; }
 }
+
+/* Opening banner: the actual assembly floor, with a shaded reading area. */
+.works-banner { position: relative; isolation: isolate; background: var(--navy); color: #fff; }
+.works-banner__photo { position: absolute; inset: 0; z-index: -2; }
+.works-banner__photo picture, .works-banner__photo img { display: block; width: 100%; height: 100%; }
+.works-banner__photo img { object-fit: cover; object-position: center 58%; }
+.works-banner::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #081724 0%, rgba(8,23,36,.96) 23%, rgba(8,23,36,.82) 41%, rgba(8,23,36,.24) 69%, rgba(8,23,36,.06) 100%); }
+.works-banner__inner { min-height: clamp(30rem, 42vw, 39rem); display: grid; align-items: center; padding-block: clamp(3rem, 6vw, 6rem); }
+.works-banner__copy { max-width: min(39rem, 58vw); }
+.works-banner h1 { color: #fff; font-size: clamp(2.5rem, 1.25rem + 4.1vw, 5.25rem); font-stretch: var(--wdth-display); line-height: 1; letter-spacing: -.035em; max-width: 16ch; text-wrap: balance; }
+.works-banner h1 span { white-space: nowrap; }
+.works-banner__copy p { color: #e4eef7; max-width: 43ch; font-size: var(--fs-lede); line-height: 1.55; margin-top: var(--s-5); }
+.works-banner .btn-row { margin-top: var(--s-6); }
+.works-banner .works-banner__contact { background: transparent; color: #fff; border-color: #b9cad9; }
+.works-banner .works-banner__contact:hover { background: var(--navy-2); }
+.works-banner a:focus-visible { outline-color: var(--brand-on-dark); outline-offset: 4px; }
+.works-proof { background: var(--navy); color: #e4eef7; border-top: 1px solid var(--navy-2); }
+.works-proof ul { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-6); padding-block: var(--s-3); list-style: none; font-size: var(--fs-small); }
+.works-proof li { display: flex; align-items: center; min-height: 32px; }
+.works-proof a { display: inline-flex; align-items: center; color: #e4eef7; min-height: 44px; text-underline-offset: .25em; }
+.works-proof a:focus-visible { outline-color: var(--brand-on-dark); }
+.page-home .h-fam { padding-top: clamp(2.25rem, 1rem + 3vw, 4.5rem); }
+@media (max-width: 799px) {
+  .works-banner__photo { height: 19rem; bottom: auto; }
+  .works-banner__photo img { object-position: 66% 50%; }
+  .works-banner::before { background: linear-gradient(180deg, rgba(8,23,36,.04) 0, rgba(8,23,36,.22) 6rem, rgba(8,23,36,.82) 10rem, var(--navy) 19rem); }
+  .works-banner__inner { min-height: 0; padding-block: clamp(10rem, 35vw, 15rem) var(--s-8); }
+  .works-banner__copy { max-width: 36rem; }
+  .works-banner h1 { font-size: clamp(2.15rem, 1.4rem + 3.1vw, 3.65rem); }
+  .works-banner__copy p { margin-top: var(--s-4); }
+  .works-banner .btn-row { margin-top: var(--s-5); gap: var(--s-2); }
+  .works-banner .btn-row > a { flex: 1 1 auto; }
+  .works-proof ul { gap: 0 var(--s-4); padding-block: var(--s-2); }
+}

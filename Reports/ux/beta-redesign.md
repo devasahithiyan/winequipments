@@ -39,3 +39,8 @@ FINISH: Preserve canonical URLs, catalogue values, viewer and form behavior; che
 - Existing specifications, models, catalogue files, routes, schema, enquiry endpoints and 3D controllers are preserved. The build pruned generated image variants no longer referenced by the old hero/menu; originals are retained.
 
 The independent finish review identified three issues: inconsistent WCP naming and a range-level tank claim, mobile family links below the first view, and an overlong Downloads index at 320px. It scored all three fixes resolved. The final contact check also verified the WhatsApp number remains visible on the shared white panel. The verdict covers the reviewed fixes and captured routes, not a formal accessibility audit.
+
+
+## Homepage revision after feedback
+
+The catalogue-style opening was replaced with a full-width photograph of the actual Arasur assembly floor (source: `images/works/hero-shop-floor-assembly.jpg`). The banner keeps the product names and two clear actions; the named equipment families now come before supporting shortcuts. The photo is static, with a separate mobile crop and a shaded reading area. Tested the equipment jump link and checked 1440px, 390px and 320px layouts. The full 424-test Python suite passed after rebuilding.
