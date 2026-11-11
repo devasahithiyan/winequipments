@@ -4,11 +4,11 @@
   "order": 1,
   "name": "Industrial Process Chillers",
   "series": "WCP Series",
-  "h1": "Industrial water chillers and water chiller machines",
+  "h1": "Industrial Process Chillers",
   "title": "Industrial Water Chillers, 0.5 to 20 TR | Win Equipments",
-  "description": "Water chiller machines and industrial chillers, 0.5–20 TR, air or water cooled, with stainless steel tank and pump. Made by Win Equipments, Coimbatore.",
-  "card": "Holds process water at a set temperature with a closed stainless steel tank and pump.",
-  "lede": "WCP chillers keep process water at a prescribed set temperature using refrigeration. Each unit is self-contained, with a closed stainless steel tank, high-pressure pump and air- or water-cooled condenser, and is factory tested before delivery.",
+  "description": "Water chiller machines and industrial chillers, 0.5–20 TR, air or water cooled, with insulated tank and pump. Made by Win Equipments, Coimbatore.",
+  "card": "Holds process water at a set temperature with a closed tank and pump.",
+  "lede": "WCP chillers keep process water at a prescribed set temperature using refrigeration. Each unit is self-contained, with a closed tank, high-pressure pump and air- or water-cooled condenser, and is factory tested before delivery.",
   "image": "images/Products/chiller.png",
   "gallery": [],
   "range": "0.5–20 TR",
@@ -63,7 +63,7 @@
   ],
   "highlights": [
     "Compact design",
-    "Built-in closed stainless steel tank",
+    "Built-in closed tank",
     "High-pressure pump",
     "Air cooled or water cooled",
     "Microprocessor control (optional)",
@@ -87,7 +87,7 @@
       },
       {
         "name": "Water out",
-        "text": "Cooled water is pumped from the closed stainless steel tank back to the process at the set temperature."
+        "text": "Cooled water is pumped from the closed tank back to the process at the set temperature."
       }
     ]
   },
@@ -119,7 +119,7 @@
     {
       "title": "Tank",
       "points": [
-        "Non-corrosive insulated stainless steel tank",
+        "Insulated tank; see model table for material",
         "Closed tank: no heat gain",
         "Removable steel covers for access"
       ]

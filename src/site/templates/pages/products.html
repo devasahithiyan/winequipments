@@ -6,17 +6,10 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
-    <h1 data-split>Products</h1>
-    <p class="lede">{{ product_count_word }} product lines in three families, all manufactured at our works in Arasur, Coimbatore.</p>
-  </div>
-</section>
-<section class="section" style="padding-block:var(--s-6)" aria-labelledby="fam-intro">
-  <div class="container">
-    <h2 id="fam-intro">Three product families</h2>
-    <p class="lede">Every range is manufactured at our works in Arasur, Coimbatore. Open a family for its full range, or search and filter below.</p>
-    <ul class="stack">{% for fam in families.values() %}<li><a href="/products/{{ fam.slug }}.html"><strong>{{ fam.name }}</strong></a>: {{ fam.summary }}</li>{% endfor %}</ul>
+    <h1>Industrial equipment</h1>
+    <p class="lede">Browse compressed air treatment, process chillers and cooling towers. Search by product, model number or application.</p>
   </div>
 </section>
 <section class="product-discovery container" aria-labelledby="find-product">

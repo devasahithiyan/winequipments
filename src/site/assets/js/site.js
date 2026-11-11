@@ -69,17 +69,6 @@
     });
   }
 
-  /* desktop mega menu */
-  const megaBtn = $('[data-mega]');
-  const mega = $('#mega-products');
-  if (megaBtn && mega) {
-    const setMega = (open) => { mega.hidden = !open; megaBtn.setAttribute('aria-expanded', String(open)); };
-    megaBtn.addEventListener('click', () => setMega(mega.hidden));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !mega.hidden) { setMega(false); megaBtn.focus(); } });
-    document.addEventListener('click', (e) => { if (!mega.hidden && !e.target.closest('#mega-products, [data-mega]')) setMega(false); });
-    mega.addEventListener('click', (e) => { if (e.target.closest('a')) setMega(false); });
-  }
-
   /* quote links: scroll to form, prefill model */
   const quote = $('#quote');
   const goQuote = (model) => {
@@ -422,7 +411,7 @@
 
 /* chat launcher: load the assistant on first tap */
 (() => {
-  const btn = document.querySelector('.chat-launcher');
+  const btn = document.querySelector('[data-chat-src]');
   if (!btn) return;
   const load = () => {
     btn.removeEventListener('click', load);
@@ -435,8 +424,6 @@
     (window.dataLayer = window.dataLayer || []).push({ event: 'chat_open', page: location.pathname });
   };
   btn.addEventListener('click', load);
-  /* phones: the action bar's AI button opens the same assistant */
-  document.querySelectorAll('[data-chat-proxy]').forEach((p) => p.addEventListener('click', () => btn.click()));
 })();
 
 /* photo rails + lightbox */
@@ -528,15 +515,6 @@ if ('serviceWorker' in navigator) {
   rails.forEach((r) => io.observe(r));
 })();
 
-/* load the product menu thumbnails as soon as someone heads for the menu */
-(() => {
-  const btn = document.querySelector('[data-mega]');
-  const mega = document.getElementById('mega-products');
-  if (!btn || !mega) return;
-  const warm = () => mega.querySelectorAll('img[loading="lazy"]').forEach((i) => { i.loading = 'eager'; });
-  ['pointerenter', 'focus', 'click'].forEach((ev) => btn.addEventListener(ev, warm, { once: true }));
-})();
-
 /* page transitions: start the green top line when a same-site page link is followed */
 (() => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -622,21 +600,4 @@ if ('serviceWorker' in navigator) {
     img.addEventListener('load', done, { once: true });
     img.addEventListener('error', done, { once: true });
   });
-})();
-
-/* desktop: the assistant pill nudges once per visit after 15 s, unless the visitor is already enquiring */
-(() => {
-  const btn = document.querySelector('.chat-launcher');
-  if (!btn || !document.documentElement.classList.contains('motion') || !matchMedia('(min-width: 1024px)').matches) return;
-  try { if (sessionStorage.getItem('win-chat-nudged')) return; } catch (_) {}
-  let enquiring = false;
-  const quote = document.getElementById('quote');
-  if (quote && 'IntersectionObserver' in window) new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) enquiring = true; }).observe(quote);
-  document.addEventListener('focusin', (e) => { if (e.target.closest('form')) enquiring = true; });
-  setTimeout(() => {
-    if (enquiring || btn.getAttribute('aria-expanded') === 'true' || btn.offsetParent === null) return;
-    btn.classList.add('is-nudge');
-    btn.addEventListener('animationend', (e) => { if (e.animationName === 'chatnudge') btn.classList.remove('is-nudge'); });
-    try { sessionStorage.setItem('win-chat-nudged', '1'); } catch (_) {}
-  }, 15000);
 })();

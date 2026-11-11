@@ -11,7 +11,7 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), faq_ld(faqs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <h1 data-split>Certifications</h1>
     <p class="lede">Our quality management system is certified to ISO 9001:2015, covering how we design, build and test the equipment we supply.</p>

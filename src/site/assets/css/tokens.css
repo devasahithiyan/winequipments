@@ -53,8 +53,8 @@
   --navy: #0b1b2c;
   --navy-2: #12304d;
   --star: #e8a317;
-  /* the one dark band used across the home page: navy gradient under a faint blueprint grid */
-  --band-dark: linear-gradient(rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(90deg, rgba(140, 198, 242, 0.05) 1px, transparent 1px) 0 0 / 44px 44px, linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  /* Shared navy information surface. */
+  --band-dark: var(--navy);
 
   /* status */
   --error: #b42318;

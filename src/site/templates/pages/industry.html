@@ -11,7 +11,7 @@
 {% block schema %}{% set ns0 = namespace(items=[]) %}{% for slug in ind.products %}{% set ns0.items = ns0.items + [{"@type": "ListItem", "position": loop.index, "name": products[slug].h1, "url": site.url ~ product_url(slug)}] %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "CollectionPage", "name": ind.name, "url": site.url ~ url, "about": ind.name, "mainEntity": {"@type": "ItemList", "itemListElement": ns0.items}}, faq_ld(ind_faqs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <h1 data-split>{{ ind.name }}</h1>
     <p class="lede">{{ ind.intro }}</p>

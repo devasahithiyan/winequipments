@@ -89,7 +89,7 @@ Engineered to order. To quote we need: Compressor capacity (CFM) and working pre
 
 ## Process Cooling
 ### Industrial Process Chillers (WCP Series) — range 0.5–20 TR — https://winequipments.com/products/industrial-process-chillers.html
-WCP chillers keep process water at a prescribed set temperature using refrigeration. Each unit is self-contained, with a closed stainless steel tank, high-pressure pump and air- or water-cooled condenser, and is factory tested before delivery.
+WCP chillers keep process water at a prescribed set temperature using refrigeration. Each unit is self-contained, with a closed tank, high-pressure pump and air- or water-cooled condenser, and is factory tested before delivery.
 - Capacity: 0.5 to 20 TR
 - Temperature difference: 5 °C
 - Inlet water pressure: 2 to 4 bar g

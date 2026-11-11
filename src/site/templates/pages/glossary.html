@@ -7,7 +7,7 @@
 {% block schema %}{% set ns = namespace(items=[]) %}{% for g in glossary %}{% set ns.items = ns.items + [{"@type": "DefinedTerm", "@id": site.url ~ "/blog/glossary.html#" ~ model_id(g.term), "name": g.term, "description": g.def, "url": site.url ~ "/blog/glossary.html#" ~ model_id(g.term), "inDefinedTermSet": {"@id": site.url ~ "/blog/glossary.html#terms"}}] %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "DefinedTermSet", "@id": site.url ~ "/blog/glossary.html#terms", "name": "Compressed air and cooling glossary", "url": site.url ~ "/blog/glossary.html", "publisher": {"@id": site.url ~ "/#org"}, "hasDefinedTerm": ns.items}]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <h1 data-split>Glossary</h1>
     <p class="lede">Short definitions of the terms used in our articles, catalogues and sizing tools. Each links to the article that explains it in full.</p>

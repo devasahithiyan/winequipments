@@ -7,7 +7,7 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head"><div class="container"><h1>Sitemap</h1></div></section>
+<section class="masthead page-head"><div class="container"><h1>Sitemap</h1></div></section>
 <section class="section section--rule">
   <div class="container sitemap-grid">
     {% for key in ["products", "industries", "engineering-tools", "blog", "locations", "main"] if key in groups %}

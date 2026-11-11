@@ -11,15 +11,15 @@
 {% block html_attrs %} class="has-subnav"{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="f-hero">
+<section class="masthead f-hero">
   <div class="container f-hero__grid">
     <div class="f-hero__copy">
-      <p class="f-hero__count" data-intro>{{ fam.products | length }} product lines</p>
+
       <h1 data-split>{{ fam.name }}</h1>
       <p class="lede" data-intro style="--d:2">{{ fam.lede }}</p>
       <div class="btn-row" data-intro style="--d:3">
-        <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Talk to an engineer</a>
-        <a class="btn btn--secondary btn--lg" href="#range">See the range</a>
+        <a class="btn btn--primary btn--lg" href="#range">Browse the range</a>
+        <a class="btn btn--secondary btn--lg" href="#quote" data-quote-link>Talk to an engineer</a>
       </div>
     </div>
     <div class="f-hero__stage" data-intro style="--d:1">
@@ -32,7 +32,7 @@
   <div class="container">
     <ul>
       <li><a href="#range">The range</a></li>
-      <li><a href="#choose">Which one</a></li>
+      <li><a href="#choose">Selection guide</a></li>
       <li><a href="#quote">Quote</a></li>
     </ul>
   </div>

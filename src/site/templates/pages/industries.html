@@ -6,7 +6,7 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <h1 data-split>Industries we serve</h1>
     <p class="lede">Choose your industry to see the equipment it uses, then open a product for its model range and specifications.</p>

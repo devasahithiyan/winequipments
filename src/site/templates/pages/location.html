@@ -7,7 +7,7 @@
 {% block schema %}{% set ns = namespace(items=[]) %}{% for slug in loc.products %}{% set ns.items = ns.items + [{"@type": "ListItem", "position": loop.index, "name": products[slug].h1, "url": site.url ~ product_url(slug)}] %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Service", "name": loc.h1, "serviceType": "Supply and commissioning of industrial equipment", "provider": {"@id": site.url ~ "/#org"}, "areaServed": ({"@type": "Country", "name": "India"} if loc.get("scope") == "country" else {"@type": "State", "name": loc.city} if loc.get("scope") == "state" else {"@type": "City", "name": loc.city, "containedInPlace": {"@type": "State", "name": loc.region}}), "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Equipment", "itemListElement": ns.items}}, faq_ld(loc.faqs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <p class="art__cat">{{ loc.city }}{% if loc.region %}, {{ loc.region }}{% endif %}</p>
     <h1 data-split>{{ loc.h1 }}</h1>

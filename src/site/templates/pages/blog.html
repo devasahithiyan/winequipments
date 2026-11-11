@@ -6,7 +6,7 @@
 {% block schema %}{% set ns = namespace(items=[]) %}{% for b in articles %}{% set ns.items = ns.items + [{"@type": "ListItem", "position": loop.index, "url": site.url ~ b.url, "name": b.title}] %}{% endfor %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "Blog", "name": "Win Equipments articles", "url": site.url ~ "/blog.html", "publisher": {"@id": site.url ~ "/#org"}}, {"@type": "ItemList", "itemListElement": ns.items}]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <h1 data-split>Articles</h1>
     <p class="lede">Practical guides on compressed air treatment, sizing and maintenance, written from our catalogues and our engineers' experience.</p>

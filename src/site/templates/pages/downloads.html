@@ -50,11 +50,11 @@
 
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head doc-head">
+<section class="masthead page-head doc-head">
   <div class="container">
     <h1>Catalogues &amp; technical documents</h1>
-    <p class="lede">Find model tables, rating conditions and selection guidance. Preview any PDF here, download a copy to share with your team, or read the specifications online.</p>
-    <p class="doc-head__help">Need a drawing or a datasheet for a specific model? <a href="#quote">Request a document</a>.</p>
+    <p class="lede">Preview or download PDF catalogues for model tables, rating conditions and sizing guidance.</p>
+    <p class="doc-head__help">Need a model-specific drawing or datasheet? <a href="#quote">Request a document</a>.</p>
     <nav class="doc-nav" aria-label="Document categories">
       {% for fam in families.values() %}<a href="#documents-{{ fam.id }}">{{ fam.name }}<svg aria-hidden="true"><use href="#i-chev"/></svg></a>{% endfor %}
       <a href="#company-overview">Company overview<svg aria-hidden="true"><use href="#i-chev"/></svg></a>

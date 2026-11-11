@@ -26,15 +26,14 @@
 {% if site.ga4_id %}<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4_id }}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ site.ga4_id }}',{anonymize_ip:true});</script>{% endif %}
 </head>
-<body class="{% block body_class %}has-action-bar{% endblock %}">
+<body class="catalogue-site {% block body_class %}has-action-bar{% endblock %}">
 {% include "partials/icons.html" %}
 <a class="skip-link" href="#main">Skip to content</a>
 {% include "partials/header.html" %}
-<main id="main">
+<main id="main" tabindex="-1">
 {% block main %}{% endblock %}
 </main>
 {% include "partials/footer.html" %}
-<button class="chat-launcher" type="button" aria-controls="chat-panel" aria-expanded="false" aria-label="Ask our AI assistant" data-chat-src="/js/chat.js?v={{ js_ver }}"><svg aria-hidden="true"><use href="#i-spark"/></svg><span class="chat-launcher__long">Ask our AI assistant</span><span class="chat-launcher__short">AI</span></button>
 {% block action_bar %}
 {% include "partials/action_bar.html" %}
 {% endblock %}

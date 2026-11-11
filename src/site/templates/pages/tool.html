@@ -7,7 +7,7 @@
 {% block schema %}{{ jsonld({"@context": "https://schema.org", "@graph": [org_schema(), crumbs_ld(crumbs), {"@type": "WebPage", "name": tool.name, "url": site.url ~ tool.url, "isAccessibleForFree": true, "provider": {"@id": site.url ~ "/#org"}}, faq_ld(tool.faqs)]}) }}{% endblock %}
 {% block main %}
 {{ m.breadcrumb(crumbs) }}
-<section class="page-head">
+<section class="masthead page-head">
   <div class="container">
     <h1 data-split>{{ tool.h1 }}</h1>
     <p class="lede">{{ tool.lede }}</p>

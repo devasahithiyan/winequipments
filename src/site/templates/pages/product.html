@@ -16,9 +16,13 @@
 <div class="read-progress" aria-hidden="true"></div>
 {{ m.breadcrumb(crumbs) }}
 
-<section class="p-hero">
+<section class="masthead p-hero">
   <div class="container p-hero__grid">
-    <h1 class="p-hero__title" data-split>{{ p.h1 }}</h1>
+    <div class="p-hero__intro">
+      <h1 class="p-hero__title">{{ p.name }}</h1>
+      <p class="p-hero__lede">{{ p.lede }}</p>
+      {% if p.spec or p.needs is defined %}<a class="link-arrow product-next" href="{{ '#specs' if p.spec else '#sizing-needs' }}">{{ 'View models and rating conditions' if p.spec else 'See what we need to size it' }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{% endif %}
+    </div>
     {% set shots = [p.image] + p.gallery %}
     <div class="p-hero__media{% if not p.image.endswith('.png') %} p-hero__media--photo{% endif %}" data-gallery>
       <span class="p-hero__series">{{ p.series }}</span>
@@ -36,7 +40,6 @@
       {% endif %}
     </div>
     <div class="p-hero__body">
-      <p class="p-hero__lede" data-intro style="--d:2">{{ p.lede }}</p>
       {% if p.key_specs %}<div data-intro style="--d:3">{{ m.readout(p.key_specs) }}</div>{% endif %}
       <div class="btn-row p-hero__cta{% if not p.download %} p-hero__cta--nobrochure{% endif %}" data-intro style="--d:4">
         <a class="btn btn--primary btn--lg" href="#quote" data-quote-link>Request a quote</a>
@@ -53,7 +56,6 @@
       </div>
       {% endif %}
       <ul class="p-hero__links" data-intro style="--d:5">
-        <li><a class="link-arrow" href="{{ '#specs' if p.spec else ('#sizing-needs' if p.needs is defined else '#applications') }}">{{ 'Check conditions and compare models' if p.spec else 'Check what we need to size your equipment' }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
         {% if p.local_link is defined and p.local_link %}<li><a class="link-arrow" href="/locations/coimbatore-industrial-chillers.html">Chiller manufacturers in Coimbatore<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><span>Built at our Arasur works</span></li>{% endif %}
         {% if fam.id == 'towers' %}<li><a class="link-arrow" href="/locations/cooling-tower-manufacturers-in-coimbatore.html">Cooling tower manufacturers in Coimbatore<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><span>Built at our works in Arasur</span></li>{% endif %}
       </ul>
@@ -66,7 +68,7 @@
 <nav class="subnav" aria-label="On this page">
   <div class="container">
     <ul>
-      {% if p.spec %}<li><a href="#specs">Models<span class="subnav__more"> &amp; conditions</span></a></li>{% endif %}
+      {% if p.spec %}<li><a href="#specs">Models &amp; ratings</a></li>{% endif %}
       {% if p.selection is defined %}<li><a href="#sizing">Sizing</a></li>{% endif %}
       {% if p.needs is defined %}<li><a href="#sizing-needs">What we need</a></li>{% endif %}
       {% if p.principle is defined %}<li><a href="#how">How it works</a></li>{% endif %}
@@ -93,6 +95,9 @@
     </div>
     {% endif %}
     <div class="selection-recap" data-selection-recap hidden><p data-selection-recap-text></p><a href="#quote" data-quote-link>Review your enquiry details</a></div>
+    {% for tool in tools if tool.product == p.slug %}
+    <p class="product-sizing-link"><a class="link-arrow" href="{{ tool.url }}">Estimate your duty with the {{ tool.name | lower }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    {% endfor %}
     {% include "partials/spec_explorer.html" %}
   </div>
 </section>

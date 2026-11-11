@@ -12,10 +12,9 @@
 {{ m.breadcrumb(crumbs) }}
 <div class="read-progress" aria-hidden="true"></div>
 <article class="art">
-  <header class="art__head container">
-    <p class="art__cat">{{ a.category }}</p>
+  <header class="masthead art__head container">
     <h1 data-split>{{ a.title }}</h1>
-    <p class="art__meta"><span>By {{ site.name }} engineers</span><span>Updated <time datetime="{{ a.updated }}">{{ a.updated | datefmt }}</time></span><span>{{ (a.words / 200) | round(0, 'ceil') | int }} min read</span></p>
+    <p class="art__meta"><span class="art__cat">{{ a.category }}</span><span>By {{ site.name }} engineers</span><span>Updated <time datetime="{{ a.updated }}">{{ a.updated | datefmt }}</time></span><span>{{ (a.words / 200) | round(0, 'ceil') | int }} min read</span></p>
   {% if a.answer is defined %}
     <div class="art__answer"><p class="art__answer-h">Short answer</p><p>{{ a.answer }}</p></div>
     {% endif %}

@@ -1,14 +1,20 @@
 {% set section = url.split('/')[1] if url != '/' else '' %}
-{# desktop utility bar: the real organisation and every direct contact route, so the main nav can stay short #}
+{% set destinations = [
+  ('Products', '/products/', section == 'products'),
+  ('Industries', '/industries/', section == 'industries'),
+  ('Sizing tools', '/engineering-tools/', section == 'engineering-tools'),
+  ('Downloads', '/downloads.html', url == '/downloads.html'),
+  ('Service & repair', '/services.html', url == '/services.html'),
+  ('About', '/about.html', url == '/about.html')
+] %}
+{% set quote_href = '/contactus.html#quote' if url in ('/404.html', '/thank-you.html', '/sitemap.html') else '#quote' %}
+{% set quote_label = 'Request a document' if document_request | default(false) else ('Request service' if url == '/services.html' else 'Request a quote') %}
 <div class="util-bar" aria-label="Contact and company">
   <div class="container util-bar__row">
-    <p class="util-bar__facts"><span>{{ site.certification }} certified</span><span>Since {{ site.founded }}</span><span>Arasur, Coimbatore</span></p>
+    <p class="util-bar__facts"><span>Manufacturer in Arasur, Coimbatore</span><span>{{ site.certification }} certified</span></p>
     <ul class="util-bar__links">
-      <li><a href="tel:{{ site.phones[0].tel }}" data-track="call_click"><svg aria-hidden="true"><use href="#i-phone"/></svg>{{ site.phones[0].display }}</a></li>
-      <li><a href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a></li>
-      <li><a href="mailto:{{ site.email }}" data-track="email_click"><svg aria-hidden="true"><use href="#i-mail"/></svg>{{ site.email }}</a></li>
-      <li><a href="/downloads.html"{% if url == '/downloads.html' %} aria-current="page"{% endif %}>Downloads</a></li>
-      <li><a href="/certifications.html"{% if url == '/certifications.html' %} aria-current="page"{% endif %}>Certifications</a></li>
+      <li><a href="tel:{{ site.phones[0].tel }}" data-track="call_click">{{ site.phones[0].display }}</a></li>
+      <li><a href="/contactus.html">Contact</a></li>
     </ul>
   </div>
 </div>
@@ -19,51 +25,12 @@
       <span class="brand__text">Air dryers, chillers &amp; cooling towers<br>Manufacturer, Coimbatore</span>
     </a>
     <nav class="nav-desktop" aria-label="Main">
-      <ul>
-        <li>
-          <button class="nav-link" type="button" aria-expanded="false" aria-controls="mega-products" data-mega>Products<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
-        </li>
-        <li><a class="nav-link" href="/services.html"{% if url == '/services.html' %} aria-current="page"{% endif %}>Services</a></li>
-        <li><a class="nav-link" href="/industries/"{% if section == 'industries' %} aria-current="page"{% endif %}>Industries</a></li>
-        <li><a class="nav-link" href="/engineering-tools/"{% if section == 'engineering-tools' %} aria-current="page"{% endif %}>Sizing tools</a></li>
-        <li><a class="nav-link" href="/about.html"{% if url == '/about.html' %} aria-current="page"{% endif %}>About</a></li>
-        <li><a class="nav-link" href="/contactus.html"{% if url == '/contactus.html' %} aria-current="page"{% endif %}>Contact</a></li>
-      </ul>
+      <ul>{% for label, path, active in destinations %}<li><a class="nav-link" href="{{ path }}"{% if url == path %} aria-current="page"{% elif active %} aria-current="location"{% endif %}>{{ label }}</a></li>{% endfor %}</ul>
     </nav>
     <div class="header-actions">
       <a class="btn btn--ghost btn--icon header-call" href="tel:{{ site.phones[0].tel }}" data-track="call_click" aria-label="Call {{ site.phones[0].display }}"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="btn__label">{{ site.phones[0].display }}</span></a>
-      <a class="btn btn--primary header-quote" href="#quote" data-quote-link>{{ 'Request a document' if document_request | default(false) else 'Request a quote' }}</a>
+      <a class="btn btn--primary header-quote" href="{{ quote_href }}" data-quote-link>{{ quote_label }}</a>
       <button class="btn btn--secondary menu-toggle" type="button" aria-expanded="false" aria-controls="menu-sheet"><svg aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
-    </div>
-  </div>
-  <div class="mega" id="mega-products" hidden>
-    <div class="container mega__grid">
-      {% for fam in families.values() %}
-      <div class="mega__col" style="--i:{{ loop.index0 }}">
-        <p class="mega__head"><a href="/products/{{ fam.slug }}.html">{{ fam.name }}</a><span>{{ fam.products | length }}</span></p>
-        <ul>
-          {% for p in fam.products %}
-          <li><a class="mega__item" href="{{ product_url(p.slug) }}"{% if url == product_url(p.slug) %} aria-current="page"{% endif %}>
-            <span class="mega__thumb" aria-hidden="true">{{ picture(studio(p.image), '', sizes='44px', max_w=320) }}</span>
-            <span class="mega__txt"><strong>{{ p.name }}</strong><em{% if p.range == 'Engineered to order' %} class="is-eto"{% endif %}>{{ 'Made to order' if p.range == 'Engineered to order' else p.range }}</em></span>
-            <svg class="mega__go" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a></li>
-          {% endfor %}
-        </ul>
-        <a class="mega__all" href="/products/{{ fam.slug }}.html">View all {{ fam.short | lower if fam.short is defined else fam.name | lower }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
-      {% endfor %}
-      <div class="mega__aside" style="--i:3">
-        <p class="mega__head"><span class="mega__aside-h">Size it yourself</span></p>
-        <ul class="mega__tools">
-          {% for t in tools %}<li><a href="{{ t.url }}"><strong>{{ t.name }}</strong><span>{{ t.card }}</span></a></li>{% endfor %}
-          <li><a href="/products/industrial-process-chillers.html#chiller-360"><strong><i class="mega__badge">360°</i>Turn a WCP chiller around</strong><span>Interactive model with its components.</span></a></li>
-        </ul>
-        <div class="mega__cta">
-          <p>Not sure which unit you need? Our engineers will recommend the model.</p>
-          <a class="btn btn--primary" href="#quote" data-quote-link>Talk to an engineer</a>
-        </div>
-      </div>
     </div>
   </div>
 </header>
@@ -79,8 +46,13 @@
       <input class="input" id="menu-filter" type="search" placeholder="Find a product, e.g. dryer, 50 TR" autocomplete="off" enterkeyhint="search">
     </div>
     <ul class="menu-results" id="menu-results" hidden></ul>
-    <p class="menu-empty" id="menu-empty" hidden>No product matches. <a href="#quote" data-quote-link>Ask our engineers</a>.</p>
+    <p class="menu-empty" id="menu-empty" hidden>No product matches. <a href="{{ quote_href }}" data-quote-link>Ask our engineers</a>.</p>
     <div id="menu-tree">
+      <nav aria-label="Main">
+        {% for label, path, active in destinations %}<a class="menu-link" href="{{ path }}"{% if url == path %} aria-current="page"{% elif active %} aria-current="location"{% endif %}>{{ label }}<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>{% endfor %}
+        <a class="menu-link" href="/contactus.html">Contact<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
+      </nav>
+      <p class="menu-family-label">Browse by equipment family</p>
       {% for fam in families.values() %}
       <details class="menu-group"{% if p is defined and p.family == fam.id %} open{% endif %}>
         <summary>{{ fam.name }}<svg aria-hidden="true"><use href="#i-chev"/></svg></summary>
@@ -92,16 +64,10 @@
         </ul>
       </details>
       {% endfor %}
-      <a class="menu-link" href="/services.html">Service &amp; repair<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
-      <a class="menu-link" href="/industries/">Industries<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
-      <a class="menu-link" href="/engineering-tools/">Sizing tools<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
-      <a class="menu-link" href="/downloads.html">Downloads<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
-      <a class="menu-link" href="/about.html">About us<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
-      <a class="menu-link" href="/contactus.html">Contact<svg aria-hidden="true" width="18" height="18"><use href="#i-chev-r"/></svg></a>
     </div>
   </div>
   <div class="menu-sheet__foot">
-    <a class="btn btn--primary" href="#quote" data-quote-link>{{ 'Request a document' if document_request | default(false) else 'Request a quote' }}</a>
+    <a class="btn btn--primary" href="{{ quote_href }}" data-quote-link>{{ quote_label }}</a>
     <a class="btn btn--secondary btn--wa" href="{{ whatsapp('Hello Win Equipments, I have an enquiry.') }}" data-track="whatsapp_click"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
   </div>
 </div>

@@ -824,7 +824,7 @@ def _min_css(css):
 
 
 CSS_BUNDLES = {
-    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "price-guide.css", "selection.css", "sections.css", "chat.css", "motion.css", "print.css"],
+    "site.css": ["tokens.css", "base.css", "layout.css", "components.css", "chart.css", "pages.css", "price-guide.css", "selection.css", "sections.css", "chat.css", "motion.css", "catalogue.css", "print.css"],
     "home.css": ["home.css"],
     "viewer.css": ["chiller360.css"],
     "downloads.css": ["downloads.css"],

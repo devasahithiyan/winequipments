@@ -14,6 +14,7 @@ class Element {
     this.offsetHeight = 600;
   }
   setAttribute(k, v) { this.attrs[k] = v; }
+  hasAttribute(k) { return Object.hasOwn(this.attrs, k); }
   addEventListener(k, fn) { (this.events[k] ||= []).push(fn); }
   removeEventListener(k, fn) { this.events[k] = (this.events[k] || []).filter(f => f !== fn); }
   fire(k, detail = {}) { for (const fn of this.events[k] || []) fn({ target: this, stopPropagation() {}, preventDefault() {}, ...detail }); }
@@ -45,7 +46,7 @@ async function harness({ desktop = false, reduce = false, supported = true, memo
       createElement: () => ({ getContext: () => supported ? { getExtension: () => ({ loseContext() {} }) } : null }) },
     window: { IntersectionObserver: true, ResizeObserver: true, addEventListener() {} }, HTMLScriptElement: { supports: () => supported },
     performance: { now: () => clock }, getComputedStyle: () => ({ top: '128px' }),
-    addEventListener() {},
+    addEventListener() {}, removeEventListener() {},
     matchMedia: s => ({ matches: s.includes('min-height') ? desktop && !reduce : s.includes('prefers-reduced-motion') ? reduce : s.includes('max-width') ? !desktop : false, addEventListener() {} }),
     IntersectionObserver: class { constructor(fn, opts) { this.fn = fn; this.opts = opts; observers.push(this); } observe() {} disconnect() {} },
     setTimeout: (fn, delay) => { const id = ++seq; timers.set(id, { fn, at: clock + delay }); return id; }, clearTimeout: id => timers.delete(id),
@@ -67,7 +68,7 @@ async function harness({ desktop = false, reduce = false, supported = true, memo
   }
   return { section, stage, scroller, grid, modes, node, view, states, frame, moduleURLs,
     click: () => node('[data-c3-load]').fire('click'),
-    near: () => observers.find(o => o.opts?.rootMargin)?.fn([{ isIntersecting: true }]),
+    near: () => observers.find(o => o.opts?.threshold === 0.25)?.fn([{ isIntersecting: true }]),
     failImport: v => { failure = v; }, failInit: v => { initFailure = v; }, gate: () => { gate = deferred(); return gate; },
     get stats() { return { initCalls, destroyed, activated, options }; },
     async ready() { for (let i = 0; i < 35; i++) await frame(); assert.equal(section.dataset.c3State, 'ready'); }
@@ -119,7 +120,7 @@ async function harness({ desktop = false, reduce = false, supported = true, memo
   assert.equal(h.node('[data-c3-load]').hidden, true);
   const reserved = h.scroller.style.height;
   h.scroller.offsetHeight = 1410; h.scroller.top = -180;
-  h.near(); await h.ready();
+  h.near(); await h.frame(450); await h.ready();
   assert.equal(h.scroller.style.height, reserved); assert.equal(h.states[0].open, 0);
   console.log('Chiller lifecycle: all checks passed (load, reveal, retry, timeout, late completion, context loss, unsupported, reduced motion, desktop reservation).');
 })().catch(e => { console.error(e); process.exitCode = 1; });
